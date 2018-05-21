@@ -1,0 +1,25 @@
+{
+  "name": "@wface/container",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "baran",
+  "license": "ISC",
+  "dependencies": {
+    "@material-ui/core": "1.0.0",
+    "@material-ui/icons": "1.0.0",
+    "@wface/components": "1.0.0",
+    "prop-types": "15.6.1",
+    "classnames": "2.2.5",
+    "react-router-dom": "4.2.2",
+    "inversify": "4.13.0"
+  },
+  "devDependencies": {
+    "@types/material-ui": "latest",
+    "@types/classnames": "2.2.3"    
+  }
+}

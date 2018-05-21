@@ -1,0 +1,10 @@
+{
+	"name": "wfaca-workspace",
+	"private": true,
+	"workspaces": [
+		"packages/*"
+	],
+	"devDependencies": {
+		"lerna": "^2.11.0"
+	}
+}

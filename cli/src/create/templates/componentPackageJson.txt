@@ -1,0 +1,20 @@
+{
+    "name": "@wface-container/%name%",
+    "version": "1.0.0",
+    "description": "Auto generated component by wface",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "tsc": "tsc"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "react": "^16.3.2",
+        "react-scripts-ts": "2.16.0"
+    },
+    "devDependencies": {
+        "@types/react": "^16.3.14"
+    }
+}
