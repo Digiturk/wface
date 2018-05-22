@@ -5,6 +5,9 @@ import { withRouter } from 'react-router-dom'
 import * as classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import MenuIcon from '@material-ui/icons/Menu';
+import { Inject } from 'react.di';
 
 import { 
     WAppBar, WAppBarProps,
@@ -20,11 +23,7 @@ import {
     WToolbar, WToolbarProps,
     WTypography, WTypographyProps
 } from '@wface/components';
-
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MenuIcon from '@material-ui/icons/Menu';
-
-import { injectable, inject } from "inversify";
+import IAuthService from "../../providers/IAuthService";
 
 //#endregion 
 
@@ -38,8 +37,12 @@ interface WMainPageState {
 }
 
 class WMainPage extends React.Component<WMainPageProps, WMainPageState> {     
+
+    @Inject("IAuthService")
+    private authService: IAuthService;
+
     constructor(props) {
-        super(props);             
+        super(props);   
 
         this.state = {
             drawerOpen: true,
@@ -47,12 +50,10 @@ class WMainPage extends React.Component<WMainPageProps, WMainPageState> {
         }        
     }
 
-    componentWillMount() {
-        // TODO injection calismadigi icin burasi daha sonra kontrol edilmeli. 
-        // Gerekiyorsa yapı tamamen değişmeli. 
-        // if(this.authProvider.isLoggedIn == false) {
-        //     this.props.history.replace('/login');
-        // }
+    componentWillMount() {        
+        if(this.authService.isLoggedIn == false) {
+            this.props.history.replace('/login');
+        }
     }
 
     handleDrawerChange() {        
