@@ -17,7 +17,9 @@ import { WContainer } from "@wface/container";
 })
 class App extends React.Component<{}, {}> {
   public render() {
-    return <WContainer/> 
+    return (      
+      <WContainer/>       
+    );
   }
 }
 

@@ -9,7 +9,7 @@ export default class MockAuthService implements IAuthService {
     public login(username: string, password: string, callback: (result:boolean) => void): void {
         let result = false;
 
-        if(username !== "a" && password !== "a") {
+        if(!(username === "a" && password === "a")) {
             result = true;
         }
 

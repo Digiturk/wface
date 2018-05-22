@@ -26,6 +26,12 @@ export { WListItem, WListItemProps } from './dist/w-list/WListItem'
 export { WListItemIcon, WListItemIconProps } from './dist/w-list/WListItemIcon'
 export { WListItemText, WListItemTextProps } from './dist/w-list/WListItemText'
 
+// WNotificationBar
+export { WNotificationBar, WNotificationBarProps } from './dist/w-notification-bar'
+
+// WPaper
+export { WPaper, WPaperProps } from './dist/w-paper'
+
 // WTabs
 export { WTabs, WTabsProps } from './dist/w-tabs'
 export { WTab, WTabProps } from './dist/w-tabs/WTab'
