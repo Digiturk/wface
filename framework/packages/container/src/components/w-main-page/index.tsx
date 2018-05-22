@@ -25,7 +25,6 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MenuIcon from '@material-ui/icons/Menu';
 
 import { injectable, inject } from "inversify";
-import IAuthProvider from '../../providers/auth-provider/IAuthProvider';
 
 //#endregion 
 
@@ -38,9 +37,8 @@ interface WMainPageState {
     currentTabIndex?: number
 }
 
-@injectable()
 class WMainPage extends React.Component<WMainPageProps, WMainPageState> {     
-    constructor(props, @inject("IAuthProvider") private authProvider : IAuthProvider) {
+    constructor(props) {
         super(props);             
 
         this.state = {

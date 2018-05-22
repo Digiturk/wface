@@ -3770,7 +3770,7 @@ invariant@^2.2.1, invariant@^2.2.2:
   dependencies:
     loose-envify "^1.0.0"
 
-inversify@4.13.0:
+inversify@^4.5.0:
   version "4.13.0"
   resolved "https://registry.yarnpkg.com/inversify/-/inversify-4.13.0.tgz#0ab40570bfa4474b04d5b919bbab3a4f682a72f5"
 
@@ -6426,6 +6426,13 @@ react-transition-group@^2.2.1:
     dom-helpers "^3.3.1"
     loose-envify "^1.3.1"
     prop-types "^15.6.1"
+
+react.di@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/react.di/-/react.di-2.0.0.tgz#c11f55fb609d1268d6401b40bf9a296478aa8bd5"
+  dependencies:
+    inversify "^4.5.0"
+    prop-types "^15.6.0"
 
 react@^16.3.2:
   version "16.3.2"

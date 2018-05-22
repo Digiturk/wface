@@ -16,7 +16,7 @@
     "prop-types": "15.6.1",
     "classnames": "2.2.5",
     "react-router-dom": "4.2.2",
-    "inversify": "4.13.0"
+    "react.di": "2.0.0"
   },
   "devDependencies": {
     "@types/material-ui": "latest",
