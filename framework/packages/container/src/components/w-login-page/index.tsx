@@ -18,8 +18,6 @@ import {
 import { Inject } from 'react.di';
 import IAuthService from "../../providers/IAuthService";
 
-
-
 //#endregion
 
 interface WLoginPageState {
@@ -73,6 +71,12 @@ class WLoginPage extends React.Component<any, WLoginPageState> {
         });
     };
 
+    keyPressed(e) {
+        if(e.key == 'Enter') {
+            this.btnLoginClick();
+        }
+    }
+
     render() {
         const { classes } = this.props;
 
@@ -109,6 +113,7 @@ class WLoginPage extends React.Component<any, WLoginPageState> {
                                         className={classes.vSpace}
                                         value={this.state.username}
                                         onChange={this.handleChange('username')}
+                                        onKeyPress={this.keyPressed.bind(this)}
                                         />
                                     <WTextField
                                         id="password"
@@ -120,6 +125,7 @@ class WLoginPage extends React.Component<any, WLoginPageState> {
                                         className={classes.vSpace}
                                         value={this.state.password}
                                         onChange={this.handleChange('password')}
+                                        onKeyPress={this.keyPressed.bind(this)}
                                         />
                                     <div className={classes.vSpace}/>
                                     <WLoadingButton 

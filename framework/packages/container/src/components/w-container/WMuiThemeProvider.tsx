@@ -20,7 +20,9 @@ interface WPalette extends Palette {
 // All the following keys are optional.
 // We try our best to provide a great default value.
 const theme = createMuiTheme({
+    
     palette: {        
+        type:'light', // dark
         error: {
             light: red[300],
             main: red[500],

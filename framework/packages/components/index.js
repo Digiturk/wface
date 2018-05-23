@@ -31,6 +31,10 @@ export { WListItem, WListItemProps } from './dist/w-list/WListItem'
 export { WListItemIcon, WListItemIconProps } from './dist/w-list/WListItemIcon'
 export { WListItemText, WListItemTextProps } from './dist/w-list/WListItemText'
 
+// WMenu
+export { WMenu, WMenuProps } from './dist/w-menu'
+export { WMenuItem, WMenuItemProps } from './dist/w-menu/WMenuItem'
+
 // WNotificationBar
 export { WNotificationBar, WNotificationBarProps } from './dist/w-notification-bar'
 

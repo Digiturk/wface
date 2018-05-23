@@ -5,7 +5,6 @@ import { withRouter } from 'react-router-dom'
 import * as classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Inject } from 'react.di';
 
@@ -14,16 +13,14 @@ import {
     WDivider, WDividerProps,
     WDrawer, WDrawerProps,
     WIconButton, WIconButtonProps,
-    WList, WListProps,
-    WListItem, WListItemProps,
-    WListItemIcon, WListItemIconProps,
-    WListItemText, WListItemTextProps,
     WTabs, WTabsProps,
     WTab, WTabProps,
     WToolbar, WToolbarProps,
     WTypography, WTypographyProps
 } from '@wface/components';
-import IAuthService from "../../providers/IAuthService";
+import MyProfileMenu from './MyProfileMenu';
+import NavList from './NavList';
+import IUserContext from "../../providers/IUserContext";
 
 //#endregion 
 
@@ -31,15 +28,15 @@ export interface WMainPageProps {
     classes: any,
     history?: any
 }
-interface WMainPageState {
-    drawerOpen?: boolean,
-    currentTabIndex?: number
+interface WMainPageState {    
+    drawerOpen?: boolean;
+    currentTabIndex?: number;
 }
 
 class WMainPage extends React.Component<WMainPageProps, WMainPageState> {     
 
-    @Inject("IAuthService")
-    private authService: IAuthService;
+    @Inject("IUserContext")
+    private userContext: IUserContext;
 
     constructor(props) {
         super(props);   
@@ -51,7 +48,7 @@ class WMainPage extends React.Component<WMainPageProps, WMainPageState> {
     }
 
     componentWillMount() {        
-        if(this.authService.isLoggedIn == false) {
+        if(this.userContext.isLoggedIn == false) {
             this.props.history.replace('/login');
         }
     }
@@ -78,9 +75,10 @@ class WMainPage extends React.Component<WMainPageProps, WMainPageState> {
                         >
                         <MenuIcon />
                     </WIconButton>
-                    <WTypography variant="title" color="inherit" noWrap>
-                        WFace Container
+                    <WTypography variant="title" color="inherit" noWrap className={classes.flex}>
+                        WFace
                     </WTypography>
+                    <MyProfileMenu />
                 </WToolbar>
                 <WTabs
                     value={this.state.currentTabIndex}
@@ -101,27 +99,7 @@ class WMainPage extends React.Component<WMainPageProps, WMainPageState> {
               >
                 <div className={classes.toolbar} />
                 <div style={{height:48}} />
-                <WList> 
-                    <div>
-                        <WListItem button>
-                            <WListItemIcon>
-                                <InboxIcon />
-                            </WListItemIcon>
-                            <WListItemText primary="Inbox" />
-                        </WListItem>
-                    </div>
-                </WList>
-                <WDivider />
-                <WList>
-                    <div>
-                        <WListItem button>
-                            <WListItemIcon>
-                                <InboxIcon />
-                            </WListItemIcon>
-                            <WListItemText primary="Inbox" />
-                        </WListItem>
-                    </div>
-                </WList>
+                <NavList />
               </WDrawer>
               <main className={classNames(classes.content, classes[`content-left`], {
                 [classes.contentShift]: this.state.drawerOpen,
@@ -147,6 +125,9 @@ const styles:any = theme => ({
       overflow: 'hidden',
       position: 'relative',
       display: 'flex',
+    },
+    flex: {
+        flex: 1,
     },
     appBar: {
       zIndex: theme.zIndex.drawer + 1,
@@ -179,7 +160,7 @@ const styles:any = theme => ({
     'contentShift-right': {
         marginRight: 0,
     },
-    toolbar: theme.mixins.toolbar
+    toolbar: theme.mixins.toolbar,
   });
 
 export default withRouter(withStyles(styles)(WMainPage))
