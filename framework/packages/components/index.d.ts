@@ -1,6 +1,11 @@
 // Buttons
 export { WButton, WButtonProps } from './dist/buttons/w-button'
+export { WIconButton, WIconButtonProps } from './dist/buttons/w-icon-button'
 export { WLoadingButton, WLoadingButtonProps, WLoadingButtonStatus } from './dist/buttons/w-loading-button'
+
+// Progress
+export { WCircularProgress, WCircularProgressProps } from './dist/progress/w-circular-progress'
+export { WLinearProgress, WLinearProgressProps } from './dist/progress/w-linear-progress'
 
 //------------------------------------------------------------------------------------------------
 
@@ -11,9 +16,6 @@ export { WAppBar, WAppBarProps } from './dist/w-app-bar'
 export { WCard, WCardProps } from './dist/w-card'
 export { WCardContent, WCardContentProps } from './dist/w-card/WCardContent'
 
-// WCircularProgress
-export { WCircularProgress, WCircularProgressProps } from './dist/w-circular-progress'
-
 // WDivider
 export { WDivider, WDividerProps } from './dist/w-divider'
 
@@ -22,9 +24,6 @@ export { WDrawer, WDrawerProps } from './dist/w-drawer'
 
 // WGrid
 export { WGrid, WGridProps } from './dist/w-grid'
-
-// WIconButton
-export { WIconButton, WIconButtonProps } from './dist/w-icon-button'
 
 // WList
 export { WList, WListProps } from './dist/w-list'

@@ -8,7 +8,7 @@ import {
 import {    
     Visibility, VisibilityOff
 } from '@material-ui/icons'
-import { WIconButton } from '../w-icon-button';
+import { WIconButton } from '../buttons/w-icon-button';
 import { TextFieldProps } from '@material-ui/core/TextField';
 
 //#endregion

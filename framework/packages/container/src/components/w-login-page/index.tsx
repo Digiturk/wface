@@ -7,7 +7,8 @@ import {
     WButton, WCard, WCardContent,
     WGrid, WIconButton, WNotificationBar,
     WTextField, WTypography,
-    WLoadingButton, WLoadingButtonProps, WLoadingButtonStatus
+    WLoadingButton, WLoadingButtonProps, WLoadingButtonStatus,
+    WLinearProgress
 } from '@wface/components';
 import * as classNames from 'classnames';   
 import {    
@@ -63,8 +64,7 @@ class WLoginPage extends React.Component<any, WLoginPageState> {
                     });
                 }
             });
-        });
-        
+        });        
     }
 
     handleChange = name => event => {
@@ -126,7 +126,7 @@ class WLoginPage extends React.Component<any, WLoginPageState> {
                                         fullWidth 
                                         color="primary" 
                                         className={classes.vSpace}
-                                        style={{marginBottom:20}}
+                                        style={{marginTop: 20, marginBottom: 20}}
                                         isLoading={this.state.isLoading}
                                         status={this.state.loadingButtonStatus}
                                         disableFocusRipple

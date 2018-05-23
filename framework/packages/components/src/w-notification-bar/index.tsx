@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
 import { WGrid, WGridProps } from '../w-grid';
-import { WIconButton, WIconButtonProps } from '../w-icon-button';
+import { WIconButton, WIconButtonProps } from '../buttons/w-icon-button';
 import { WPaper, WPaperProps } from '../w-paper';
 import { WTypography, WTypographyProps } from '../w-typography';
 import { withStyles } from '@material-ui/core'

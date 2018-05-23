@@ -1,10 +1,16 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
 import { WButton, WButtonProps } from '../w-button';
-import { WCircularProgress, WCircularProgressProps } from '../../w-circular-progress';
+import { WCircularProgress, WCircularProgressProps } from '../../progress/w-circular-progress';
+import { WLinearProgress, WLinearProgressProps } from '../../progress/w-linear-progress';
 import green from '@material-ui/core/colors/green';
 import red from '@material-ui/core/colors/red';
 import { withStyles } from '@material-ui/core/styles';
+
+export enum WLoadingButtonProgressType {
+    circular,
+    linear
+}
 
 export enum WLoadingButtonStatus {    
     error,
@@ -15,6 +21,7 @@ export enum WLoadingButtonStatus {
 export interface WLoadingButtonProps extends WButtonProps {
     isLoading?: boolean;
     status?: WLoadingButtonStatus;
+    progressType?: WLoadingButtonProgressType;
 }
 
 class WLoadingButtonInner extends React.Component<WLoadingButtonProps & ClassNames & any, {}> {
@@ -36,7 +43,12 @@ class WLoadingButtonInner extends React.Component<WLoadingButtonProps & ClassNam
                 >
                     {this.props.children}
                 </WButton>
-                {this.props.isLoading && <WCircularProgress size={24} className={classes.buttonProgress} />}
+                {/* {this.props.isLoading && <WCircularProgress size={24} className={classes.buttonProgress} />} */}
+                {this.props.isLoading && 
+                    (this.props.progressType == WLoadingButtonProgressType.circular ?
+                        <WCircularProgress size={24} className={classes.circularProgress} /> :
+                        <WLinearProgress className={classes.linearProgress} />)
+                }
             </div>
         )
     }
@@ -69,13 +81,19 @@ const styles = theme => ({
       left: -6,
       zIndex: 1,
     },
-    buttonProgress: {
-      color: green[500],
+    linearProgress: {
+      color: theme.palette.primary.main,
       position: 'absolute',
-      top: '50%',
-      left: '50%',
-      marginTop: -12,
-      marginLeft: -12,
+      bottom: 0,
+      width: '100%'
+    },
+    circularProgress: {
+        color: green[500],
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        marginTop: -12,
+        marginLeft: -12,
     },
 });
 type ClassNames = { classes: { [className in keyof typeof styles]: string } };
