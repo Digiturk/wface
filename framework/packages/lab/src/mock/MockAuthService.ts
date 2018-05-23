@@ -15,7 +15,8 @@ export default class MockAuthService implements IAuthService {
 
         if(callback) {
             this.isLoggedIn = true;
-            callback(result);
+            setTimeout(() => callback(result),
+            2500);
         }
     }
 }

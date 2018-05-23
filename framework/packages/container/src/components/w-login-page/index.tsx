@@ -6,7 +6,8 @@ import { Paper, withStyles } from '@material-ui/core'
 import { 
     WButton, WCard, WCardContent,
     WGrid, WIconButton, WNotificationBar,
-    WTextField, WTypography
+    WTextField, WTypography,
+    WLoadingButton, WLoadingButtonProps, WLoadingButtonStatus
 } from '@wface/components';
 import * as classNames from 'classnames';   
 import {    
@@ -23,7 +24,9 @@ import IAuthService from "../../providers/IAuthService";
 interface WLoginPageState {
     username: string;
     password: string;
-    showWrongPasswordText: boolean;
+    isLoading: boolean;
+    loadingButtonStatus: WLoadingButtonStatus;
+    showWrongPasswordText: boolean;    
 }
 
 class WLoginPage extends React.Component<any, WLoginPageState> { 
@@ -37,18 +40,29 @@ class WLoginPage extends React.Component<any, WLoginPageState> {
         this.state = {
             username: '',
             password: '',
+            isLoading: false,
+            loadingButtonStatus: WLoadingButtonStatus.normal,
             showWrongPasswordText: false
         }
     }
 
     btnLoginClick() {
-        this.authService.login(this.state.username, this.state.password, (result) => {
-            if(result) {
-                this.props.history.replace('/main');
-            }
-            else {
-                this.setState({showWrongPasswordText: true});
-            }
+        this.setState({isLoading: true}, () => {
+            this.authService.login(this.state.username, this.state.password, (result) => {
+                this.setState({isLoading:false});
+
+                if(result) {
+                    this.setState({loadingButtonStatus: WLoadingButtonStatus.success}, () => {
+                        this.props.history.replace('/main');    
+                    });                    
+                }
+                else {
+                    this.setState({
+                        showWrongPasswordText: true,
+                        loadingButtonStatus: WLoadingButtonStatus.error
+                    });
+                }
+            });
         });
         
     }
@@ -106,16 +120,19 @@ class WLoginPage extends React.Component<any, WLoginPageState> {
                                         onChange={this.handleChange('password')}
                                         />
                                     <div className={classes.vSpace}/>
-                                    <WButton 
+                                    <WLoadingButton 
                                         variant="raised" 
                                         size="large" 
                                         fullWidth 
                                         color="primary" 
                                         className={classes.vSpace}
                                         style={{marginBottom:20}}
+                                        isLoading={this.state.isLoading}
+                                        status={this.state.loadingButtonStatus}
+                                        disableFocusRipple
                                         onClick={this.btnLoginClick.bind(this)}>
                                         GİRİŞ
-                                    </WButton>
+                                    </WLoadingButton>
                                 </WCardContent>
                             </WCard>
                         </WGrid>

@@ -1,12 +1,18 @@
+// Buttons
+export { WButton, WButtonProps } from './dist/buttons/w-button'
+export { WLoadingButton, WLoadingButtonProps, WLoadingButtonStatus } from './dist/buttons/w-loading-button'
+
+//------------------------------------------------------------------------------------------------
+
 // WAppBar
 export { WAppBar, WAppBarProps } from './dist/w-app-bar'
-
-// WButton
-export { WButton, WButtonProps } from './dist/w-button'
 
 // WCard
 export { WCard, WCardProps } from './dist/w-card'
 export { WCardContent, WCardContentProps } from './dist/w-card/WCardContent'
+
+// WCircularProgress
+export { WCircularProgress, WCircularProgressProps } from './dist/w-circular-progress'
 
 // WDivider
 export { WDivider, WDividerProps } from './dist/w-divider'

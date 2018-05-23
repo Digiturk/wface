@@ -12,7 +12,7 @@ export interface WNotificationBarProps {
     text: string;
     type: string;
     classes?: any;
-    onCloseClick?: () => void;
+    onCloseClick?: () => void; // TODO kendisini gizleme konusunda wrapperindan yardim almamalı. 
 }
 
 class WNotification extends React.Component<WNotificationBarProps, {}> {
@@ -29,14 +29,14 @@ class WNotification extends React.Component<WNotificationBarProps, {}> {
                 elevation={4}>
                 <WGrid container alignItems="center">
                     <WGrid item xs={11}>
-                        <WTypography style={{color:'#eee'}} align="left">
+                        <WTypography className={classes.whiteText} align="left">
                             {this.props.text}
                         </WTypography>
                     </WGrid>
                     <WGrid item xs={1} style={{height:'100%'}}>
                         <WIconButton style={{margin:0, padding:0}} 
                             onClick={() => this.props.onCloseClick && this.props.onCloseClick()}>
-                            <Close style={{ fontSize: 15, color: '#eee' }}/>
+                            <Close className={classes.whiteText} style={{ fontSize: 15 }}/>
                         </WIconButton>
                     </WGrid>
                 </WGrid>
@@ -52,17 +52,20 @@ const styles = theme => ({
         marginTop: theme.spacing.unit * 3,        
     }),
     error: theme.mixins.gutters({
-        backgroundColor: '#EF5350' // TODO bunları tema gibi bir yerden almak lazım   
+        backgroundColor: theme.palette.error.main
     }),
     warning: theme.mixins.gutters({
-        backgroundColor: '#FFA726' // TODO bunları tema gibi bir yerden almak lazım   
+        backgroundColor: theme.palette.warning.main
     }),
     info: theme.mixins.gutters({
-        backgroundColor: '#42A5F5' // TODO bunları tema gibi bir yerden almak lazım   
+        backgroundColor: theme.palette.info.main
     }),
     success: theme.mixins.gutters({
-        backgroundColor: '#66BB6A' // TODO bunları tema gibi bir yerden almak lazım   
-    })
+        backgroundColor: theme.palette.success.main
+    }),
+    whiteText: {
+        color: theme.palette.common.white
+    }
 });
 
 const WNotificationBar = withStyles(styles as any)(WNotification) 
