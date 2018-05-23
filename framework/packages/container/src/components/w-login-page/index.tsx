@@ -78,18 +78,20 @@ class WLoginPage extends React.Component<any, WLoginPageState> {
 
         return (     
             <div style={{height:'100%', backgroundImage: `url(./assets/login-bg.jpg)`}}>       
-                <div style={{paddingTop:'12%'}}>
-                    <WGrid container justify="center">
+                <div style={{paddingTop:'5%'}}>
+                    <WGrid container justify="center" style={{paddingLeft:10, paddingRight:10}}>
                         <WGrid item xs={12} sm={12} md={3}>
                             <WCard>
                                 <WCardContent>
                                     <WTypography 
                                         variant="display1" 
                                         gutterBottom 
-                                        className={classNames(classes.textCenter, classes.vSpace)}
+                                        className={classNames(classes.textCenter)}
+                                        style={{marginTop:75}}
                                         color="primary"
                                         >
-                                        WFACE
+                                        <img 
+                                            src="./assets/login-logo.png"/>
                                     </WTypography>
 
                                     {this.state.showWrongPasswordText &&
@@ -126,7 +128,7 @@ class WLoginPage extends React.Component<any, WLoginPageState> {
                                         fullWidth 
                                         color="primary" 
                                         className={classes.vSpace}
-                                        style={{marginTop: 20, marginBottom: 20}}
+                                        style={{marginTop: 50, marginBottom: 20}}
                                         isLoading={this.state.isLoading}
                                         status={this.state.loadingButtonStatus}
                                         disableFocusRipple
@@ -136,8 +138,15 @@ class WLoginPage extends React.Component<any, WLoginPageState> {
                                 </WCardContent>
                             </WCard>
                         </WGrid>
+                        <WGrid item lg={12} style={{textAlign:'center', position:'absolute', bottom:50}}>
+                            <WTypography style={{color:'#ddd'}}>                                    
+                                @2018 DigiTurk
+                            </WTypography>
+                        </WGrid>
                     </WGrid>
-                </div>                
+                </div>      
+
+                          
             </div>
         );
     }
@@ -164,10 +173,7 @@ const styles = theme => ({
     },
     vSpace: {
         marginTop: theme.spacing.unit * 3,
-    },
-    button: {
-        marginTop: theme.spacing.unit * 3,
-    },
+    }    
 });
 
 export default withRouter(withStyles(styles as any)(WLoginPage))
