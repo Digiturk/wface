@@ -20,6 +20,7 @@ export interface WTextFieldButton {
     onClick(e, val: String): void;
 }
 export interface WTextFieldProps extends TextFieldProps {
+    defaultValue?: string;
     leftButtons?: WTextFieldButton[];
     rightButtons?: WTextFieldButton[];
 }
@@ -29,8 +30,8 @@ export interface WTextFieldProps extends TextFieldProps {
 export class WTextField extends React.Component<WTextFieldProps, any> {
     
     constructor(props) {
-        super(props);   
-        
+        super(props);           
+                
         this.state = {
             value: this.props.defaultValue,
             showPassword: false

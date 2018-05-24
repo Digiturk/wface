@@ -1,21 +1,21 @@
 {
   "compilerOptions": {
-    "target": "es2015",
     "module": "commonjs",
-    "jsx": "react",
+    "target": "es6",
+    "lib": ["es6", "dom"],
     "declaration": true,
-    "sourceMap": true,
-    "strict": true,
-    "noUnusedLocals":true,
-    "noUnusedParameters": true,
+    "jsx": "react",
+
+    /* START: Compiler options */
     "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "baseUrl": "./packages",
-    "paths": {
-      "@quramy/*": ["./*/src"]
-    }
-  },  
-  "exclude": [
-    "./packages/lab"
-  ]
+    "suppressImplicitAnyIndexErrors": true,
+    // "noImplicitThis": true,
+    // "noImplicitAny": true,
+    // "strictNullChecks": true,
+    // "noUnusedLocals": true,
+    /* END: Compiler options */
+
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  }
 }

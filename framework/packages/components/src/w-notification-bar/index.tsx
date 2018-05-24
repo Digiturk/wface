@@ -52,16 +52,16 @@ const styles = theme => ({
         marginTop: theme.spacing.unit * 3,        
     }),
     error: theme.mixins.gutters({
-        backgroundColor: theme.palette.error.main
+        backgroundColor: theme.palette.error.light
     }),
     warning: theme.mixins.gutters({
-        backgroundColor: theme.palette.warning.main
+        backgroundColor: theme.palette.warning.light
     }),
     info: theme.mixins.gutters({
-        backgroundColor: theme.palette.info.main
+        backgroundColor: theme.palette.info.light
     }),
     success: theme.mixins.gutters({
-        backgroundColor: theme.palette.success.main
+        backgroundColor: theme.palette.success.light
     }),
     whiteText: {
         color: theme.palette.common.white

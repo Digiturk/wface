@@ -7,7 +7,7 @@ import {
     WButton, WCard, WCardContent,
     WGrid, WIconButton, WNotificationBar,
     WTextField, WTypography,
-    WLoadingButton, WLoadingButtonProps, WLoadingButtonStatus,
+    WLoadingButton, WLoadingButtonStatus,
     WLinearProgress
 } from '@wface/components';
 import * as classNames from 'classnames';   

@@ -1,17 +1,10 @@
 {
+    "extends": "../../tsconfig.json",
     "compilerOptions": {
-        "module": "commonjs",
-        "target": "es6",
-        "lib": ["es6", "dom"],
-        "declaration": true,
         "outDir": "dist",
         "rootDir": "src",
-        "jsx": "react",
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
-        "sourceMap": true
     },
     "include": [
-        "src/**/*"
+        "src/**/*",
     ]
 }
