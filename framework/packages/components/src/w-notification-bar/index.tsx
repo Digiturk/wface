@@ -25,7 +25,7 @@ class WNotification extends React.Component<WNotificationBarProps, {}> {
 
         return (            
             <WPaper 
-                className={classNames(classes.errorNotification, classes[this.props.type || 'error'])} 
+                className={classNames(classes.notification, classes[this.props.type || 'error'])} 
                 elevation={4}>
                 <WGrid container alignItems="center">
                     <WGrid item xs={11}>
@@ -51,18 +51,18 @@ const styles = theme => ({
         paddingBottom: 5,
         marginTop: theme.spacing.unit * 3,        
     }),
-    error: theme.mixins.gutters({
-        backgroundColor: theme.palette.error.light
-    }),
-    warning: theme.mixins.gutters({
-        backgroundColor: theme.palette.warning.light
-    }),
-    info: theme.mixins.gutters({
-        backgroundColor: theme.palette.info.light
-    }),
-    success: theme.mixins.gutters({
-        backgroundColor: theme.palette.success.light
-    }),
+    error: {
+        backgroundColor: theme.palette.error.main
+    },
+    warning: {
+        backgroundColor: theme.palette.warning.main
+    },
+    info: {
+        backgroundColor: theme.palette.info.main
+    },
+    success: {
+        backgroundColor: theme.palette.success.main
+    },
     whiteText: {
         color: theme.palette.common.white
     }

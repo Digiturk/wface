@@ -1,39 +1,165 @@
 import * as React from 'react'
 import {
-    WDivider, WDividerProps,
-    WList, WListProps,
-    WListItem, WListItemProps,
-    WListItemIcon, WListItemIconProps,
-    WListItemText, WListItemTextProps,
-} from '@wface/components'
+    WDivider, WList, WListItem,
+    WListItemIcon, WListItemText, 
+    WCircularProgress, WTypography, WIconButton,
+} from '@wface/components';
+import { withStyles } from '@material-ui/core/styles';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import Cached from '@material-ui/icons/Cached';
+import Collapse from '@material-ui/core/Collapse';
+import IAuthService, { IMenuTree } from '../../providers/IAuthService';
+import { Inject } from 'react.di';
 
-export default class NavList extends React.Component<{}, {}> {
+interface NavListState {
+    treeData: IMenuTree[],
+    expandedItems: string[],   
+    menuLoadError: boolean 
+}
+
+class NavList extends React.Component<any, NavListState> {
+    @Inject("IAuthService")
+    private authService: IAuthService
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            treeData: undefined,
+            expandedItems: [],
+            menuLoadError: false
+        }
+    }
+
+    componentDidMount() {
+        this.loadMenuTree();
+    }
+
+    loadMenuTree() {
+        this.setState({menuLoadError: false}, () => {
+            if(!this.state.treeData || this.state.treeData.length == 0) {
+                this.authService.getMenuTree()
+                    .then(treeData => { 
+                        this.setState({treeData}) 
+                    })
+                    .catch(error => {
+                        this.setState({menuLoadError: true});
+                    })
+            }
+        });
+    }
+
+    handleClick = (id: string) => {
+        this.setState(prev => { 
+            const list = prev.expandedItems;
+            const index = list.indexOf(id);
+            if(index > -1) {
+                list.splice(index, 1);
+            }
+            else {
+                list.push(id);
+            }
+
+            return { expandedItems: list };
+        });
+    };
+
+    renderNavItem(item: IMenuTree, nestingLevel: number = 0): React.ReactNode {
+        const itemStyle = {
+            paddingLeft: 20 + 20 * nestingLevel
+        }
+
+        if(item.subNodes && item.subNodes.length > 0) {
+            const open = this.state.expandedItems.indexOf(item.id) > -1;
+            return (
+                <div>
+                    <WListItem key={item.id} button onClick={() => { this.handleClick(item.id)}} style={itemStyle}>
+                        <WListItemIcon>
+                            <InboxIcon />
+                        </WListItemIcon>
+                        <WListItemText inset primary={item.text} />
+                        {open ? <ExpandLess /> : <ExpandMore />}
+                    </WListItem>     
+                    <Collapse in={open} timeout="auto">
+                        <WList component="div" disablePadding>
+                            { item.subNodes.map(subItem => { return this.renderNavItem(subItem, nestingLevel + 1); }) }
+                        </WList>
+                    </Collapse>           
+                    
+                </div>
+            );
+        }
+        else {
+            return (
+                <WListItem key={item.id} button style={itemStyle}>
+                    <WListItemIcon>
+                        <InboxIcon />
+                    </WListItemIcon>
+                    <WListItemText inset primary={item.text} />
+                </WListItem>
+            );
+        }
+    }
+    
     public render() {
+        const { classes } = this.props;
+        const centerStyle= {
+            textAlign:'center', 
+            paddingLeft: 20,
+            paddingRight: 20,
+            paddingTop: 50
+        } as any;
+
         return (
-            <div>
-                <WList> 
-                    <div>
-                        <WListItem button>
-                            <WListItemIcon>
-                                <InboxIcon />
-                            </WListItemIcon>
-                            <WListItemText primary="Inbox" />
-                        </WListItem>
-                    </div>
-                </WList>
-                <WDivider />
-                <WList>
-                    <div>
-                        <WListItem button>
-                            <WListItemIcon>
-                                <InboxIcon />
-                            </WListItemIcon>
-                            <WListItemText primary="Inbox" />
-                        </WListItem>
-                    </div>
-                </WList>
+            <div className={classes.root}>
+                {
+                    (() => {
+                        if(this.state.menuLoadError) {
+                            return (
+                                <div style={centerStyle}>
+                                    <WTypography variant="caption" gutterBottom align="center">
+                                        Menü bilgileriniz yüklenirken bir hata oluştu.
+                                    </WTypography>
+                                    <WIconButton onClick={() => this.loadMenuTree() }>
+                                        <Cached/>
+                                    </WIconButton>
+                                </div>
+                            )
+                        }
+                        else if(this.state.treeData) {
+                            return (
+                                <WList
+                                    component="nav">
+                                    {this.state.treeData &&
+                                        this.state.treeData.map(item => {
+                                            return this.renderNavItem(item);
+                                        })
+                                    }                    
+                                </WList>
+                            );
+                        }
+                        else {
+                            return (
+                                <div style={centerStyle}>
+                                    <WCircularProgress size={50}/>
+                                </div>
+                            );
+                        }
+                    })()
+                }
             </div>
         );
     }
 }
+
+const styles = theme => ({
+    root: {
+      width: '100%',
+      maxWidth: 320,
+      backgroundColor: theme.palette.background.paper,
+    }
+});
+
+export default withStyles(styles)(NavList)

@@ -116,7 +116,7 @@ class WMainPage extends React.Component<WMainPageProps, WMainPageState> {
     }
 };
 
-const drawerWidth = 240;
+const drawerWidth = 320;
 const styles:any = theme => ({
     root: {
       flexGrow: 1,

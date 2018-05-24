@@ -26,7 +26,6 @@ interface WLoginPageState {
     isLoading: boolean;
     loadingButtonStatus: WLoadingButtonStatus;
     notificationText: string;
-    notificationType: string;
     showNotification: boolean;    
 }
 
@@ -44,7 +43,6 @@ class WLoginPage extends React.Component<any, WLoginPageState> {
             isLoading: false,
             loadingButtonStatus: WLoadingButtonStatus.normal,
             notificationText: '',
-            notificationType: 'error',
             showNotification: false            
         }
     }
@@ -62,7 +60,6 @@ class WLoginPage extends React.Component<any, WLoginPageState> {
                         this.setState({
                             showNotification: true,
                             notificationText: "Girdiğiniz kullanıcı adı veya şifre hatalıdır!",
-                            notificationType: "error",
                             loadingButtonStatus: WLoadingButtonStatus.error
                         });
                     }
@@ -71,7 +68,6 @@ class WLoginPage extends React.Component<any, WLoginPageState> {
                     this.setState({
                         showNotification: true,
                         notificationText: "Sunucu ile iletişimde bir hata alındı. Lütfen bağlantı ayarlarınızı kontrol ediniz.",
-                        notificationType: "warning"                    
                     });
                 })
                 .finally(() => {
@@ -116,7 +112,7 @@ class WLoginPage extends React.Component<any, WLoginPageState> {
                                     {this.state.showNotification &&
                                         <WNotificationBar 
                                             text={this.state.notificationText}
-                                            type={this.state.notificationType}
+                                            type={"error"}
                                             onCloseClick={() => this.setState({showNotification: false})}/>
                                     }
 
