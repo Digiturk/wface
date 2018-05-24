@@ -25,7 +25,9 @@ interface WLoginPageState {
     password: string;
     isLoading: boolean;
     loadingButtonStatus: WLoadingButtonStatus;
-    showWrongPasswordText: boolean;    
+    notificationText: string;
+    notificationType: string;
+    showNotification: boolean;    
 }
 
 class WLoginPage extends React.Component<any, WLoginPageState> { 
@@ -41,27 +43,40 @@ class WLoginPage extends React.Component<any, WLoginPageState> {
             password: '',
             isLoading: false,
             loadingButtonStatus: WLoadingButtonStatus.normal,
-            showWrongPasswordText: false
+            notificationText: '',
+            notificationType: 'error',
+            showNotification: false            
         }
     }
 
     btnLoginClick() {
         this.setState({isLoading: true}, () => {
-            this.authService.login(this.state.username, this.state.password, (result) => {
-                this.setState({isLoading:false});
-
-                if(result) {
-                    this.setState({loadingButtonStatus: WLoadingButtonStatus.success}, () => {
-                        this.props.history.replace('/main');    
-                    });                    
-                }
-                else {
+            this.authService.login(this.state.username, this.state.password)
+                .then(result => {
+                    if(result) {
+                        this.setState({loadingButtonStatus: WLoadingButtonStatus.success}, () => {
+                            this.props.history.replace('/main');    
+                        });                    
+                    }
+                    else {
+                        this.setState({
+                            showNotification: true,
+                            notificationText: "Girdiğiniz kullanıcı adı veya şifre hatalıdır!",
+                            notificationType: "error",
+                            loadingButtonStatus: WLoadingButtonStatus.error
+                        });
+                    }
+                }).
+                catch(message => {
                     this.setState({
-                        showWrongPasswordText: true,
-                        loadingButtonStatus: WLoadingButtonStatus.error
+                        showNotification: true,
+                        notificationText: "Sunucu ile iletişimde bir hata alındı. Lütfen bağlantı ayarlarınızı kontrol ediniz.",
+                        notificationType: "warning"                    
                     });
-                }
-            });
+                })
+                .finally(() => {
+                    this.setState({isLoading:false});
+                });       
         });        
     }
 
@@ -98,11 +113,11 @@ class WLoginPage extends React.Component<any, WLoginPageState> {
                                             src="./assets/login-logo.png"/>
                                     </WTypography>
 
-                                    {this.state.showWrongPasswordText &&
+                                    {this.state.showNotification &&
                                         <WNotificationBar 
-                                            text="Girdiğiniz kullanıcı adı veya şifre hatalıdır!" 
-                                            type="error"
-                                            onCloseClick={() => this.setState({showWrongPasswordText: false})}/>
+                                            text={this.state.notificationText}
+                                            type={this.state.notificationType}
+                                            onCloseClick={() => this.setState({showNotification: false})}/>
                                     }
 
                                     <WTextField

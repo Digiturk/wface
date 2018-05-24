@@ -1,3 +1,3 @@
 export default interface IAuthService {
-    login(username: string, password: string, callback: (result: boolean) => void): void
+    login(username: string, password: string): Promise<boolean>
 }
