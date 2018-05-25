@@ -1,12 +1,13 @@
 //#region imports 
 
 import * as React from "react";
-import { withRouter } from 'react-router-dom'
+import { withRouter, BrowserRouter, Route, Switch, Link } from 'react-router-dom'
 import * as classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Inject } from 'react.di';
+import WLoginPage from '../w-login-page'
 
 import { 
     WAppBar, WAppBarProps,
@@ -16,11 +17,16 @@ import {
     WTabs, WTabsProps,
     WTab, WTabProps,
     WToolbar, WToolbarProps,
-    WTypography, WTypographyProps
+    WTypography, WTypographyProps, WButton, WGrid
 } from '@wface/components';
 import MyProfileMenu from './MyProfileMenu';
 import NavList from './NavList';
 import IUserContext from "../../providers/IUserContext";
+import WMuiThemeProvider from "../w-container/WMuiThemeProvider";
+import IAuthService, { IMenuTree } from "../../providers/IAuthService";
+import { Close } from "@material-ui/icons";
+import { Menu } from "material-ui";
+import { Icon } from "@material-ui/core";
 
 //#endregion 
 
@@ -30,7 +36,9 @@ export interface WMainPageProps {
 }
 interface WMainPageState {    
     drawerOpen?: boolean;
-    currentTabIndex?: number;
+    currentPage?: IMenuTree;
+    openedPages: IMenuTree[];
+    menuTree: IMenuTree[];
 }
 
 class WMainPage extends React.Component<WMainPageProps, WMainPageState> {     
@@ -38,12 +46,17 @@ class WMainPage extends React.Component<WMainPageProps, WMainPageState> {
     @Inject("IUserContext")
     private userContext: IUserContext;
 
+    @Inject("IAuthService")
+    private authService: IAuthService;
+
     constructor(props) {
         super(props);   
 
         this.state = {
             drawerOpen: true,
-            currentTabIndex: 0
+            currentPage: undefined,
+            openedPages: [],
+            menuTree: []
         }        
     }
 
@@ -51,6 +64,23 @@ class WMainPage extends React.Component<WMainPageProps, WMainPageState> {
         if(this.userContext.isLoggedIn == false) {
             this.props.history.replace('/login');
         }
+
+        this.authService.getMenuTree()
+            .then(menuTree => {
+                this.setState({menuTree}, () => {
+                    let currentPage: IMenuTree;                
+                    this.menuTreeForEach(this.state.menuTree, item => {
+                        if(item.target === (this.props as any).location.pathname){
+                            currentPage = item;
+                            return true;
+                        }
+                        return false;
+                    });
+                    if(currentPage) {
+                        this.openPage(currentPage);
+                    }
+                });
+            })
     }
 
     handleDrawerChange() {        
@@ -58,8 +88,92 @@ class WMainPage extends React.Component<WMainPageProps, WMainPageState> {
     };
 
     handleTabChange(event, value) {
-        this.setState({ currentTabIndex: value });
+        const item = this.findNode(value);
+        if(item) {
+            this.openPage(item);
+        }
+        else {
+            this.props.history.replace((this.props as any).match.url);
+        }
     };
+
+    findNode(id: string): IMenuTree {
+        let result: IMenuTree;                
+        this.menuTreeForEach(this.state.menuTree, item => {
+            if(item.id == id){
+                result = item;
+                return true;
+            }
+            return false;
+        });
+
+        return result;
+    }
+
+    menuTreeForEach(nodes: IMenuTree[], callback: (item: IMenuTree) => boolean) {
+        for(let i = 0; i < nodes.length; i++) {
+            const item = nodes[i];   
+            if(item.subNodes && item.subNodes.length > 0){
+                if(this.menuTreeForEach(item.subNodes, callback)) {
+                    break;
+                }
+            }
+            else {
+                if(callback(item)) {
+                    break;
+                }
+            }                
+        }
+    }
+    
+    openPage(page: IMenuTree) {
+        let list = this.state.openedPages;
+        if(list.findIndex(item => item.id == page.id) == -1) {
+            list.push(page);
+        }
+
+        this.setState({
+            openedPages: list,
+            currentPage: page
+        }, () => {
+            this.props.history.replace(page.target);
+        });
+    }
+
+    closePage(event, page: IMenuTree) {
+        event.stopPropagation();
+
+        let list = this.state.openedPages;
+        const index = list.findIndex(item => item.id == page.id);
+        if(index > -1) {
+            list.splice(index, 1);
+        }
+
+        let currentPage = this.state.currentPage;
+        if(currentPage.id == page.id) {
+            if(list.length == 0) {
+                currentPage = undefined;
+            }
+            else if(list.length - 1 >= index) {
+                currentPage = list[index];
+            }
+            else {
+                currentPage = list[index - 1];
+            }
+        }
+
+        this.setState({
+            openedPages: list,
+            currentPage: currentPage
+        }, () => {
+            if(!currentPage) {
+                this.props.history.replace((this.props as any).match.url);
+            }
+            else {
+                this.props.history.replace(currentPage.target);
+            }
+        });
+    }
 
     render() {
         const { classes } = this.props;
@@ -81,14 +195,31 @@ class WMainPage extends React.Component<WMainPageProps, WMainPageState> {
                     <MyProfileMenu />
                 </WToolbar>
                 <WTabs
-                    value={this.state.currentTabIndex}
+                    value={this.state.currentPage && this.state.currentPage.id}
                     onChange={this.handleTabChange.bind(this)}
                     centered
                 >
-                    <WTab label="Grid Screen" />
-                    <WTab label="Edit Screen" />
+                    {
+                        this.state.openedPages.map(page => {
+                            const label = (
+                                <WGrid container alignItems="center">
+                                    <WGrid item xs={10}>
+                                        {page.text}    
+                                    </WGrid>
+                                    <WGrid item xs={2} style={{paddingRight: 10}} >
+                                        <WIconButton 
+                                            onClick={(e) => this.closePage(e, page)}>
+                                            <Close className={classes.whiteText} style={{ fontSize: 15}}/>
+                                        </WIconButton>
+                                    </WGrid>
+                                </WGrid>
+                            );
+                            return <WTab label={label} value={page.id}/>
+                        })
+                    }
                 </WTabs>
               </WAppBar>
+
               <WDrawer
                 variant="persistent"
                 open={this.state.drawerOpen}
@@ -99,7 +230,7 @@ class WMainPage extends React.Component<WMainPageProps, WMainPageState> {
               >
                 <div className={classes.toolbar} />
                 <div style={{height:48}} />
-                <NavList />
+                <NavList onItemClicked={item => this.openPage(item)}/>
               </WDrawer>
               <main className={classNames(classes.content, classes[`content-left`], {
                 [classes.contentShift]: this.state.drawerOpen,
@@ -107,8 +238,31 @@ class WMainPage extends React.Component<WMainPageProps, WMainPageState> {
                 })}>
                 <div className={classes.toolbar} />
                 <div style={{height:48}} />
-                <div style={{padding:10}}>                
-                    <WTypography noWrap>{'You think water moves fast? You should see ice.'}</WTypography>
+                <div style={{padding:10}}>    
+                    <Switch>
+                        {
+                            (() => {
+                                const routeList = [];
+                                this.menuTreeForEach(this.state.menuTree, item => {
+                                    const Component = function(props) {                                    
+                                        return (
+                                            <div> 
+                                                <Icon>send</Icon>
+                                                {item.text} 
+                                            </div>
+                                        );
+                                    }
+    
+                                    const route = <Route exact path={item.target} render={props => { return <Component/>}}/> 
+
+                                    routeList.push(route);
+                                    return false;
+                                });
+
+                                return routeList;
+                            })()
+                        }
+                    </Switch>
                 </div>
               </main>
             </div>
@@ -161,6 +315,9 @@ const styles:any = theme => ({
         marginRight: 0,
     },
     toolbar: theme.mixins.toolbar,
+    whiteText: {
+        color: '#bbb'
+    }
   });
 
 export default withRouter(withStyles(styles)(WMainPage))

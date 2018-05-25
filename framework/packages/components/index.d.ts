@@ -25,6 +25,9 @@ export { WDrawer, WDrawerProps } from './dist/w-drawer'
 // WGrid
 export { WGrid, WGridProps } from './dist/w-grid'
 
+// WIcon 
+export { WIcon, WIconProps } from './dist/w-icon'
+
 // WList
 export { WList, WListProps } from './dist/w-list'
 export { WListItem, WListItemProps } from './dist/w-list/WListItem'

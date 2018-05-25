@@ -35,59 +35,82 @@ export default class MockAuthService implements IAuthService {
 
             const tree: IMenuTree[] = [
                 {
+                    icon: 'send',
                     id: "1",
-                    target: 'system/dashboard',
-                    text:'Dashboard'                                        
+                    target: '/system/dashboard',
+                    text:'Dashboard',                                        
                 },
                 {
+                    icon: 'send',
                     id: "2",
-                    target: 'system/inbox',
+                    target: '/system/inbox',
                     text:'Inbox'
                 },
                 {
+                    icon: 'send',
                     id: "3",
                     subNodes: [
                         {
+                            icon: 'send',
                             id: "3.1",
-                            target: 'crm/screen1',
-                            text: 'Crm Ekran 1'
+                            target: '/crm/screen1',
+                            text: 'Crm 1'
                         },
                         {
+                            icon: 'send',
                             id: "3.2",
-                            target: 'crm/screen2',
-                            text: 'Crm Ekran 2'
+                            target: '/crm/screen2',
+                            text: 'Crm 2'
                         }
                     ],
                     text: 'CRM',                    
                 },
                 {
+                    icon: 'send',
                     id: "4",
                     subNodes: [
                         {
+                            icon: 'send',
                             id: "4.1",
-                            target: 'billing/screen1',
-                            text: 'Billing Ekran 1'
+                            target: '/billing/screen1',
+                            text: 'Billing 1'
                         },
                         {
+                            icon: 'send',
                             id: "4.2",
-                            target: 'billing/screen2',
-                            text: 'Billing Ekran 2'
+                            target: '/billing/screen2',
+                            text: 'Billing 2'
                         },
                         {
+                            icon: 'send',
                             id: "4.3",
                             subNodes: [
                                 {
+                                    icon: 'send',
                                     id: "4.3.1",
-                                    target: 'crm/screen1',
-                                    text: 'Crm Ekran 1'
+                                    target: '/billing/subscreen1',
+                                    text: 'Billing Alt 1'
                                 },
                                 {
+                                    icon: 'send',
                                     id: "4.3.2",
-                                    target: 'crm/screen2',
-                                    text: 'Crm Ekran 2'
+                                    target: '/billing/subscreen2',
+                                    text: 'Billing Alt 2'
+                                },
+                                {
+                                    icon: 'send',
+                                    id: "4.3.3",
+                                    target: '/billing/subscreen3',
+                                    text: 'Billing Alt 3'
+                                },
+                                {
+                                    icon: 'send',
+                                    id: "4.3.4",
+                                    target: '/billing/subscreen4',
+                                    text: 'Billing Alt 4'
                                 }
                             ],
-                            text: 'Billing Ekran 3', 
+                            text: 'Billing Alt Ekranlar', 
                         }
                     ],
                     text: 'Billing',                    

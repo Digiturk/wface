@@ -15,11 +15,8 @@ class WContainer extends React.Component<{},{}> {
         return (            
             <BrowserRouter> 
                 <WMuiThemeProvider>
-                    <Route path="/">
-                        {/* <Redirect from="/" to="/main"/> */}
-                    </Route>
-                    <Route exact path="/main" component={WMainPage} />
-                    <Route path="/login" component={WLoginPage} />                    
+                    <Route path="/login" component={WLoginPage} />    
+                    <Route path="/" component={WMainPage} />
                 </WMuiThemeProvider >
             </BrowserRouter>
         );

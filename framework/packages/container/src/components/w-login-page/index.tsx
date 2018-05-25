@@ -53,7 +53,7 @@ class WLoginPage extends React.Component<any, WLoginPageState> {
                 .then(result => {
                     if(result) {
                         this.setState({loadingButtonStatus: WLoadingButtonStatus.success}, () => {
-                            this.props.history.replace('/main');    
+                            this.props.history.replace('/');    
                         });                    
                     }
                     else {

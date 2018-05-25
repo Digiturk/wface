@@ -2,7 +2,7 @@ import * as React from 'react'
 import {
     WDivider, WList, WListItem,
     WListItemIcon, WListItemText, 
-    WCircularProgress, WTypography, WIconButton,
+    WCircularProgress, WTypography, WIconButton, WIcon,
 } from '@wface/components';
 import { withStyles } from '@material-ui/core/styles';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
@@ -13,13 +13,17 @@ import Collapse from '@material-ui/core/Collapse';
 import IAuthService, { IMenuTree } from '../../providers/IAuthService';
 import { Inject } from 'react.di';
 
+export interface NavListProps {
+    onItemClicked?: (item: IMenuTree) => void
+}
+
 interface NavListState {
     treeData: IMenuTree[],
     expandedItems: string[],   
     menuLoadError: boolean 
 }
 
-class NavList extends React.Component<any, NavListState> {
+class NavList extends React.Component<NavListProps & {classes: any}, NavListState> {
     @Inject("IAuthService")
     private authService: IAuthService
 
@@ -51,7 +55,7 @@ class NavList extends React.Component<any, NavListState> {
         });
     }
 
-    handleClick = (id: string) => {
+    handleNodeClick = (id: string) => {
         this.setState(prev => { 
             const list = prev.expandedItems;
             const index = list.indexOf(id);
@@ -66,6 +70,12 @@ class NavList extends React.Component<any, NavListState> {
         });
     };
 
+    handleLeafClick = (item: IMenuTree) => {
+        if(this.props.onItemClicked) {
+            this.props.onItemClicked(item);
+        }
+    }
+
     renderNavItem(item: IMenuTree, nestingLevel: number = 0): React.ReactNode {
         const itemStyle = {
             paddingLeft: 20 + 20 * nestingLevel
@@ -75,9 +85,9 @@ class NavList extends React.Component<any, NavListState> {
             const open = this.state.expandedItems.indexOf(item.id) > -1;
             return (
                 <div>
-                    <WListItem key={item.id} button onClick={() => { this.handleClick(item.id)}} style={itemStyle}>
+                    <WListItem key={item.id} button onClick={() => { this.handleNodeClick(item.id)}} style={itemStyle}>
                         <WListItemIcon>
-                            <InboxIcon />
+                            <WIcon>{item.icon}</WIcon>
                         </WListItemIcon>
                         <WListItemText inset primary={item.text} />
                         {open ? <ExpandLess /> : <ExpandMore />}
@@ -93,9 +103,9 @@ class NavList extends React.Component<any, NavListState> {
         }
         else {
             return (
-                <WListItem key={item.id} button style={itemStyle}>
+                <WListItem key={item.id} button style={itemStyle} onClick={() => { this.handleLeafClick(item)}} >
                     <WListItemIcon>
-                        <InboxIcon />
+                        <WIcon>{item.icon}</WIcon>
                     </WListItemIcon>
                     <WListItemText inset primary={item.text} />
                 </WListItem>
