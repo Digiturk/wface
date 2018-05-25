@@ -47,6 +47,7 @@ export default class MockAuthService implements IAuthService {
                     text:'Inbox'
                 },
                 {
+                    divideBefore: true,
                     icon: 'send',
                     id: "3",
                     subNodes: [
@@ -66,6 +67,7 @@ export default class MockAuthService implements IAuthService {
                     text: 'CRM',                    
                 },
                 {
+                    divideBefore: true,
                     icon: 'send',
                     id: "4",
                     subNodes: [

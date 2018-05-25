@@ -7,6 +7,7 @@ export interface IMenuTree {
     id: string,
     text: string;
     icon?: string;
+    divideBefore?: boolean;
     target?: string;
     subNodes?: IMenuTree[];    
 }

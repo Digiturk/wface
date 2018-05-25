@@ -85,6 +85,7 @@ class NavList extends React.Component<NavListProps & {classes: any}, NavListStat
             const open = this.state.expandedItems.indexOf(item.id) > -1;
             return (
                 <div>
+                    {item.divideBefore && <WDivider/>}
                     <WListItem key={item.id} button onClick={() => { this.handleNodeClick(item.id)}} style={itemStyle}>
                         <WListItemIcon>
                             <WIcon>{item.icon}</WIcon>
