@@ -1,9 +1,9 @@
 {
   "name": "lab",
-  "version": "1.0.4",
+  "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "@wface/container": "^1.0.4",
+    "@wface/container": "^1.0.5",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-scripts-ts": "2.16.0",
