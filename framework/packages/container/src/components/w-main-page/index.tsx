@@ -43,6 +43,8 @@ interface WMainPageState {
 
 class WMainPage extends React.Component<WMainPageProps, WMainPageState> {     
 
+    //#region Properties & Constructor & Initial methods
+
     @Inject("IUserContext")
     private userContext: IUserContext;
 
@@ -83,6 +85,10 @@ class WMainPage extends React.Component<WMainPageProps, WMainPageState> {
             })
     }
 
+    //#endregion
+
+    //#region Events 
+
     handleDrawerChange() {        
         this.setState((prevState) => { return { drawerOpen: !prevState.drawerOpen }});        
     };
@@ -96,6 +102,22 @@ class WMainPage extends React.Component<WMainPageProps, WMainPageState> {
             this.props.history.replace((this.props as any).match.url);
         }
     };
+
+    handleTabCloseButtonClick(event, page: IMenuTree) {
+        event.stopPropagation();
+        this.closePage(page);
+    }
+
+    handleTabButton(event, page: IMenuTree) {
+        event.persist();
+        if(event.button == 1) {
+            this.closePage(page);
+        }
+    }
+
+    //#endregion
+
+    //#region Methods 
 
     findNode(id: string): IMenuTree {
         let result: IMenuTree;                
@@ -140,9 +162,7 @@ class WMainPage extends React.Component<WMainPageProps, WMainPageState> {
         });
     }
 
-    closePage(event, page: IMenuTree) {
-        event.stopPropagation();
-
+    closePage(page: IMenuTree) {
         let list = this.state.openedPages;
         const index = list.findIndex(item => item.id == page.id);
         if(index > -1) {
@@ -174,6 +194,10 @@ class WMainPage extends React.Component<WMainPageProps, WMainPageState> {
             }
         });
     }
+
+    //#endregion
+
+    //#region Render
 
     render() {
         const { classes } = this.props;
@@ -208,13 +232,13 @@ class WMainPage extends React.Component<WMainPageProps, WMainPageState> {
                                     </WGrid>
                                     <WGrid item xs={2} style={{paddingRight: 10}} >
                                         <WIconButton 
-                                            onClick={(e) => this.closePage(e, page)}>
+                                            onClick={(e) => this.handleTabCloseButtonClick(e, page)}>
                                             <Close className={classes.whiteText} style={{ fontSize: 15}}/>
                                         </WIconButton>
                                     </WGrid>
                                 </WGrid>
                             );
-                            return <WTab label={label} value={page.id}/>
+                            return <WTab label={label} value={page.id} onMouseUp={e => this.handleTabButton(e, page)}/>
                         })
                     }
                 </WTabs>
@@ -247,7 +271,6 @@ class WMainPage extends React.Component<WMainPageProps, WMainPageState> {
                                     const Component = function(props) {                                    
                                         return (
                                             <div> 
-                                                <Icon>send</Icon>
                                                 {item.text} 
                                             </div>
                                         );
@@ -268,6 +291,8 @@ class WMainPage extends React.Component<WMainPageProps, WMainPageState> {
             </div>
           );
     }
+
+    //#endregion
 };
 
 const drawerWidth = 320;
@@ -318,6 +343,6 @@ const styles:any = theme => ({
     whiteText: {
         color: '#bbb'
     }
-  });
+});
 
 export default withRouter(withStyles(styles)(WMainPage))
