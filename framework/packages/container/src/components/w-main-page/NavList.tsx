@@ -10,7 +10,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Cached from '@material-ui/icons/Cached';
 import Collapse from '@material-ui/core/Collapse';
-import IAuthService, { IMenuTree } from '../../providers/IAuthService';
+import { IAuthService, IMenuTree } from '@wface/ioc';
 import { Inject } from 'react.di';
 
 export interface NavListProps {

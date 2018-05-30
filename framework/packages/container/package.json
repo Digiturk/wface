@@ -12,16 +12,21 @@
   "dependencies": {
     "@material-ui/core": "1.1.0",
     "@material-ui/icons": "1.1.0",
-    "@wface/components": "^1.0.1",
+    "@wface/components": "^0.0.1",
+    "@wface/ioc": "^0.0.1",
     "classnames": "2.2.5",
     "prop-types": "15.6.1",
     "react-router-dom": "4.2.2",
+    "redux": "4.0.0",
+    "react-redux": "5.0.7",
+    "typesafe-actions": "2.0.4",
     "react.di": "2.0.0"
   },
   "devDependencies": {
     "@types/classnames": "2.2.3",
     "@types/material-ui": "latest",
     "@types/promise.prototype.finally": "2.0.2",
-    "@types/react-router-dom": "4.2.6"
+    "@types/react-router-dom": "4.2.6",
+    "@types/react-redux": "5"
   }
 }

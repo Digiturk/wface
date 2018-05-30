@@ -11,6 +11,7 @@ import WLoginPage from '../w-login-page'
 
 import { 
     WAppBar, WAppBarProps,
+    WComponentBase,
     WDivider, WDividerProps,
     WDrawer, WDrawerProps,
     WIconButton, WIconButtonProps,
@@ -21,9 +22,8 @@ import {
 } from '@wface/components';
 import MyProfileMenu from './MyProfileMenu';
 import NavList from './NavList';
-import IUserContext from "../../providers/IUserContext";
+import { IAuthService, IMenuTree, UserContext } from "@wface/ioc";
 import WMuiThemeProvider from "../w-container/WMuiThemeProvider";
-import IAuthService, { IMenuTree } from "../../providers/IAuthService";
 import { Close } from "@material-ui/icons";
 import { Menu } from "material-ui";
 import { Icon } from "@material-ui/core";
@@ -41,18 +41,13 @@ interface WMainPageState {
     menuTree: IMenuTree[];
 }
 
-class WMainPage extends React.Component<WMainPageProps, WMainPageState> {     
-
-    //#region Properties & Constructor & Initial methods
-
-    @Inject("IUserContext")
-    private userContext: IUserContext;
+class WMainPage extends WComponentBase<WMainPageProps, WMainPageState> {     
 
     @Inject("IAuthService")
     private authService: IAuthService;
 
-    constructor(props) {
-        super(props);   
+    constructor(props, context) {
+        super(props, context);   
 
         this.state = {
             drawerOpen: true,

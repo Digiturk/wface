@@ -1,48 +1,52 @@
-import { IAuthService, IMenuTree, UserContext } from '@wface/ioc';
-import { Inject, Injectable } from 'react.di';
-
-
-@Injectable
-export default class MockAuthService implements IAuthService {    
-    
-    public login(username: string, password: string) : Promise<boolean> {
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const react_di_1 = require("react.di");
+let MockAuthService = class MockAuthService {
+    constructor(userContext) {
+        this.userContext = userContext;
+    }
+    login(username, password) {
         return new Promise((resolve, reject) => {
-            if(username === "connection-error") {
+            if (username === "connection-error") {
                 setTimeout(() => reject("Connection error"), 1000);
             }
-
             let result = true;
-
-            if(username === "wrong-password") {
+            if (username === "wrong-password") {
                 result = false;
             }
-
-            if(result) {
-                // TODO burada login etmeliyiz
-                // this.userContext.setUserInfo('dtmebaran', 'mehmet baran');
+            if (result) {
+                this.userContext.setUserInfo('dtmebaran', 'mehmet baran');
             }
-
             setTimeout(() => resolve(result), 2500);
         });
     }
-
-    public getMenuTree(): Promise<IMenuTree[]> {        
-
+    getMenuTree() {
         return new Promise((resolve, reject) => {
             // setTimeout(() => reject(''), 1000);
-
-            const tree: IMenuTree[] = [
+            const tree = [
                 {
                     icon: 'send',
                     id: "1",
                     target: '/system/dashboard',
-                    text:'Dashboard',                                        
+                    text: 'Dashboard',
                 },
                 {
                     icon: 'send',
                     id: "2",
                     target: '/system/inbox',
-                    text:'Inbox'
+                    text: 'Inbox'
                 },
                 {
                     divideBefore: true,
@@ -62,7 +66,7 @@ export default class MockAuthService implements IAuthService {
                             text: 'Crm 2'
                         }
                     ],
-                    text: 'CRM',                    
+                    text: 'CRM',
                 },
                 {
                     divideBefore: true,
@@ -110,14 +114,19 @@ export default class MockAuthService implements IAuthService {
                                     text: 'Billing Alt 4'
                                 }
                             ],
-                            text: 'Billing Alt Ekranlar', 
+                            text: 'Billing Alt Ekranlar',
                         }
                     ],
-                    text: 'Billing',                    
+                    text: 'Billing',
                 }
-            ]
-            
+            ];
             setTimeout(() => resolve(tree), 1200);
         });
     }
-}
+};
+MockAuthService = __decorate([
+    react_di_1.Injectable,
+    __param(0, react_di_1.Inject("IUserContext")),
+    __metadata("design:paramtypes", [Object])
+], MockAuthService);
+exports.default = MockAuthService;

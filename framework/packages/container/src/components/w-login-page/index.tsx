@@ -16,7 +16,7 @@ import {
 } from '@material-ui/icons' 
 
 import { Inject } from 'react.di';
-import IAuthService from "../../providers/IAuthService";
+import { IAuthService } from "@wface/ioc";
 
 //#endregion
 

@@ -1,3 +1,6 @@
+// Base
+export { WComponentBase } from './dist/base/w-component-base'
+
 // Buttons
 export { WButton, WButtonProps } from './dist/buttons/w-button'
 export { WIconButton, WIconButtonProps } from './dist/buttons/w-icon-button'
