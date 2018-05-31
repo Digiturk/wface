@@ -5,41 +5,41 @@ import { Link } from 'react-router-dom'
 import WLoginPage from '../w-login-page';
 import WMainPage from '../w-main-page';
 import WMuiThemeProvider from './WMuiThemeProvider';
-import { connect } from 'react-redux';
-import * as PropTypes from 'prop-types';
+import store from '../../redux';
+import { Provider } from 'react-redux';
 
 
-class WContainer extends WFace.WComponentBase<any, {}> { 
-    constructor(props, context) {
-        super(props, context);
+class WContainer extends React.Component<any, {}> { 
+    constructor(props) {
+        super(props);
     }  
     
     render() {                
         return ( 
-            <BrowserRouter> 
-                <WMuiThemeProvider>    
-                    <Route path="/login" component={WLoginPage} />    
-                    <Route path="/" component={WMainPage} />
-                </WMuiThemeProvider >
-            </BrowserRouter>
+            <Provider store={store}>
+                <BrowserRouter> 
+                    <WMuiThemeProvider>                        
+                        
+                        {/* <Route path="/main" component={WMainPage} /> */}
+                        <Route exact path="/" render={props => <Redirect to="/main"/>}/>
+                        <Route path="/main" render={props =>
+                            store.getState().userContext.isLoggedIn === true ? (
+                                <WMainPage />
+                            ) : (
+                                <Redirect
+                                to={{
+                                    pathname: "/login",
+                                    state: { from: props.location }
+                                }}
+                                />
+                            )
+                            } />
+                            <Route path="/login" component={WLoginPage} />    
+                    </WMuiThemeProvider >
+                </BrowserRouter>
+            </Provider>
         );
     }
 };
 
-const mapStateToProps = (state) => ({
-    userContext: state.userReducer
-});
-
-
-// export default connect(mapStateToProps)(WContainer);
 export default WContainer;
-
-
-export const MyContext = React.createContext("deneme");
-
-
-// export default props => (
-//     <MyContext.Consumer>
-//       {theme => <WContainer {...props} value={theme} />}
-//     </MyContext.Consumer>
-//   );

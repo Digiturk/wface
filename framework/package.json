@@ -5,10 +5,18 @@
 		"packages/*"
 	],
 	"devDependencies": {
+		"concurrently": "^3.5.1",
 		"lerna": "^2.11.0"
 	},
 	"repository": {
 		"type": "git",
 		"url": "https://bitbucket.digiturk.com.tr/scm/itdev/wface.git"
+	},
+	"scripts": {
+		"start": "concurrently --kill-others \"npm run tsc:ioc\" \"npm run tsc:cmp\" \"npm run tsc:cnt\" \"npm run lab\"",
+		"tsc:ioc": "tsc -w -p ./packages/ioc",
+		"tsc:cmp": "tsc -w -p ./packages/components",
+		"tsc:cnt": "tsc -w -p ./packages/container",
+		"lab": "npm --prefix ./packages/lab start"		
 	}
 }

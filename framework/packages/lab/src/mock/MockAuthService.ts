@@ -17,12 +17,7 @@ export default class MockAuthService implements IAuthService {
                 result = false;
             }
 
-            if(result) {
-                // TODO burada login etmeliyiz
-                // this.userContext.setUserInfo('dtmebaran', 'mehmet baran');
-            }
-
-            setTimeout(() => resolve(result), 2500);
+            setTimeout(() => resolve(result), 1500);
         });
     }
 

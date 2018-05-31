@@ -11,7 +11,6 @@ import WLoginPage from '../w-login-page'
 
 import { 
     WAppBar, WAppBarProps,
-    WComponentBase,
     WDivider, WDividerProps,
     WDrawer, WDrawerProps,
     WIconButton, WIconButtonProps,
@@ -22,15 +21,16 @@ import {
 } from '@wface/components';
 import MyProfileMenu from './MyProfileMenu';
 import NavList from './NavList';
-import { IAuthService, IMenuTree, UserContext } from "@wface/ioc";
+import { IAuthService, IMenuTree, UserContext, WStore } from "@wface/ioc";
 import WMuiThemeProvider from "../w-container/WMuiThemeProvider";
 import { Close } from "@material-ui/icons";
 import { Menu } from "material-ui";
 import { Icon } from "@material-ui/core";
+import { connect } from 'react-redux'
 
 //#endregion 
 
-export interface WMainPageProps {
+export interface WMainPageProps extends WStore{
     classes: any,
     history?: any
 }
@@ -41,7 +41,7 @@ interface WMainPageState {
     menuTree: IMenuTree[];
 }
 
-class WMainPage extends WComponentBase<WMainPageProps, WMainPageState> {     
+class WMainPage extends React.Component<WMainPageProps, WMainPageState> {     
 
     @Inject("IAuthService")
     private authService: IAuthService;
@@ -57,11 +57,7 @@ class WMainPage extends WComponentBase<WMainPageProps, WMainPageState> {
         }        
     }
 
-    componentWillMount() {        
-        if(this.userContext.isLoggedIn == false) {
-            this.props.history.replace('/login');
-        }
-
+    componentWillMount() {
         this.authService.getMenuTree()
             .then(menuTree => {
                 this.setState({menuTree}, () => {
@@ -78,6 +74,12 @@ class WMainPage extends WComponentBase<WMainPageProps, WMainPageState> {
                     }
                 });
             })
+    }
+
+    componentWillUpdate(nextProps) {            
+        if(nextProps.userContext.isLoggedIn == false) {
+            nextProps.history.replace('/login');
+        }
     }
 
     //#endregion
@@ -153,7 +155,7 @@ class WMainPage extends WComponentBase<WMainPageProps, WMainPageState> {
             openedPages: list,
             currentPage: page
         }, () => {
-            this.props.history.replace(page.target);
+            this.props.history.replace((this.props as any).match.url + page.target);
         });
     }
 
@@ -185,7 +187,7 @@ class WMainPage extends WComponentBase<WMainPageProps, WMainPageState> {
                 this.props.history.replace((this.props as any).match.url);
             }
             else {
-                this.props.history.replace(currentPage.target);
+                this.props.history.replace((this.props as any).match.url + currentPage.target);
             }
         });
     }
@@ -271,7 +273,7 @@ class WMainPage extends WComponentBase<WMainPageProps, WMainPageState> {
                                         );
                                     }
     
-                                    const route = <Route exact path={item.target} render={props => { return <Component/>}}/> 
+                                    const route = <Route exact path={this.props.history.location.pathname + item.target} render={props => { return <Component/>}}/> 
 
                                     routeList.push(route);
                                     return false;
@@ -340,4 +342,6 @@ const styles:any = theme => ({
     }
 });
 
-export default withRouter(withStyles(styles)(WMainPage))
+
+// export default connect(mapStateToProps)(withRouter(withStyles(styles)(WMainPage))
+export default connect(state => ( {...state}))(withRouter(withStyles(styles)(WMainPage)))

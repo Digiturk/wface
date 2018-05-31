@@ -12,7 +12,7 @@ export interface WNotificationBarProps {
     text: string;
     type: string;
     classes?: any;
-    onCloseClick?: () => void; // TODO kendisini gizleme konusunda wrapperindan yardim almamalı. 
+    onCloseClick?: () => void; // TODO: kendisini gizleme konusunda wrapperindan yardim almamalı. 
 }
 
 class WNotification extends React.Component<WNotificationBarProps, {}> {

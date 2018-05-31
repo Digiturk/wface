@@ -1,14 +1,11 @@
 import { createStandardAction } from 'typesafe-actions';
-import { LoginInfo } from './models';
+import { UserContext } from '@wface/ioc';
+import userContext from './reducer';
 
 const LOGIN = 'user/LOGIN';
 const LOGOUT = 'user/LOGOUT';
 
-export const login = createStandardAction(LOGIN).map(
-    (payload: {username: string, password: string}) => ({
-        payload: {
-            username: payload.username,
-            password: payload.password
-        } as LoginInfo
-    })
-)
+const login = createStandardAction(LOGIN)<UserContext>();
+const logout = createStandardAction(LOGOUT)<void>();    
+const Actions = { login, logout };
+export default Actions;

@@ -11,17 +11,27 @@ import {
     WMenuItem, WMenuItemProps
 } from '@wface/components';
 
-export class MyProfileMenuState {
+import { Actions } from '../../redux';
+import { WStore } from '@wface/ioc';
+import { connect } from 'react-redux';
+
+export interface MyProfileMenuState{
     userMenuAnchor?: HTMLElement
 }
 
-export default class MyProfileMenu extends React.Component<{}, MyProfileMenuState> {
+class MyProfileMenu extends React.Component<WStore, MyProfileMenuState> {
 
     constructor(props) {
         super(props);
         this.state = {
             userMenuAnchor: null
         }
+
+        this.logoutClicked = this.logoutClicked.bind(this)
+    }
+
+    logoutClicked() {
+        this.props.dispatch(Actions.logout());
     }
 
     public render() {
@@ -55,7 +65,7 @@ export default class MyProfileMenu extends React.Component<{}, MyProfileMenuStat
                         </WListItemIcon>
                         <WListItemText inset primary="Profilim" />
                     </WMenuItem>
-                    <WMenuItem>
+                    <WMenuItem onClick={this.logoutClicked}>
                         <WListItemIcon>
                             <ExitToApp />
                         </WListItemIcon>
@@ -66,3 +76,5 @@ export default class MyProfileMenu extends React.Component<{}, MyProfileMenuStat
         )
     }
 }
+
+export default connect(state => ({...state}))(MyProfileMenu)

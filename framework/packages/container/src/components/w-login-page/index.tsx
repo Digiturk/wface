@@ -16,7 +16,9 @@ import {
 } from '@material-ui/icons' 
 
 import { Inject } from 'react.di';
-import { IAuthService } from "@wface/ioc";
+import { IAuthService, UserContext } from "@wface/ioc";
+import { connect } from 'react-redux';
+import { Actions } from '../../redux'
 
 //#endregion
 
@@ -53,7 +55,12 @@ class WLoginPage extends React.Component<any, WLoginPageState> {
                 .then(result => {
                     if(result) {
                         this.setState({loadingButtonStatus: WLoadingButtonStatus.success}, () => {
-                            this.props.history.replace('/');    
+                            this.props.dispatch(Actions.login({
+                                username: this.state.username, 
+                                displayName: '',
+                                token: ''
+                            }));
+                            this.props.history.replace('/main');    
                         });                    
                     }
                     else {
@@ -193,4 +200,4 @@ const styles = theme => ({
     }    
 });
 
-export default withRouter(withStyles(styles as any)(WLoginPage))
+export default connect(state => ({...state}))(withStyles(styles as any)(WLoginPage))
