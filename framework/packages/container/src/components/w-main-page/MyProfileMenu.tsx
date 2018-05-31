@@ -19,7 +19,7 @@ export interface MyProfileMenuState{
     userMenuAnchor?: HTMLElement
 }
 
-class MyProfileMenu extends React.Component<WStore, MyProfileMenuState> {
+class MyProfileMenu extends React.Component<WStore & {logout}, MyProfileMenuState> {
 
     constructor(props) {
         super(props);
@@ -31,7 +31,7 @@ class MyProfileMenu extends React.Component<WStore, MyProfileMenuState> {
     }
 
     logoutClicked() {
-        this.props.dispatch(Actions.logout());
+        this.props.logout();
     }
 
     public render() {
@@ -77,4 +77,7 @@ class MyProfileMenu extends React.Component<WStore, MyProfileMenuState> {
     }
 }
 
-export default connect(state => ({...state}))(MyProfileMenu)
+const mapStateToProps = state => ({...state}); 
+const mapDispatchToProps = dispatch => ({logout: () => dispatch(Actions.logout())})
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyProfileMenu)

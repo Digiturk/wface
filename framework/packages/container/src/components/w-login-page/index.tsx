@@ -55,11 +55,11 @@ class WLoginPage extends React.Component<any, WLoginPageState> {
                 .then(result => {
                     if(result) {
                         this.setState({loadingButtonStatus: WLoadingButtonStatus.success}, () => {
-                            this.props.dispatch(Actions.login({
+                            this.props.login({
                                 username: this.state.username, 
                                 displayName: '',
                                 token: ''
-                            }));
+                            });
                             this.props.history.replace('/main');    
                         });                    
                     }
@@ -102,7 +102,7 @@ class WLoginPage extends React.Component<any, WLoginPageState> {
             <div style={{height:'100%', backgroundImage: `url(./assets/login-bg.jpg)`}}>       
                 <div style={{paddingTop:'5%'}}>
                     <WGrid container justify="center" style={{paddingLeft:10, paddingRight:10}}>
-                        <WGrid item xs={12} sm={12} md={3}>
+                        <WGrid item xs={12} sm={6} md={4} lg={3}>
                             <WCard>
                                 <WCardContent>
                                     <WTypography 
@@ -200,4 +200,8 @@ const styles = theme => ({
     }    
 });
 
-export default connect(state => ({...state}))(withStyles(styles as any)(WLoginPage))
+const mapStateToProps = state => ({...state});
+const mapDispatchToProps = dispatch => ({
+    login: (userContext: UserContext) => dispatch(Actions.login(userContext))
+});
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles as any)(WLoginPage))
