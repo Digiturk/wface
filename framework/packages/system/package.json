@@ -1,0 +1,25 @@
+{
+  "name": "@wface/system",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "baran",
+  "license": "ISC",
+  "dependencies": {
+    "@wface/components": "^0.0.1",
+    "@wface/ioc": "^0.0.1",
+    "classnames": "2.2.5",
+    "prop-types": "15.6.1",
+    "react-redux": "5.0.7"
+  },
+  "devDependencies": {
+    "@types/classnames": "2.2.3",
+    "@types/material-ui": "latest",
+    "@types/promise.prototype.finally": "2.0.2",
+    "@types/react-redux": "5"
+  }
+}

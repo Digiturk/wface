@@ -6,13 +6,19 @@ import Actions from './actions';
 
 export type UserAction = ActionType<typeof Actions>;
  
-export const initialState = {
+export const mockState = {
     isLoggedIn: true,
+    username: 'MockUsername',
+    displayName: 'Mock DisplayName'
+} as UserContext;
+
+export const initialState = {
+    isLoggedIn: false,
     username: '',
     displayName: ''
 } as UserContext;
 
-const userContext = (state: UserContext = initialState, action: UserAction): UserContext => {
+const userContext = (state: UserContext = mockState, action: UserAction): UserContext => {
 	switch(action.type) {
 		case getType(Actions.login):
             return { ...state, ...action.payload, isLoggedIn: true };

@@ -10,15 +10,15 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Cached from '@material-ui/icons/Cached';
 import Collapse from '@material-ui/core/Collapse';
-import { IAuthService, IMenuTree } from '@wface/ioc';
+import { IAuthService, IMenuTreeItem } from '@wface/ioc';
 import { Inject } from 'react.di';
 
 export interface NavListProps {
-    onItemClicked?: (item: IMenuTree) => void
+    onItemClicked?: (item: IMenuTreeItem) => void
 }
 
 interface NavListState {
-    treeData: IMenuTree[],
+    treeData: IMenuTreeItem[],
     expandedItems: string[],   
     menuLoadError: boolean 
 }
@@ -70,13 +70,13 @@ class NavList extends React.Component<NavListProps & {classes: any}, NavListStat
         });
     };
 
-    handleLeafClick = (item: IMenuTree) => {
+    handleLeafClick = (item: IMenuTreeItem) => {
         if(this.props.onItemClicked) {
             this.props.onItemClicked(item);
         }
     }
 
-    renderNavItem(item: IMenuTree, nestingLevel: number = 0): React.ReactNode {
+    renderNavItem(item: IMenuTreeItem, nestingLevel: number = 0): React.ReactNode {
         const itemStyle = {
             paddingLeft: 20 + 20 * nestingLevel
         }

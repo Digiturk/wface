@@ -1,4 +1,4 @@
-import { IAuthService, IMenuTree, UserContext } from '@wface/ioc';
+import { IAuthService, IMenuTreeItem, UserContext } from '@wface/ioc';
 import { Inject, Injectable } from 'react.di';
 
 
@@ -21,22 +21,24 @@ export default class MockAuthService implements IAuthService {
         });
     }
 
-    public getMenuTree(): Promise<IMenuTree[]> {        
+    public getMenuTree(): Promise<IMenuTreeItem[]> {        
 
         return new Promise((resolve, reject) => {
             // setTimeout(() => reject(''), 1000);
 
-            const tree: IMenuTree[] = [
+            const tree: IMenuTreeItem[] = [
                 {
                     icon: 'send',
                     id: "1",
-                    target: '/system/dashboard',
+                    project: 'system',
+                    screen: 'TestScreen',
                     text:'Dashboard',                                        
                 },
                 {
                     icon: 'send',
                     id: "2",
-                    target: '/system/inbox',
+                    project: 'system',
+                    screen: 'TestScreen404',
                     text:'Inbox'
                 },
                 {
@@ -47,13 +49,15 @@ export default class MockAuthService implements IAuthService {
                         {
                             icon: 'send',
                             id: "3.1",
-                            target: '/crm/screen1',
+                            project: 'system',
+                            screen: 'TestScreen',
                             text: 'Crm 1'
                         },
                         {
                             icon: 'send',
                             id: "3.2",
-                            target: '/crm/screen2',
+                            project: 'system',
+                            screen: 'TestScreen',
                             text: 'Crm 2'
                         }
                     ],
@@ -67,13 +71,15 @@ export default class MockAuthService implements IAuthService {
                         {
                             icon: 'send',
                             id: "4.1",
-                            target: '/billing/screen1',
+                            project: 'system',
+                            screen: 'TestScreen',
                             text: 'Billing 1'
                         },
                         {
                             icon: 'send',
                             id: "4.2",
-                            target: '/billing/screen2',
+                            project: 'system',
+                            screen: 'TestScreen',
                             text: 'Billing 2'
                         },
                         {
@@ -83,25 +89,29 @@ export default class MockAuthService implements IAuthService {
                                 {
                                     icon: 'send',
                                     id: "4.3.1",
-                                    target: '/billing/subscreen1',
+                                    project: 'system',
+                                    screen: 'TestScreen',
                                     text: 'Billing Alt 1'
                                 },
                                 {
                                     icon: 'send',
                                     id: "4.3.2",
-                                    target: '/billing/subscreen2',
+                                    project: 'system',
+                                    screen: 'TestScreen',
                                     text: 'Billing Alt 2'
                                 },
                                 {
                                     icon: 'send',
                                     id: "4.3.3",
-                                    target: '/billing/subscreen3',
+                                    project: 'system',
+                                    screen: 'TestScreen',
                                     text: 'Billing Alt 3'
                                 },
                                 {
                                     icon: 'send',
                                     id: "4.3.4",
-                                    target: '/billing/subscreen4',
+                                    project: 'system',
+                                    screen: 'TestScreen',
                                     text: 'Billing Alt 4'
                                 }
                             ],

@@ -1,13 +1,14 @@
 export default interface IAuthService {
     login(username: string, password: string): Promise<boolean>
-    getMenuTree(): Promise<IMenuTree[]>
+    getMenuTree(): Promise<IMenuTreeItem[]>
 }
 
-export interface IMenuTree {
+export interface IMenuTreeItem {
     id: string,
     text: string;
     icon?: string;
     divideBefore?: boolean;
-    target?: string;
-    subNodes?: IMenuTree[];    
+    project?: string;
+    screen?: string;
+    subNodes?: IMenuTreeItem[];
 }

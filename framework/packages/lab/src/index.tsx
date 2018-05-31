@@ -5,11 +5,13 @@ import { Module } from 'react.di';
 import "reflect-metadata";
 import './index.css';
 import MockAuthService from './mock/MockAuthService';
+import MockScreenProvider from './mock/MockScreenProvider';
 import registerServiceWorker from './registerServiceWorker';
 
 @Module({
   providers: [
-    {provide: "IAuthService", useClass: MockAuthService}
+    {provide: "IAuthService", useClass: MockAuthService},
+    {provide: "IScreenProvider", useClass: MockScreenProvider}
   ]
 })
 class App extends React.Component<any, any> {
