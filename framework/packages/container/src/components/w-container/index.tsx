@@ -22,19 +22,8 @@ class WContainer extends React.Component<any, {}> {
                         
                         {/* <Route path="/main" component={WMainPage} /> */}
                         <Route exact path="/" render={props => <Redirect to="/main"/>}/>
-                        <Route path="/main" render={props =>
-                            store.getState().userContext.isLoggedIn === true ? (
-                                <WMainPage />
-                            ) : (
-                                <Redirect
-                                to={{
-                                    pathname: "/login",
-                                    state: { from: props.location }
-                                }}
-                                />
-                            )
-                            } />
-                            <Route path="/login" component={WLoginPage} />    
+                        <Route path="/main" component={WMainPage} />
+                        <Route path="/login" component={WLoginPage} />    
                     </WMuiThemeProvider >
                 </BrowserRouter>
             </Provider>

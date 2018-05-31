@@ -58,6 +58,8 @@ class WMainPage extends React.Component<WMainPageProps, WMainPageState> {
     }
 
     componentWillMount() {
+        this.checkForAuth();
+
         this.authService.getMenuTree()
             .then(menuTree => {
                 this.setState({menuTree}, () => {
@@ -76,9 +78,13 @@ class WMainPage extends React.Component<WMainPageProps, WMainPageState> {
             })
     }
 
-    componentWillUpdate(nextProps) {            
-        if(nextProps.userContext.isLoggedIn == false) {
-            nextProps.history.replace('/login');
+    componentWillUpdate(nextProps) {      
+        this.checkForAuth(nextProps);
+    }
+
+    checkForAuth(props = this.props){
+        if(props.userContext.isLoggedIn == false) {
+            props.history.replace('/login');
         }
     }
 
@@ -273,7 +279,7 @@ class WMainPage extends React.Component<WMainPageProps, WMainPageState> {
                                         );
                                     }
     
-                                    const route = <Route exact path={this.props.history.location.pathname + item.target} render={props => { return <Component/>}}/> 
+                                    const route = <Route path={(this.props as any).match.url + item.target} render={props => { return <Component/>}}/> 
 
                                     routeList.push(route);
                                     return false;

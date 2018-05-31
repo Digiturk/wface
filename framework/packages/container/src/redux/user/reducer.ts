@@ -7,7 +7,7 @@ import Actions from './actions';
 export type UserAction = ActionType<typeof Actions>;
  
 export const initialState = {
-    isLoggedIn: false,
+    isLoggedIn: true,
     username: '',
     displayName: ''
 } as UserContext;
