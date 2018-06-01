@@ -13,6 +13,18 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps, any> {
     @Inject('IScreenProvider')
     private screenProvider: IScreenProvider;
 
+    componentWillMount() {
+        console.log(this.props.pageInfo.text + " will mount");
+    }
+
+    componentWillUpdate(nextProps) {
+        console.log(nextProps.pageInfo.text + " will update");
+    }
+
+    componentWillUnmount() {
+        console.log(this.props.pageInfo.text + " will unmount");
+    }
+
     public render() {
         const Screen = this.screenProvider.getScreen(this.props.pageInfo.project, this.props.pageInfo.screen);
         return (

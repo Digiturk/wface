@@ -11,6 +11,8 @@
 /packages/lab/build
 /packages/components/dist
 /packages/container/dist
+/packages/ioc/dist
+/packages/system/dist
 
 # misc
 .DS_Store

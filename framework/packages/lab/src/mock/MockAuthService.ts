@@ -49,15 +49,15 @@ export default class MockAuthService implements IAuthService {
                         {
                             icon: 'send',
                             id: "3.1",
-                            project: 'system',
-                            screen: 'TestScreen',
+                            project: 'crm',
+                            screen: 'screen1',
                             text: 'Crm 1'
                         },
                         {
                             icon: 'send',
                             id: "3.2",
-                            project: 'system',
-                            screen: 'TestScreen',
+                            project: 'crm',
+                            screen: 'screen2',
                             text: 'Crm 2'
                         }
                     ],
@@ -71,52 +71,17 @@ export default class MockAuthService implements IAuthService {
                         {
                             icon: 'send',
                             id: "4.1",
-                            project: 'system',
-                            screen: 'TestScreen',
+                            project: 'billing',
+                            screen: 'screen1',
                             text: 'Billing 1'
                         },
                         {
                             icon: 'send',
                             id: "4.2",
-                            project: 'system',
-                            screen: 'TestScreen',
+                            project: 'billing',
+                            screen: 'screen2',
                             text: 'Billing 2'
-                        },
-                        {
-                            icon: 'send',
-                            id: "4.3",
-                            subNodes: [
-                                {
-                                    icon: 'send',
-                                    id: "4.3.1",
-                                    project: 'system',
-                                    screen: 'TestScreen',
-                                    text: 'Billing Alt 1'
-                                },
-                                {
-                                    icon: 'send',
-                                    id: "4.3.2",
-                                    project: 'system',
-                                    screen: 'TestScreen',
-                                    text: 'Billing Alt 2'
-                                },
-                                {
-                                    icon: 'send',
-                                    id: "4.3.3",
-                                    project: 'system',
-                                    screen: 'TestScreen',
-                                    text: 'Billing Alt 3'
-                                },
-                                {
-                                    icon: 'send',
-                                    id: "4.3.4",
-                                    project: 'system',
-                                    screen: 'TestScreen',
-                                    text: 'Billing Alt 4'
-                                }
-                            ],
-                            text: 'Billing Alt Ekranlar', 
-                        }
+                        }                        
                     ],
                     text: 'Billing',                    
                 }

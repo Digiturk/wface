@@ -15,6 +15,7 @@ export { WAppBar, WAppBarProps } from './dist/w-app-bar'
 // WCard
 export { WCard, WCardProps } from './dist/w-card'
 export { WCardContent, WCardContentProps } from './dist/w-card/WCardContent'
+export { WCardHeader, WCardHeaderProps } from './dist/w-card/WCardHeader'
 
 // WDivider
 export { WDivider, WDividerProps } from './dist/w-divider'
