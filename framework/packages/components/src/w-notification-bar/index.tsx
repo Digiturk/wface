@@ -15,7 +15,7 @@ export interface WNotificationBarProps {
     onCloseClick?: () => void; // TODO: kendisini gizleme konusunda wrapperindan yardim almamalı. 
 }
 
-class WNotification extends React.Component<WNotificationBarProps, {}> {
+class WNotificationBarInner extends React.Component<WNotificationBarProps, {}> {
     constructor(props) {
         super(props);
     }
@@ -68,5 +68,5 @@ const styles = theme => ({
     }
 });
 
-const WNotificationBar = withStyles(styles as any)(WNotification) 
+const WNotificationBar = withStyles(styles as any)(WNotificationBarInner) 
 export { WNotificationBar }
