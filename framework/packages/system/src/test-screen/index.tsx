@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { IMenuTreeItem } from '@wface/ioc';
 import * as WFace from '@wface/components';
-import { ScreenContext, AppContext, UserContext } from '@wface/store';
 
 export class TestScreen extends React.Component<WFace.BaseScreenProps, any> {
     constructor(props) {

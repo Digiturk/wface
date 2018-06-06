@@ -12,7 +12,7 @@ exports.initialState = {
     username: '',
     displayName: ''
 };
-const userContext = (state = exports.initialState, action) => {
+const userContext = (state = exports.mockState, action) => {
     switch (action.type) {
         case typesafe_actions_1.getType(actions_1.default.login):
             return Object.assign({}, state, action.payload, { isLoggedIn: true });

@@ -17,7 +17,7 @@ export const initialState = {
     displayName: ''
 } as UserContext;
 
-const userContext = (state: UserContext = initialState, action: UserAction): UserContext => {
+const userContext = (state: UserContext = mockState, action: UserAction): UserContext => {
 	switch(action.type) {
 		case getType(Actions.login):
             return { ...state, ...action.payload, isLoggedIn: true };
