@@ -1,3 +1,6 @@
+// Base
+export { BaseScreenProps } from './dist/base/BaseScreenProps';
+
 // Buttons
 export { WButton, WButtonProps } from './dist/buttons/w-button'
 export { WIconButton, WIconButtonProps } from './dist/buttons/w-icon-button'
