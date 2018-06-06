@@ -15,7 +15,7 @@ declare const screenContext: (state: AllScreenContext, action: {
 } | {
     type: "screenContext/SAVE_STATE";
     payload: {
-        pageId: string;
+        screenId: string;
         state: any;
     };
 } | {

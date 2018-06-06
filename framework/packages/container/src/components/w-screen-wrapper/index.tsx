@@ -6,11 +6,11 @@ import { Inject } from 'react.di';
 import { WStore, ScreenContextActions } from '@wface/store';
 
 export interface WScreenWrapperProps {
-    pageInfo: IMenuTreeItem
+    screenInfo?: IMenuTreeItem
 }
 
 export interface DispatchProps {
-    saveState: (pageId: string, state: any) => void
+    saveState: (screenId: string, state: any) => void
 }
 
 class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & DispatchProps, any> {
@@ -28,12 +28,12 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
 
     componentWillUnmount() {
         if(this.screenRef.current) {
-            this.props.saveState(this.props.pageInfo.id, this.screenRef.current.state);
+            this.props.saveState(this.props.screenInfo.id, this.screenRef.current.state);
         }
     }
 
     public render() {
-        const Screen = this.screenProvider.getScreen(this.props.pageInfo.project, this.props.pageInfo.screen);
+        const Screen = this.screenProvider.getScreen(this.props.screenInfo.project, this.props.screenInfo.screen);
         return (
             Screen ?
                 <Screen                                   
@@ -65,7 +65,7 @@ const mapStateToProps = state => ({
 } as WStore);
 
 const mapDispatchToProps = dispatch => ({
-    saveState: (pageId: string, state: any) => dispatch(ScreenContextActions.saveState({pageId, state}))
+    saveState: (screenId: string, state: any) => dispatch(ScreenContextActions.saveState({screenId, state}))
 });
 
 export default connect<WStore, DispatchProps, WScreenWrapperProps>(mapStateToProps, mapDispatchToProps)(WScreenWrapper);

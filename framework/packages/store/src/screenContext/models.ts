@@ -6,7 +6,7 @@ export default interface AllScreenContext {
 }
 
 export interface ScreenContext {
-    pageInfo: IMenuTreeItem
+    screenInfo: IMenuTreeItem
     state: any,
     values: {[key: string]: any}
 }

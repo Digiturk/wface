@@ -39,15 +39,15 @@ export interface WMainPageProps {
 }
 
 export interface DispatchProps {
-    init: (pageInfo: IMenuTreeItem) => void
-    setCurrent: (pageId: string) => void
-    destruct: (pageId: string) => void    
+    init: (screenInfo: IMenuTreeItem) => void
+    setCurrent: (screenId: string) => void
+    destruct: (screenId: string) => void    
 }
 
 interface WMainPageState {    
     drawerOpen?: boolean;
-    currentPage?: IMenuTreeItem;
-    openedPages: IMenuTreeItem[];
+    currentScreen?: IMenuTreeItem;
+    openedScreens: IMenuTreeItem[];
     menuTree: IMenuTreeItem[];
 }
 
@@ -61,8 +61,8 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
 
         this.state = {
             drawerOpen: true,
-            currentPage: undefined,
-            openedPages: [],
+            currentScreen: undefined,
+            openedScreens: [],
             menuTree: []
         }        
     }
@@ -73,16 +73,16 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
         this.authService.getMenuTree()
             .then(menuTree => {
                 this.setState({menuTree}, () => {
-                    let currentPage: IMenuTreeItem;  
+                    let currentScreen: IMenuTreeItem;  
                     this.menuTreeForEach(this.state.menuTree, item => {
-                        if(((this.props as any).match.url + this.getPageUrl(item)) === (this.props as any).location.pathname){
-                            currentPage = item;
+                        if(((this.props as any).match.url + this.getScreenUrl(item)) === (this.props as any).location.pathname){
+                            currentScreen = item;
                             return true;
                         }
                         return false;                        
                     });
-                    if(currentPage) {
-                        this.openPage(currentPage);
+                    if(currentScreen) {
+                        this.openScreen(currentScreen);
                     }
                 });
             })
@@ -109,22 +109,22 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
     handleTabChange(event, value) {
         const item = this.findNode(value);
         if(item) {
-            this.openPage(item);
+            this.openScreen(item);
         }
         else {
             this.props.history.replace((this.props as any).match.url);
         }
     };
 
-    handleTabCloseButtonClick(event, page: IMenuTreeItem) {
+    handleTabCloseButtonClick(event, screen: IMenuTreeItem) {
         event.stopPropagation();
-        this.closePage(page);
+        this.closeScreen(screen);
     }
 
-    handleTabButton(event, page: IMenuTreeItem) {
+    handleTabButton(event, screen: IMenuTreeItem) {
         event.persist();
         if(event.button == 1) {
-            this.closePage(page);
+            this.closeScreen(screen);
         }
     }
 
@@ -161,54 +161,54 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
         }
     }
     
-    openPage(page: IMenuTreeItem) {
-        let list = this.state.openedPages;
-        if(list.findIndex(item => item.id == page.id) == -1) {
-            list.push(page);   
-            this.props.init(page);
+    openScreen(screen: IMenuTreeItem) {
+        let list = this.state.openedScreens;
+        if(list.findIndex(item => item.id == screen.id) == -1) {
+            list.push(screen);   
+            this.props.init(screen);
         }
 
-        this.props.setCurrent(page.id);
+        this.props.setCurrent(screen.id);
         this.setState({
-            openedPages: list,
-            currentPage: page
+            openedScreens: list,
+            currentScreen: screen
         }, () => {
-            // this.props.history.replace((this.props as any).match.url + this.getPageUrl(page));
-            this.props.history.replace((this.props as any).match.url + this.getPageUrl(page));
+            // this.props.history.replace((this.props as any).match.url + this.getPageUrl(screen));
+            this.props.history.replace((this.props as any).match.url + this.getScreenUrl(screen));
         });
     }
 
-    closePage(page: IMenuTreeItem) {
-        let list = this.state.openedPages;
-        const index = list.findIndex(item => item.id == page.id);
+    closeScreen(screen: IMenuTreeItem) {
+        let list = this.state.openedScreens;
+        const index = list.findIndex(item => item.id == screen.id);
         if(index > -1) {
             list.splice(index, 1);
-            this.props.destruct(page.id);
+            this.props.destruct(screen.id);
         }
 
-        let currentPage = this.state.currentPage;
-        if(currentPage.id == page.id) {
+        let currentScreen = this.state.currentScreen;
+        if(currentScreen.id == screen.id) {
             if(list.length == 0) {
-                currentPage = undefined;
+                currentScreen = undefined;
             }
             else if(list.length - 1 >= index) {
-                currentPage = list[index];
+                currentScreen = list[index];
             }
             else {
-                currentPage = list[index - 1];
+                currentScreen = list[index - 1];
             }
         }
 
-        if(!currentPage) {
+        if(!currentScreen) {
             this.props.history.replace((this.props as any).match.url);
         }
         else {
-            this.openPage(currentPage);
+            this.openScreen(currentScreen);
         }
     }
 
-    getPageUrl(page: IMenuTreeItem) {
-        return "/" + page.project + "/" + page.screen;
+    getScreenUrl(screen: IMenuTreeItem) {
+        return "/" + screen.project + "/" + screen.screen;
     }
 
     //#endregion
@@ -235,26 +235,26 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
                     <MyProfileMenu />
                 </WToolbar>
                 <WTabs
-                    value={this.state.currentPage && this.state.currentPage.id}
+                    value={this.state.currentScreen && this.state.currentScreen.id}
                     onChange={this.handleTabChange.bind(this)}
                     centered
                 >
                     {
-                        this.state.openedPages.map(page => {
+                        this.state.openedScreens.map(screen => {
                             const label = (
                                 <WGrid container alignItems="center">
                                     <WGrid item xs={10}>
-                                        {page.text}    
+                                        {screen.text}    
                                     </WGrid>
                                     <WGrid item xs={2} style={{paddingRight: 10}} >
                                         <WIconButton 
-                                            onClick={(e) => this.handleTabCloseButtonClick(e, page)}>
+                                            onClick={(e) => this.handleTabCloseButtonClick(e, screen)}>
                                             <Close className={classes.whiteText} style={{ fontSize: 15}}/>
                                         </WIconButton>
                                     </WGrid>
                                 </WGrid>
                             );
-                            return <WTab key={page.id} label={label} value={page.id} onMouseUp={e => this.handleTabButton(e, page)}/>
+                            return <WTab key={screen.id} label={label} value={screen.id} onMouseUp={e => this.handleTabButton(e, screen)}/>
                         })
                     }
                 </WTabs>
@@ -270,7 +270,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
               >
                 <div className={classes.toolbar} />
                 <div style={{height:48}} />
-                <NavList onItemClicked={item => this.openPage(item)}/>
+                <NavList onItemClicked={screen => this.openScreen(screen)}/>
               </WDrawer>
               <main className={classNames(classes.content, classes[`content-left`], {
                 [classes.contentShift]: this.state.drawerOpen,
@@ -283,9 +283,9 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
                         {
                             (() => {
                                 const routeList = [];
-                                this.menuTreeForEach(this.state.menuTree, item => {     
-                                    const screen = <WScreenWrapper pageInfo={item} />
-                                const route = <Route key={item.id} path={(this.props as any).match.url + this.getPageUrl(item)} render={props => { return screen;}}/> 
+                                this.menuTreeForEach(this.state.menuTree, screen => {     
+                                    const screenComponent = <WScreenWrapper screenInfo={screen}/>
+                                    const route = <Route key={screen.id} path={(this.props as any).match.url + this.getScreenUrl(screen)} render={props => { return screenComponent;}}/> 
 
                                     routeList.push(route);
                                     return false;
@@ -359,9 +359,9 @@ const mapStateToProps = state => ({
     userContext: state.userContext
 } as WStore);
 const mapDispatchToProps = dispatch => ({
-    init: (pageInfo: IMenuTreeItem) => dispatch(ScreenContextActions.init(pageInfo)),
-    setCurrent: (pageId: string) => dispatch(ScreenContextActions.setCurrent(pageId)),
-    destruct: (pageId: string) => dispatch(ScreenContextActions.destruct(pageId))
+    init: (screenInfo: IMenuTreeItem) => dispatch(ScreenContextActions.init(screenInfo)),
+    setCurrent: (screenId: string) => dispatch(ScreenContextActions.setCurrent(screenId)),
+    destruct: (screenId: string) => dispatch(ScreenContextActions.destruct(screenId))
 });
 
 export default connect<WStore, DispatchProps, WMainPageProps>(mapStateToProps, mapDispatchToProps)(withRouter(withStyles(styles)(WMainPage)) as any)

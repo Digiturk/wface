@@ -11,7 +11,7 @@ const screenContext = (state: AllScreenContext = {} , action: ScreenContextActio
         case getType(Actions.init):{      
             let result = Object.assign({}, state);
             result[action.payload.id] = {
-                pageInfo: action.payload,                
+                screenInfo: action.payload,                
                 state: undefined, 
                 values: {}
             };
@@ -25,23 +25,23 @@ const screenContext = (state: AllScreenContext = {} , action: ScreenContextActio
         case getType(Actions.destruct):{
             let result = Object.assign({}, state);
             delete result[action.payload];
-            if(result.current.pageInfo.id == action.payload) {
+            if(result.current.screenInfo.id == action.payload) {
                 result.current = null;
             }
             return result;
         }
         case getType(Actions.saveState):{
-            if(state[action.payload.pageId]) {
+            if(state[action.payload.screenId]) {
                 let result = Object.assign({}, state);
-                result[action.payload.pageId].state = action.payload.state;
+                result[action.payload.screenId].state = action.payload.state;
                 return result;
             }
         }
         case getType(Actions.saveAny):
         {
             if(state.current) {
-                const screenId = state.current.pageInfo.id;
-                if(state[state.current.pageInfo.id]) {
+                const screenId = state.current.screenInfo.id;
+                if(state[state.current.screenInfo.id]) {
                     let result = Object.assign({}, state);
                     result[screenId].values[action.payload["key"]] = action.payload["value"];
                     result.current = result[screenId];                

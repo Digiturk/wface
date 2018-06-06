@@ -10,7 +10,7 @@ const SAVE_ANY = 'screenContext/SAVE_ANY'
 const init = createStandardAction(INIT)<IMenuTreeItem>();
 const setCurrent = createStandardAction(SET_CURRENT)<string>();
 const destruct = createStandardAction(DESTRUCT)<string>();
-const saveState = createStandardAction(SAVE_STATE)<{pageId: string, state: any}>();
+const saveState = createStandardAction(SAVE_STATE)<{screenId: string, state: any}>();
 const saveAny = createStandardAction(SAVE_ANY)<{key: string, value: any}>();
 const Actions = { init, setCurrent, destruct, saveState, saveAny};
 export default Actions;

@@ -13,12 +13,12 @@ declare const Actions: {
         payload: string;
     };
     saveState: (payload: {
-        pageId: string;
+        screenId: string;
         state: any;
     }) => {
         type: "screenContext/SAVE_STATE";
         payload: {
-            pageId: string;
+            screenId: string;
             state: any;
         };
     };
