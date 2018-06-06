@@ -16,9 +16,9 @@ import {
 } from '@material-ui/icons' 
 
 import { Inject } from 'react.di';
-import { IAuthService, UserContext } from "@wface/ioc";
+import { IAuthService } from "@wface/ioc";
 import { connect } from 'react-redux';
-import { Actions } from '../../redux'
+import { UserContextActions, UserContext, WStore } from '@wface/store'
 
 //#endregion
 
@@ -31,7 +31,13 @@ interface WLoginPageState {
     showNotification: boolean;    
 }
 
-class WLoginPage extends React.Component<any, WLoginPageState> { 
+type WLoginPageProps = WStore & {
+    classes
+    login,
+    history
+}
+
+class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> { 
 
     @Inject('IAuthService')
     private authService: IAuthService
@@ -200,8 +206,8 @@ const styles = theme => ({
     }    
 });
 
-const mapStateToProps = state => ({...state});
+const mapStateToProps = state => ({...state} as WStore);
 const mapDispatchToProps = dispatch => ({
-    login: (userContext: UserContext) => dispatch(Actions.login(userContext))
+    login: (userContext: UserContext) => dispatch(UserContextActions.login(userContext))
 });
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles as any)(WLoginPage))

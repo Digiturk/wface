@@ -1,7 +1,8 @@
 //#region imports 
 
 import * as React from "react";
-import { withRouter, BrowserRouter, Route, Switch, Link } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
+import { withRouter, Route, Switch } from 'react-router'
 import * as classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -21,20 +22,28 @@ import {
 } from '@wface/components';
 import MyProfileMenu from './MyProfileMenu';
 import NavList from './NavList';
-import { IAuthService, IMenuTreeItem, UserContext, WStore } from "@wface/ioc";
+import { IAuthService, IMenuTreeItem } from "@wface/ioc";
 import WMuiThemeProvider from "../w-container/WMuiThemeProvider";
 import { Close } from "@material-ui/icons";
 import { Menu } from "material-ui";
 import { Icon } from "@material-ui/core";
 import { connect } from 'react-redux'
 import WScreenWrapper from '../w-screen-wrapper';
+import { ScreenContextActions, WStore, UserContext } from '@wface/store'
 
 //#endregion 
 
-export interface WMainPageProps extends WStore{
+export interface WMainPageProps {
     classes: any,
     history?: any
 }
+
+export interface DispatchProps {
+    init: (pageInfo: IMenuTreeItem) => void
+    setCurrent: (pageId: string) => void
+    destruct: (pageId: string) => void    
+}
+
 interface WMainPageState {    
     drawerOpen?: boolean;
     currentPage?: IMenuTreeItem;
@@ -42,7 +51,7 @@ interface WMainPageState {
     menuTree: IMenuTreeItem[];
 }
 
-class WMainPage extends React.Component<WMainPageProps, WMainPageState> {     
+class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps, WMainPageState> {     
 
     @Inject("IAuthService")
     private authService: IAuthService;
@@ -70,7 +79,7 @@ class WMainPage extends React.Component<WMainPageProps, WMainPageState> {
                             currentPage = item;
                             return true;
                         }
-                        return false;
+                        return false;                        
                     });
                     if(currentPage) {
                         this.openPage(currentPage);
@@ -155,13 +164,16 @@ class WMainPage extends React.Component<WMainPageProps, WMainPageState> {
     openPage(page: IMenuTreeItem) {
         let list = this.state.openedPages;
         if(list.findIndex(item => item.id == page.id) == -1) {
-            list.push(page);
+            list.push(page);   
+            this.props.init(page);
         }
 
+        this.props.setCurrent(page.id);
         this.setState({
             openedPages: list,
             currentPage: page
         }, () => {
+            // this.props.history.replace((this.props as any).match.url + this.getPageUrl(page));
             this.props.history.replace((this.props as any).match.url + this.getPageUrl(page));
         });
     }
@@ -171,6 +183,7 @@ class WMainPage extends React.Component<WMainPageProps, WMainPageState> {
         const index = list.findIndex(item => item.id == page.id);
         if(index > -1) {
             list.splice(index, 1);
+            this.props.destruct(page.id);
         }
 
         let currentPage = this.state.currentPage;
@@ -186,17 +199,12 @@ class WMainPage extends React.Component<WMainPageProps, WMainPageState> {
             }
         }
 
-        this.setState({
-            openedPages: list,
-            currentPage: currentPage
-        }, () => {
-            if(!currentPage) {
-                this.props.history.replace((this.props as any).match.url);
-            }
-            else {
-                this.props.history.replace((this.props as any).match.url + this.getPageUrl(currentPage));
-            }
-        });
+        if(!currentPage) {
+            this.props.history.replace((this.props as any).match.url);
+        }
+        else {
+            this.openPage(currentPage);
+        }
     }
 
     getPageUrl(page: IMenuTreeItem) {
@@ -246,7 +254,7 @@ class WMainPage extends React.Component<WMainPageProps, WMainPageState> {
                                     </WGrid>
                                 </WGrid>
                             );
-                            return <WTab label={label} value={page.id} onMouseUp={e => this.handleTabButton(e, page)}/>
+                            return <WTab key={page.id} label={label} value={page.id} onMouseUp={e => this.handleTabButton(e, page)}/>
                         })
                     }
                 </WTabs>
@@ -277,7 +285,7 @@ class WMainPage extends React.Component<WMainPageProps, WMainPageState> {
                                 const routeList = [];
                                 this.menuTreeForEach(this.state.menuTree, item => {     
                                     const screen = <WScreenWrapper pageInfo={item} />
-                                    const route = <Route path={(this.props as any).match.url + this.getPageUrl(item)} render={props => { return screen;}}/> 
+                                const route = <Route key={item.id} path={(this.props as any).match.url + this.getPageUrl(item)} render={props => { return screen;}}/> 
 
                                     routeList.push(route);
                                     return false;
@@ -346,6 +354,14 @@ const styles:any = theme => ({
     }
 });
 
+const mapStateToProps = state => ({
+    screenContext: state.screenContext,
+    userContext: state.userContext
+} as WStore);
+const mapDispatchToProps = dispatch => ({
+    init: (pageInfo: IMenuTreeItem) => dispatch(ScreenContextActions.init(pageInfo)),
+    setCurrent: (pageId: string) => dispatch(ScreenContextActions.setCurrent(pageId)),
+    destruct: (pageId: string) => dispatch(ScreenContextActions.destruct(pageId))
+});
 
-// export default connect(mapStateToProps)(withRouter(withStyles(styles)(WMainPage))
-export default connect(state => ( {...state}))(withRouter(withStyles(styles)(WMainPage)))
+export default connect<WStore, DispatchProps, WMainPageProps>(mapStateToProps, mapDispatchToProps)(withRouter(withStyles(styles)(WMainPage)) as any)

@@ -13,10 +13,11 @@
 		"url": "https://bitbucket.digiturk.com.tr/scm/itdev/wface.git"
 	},
 	"scripts": {
-		"start": "concurrently --kill-others \"npm run tsc:ioc\" \"npm run tsc:cmp\" \"npm run tsc:cnt\" \"npm run tsc:sys\" \"npm run lab\"",
+		"start": "concurrently --kill-others \"npm run tsc:ioc\" \"npm run tsc:cmp\" \"npm run tsc:cnt\" \"npm run tsc:str\" \"npm run tsc:sys\" \"npm run lab\"",
 		"tsc:ioc": "tsc -w -p ./packages/ioc",
 		"tsc:cmp": "tsc -w -p ./packages/components",
 		"tsc:cnt": "tsc -w -p ./packages/container",
+		"tsc:str": "tsc -w -p ./packages/store",
 		"tsc:sys": "tsc -w -p ./packages/system",
 		"lab": "npm --prefix ./packages/lab start"		
 	}

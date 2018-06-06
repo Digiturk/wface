@@ -1,37 +1,45 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { WStore, IMenuTreeItem, IScreenProvider } from '@wface/ioc';
+import { IMenuTreeItem, IScreenProvider } from '@wface/ioc';
 import { WGrid, WPaper, WTypography, WIcon } from '@wface/components';
 import { Inject } from 'react.di';
+import { WStore, ScreenContextActions } from '@wface/store';
 
-export interface WScreenWrapperProps extends WStore {
+export interface WScreenWrapperProps {
     pageInfo: IMenuTreeItem
 }
 
-class WScreenWrapper extends React.Component<WScreenWrapperProps, any> {
+export interface DispatchProps {
+    saveState: (pageId: string, state: any) => void
+}
+
+class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & DispatchProps, any> {
     
     @Inject('IScreenProvider')
     private screenProvider: IScreenProvider;
+    
+    private screenRef;
 
-    componentWillMount() {
-        console.log(this.props.pageInfo.text + " will mount");
-    }
-
-    componentWillUpdate(nextProps) {
-        console.log(nextProps.pageInfo.text + " will update");
-    }
+    constructor(props) {
+        super(props);
+        
+        this.screenRef = React.createRef();
+    }    
 
     componentWillUnmount() {
-        console.log(this.props.pageInfo.text + " will unmount");
+        if(this.screenRef.current) {
+            this.props.saveState(this.props.pageInfo.id, this.screenRef.current.state);
+        }
     }
 
     public render() {
         const Screen = this.screenProvider.getScreen(this.props.pageInfo.project, this.props.pageInfo.screen);
         return (
             Screen ?
-                <Screen 
-                    pageInfo={this.props.pageInfo}
+                <Screen                                   
+                    ref={this.screenRef}
                     appContext={this.props.appContext}
+                    screenContext={this.props.screenContext.current}
                     userContext={this.props.userContext}/> 
             :
                 <WGrid container justify="center" style={{paddingTop:30}}>
@@ -50,5 +58,14 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps, any> {
     }
 }
 
-const mapStateToProps = state => ({...state} as WStore);
-export default connect(mapStateToProps)(WScreenWrapper);
+const mapStateToProps = state => ({
+    appContext: state.appContext,
+    screenContext: state.screenContext,
+    userContext: state.userContext,
+} as WStore);
+
+const mapDispatchToProps = dispatch => ({
+    saveState: (pageId: string, state: any) => dispatch(ScreenContextActions.saveState({pageId, state}))
+});
+
+export default connect<WStore, DispatchProps, WScreenWrapperProps>(mapStateToProps, mapDispatchToProps)(WScreenWrapper);

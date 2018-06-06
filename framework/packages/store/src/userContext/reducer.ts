@@ -1,7 +1,6 @@
 import { combineReducers, ReducersMapObject } from 'redux';
 import { ActionType, getType } from 'typesafe-actions';
-import { UserContext } from '@wface/ioc'
-
+import UserContext from './models'
 import Actions from './actions';
 
 export type UserAction = ActionType<typeof Actions>;
@@ -18,7 +17,7 @@ export const initialState = {
     displayName: ''
 } as UserContext;
 
-const userContext = (state: UserContext = mockState, action: UserAction): UserContext => {
+const userContext = (state: UserContext = initialState, action: UserAction): UserContext => {
 	switch(action.type) {
 		case getType(Actions.login):
             return { ...state, ...action.payload, isLoggedIn: true };

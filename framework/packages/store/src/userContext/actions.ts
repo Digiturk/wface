@@ -1,9 +1,8 @@
 import { createStandardAction } from 'typesafe-actions';
-import { UserContext } from '@wface/ioc';
-import userContext from './reducer';
+import UserContext from './models';
 
-const LOGIN = 'user/LOGIN';
-const LOGOUT = 'user/LOGOUT';
+const LOGIN = 'userContext/LOGIN';
+const LOGOUT = 'userContext/LOGOUT';
 
 const login = createStandardAction(LOGIN)<UserContext>();
 const logout = createStandardAction(LOGOUT)<void>();    

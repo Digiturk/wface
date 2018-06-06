@@ -1,12 +1,27 @@
 import * as React from 'react';
-import { WStore, IMenuTreeItem } from '@wface/ioc';
+import { IMenuTreeItem } from '@wface/ioc';
 import * as WFace from '@wface/components';
+import { WStore, ScreenContext } from '@wface/store';
 
 export interface TestScreenProps extends WStore {
-    pageInfo: IMenuTreeItem;
 }
 
-export class TestScreen extends React.Component<TestScreenProps, {}> {
+export class TestScreen extends React.Component<TestScreenProps & {screenContext: ScreenContext}, any> {
+    constructor(props) {
+        super(props);
+
+        this.state = this.props.screenContext.state || {
+            name: 'mehmet',
+            surname: 'baran'
+        }
+    }
+
+    handleChange = name => event => {
+        this.setState({
+          [name]: event.target.value,
+        });
+    };
+
     public render() {
         return (        
             <div>
@@ -15,8 +30,12 @@ export class TestScreen extends React.Component<TestScreenProps, {}> {
                         <WFace.WCard>
                             <WFace.WCardHeader title="Test Bilgileri"/>
                             <WFace.WCardContent>
-                                <WFace.WTextField label="Adı" fullWidth/>
-                                <WFace.WTextField label="Soyadı" fullWidth/>
+                                <WFace.WTextField label="Adı" fullWidth
+                                    value={this.state.name}
+                                    onChange={this.handleChange('name')}/>
+                                <WFace.WTextField label="Soyadı" fullWidth
+                                    value={this.state.surname}
+                                    onChange={this.handleChange('surname')}/>
                             </WFace.WCardContent>
                         </WFace.WCard>
                     </WFace.WGrid>
@@ -24,8 +43,6 @@ export class TestScreen extends React.Component<TestScreenProps, {}> {
                         <WFace.WCard>
                             <WFace.WCardHeader title="Test Bilgileri 2"/>
                             <WFace.WCardContent>
-                                <WFace.WTextField label="Baba Adı" fullWidth/>
-                                <WFace.WTextField label="Ana Adı" fullWidth/>
                             </WFace.WCardContent>
                         </WFace.WCard>
                     </WFace.WGrid>
@@ -33,7 +50,6 @@ export class TestScreen extends React.Component<TestScreenProps, {}> {
                         <WFace.WCard>
                             <WFace.WCardHeader title="Test Bilgileri 3"/>
                             <WFace.WCardContent>
-                                <WFace.WTextField label="Doğum Yeri" fullWidth/>
                                 <WFace.WTextField label="Doğum Tarihi" fullWidth/>
                             </WFace.WCardContent>
                         </WFace.WCard>

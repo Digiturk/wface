@@ -14,6 +14,7 @@
     "@material-ui/icons": "1.1.0",
     "@wface/components": "^0.0.1",
     "@wface/ioc": "^0.0.1",
+    "@wface/store": "^0.0.1",
     "classnames": "2.2.5",
     "prop-types": "15.6.1",
     "react-router-dom": "4.2.2",

@@ -123,45 +123,33 @@ class NavList extends React.Component<NavListProps & {classes: any}, NavListStat
             paddingTop: 50
         } as any;
 
-        return (
-            <div className={classes.root}>
-                {
-                    (() => {
-                        if(this.state.menuLoadError) {
-                            return (
-                                <div style={centerStyle}>
-                                    <WTypography variant="caption" gutterBottom align="center">
-                                        Menü bilgileriniz yüklenirken bir hata oluştu.
-                                    </WTypography>
-                                    <WIconButton onClick={() => this.loadMenuTree() }>
-                                        <Cached/>
-                                    </WIconButton>
-                                </div>
-                            )
-                        }
-                        else if(this.state.treeData) {
-                            return (
-                                <WList
-                                    component="nav">
-                                    {this.state.treeData &&
-                                        this.state.treeData.map(item => {
-                                            return this.renderNavItem(item);
-                                        })
-                                    }                    
-                                </WList>
-                            );
-                        }
-                        else {
-                            return (
-                                <div style={centerStyle}>
-                                    <WCircularProgress size={50}/>
-                                </div>
-                            );
-                        }
-                    })()
-                }
-            </div>
-        );
+        let content = <div style={centerStyle}> <WCircularProgress size={50}/> </div>;
+        if(this.state.menuLoadError) {
+            content = (
+                <div style={centerStyle}>
+                    <WTypography variant="caption" gutterBottom align="center">
+                        Menü bilgileriniz yüklenirken bir hata oluştu.
+                    </WTypography>
+                    <WIconButton onClick={() => this.loadMenuTree() }>
+                        <Cached/>
+                    </WIconButton>
+                </div>
+            )
+        }
+        else if(this.state.treeData) {
+            content = (
+                <WList key="NavListKey"
+                    component="nav">
+                    {this.state.treeData &&
+                        this.state.treeData.map(item => {
+                            return this.renderNavItem(item);
+                        })
+                    }                    
+                </WList>
+            );
+        }
+
+        return <div className={classes.root}>{content}</div>;
     }
 }
 

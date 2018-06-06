@@ -1,4 +1,5 @@
-import { IAuthService, IMenuTreeItem, UserContext } from '@wface/ioc';
+import { IAuthService, IMenuTreeItem } from '@wface/ioc';
+import { UserContext } from '@wface/store';
 import { Inject, Injectable } from 'react.di';
 
 
