@@ -11,16 +11,6 @@ import { Provider } from 'react-redux';
 class WContainer extends React.Component<any, {}> { 
     constructor(props) {
         super(props);
-
-        fetch('api/SampleData/Echo')
-            .then(response => {
-                console.log(response)
-                return response.json()
-            })
-            .then(data => {
-                alert(data); 
-                console.log(data)
-            });
     }  
     
     render() {                
