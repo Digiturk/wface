@@ -2,13 +2,13 @@
 
 # dependencies
 /node_modules
-/packages/lab/node_modules
+/packages/web/node_modules
 
 # testing
 /coverage
 
 # production
-/packages/lab/build
+/packages/web/build
 /packages/components/dist
 /packages/container/dist
 /packages/ioc/dist
