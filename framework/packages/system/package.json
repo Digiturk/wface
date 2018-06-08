@@ -1,6 +1,6 @@
 {
   "name": "@wface/system",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "main": "index.js",
   "types": "index.d.ts",
@@ -10,7 +10,7 @@
   "author": "baran",
   "license": "ISC",
   "dependencies": {
-    "@wface/components": "^0.0.2",
+    "@wface/components": "^0.0.3",
     "@wface/ioc": "^0.0.2",
     "classnames": "2.2.5",
     "prop-types": "15.6.1",

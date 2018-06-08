@@ -1,10 +1,10 @@
 {
   "name": "@wface/web",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "dependencies": {
-    "@wface/container": "^0.0.2",
+    "@wface/container": "^0.0.3",
     "@wface/ioc": "^0.0.2",
-    "@wface/system": "^0.0.2",
+    "@wface/system": "^0.0.3",
     "prop-types": "15.6.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
