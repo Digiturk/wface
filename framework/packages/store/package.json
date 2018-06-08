@@ -1,6 +1,6 @@
 {
   "name": "@wface/store",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "Contains all store management reducers and actions",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,6 @@
   "author": "baran",
   "license": "ISC",
   "dependencies": {
-    "@wface/ioc": "^0.0.2"
+    "@wface/ioc": "^0.0.4"
   }
 }
