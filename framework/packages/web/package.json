@@ -1,11 +1,11 @@
 {
   "name": "@wface/web",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "private": true,
   "dependencies": {
-    "@wface/container": "^0.0.6",
-    "@wface/ioc": "^0.0.6",
-    "@wface/system": "^0.0.6",
+    "@wface/container": "^0.0.7",
+    "@wface/ioc": "^0.0.7",
+    "@wface/system": "^0.0.7",
     "prop-types": "15.6.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
