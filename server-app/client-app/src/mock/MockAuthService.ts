@@ -50,8 +50,8 @@ export default class MockAuthService implements IAuthService {
                         {
                             icon: 'send',
                             id: "3.1",
-                            project: 'crm',
-                            screen: 'screen1',
+                            project: 'sample-project',
+                            screen: 'SampleScreen1',
                             text: 'Crm 1'
                         },
                         {

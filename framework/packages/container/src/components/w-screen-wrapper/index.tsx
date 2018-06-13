@@ -23,8 +23,21 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
     constructor(props) {
         super(props);
         
+        this.state = {
+            screen: undefined            
+        }
+
         this.screenRef = React.createRef();
     }    
+
+    componentWillMount() {   
+        this.screenProvider.getScreen(this.props.screenInfo.project, this.props.screenInfo.screen)
+            .then(screen => {
+                this.setState({
+                    screen: screen
+                })            
+            })
+    }
 
     componentWillUnmount() {
         if(this.screenRef.current) {
@@ -33,7 +46,7 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
     }
 
     public render() {
-        const Screen = this.screenProvider.getScreen(this.props.screenInfo.project, this.props.screenInfo.screen);
+        const Screen = this.state.screen;
         return (
             Screen ?
                 <Screen                                   

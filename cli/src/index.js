@@ -7,13 +7,14 @@
  */
 const program = require('commander'),
     chalk = require("chalk"),
-    exec = require('child_process').exec,
     pkg = require('../package.json'),
-    create = require('./create/create').default;    
+    create = require('./create/create').default,
+    run = require('./run/run').default,
+    init = require('./init/init').default;    
 
 /*****************************************************************************************************************/
 /** 
- * Create command
+ * commands
  */    
 
 program
@@ -32,8 +33,19 @@ program
             console.log("Unknown parameter: " + toCreate + ". Please use only one of class|component|screen");
         }
     });   
-/*****************************************************************************************************************/
 
+program
+    .command("run")
+    .action(() => {
+        run();
+    });
+
+program
+    .command("init")
+    .action(() => {
+        init();
+    });    
+/*****************************************************************************************************************/
 
 program.parse(process.argv);
 // if program was called with no arguments, show help.

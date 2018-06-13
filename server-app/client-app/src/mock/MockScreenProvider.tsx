@@ -1,20 +1,27 @@
 import { IScreenProvider } from '@wface/ioc';
-import * as system from '@wface/system';
 import * as React from 'react';
 import { Injectable } from 'react.di';
-
 
 @Injectable
 export default class MockScreenProvider implements IScreenProvider {
     private projects = {
-        system
     }
 
-    public getScreen(project: string, screen : string) {
-        if(this.projects[project]) {
-            /* tslint:disable:no-string-literal */
-            return this.projects[project][screen];
-            /* tslint:enable:no-string-literal */
-        }        
+    public getScreen(project: string, screen: string) : Promise<object> {
+        return new Promise((resolve, reject) => {
+            if(this.projects[project]) {
+                resolve(this.projects[project][screen]);
+            }
+            else {
+                import("@wface/" + project)
+                    .then(prj => {                        
+                        this.projects[project] = prj;
+                        resolve(this.projects[project][screen]);
+                    })
+                    .catch(reason => {
+                        reject(reason);
+                    })
+            }
+        });
     }
 }

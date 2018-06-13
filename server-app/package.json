@@ -1,6 +1,6 @@
 {
   "name": "@wface/server-app",
-  "version": "0.0.1",
+  "version": "0.0.6",
   "description": "",
   "main": "index.js",
   "scripts": {
