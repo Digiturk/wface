@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "outDir": "dist",
+        "rootDir": "src",
+        "module": "commonjs",
+        "target": "es6",
+        "lib": ["es6", "dom"],
+        "declaration": true,
+        "jsx": "react",
+        "noImplicitReturns": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
+    },
+    "include": [
+        "src/**/*"
+    ]
+}

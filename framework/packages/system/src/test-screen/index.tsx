@@ -1,7 +1,13 @@
 import * as React from 'react';
 import * as WFace from '@wface/components';
 
-export class TestScreen extends React.Component<WFace.BaseScreenProps, any> {
+interface TestScreenState {
+    name: string,
+    surname: string
+    [key: string]: string
+}
+
+export class TestScreen extends React.Component<WFace.BaseScreenProps, TestScreenState> {
     constructor(props) {
         super(props);
 

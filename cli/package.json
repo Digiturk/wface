@@ -1,6 +1,6 @@
 {
   "name": "@wface/cli",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "src/index.js",
   "scripts": {
@@ -12,10 +12,11 @@
   "author": "baran",
   "license": "ISC",
   "dependencies": {
-    "@wface/server-app": "^0.0.6",
     "chalk": "^2.4.1",
     "child_process": "^1.0.2",
     "commander": "^2.15.1",
-    "readline-sync": "^1.4.9"
+    "inquirer": "^6.0.0",
+    "readline-sync": "^1.4.9",
+    "rimraf": "^2.6.2"
   }
 }
