@@ -9,15 +9,15 @@ namespace server_app.Controllers
     [Route("api/[controller]")]
     public class AuthController : Controller
     {
-        [HttpGet("[action]")]
-        public async Task<IActionResult> Login(string username, string password)
-        {
-            return Ok(username + "-" + password);
-        }
+        // [HttpGet("[action]")]
+        // public async Task<IActionResult> Login(string username, string password)
+        // {
+        //     return Ok(username + "-" + password);
+        // }
 
-        public async Task<IActionResult> Logout() 
-        {
-          return Ok();
-        }
+        // public async Task<IActionResult> Logout() 
+        // {
+        //   return Ok();
+        // }
     }
 }
