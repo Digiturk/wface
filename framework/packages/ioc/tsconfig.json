@@ -1,8 +1,16 @@
 {
-    "extends": "../../tsconfig.json",
     "compilerOptions": {
-        "outDir": "dist",
-        "rootDir": "src"
+        "target": "es6",
+        "moduleResolution": "node",
+        "module": "esnext",
+        "importHelpers": true,
+        "jsx": "react",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "lib": [
+            "dom",
+            "es6"
+        ]
     },
     "include": [
         "src/**/*"

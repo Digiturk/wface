@@ -32,9 +32,9 @@ interface WLoginPageState {
 }
 
 type WLoginPageProps = WStore & {
-    classes
-    login,
-    history
+    classes:any
+    login:any,
+    history:any
 }
 
 class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> { 
@@ -42,7 +42,7 @@ class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> {
     @Inject('IAuthService')
     private authService: IAuthService
 
-    constructor(props) {
+    constructor(props:any) {
         super(props);
 
         this.state = {
@@ -89,13 +89,13 @@ class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> {
         });        
     }
 
-    handleChange = name => event => {
+    handleChange = (name:any) => (event:any) => {
         this.setState({
           [name]: event.target.value,
         });
     };
 
-    keyPressed(e) {
+    keyPressed(e:any) {
         if(e.key == 'Enter') {
             this.btnLoginClick();
         }
@@ -182,7 +182,7 @@ class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> {
     }
 };
 
-const styles = theme => ({
+const styles = (theme:any) => ({
     card: {
       minWidth: 275,
     },
@@ -206,8 +206,8 @@ const styles = theme => ({
     }    
 });
 
-const mapStateToProps = state => ({...state} as WStore);
-const mapDispatchToProps = dispatch => ({
+const mapStateToProps = (state:any) => ({...state} as WStore);
+const mapDispatchToProps = (dispatch:any) => ({
     login: (userContext: UserContext) => dispatch(UserContextActions.login(userContext))
 });
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles as any)(WLoginPage))

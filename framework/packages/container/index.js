@@ -1,1 +1,0 @@
-export {default as WContainer} from './dist/components/w-container';

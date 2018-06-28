@@ -1,11 +1,8 @@
 {
   "name": "@wface/ioc",
-  "version": "0.0.11",
+  "version": "0.0.13",
   "description": "Contains all dependent interfaces and their default implementations",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "index.ts",
   "author": "baran",
   "license": "ISC"
 }

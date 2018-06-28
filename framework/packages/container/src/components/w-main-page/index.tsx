@@ -371,4 +371,4 @@ const mapDispatchToProps = dispatch => ({
     destruct: (screenId: string) => dispatch(ScreenContextActions.destruct(screenId))
 });
 
-export default connect<WStore, DispatchProps, WMainPageProps>(mapStateToProps, mapDispatchToProps)(withRouter(withStyles(styles)(WMainPage)) as any)
+export default connect<WStore, DispatchProps, WMainPageProps>(mapStateToProps, mapDispatchToProps)(withRouter(withStyles(styles)(WMainPage) as any) as any)

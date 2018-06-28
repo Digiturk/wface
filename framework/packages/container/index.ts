@@ -1,0 +1,1 @@
+export {default as WContainer} from './src/components/w-container';
