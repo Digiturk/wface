@@ -1,18 +1,17 @@
 {
     "name": "@wface/client-app",
-    "version": "0.0.1",
+    "version": "0.0.14",
     "description": "",
     "scripts": {
         "build": "webpack",
-        "start": "webpack-dev-server --hot --open"
+        "start": "webpack-dev-server --hot"
     },
     "author": "baran",
-    "private": true,
     "dependencies": {
-        "@wface/container": "^0.0.13",
-        "@wface/ioc": "^0.0.13",
-        "@wface/store": "^0.0.13",
-        "@wface/system": "^0.0.13",
+        "@wface/container": "^0.0.14",
+        "@wface/ioc": "^0.0.14",
+        "@wface/store": "^0.0.14",
+        "@wface/system": "^0.0.14",
         "es6-promise": "^4.2.2",
         "jquery": "^3.2.1",
         "react": "^16.4.1",
@@ -27,8 +26,8 @@
         "@types/react": "^16.4.2",
         "@types/react-dom": "^16.0.6",
         "file-loader": "1.1.11",
-        "ts-loader": "^3.5.0",
         "ignore-loader": "0.1.2",
+        "ts-loader": "^3.5.0",
         "typescript": "^2.6.2",
         "webpack": "^3.10.0",
         "webpack-dev-server": "^2.10.1"

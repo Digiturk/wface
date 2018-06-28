@@ -1,6 +1,6 @@
 {
   "name": "@wface/components",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "All wface components",
   "author": "baran",
   "main": "index.ts",
@@ -8,8 +8,8 @@
   "dependencies": {
     "@material-ui/core": "1.2.0",
     "@material-ui/icons": "1.1.0",
-    "@wface/ioc": "^0.0.13",
-    "@wface/store": "^0.0.13",
+    "@wface/ioc": "^0.0.14",
+    "@wface/store": "^0.0.14",
     "classnames": "2.2.5",
     "prop-types": "15.6.1",
     "react-dom": "16.4.0",
