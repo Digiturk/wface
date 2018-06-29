@@ -1,6 +1,6 @@
 {
   "name": "@wface/ioc",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Contains all dependent interfaces and their default implementations",
   "main": "index.ts",
   "author": "baran",
