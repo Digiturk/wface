@@ -1,6 +1,6 @@
 {
   "name": "@wface/container",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "main": "index.ts",
   "scripts": {
@@ -11,9 +11,9 @@
   "dependencies": {
     "@material-ui/core": "1.2.0",
     "@material-ui/icons": "1.1.0",
-    "@wface/components": "^0.0.2",
-    "@wface/ioc": "^0.0.2",
-    "@wface/store": "^0.0.2",
+    "@wface/components": "^0.0.3",
+    "@wface/ioc": "^0.0.3",
+    "@wface/store": "^0.0.3",
     "classnames": "2.2.5",
     "prop-types": "15.6.1",
     "react": "16.4.1",
