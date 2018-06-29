@@ -11,8 +11,7 @@ const program = require('commander'),
     eject = require('./commands/eject').default,
     link = require('./commands/link').default,
     create = require('./commands/create/create').default,
-    run = require('./commands/run').default,
-    init = require('./commands/init').default;    
+    run = require('./commands/run').default;
 
 /*****************************************************************************************************************/
 /** 
@@ -35,9 +34,7 @@ program
     });   
 
 
-
 program.command("eject").action(() => { eject(); });     
-program.command("init").action(() => { init(); });     
 program.command("link").action(() => { link(); });     
 program.command("run").action(() => { run(); });     
    

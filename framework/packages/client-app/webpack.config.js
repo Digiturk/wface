@@ -46,6 +46,7 @@ module.exports = {
     devtool: "source-map",
     devServer: {
         contentBase: "./dist",
-        historyApiFallback: true
+        historyApiFallback: true,
+        port:2019
     }
 };

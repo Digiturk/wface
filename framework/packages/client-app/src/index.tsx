@@ -19,9 +19,9 @@ ES6Promise.polyfill();
   class App extends React.Component<any, any> {
     public render() {
       return ( 
-        <div>  
-          a
-          <WContainer/>     
+        <div>
+          x
+          <WContainer/>
           </div>
       );
     }
