@@ -1,6 +1,6 @@
 {
     "name": "@wface/client-app",
-    "version": "0.0.14",
+    "version": "0.0.15",
     "description": "",
     "scripts": {
         "build": "webpack",
@@ -8,7 +8,7 @@
     },
     "author": "baran",
     "dependencies": {
-        "@wface/container": "^0.0.14",
+        "@wface/container": "^0.0.15",
         "@wface/ioc": "^0.0.12",
         "@wface/store": "^0.0.13",
         "@wface/system": "^0.0.13",
