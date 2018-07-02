@@ -23,6 +23,20 @@ export class TestScreen extends React.Component<WFace.BaseScreenProps, TestScree
         });
     };
 
+    changeState = () => {
+        this.setState({
+            name: 'C1',
+            surname: 'C2'
+        })
+    }
+
+    changeState2 = () => {
+        this.setState({
+            name: 'X1',
+            surname: ''
+        })
+    }
+
     public render() {
         return (        
             <div>
@@ -37,6 +51,8 @@ export class TestScreen extends React.Component<WFace.BaseScreenProps, TestScree
                                 <WFace.WTextField label="Soyadı" fullWidth
                                     value={this.state.surname}
                                     onChange={this.handleChange('surname')}/>
+                                <WFace.WButton onClick={this.changeState} >Do</WFace.WButton>
+                                <WFace.WButton onClick={this.changeState2} >Do2</WFace.WButton>
                             </WFace.WCardContent>
                         </WFace.WCard>
                     </WFace.WGrid>

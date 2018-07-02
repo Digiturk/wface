@@ -50,18 +50,15 @@ const create = {
                 !fileSystem.existsSync(dir + "/index.tsx") && fileSystem.writeFileSync(dir + "/index.tsx", fileText);
 
                 
-                let newLine = "export { " + className + " } from './dist/" + answers.name + "';"
-                let lines = fileSystem.readFileSync(options.dir + "/index.js", 'utf8').split(/\r?\n/);
+                let newLine = "export { " + className + " } from './src/" + answers.name + "';"
+                let lines = fileSystem.readFileSync(options.dir + "/index.ts", 'utf8').split(/\r?\n/);
                 if(!lines.find(a => a == newLine)) {
                     lines.push(newLine);
 
-                    fileSystem.writeFileSync(options.dir + "/index.js", lines.join('\n'));
-                    fileSystem.writeFileSync(options.dir + "/index.d.ts", lines.join('\n'));
+                    fileSystem.writeFileSync(options.dir + "/index.ts", lines.join('\n'));
                 }
 
-                // childProcess.spawn('tsc');
                 console.log(chalk.green("Screen code created successfully"));
-                console.log("Use " + chalk.green("tsc -w") + " command to compile your code into javascript");
             })
             .catch(function(err) {
                 console.log(err);
@@ -92,12 +89,8 @@ const create = {
                 let fileText = getTemplate("project", ".gitignore");
                 !fileSystem.existsSync(dir + "/.gitignore") && fileSystem.writeFileSync(dir + "/.gitignore", fileText);
 
-                fileText = getTemplate("project", ".npmignore");
-                !fileSystem.existsSync(dir + "/.npmignore") && fileSystem.writeFileSync(dir + "/.npmignore", fileText);
-
                 !fileSystem.existsSync(dir + "/src") && fileSystem.mkdirSync(dir + "/src");
-                !fileSystem.existsSync(dir + "/index.d.ts") && fileSystem.writeFileSync(dir + "/index.d.ts", "");
-                !fileSystem.existsSync(dir + "/index.js") && fileSystem.writeFileSync(dir + "/index.js", "");
+                !fileSystem.existsSync(dir + "/index.ts") && fileSystem.writeFileSync(dir + "/index.ts", "");
 
                 fileText = getTemplate("project", "package.json", {projectName: answers.name});
                 !fileSystem.existsSync(dir + "/package.json") && fileSystem.writeFileSync(dir + "/package.json", fileText);

@@ -29,6 +29,7 @@ interface WLoginPageState {
     loadingButtonStatus: WLoadingButtonStatus;
     notificationText: string;
     showNotification: boolean;    
+    [key: string]:any
 }
 
 type WLoginPageProps = WStore & {
@@ -105,7 +106,7 @@ class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> {
         const { classes } = this.props;
 
         return (     
-            <div style={{height:'100%', backgroundImage: `url(./assets/login-bg.jpg)`}}>       
+            <div style={{height:'100%', width:'100%', backgroundImage: `url(./assets/login-bg.jpg)`}}>       
                 <div style={{paddingTop:'5%'}}>
                     <WGrid container justify="center" style={{paddingLeft:10, paddingRight:10}}>
                         <WGrid item xs={12} sm={6} md={4} lg={3}>
@@ -210,4 +211,4 @@ const mapStateToProps = (state:any) => ({...state} as WStore);
 const mapDispatchToProps = (dispatch:any) => ({
     login: (userContext: UserContext) => dispatch(UserContextActions.login(userContext))
 });
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles as any)(WLoginPage))
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles as any)(WLoginPage) as any)

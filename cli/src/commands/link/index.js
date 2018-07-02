@@ -17,21 +17,21 @@ function link () {
     });
     childProcess.execSync('npm link ' + packageInfo.name, {
       stdio:[0,1,2],
-      cwd: process.env.APPDATA + '\\npm\\node_modules\\@wface\\server-app\\client-app'
+      cwd: process.env.APPDATA + '\\npm\\node_modules\\@wface\\client-app'
     });
+    
+    const moduleName = packageInfo.name.replace(/(\w)(\w*)/g, function(g0,g1,g2){return g1.toUpperCase() + g2.toLowerCase();}).split(/-|@|\//).join(""); 
+    const newLine = `import * as ${moduleName} from '${packageInfo.name}'; export { ${moduleName} }`;
+    console.log(newLine);
+    const path = process.env.APPDATA + '\\npm\\node_modules\\@wface\\client-app\\src\\helpers\\GeneratedCode.ts';
+    let lines = fs.readFileSync(path, 'utf8').split(/\r?\n/);
+    if(!lines.find(a => a == newLine)) {
+        lines.push(newLine);
 
-    // mevcut projeden @wface/components'in typescript ile load edilebilmesi icin 
-    // componentsi bu mevcut projeye linkleyelim
-    // childProcess.execSync('npm link', {
-    //   stdio:[0,1,2],
-    //   cwd: __dirname + '/../../../node_modules/@wface/server-app/client-app/node_modules/@wface/components'  
-    // });
-    // childProcess.execSync('npm link @wface/components', {
-    //   stdio:[0,1,2],
-    //   cwd: process.cwd()  
-    // });
+        fs.writeFileSync(path, lines.join('\n'));
+    }
 
-    console.log(chalk.green(packageInfo.name) + " projesi wface'e linklendi.");
+    console.log(chalk.green(packageInfo.name) + " linked to wface.");
     console.log("you can run " + chalk.green("wface run") + " command to see your project on browser.");
   }
   else {

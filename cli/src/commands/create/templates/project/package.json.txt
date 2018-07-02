@@ -1,25 +1,21 @@
 {
-  "name": "@wface/%projectName%",
-  "version": "0.0.1",
+  "name": "%projectName%",
+  "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "types": "index.d.ts",
+  "main": "index.ts",
   "scripts": {
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "react": "16.4.1",
-    "@wface/components": "^0.0.8",
-    "@wface/ioc": "^0.0.8",
-    "classnames": "2.2.5",
-    "prop-types": "15.6.1",
-    "react-redux": "5.0.7"
+    "@wface/components": ">0.0.8",
+    "@wface/ioc": ">0.0.8",
+    "tslib": "^1.9.3" 
   },
-  "devDependencies": {
-    "@types/classnames": "2.2.3",
-    "@types/material-ui": "latest",
-    "@types/promise.prototype.finally": "2.0.2",
-    "@types/react-redux": "5"
+  "devDependencies": {     
+    "@types/react": "^16.4.2",
+    "typescript": "^2.9.2",  
+    "@types/promise.prototype.finally": "2.0.2"    
   }
 }

@@ -64,6 +64,12 @@ class WTextFieldInner extends React.Component<WTextFieldProps & WStore & Dispatc
         }
     }
 
+    componentWillReceiveProps(nextProps: WTextFieldProps) {        
+        if(this.props.value != nextProps.value) {
+            this.setState({value: nextProps.value});
+        }
+    }
+
     calcHashForNode(node: any, prevData: string = ""): string {
         if(!node) {
             return prevData;

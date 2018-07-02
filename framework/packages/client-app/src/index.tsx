@@ -5,28 +5,24 @@ import * as ReactDOM from 'react-dom'
 import * as ES6Promise from "es6-promise";
 import { Module } from 'react.di';
 import MockAuthService from './mock/MockAuthService';
-import MockScreenProvider from './mock/MockScreenProvider';
+import ScreenProvider from './helpers/ScreenProvider';
 import { WContainer } from "@wface/container";
-// import * as Cmp from 'ts-components';
 ES6Promise.polyfill();
 
 @Module({
     providers: [
       {provide: "IAuthService", useClass: MockAuthService},
-      {provide: "IScreenProvider", useClass: MockScreenProvider}
+      {provide: "IScreenProvider", useClass: ScreenProvider}
     ]
   })
   class App extends React.Component<any, any> {
     public render() {
       return ( 
-        <div>
-          x
-          <WContainer/>
-          </div>
+        <WContainer/>
       );
     }
   }
 
 ReactDOM.render(<App/>, 
-    document.getElementById("widget")
+    document.getElementById("root")
 );

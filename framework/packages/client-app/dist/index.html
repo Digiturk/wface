@@ -6,12 +6,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="theme-color" content="#000000">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <style>
+            html, body, #root, #root>div {
+                height: 100%
+            }
+
+            body {
+                margin: 0;
+                padding: 0;  
+                font-family: sans-serif;
+            }
+        </style>
     </head>
     <body>   
         <noscript>
             You need to enable JavaScript to run this app.
         </noscript>     
-        <div id="widget"></div>
+        <div id="root"></div>
         <script src="main.bundle.js"></script>
     </body>
 </html>

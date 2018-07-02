@@ -5,7 +5,7 @@ export interface %className%State {
 }
 
 export class %className% extends React.Component<WFace.BaseScreenProps, %className%State> {
-    constructor(props) {
+    constructor(props: WFace.BaseScreenProps) {
         super(props);
 
         this.state = this.props.screenContext.state || {
