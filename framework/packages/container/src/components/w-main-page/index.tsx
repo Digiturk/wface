@@ -220,7 +220,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
         return (
             <div className={classes.root}>
               <WAppBar position="absolute" className={classes.appBar}>
-                <WToolbar>
+                <WToolbar classes={{root: classes.temp}}>
                     <WIconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -254,7 +254,13 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
                                     </WGrid>
                                 </WGrid>
                             );
-                            return <WTab key={screen.id} label={label} value={screen.id} onMouseUp={e => this.handleTabButton(e, screen)}/>
+                            return <WTab key={screen.id} 
+                                         label={label} 
+                                         classes={{
+                                             labelContainer: classes.tabLabelContainer
+                                         }}
+                                         value={screen.id} 
+                                         onMouseUp={e => this.handleTabButton(e, screen)} />
                         })
                     }
                 </WTabs>
@@ -268,17 +274,15 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
                   paper: classes.drawerPaper,
                 }}
               >
-                <div className={classes.toolbar} />
-                <div style={{height:48}} />
+                <div style={{height:100}} />
                 <NavList onItemClicked={screen => this.openScreen(screen)}/>
               </WDrawer>
               <main className={classNames(classes.content, classes[`content-left`], {
                 [classes.contentShift]: this.state.drawerOpen,
                 [classes[`contentShift-left`]]: this.state.drawerOpen,
                 })}>
-                <div className={classes.toolbar} />
-                <div style={{height:48}} />
-                <div style={{padding:10}}>    
+                <div style={{height:100}} />
+                <div style={{padding:5}}>    
                     <Switch>
                         {
                             (() => {
@@ -313,6 +317,9 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
 
 const drawerWidth = 320;
 const styles:any = theme => ({
+    temp: {
+        minHeight: 52,
+    },
     root: {
       flexGrow: 1,
       height: '%100',
@@ -330,6 +337,10 @@ const styles:any = theme => ({
     drawerPaper: {
       position: 'relative',
       width: drawerWidth,
+    },
+    tabLabelContainer: {
+        paddingTop: 0,
+        paddingBottom: 0
     },
     content: {
       flexGrow: 1,

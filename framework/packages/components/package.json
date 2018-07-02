@@ -6,7 +6,7 @@
   "main": "index.ts",
   "license": "ISC",
   "dependencies": {
-    "@material-ui/core": "1.2.0",
+    "@material-ui/core": "1.3.0",
     "@material-ui/icons": "1.1.0",
     "@wface/ioc": "^0.0.18",
     "@wface/store": "^0.0.18",
