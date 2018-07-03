@@ -21,7 +21,7 @@ function link () {
     });
     
     const moduleName = packageInfo.name.replace(/(\w)(\w*)/g, function(g0,g1,g2){return g1.toUpperCase() + g2.toLowerCase();}).split(/-|@|\//).join(""); 
-    const newLine = `import * as ${moduleName} from '${packageInfo.name}'; export { ${moduleName} }`;
+    const newLine = `try { module.exports.${moduleName} = require('${packageInfo.name}'); } catch (ex) {}`
     console.log(newLine);
     const path = process.env.APPDATA + '\\npm\\node_modules\\@wface\\client-app\\src\\helpers\\GeneratedCode.ts';
     let lines = fs.readFileSync(path, 'utf8').split(/\r?\n/);
