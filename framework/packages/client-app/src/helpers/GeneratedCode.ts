@@ -1,5 +1,6 @@
-// import * as System from '@wface/system'; export { System }
-// import * as SampleProject from '@wface/sample-project'; export { SampleProject }
+const Projects:any = {};
+export default Projects;
 
-try { module.exports.System = require('@wface/system'); } catch (ex) {} 
-try { module.exports.SampleProject = require('@wface/sample-project'); } catch (ex) {}
+try { Projects.System = require('@wface/system'); } catch (ex) {} 
+try { Projects.SampleProject = require('@wface/sample-project'); } catch (ex) {}
+

@@ -1,6 +1,6 @@
 import { IScreenProvider } from '@wface/ioc';
 import { Injectable } from 'react.di';
-import * as X from './GeneratedCode';
+import Projects from './GeneratedCode';
 
 @Injectable
 export default class MockScreenProvider implements IScreenProvider {
@@ -16,11 +16,11 @@ export default class MockScreenProvider implements IScreenProvider {
                 resolve(this.cache[screenKey]);
             }
             else {
-                const projectName = this.getRealName(X, project)
+                const projectName = this.getRealName(Projects, project)
                 if(projectName) {
-                    const screenName = this.getRealName(X[projectName], screen);
+                    const screenName = this.getRealName(Projects[projectName], screen);
                     if(screenName) {
-                        this.cache[screenKey] = X[projectName][screenName];
+                        this.cache[screenKey] = Projects[projectName][screenName];
                         resolve(this.cache[screenKey]);
                     }                
                 }
