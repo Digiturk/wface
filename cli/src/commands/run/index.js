@@ -2,11 +2,13 @@ const childProcess = require('child_process');
 const fileSystem = require('fs');
 const chalk = require("chalk");
 const readlineSync = require('readline-sync');
-var open = require('open');
+const open = require('open');
+const path = require("path");
+
 
 
 function run () {
-  const wfaceDir = process.env.APPDATA + '\\npm\\node_modules\\@wface';
+  const wfaceDir = path.join(process.argv[1], '../../../')
   
   if(!fileSystem.existsSync(wfaceDir + '\\client-app')) {
     console.error(chalk.green('@wface/client-app') + " could not be found!")

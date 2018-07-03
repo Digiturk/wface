@@ -220,7 +220,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
         return (
             <div className={classes.root}>
               <WAppBar position="absolute" className={classes.appBar}>
-                <WToolbar classes={{root: classes.temp}}>
+                <WToolbar classes={{root: classes.toolBar}}>
                     <WIconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -317,9 +317,6 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
 
 const drawerWidth = 320;
 const styles:any = theme => ({
-    temp: {
-        minHeight: 52,
-    },
     root: {
       flexGrow: 1,
       height: '%100',
@@ -332,7 +329,7 @@ const styles:any = theme => ({
         flex: 1,
     },
     appBar: {
-      zIndex: theme.zIndex.drawer + 1,
+      zIndex: theme.zIndex.drawer + 1
     },
     drawerPaper: {
       position: 'relative',
@@ -366,7 +363,9 @@ const styles:any = theme => ({
     'contentShift-right': {
         marginRight: 0,
     },
-    toolbar: theme.mixins.toolbar,
+    toolBar: {
+        minHeight: 52,
+    },
     whiteText: {
         color: '#bbb'
     }
