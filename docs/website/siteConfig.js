@@ -21,26 +21,26 @@ const users = [
 ];
 
 const siteConfig = {
-  title: 'Test Site' /* title for your website */,
-  tagline: 'A website for testing',
-  url: 'https://your-docusaurus-test-site.com' /* your website url */,
+  title: 'WFace' /* title for your website */,
+  tagline: 'WFace kurulum ve bileşenlerine dair dökümantasyon',
+  url: 'http://wface.digiturk.net' /* your website url */,
   baseUrl: '/' /* base url for your project */,
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
   //   baseUrl: '/test-site/',
 
   // Used for publishing and more
-  projectName: 'test-site',
-  organizationName: 'facebook',
+  projectName: 'wface-doc',
+  organizationName: 'digiturk',
   // For top-level user or org sites, the organization is still the same.
   // e.g., for the https://JoelMarcey.github.io site, it would be set like...
   //   organizationName: 'JoelMarcey'
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    {doc: 'doc1', label: 'Docs'},
+    {doc: 'doc1', label: 'Kurulum'},
     {doc: 'doc4', label: 'API'},
-    {page: 'help', label: 'Help'},
+    // {page: 'help', label: 'Yardım'},
     {blog: true, label: 'Blog'},
   ],
 
@@ -48,14 +48,14 @@ const siteConfig = {
   users,
 
   /* path to images for header/footer */
-  headerIcon: 'img/docusaurus.svg',
-  footerIcon: 'img/docusaurus.svg',
-  favicon: 'img/favicon.png',
+  headerIcon: '', //'img/docusaurus.svg',
+  footerIcon: '', //'img/docusaurus.svg',
+  favicon: '', //'img/favicon.png',
 
   /* colors for website */
   colors: {
-    primaryColor: '#2E8555',
-    secondaryColor: '#205C3B',
+    primaryColor: '#4A148C',
+    secondaryColor: '#4DB6AC',
   },
 
   /* custom fonts for website */
@@ -74,7 +74,7 @@ const siteConfig = {
   copyright:
     'Copyright © ' +
     new Date().getFullYear() +
-    ' Your Name or Your Company Name',
+    ' DigiTurk',
 
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks
@@ -88,8 +88,8 @@ const siteConfig = {
   onPageNav: 'separate',
 
   /* Open Graph and Twitter card images */
-  ogImage: 'img/docusaurus.png',
-  twitterImage: 'img/docusaurus.png',
+  ogImage: '', //'img/docusaurus.png',
+  twitterImage: '', //'img/docusaurus.png',
 
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...

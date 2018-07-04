@@ -14,9 +14,9 @@
 	},
 	"scripts": {
 		"start": "concurrently --kill-others \"npm run start-client\" \"npm run start-server\"",
-		"start-client": "npm --prefix ./packages/client-app start",		
+		"start-client": "npm --prefix ./packages/client-app start",
 		"start-server": "cd ./packages/server-app && dotnet run",
-		"start_old": "concurrently --kill-others \"npm run tsc:ioc\" \"npm run tsc:cmp\" \"npm run tsc:cnt\" \"npm run tsc:str\" \"npm run tsc:sys\" \"npm run web\"",		
+		"start_old": "concurrently --kill-others \"npm run tsc:ioc\" \"npm run tsc:cmp\" \"npm run tsc:cnt\" \"npm run tsc:str\" \"npm run tsc:sys\" \"npm run web\"",
 		"tsc:ioc": "tsc -w -p ./packages/ioc",
 		"tsc:cmp": "tsc -w -p ./packages/components",
 		"tsc:cnt": "tsc -w -p ./packages/container",

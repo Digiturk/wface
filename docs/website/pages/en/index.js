@@ -72,17 +72,18 @@ const PromoSection = props => (
 );
 
 class HomeSplash extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     let language = this.props.language || '';
     return (
       <SplashContainer>
-        <Logo img_src={imgUrl('docusaurus.svg')} />
         <div className="inner">
           <ProjectTitle />
           <PromoSection>
-            <Button href="#try">Try It Out</Button>
-            <Button href={docUrl('doc1.html', language)}>Example Link</Button>
-            <Button href={docUrl('doc2.html', language)}>Example Link 2</Button>
+            <Button href={docUrl('doc1.html', language)}>Hızlı Başlangıç</Button>
           </PromoSection>
         </div>
       </SplashContainer>
@@ -204,7 +205,7 @@ class Index extends React.Component {
       <div>
         <HomeSplash language={language} />
         <div className="mainContainer">
-          <Features />
+          <Features />          
           <FeatureCallout />
           <LearnHow />
           <TryOut />
