@@ -15,6 +15,9 @@ export { WLinearProgress, WLinearProgressProps } from './src/progress/w-linear-p
 // WAppBar
 export { WAppBar, WAppBarProps } from './src/w-app-bar'
 
+// WAvatar
+export { WAvatar, WAvatarProps } from './src/w-avatar'
+
 // WCard
 export { WCard, WCardProps } from './src/w-card'
 export { WCardContent, WCardContentProps } from './src/w-card/WCardContent'
@@ -37,6 +40,7 @@ export { WList, WListProps } from './src/w-list'
 export { WListItem, WListItemProps } from './src/w-list/WListItem'
 export { WListItemIcon, WListItemIconProps } from './src/w-list/WListItemIcon'
 export { WListItemText, WListItemTextProps } from './src/w-list/WListItemText'
+export { WListItemSecondaryAction, WListItemSecondaryActionProps } from './src/w-list/WListItemSecondaryAction'
 
 // WMenu
 export { WMenu, WMenuProps } from './src/w-menu'
