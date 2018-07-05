@@ -1,6 +1,6 @@
 {
   "name": "@wface/components",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "description": "All wface components",
   "author": "baran",
   "main": "index.ts",
