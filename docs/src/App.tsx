@@ -84,7 +84,9 @@ const styles:any = theme => ({
     backgroundColor: theme.palette.background.default,        
     padding: 0, // theme.spacing.unit * 3
     minWidth: 0, // So the Typography noWrap works
-    marginTop: 64
+    marginTop: 64,
+    maxHeight:'100%', 
+    overflow: 'auto'
   }
 });
 
