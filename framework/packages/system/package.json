@@ -1,12 +1,12 @@
 {
   "name": "@wface/system",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "description": "",
   "main": "index.ts",
   "author": "baran",
   "license": "ISC",
   "dependencies": {
-    "@wface/components": "^0.0.21",
+    "@wface/components": "^0.0.22",
     "@wface/ioc": "^0.0.18",
     "classnames": "2.2.5",
     "prop-types": "15.6.1",
