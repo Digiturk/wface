@@ -20,6 +20,7 @@ export { WAvatar, WAvatarProps } from './src/w-avatar'
 
 // WCard
 export { WCard, WCardProps } from './src/w-card'
+export { WCardActions, WCardActionsProps } from './src/w-card/WCardActions'
 export { WCardContent, WCardContentProps } from './src/w-card/WCardContent'
 export { WCardHeader, WCardHeaderProps } from './src/w-card/WCardHeader'
 
