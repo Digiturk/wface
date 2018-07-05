@@ -1,6 +1,6 @@
 {
   "name": "@wface/container",
-  "version": "0.0.23",
+  "version": "0.0.24",
   "description": "",
   "main": "index.ts",
   "scripts": {
@@ -11,7 +11,7 @@
   "dependencies": {
     "@material-ui/core": "1.3.0",
     "@material-ui/icons": "1.1.0",
-    "@wface/components": "^0.0.23",
+    "@wface/components": "^0.0.24",
     "@wface/ioc": "^0.0.18",
     "@wface/store": "^0.0.18",
     "classnames": "2.2.5",
