@@ -1,14 +1,11 @@
 //#region imports 
 
 import * as React from "react";
-import { BrowserRouter } from 'react-router-dom'
 import { withRouter, Route, Switch } from 'react-router'
 import * as classNames from 'classnames';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Inject } from 'react.di';
-import WLoginPage from '../w-login-page'
 
 import { 
     WAppBar, WAppBarProps,

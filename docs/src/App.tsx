@@ -33,8 +33,8 @@ class App extends React.Component<any, any> {
             </WFace.WTypography>
 
             {this.renderMenuLink("Main", "Ana Sayfa")}
-            {this.renderMenuLink("GetStarted", "Başlangıç")}
             {this.renderMenuLink("Setup", "Kurulum")}
+            {this.renderMenuLink("GetStarted", "Başlangıç")}
             {this.renderMenuLink("Components", "Bileşenler")}
             {/* {this.renderMenuLink("Blog", "Blog")} */}
             {/* {this.renderMenuLink("Faq", "S.S.S.")} */}
@@ -61,7 +61,7 @@ class App extends React.Component<any, any> {
   }
 }
 
-const styles:any = theme => ({
+const styles:any = (theme:any) => ({
   root: {
     flexGrow: 1,
     height: '%100',
