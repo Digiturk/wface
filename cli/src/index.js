@@ -8,10 +8,10 @@
 const program = require('commander'),
     chalk = require("chalk"),
     pkg = require('../package.json'),
-    eject = require('./commands/eject').default,
     link = require('./commands/link').default,
     create = require('./commands/create/create').default,
-    run = require('./commands/run').default;
+    run = require('./commands/run').default,
+    version = require('./commands/version').default;
 
 /*****************************************************************************************************************/
 /** 
@@ -19,7 +19,6 @@ const program = require('commander'),
  */  
 
 program
-    .version(pkg.version)
     .command('create <toCreate>')
     .option('-d, --dir <dir>', 'Directory', process.cwd())        
     .action((toCreate, options)  => {  
@@ -34,9 +33,9 @@ program
     });   
 
 
-program.command("eject").action(() => { eject(); });     
 program.command("link").action(() => { link(); });     
 program.command("run").action(() => { run(); });     
+program.command("version").action(() => { version(); });     
    
 /*****************************************************************************************************************/
 
