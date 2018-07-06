@@ -22,7 +22,7 @@ export default class Requirements extends React.Component<any, any> {
 
   public render() {
     return (
-      <WFace.WCard>
+      <WFace.WCard style={{height:'100%'}}>
         <WFace.WCardHeader 
           title={<WFace.WTypography variant="headline" >Gereksinimler</WFace.WTypography> } 
           avatar={<WFace.WIcon color="primary" style={{fontSize:25}}>get_app</WFace.WIcon>}/>
@@ -47,10 +47,10 @@ export default class Requirements extends React.Component<any, any> {
               "https://visualstudio.microsoft.com/wp-content/uploads/2017/10/visual-studio-code-logo.png"
             )}
             {this.renderRequirement(
-              "Google Chrome", 
-              "", 
-              "https://www.google.com/chrome/", 
-              "https://www.google.com/chrome/static/images/chrome-logo.svg"
+              "Git", 
+              "min version 2.18.0", 
+              "https://git-scm.com/downloads", 
+              "https://git-scm.com/images/logos/logomark-orange.png"
             )}
             {this.renderRequirement(
               "React Developer Tools", 

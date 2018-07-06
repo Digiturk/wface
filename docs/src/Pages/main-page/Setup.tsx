@@ -5,7 +5,7 @@ import Command from './Command'
 export default class Setup extends React.Component<any, any> {
   public render() {
     return (
-      <WFace.WCard>
+      <WFace.WCard style={{height:'100%'}}>
         <WFace.WCardHeader 
           title={<WFace.WTypography variant="headline" >Kurulum</WFace.WTypography> } 
           avatar={<WFace.WIcon color="primary" style={{fontSize:25}}>build</WFace.WIcon>}/>

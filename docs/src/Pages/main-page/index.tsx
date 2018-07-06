@@ -11,7 +11,7 @@ class MainPage extends React.Component<any, any> {
 
     return (
       <div>
-        <WFace.WGrid container justify="center" style={{paddingTop: 40, paddingBottom:80, marginBottom: 10, backgroundImage: 'url(./assets/login-bg.jpg)'}}>
+        <WFace.WGrid container justify="center" style={{paddingTop: 40, paddingBottom:80, marginBottom: 10, backgroundImage: 'url(./assets/bg2.jpg)'}}>
           <WFace.WGrid item style={{textAlign:'center'}} xs={12}>
             <WFace.WIcon style={{fontSize: 200, height:160, color:'#eee'}}>code</WFace.WIcon>                            
             <WFace.WTypography variant="title" style={{fontSize:50, color:'#eee'}} color="primary">WFace</WFace.WTypography>
