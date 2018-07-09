@@ -9,7 +9,7 @@
     "@wface/components": "^0.0.24",
     "@wface/ioc": "^0.0.18",
     "classnames": "2.2.5",
-    "prop-types": "15.6.1",
+    "prop-types": "15.6.2",
     "react-redux": "5.0.7"
   },
   "devDependencies": {

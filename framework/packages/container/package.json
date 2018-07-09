@@ -15,7 +15,7 @@
     "@wface/ioc": "^0.0.18",
     "@wface/store": "^0.0.18",
     "classnames": "2.2.5",
-    "prop-types": "15.6.1",
+    "prop-types": "15.6.2",
     "react": "16.4.1",
     "react-redux": "5.0.7",
     "react-router-dom": "4.2.2",
@@ -27,7 +27,7 @@
     "@types/classnames": "2.2.3",
     "@types/material-ui": "latest",
     "@types/promise.prototype.finally": "2.0.2",
-    "@types/react": "16.4.2",
+    "@types/react": "16.4.6",
     "@types/react-redux": "5",
     "@types/react-router-dom": "4.2.6"
   }

@@ -14,8 +14,8 @@
         "@wface/system": "^0.0.24",
         "es6-promise": "^4.2.2",
         "jquery": "^3.2.1",
-        "react": "^16.4.1",
-        "react-dom": "^16.4.1",
+        "react": "16.4.1",
+        "react-dom": "16.4.1",
         "react.di": "^2.0.0",
         "redux": "4.0.0",
         "reflect-metadata": "0.1.12",
@@ -30,6 +30,6 @@
         "ts-loader": "^3.5.0",
         "typescript": "^2.6.2",
         "webpack": "^3.10.0",
-        "webpack-dev-server": "^2.10.1"
+        "webpack-dev-server": "^2.11.2"
     }
 }
