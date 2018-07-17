@@ -2,7 +2,7 @@ const path = require("path");
 
 module.exports = {
     entry: "./src/index.tsx",
-
+    mode: 'development',
     output: {
         path: path.join(__dirname, "dist3"),
         filename: "[name].bundle.js",
@@ -10,11 +10,11 @@ module.exports = {
     },
 
     resolve: {
-        extensions: [".js", ".jsx", ".ts", ".tsx"]
+        extensions: [".js", ".jsx", ".ts", ".tsx", ".md"]
     },
 
     module: {    
-        loaders: [
+        rules: [
             {            
                 test: /(^.?|\.[^d]|[^.]d|[^.][^d])\.ts$/,
                 // include: path.join(__dirname, "src"),
@@ -38,8 +38,7 @@ module.exports = {
             {
                 test: /.(LICENSE|md|lock|.d.ts)$/,
                 loader: "ignore-loader"
-            }
-            
+            }        
         ]
     },
 
