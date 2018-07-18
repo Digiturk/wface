@@ -11,6 +11,7 @@
         "@types/react-redux": "^6.0.3",
         "@types/react-router-dom": "^4.2.7",
         "@wface/components": "0.0.24",
+        "babel-preset-react": "^6.24.1",
         "react": "16.4.1",
         "react-dom": "16.4.1",
         "react-redux": "^5.0.7",
@@ -19,8 +20,12 @@
         "webpack-cli": "^3.0.8"
     },
     "devDependencies": {
+        "@mdx-js/loader": "^0.14.0",
+        "@mdx-js/mdx": "^0.14.0",
         "@types/react": "^16.4.5",
         "@types/react-dom": "^16.0.6",
+        "babel-core": "^6.26.3",
+        "babel-loader": "^7.1.5",
         "file-loader": "1.1.11",
         "ignore-loader": "0.1.2",
         "ts-loader": "^4.0.0",

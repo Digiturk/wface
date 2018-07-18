@@ -3,13 +3,12 @@ import * as WFace from '@wface/components';
 import { withStyles } from '@material-ui/core';
 import { HashRouter, Route, Redirect, Link } from 'react-router-dom'
 import WMuiThemeProvider from './WMuiThemeProvider';
-import MainPage from './Pages/main-page';
-import GetStartedPage from './Pages/get-started-page';
 import ComponentsPage from './Pages/components-page';
 import SetupPage from './Pages/setup-page';
 import FaqPage from './Pages/faq-page';
 import BlogPage from './Pages/blog-page';
 import ContributePage from './Pages/contribute-page';
+import * as Pages from './Pages'
 
 class App extends React.Component<any, any> {
 
@@ -46,8 +45,8 @@ class App extends React.Component<any, any> {
           <HashRouter> 
             <WMuiThemeProvider>                        
               <Route exact path="/" render={props => <Redirect to="/Main"/>}/>
-              <Route path="/Main" component={MainPage} />            
-              <Route path="/GetStarted" component={GetStartedPage} />            
+              <Route path="/Main" component={Pages.Main} />            
+              <Route path="/GetStarted" component={Pages.GetStarted} />            
               <Route path="/Setup" component={SetupPage} />            
               <Route path="/Components" component={ComponentsPage} />            
               <Route path="/Blog" component={BlogPage} />            

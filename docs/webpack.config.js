@@ -38,7 +38,23 @@ module.exports = {
             {
                 test: /.(LICENSE|md|lock|.d.ts)$/,
                 loader: "ignore-loader"
-            }        
+            }, 
+            {
+                test: /\.mdx$/,
+                use: [{
+                    loader: 'babel-loader',
+                    options: {
+                      presets: ['react']
+                    }
+                  }, '@mdx-js/loader']
+            },
+            {
+                test: /\.jsx$/,
+                loader: 'babel-loader',
+                options: {
+                    presets: ['react']
+                }
+            }
         ]
     },
 
