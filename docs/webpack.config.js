@@ -41,12 +41,17 @@ module.exports = {
             }, 
             {
                 test: /\.mdx$/,
-                use: [{
+                use: [
+                  {
                     loader: 'babel-loader',
                     options: {
                       presets: ['react']
                     }
-                  }, '@mdx-js/loader']
+                  }, 
+                  {
+                    loader: '@mdx-js/loader',
+                  }
+                ]
             },
             {
                 test: /\.jsx$/,

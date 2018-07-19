@@ -3,12 +3,8 @@ import * as WFace from '@wface/components';
 import { withStyles } from '@material-ui/core';
 import { HashRouter, Route, Redirect, Link } from 'react-router-dom'
 import WMuiThemeProvider from './WMuiThemeProvider';
-import ComponentsPage from './Pages/components-page';
-import SetupPage from './Pages/setup-page';
-import FaqPage from './Pages/faq-page';
-import BlogPage from './Pages/blog-page';
-import ContributePage from './Pages/contribute-page';
-import * as Pages from './Pages'
+import MainPage from './main-page';
+import Docs from './docs';
 
 class App extends React.Component<any, any> {
 
@@ -31,13 +27,12 @@ class App extends React.Component<any, any> {
               WFace Dökümantasyon
             </WFace.WTypography>
 
-            {this.renderMenuLink("Main", "Ana Sayfa")}
-            {this.renderMenuLink("Setup", "Kurulum")}
-            {this.renderMenuLink("GetStarted", "Başlangıç")}
-            {this.renderMenuLink("Components", "Bileşenler")}
+            {this.renderMenuLink("Main", "Ana Sayfa")}            
+            {this.renderMenuLink("Pages/GetStarted/Architecture", "Başlangıç")}
+            {this.renderMenuLink("Pages/Components/General", "Bileşenler")}
             {/* {this.renderMenuLink("Blog", "Blog")} */}
             {/* {this.renderMenuLink("Faq", "S.S.S.")} */}
-            {/* {this.renderMenuLink("Contribute", "Katkı")}             */}
+            {/* {this.renderMenuLink("Contribute", "Katkı")}*/}
           </WFace.WToolbar>
         </WFace.WAppBar>
 
@@ -45,13 +40,13 @@ class App extends React.Component<any, any> {
           <HashRouter> 
             <WMuiThemeProvider>                        
               <Route exact path="/" render={props => <Redirect to="/Main"/>}/>
-              <Route path="/Main" component={Pages.Main} />            
-              <Route path="/GetStarted" component={Pages.GetStarted} />            
-              <Route path="/Setup" component={SetupPage} />            
+              <Route path="/Main" component={MainPage} />            
+              <Route path="/Pages" component={Docs} />            
+              {/* <Route path="/Setup" component={SetupPage} />            
               <Route path="/Components" component={ComponentsPage} />            
               <Route path="/Blog" component={BlogPage} />            
               <Route path="/Faq" component={FaqPage} />            
-              <Route path="/Contribute" component={ContributePage} />            
+              <Route path="/Contribute" component={ContributePage} />             */}
             </WMuiThemeProvider >
           </HashRouter>        
         </main>

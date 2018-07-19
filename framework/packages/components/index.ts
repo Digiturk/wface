@@ -24,6 +24,9 @@ export { WCardActions, WCardActionsProps } from './src/w-card/WCardActions'
 export { WCardContent, WCardContentProps } from './src/w-card/WCardContent'
 export { WCardHeader, WCardHeaderProps } from './src/w-card/WCardHeader'
 
+// WCollapse
+export { WCollapse, WCollapseProps } from './src/w-collapse'
+
 // WDivider
 export { WDivider, WDividerProps } from './src/w-divider'
 

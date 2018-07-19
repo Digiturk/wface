@@ -5,7 +5,6 @@ import {
     WCircularProgress, WTypography, WIconButton, WIcon,
 } from '@wface/components';
 import { withStyles } from '@material-ui/core/styles';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Cached from '@material-ui/icons/Cached';
