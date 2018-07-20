@@ -1,3 +1,43 @@
 # Kurulum
 
-### Node.js
+Bilgisayarımızda Nodejs ve .Net Core kurduğumuza göre WFace ortamını kurmaya başlayabilirsiniz.
+Siyah bölgelerde yazılan komutları komut satırı uygulamasında çalıştırmanız gerekmektedir.
+
+> Komut satırı uygulamasını Administrator modunda çalıştırmanız daha uygun olacaktır.
+
+#### 1. Private Npm Sunucusunu Ayarlama
+
+WFace paketlerinin tamamı DigiTürk'a ati yerel sistemlerde olduğu için onları indirebileceğimiz adresi değiştiriyoruz
+
+```console
+npm set registry http://dtl1tfsbuild2:8081/repository/digiturk-npm-group/
+```
+> __`npm get registry`__ komutu ile mevcut npm sunucu adresinizi kontrol edebilirsiniz.
+
+#### 2. WFace Komut Satırı Uygulaması
+
+Kurulum ve geliştirme sırasında kullanacağımız birçok komutu barındıran WFace CLI uygulamasını kuruyoruz. 
+
+```console
+npm install -g @wface/cli
+```
+> WFace komut satırı uygulaması Javascript ile geliştirilmiş bir NodeJs uygulamasıdır.
+WFace CLI ile daha fazla bilgiye ve komutlara [__buradan__]() erişebilirsiniz.
+
+#### 3. ASPNETCORE_Environment Değişkeninin Ayarlanması
+
+```console
+set ASPNETCORE_ENVIRONMENT Development
+```
+
+#### 4. Çalıştırma
+
+Kurulumlarımız sorunsuz bitti ise artık WFace'i çalıştırabiliriz.
+
+```console
+wface run
+```
+
+> WFace uygulaması çalıştırılınca tarayıcınızda yeni bir pencere açılacaktır.
+
+
