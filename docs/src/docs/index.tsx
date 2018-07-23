@@ -235,14 +235,18 @@ const menuTree = [
       {
         id: '1.3',
         text: 'Ek Araçlar',
-        path: 'GetStarted/Tools',
-        mdx: Mdx.GetStarted.Tools
+        path: 'GetStarted/AdditionalTools',
+        mdx: Mdx.GetStarted.AdditionalTools,
+        prev: '1.2',
+        next: '1.4'
       },
       {
         id: '1.4',
         text: 'Desteklenen Ortamlar',
         path: 'GetStarted/SupportedPlatforms',
-        mdx: Mdx.GetStarted.SupportedPlatforms
+        mdx: Mdx.GetStarted.SupportedPlatforms,
+        prev: '1.3',
+        next: '1.5'
       },
       {
         id: '1.5',
