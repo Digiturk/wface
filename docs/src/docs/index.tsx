@@ -252,21 +252,64 @@ const menuTree = [
         id: '1.5',
         text: 'Sık Sorulan Sorular',
         path: 'GetStarted/Faq',
-        mdx: Mdx.GetStarted.Faq
+        mdx: Mdx.GetStarted.Faq,
+        prev: '1.4',
+        next: '1.6'
       },
       {
         id: '1.6',
         text: 'Versiyonlar',
         path: 'GetStarted/Versions',
-        mdx: Mdx.GetStarted.Versions
+        mdx: Mdx.GetStarted.Versions,
+        prev: '1.5',
+        next: '2.1'
       },
     ]
   },
   {
     id: '2', 
     text: 'WFace CLI',
-    path: 'WFaceCLI',
-    Mdx: Mdx.WFaceCLI
+    subNodes: [
+      {
+        id: '2.0',
+        text: 'Komut Listesi',
+        path: 'WFaceCLI/CommandList',        
+        mdx: Mdx.WFaceCLI.CommandList,
+        next: '2.1'
+      },
+      {
+        id: '2.1',
+        text: 'Create',
+        path: 'WFaceCLI/CreateCommand',        
+        mdx: Mdx.WFaceCLI.CreateCommand,
+        prev: '2.0',
+        next: '2.2'
+      },
+      {
+        id: '2.2',
+        text: 'Link',
+        path: 'WFaceCLI/LinkCommand',        
+        mdx: Mdx.WFaceCLI.LinkCommand,
+        prev: '2.1',
+        next: '2.3'
+      },
+      {
+        id: '2.3',
+        text: 'Run',
+        path: 'WFaceCLI/RunCommand',        
+        mdx: Mdx.WFaceCLI.RunCommand,
+        prev: '2.2',
+        next: '2.4'
+      },
+      {
+        id: '2.4',
+        text: 'Version',
+        path: 'WFaceCLI/VersionCommand',        
+        mdx: Mdx.WFaceCLI.VersionCommand,
+        prev: '2.3'        
+        
+      }
+    ]
   },
   {
     id: '3',

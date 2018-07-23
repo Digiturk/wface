@@ -1,18 +1,36 @@
 import React from 'react'
 
-import Architecture from './get-started-page/architecture.mdx'
-import AdditionalTools from './get-started-page/additional-tools.mdx'
-import Requirements from './get-started-page/requirements.mdx'
-import Setup from './get-started-page/setup.mdx'
-import SupportedPlatforms from './get-started-page/supported-platforms.mdx'
-import Usage from './get-started-page/usage.mdx'
+import Architecture from './get-started/architecture.mdx'
+import AdditionalTools from './get-started/additional-tools.mdx'
+import Faq from './get-started/faq.mdx'
+import Requirements from './get-started/requirements.mdx'
+import Setup from './get-started/setup.mdx'
+import SupportedPlatforms from './get-started/supported-platforms.mdx'
+import Usage from './get-started/usage.mdx'
+import Versions from './get-started/versions.mdx'
+
+import CommandList from './cli/command-list.mdx'
+import CreateCommand from './cli/commands/create.mdx'
+import LinkCommand from './cli/commands/link.mdx'
+import RunCommand from './cli/commands/run.mdx'
+import VersionCommand from './cli/commands/version.mdx'
 
 import * as WFace from '@wface/components'
 
 const components = {
-  h1: props => <div><WFace.WTypography variant="display1" {...props} /><br/><br/></div>,
+  h1: props =>  <div>
+                  <WFace.WTypography 
+                    variant="display1" {...props}/>
+                    <div style={{
+                      width: 50,
+                      borderBottom: '4px solid #3f51b5',                      
+                      borderRadius: 4
+                    }}></div>
+                  <br/>
+                  <br/>
+                </div>,
   h2: props => <div><WFace.WTypography variant="headline" {...props} /><br/></div>,
-  p: props => <div><WFace.WTypography variant="subheading" {...props} /><br/></div>,
+  p: props => <div><WFace.WTypography variant="subheading" {...props} style={{color:'#65819D'}} /><br/></div>,
   a: props => <a href={props.href} 
                 style={{
                   color: '#3f51b5',
@@ -35,11 +53,28 @@ const components = {
                           </WFace.WPaper>
                           <br/>
                         </div>,
-  table: props => <table>{props.children}</table>,
-  th: props => <th style={{padding:20, borderBottom: '1px #ddd solid'}}><WFace.WTypography variant="subheading">{props.children}</WFace.WTypography></th>,
+  table: props => <table 
+                    style={{
+                      borderCollapse: 'collapse',                      
+                      border: '1px solid',
+                      borderColor: '#DEE5EE',
+                      borderRadius: 3                      
+                    }}>
+                      {props.children}
+                    </table>,
+  thead: props => <thead
+                    style={{
+                      backgroundColor: '#F5F7FF',                      
+                      borderCollapse: 'collapse',                      
+                      border: '1px solid',
+                      borderColor: '#DEE5EE'
+                    }}>
+                      {props.children}
+                    </thead>,
+  th: props => <th style={{padding:'15px 30px 15px 30px'}}><WFace.WTypography variant="subheading" style={{color: '#65819D'}}>{props.children}</WFace.WTypography></th>,
   tbody: props => <tbody >{props.children}</tbody>,
-  tr: props => <tr style={{marginTop: 20}}>{props.children}</tr>,
-  td: props => <td style={{textAlign: 'center'}} >{props.children}</td>,
+  tr: props => <tr style={{padding: 20, borderTop: '1px solid #DEE5EE'}}>{props.children}</tr>,
+  td: props => <td style={{padding: 10, textAlign: 'center'}} ><WFace.WTypography variant="subheading" style={{color: '#91A0B1'}}>{props.children}</WFace.WTypography></td>,
 
   inlineCode: props =>  <code 
                           style={{
@@ -52,6 +87,7 @@ const components = {
                         </code>,                    
   code: props => {
     if(props.className === "language-console") {
+      console.log(props);
       return (
         <div>
           <WFace.WPaper elevation={0} 
@@ -79,12 +115,20 @@ const Mdx = {
   GetStarted: {
     AdditionalTools: () => <AdditionalTools components={components}/>,
     Architecture: () => <Architecture components={components}/>,
+    Faq: () => <Faq components={components}/>,
     Requirements: () => <Requirements components={components}/>,
     Setup: () => <Setup components={components}/>,
     SupportedPlatforms: () => <SupportedPlatforms components={components}/>,
-    Usage: () => <Usage components={components}/>
+    Usage: () => <Usage components={components}/>,
+    Versions: () => <Versions components={components}/>
   },
-  WFaceCLI: () => <div>WFace CLI</div>,
+  WFaceCLI: {
+    CommandList: () => <CommandList components={components}/>,
+    CreateCommand: () => <CreateCommand components={components}/>,
+    LinkCommand: () => <LinkCommand components={components}/>,
+    RunCommand: () => <RunCommand components={components}/>,
+    VersionCommand: () => <VersionCommand components={components}/>
+  },
   Components: {
 
   }
