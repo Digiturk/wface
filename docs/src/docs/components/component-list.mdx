@@ -1,3 +1,7 @@
+import WPlayground from './w-playground'
+import * as WFace from '@wface/components'
+import { WIcon } from '@wface/components'
+
 # Bileşenler
 
 WFace bileşen kütüphanesinde birçok bileşen bulunmaktadır. 
@@ -5,13 +9,38 @@ WFace bileşen kütüphanesinde birçok bileşen bulunmaktadır.
 Bir bileşeni kullanmak için öncelikle onu `import` etmeniz gerekir.
 
 ```javascript
-import { WButton } from '@wface/components' // Tek bileşen import etmek için
-import { WButton, WTextField } from '@wface/components' // Birden fazla bileşeni import etmek için
-import * as WFace from '@wface/components' // Tüm bileşenleri tek seferde import etmek için
+// Tek bileşen import etmek için
+import { WButton } from '@wface/components' 
+
+// Birden fazla bileşeni import etmek için
+import { WButton, WTextField } from '@wface/components' 
+
+// Tüm bileşenleri tek seferde import etmek için
+import * as WFace from '@wface/components' 
 ```
+
+Import ettiğiniz bir bileşeni aşağıdaki gibi kullanabilirsiniz: 
+
+<WPlayground>
+  <WFace.WButton 
+    onClick={() => alert('Button 1 tıklandı')}>
+    Button 1
+  </WFace.WButton>
+  <WFace.WButton 
+    onClick={() => alert('Button 2 tıklandı')}>
+    Button 2
+  </WFace.WButton>
+</WPlayground>
+
+<br/>
+<br/>
+<WFace.WDivider/>
+<br/>
+<br/>
+
 
 Tüm Bileşenler:
 
 | Grup      | Bileşen   | Açıklama                                          | Detaylı Bilgi |
 |-----------|-----------|---------------------------------------------------|---------------|
-| Button    | WButton   |  
+| Button    | WButton   | Button bileşeni                                   | [<WIcon>link</WIcon>](/#/Pages/Components/WButton) |

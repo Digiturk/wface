@@ -1,4 +1,7 @@
 import React from 'react'
+import {UnControlled as CodeMirror} from 'react-codemirror2'
+import 'codemirror/mode/javascript/javascript'
+import 'codemirror/mode/jsx/jsx'
 
 import Architecture from './get-started/architecture.mdx'
 import AdditionalTools from './get-started/additional-tools.mdx'
@@ -106,6 +109,30 @@ const components = {
           <br/>
         </div>
       );
+    }
+    else if (props.className === "language-javascript") {
+      return  <CodeMirror
+                value={props.children.trim()}
+                options={{
+                  mode: 'javascript',
+                  theme: 'lucario',
+                  lineNumbers: false,
+                  readOnly: true
+                }}
+                onChange={(editor, data, value) => {
+                }}/>;
+    }
+    else if (props.className === "language-jsx") {
+      return  <CodeMirror
+                value={props.children.trim()}
+                options={{
+                  mode: 'jsx',
+                  theme: 'lucario',
+                  lineNumbers: false,
+                  readOnly: true
+                }}
+                onChange={(editor, data, value) => {
+                }}/>;
     }
     else {
       return <div>{props.children}</div>;

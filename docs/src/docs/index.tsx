@@ -317,7 +317,7 @@ const menuTree = [
     subNodes: [
       {
         id: '3.0',
-        text: 'Bileşenler',
+        text: 'Bileşen Listesi',
         path: 'Components/ComponentList',
         mdx: Mdx.Components.ComponentList,
         next: '3.1'
