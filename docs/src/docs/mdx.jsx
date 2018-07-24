@@ -15,6 +15,9 @@ import LinkCommand from './cli/commands/link.mdx'
 import RunCommand from './cli/commands/run.mdx'
 import VersionCommand from './cli/commands/version.mdx'
 
+import ComponentList from './components/component-list.mdx'
+import WButtonComponent from './components/components/W-button.mdx'
+
 import * as WFace from '@wface/components'
 
 const components = {
@@ -86,8 +89,7 @@ const components = {
                           {props.children}
                         </code>,                    
   code: props => {
-    if(props.className === "language-console") {
-      console.log(props);
+    if(props.className === "language-console") {      
       return (
         <div>
           <WFace.WPaper elevation={0} 
@@ -130,7 +132,8 @@ const Mdx = {
     VersionCommand: () => <VersionCommand components={components}/>
   },
   Components: {
-
+    ComponentList: () => <ComponentList components={components}/>,
+    WButtonComponent: () => <WButtonComponent components={components}/>,
   }
 }
 

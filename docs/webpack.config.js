@@ -49,7 +49,7 @@ module.exports = {
                     }
                   }, 
                   {
-                    loader: '@mdx-js/loader',
+                    loader: '@mdx-js/loader'
                   }
                 ]
             },

@@ -316,10 +316,19 @@ const menuTree = [
     text: 'Bileşenler',
     subNodes: [
       {
+        id: '3.0',
+        text: 'Bileşenler',
+        path: 'Components/ComponentList',
+        mdx: Mdx.Components.ComponentList,
+        next: '3.1'
+      },
+      {
         id: '3.1',
         text: 'WButton',
         path: 'Components/WButton',
-        mdx: Mdx.Components.WButton
+        mdx: Mdx.Components.WButtonComponent,
+        prev: '3.0',
+        next: '3.2'
       }
     ]
   }  
