@@ -11,7 +11,7 @@ export class WIconButton extends React.Component<WIconButtonProps, {}> {
     public render() {        
         return (
             <IconButton {...this.props}>{
-                  this.props.icon ? <WIcon>this.props.icon</WIcon> : this.props.children
+                  this.props.icon ? <WIcon>{this.props.icon}</WIcon> : this.props.children
                 }
             </IconButton>
         );
