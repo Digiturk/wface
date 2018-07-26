@@ -9,7 +9,7 @@ export class WButton extends React.Component<WButtonProps, any> {
         const props = Object.assign({variant: 'contained', color: 'primary'}, this.props);
 
         return (
-            <Button {...this.props} />
+            <Button {...props} />
         )
     }
 }
