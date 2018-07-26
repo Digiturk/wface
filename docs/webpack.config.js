@@ -3,6 +3,9 @@ const path = require("path");
 module.exports = {
     entry: "./src/index.tsx",
     mode: 'development',
+    node: {
+        fs: 'empty'
+    },
     output: {
         path: path.join(__dirname, "dist3"),
         filename: "[name].bundle.js",

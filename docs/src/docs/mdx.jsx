@@ -20,6 +20,7 @@ import VersionCommand from './cli/commands/version.mdx'
 
 import ComponentList from './components/component-list.mdx'
 import WButtonComponent from './components/components/W-button.mdx'
+import WIconButtonComponent from './components/components/W-icon-button.mdx'
 
 import * as WFace from '@wface/components'
 
@@ -161,6 +162,7 @@ const Mdx = {
   Components: {
     ComponentList: () => <ComponentList components={components}/>,
     WButtonComponent: () => <WButtonComponent components={components}/>,
+    WIconButtonComponent: () => <WIconButtonComponent components={components}/>,    
   }
 }
 
