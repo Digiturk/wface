@@ -26,7 +26,7 @@ interface WLoginPageState {
     username: string;
     password: string;
     isLoading: boolean;
-    loadingButtonStatus: WLoadingButtonStatus;
+    loadingButtonStatus: string;
     notificationText: string;
     showNotification: boolean;    
     [key: string]:any
@@ -50,7 +50,7 @@ class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> {
             username: '',
             password: '',
             isLoading: false,
-            loadingButtonStatus: WLoadingButtonStatus.normal,
+            loadingButtonStatus: "normal",
             notificationText: '',
             showNotification: false            
         }
@@ -61,7 +61,7 @@ class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> {
             this.authService.login(this.state.username, this.state.password)
                 .then(result => {
                     if(result) {
-                        this.setState({loadingButtonStatus: WLoadingButtonStatus.success}, () => {
+                        this.setState({loadingButtonStatus: "success"}, () => {
                             this.props.login({
                                 username: this.state.username, 
                                 displayName: '',
@@ -74,7 +74,7 @@ class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> {
                         this.setState({
                             showNotification: true,
                             notificationText: "Girdiğiniz kullanıcı adı veya şifre hatalıdır!",
-                            loadingButtonStatus: WLoadingButtonStatus.error
+                            loadingButtonStatus: "error"
                         });
                     }
                 }).
@@ -160,7 +160,7 @@ class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> {
                                         color="primary" 
                                         className={classes.vSpace}
                                         style={{marginTop: 50, marginBottom: 20}}
-                                        isLoading={this.state.isLoading}
+                                        isLoading={this.state.isLoading}                                        
                                         status={this.state.loadingButtonStatus}
                                         disableFocusRipple
                                         onClick={this.btnLoginClick.bind(this)}>
