@@ -1,0 +1,27 @@
+import WPlayground from '../../w-playground'
+import { WIconButton, WIcon } from '@wface/components'
+
+# WIconButton
+
+WIconButton @material-ui IconButton'dan türetilmiştir.
+IconButton'un propertylerine erişmek için [tıklayın](https://material-ui.com/api/icon-button/).
+
+### Ek Özellikler
+
+Eklenen ve değiştirilen özellikler aşağıdaki gibidir:
+
+| Adı                 | Veri Tipi                                                     | Default | Açıklama                                        |
+|:--------------------|:--------------------------------------------------------------|:--------|:------------------------------------------------|
+| icon                | string                                                        |         | Material icon kodu                              |
+
+<br/>
+
+> Icon listesine [__Material Icons__](https://material.io/tools/icons/?style=baseline) adresinden erişebilirsiniz.
+
+### Örnekler
+
+<WPlayground header="Temel Kullanım">
+<WIconButton style={{margin:10}} icon="send"/>
+<WIconButton style={{margin:10}} color="secondary" icon="code"/>
+<WIconButton style={{margin:10}} disabled={true} icon="block"/>
+</WPlayground><br/>
