@@ -7,29 +7,18 @@ import green from '@material-ui/core/colors/green';
 import red from '@material-ui/core/colors/red';
 import { withStyles } from '@material-ui/core/styles';
 
-export enum WLoadingButtonProgressType {
-    circular,
-    linear
-}
-
-export enum WLoadingButtonStatus {    
-    error,
-    normal,
-    success
-}
-
 export interface WLoadingButtonProps extends WButtonProps {
     isLoading?: boolean;
-    status?: WLoadingButtonStatus;
-    progressType?: WLoadingButtonProgressType;
+    status?: "error" | "normal" | "success";
+    progressType?: "circular" | "linear";
 }
 
 class WLoadingButtonInner extends React.Component<WLoadingButtonProps & ClassNames & any, {}> {
     public render() {
         const { classes } = this.props;
         const buttonClassname = classNames({
-            [classes.buttonError]: this.props.status == WLoadingButtonStatus.error,
-            [classes.buttonSuccess]: this.props.status == WLoadingButtonStatus.success,
+            [classes.buttonError]: this.props.status == "error",
+            [classes.buttonSuccess]: this.props.status == "success",
         });
 
         return (
@@ -42,13 +31,13 @@ class WLoadingButtonInner extends React.Component<WLoadingButtonProps & ClassNam
                     disabled={this.props.isLoading}                    
                 >
                     {this.props.children}
+                    {this.props.isLoading && 
+                        (this.props.progressType == "circular" ?
+                            <WCircularProgress size={24} className={classes.circularProgress} /> :
+                            <WLinearProgress className={classes.linearProgress} />)
+                    }
                 </WButton>
                 {/* {this.props.isLoading && <WCircularProgress size={24} className={classes.buttonProgress} />} */}
-                {this.props.isLoading && 
-                    (this.props.progressType == WLoadingButtonProgressType.circular ?
-                        <WCircularProgress size={24} className={classes.circularProgress} /> :
-                        <WLinearProgress className={classes.linearProgress} />)
-                }
             </div>
         )
     }
