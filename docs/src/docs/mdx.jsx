@@ -19,8 +19,18 @@ import RunCommand from './cli/commands/run.mdx'
 import VersionCommand from './cli/commands/version.mdx'
 
 import ComponentList from './components/component-list.mdx'
-import WButtonComponent from './components/components/W-button.mdx'
-import WIconButtonComponent from './components/components/W-icon-button.mdx'
+import WButtonComponent from './components/components/buttons/w-button.mdx'
+import WIconButtonComponent from './components/components/buttons/w-icon-button.mdx'
+import WLoadingButtonComponent from './components/components/buttons/w-loading-button.mdx'
+import WCircularProgressComponent from './components/components/progress/w-circular-progress.mdx'
+import WLinearProgressComponent from './components/components/progress/w-linear-progress.mdx'
+import WAppBarComponent from './components/components/others/w-app-bar.mdx'
+import WAvatarComponent from './components/components/others/w-avatar.mdx'
+import WCardComponent from './components/components/others/w-card.mdx'
+import WCollapseComponent from './components/components/others/w-collapse.mdx'
+import WDividerComponent from './components/components/others/w-divider.mdx'
+import WDrawerComponent from './components/components/others/w-drawer.mdx'
+
 
 import * as WFace from '@wface/components'
 
@@ -163,6 +173,16 @@ const Mdx = {
     ComponentList: () => <ComponentList components={components}/>,
     WButtonComponent: () => <WButtonComponent components={components}/>,
     WIconButtonComponent: () => <WIconButtonComponent components={components}/>,    
+    WLoadingButtonComponent: () => <WLoadingButtonComponent components={components}/>,
+    WCircularProgressComponent: () => <WCircularProgressComponent components={components}/>,  
+    WLinearProgressComponent: () => <WLinearProgressComponent components={components}/>,    
+    WAppBarComponent: () => <WAppBarComponent components={components}/>,        
+    WAvatarComponent: () => <WAvatarComponent components={components}/>,            
+    WCardComponent: () => <WCardComponent components={components}/>,            
+    WCollapseComponent: () => <WCollapseComponent components={components}/>,            
+    WDividerComponent: () => <WDividerComponent components={components}/>,
+    WDrawerComponent: () => <WDrawerComponent components={components}/>,
+                
   }
 }
 

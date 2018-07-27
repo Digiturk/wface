@@ -10,7 +10,8 @@ class App extends React.Component<any, any> {
 
   private renderMenuLink(href: string, text:string): React.ReactNode {
     return <WFace.WButton 
-            color="inherit" 
+            variant="flat" 
+            color="inherit"
             href={"#" + href} 
             className={this.props.classes.linkButton}>
               {text}
