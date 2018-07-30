@@ -30,6 +30,15 @@ import WCardComponent from './components/components/others/w-card.mdx'
 import WCollapseComponent from './components/components/others/w-collapse.mdx'
 import WDividerComponent from './components/components/others/w-divider.mdx'
 import WDrawerComponent from './components/components/others/w-drawer.mdx'
+import WGridComponent from './components/components/others/w-grid.mdx'
+import WIconComponent from './components/components/others/w-icon.mdx'
+import WListComponent from './components/components/others/w-list.mdx'
+import WMenuComponent from './components/components/others/w-menu.mdx'
+import WNotificationBarComponent from './components/components/others/w-notification-bar.mdx'
+import WPaperComponent from './components/components/others/w-paper.mdx'
+import WTextFieldComponent from './components/components/others/w-text-field.mdx'
+import WToolBarComponent from './components/components/others/w-tool-bar.mdx'
+import WTypographyComponent from './components/components/others/w-typography.mdx'
 
 
 import * as WFace from '@wface/components'
@@ -182,7 +191,16 @@ const Mdx = {
     WCollapseComponent: () => <WCollapseComponent components={components}/>,            
     WDividerComponent: () => <WDividerComponent components={components}/>,
     WDrawerComponent: () => <WDrawerComponent components={components}/>,
-                
+    WGridComponent: () => <WGridComponent components={components}/>,                    
+    WIconComponent: () => <WIconComponent components={components}/>,
+    WListComponent: () => <WListComponent components={components}/>,
+    WMenuComponent: () => <WMenuComponent components={components}/>,    
+    WNotificationBarComponent: () => <WNotificationBarComponent components={components}/>,    
+    WPaperComponent: () => <WPaperComponent components={components}/>,    
+    WTextFieldComponent: () => <WTextFieldComponent components={components}/>,    
+    WToolBarComponent: () => <WToolBarComponent components={components}/>,    
+    WTypographyComponent: () => <WTypographyComponent components={components}/>,    
+    
   }
 }
 
