@@ -453,9 +453,9 @@ const menuTree = [
           },
           {
             id: '3.3.16',
-            text: 'WToolbar',
-            path: 'Components/WToolbar',
-            mdx: Mdx.Components.WToolbarComponent
+            text: 'WToolBar',
+            path: 'Components/WToolBar',
+            mdx: Mdx.Components.WToolBarComponent
           },
           {
             id: '3.3.17',

@@ -1,0 +1,71 @@
+import WPlayground from '../../w-playground'
+import { 
+  WList, WListItem, WListItemIcon, 
+  WListItemText, WIcon, WDivider,
+  WAvatar 
+} from '@wface/components'
+
+# WList
+
+WList @material-ui List'dan türetilmiştir.
+List'un propertylerine erişmek için [tıklayın](https://material-ui.com/api/list/).
+
+### Ek Özellikler
+
+Eklenen ve değiştirilen özellikler aşağıdaki gibidir:
+
+| Adı                 | Veri Tipi                                                     | Default | Açıklama                                        |
+|:--------------------|:--------------------------------------------------------------|:--------|:------------------------------------------------|
+|                     |                                                               |         |                                                 |
+
+
+### Örnekler
+
+<WPlayground header="Temel Kullanım" style={{backgroundColor: 'rgb(245, 247, 255)'}}>
+<WList component="nav" style={{backgroundColor: '#fff'}}>
+  <WListItem button>
+    <WListItemIcon>
+      <WIcon>inbox</WIcon>
+    </WListItemIcon>
+    <WListItemText primary="Inbox" />
+  </WListItem>
+  <WListItem button>
+    <WListItemIcon>
+      <WIcon>send</WIcon>
+    </WListItemIcon>
+    <WListItemText primary="Drafts" />
+  </WListItem>
+</WList>
+<WDivider />
+<WList component="nav" style={{backgroundColor: '#fff'}}>
+  <WListItem button>
+    <WListItemText primary="Trash" />
+  </WListItem>
+  <WListItem button component="a" href="/#/Pages/Components/WList">
+    <WListItemText primary="Spam" />
+  </WListItem>
+</WList>
+</WPlayground><br/>
+
+<WPlayground header="Secondary Text" style={{backgroundColor: 'rgb(245, 247, 255)'}}>
+<WList style={{backgroundColor: '#fff'}}>
+  <WListItem>
+    <WAvatar>
+      <WIcon>folder</WIcon>
+    </WAvatar>
+    <WListItemText primary="Photos" secondary="Jan 9, 2014" />
+  </WListItem>
+  <WListItem>
+    <WAvatar>
+      <WIcon>work</WIcon>
+    </WAvatar>
+    <WListItemText primary="Work" secondary="Jan 7, 2014" />
+  </WListItem>
+  <WListItem>
+    <WAvatar>
+      <WIcon>link</WIcon>
+    </WAvatar>
+    <WListItemText primary="Vacation" secondary="July 20, 2014" />
+  </WListItem>
+</WList>
+</WPlayground>
