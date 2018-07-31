@@ -1,6 +1,6 @@
 {
   "name": "@wface/components",
-  "version": "0.0.30",
+  "version": "0.0.37",
   "description": "All wface components",
   "author": "baran",
   "main": "index.ts",
@@ -24,5 +24,10 @@
     "@types/promise.prototype.finally": "2.0.2",
     "@types/react": "16.4.6",
     "@types/react-redux": "5"
+  },
+  "scripts": {
+    "set:reg:publish": "npm set registry http://dtl1tfsbuild2:8081/repository/digiturk-npm/",
+    "set:reg:retrieve": "npm set registry http://dtl1tfsbuild2:8081/repository/digiturk-npm-group/",
+    "fast:publish": "npm version patch && npm run set:reg:publish && npm publish && npm run set:reg:retrieve"
   }
 }

@@ -48,6 +48,7 @@ export { WListItem, WListItemProps } from './src/lists/w-list/w-list-item'
 export { WListItemIcon, WListItemIconProps } from './src/lists/w-list/w-list-item-icon'
 export { WListItemText, WListItemTextProps } from './src/lists/w-list/w-list-item-text'
 export { WListItemSecondaryAction, WListItemSecondaryActionProps } from './src/lists/w-list/w-list-item-secondary-action'
+export { WListSubheader, WListSubheaderProps } from './src/lists/w-list/w-list-subheader'
 
 // WMenu
 export { WMenu, WMenuProps } from './src/lists/w-menu'
@@ -64,7 +65,7 @@ export { WRadioGroup, WRadioGroupProps } from './src/inputs/w-radio-group'
 export { WRadio, WRadioProps } from './src/inputs/w-radio-group/w-radio'
 
 // WSwipeableViews
-export { WSwipeableViews, WSwipeableViewsProps } from './src/layouts/w-swipeable-view'
+export { WSwipeableViews, WSwipeableViewsProps } from './src/layouts/w-swipeable-views'
 
 // WSwitch
 export { WSwitch, WSwitchProps } from './src/inputs/w-switch'

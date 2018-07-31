@@ -3,7 +3,7 @@ import { CardActions } from '@material-ui/core'
 import { CardActionsProps } from '@material-ui/core/CardActions';
 
 export interface WCardActionsProps extends CardActionsProps { 
-    float: 'left' | 'right'
+    float?: 'left' | 'right'
 }
 
 export class WCardActions extends React.Component<WCardActionsProps, {}> {
