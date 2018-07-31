@@ -1,0 +1,86 @@
+import WPlayground from '../../w-playground'
+import WTabsExampleSimple from './w-tabs-example-simple'
+import WTabsExampleIcon from './w-tabs-example-icon'
+
+# WTabs
+
+WTabs @material-ui Tabs'dan türetilmiştir.
+Tabs'un propertylerine erişmek için [tıklayın](https://material-ui.com/api/tabs/).
+
+### Ek Özellikler
+
+Eklenen ve değiştirilen özellikler aşağıdaki gibidir:
+
+| Adı                 | Veri Tipi                                                     | Default | Açıklama                                        |
+|:--------------------|:--------------------------------------------------------------|:--------|:------------------------------------------------|
+|                     |                                                               |         |                                                 |
+
+
+### Örnekler
+
+<WPlayground header="Temel Kullanım" code={
+`export default class WTabsExampleSimple extends React.Component<any, any> {
+  constructor(props:any) {
+    super(props);
+    this.state = {
+      value: 0
+    }
+  }
+  handleChange = (event:any, value:any) => {
+    this.setState({ value });
+  };
+  render() {
+    const { classes } = this.props;
+    const { value } = this.state;
+    return (
+      <div>
+        <WAppBar position="static">
+          <WTabs value={value} onChange={this.handleChange} centered>
+            <WTab label="Item One" />
+            <WTab label="Item Two" />
+            <WTab label="Item Three" />
+          </WTabs>
+        </WAppBar>
+        {value === 0 && "Item One"}
+        {value === 1 && "Item Two"}
+        {value === 2 && "Item Three"}
+      </div>
+    );
+  }
+}
+`}>
+<WTabsExampleSimple/>
+</WPlayground><br/>
+
+<WPlayground header="Icon Tabs" code={
+`export default class WTabsExampleIcon extends React.Component<any, any> {
+  constructor(props:any) {
+    super(props)
+    this.state = {
+      value: 0,
+    };
+  }
+  handleChange = (event:any, value:any) => {
+    this.setState({ value });
+  };
+  render() {
+    return (
+      <WPaper style={{ width: 500 }}>
+        <WTabs
+          value={this.state.value}
+          onChange={this.handleChange}
+          fullWidth
+          indicatorColor="primary"
+          textColor="primary">
+          <WTab icon={<WIcon>phone</WIcon>} />
+          <WTab icon={<WIcon>favorite</WIcon>} />
+          <WTab icon={<WIcon>person</WIcon>} />
+        </WTabs>
+      </WPaper>
+    );
+  }
+}
+`}>
+<WTabsExampleIcon/>
+</WPlayground><br/>
+

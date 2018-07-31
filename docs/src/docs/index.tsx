@@ -96,7 +96,7 @@ class Docs extends React.Component<any, any> {
             <WFace.WIcon>{open ? 'expand_less' : 'expand_more'}</WFace.WIcon>              
           </WFace.WListItem>                    
           <WFace.WCollapse in={open} timeout="auto">
-            <WFace.WList component="div" disablePadding>
+            <WFace.WList component="div" disablePadding dense>
               { item.subNodes.map((subItem: any) => { return this.renderNavItem(subItem, nestingLevel + 1); }) }
             </WFace.WList>
           </WFace.WCollapse>
@@ -134,7 +134,9 @@ class Docs extends React.Component<any, any> {
         <WFace.WGrid item lg={1}/>  
         <WFace.WGrid item xs={12} sm={12} md={4} lg={3}>                        
           <WFace.WPaper>
-            <WFace.WList key="NavListKey"
+            <WFace.WList 
+              key="NavListKey"
+              dense
               component="nav">
               {
                 menuTree.map(item => {
@@ -321,42 +323,187 @@ const menuTree = [
         path: 'Components/ComponentList',
         mdx: Mdx.Components.ComponentList
       },
-      { 
+      {
         id: '3.1',
-        text: 'Butonlar',
+        text: 'Barlar',
         subNodes: [
           {
             id: '3.1.1',
+            text: 'WAppBar',
+            path: 'Components/WAppBar',
+            mdx: Mdx.Components.WAppBarComponent
+          },
+          {
+            id: '3.1.2',
+            text: 'WNotificationBar',
+            path: 'Components/WNotificationBar',
+            mdx: Mdx.Components.WNotificationBarComponent
+          },
+          {
+            id: '3.1.3',
+            text: 'WToolBar',
+            path: 'Components/WToolBar',
+            mdx: Mdx.Components.WToolBarComponent
+          },
+        ]
+      },
+      { 
+        id: '3.2',
+        text: 'Butonlar',
+        subNodes: [
+          {
+            id: '3.2.1',
             text: 'WButton',
             path: 'Components/WButton',
             mdx: Mdx.Components.WButtonComponent
           },
           {
-            id: '3.1.2',
+            id: '3.2.2',
             text: 'WIconButton',
             path: 'Components/WIconButton',
             mdx: Mdx.Components.WIconButtonComponent
           },
           {
-            id: '3.1.3',
+            id: '3.2.3',
             text: 'WLoadingButton',
             path: 'Components/WLoadingButton',
             mdx: Mdx.Components.WLoadingButtonComponent
           }
         ]
       },  
+      {
+        id: '3.3',
+        text: 'Inputlar',
+        subNodes: [
+          {
+            id: '3.3.1',
+            text: 'WCheckbox',
+            path: 'Components/WCheckbox',
+            mdx: Mdx.Components.WCheckboxComponent
+          },
+          {
+            id: '3.3.2',
+            text: 'WRadioGroup',
+            path: 'Components/WRadioGroup',
+            mdx: Mdx.Components.WRadioGroupComponent
+          },
+          {
+            id: '3.3.3',
+            text: 'WSwitch',
+            path: 'Components/WSwitch',
+            mdx: Mdx.Components.WSwitchComponent
+          },
+          {
+            id: '3.3.4',
+            text: 'WTextField',
+            path: 'Components/WTextField',
+            mdx: Mdx.Components.WTextFieldComponent
+          },
+          
+        ]
+      },
+      {
+        id: '3.4',
+        text: 'Layoutlar',
+        subNodes: [
+          {
+            id: '3.4.1',
+            text: 'WCard',
+            path: 'Components/WCard',
+            mdx: Mdx.Components.WCardComponent
+          },
+          {
+            id: '3.4.2',
+            text: 'WCollapse',
+            path: 'Components/WCollapse',
+            mdx: Mdx.Components.WCollapseComponent
+          },
+          {
+            id: '3.4.3',
+            text: 'WDivider',
+            path: 'Components/WDivider',
+            mdx: Mdx.Components.WDividerComponent
+          },
+          {
+            id: '3.4.4',
+            text: 'WDrawer',
+            path: 'Components/WDrawer',
+            mdx: Mdx.Components.WDrawerComponent
+          },
+          {
+            id: '3.4.5',
+            text: 'WGrid',
+            path: 'Components/WGrid',
+            mdx: Mdx.Components.WGridComponent
+          },
+          {
+            id: '3.4.6',
+            text: 'WPaper',
+            path: 'Components/WPaper',
+            mdx: Mdx.Components.WPaperComponent
+          },
+          {
+            id: '3.4.7',
+            text: 'WSwipeableView',
+            path: 'Components/WSwipeableView',
+            mdx: Mdx.Components.WSwipeableViewComponent
+          },
+          {
+            id: '3.4.8',
+            text: 'WTabs',
+            path: 'Components/WTabs',
+            mdx: Mdx.Components.WTabsComponent
+          },
+        ]
+      },
+      {
+        id: '3.5',
+        text: 'Listeler',
+        subNodes: [
+          {
+            id: '3.5.1',
+            text: 'WList',
+            path: 'Components/WList',
+            mdx: Mdx.Components.WListComponent
+          },
+          {
+            id: '3.5.2',
+            text: 'WMenu',
+            path: 'Components/WMenu',
+            mdx: Mdx.Components.WMenuComponent
+          },
+        ]
+      },
+      {
+        id: '3.6',
+        text: 'Media Bileşenleri',
+        subNodes: [
+          {
+            id: '3.6.1',
+            text: 'WAvatar',
+            path: 'Components/WAvatar',
+            mdx: Mdx.Components.WAvatarComponent
+          },
+          {
+            id: '3.6.2',
+            text: 'WIcon',
+            path: 'Components/WIcon',
+            mdx: Mdx.Components.WIconComponent
+          },
+        ]
+      },
       { 
-        id: '3.2',
+        id: '3.7',
         text: 'Progress Barlar',
         subNodes: [
           {
-            id: '3.2.1',
+            id: '3.7.1',
             text: 'WCircularProgress',
             path: 'Components/WCircularProgress',
             mdx: Mdx.Components.WCircularProgressComponent
           },
           {
-            id: '3.2.2',
+            id: '3.7.2',
             text: 'WLinearProgress',
             path: 'Components/WLinearProgress',
             mdx: Mdx.Components.WLinearProgressComponent
@@ -364,101 +511,11 @@ const menuTree = [
         ]
       },
       {
-        id: '3.3',
+        id: '3.99',
         text: 'Diğerleri',
-        subNodes: [
+        subNodes: [          
           {
-            id: '3.3.1',
-            text: 'WAppBar',
-            path: 'Components/WAppBar',
-            mdx: Mdx.Components.WAppBarComponent
-          },
-          {
-            id: '3.3.2',
-            text: 'WAvatar',
-            path: 'Components/WAvatar',
-            mdx: Mdx.Components.WAvatarComponent
-          },
-          {
-            id: '3.3.3',
-            text: 'WCard',
-            path: 'Components/WCard',
-            mdx: Mdx.Components.WCardComponent
-          },
-          {
-            id: '3.3.4',
-            text: 'WCollapse',
-            path: 'Components/WCollapse',
-            mdx: Mdx.Components.WCollapseComponent
-          },
-          {
-            id: '3.3.5',
-            text: 'WDivider',
-            path: 'Components/WDivider',
-            mdx: Mdx.Components.WDividerComponent
-          },
-          {
-            id: '3.3.6',
-            text: 'WDrawer',
-            path: 'Components/WDrawer',
-            mdx: Mdx.Components.WDrawerComponent
-          },
-          {
-            id: '3.3.7',
-            text: 'WGrid',
-            path: 'Components/WGrid',
-            mdx: Mdx.Components.WGridComponent
-          },
-          {
-            id: '3.3.9',
-            text: 'WIcon',
-            path: 'Components/WIcon',
-            mdx: Mdx.Components.WIconComponent
-          },
-          {
-            id: '3.3.10',
-            text: 'WList',
-            path: 'Components/WList',
-            mdx: Mdx.Components.WListComponent
-          },
-          {
-            id: '3.3.11',
-            text: 'WMenu',
-            path: 'Components/WMenu',
-            mdx: Mdx.Components.WMenuComponent
-          },
-          {
-            id: '3.3.12',
-            text: 'WNotificationBar',
-            path: 'Components/WNotificationBar',
-            mdx: Mdx.Components.WNotificationBarComponent
-          },
-          {
-            id: '3.3.13',
-            text: 'WPaper',
-            path: 'Components/WPaper',
-            mdx: Mdx.Components.WPaperComponent
-          },
-          {
-            id: '3.3.14',
-            text: 'WTabs',
-            path: 'Components/WTabs',
-            mdx: Mdx.Components.WTabsComponent
-          },
-          {
-            id: '3.3.15',
-            text: 'WTextField',
-            path: 'Components/WTextField',
-            mdx: Mdx.Components.WTextFieldComponent
-          },
-          {
-            id: '3.3.16',
-            text: 'WToolBar',
-            path: 'Components/WToolBar',
-            mdx: Mdx.Components.WToolBarComponent
-          },
-          {
-            id: '3.3.17',
+            id: '3.99.1',
             text: 'WTypography',
             path: 'Components/WTypography',
             mdx: Mdx.Components.WTypographyComponent

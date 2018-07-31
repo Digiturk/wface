@@ -1,8 +1,9 @@
 import WPlayground from '../../w-playground'
 import { 
   WList, WListItem, WListItemIcon, 
-  WListItemText, WIcon, WDivider,
-  WAvatar 
+  WListItemText, WListItemSecondaryAction, WListSubheader, 
+  WIcon, WDivider, WAvatar, 
+  WCheckbox, WSwitch
 } from '@wface/components'
 
 # WList
@@ -68,4 +69,46 @@ Eklenen ve değiştirilen özellikler aşağıdaki gibidir:
     <WListItemText primary="Vacation" secondary="July 20, 2014" />
   </WListItem>
 </WList>
-</WPlayground>
+</WPlayground><br/>
+
+<WPlayground header="Selection List" style={{backgroundColor: 'rgb(245, 247, 255)'}}>
+<WList style={{backgroundColor: '#fff'}}>
+  <WListItem key="0" dense button >
+    <WAvatar alt="First Item" src="https://www.w3schools.com/howto/img_avatar.png" />
+    <WListItemText primary="First Item" />
+    <WListItemSecondaryAction>
+      <WCheckbox/>
+    </WListItemSecondaryAction>
+  </WListItem>
+  <WListItem key="1" dense button >
+    <WAvatar alt="Second Item" src="https://www.w3schools.com/howto/img_avatar.png" />
+    <WListItemText primary="Second Item" />
+    <WListItemSecondaryAction>
+      <WCheckbox/>
+    </WListItemSecondaryAction>
+  </WListItem>
+</WList>
+</WPlayground><br/>
+
+<WPlayground header="Setting" style={{backgroundColor: 'rgb(245, 247, 255)'}}>
+<WList style={{backgroundColor: '#fff', maxWidth: 300}} subheader={<WListSubheader>Settings</WListSubheader>}>
+<WListItem>
+  <WListItemIcon>
+    <WIcon>wifi</WIcon>
+  </WListItemIcon>
+  <WListItemText primary="Wi-Fi" />
+    <WListItemSecondaryAction>
+      <WSwitch/>
+    </WListItemSecondaryAction>
+  </WListItem>
+  <WListItem>
+    <WListItemIcon>
+      <WIcon>bluetooth</WIcon>
+    </WListItemIcon>
+    <WListItemText primary="Bluetooth" />
+    <WListItemSecondaryAction>
+      <WSwitch/>
+    </WListItemSecondaryAction>
+  </WListItem>
+</WList>
+</WPlayground><br/>

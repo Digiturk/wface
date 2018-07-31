@@ -19,27 +19,31 @@ import RunCommand from './cli/commands/run.mdx'
 import VersionCommand from './cli/commands/version.mdx'
 
 import ComponentList from './components/component-list.mdx'
+import WAppBarComponent from './components/components/bars/w-app-bar.mdx'
+import WAvatarComponent from './components/components/medias/w-avatar.mdx'
 import WButtonComponent from './components/components/buttons/w-button.mdx'
-import WIconButtonComponent from './components/components/buttons/w-icon-button.mdx'
-import WLoadingButtonComponent from './components/components/buttons/w-loading-button.mdx'
+import WCardComponent from './components/components/layouts/w-card.mdx'
+import WCheckboxComponent from './components/components/inputs/w-checkbox.mdx'
 import WCircularProgressComponent from './components/components/progress/w-circular-progress.mdx'
+import WCollapseComponent from './components/components/layouts/w-collapse.mdx'
+import WDividerComponent from './components/components/layouts/w-divider.mdx'
+import WDrawerComponent from './components/components/layouts/w-drawer.mdx'
+import WGridComponent from './components/components/layouts/w-grid.mdx'
+import WIconButtonComponent from './components/components/buttons/w-icon-button.mdx'
+import WIconComponent from './components/components/medias/w-icon.mdx'
 import WLinearProgressComponent from './components/components/progress/w-linear-progress.mdx'
-import WAppBarComponent from './components/components/others/w-app-bar.mdx'
-import WAvatarComponent from './components/components/others/w-avatar.mdx'
-import WCardComponent from './components/components/others/w-card.mdx'
-import WCollapseComponent from './components/components/others/w-collapse.mdx'
-import WDividerComponent from './components/components/others/w-divider.mdx'
-import WDrawerComponent from './components/components/others/w-drawer.mdx'
-import WGridComponent from './components/components/others/w-grid.mdx'
-import WIconComponent from './components/components/others/w-icon.mdx'
-import WListComponent from './components/components/others/w-list.mdx'
-import WMenuComponent from './components/components/others/w-menu.mdx'
-import WNotificationBarComponent from './components/components/others/w-notification-bar.mdx'
-import WPaperComponent from './components/components/others/w-paper.mdx'
-import WTextFieldComponent from './components/components/others/w-text-field.mdx'
-import WToolBarComponent from './components/components/others/w-tool-bar.mdx'
+import WListComponent from './components/components/lists/w-list.mdx'
+import WLoadingButtonComponent from './components/components/buttons/w-loading-button.mdx'
+import WMenuComponent from './components/components/lists/w-menu.mdx'
+import WNotificationBarComponent from './components/components/bars/w-notification-bar.mdx'
+import WPaperComponent from './components/components/layouts/w-paper.mdx'
+import WRadioGroupComponent from './components/components/inputs/w-radio-group.mdx'
+import WSwipeableViewComponent from './components/components/layouts/w-swipeable-view.mdx'
+import WSwitchComponent from './components/components/inputs/w-switch.mdx'
+import WTabsComponent from './components/components/layouts/w-tabs.mdx'
+import WTextFieldComponent from './components/components/inputs/w-text-field.mdx'
+import WToolBarComponent from './components/components/bars/w-tool-bar.mdx'
 import WTypographyComponent from './components/components/others/w-typography.mdx'
-
 
 import * as WFace from '@wface/components'
 
@@ -180,27 +184,31 @@ const Mdx = {
   },
   Components: {
     ComponentList: () => <ComponentList components={components}/>,
-    WButtonComponent: () => <WButtonComponent components={components}/>,
-    WIconButtonComponent: () => <WIconButtonComponent components={components}/>,    
-    WLoadingButtonComponent: () => <WLoadingButtonComponent components={components}/>,
-    WCircularProgressComponent: () => <WCircularProgressComponent components={components}/>,  
-    WLinearProgressComponent: () => <WLinearProgressComponent components={components}/>,    
     WAppBarComponent: () => <WAppBarComponent components={components}/>,        
-    WAvatarComponent: () => <WAvatarComponent components={components}/>,            
+    WAvatarComponent: () => <WAvatarComponent components={components}/>,        
+    WButtonComponent: () => <WButtonComponent components={components}/>,
     WCardComponent: () => <WCardComponent components={components}/>,            
+    WCheckboxComponent: () => <WCheckboxComponent components={components}/>,            
+    WCircularProgressComponent: () => <WCircularProgressComponent components={components}/>,  
     WCollapseComponent: () => <WCollapseComponent components={components}/>,            
     WDividerComponent: () => <WDividerComponent components={components}/>,
     WDrawerComponent: () => <WDrawerComponent components={components}/>,
     WGridComponent: () => <WGridComponent components={components}/>,                    
+    WIconButtonComponent: () => <WIconButtonComponent components={components}/>,    
     WIconComponent: () => <WIconComponent components={components}/>,
+    WLinearProgressComponent: () => <WLinearProgressComponent components={components}/>,    
     WListComponent: () => <WListComponent components={components}/>,
+    WLoadingButtonComponent: () => <WLoadingButtonComponent components={components}/>,
     WMenuComponent: () => <WMenuComponent components={components}/>,    
     WNotificationBarComponent: () => <WNotificationBarComponent components={components}/>,    
     WPaperComponent: () => <WPaperComponent components={components}/>,    
+    WRadioGroupComponent: () => <WRadioGroupComponent components={components}/>,    
+    WSwipeableViewComponent: () => <WSwipeableViewComponent components={components}/>,    
+    WSwitchComponent: () => <WSwitchComponent components={components}/>,        
+    WTabsComponent: () => <WTabsComponent components={components}/>,    
     WTextFieldComponent: () => <WTextFieldComponent components={components}/>,    
     WToolBarComponent: () => <WToolBarComponent components={components}/>,    
     WTypographyComponent: () => <WTypographyComponent components={components}/>,    
-    
   }
 }
 
