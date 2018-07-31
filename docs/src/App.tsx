@@ -23,7 +23,7 @@ class App extends React.Component<any, any> {
     return (
       <div className={classes.root}>
         <WFace.WAppBar position="absolute" className={classes.appBar}>
-          <WFace.WToolbar>
+          <WFace.WToolBar>
             <WFace.WTypography variant="title" color="inherit" noWrap className={classes.flex}>
               WFace Dökümantasyon
             </WFace.WTypography>
@@ -34,7 +34,7 @@ class App extends React.Component<any, any> {
             {/* {this.renderMenuLink("Blog", "Blog")} */}
             {/* {this.renderMenuLink("Faq", "S.S.S.")} */}
             {/* {this.renderMenuLink("Contribute", "Katkı")}*/}
-          </WFace.WToolbar>
+          </WFace.WToolBar>
         </WFace.WAppBar>
 
         <main className={classes.content}>
