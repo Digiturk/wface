@@ -5,7 +5,7 @@ import { CardProps } from '@material-ui/core/Card';
 export interface WCardProps extends CardProps {}
 
 class WCardInner extends React.Component<WCardProps & WithStyles<string>, {}> {
-    public render() {        
+    public render() {    
         return <Card {...this.props} /> 
     }
 }

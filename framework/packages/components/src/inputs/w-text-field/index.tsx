@@ -9,7 +9,7 @@ import {
 import {    
     Visibility, VisibilityOff
 } from '@material-ui/icons'
-import { WIconButton } from '../buttons/w-icon-button';
+import { WIconButton } from '../../buttons/w-icon-button';
 import { TextFieldProps } from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
 import { ScreenContextActions, WStore } from '@wface/store'

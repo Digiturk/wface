@@ -22,14 +22,13 @@ class WLoadingButtonInner extends React.Component<WLoadingButtonProps & ClassNam
         });
 
         return (
-            <div className={classes.wrapper}>
+            <span className={classes.wrapper}>
                 <WButton
                     {...this.props}
                     variant="raised"
                     color="primary"
                     className={buttonClassname}
-                    disabled={this.props.isLoading}                    
-                >
+                    disabled={this.props.isLoading}>
                     {this.props.children}
                     {this.props.isLoading && 
                         (this.props.progressType == "circular" ?
@@ -37,8 +36,7 @@ class WLoadingButtonInner extends React.Component<WLoadingButtonProps & ClassNam
                             <WLinearProgress className={classes.linearProgress} />)
                     }
                 </WButton>
-                {/* {this.props.isLoading && <WCircularProgress size={24} className={classes.buttonProgress} />} */}
-            </div>
+            </span>
         )
     }
 }

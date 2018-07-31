@@ -1,9 +1,9 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
-import { WGrid, WGridProps } from '../w-grid';
-import { WIconButton, WIconButtonProps } from '../buttons/w-icon-button';
-import { WPaper, WPaperProps } from '../w-paper';
-import { WTypography, WTypographyProps } from '../w-typography';
+import { WGrid, WGridProps } from '../../layouts/w-grid';
+import { WIconButton, WIconButtonProps } from '../../buttons/w-icon-button';
+import { WPaper, WPaperProps } from '../../layouts/w-paper';
+import { WTypography, WTypographyProps } from '../../others/w-typography';
 import { withStyles } from '@material-ui/core'
 import Close from '@material-ui/icons/Close';
 

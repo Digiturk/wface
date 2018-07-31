@@ -14,7 +14,7 @@ import {
     WIconButton, WIconButtonProps,
     WTabs, WTabsProps,
     WTab, WTabProps,
-    WToolbar, WToolbarProps,
+    WToolBar, WToolBarProps,
     WTypography, WTypographyProps, WButton, WGrid
 } from '@wface/components';
 import MyProfileMenu from './MyProfileMenu';
@@ -217,7 +217,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
         return (
             <div className={classes.root}>
               <WAppBar position="absolute" className={classes.appBar}>
-                <WToolbar classes={{root: classes.toolBar}}>
+                <WToolBar classes={{root: classes.toolBar}}>
                     <WIconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -230,7 +230,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
                         WFace
                     </WTypography>
                     <MyProfileMenu />
-                </WToolbar>
+                </WToolBar>
                 <WTabs
                     value={this.state.currentScreen && this.state.currentScreen.id}
                     onChange={this.handleTabChange.bind(this)}

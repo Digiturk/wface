@@ -1,10 +1,10 @@
 // Base
-export { BaseScreenProps } from './src/base/BaseScreenProps';
+export { BaseScreenProps } from './src/base/base-screen-props';
 
 // Buttons
 export { WButton, WButtonProps } from './src/buttons/w-button'
 export { WIconButton, WIconButtonProps } from './src/buttons/w-icon-button'
-export { WLoadingButton, WLoadingButtonProps, WLoadingButtonStatus } from './src/buttons/w-loading-button'
+export { WLoadingButton, WLoadingButtonProps } from './src/buttons/w-loading-button'
 
 // Progress
 export { WCircularProgress, WCircularProgressProps } from './src/progress/w-circular-progress'
@@ -13,58 +13,71 @@ export { WLinearProgress, WLinearProgressProps } from './src/progress/w-linear-p
 //------------------------------------------------------------------------------------------------
 
 // WAppBar
-export { WAppBar, WAppBarProps } from './src/w-app-bar'
+export { WAppBar, WAppBarProps } from './src/bars/w-app-bar'
 
 // WAvatar
-export { WAvatar, WAvatarProps } from './src/w-avatar'
+export { WAvatar, WAvatarProps } from './src/medias/w-avatar'
 
 // WCard
-export { WCard, WCardProps } from './src/w-card'
-export { WCardActions, WCardActionsProps } from './src/w-card/WCardActions'
-export { WCardContent, WCardContentProps } from './src/w-card/WCardContent'
-export { WCardHeader, WCardHeaderProps } from './src/w-card/WCardHeader'
+export { WCard, WCardProps } from './src/layouts/w-card'
+export { WCardActions, WCardActionsProps } from './src/layouts/w-card/w-card-actions'
+export { WCardContent, WCardContentProps } from './src/layouts/w-card/w-card-content'
+export { WCardHeader, WCardHeaderProps } from './src/layouts/w-card/w-card-header'
+
+// WCheckbox 
+export { WCheckbox, WCheckboxProps } from './src/inputs/w-checkbox'
 
 // WCollapse
-export { WCollapse, WCollapseProps } from './src/w-collapse'
+export { WCollapse, WCollapseProps } from './src/layouts/w-collapse'
 
 // WDivider
-export { WDivider, WDividerProps } from './src/w-divider'
+export { WDivider, WDividerProps } from './src/layouts/w-divider'
 
 // WDrawer
-export { WDrawer, WDrawerProps } from './src/w-drawer'
+export { WDrawer, WDrawerProps } from './src/layouts/w-drawer'
 
 // WGrid
-export { WGrid, WGridProps } from './src/w-grid'
+export { WGrid, WGridProps } from './src/layouts/w-grid'
 
 // WIcon 
-export { WIcon, WIconProps } from './src/w-icon'
+export { WIcon, WIconProps } from './src/medias/w-icon'
 
 // WList
-export { WList, WListProps } from './src/w-list'
-export { WListItem, WListItemProps } from './src/w-list/WListItem'
-export { WListItemIcon, WListItemIconProps } from './src/w-list/WListItemIcon'
-export { WListItemText, WListItemTextProps } from './src/w-list/WListItemText'
-export { WListItemSecondaryAction, WListItemSecondaryActionProps } from './src/w-list/WListItemSecondaryAction'
+export { WList, WListProps } from './src/lists/w-list'
+export { WListItem, WListItemProps } from './src/lists/w-list/w-list-item'
+export { WListItemIcon, WListItemIconProps } from './src/lists/w-list/w-list-item-icon'
+export { WListItemText, WListItemTextProps } from './src/lists/w-list/w-list-item-text'
+export { WListItemSecondaryAction, WListItemSecondaryActionProps } from './src/lists/w-list/w-list-item-secondary-action'
 
 // WMenu
-export { WMenu, WMenuProps } from './src/w-menu'
-export { WMenuItem, WMenuItemProps } from './src/w-menu/WMenuItem'
+export { WMenu, WMenuProps } from './src/lists/w-menu'
+export { WMenuItem, WMenuItemProps } from './src/lists/w-menu/w-menu-item'
 
 // WNotificationBar
-export { WNotificationBar, WNotificationBarProps } from './src/w-notification-bar'
+export { WNotificationBar, WNotificationBarProps } from './src/bars/w-notification-bar'
 
 // WPaper
-export { WPaper, WPaperProps } from './src/w-paper'
+export { WPaper, WPaperProps } from './src/layouts/w-paper'
+
+// WRadioGroup
+export { WRadioGroup, WRadioGroupProps } from './src/inputs/w-radio-group'
+export { WRadio, WRadioProps } from './src/inputs/w-radio-group/w-radio'
+
+// WSwipeableViews
+export { WSwipeableViews, WSwipeableViewsProps } from './src/layouts/w-swipeable-view'
+
+// WSwitch
+export { WSwitch, WSwitchProps } from './src/inputs/w-switch'
 
 // WTabs
-export { WTabs, WTabsProps } from './src/w-tabs'
-export { WTab, WTabProps } from './src/w-tabs/WTab'
+export { WTabs, WTabsProps } from './src/layouts/w-tabs'
+export { WTab, WTabProps } from './src/layouts/w-tabs/w-tab'
 
 // WTextField 
-export { WTextField, WTextFieldProps } from './src/w-text-field'
+export { WTextField, WTextFieldProps } from './src/inputs/w-text-field'
 
-// WToolbar
-export { WToolbar, WToolbarProps } from './src/w-toolbar'
+// WToolBar
+export { WToolBar, WToolBarProps } from './src/bars/w-tool-bar'
 
 // WTypography
-export { WTypography, WTypographyProps } from './src/w-typography'
+export { WTypography, WTypographyProps } from './src/others/w-typography'

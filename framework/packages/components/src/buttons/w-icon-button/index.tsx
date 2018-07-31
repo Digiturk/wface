@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { IconButton, Icon } from '@material-ui/core';
 import { IconButtonProps } from '@material-ui/core/IconButton';
-import { WIcon } from '../../w-icon'
+import { WIcon } from '../../medias/w-icon'
 
 export interface WIconButtonProps extends IconButtonProps {
     icon?: string

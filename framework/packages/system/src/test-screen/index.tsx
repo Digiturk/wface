@@ -51,9 +51,11 @@ export class TestScreen extends React.Component<WFace.BaseScreenProps, TestScree
                                 <WFace.WTextField label="Soyadı" fullWidth
                                     value={this.state.surname}
                                     onChange={this.handleChange('surname')}/>
+                            </WFace.WCardContent>
+                            <WFace.WCardActions>
                                 <WFace.WButton onClick={this.changeState} >Do</WFace.WButton>
                                 <WFace.WButton onClick={this.changeState2} >Do2</WFace.WButton>
-                            </WFace.WCardContent>
+                            </WFace.WCardActions>
                         </WFace.WCard>
                     </WFace.WGrid>
                     <WFace.WGrid item xs={12} md={4}>

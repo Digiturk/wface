@@ -2,9 +2,9 @@ import * as React from 'react';
 import { Toolbar } from '@material-ui/core';
 import { ToolbarProps } from '@material-ui/core/Toolbar';
 
-export interface WToolbarProps extends ToolbarProps {}
+export interface WToolBarProps extends ToolbarProps {}
 
-export class WToolbar extends React.Component<WToolbarProps, {}> {
+export class WToolBar extends React.Component<WToolBarProps, {}> {
     public render() {
         return <Toolbar {...this.props} />;
     }

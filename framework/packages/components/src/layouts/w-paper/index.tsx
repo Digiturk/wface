@@ -6,6 +6,7 @@ export interface WPaperProps extends PaperProps {}
 
 export class WPaper extends React.Component<WPaperProps, {}> {
     public render() {
-        return <Paper {...this.props} />;
+        const props = Object.assign({padding: 20}, this.props);
+        return <Paper {...props} />;
     }
 }

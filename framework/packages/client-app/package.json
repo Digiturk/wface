@@ -8,7 +8,7 @@
     },
     "author": "baran",
     "dependencies": {
-        "@wface/container": "^0.0.24",
+        "@wface/container": "^0.0.25",
         "@wface/ioc": "^0.0.18",
         "@wface/store": "^0.0.18",
         "@wface/system": "^0.0.24",
