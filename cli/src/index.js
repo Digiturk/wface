@@ -11,6 +11,7 @@ const program = require('commander'),
     link = require('./commands/link').default,
     create = require('./commands/create/create').default,
     run = require('./commands/run').default,
+    unlink = require('./commands/unlink').default,
     version = require('./commands/version').default;
 
 /*****************************************************************************************************************/
@@ -35,6 +36,7 @@ program
 
 program.command("link").action(() => { link(); });     
 program.command("run").action(() => { run(); });     
+program.command("unlink").action(() => { unlink(); });
 program.command("version").action(() => { version(); });     
    
 /*****************************************************************************************************************/
