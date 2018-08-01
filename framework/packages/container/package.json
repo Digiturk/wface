@@ -9,8 +9,8 @@
   "author": "baran",
   "license": "ISC",
   "dependencies": {
-    "@material-ui/core": "1.3.0",
-    "@material-ui/icons": "1.1.0",
+    "@material-ui/core": "1.4.2",
+    "@material-ui/icons": "2.0.0",
     "@wface/components": "^0.0.40",
     "@wface/ioc": "^0.0.40",
     "@wface/store": "^0.0.40",
