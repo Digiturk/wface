@@ -5,11 +5,11 @@ import { ButtonProps } from '@material-ui/core/Button';
 export interface WButtonProps extends ButtonProps { }
 
 export class WButton extends React.Component<WButtonProps, any> {
-  public render() {
-    const props = Object.assign({ variant: 'contained', color: 'primary' }, this.props);
+  static defaultProps: WButtonProps = { color: "primary" }
 
+  public render() {
     return (
-      <Button {...props} />
+      <Button {...this.props} />
     )
   }
 }
