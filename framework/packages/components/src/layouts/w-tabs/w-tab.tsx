@@ -2,10 +2,10 @@ import * as React from 'react';
 import { Tab } from '@material-ui/core';
 import { TabProps } from '@material-ui/core/tab';
 
-export interface WTabProps extends TabProps {}
+export interface WTabProps extends TabProps { }
 
 export class WTab extends React.Component<WTabProps, {}> {
-    public render() {
-        return <Tab {...this.props} />
-    }
+  public render() {
+    return <Tab {...this.props} />
+  }
 }

@@ -1,18 +1,18 @@
 {
-    "compilerOptions": {
-        "target": "es6",
-        "moduleResolution": "node",
-        "module": "esnext",
-        "importHelpers": true,
-        "jsx": "react",
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
-        "lib": [
-            "dom",
-            "es6"
-        ]
-    },
-    "include": [
-        "src/**/*"
+  "compilerOptions": {
+    "target": "es6",
+    "moduleResolution": "node",
+    "module": "esnext",
+    "importHelpers": true,
+    "jsx": "react",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "lib": [
+      "dom",
+      "es6"
     ]
+  },
+  "include": [
+    "src/**/*"
+  ]
 }

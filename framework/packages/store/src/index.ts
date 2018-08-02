@@ -8,18 +8,18 @@ import { combineReducers, createStore } from 'redux';
 
 
 export interface WStore {
-    appContext: AppContext,
-    screenContext: AllScreenContext
-    userContext: UserContext,        
+  appContext: AppContext,
+  screenContext: AllScreenContext
+  userContext: UserContext,
 }
 
 const rootReducer = combineReducers<WStore>({
-    userContext,    
-    appContext,
-    screenContext
+  userContext,
+  appContext,
+  screenContext
 })
 
-let devtools: any = window['devToolsExtension'] ? window['devToolsExtension']() : (f:any)=>f;
+let devtools: any = window['devToolsExtension'] ? window['devToolsExtension']() : (f: any) => f;
 const store = createStore<WStore, any, any, any>(rootReducer, devtools);
 
 export default store;

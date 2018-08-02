@@ -1,20 +1,20 @@
 {
-    "compilerOptions": {
-        "jsx": "react",
-        "target": "es6",
-        "moduleResolution": "node",
-        "sourceMap": true,
-        "allowJs": true,
-        "module": "commonjs",
-        "importHelpers": true,
-        "noImplicitAny": true,
-        "noImplicitReturns": true,
-        "suppressImplicitAnyIndexErrors": true,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
-        "lib": [
-            "dom",
-            "es6"
-        ]
-    }
+  "compilerOptions": {
+    "jsx": "react",
+    "target": "es6",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "allowJs": true,
+    "module": "commonjs",
+    "importHelpers": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "lib": [
+      "dom",
+      "es6"
+    ]
+  }
 }

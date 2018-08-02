@@ -4,5 +4,6 @@
     },
     "window.zoomLevel": 0,
     "gitlens.historyExplorer.enabled": true,
-    "editor.tabSize": 2
+    "editor.detectIndentation": false,
+    "editor.tabSize": 2    
 }

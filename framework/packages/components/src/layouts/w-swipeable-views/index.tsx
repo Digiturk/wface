@@ -1,10 +1,10 @@
 import * as React from 'react';
-import SwipeableViews  from 'react-swipeable-views';
+import SwipeableViews from 'react-swipeable-views';
 
-export interface WSwipeableViewsProps{}
+export interface WSwipeableViewsProps { }
 
 export class WSwipeableViews extends React.Component<WSwipeableViewsProps, {}> {
-    public render() {
-        return <SwipeableViews {...this.props} />;
-    }
+  public render() {
+    return <SwipeableViews {...this.props} />;
+  }
 }
