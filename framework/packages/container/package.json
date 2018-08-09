@@ -1,6 +1,6 @@
 {
   "name": "@wface/container",
-  "version": "0.0.40",
+  "version": "0.0.41",
   "description": "",
   "main": "index.ts",
   "scripts": {
@@ -9,11 +9,11 @@
   "author": "baran",
   "license": "ISC",
   "dependencies": {
-    "@material-ui/core": "1.4.2",
+    "@material-ui/core": "1.4.3",
     "@material-ui/icons": "2.0.0",
-    "@wface/components": "^0.0.40",
-    "@wface/ioc": "^0.0.40",
-    "@wface/store": "^0.0.40",
+    "@wface/components": "^0.0.41",
+    "@wface/ioc": "^0.0.41",
+    "@wface/store": "^0.0.41",
     "classnames": "2.2.5",
     "prop-types": "15.6.2",
     "react": "16.4.1",

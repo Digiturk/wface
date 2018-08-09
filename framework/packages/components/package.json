@@ -1,22 +1,22 @@
 {
   "name": "@wface/components",
-  "version": "0.0.40",
+  "version": "0.0.41",
   "description": "All wface components",
   "author": "baran",
   "main": "index.ts",
   "license": "ISC",
   "dependencies": {
-    "@material-ui/core": "1.4.2",
+    "@material-ui/core": "1.4.3",
     "@material-ui/icons": "2.0.0",
-    "@wface/ioc": "^0.0.40",
-    "@wface/store": "^0.0.40",
+    "@wface/ioc": "^0.0.41",
+    "@wface/store": "^0.0.41",
     "classnames": "2.2.5",
     "prop-types": "15.6.2",
     "react": "16.4.1",
     "react-dom": "16.4.1",
     "react-redux": "5.0.7",
     "redux": "4.0.0",
-    "react-swipeable-views": "0.12.15"
+    "react-swipeable-views": "0.12.15"  
   },
   "devDependencies": {
     "@types/classnames": "2.2.3",

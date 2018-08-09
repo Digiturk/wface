@@ -2,9 +2,12 @@ import * as React from 'react';
 import * as WFace from '@wface/components';
 
 interface TestScreenState {
-  name: string,
-  surname: string
-  [key: string]: string
+  name: string;
+  surname: string;
+  columns: WFace.WTableColumnDefinition[];
+  columns2: any[];
+  data: any[];
+  data2: any[];
 }
 
 export class TestScreen extends React.Component<WFace.BaseScreenProps, TestScreenState> {
@@ -13,14 +16,41 @@ export class TestScreen extends React.Component<WFace.BaseScreenProps, TestScree
 
     this.state = this.props.screenContext.state || {
       name: 'mehmet',
-      surname: 'baran'
+      surname: 'baran',
+      columns: [
+        {
+          title: 'Adı',
+          field: 'name'
+        },
+        {
+          title: 'Soyadı',
+          field: 'surname'
+        },
+        {
+          title: 'Doğum Yılı',
+          field: 'birthYear',
+          isNumeric: true
+        }
+      ],
+      data: [
+        {name: 'Mehmet', surname: 'Baran', birthYear: 1987},
+        {name: 'Gülcan', surname: 'Baran', birthYear: 1989},
+        {name: 'Zerya Betül', surname: 'Baran', birthYear: 2017}
+      ],
+      columns2: ["Name", "Company", "City", "State"],
+      data2: [
+        ["Joe James", "Test Corp", "Yonkers", "NY"],
+        ["John Walsh", "Test Corp", "Hartford", "CT"],
+        ["Bob Herm", "Test Corp", "Tampa", "FL"],
+        ["James Houston", "Test Corp", "Dallas", "TX"],
+      ]
     }
   }
 
   handleChange = name => event => {
     this.setState({
       [name]: event.target.value,
-    });
+    } as any);
   };
 
   changeState = () => {
@@ -39,7 +69,12 @@ export class TestScreen extends React.Component<WFace.BaseScreenProps, TestScree
 
   public render() {
     return (
-      <div>
+      <div> 
+        {/* <WFace.WTable 
+          columns={this.state.columns2} 
+          data={this.state.data2}
+        /> */}
+
         <WFace.WGrid container>
           <WFace.WGrid item xs={12} md={4}>
             <WFace.WCard>

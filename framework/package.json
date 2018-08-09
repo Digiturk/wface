@@ -25,5 +25,6 @@
 		"clean-store": "rimraf ./packages/store/node_modules ./packages/store/package-lock.json",
 		"clean-system": "rimraf ./packages/system/node_modules ./packages/system/package-lock.json",
 		"clean": "npm run clean-framework && npm run clean-client-app && npm run clean-components && npm run clean-container && npm run clean-ioc && npm run clean-store && npm run clean-system"
-	}
+	},
+	"dependencies": {}
 }
