@@ -1,5 +1,6 @@
 import { IAuthService, IMenuTreeItem } from '@wface/ioc';
 import { Injectable } from 'react.di';
+import Projects from '../helpers/GeneratedCode';
 
 
 @Injectable
@@ -26,68 +27,28 @@ export default class MockAuthService implements IAuthService {
     return new Promise((resolve, reject) => {
       // setTimeout(() => reject(''), 1000);
 
-      const tree: IMenuTreeItem[] = [
-        {
-          icon: 'send',
-          id: "1",
-          project: 'system',
-          screen: 'TestScreen',
-          text: 'Dashboard',
-        },
-        {
-          icon: 'send',
-          id: "2",
-          project: 'system',
-          screen: 'TestScreen404',
-          text: 'Inbox'
-        },
-        {
-          divideBefore: true,
-          icon: 'send',
-          id: "3",
-          subNodes: [
-            {
-              icon: 'send',
-              id: "3.1",
-              project: 'sample-project',
-              screen: 'SampleScreen1',
-              text: 'Crm 1'
-            },
-            {
-              icon: 'send',
-              id: "3.2",
-              project: 'crm',
-              screen: 'screen2',
-              text: 'Crm 2'
-            }
-          ],
-          text: 'CRM',
-        },
-        {
-          divideBefore: true,
-          icon: 'send',
-          id: "4",
-          subNodes: [
-            {
-              icon: 'send',
-              id: "4.1",
-              project: 'billing',
-              screen: 'screen1',
-              text: 'Billing 1'
-            },
-            {
-              icon: 'send',
-              id: "4.2",
-              project: 'billing',
-              screen: 'screen2',
-              text: 'Billing 2'
-            }
-          ],
-          text: 'Billing',
-        }
-      ]
+      const result:IMenuTreeItem[] = [];
+      let id = 0;
+      for(let projectName in Projects) {
+        const menu:IMenuTreeItem = {
+          id: (id++).toString(),
+          text: projectName,
+          subNodes: []
+        };
 
-      setTimeout(() => resolve(tree), 1200);
+        const project = Projects[projectName];
+        for(let screenName in project) {
+          menu.subNodes.push({
+            id: (id++).toString(),
+            text: screenName,
+            project: projectName,
+            screen: screenName
+          } as IMenuTreeItem)
+        }
+        result.push(menu);
+      }
+
+      setTimeout(() => resolve(result), 1200);
     });
   }
 }

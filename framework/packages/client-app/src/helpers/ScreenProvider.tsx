@@ -46,26 +46,4 @@ export default class MockScreenProvider implements IScreenProvider {
       .replace("/", "")
       .replace("@", "");
   }
-
-  // private projects:any = {        
-  // }
-
-  // public getScreen(project: string, screen: string) : Promise<object> {
-  //     return new Promise((resolve, reject) => {
-  //         if(this.projects[project]) {
-  //             resolve(this.projects[project][screen]);
-  //         }
-  //         else {
-  //             // import("@wface/" + project)
-  //             import('../../node_modules/' + project)
-  //                 .then(prj => {                        
-  //                     this.projects[project] = prj;
-  //                     resolve(this.projects[project][screen]);
-  //                 })
-  //                 .catch(reason => {
-  //                     reject(reason);
-  //                 })
-  //         }
-  //     });
-  // }
 }
