@@ -2,12 +2,9 @@ import * as React from 'react';
 import * as WFace from '@wface/components';
 
 interface TestScreenState {
-  name: string;
-  surname: string;
-  columns: WFace.WTableColumnDefinition[];
-  columns2: any[];
-  data: any[];
-  data2: any[];
+  dialogOpen: boolean;
+  columns: WFace.WTableColumn[];
+  data: object[];
 }
 
 export class TestScreen extends React.Component<WFace.BaseScreenProps, TestScreenState> {
@@ -15,8 +12,7 @@ export class TestScreen extends React.Component<WFace.BaseScreenProps, TestScree
     super(props);
 
     this.state = this.props.screenContext.state || {
-      name: 'mehmet',
-      surname: 'baran',
+      dialogOpen: false,
       columns: [
         {
           title: 'Adı',
@@ -36,79 +32,50 @@ export class TestScreen extends React.Component<WFace.BaseScreenProps, TestScree
         {name: 'Mehmet', surname: 'Baran', birthYear: 1987},
         {name: 'Gülcan', surname: 'Baran', birthYear: 1989},
         {name: 'Zerya Betül', surname: 'Baran', birthYear: 2017}
-      ],
-      columns2: ["Name", "Company", "City", "State"],
-      data2: [
-        ["Joe James", "Test Corp", "Yonkers", "NY"],
-        ["John Walsh", "Test Corp", "Hartford", "CT"],
-        ["Bob Herm", "Test Corp", "Tampa", "FL"],
-        ["James Houston", "Test Corp", "Dallas", "TX"],
       ]
     }
   }
 
-  handleChange = name => event => {
-    this.setState({
-      [name]: event.target.value,
-    } as any);
-  };
-
-  changeState = () => {
-    this.setState({
-      name: 'C1',
-      surname: 'C2'
-    })
-  }
-
-  changeState2 = () => {
-    this.setState({
-      name: 'X1',
-      surname: ''
-    })
-  }
 
   public render() {
+    const formControlStyle = {marginTop: 5}
     return (
       <div> 
-        {/* <WFace.WTable 
-          columns={this.state.columns2} 
-          data={this.state.data2}
-        /> */}
-
-        <WFace.WGrid container>
-          <WFace.WGrid item xs={12} md={4}>
-            <WFace.WCard>
-              <WFace.WCardHeader title="Test Bilgileri" />
-              <WFace.WCardContent>
-                <WFace.WTextField label="Adı" fullWidth
-                  value={this.state.name}
-                  onChange={this.handleChange('name')} />
-                <WFace.WTextField label="Soyadı" fullWidth
-                  value={this.state.surname}
-                  onChange={this.handleChange('surname')} />
-              </WFace.WCardContent>
-              <WFace.WCardActions>
-                <WFace.WButton onClick={this.changeState} >Do</WFace.WButton>
-                <WFace.WButton onClick={this.changeState2} >Do2</WFace.WButton>
-              </WFace.WCardActions>
-            </WFace.WCard>
-          </WFace.WGrid>
-          <WFace.WGrid item xs={12} md={4}>
-            <WFace.WCard>
-              <WFace.WCardHeader title="Test Bilgileri 2" />
-              <WFace.WCardContent>
-              </WFace.WCardContent>
-            </WFace.WCard>
-          </WFace.WGrid>
-          <WFace.WGrid item xs={12} md={4}>
-            <WFace.WCard>
-              <WFace.WCardHeader title="Test Bilgileri 3" />
-              <WFace.WCardContent>
-                <WFace.WTextField label="Doğum Tarihi" fullWidth />
-              </WFace.WCardContent>
-            </WFace.WCard>
-          </WFace.WGrid>
-        </WFace.WGrid>
+        <WFace.WTable
+          columns={this.state.columns} 
+          data={this.state.data}
+          actions={[{
+            icon: 'add_box',
+            tooltip: 'Add',
+            isFreeAction: true,
+            onClick: (event:any, data:any) => {
+              this.setState({dialogOpen: true})
+            }
+          }]}        
+        />   
+        <WFace.WBasicDialog
+          open={this.state.dialogOpen}
+          title="Create Scheduled Task"
+          actions={[
+            {
+              text: 'Save',
+              onClick: () => {
+                this.setState({dialogOpen: false});
+              }
+            }
+          ]}                    
+        >
+          <WFace.WTextField style={formControlStyle} label="Service Name" fullWidth/>
+          <WFace.WTextField style={formControlStyle} label="Method Name" fullWidth/>
+          <WFace.WCheckbox label="Enabled"/><br/>
+          <WFace.WCheckbox label="Allow Multiple"/><br/>
+          <WFace.WTextField style={formControlStyle} label="Start Time" fullWidth/>
+          <WFace.WTextField style={formControlStyle} label="Expire Time" fullWidth/>
+          <WFace.WTextField style={formControlStyle} label="Recurring Type" fullWidth/>
+          <WFace.WTextField style={formControlStyle} label="Application" fullWidth/>
+          <WFace.WTextField style={formControlStyle} label="Channel" fullWidth/>
+          <WFace.WTextField style={formControlStyle} label="Client" fullWidth/>                    
+        </WFace.WBasicDialog>
       </div>
     );
   }

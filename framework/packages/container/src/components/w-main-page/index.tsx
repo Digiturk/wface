@@ -204,7 +204,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
     return (
       <div className={classes.root}>
         <WAppBar position="absolute" className={classes.appBar}>
-          <WToolBar classes={{ root: classes.toolBar }}>
+          <WToolBar style={{minHeight:48}}>
             <WIconButton
               color="inherit"
               aria-label="open drawer"
@@ -215,7 +215,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
             </WIconButton>
             <WTypography variant="title" color="inherit" noWrap className={classes.flex}>
               WFace
-                    </WTypography>
+            </WTypography>
             <MyProfileMenu />
           </WToolBar>
           <WTabs
@@ -266,7 +266,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
           [classes[`contentShift-left`]]: this.state.drawerOpen,
         })}>
           <div style={{ height: 100 }} />
-          <div style={{ padding: 5 }}>
+          <div style={{ padding: 10 }}>
             <Switch>
               {
                 (() => {
@@ -299,7 +299,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
   //#endregion
 };
 
-const drawerWidth = 320;
+const drawerWidth = 300;
 const styles: any = theme => ({
   root: {
     flexGrow: 1,
@@ -346,9 +346,6 @@ const styles: any = theme => ({
   },
   'contentShift-right': {
     marginRight: 0,
-  },
-  toolBar: {
-    minHeight: 52,
   },
   whiteText: {
     color: '#bbb'

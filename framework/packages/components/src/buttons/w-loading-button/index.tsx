@@ -41,7 +41,7 @@ class WLoadingButtonInner extends React.Component<WLoadingButtonProps & ClassNam
   }
 }
 
-const styles = theme => ({
+const styles = (theme:any) => ({
   root: {
     display: 'flex',
     alignItems: 'center',

@@ -30,6 +30,15 @@ export { WCheckbox, WCheckboxProps } from './src/inputs/w-checkbox'
 // WCollapse
 export { WCollapse, WCollapseProps } from './src/layouts/w-collapse'
 
+// WDialog
+export { WDialog, WDialogProps} from './src/dialogs/w-dialog'
+export { WDialogActions, WDialogActionsProps} from './src/dialogs/w-dialog/w-dialog-actions'
+export { WDialogContent, WDialogContentProps} from './src/dialogs/w-dialog/w-dialog-content'
+export { WDialogContentText, WDialogContentTextProps} from './src/dialogs/w-dialog/w-dialog-content-text'
+export { WDialogTitle, WDialogTitleProps} from './src/dialogs/w-dialog/w-dialog-title'
+export { WBasicDialog } from './src/dialogs/w-basic-dialog'
+export { WMessageDialog } from './src/dialogs/w-message-dialog'
+
 // WDivider
 export { WDivider, WDividerProps } from './src/layouts/w-divider'
 
@@ -75,8 +84,7 @@ export { WTabs, WTabsProps } from './src/layouts/w-tabs'
 export { WTab, WTabProps } from './src/layouts/w-tabs/w-tab'
 
 // WTable
-export { WTable, WTableProps } from './src/tables/table'
-export { WTableColumnDefinition } from './src/tables/table/w-table-column-definition'
+export { WTable, WTableProps, WTableAction, WTableColumn, WTableOptions } from './src/tables/w-table'
 
 // WTextField 
 export { WTextField, WTextFieldProps } from './src/inputs/w-text-field'

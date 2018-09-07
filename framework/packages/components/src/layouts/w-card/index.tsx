@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Card, withStyles, WithStyles, StyledComponentProps } from '@material-ui/core'
+import { Card, withStyles, WithStyles, StyledComponentProps } from '@material-ui/core';
 import { CardProps } from '@material-ui/core/Card';
 
 export interface WCardProps extends CardProps { }
