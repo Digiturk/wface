@@ -30,6 +30,12 @@ export { WCheckbox, WCheckboxProps } from './src/inputs/w-checkbox'
 // WCollapse
 export { WCollapse, WCollapseProps } from './src/layouts/w-collapse'
 
+// WDatePicker
+export { WDatePicker, WDatePickerProps } from './src/inputs/w-date-picker'
+
+// WDateTimePicker
+export { WDateTimePicker, WDateTimePickerProps } from './src/inputs/w-date-time-picker'
+
 // WDialog
 export { WDialog, WDialogProps} from './src/dialogs/w-dialog'
 export { WDialogActions, WDialogActionsProps} from './src/dialogs/w-dialog/w-dialog-actions'
@@ -44,6 +50,9 @@ export { WDivider, WDividerProps } from './src/layouts/w-divider'
 
 // WDrawer
 export { WDrawer, WDrawerProps } from './src/layouts/w-drawer'
+
+// WDropdown
+export { WDropdown, WDropdownProps } from './src/inputs/w-dropdown'
 
 // WGrid
 export { WGrid, WGridProps } from './src/layouts/w-grid'
@@ -73,6 +82,9 @@ export { WPaper, WPaperProps } from './src/layouts/w-paper'
 export { WRadioGroup, WRadioGroupProps } from './src/inputs/w-radio-group'
 export { WRadio, WRadioProps } from './src/inputs/w-radio-group/w-radio'
 
+// WSelect
+export { WSelect, WSelectProps } from './src/inputs/w-select'
+
 // WSwipeableViews
 export { WSwipeableViews, WSwipeableViewsProps } from './src/layouts/w-swipeable-views'
 
@@ -88,6 +100,9 @@ export { WTable, WTableProps, WTableAction, WTableColumn, WTableOptions } from '
 
 // WTextField 
 export { WTextField, WTextFieldProps } from './src/inputs/w-text-field'
+
+// WDateTimePicker
+export { WTimePicker, WTimePickerProps } from './src/inputs/w-time-picker'
 
 // WToolBar
 export { WToolBar, WToolBarProps } from './src/bars/w-tool-bar'

@@ -1,6 +1,6 @@
 {
   "name": "@wface/components",
-  "version": "0.0.66",
+  "version": "0.0.86",
   "description": "All wface components",
   "author": "baran",
   "main": "index.ts",
@@ -12,6 +12,9 @@
     "@wface/store": "^0.0.41",
     "classnames": "2.2.5",
     "material-table": "0.5.4",
+    "material-ui-pickers": "1.0.0-rc.14",
+    "moment": "2.22.2",
+    "mui-downshift": "1.2.1",
     "prop-types": "15.6.2",
     "react": "16.4.1",
     "react-dom": "16.4.1",

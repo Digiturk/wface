@@ -6,7 +6,7 @@
   "author": "baran",
   "license": "ISC",
   "dependencies": {
-    "@wface/components": "^0.0.66",
+    "@wface/components": "^0.0.84",
     "@wface/ioc": "^0.0.41",
     "classnames": "2.2.5",
     "prop-types": "15.6.2",
