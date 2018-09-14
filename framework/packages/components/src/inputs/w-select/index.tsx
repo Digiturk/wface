@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Select, { SelectProps } from '@material-ui/core/Select'
-import { MenuItem, InputLabel } from '@material-ui/core'
-import { WFormControl, WFormControlProps } from '../../forms/w-form-control'
+import { MenuItem, InputLabel, FormControl } from '@material-ui/core'
 
 export interface WSelectProps extends SelectProps {
   data: {label?: string, value: any}[];
@@ -24,12 +23,12 @@ export class WSelect extends React.Component<WSelectProps, {}> {
 
     if(this.props.label) {
       return (
-        <WFormControl fullWidth={this.props.fullWidth} style={this.props.style}>
+        <FormControl fullWidth={this.props.fullWidth} style={this.props.style}>
           <InputLabel>{this.props.label}</InputLabel>
           <Select {...this.props} style={{}}>
             {children}  
           </Select>
-        </WFormControl>
+        </FormControl>
       )
     }
     else {
