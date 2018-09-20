@@ -1,18 +1,19 @@
 {
   "name": "@wface/client-app",
-  "version": "0.0.41",
+  "version": "0.2.1",
   "description": "",
   "scripts": {
     "build": "webpack",
     "start_old": "webpack-dev-server --hot",
-    "start": "node --max-old-space-size=8192 ../../node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot"
+    "start-local": "node --max-old-space-size=8192 ../../node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot",
+    "start": "node --max-old-space-size=8192 ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot"
   },
   "author": "baran",
   "dependencies": {
-    "@wface/container": "^0.0.41",
-    "@wface/ioc": "^0.0.41",
-    "@wface/store": "^0.0.41",
-    "@wface/system": "^0.0.41",
+    "@wface/container": "^0.2.0",
+    "@wface/ioc": "^0.2.0",
+    "@wface/store": "^0.2.0",
+    "@wface/system": "^0.2.0",
     "es6-promise": "^4.2.2",
     "jquery": "^3.2.1",
     "react": "16.4.1",

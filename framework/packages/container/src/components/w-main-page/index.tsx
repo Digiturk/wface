@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { Close } from "@material-ui/icons";
 import MenuIcon from '@material-ui/icons/Menu';
 import { WAppBar, WDrawer, WGrid, WIconButton, WTab, WTabs, WToolBar, WTypography } from '@wface/components';
-import { IAuthService, IMenuTreeItem } from "@wface/ioc";
+import { IAuthService, IMenuTreeItem, IConfiguration } from "@wface/ioc";
 import { ScreenContextActions, WStore } from '@wface/store';
 import * as classNames from 'classnames';
 import * as React from "react";
@@ -36,6 +36,9 @@ interface WMainPageState {
 }
 
 class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps, WMainPageState> {
+
+  @Inject("IConfiguration")
+  private configuration: IConfiguration;
 
   @Inject("IAuthService")
   private authService: IAuthService;
@@ -78,9 +81,9 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
   }
 
   checkForAuth(props = this.props) {
-    if (props.userContext.isLoggedIn == false) {
-      props.history.replace('/login');
-    }
+    // if (props.userContext.isLoggedIn == false) {
+    //   props.history.replace('/login');
+    // }
   }
 
   //#endregion
@@ -213,9 +216,15 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
             >
               <MenuIcon />
             </WIconButton>
-            <WTypography variant="title" color="inherit" noWrap className={classes.flex}>
-              WFace
-            </WTypography>
+            <span>
+              <WTypography variant="title" color="inherit" noWrap className={classes.flex}>
+                {this.configuration.getProjectName()}
+              </WTypography>
+              <WTypography variant="caption" color="inherit" noWrap className={classes.flex} style={{color: '#C5CAE9'}}>
+                {" @WFace"}
+              </WTypography>
+            </span>
+            <div style={{flexGrow: 1}} />
             <MyProfileMenu />
           </WToolBar>
           <WTabs
@@ -311,6 +320,7 @@ const styles: any = theme => ({
   },
   flex: {
     flex: 1,
+    display: 'inline'
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1
@@ -352,11 +362,11 @@ const styles: any = theme => ({
   }
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state:WStore) => ({
   screenContext: state.screenContext,
   userContext: state.userContext
 } as WStore);
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch:any) => ({
   init: (screenInfo: IMenuTreeItem) => dispatch(ScreenContextActions.init(screenInfo)),
   setCurrent: (screenId: string) => dispatch(ScreenContextActions.setCurrent(screenId)),
   destruct: (screenId: string) => dispatch(ScreenContextActions.destruct(screenId))

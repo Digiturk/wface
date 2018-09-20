@@ -2,23 +2,20 @@ import { IAuthService, IMenuTreeItem } from '@wface/ioc';
 import { Injectable } from 'react.di';
 import Projects from '../helpers/GeneratedCode';
 
-
 @Injectable
 export default class MockAuthService implements IAuthService {
 
-  public login(username: string, password: string): Promise<boolean> {
+  public login(username: string, password: string, values?: any): Promise<{ displayName: string, token?: string }> {
     return new Promise((resolve, reject) => {
       if (username === "connection-error") {
         setTimeout(() => reject("Connection error"), 1000);
       }
 
-      let result = true;
-
       if (username === "wrong-password") {
-        result = false;
+        setTimeout(() => reject("Wrong username or password"), 1000);
       }
 
-      setTimeout(() => resolve(result), 1500);
+      setTimeout(() => resolve({displayName: 'MockUser', token: 'MockToken'}), 1500);
     });
   }
 
@@ -37,7 +34,7 @@ export default class MockAuthService implements IAuthService {
         };
 
         const project = Projects[projectName];
-        for(let screenName in project) {
+        for(let screenName in project.screenList) {
           menu.subNodes.push({
             id: (id++).toString(),
             text: screenName,

@@ -17,12 +17,12 @@ export const initialState = {
   displayName: ''
 } as UserContext;
 
-const userContext = (state: UserContext = mockState, action: UserAction): UserContext => {
+const userContext = (state: UserContext = initialState, action: UserAction): UserContext => {
   switch (action.type) {
     case getType(Actions.login):
-      return { ...state, ...action.payload, isLoggedIn: true };
+      return { ...state, ...action.payload, isLoggedIn: true };      
     case getType(Actions.logout):
-      return { ...state, ...initialState };
+      return { ...initialState };
   }
 
   return state;

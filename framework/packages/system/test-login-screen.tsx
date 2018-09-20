@@ -17,6 +17,7 @@ import { Inject } from 'react.di';
 //#endregion
 
 interface WLoginPageState {
+  groupNo: string;
   username: string;
   password: string;
   isLoading: boolean;
@@ -32,7 +33,7 @@ type WLoginPageProps = WStore & {
   history: any
 }
 
-class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> {
+class TextLoginScreen extends React.Component<WLoginPageProps, WLoginPageState> {
 
   @Inject('IAuthService')
   private authService: IAuthService
@@ -41,6 +42,7 @@ class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> {
     super(props);
 
     this.state = {
+      groupNo: '',
       username: '',
       password: '',
       isLoading: false,
@@ -54,20 +56,21 @@ class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> {
     this.setState({ isLoading: true }, () => {
       this.authService.login(this.state.username, this.state.password)
         .then(result => {
-          this.setState({ loadingButtonStatus: "success" }, () => {
-            // this.props.login({
-            //   username: this.state.username,
-            //   displayName: '',
-            //   token: ''
-            // });
-            // this.props.history.replace('/main');
-          });
+          if (result) {
+            this.setState({ loadingButtonStatus: "success" });
+          }
+          else {
+            this.setState({
+              showNotification: true,
+              notificationText: "Girdiğiniz kullanıcı adı veya şifre hatalıdır!",
+              loadingButtonStatus: "error"
+            });
+          }
         }).
-        catch(message => {
+        catch(reason => {
           this.setState({
             showNotification: true,
-            notificationText: message
-            // notificationText: "Sunucu ile iletişimde bir hata alındı. Lütfen bağlantı ayarlarınızı kontrol ediniz.",
+            notificationText: reason            
           });
         })
         .finally(() => {
@@ -92,7 +95,7 @@ class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> {
     const { classes } = this.props;
 
     return (
-      <div style={{ height: '100%', width: '100%', backgroundImage: `url(./assets/login-bg.jpg)` }}>
+      <div style={{ height: '100%', width: '100%', backgroundColor: '#1A237E' }}>
         <div style={{ paddingTop: '5%' }}>
           <WGrid container justify="center" style={{ paddingLeft: 10, paddingRight: 10 }}>
             <WGrid item xs={12} sm={6} md={4} lg={3}>
@@ -115,6 +118,17 @@ class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> {
                       type={"error"}
                       onCloseClick={() => this.setState({ showNotification: false })} />
                   }
+
+                  <WTextField
+                    id="groupId"
+                    label="Grup No"
+                    fullWidth
+                    margin="normal"
+                    className={classes.vSpace}
+                    value={this.state.groupNo}
+                    onChange={this.handleChange('groupNo')}
+                    onKeyPress={this.keyPressed.bind(this)}
+                  />
 
                   <WTextField
                     id="username"
@@ -189,12 +203,8 @@ const styles = (theme: any) => ({
     textAlign: 'center'
   },
   vSpace: {
-    marginTop: theme.spacing.unit * 2,
+    marginTop: theme.spacing.unit * 3,
   }
 });
 
-const mapStateToProps = (state: any) => ({ ...state } as WStore);
-const mapDispatchToProps = (dispatch: any) => ({
-  login: (userContext: UserContext) => dispatch(UserContextActions.login(userContext))
-});
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles as any)(WLoginPage) as any)
+export default withStyles(styles as any)(TextLoginScreen)

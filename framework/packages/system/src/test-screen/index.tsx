@@ -76,7 +76,7 @@ export class TestScreen extends React.Component<WFace.BaseScreenProps, TestScree
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.email}
-                error={errors.email && touched.email && errors.email}
+                error={errors.email && touched.email && Boolean(errors.email)}
                 helperText={errors.email && touched.email && errors.email}
               />
               <WFace.WTextField 
@@ -142,12 +142,12 @@ export class TestScreen extends React.Component<WFace.BaseScreenProps, TestScree
         <WFace.WDropdown style={formControlStyle} label="Method Name" items={[{ label: "Digiturk", value: 'val'}]}/>
         <WFace.WCheckbox label="Enabled"/><br/>
         <WFace.WCheckbox label="Allow Multiple"/>
-        <WFace.WDateTimePicker style={formControlStyle} label="Start Time" fullWidth/>
+        {/* <WFace.WDateTimePicker style={formControlStyle} label="Start Time" fullWidth/>
         <WFace.WDateTimePicker style={formControlStyle} label="Expire Time" fullWidth/>
         <WFace.WSelect style={formControlStyle} label="Recurring Type" fullWidth data={this.state.recurringTypes}/>
         <WFace.WSelect style={formControlStyle} label="Application" fullWidth data={this.state.applications}/>
         <WFace.WSelect style={formControlStyle} label="Channel" fullWidth data={this.state.channels}/>
-        <WFace.WSelect style={formControlStyle} label="Client" fullWidth data={this.state.clients}/>
+        <WFace.WSelect style={formControlStyle} label="Client" fullWidth data={this.state.clients}/> */}
       </WFace.WBasicDialog>
     );
   }

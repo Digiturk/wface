@@ -34,7 +34,7 @@ export interface DispatchProps {
 }
 
 export interface WTextFieldState {
-  value: string | number | React.ReactText[],
+  value: string | number | boolean | (string | number | boolean)[],
   showPassword: boolean
 }
 

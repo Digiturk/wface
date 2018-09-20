@@ -5,14 +5,31 @@ import * as ES6Promise from "es6-promise";
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Module } from 'react.di';
-import ScreenProvider from './helpers/ScreenProvider';
 import MockAuthService from './mock/MockAuthService';
+import Projects from './helpers/GeneratedCode';
+import { store, UserContextActions } from '@wface/store';
+import { IConfiguration, IProjectConfiguration, DefaultConfiguration, ScreenProvider, DefaultAuthService } from '@wface/ioc';
 ES6Promise.polyfill();
+
+const defaultProjectConfiguration = {
+  title: 'WFace',
+  projectName: 'WFace',
+  favicon: '',
+  authServiceType: MockAuthService,
+  businessServiceType: null
+} as IProjectConfiguration;
+
+const configuration: IConfiguration = new DefaultConfiguration(Projects, defaultProjectConfiguration);
+const onLogin = (username: string, displayName: string, token?: string) => store.dispatch(UserContextActions.login({username, displayName, token}))
 
 @Module({
   providers: [
-    { provide: "IAuthService", useClass: MockAuthService },
-    { provide: "IScreenProvider", useClass: ScreenProvider }
+    { provide: "IConfiguration", useValue: configuration },
+    { provide: "IAuthService", useClass: DefaultAuthService },
+    { provide: "IAuthServiceInner", useClass: configuration.getAuthServiceType() },
+    { provide: "onLogin", useValue: onLogin },
+    { provide: "IBusinessService", useClass: configuration.getBusinessServiceType() },
+    { provide: "IScreenProvider", useValue: new ScreenProvider(Projects) }
   ]
 })
 class App extends React.Component<any, any> {
@@ -20,6 +37,10 @@ class App extends React.Component<any, any> {
     return (
       <WContainer />
     );
+  }
+
+  public componentDidMount() {
+    document.title = configuration.getTitle();
   }
 }
 

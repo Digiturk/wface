@@ -1,17 +1,18 @@
 {
   "name": "@wface/system",
-  "version": "0.0.41",
+  "version": "0.2.0",
   "description": "",
   "main": "index.ts",
   "author": "baran",
   "license": "ISC",
   "dependencies": {
-    "@wface/components": "^0.0.86",
-    "@wface/ioc": "^0.0.41",
+    "@wface/components": "^0.2.0",
+    "@wface/ioc": "^0.2.0",
     "classnames": "2.2.5",
     "prop-types": "15.6.2",
     "react-redux": "5.0.7",
-    "formik": "1.3.0"
+    "formik": "1.3.0",
+    "react.di": "2.0.0"
   },
   "devDependencies": {
     "@types/classnames": "2.2.3",

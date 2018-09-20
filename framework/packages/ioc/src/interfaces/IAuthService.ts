@@ -1,5 +1,5 @@
 export default interface IAuthService {
-  login(username: string, password: string): Promise<boolean>
+  login(username: string, password: string, values?: any): Promise<{ displayName: string, token?: string }>
   getMenuTree(): Promise<IMenuTreeItem[]>
 }
 

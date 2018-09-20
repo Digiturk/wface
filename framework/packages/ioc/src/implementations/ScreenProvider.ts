@@ -1,12 +1,16 @@
-import { IScreenProvider } from '@wface/ioc';
-import { Injectable } from 'react.di';
-import Projects from './GeneratedCode';
+import IScreenProvider from '../interfaces/IScreenProvider';
+import IProjectConfiguration from '../interfaces/IProjectConfiguration';
 
-@Injectable
-export default class MockScreenProvider implements IScreenProvider {
+export default class ScreenProvider implements IScreenProvider {
   private cache: {
     [key: string]: any
   } = {};
+
+  private projects: {[key: string]: IProjectConfiguration} = null;
+  
+  constructor(projects: {[key: string]: IProjectConfiguration}) {
+    this.projects = projects;    
+  }
 
   public getScreen(project: string, screen: string): Promise<object> {
     return new Promise((resolve, reject) => {
@@ -16,11 +20,11 @@ export default class MockScreenProvider implements IScreenProvider {
         resolve(this.cache[screenKey]);
       }
       else {
-        const projectName = this.getRealName(Projects, project)
+        const projectName = this.getRealName(this.projects, project)
         if (projectName) {
-          const screenName = this.getRealName(Projects[projectName], screen);
+          const screenName = this.getRealName(this.projects[projectName].screenList, screen);
           if (screenName) {
-            this.cache[screenKey] = Projects[projectName][screenName];
+            this.cache[screenKey] = this.projects[projectName].screenList[screenName];
             resolve(this.cache[screenKey]);
           }
         }
