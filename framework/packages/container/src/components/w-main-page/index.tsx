@@ -280,14 +280,6 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
               {
                 (() => {
                   const routeList = [];
-                  // this.menuTreeForEach(this.state.menuTree, screen => {     
-                  //     const screenComponent = <WScreenWrapper screenInfo={screen}/>
-                  //     const route = <Route key={screen.id} path={(this.props as any).match.url + this.getScreenUrl(screen)} render={props => { return screenComponent;}}/> 
-
-                  //     routeList.push(route);
-                  //     return false;
-                  // });
-
                   return this.state.openedScreens.map(screen => {
                     const screenComponent = <WScreenWrapper screenInfo={screen} />
                     const route = <Route key={screen.id} path={(this.props as any).match.url + this.getScreenUrl(screen)} render={props => { return screenComponent; }} />

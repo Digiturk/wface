@@ -23,7 +23,7 @@ function link () {
     });
     
     const moduleName = packageInfo.name.replace(/(\w)(\w*)/g, function(g0,g1,g2){return g1.toUpperCase() + g2.toLowerCase();}).split(/-|@|\//).join(""); 
-    const newLine = `try { Projects.${moduleName} = require('${packageInfo.name}'); } catch (ex) {}`
+    const newLine = `try { Projects.${moduleName} = require('${packageInfo.name}').default; } catch (ex) {}`
     const codePath = path.join(wfaceDir, 'client-app\\src\\helpers\\GeneratedCode.ts');
     let lines = fs.readFileSync(codePath, 'utf8').split(/\r?\n/);
     if(!lines.find(a => a == newLine)) {

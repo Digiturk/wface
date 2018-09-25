@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as WFace from '@wface/components';
 import { Formik } from 'formik';
+import { Link } from 'react-router-dom'
 
 interface TestScreenState {
   dialogOpen: boolean;
@@ -28,6 +29,7 @@ export class TestScreen extends React.Component<WFace.BaseScreenProps, TestScree
 
 
   public render() {
+    return <Link to="TestScreen2">Test Screen 2</Link>;
     const formControlStyle = {marginTop: 5}
     return this.renderFormik();
     // return this.renderTaskCreateDialog();

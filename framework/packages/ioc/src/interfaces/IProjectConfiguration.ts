@@ -2,7 +2,7 @@ import IBusinessService from './IBusinessService';
 import IAuthService from './IAuthService';
 
 export default interface IProjectConfiguration {
-  title: string,
+  title?: string,
   projectName: string,
   favicon?: string,
 

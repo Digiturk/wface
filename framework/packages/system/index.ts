@@ -4,12 +4,14 @@ import TestAuthService from './TestAuthService';
 
 // Screens
 import { TestScreen } from './src/test-screen';
+import { TestScreen2 } from './src/test-screen2';
 
 const config = {
-  title: 'Deneme',
-  projectName: 'Test',
+  title: undefined,
+  projectName: 'Test-System',
   screenList: { 
-    TestScreen 
+    TestScreen,
+    TestScreen2,
   },  
   loginScreen: null,
   authServiceType: null,

@@ -54,7 +54,7 @@ module.exports = {
   devServer: {
     contentBase: "./dist",
     historyApiFallback: true,
-    port: 2019,
+    port: 2018,
     stats: 'minimal',
   }
 };

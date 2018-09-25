@@ -13,9 +13,8 @@
 		"url": "https://bitbucket.digiturk.com.tr/scm/itdev/wface.git"
 	},
 	"scripts": {
-		"start": "concurrently --kill-others \"npm run start-client\" \"npm run start-server\"",
-		"start-client": "npm --prefix ./packages/client-app start",
-		"start-server": "cd ./packages/server-app && dotnet run",
+		"start": "npm --prefix ./packages/client-app start",
+		"start-local": "npm --prefix ./packages/client-app run start-local",
 		"build": "webpack --hot",
 		"clean-framework": "rimraf node_modules package-lock.json",
 		"clean-client-app": "rimraf ./packages/client-app/node_modules ./packages/client-app/package-lock.json",
