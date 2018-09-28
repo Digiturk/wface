@@ -47,18 +47,10 @@ const create = {
 
                 const className = answers.name.replace(/(\w)(\w*)/g, function(g0,g1,g2){return g1.toUpperCase() + g2.toLowerCase();}).split("-").join(""); 
                 let fileText = getTemplate("screen", "screen-" + answers.template, {className});
-                !fileSystem.existsSync(dir + "/index.tsx") && fileSystem.writeFileSync(dir + "/index.tsx", fileText);
+                !fileSystem.existsSync(dir + "/index.tsx") && fileSystem.writeFileSync(dir + "/index.tsx", fileText);                                
 
-                
-                let newLine = "export { " + className + " } from './src/" + answers.name + "';"
-                let lines = fileSystem.readFileSync(options.dir + "/index.ts", 'utf8').split(/\r?\n/);
-                if(!lines.find(a => a == newLine)) {
-                    lines.push(newLine);
-
-                    fileSystem.writeFileSync(options.dir + "/index.ts", lines.join('\n'));
-                }
-
-                console.log(chalk.green("Screen code created successfully"));
+                console.log(chalk.green("Screen code created successfully."));
+                console.log(chalk.yellow("WARNING! Don't forget add your screen to index.ts file to export!"));
             })
             .catch(function(err) {
                 console.log(err);
