@@ -189,20 +189,24 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
           [classes.contentShift]: this.state.drawerOpen,
           [classes[`contentShift-left`]]: this.state.drawerOpen,
         })}>
-          <div style={{ height: 100 }} />
-          <div style={{ padding: 10 }}>
-            <Switch>
-              {
-                (() => {
-                  return this.props.appContext.openedScreens.map(screen => {
-                    const screenComponent = <WScreenWrapper screen={screen} />
-                    const route = <Route key={screen.menuTreeItem.id} path={(this.props as any).match.url + this.getScreenUrl(screen.menuTreeItem)} render={props => { return screenComponent; }} />
-                    return route;
-                  });
-                })()                
-              }
-              {/* {this.props.appContext.currentScreen && <Redirect to={(this.props as any).match.url + this.getScreenUrl(this.props.appContext.currentScreen.screenInfo)} />} */}
-            </Switch>
+          <div style={{ height: 96 }} />
+          <div style={{ display: 'flex', flex: 1, minHeight: 0 }}>
+            <div style={{flex: 1, overflow: 'auto'}}>
+              <div style={{ padding: 10 }}>
+                <Switch>
+                  {
+                    (() => {
+                      return this.props.appContext.openedScreens.map(screen => {
+                        const screenComponent = <WScreenWrapper screen={screen} />
+                        const route = <Route key={screen.menuTreeItem.id} path={(this.props as any).match.url + this.getScreenUrl(screen.menuTreeItem)} render={props => { return screenComponent; }} />
+                        return route;
+                      });
+                    })()                
+                  }
+                  {/* {this.props.appContext.currentScreen && <Redirect to={(this.props as any).match.url + this.getScreenUrl(this.props.appContext.currentScreen.screenInfo)} />} */}
+                </Switch>
+              </div>
+            </div>
           </div>
         </main>
       </div>
@@ -241,7 +245,9 @@ const styles: any = theme => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: 0, // theme.spacing.unit * 3
-    minWidth: 0, // So the Typography noWrap works
+    minWidth: 0, // So the Typography noWrap works        
+    display: 'flex',
+    flexDirection: 'column',
   },
   "content-left": {
     marginLeft: -drawerWidth,
