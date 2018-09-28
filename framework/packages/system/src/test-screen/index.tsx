@@ -16,7 +16,7 @@ export class TestScreen extends React.Component<WFace.BaseScreenProps, TestScree
   constructor(props) {
     super(props);
 
-    this.state = this.props.screenContext.state || {
+    this.state = this.props.screenData.state || {
       currentCity: 27,
       dialogOpen: false,
       serviceList: [
@@ -29,7 +29,13 @@ export class TestScreen extends React.Component<WFace.BaseScreenProps, TestScree
 
 
   public render() {
-    return <Link to="TestScreen2">Test Screen 2</Link>;
+    return ( 
+      <WFace.WButton
+        onClick={() => this.props.openScreen("System", "TestScreen2")}
+      >
+        Open Screen
+      </WFace.WButton>
+    );
     const formControlStyle = {marginTop: 5}
     return this.renderFormik();
     // return this.renderTaskCreateDialog();

@@ -11,4 +11,8 @@ export interface IMenuTreeItem {
   project?: string;
   screen?: string;
   subNodes?: IMenuTreeItem[];
+  isDefaultScreen?: boolean;
+  notClosable?: boolean;
+  hideOnNavigationList?: boolean;
+  initialValues?: Object;
 }
