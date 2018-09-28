@@ -1,13 +1,13 @@
 {
   "name": "@wface/system",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "",
   "main": "index.ts",
   "author": "baran",
   "license": "ISC",
   "dependencies": {
-    "@wface/components": "^0.2.0",
-    "@wface/ioc": "^0.2.0",
+    "@wface/components": "^0.3.0",
+    "@wface/ioc": "^0.3.0",
     "classnames": "2.2.5",
     "prop-types": "15.6.2",
     "react-redux": "5.0.7",
