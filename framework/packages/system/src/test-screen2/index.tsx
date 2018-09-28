@@ -15,6 +15,15 @@ export class TestScreen2 extends React.Component<WFace.BaseScreenProps, TestScre
   }
 
   public render() {
-    return <Link to="TestScreen">Test Screen 2</Link>;
+    var components = [];
+    for(var i=0;i<50;i++){
+        components.push(<div> {i}. Line</div>);  
+    }
+
+    return (
+      <div>
+        {components}
+      </div>
+    )
   }
 }
