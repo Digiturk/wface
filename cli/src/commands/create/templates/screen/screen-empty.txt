@@ -8,7 +8,7 @@ export class %className% extends React.Component<WFace.BaseScreenProps, %classNa
     constructor(props: WFace.BaseScreenProps) {
         super(props);
 
-        this.state = this.props.screenContext.state || {
+        this.state = this.props.screenData.state || {
         }
     }
 
