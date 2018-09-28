@@ -10,11 +10,11 @@ export class TestScreen2 extends React.Component<WFace.BaseScreenProps, TestScre
   constructor(props) {
     super(props);
 
-    this.state = this.props.screenContext.state || {
+    this.state = this.props.screenData.state || {
     }
   }
 
   public render() {
-    return <Link to="TestScreen">Test Screen</Link>;
+    return <Link to="TestScreen">Test Screen 2</Link>;
   }
 }

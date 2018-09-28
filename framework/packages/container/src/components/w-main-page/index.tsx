@@ -4,12 +4,12 @@ import { withStyles } from '@material-ui/core/styles';
 import { Close } from "@material-ui/icons";
 import MenuIcon from '@material-ui/icons/Menu';
 import { WAppBar, WDrawer, WGrid, WIconButton, WTab, WTabs, WToolBar, WTypography } from '@wface/components';
-import { IAuthService, IMenuTreeItem, IConfiguration } from "@wface/ioc";
-import { ScreenContextActions, WStore } from '@wface/store';
+import { IAuthService, IMenuTreeItem, MenuTreeUtil, IConfiguration } from "@wface/ioc";
+import { AppContextActions, WStore } from '@wface/store';
 import * as classNames from 'classnames';
 import * as React from "react";
 import { connect } from 'react-redux';
-import { Route, Switch, withRouter } from 'react-router';
+import { Route, Switch, withRouter, Redirect } from 'react-router';
 import { Inject } from 'react.di';
 import WScreenWrapper from '../w-screen-wrapper';
 import MyProfileMenu from './MyProfileMenu';
@@ -23,16 +23,13 @@ export interface WMainPageProps {
 }
 
 export interface DispatchProps {
-  init: (screenInfo: IMenuTreeItem) => void
-  setCurrent: (screenId: string) => void
-  destruct: (screenId: string) => void
+  setMenuTree: (menuTree: IMenuTreeItem[]) => void;
+  closeScreen: (menuTreeItem: IMenuTreeItem) => void;
+  openScreen: (menuTreeItem: IMenuTreeItem) => void;
 }
 
 interface WMainPageState {
   drawerOpen?: boolean;
-  currentScreen?: IMenuTreeItem;
-  openedScreens: IMenuTreeItem[];
-  menuTree: IMenuTreeItem[];
 }
 
 class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps, WMainPageState> {
@@ -47,43 +44,28 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
     super(props, context);
 
     this.state = {
-      drawerOpen: true,
-      currentScreen: undefined,
-      openedScreens: [],
-      menuTree: []
+      drawerOpen: true
     }
   }
 
   componentWillMount() {
-    this.checkForAuth();
-
     this.authService.getMenuTree()
       .then(menuTree => {
-        this.setState({ menuTree }, () => {
-          let currentScreen: IMenuTreeItem;
-          this.menuTreeForEach(this.state.menuTree, item => {
-            if (((this.props as any).match.url + this.getScreenUrl(item)) === (this.props as any).location.pathname) {
-              currentScreen = item;
-              return true;
-            }
-            return false;
-          });
-
-          if (currentScreen) {
-            this.openScreen(currentScreen);
+        this.props.setMenuTree(menuTree);          
+        
+        let currentScreen: IMenuTreeItem;
+        MenuTreeUtil.menuTreeForEach(menuTree, item => {
+          if (((this.props as any).match.url + this.getScreenUrl(item)) === (this.props as any).location.pathname) {
+            currentScreen = item;
+            return true;
           }
+          return false;
         });
+
+        if (currentScreen) {
+          this.props.openScreen(currentScreen);
+        }
       })
-  }
-
-  componentWillUpdate(nextProps) {
-    this.checkForAuth(nextProps);
-  }
-
-  checkForAuth(props = this.props) {
-    // if (props.userContext.isLoggedIn == false) {
-    //   props.history.replace('/login');
-    // }
   }
 
   //#endregion
@@ -94,25 +76,19 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
     this.setState((prevState) => { return { drawerOpen: !prevState.drawerOpen } });
   };
 
-  handleTabChange(event, value) {
-    const item = this.findNode(value);
-    if (item) {
-      this.openScreen(item);
-    }
-    else {
-      this.props.history.replace((this.props as any).match.url);
-    }
-  };
-
   handleTabCloseButtonClick(event, screen: IMenuTreeItem) {
     event.stopPropagation();
-    this.closeScreen(screen);
+    this.props.closeScreen(screen);
   }
 
   handleTabButton(event, screen: IMenuTreeItem) {
+    if(screen.notClosable) {
+      return;
+    }
+
     event.persist();
     if (event.button == 1) {
-      this.closeScreen(screen);
+      this.props.closeScreen(screen);
     }
   }
 
@@ -120,82 +96,19 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
 
   //#region Methods 
 
-  findNode(id: string): IMenuTreeItem {
-    let result: IMenuTreeItem;
-    this.menuTreeForEach(this.state.menuTree, item => {
-      if (item.id == id) {
-        result = item;
-        return true;
-      }
-      return false;
-    });
-
-    return result;
-  }
-
-  menuTreeForEach(nodes: IMenuTreeItem[], callback: (item: IMenuTreeItem) => boolean) {
-    for (let i = 0; i < nodes.length; i++) {
-      const item = nodes[i];
-      if (item.subNodes && item.subNodes.length > 0) {
-        if (this.menuTreeForEach(item.subNodes, callback)) {
-          break;
-        }
-      }
-      else {
-        if (callback(item)) {
-          break;
-        }
-      }
-    }
-  }
-
-  openScreen(screen: IMenuTreeItem) {
-    let list = this.state.openedScreens;
-    if (list.findIndex(item => item.id == screen.id) == -1) {
-      list.push(screen);
-      this.props.init(screen);
-    }
-
-    this.props.setCurrent(screen.id);
-    this.setState({
-      openedScreens: list,
-      currentScreen: screen
-    }, () => {
-      this.props.history.replace((this.props as any).match.url + this.getScreenUrl(screen));
-    });
-  }
-
-  closeScreen(screen: IMenuTreeItem) {
-    let list = this.state.openedScreens;
-    const index = list.findIndex(item => item.id == screen.id);
-    if (index > -1) {
-      list.splice(index, 1);
-      this.props.destruct(screen.id);
-    }
-
-    let currentScreen = this.state.currentScreen;
-    if (currentScreen.id == screen.id) {
-      if (list.length == 0) {
-        currentScreen = undefined;
-      }
-      else if (list.length - 1 >= index) {
-        currentScreen = list[index];
-      }
-      else {
-        currentScreen = list[index - 1];
-      }
-    }
-
-    if (!currentScreen) {
-      this.props.history.replace((this.props as any).match.url);
-    }
-    else {
-      this.openScreen(currentScreen);
-    }
-  }
-
   getScreenUrl(screen: IMenuTreeItem) {
     return "/" + screen.project + "/" + screen.screen;
+  }
+
+  componentDidUpdate() {    
+    let url = (this.props as any).match.url 
+    if(this.props.appContext.currentScreen) {
+      url += this.getScreenUrl(this.props.appContext.currentScreen.menuTreeItem);
+    }
+
+    if(url != (this.props as any).location.pathname) {
+      this.props.history.replace(url);
+    }
   }
 
   //#endregion
@@ -228,32 +141,34 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
             <MyProfileMenu />
           </WToolBar>
           <WTabs
-            value={this.state.currentScreen && this.state.currentScreen.id}
-            onChange={this.handleTabChange.bind(this)}
+            value={this.props.appContext.currentScreen && this.props.appContext.currentScreen.menuTreeItem}
+            onChange={(event, value) => this.props.openScreen(value)}
             centered
           >
             {
-              this.state.openedScreens.map(screen => {
+              this.props.appContext.openedScreens.map(screen => {
                 const label = (
                   <WGrid container alignItems="center">
-                    <WGrid item xs={10}>
-                      {screen.text}
+                    <WGrid item xs={screen.menuTreeItem.notClosable ? 12 : 10}>
+                      {screen.menuTreeItem.text}
                     </WGrid>
-                    <WGrid item xs={2} style={{ paddingRight: 10 }} >
-                      <WIconButton
-                        onClick={(e) => this.handleTabCloseButtonClick(e, screen)}>
-                        <Close className={classes.whiteText} style={{ fontSize: 15 }} />
-                      </WIconButton>
-                    </WGrid>
+                    {!screen.menuTreeItem.notClosable && 
+                      <WGrid item xs={2} style={{ paddingRight: 10 }} >
+                        <WIconButton
+                          onClick={(e) => this.handleTabCloseButtonClick(e, screen.menuTreeItem)}>
+                          <Close className={classes.whiteText} style={{ fontSize: 15 }} />
+                        </WIconButton>
+                      </WGrid>
+                    }
                   </WGrid>
                 );
-                return <WTab key={screen.id}
+                return <WTab key={screen.menuTreeItem.id}
                   label={label}
                   classes={{
                     labelContainer: classes.tabLabelContainer
                   }}
-                  value={screen.id}
-                  onMouseUp={e => this.handleTabButton(e, screen)} />
+                  value={screen.menuTreeItem}
+                  onMouseUp={e => this.handleTabButton(e, screen.menuTreeItem)} />
               })
             }
           </WTabs>
@@ -268,7 +183,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
           }}
         >
           <div style={{ height: 100 }} />
-          <NavList onItemClicked={screen => this.openScreen(screen)} />
+          <NavList menuTree={this.props.appContext.menuTree} onItemClicked={screen => this.props.openScreen(screen)} />
         </WDrawer>
         <main className={classNames(classes.content, classes[`content-left`], {
           [classes.contentShift]: this.state.drawerOpen,
@@ -279,17 +194,14 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
             <Switch>
               {
                 (() => {
-                  const routeList = [];
-                  return this.state.openedScreens.map(screen => {
-                    const screenComponent = <WScreenWrapper screenInfo={screen} />
-                    const route = <Route key={screen.id} path={(this.props as any).match.url + this.getScreenUrl(screen)} render={props => { return screenComponent; }} />
-
+                  return this.props.appContext.openedScreens.map(screen => {
+                    const screenComponent = <WScreenWrapper screen={screen} />
+                    const route = <Route key={screen.menuTreeItem.id} path={(this.props as any).match.url + this.getScreenUrl(screen.menuTreeItem)} render={props => { return screenComponent; }} />
                     return route;
                   });
-
-                  // return routeList;
-                })()
+                })()                
               }
+              {/* {this.props.appContext.currentScreen && <Redirect to={(this.props as any).match.url + this.getScreenUrl(this.props.appContext.currentScreen.screenInfo)} />} */}
             </Switch>
           </div>
         </main>
@@ -355,13 +267,13 @@ const styles: any = theme => ({
 });
 
 const mapStateToProps = (state:WStore) => ({
-  screenContext: state.screenContext,
+  appContext: state.appContext,
   userContext: state.userContext
 } as WStore);
 const mapDispatchToProps = (dispatch:any) => ({
-  init: (screenInfo: IMenuTreeItem) => dispatch(ScreenContextActions.init(screenInfo)),
-  setCurrent: (screenId: string) => dispatch(ScreenContextActions.setCurrent(screenId)),
-  destruct: (screenId: string) => dispatch(ScreenContextActions.destruct(screenId))
+  setMenuTree: (menuTree: IMenuTreeItem[]) => dispatch(AppContextActions.setMenuTree(menuTree)),
+  openScreen: (menuTreeItem: IMenuTreeItem, initialValues?: Object) => dispatch(AppContextActions.openScreen({menuTreeItem, initialValues})),
+  closeScreen: (menuTreeItem: IMenuTreeItem) => dispatch(AppContextActions.closeScreen(menuTreeItem))
 });
 
-export default connect<WStore, DispatchProps, WMainPageProps>(mapStateToProps, mapDispatchToProps)(withRouter(withStyles(styles)(WMainPage) as any) as any)
+export default connect<WStore, DispatchProps, WMainPageProps>(mapStateToProps, mapDispatchToProps)(withRouter(withStyles(styles)(WMainPage as any) as any) as any)

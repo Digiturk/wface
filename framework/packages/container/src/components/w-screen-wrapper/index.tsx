@@ -1,16 +1,17 @@
 import { WGrid, WPaper, WTypography } from '@wface/components';
-import { IMenuTreeItem, IScreenProvider } from '@wface/ioc';
-import { ScreenContextActions, WStore } from '@wface/store';
+import { IMenuTreeItem, MenuTreeUtil, IScreenProvider } from '@wface/ioc';
+import { AppContextActions, WStore, ScreenData } from '@wface/store';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Inject } from 'react.di';
 
 export interface WScreenWrapperProps {
-  screenInfo?: IMenuTreeItem
+  screen?: ScreenData
 }
 
 export interface DispatchProps {
-  saveState: (screenId: string, state: any) => void
+  saveScreenState: (screenId: string, state: any) => void;
+  openScreen: (menuTreeItem: IMenuTreeItem, initialValues?: Object) => void;
 }
 
 class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & DispatchProps, any> {
@@ -31,7 +32,7 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
   }
 
   componentWillMount() {
-    this.screenProvider.getScreen(this.props.screenInfo.project, this.props.screenInfo.screen)
+    this.screenProvider.getScreen(this.props.screen.menuTreeItem.project, this.props.screen.menuTreeItem.screen)
       .then(screen => {
         this.setState({
           screen: screen
@@ -41,8 +42,18 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
 
   componentWillUnmount() {
     if (this.screenRef.current) {
-      this.props.saveState(this.props.screenInfo.id, this.screenRef.current.state);
+      this.props.saveScreenState(this.props.screen.menuTreeItem.id, this.screenRef.current.state);
     }
+  }
+
+  openScreen = (project: string, screen: string, initialValues: Object):boolean => {
+    const item = MenuTreeUtil.findByName(this.props.appContext.menuTree, project, screen);
+    if(!item) {
+      return false;
+    }
+
+    this.props.openScreen(item, initialValues);
+    return true;
   }
 
   public render() {
@@ -52,8 +63,10 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
         <Screen
           ref={this.screenRef}
           appContext={this.props.appContext}
-          screenContext={this.props.screenContext.current}
-          userContext={this.props.userContext} />
+          screenData={this.props.appContext.currentScreen}
+          userContext={this.props.userContext}
+          openScreen={this.openScreen}
+        />
         :
         <WGrid container justify="center" style={{ paddingTop: 30 }}>
           <WGrid item md={6}>
@@ -71,14 +84,14 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
   }
 }
 
-const mapStateToProps = state => ({
-  appContext: state.appContext,
-  screenContext: state.screenContext,
+const mapStateToProps = (state:WStore) => ({
+  appContext: state.appContext,  
   userContext: state.userContext,
 } as WStore);
 
 const mapDispatchToProps = dispatch => ({
-  saveState: (screenId: string, state: any) => dispatch(ScreenContextActions.saveState({ screenId, state }))
+  saveScreenState: (screenId: string, state: any) => dispatch(AppContextActions.saveScreenState({ screenId, state })),
+  openScreen: (menuTreeItem: IMenuTreeItem, initialValues?: Object) => dispatch(AppContextActions.openScreen({menuTreeItem, initialValues})),  
 });
 
 export default connect<WStore, DispatchProps, WScreenWrapperProps>(mapStateToProps, mapDispatchToProps)(WScreenWrapper);

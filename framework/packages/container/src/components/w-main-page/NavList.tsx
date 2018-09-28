@@ -9,49 +9,25 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Cached from '@material-ui/icons/Cached';
 import Collapse from '@material-ui/core/Collapse';
-import { IAuthService, IMenuTreeItem } from '@wface/ioc';
-import { Inject } from 'react.di';
+import { IMenuTreeItem } from '@wface/ioc';
 
 export interface NavListProps {
+  menuTree: IMenuTreeItem[];
   onItemClicked?: (item: IMenuTreeItem) => void
 }
 
 interface NavListState {
-  treeData: IMenuTreeItem[],
   expandedItems: string[],
-  menuLoadError: boolean
 }
 
 class NavList extends React.Component<NavListProps & { classes: any }, NavListState> {
-  @Inject("IAuthService")
-  private authService: IAuthService
 
   constructor(props) {
     super(props);
 
     this.state = {
-      treeData: undefined,
-      expandedItems: [],
-      menuLoadError: false
+      expandedItems: []
     }
-  }
-
-  componentDidMount() {
-    this.loadMenuTree();
-  }
-
-  loadMenuTree() {
-    this.setState({ menuLoadError: false }, () => {
-      if (!this.state.treeData || this.state.treeData.length == 0) {
-        this.authService.getMenuTree()
-          .then(treeData => {
-            this.setState({ treeData })
-          })
-          .catch(error => {
-            this.setState({ menuLoadError: true });
-          })
-      }
-    });
   }
 
   handleNodeClick = (id: string) => {
@@ -76,6 +52,10 @@ class NavList extends React.Component<NavListProps & { classes: any }, NavListSt
   }
 
   renderNavItem(item: IMenuTreeItem, nestingLevel: number = 0): React.ReactNode {
+    if(item.hideOnNavigationList) {
+      return null;
+    }
+
     const itemStyle = {
       paddingLeft: 20 + 20 * nestingLevel
     }
@@ -114,41 +94,29 @@ class NavList extends React.Component<NavListProps & { classes: any }, NavListSt
   }
 
   public render() {
-    const { classes } = this.props;
-    const centerStyle = {
-      textAlign: 'center',
-      paddingLeft: 20,
-      paddingRight: 20,
-      paddingTop: 50
-    } as any;
 
-    let content = <div style={centerStyle}> <WCircularProgress size={50} /> </div>;
-    if (this.state.menuLoadError) {
-      content = (
-        <div style={centerStyle}>
-          <WTypography variant="caption" gutterBottom align="center">
-            Menü bilgileriniz yüklenirken bir hata oluştu.
-                    </WTypography>
-          <WIconButton onClick={() => this.loadMenuTree()}>
-            <Cached />
-          </WIconButton>
-        </div>
-      )
-    }
-    else if (this.state.treeData) {
-      content = (
+    
+    if (this.props.menuTree && this.props.menuTree.length > 0) {
+      return (
         <WList key="NavListKey"
           component="nav">
-          {this.state.treeData &&
-            this.state.treeData.map(item => {
+          {this.props.menuTree &&
+            this.props.menuTree.map(item => {
               return this.renderNavItem(item);
             })
           }
         </WList>
       );
     }
-
-    return <div className={classes.root}>{content}</div>;
+    else {
+      const centerStyle = {
+        textAlign: 'center',
+        paddingLeft: 20,
+        paddingRight: 20,
+        paddingTop: 50
+      } as any;
+      return <div style={centerStyle}> <WCircularProgress size={50} /> </div>;
+    }
   }
 }
 

@@ -12,7 +12,7 @@ import {
 import { WIconButton } from '../../buttons/w-icon-button';
 import { TextFieldProps } from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
-import { ScreenContextActions, WStore } from '@wface/store'
+import { AppContextActions, WStore } from '@wface/store'
 
 //#endregion
 
@@ -30,7 +30,7 @@ export interface WTextFieldProps extends TextFieldProps {
 }
 
 export interface DispatchProps {
-  save: (key: string, value: any) => void
+  saveScreenAny: (key: string, value: any) => void
 }
 
 export interface WTextFieldState {
@@ -53,11 +53,11 @@ class WTextFieldInner extends React.Component<WTextFieldProps & WStore & Dispatc
   }
 
   componentDidMount() {
-    if (!this.props.value && this.props.screenContext.current) {
+    if (!this.props.value && this.props.appContext.currentScreen) {
       const domNode = ReactDOM.findDOMNode(this);
       this.id = this.calcHashForNode(domNode);
 
-      const valFromStore = this.props.screenContext.current.values[this.id];
+      const valFromStore = this.props.appContext.currentScreen.values[this.id];
       if (valFromStore) {
         this.setState({ value: valFromStore });
       }
@@ -89,7 +89,7 @@ class WTextFieldInner extends React.Component<WTextFieldProps & WStore & Dispatc
 
   handleChange = (event) => {
     this.setState({ value: event.target.value });
-    this.props.save(this.id, event.target.value);
+    this.props.saveScreenAny(this.id, event.target.value);
 
     if (this.props.onChange) {
       this.props.onChange(event);
@@ -151,9 +151,9 @@ class WTextFieldInner extends React.Component<WTextFieldProps & WStore & Dispatc
   //#endregion    
 }
 
-const mapStateToProps = state => ({ screenContext: state.screenContext } as WStore);
+const mapStateToProps = state => ({ appContext: state.appContext } as WStore);
 const mapDispatchToProps = dispatch => ({
-  save: (key: string, value: any) => dispatch(ScreenContextActions.saveAny({ key, value }))
+  saveScreenAny: (key: string, value: any) => dispatch(AppContextActions.saveScreenAny({ key, value }))
 });
 
 export const WTextField = connect<WStore, DispatchProps, WTextFieldProps>(mapStateToProps, mapDispatchToProps)(WTextFieldInner)
