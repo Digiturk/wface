@@ -4,5 +4,5 @@ export interface BaseScreenProps {
   appContext: AppContext;
   userContext: UserContext;
   screenData: ScreenData;
-  openScreen: (project: String, screen: String) => boolean;
+  openScreen: (project: String, screen: String, initialValues?: Object) => boolean;
 }
