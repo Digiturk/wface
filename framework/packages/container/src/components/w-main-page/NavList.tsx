@@ -94,8 +94,6 @@ class NavList extends React.Component<NavListProps & { classes: any }, NavListSt
   }
 
   public render() {
-
-    
     if (this.props.menuTree && this.props.menuTree.length > 0) {
       return (
         <WList key="NavListKey"

@@ -35,12 +35,20 @@ export default class MockAuthService implements IAuthService {
 
         const project = Projects[projectName];
         for(let screenName in project.screenList) {
-          menu.subNodes.push({
-            id: (id++).toString(),
-            text: screenName,
-            project: projectName,
-            screen: screenName
-          } as IMenuTreeItem)
+          for(let i = 0; i < 10; i++) {
+            menu.subNodes.push({
+              id: (id++).toString(),
+              text: screenName,
+              project: projectName,
+              screen: screenName
+            } as IMenuTreeItem)
+          }
+          // menu.subNodes.push({
+          //   id: (id++).toString(),
+          //   text: screenName,
+          //   project: projectName,
+          //   screen: screenName
+          // } as IMenuTreeItem)
         }
         result.push(menu);
       }

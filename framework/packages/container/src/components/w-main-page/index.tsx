@@ -40,7 +40,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
   @Inject("IAuthService")
   private authService: IAuthService;
 
-  constructor(props, context) {
+  constructor(props:any, context:any) {
     super(props, context);
 
     this.state = {
@@ -76,12 +76,12 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
     this.setState((prevState) => { return { drawerOpen: !prevState.drawerOpen } });
   };
 
-  handleTabCloseButtonClick(event, screen: IMenuTreeItem) {
+  handleTabCloseButtonClick(event:any, screen: IMenuTreeItem) {
     event.stopPropagation();
     this.props.closeScreen(screen);
   }
 
-  handleTabButton(event, screen: IMenuTreeItem) {
+  handleTabButton(event:any, screen: IMenuTreeItem) {
     if(screen.notClosable) {
       return;
     }
@@ -173,7 +173,6 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
             }
           </WTabs>
         </WAppBar>
-
         <WDrawer
           variant="persistent"
           open={this.state.drawerOpen}
@@ -182,8 +181,14 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
             paper: classes.drawerPaper,
           }}
         >
-          <div style={{ height: 100 }} />
-          <NavList menuTree={this.props.appContext.menuTree} onItemClicked={screen => this.props.openScreen(screen)} />
+          <div style={{ height:'100%', display: 'flex', flexDirection: 'column' }}>
+            <div style={{ height: 96 }} />
+            <div style={{ display: 'flex', flex: 1, minHeight: 0 }}>
+              <div style={{flex: 1, overflow: 'auto'}}>
+                <NavList menuTree={this.props.appContext.menuTree} onItemClicked={(screen:IMenuTreeItem) => this.props.openScreen(screen)} />
+              </div>
+            </div>
+          </div>
         </WDrawer>
         <main className={classNames(classes.content, classes[`content-left`], {
           [classes.contentShift]: this.state.drawerOpen,
@@ -217,7 +222,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
 };
 
 const drawerWidth = 300;
-const styles: any = theme => ({
+const styles: any = (theme:any) => ({
   root: {
     flexGrow: 1,
     height: '%100',
