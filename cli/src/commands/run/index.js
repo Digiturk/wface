@@ -1,25 +1,15 @@
 const childProcess = require('child_process');
 const fileSystem = require('fs');
 const chalk = require("chalk");
-const readlineSync = require('readline-sync');
-const open = require('open');
 const path = require("path");
 
 function run () {
   const wfaceDir = path.join(process.argv[1], '../../../')
   
   if(!fileSystem.existsSync(wfaceDir + '\\client-app')) {
-    console.error(chalk.green('@wface/client-app') + " could not be found!")
-    if (readlineSync.keyInYN("Do you want to install @wface/client-app now?")) {
-      childProcess.execSync('npm install -g @wface/client-app', {
-        stdio: [0,1,2]
-      });
-
-      childProcess.execSync('npm install', {
-        stdio: [0,1,2],
-        cwd: wfaceDir + "\\client-app"
-      });
-    } 
+    console.error(chalk.green('@wface/client-app') + " could not be found!");
+    console.log("Please firstly install client-app with running command " + chalk.green('wface install'));
+    return;
   }
 
   let clientApp;
@@ -41,9 +31,6 @@ function run () {
       console.log(chalk.bgWhite("[C-Trace]") + ` client app process exited with code ${code}`);      
     });
   });  
-
-  console.log("Wface server is running on http://localhost:2018");
-  open('http://localhost:2018');
 }
 
 exports.default = run;
