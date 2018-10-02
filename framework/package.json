@@ -14,9 +14,7 @@
 	},
 	"scripts": {
 		"start": "npm --prefix ./packages/client-app start",
-		"start-local": "npm --prefix ./packages/client-app run start-local",
-		"build": "webpack --hot",
-		"clean-framework": "rimraf node_modules package-lock.json",
+		"clean-framework": "rimraf node_modules",
 		"clean-client-app": "rimraf ./packages/client-app/node_modules ./packages/client-app/package-lock.json",
 		"clean-components": "rimraf ./packages/components/node_modules ./packages/components/package-lock.json",
 		"clean-container": "rimraf ./packages/container/node_modules ./packages/container/package-lock.json",

@@ -7,7 +7,7 @@ export interface WMessageDialogProps {
   text: string;
   icon?: 'error' | 'warning' | 'info' | 'success';
   buttons?: 'YesNo' | 'YesNoCancel' | 'Ok';
-  onButtonClick?: (event, button) => void;
+  onButtonClick?: (event:any, button: String) => void;
 }
 
 export class WMessageDialog extends React.Component<WMessageDialogProps, {}> {
@@ -24,26 +24,26 @@ export class WMessageDialog extends React.Component<WMessageDialogProps, {}> {
     if(this.props.buttons === "YesNo" || this.props.buttons === "YesNoCancel") {
       result.push({
         text: 'Yes',
-        onClick: (event) => { this.props.onButtonClick && this.props.onButtonClick(event, 'Yes')}
+        onClick: (event:any) => { this.props.onButtonClick && this.props.onButtonClick(event, 'Yes')}
       })
 
       result.push({
         text: 'No',
-        onClick: (event) => { this.props.onButtonClick && this.props.onButtonClick(event, 'No')}
+        onClick: (event:any) => { this.props.onButtonClick && this.props.onButtonClick(event, 'No')}
       })
     }
 
     if(this.props.buttons === "YesNoCancel") {
       result.push({
         text: 'Cancel',
-        onClick: (event) => { this.props.onButtonClick && this.props.onButtonClick(event, 'Cancel')}
+        onClick: (event:any) => { this.props.onButtonClick && this.props.onButtonClick(event, 'Cancel')}
       })
     }
 
     if(this.props.buttons === "Ok") {
       result.push({
         text: 'Ok',
-        onClick: (event) => { this.props.onButtonClick && this.props.onButtonClick(event, 'Ok')}
+        onClick: (event:any) => { this.props.onButtonClick && this.props.onButtonClick(event, 'Ok')}
       })
     }
 

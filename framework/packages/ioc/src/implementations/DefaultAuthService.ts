@@ -6,7 +6,7 @@ export default class DefaultAuthService implements IAuthService {
   
   constructor(
     @Inject('IAuthServiceInner') private _Service: IAuthService,
-    @Inject('onLogin') private _OnLogin: (username:string, displayName, token?: string) => void,
+    @Inject('onLogin') private _OnLogin: (username:string, displayName: string, token?: string) => void,
   ) { }
 
   login(username: string, password: string, values?: any): Promise<{ displayName: string, token?: string }> {

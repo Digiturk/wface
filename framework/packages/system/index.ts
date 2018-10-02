@@ -8,7 +8,7 @@ import { TestScreen2 } from './src/test-screen2';
 
 const config = {
   title: undefined,
-  projectName: 'Test-System',
+  projectName: undefined,
   screenList: { 
     TestScreen,
     TestScreen2,

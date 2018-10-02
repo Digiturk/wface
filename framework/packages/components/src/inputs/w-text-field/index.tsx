@@ -20,7 +20,7 @@ import { AppContextActions, WStore } from '@wface/store'
 
 export interface WTextFieldButton {
   icon: React.ReactNode;
-  onClick(e, val: String): void;
+  onClick(event:any, val: String): void;
 }
 
 export interface WTextFieldProps extends TextFieldProps {
@@ -43,7 +43,7 @@ export interface WTextFieldState {
 class WTextFieldInner extends React.Component<WTextFieldProps & WStore & DispatchProps, WTextFieldState> {
   private id: string;
 
-  constructor(props) {
+  constructor(props:any) {
     super(props);
 
     this.state = {
@@ -79,7 +79,7 @@ class WTextFieldInner extends React.Component<WTextFieldProps & WStore & Dispatc
     return this.calcHashForNode(node.parentElement, nodeText);
   }
 
-  calcNodeIndex(node) {
+  calcNodeIndex(node:any) {
     var i = 0;
     while ((node = node.previousSibling) != null)
       i++;
@@ -87,7 +87,7 @@ class WTextFieldInner extends React.Component<WTextFieldProps & WStore & Dispatc
     return i;
   }
 
-  handleChange = (event) => {
+  handleChange = (event:any) => {
     this.setState({ value: event.target.value });
     this.props.saveScreenAny(this.id, event.target.value);
 
@@ -151,8 +151,8 @@ class WTextFieldInner extends React.Component<WTextFieldProps & WStore & Dispatc
   //#endregion    
 }
 
-const mapStateToProps = state => ({ appContext: state.appContext } as WStore);
-const mapDispatchToProps = dispatch => ({
+const mapStateToProps = (state:WStore) => ({ appContext: state.appContext } as WStore);
+const mapDispatchToProps = (dispatch:any) => ({
   saveScreenAny: (key: string, value: any) => dispatch(AppContextActions.saveScreenAny({ key, value }))
 });
 

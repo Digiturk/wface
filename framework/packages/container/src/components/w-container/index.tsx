@@ -26,7 +26,7 @@ class WContainer extends React.Component<any, {}> {
       <Provider store={store}>
         <HashRouter>
           <WMuiThemeProvider>
-            <Routes loginScreen={LoginScreen}/>
+            <Routes loginScreen={LoginScreen} screenProvider={this.props.screenProvider}/>
           </WMuiThemeProvider >
         </HashRouter>
       </Provider>
@@ -39,12 +39,13 @@ class WContainer extends React.Component<any, {}> {
 const RoutesInner = (props:any) => {
   const isLoggedIn = props.userContext.isLoggedIn;
   const LoginScreen = props.loginScreen;
+  const screenProvider = props.screenProvider;
 
   return (
     <React.Fragment>
-      <Route exact path="/" render={props => <Redirect to="/main" />} />
-      <Route path="/login" render={(props:any) => isLoggedIn ? <Redirect to="/main" /> : <LoginScreen {...props}/>}/>
-      <Route path="/main" render={(props:any) => isLoggedIn ? <WMainPage {...props}/> : <Redirect to="/login" /> }/>
+      <Route exact path="/" render={subProps => <Redirect to="/main" />} />
+      <Route path="/login" render={(subProps:any) => isLoggedIn ? <Redirect to="/main" /> : <LoginScreen {...subProps}/>}/>
+      <Route path="/main" render={(subProps:any) => isLoggedIn ? <WMainPage {...subProps} screenProvider={screenProvider}/> : <Redirect to="/login" /> }/>
     </React.Fragment>
   )
 }
@@ -53,6 +54,6 @@ const mapStateToProps = (state:any) => ({
   userContext: state.userContext
 });
 
-const Routes = withRouter(connect(mapStateToProps)(RoutesInner) as any)
+const Routes = withRouter(connect(mapStateToProps)(RoutesInner) as any) as any
 
 export default WContainer;

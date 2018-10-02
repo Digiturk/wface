@@ -31,9 +31,7 @@ export default class MenuTreeUtil {
     for (let i = 0; i < menuTree.length; i++) {
       const item = menuTree[i];
       if (item.subNodes && item.subNodes.length > 0) {
-        if (MenuTreeUtil.menuTreeForEach(item.subNodes, callback)) {
-          break;
-        }
+        MenuTreeUtil.menuTreeForEach(item.subNodes, callback)
       }
       else {
         if (callback(item)) {

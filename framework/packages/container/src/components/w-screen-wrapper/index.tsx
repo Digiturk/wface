@@ -1,12 +1,12 @@
 import { WGrid, WPaper, WTypography } from '@wface/components';
-import { IMenuTreeItem, MenuTreeUtil, IScreenProvider } from '@wface/ioc';
+import { IMenuTreeItem, MenuTreeUtil, IScreenProvider, IConfiguration } from '@wface/ioc';
 import { AppContextActions, WStore, ScreenData } from '@wface/store';
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Inject } from 'react.di';
 
 export interface WScreenWrapperProps {
-  screen?: ScreenData
+  screen?: ScreenData,
+  screenProvider: IScreenProvider
 }
 
 export interface DispatchProps {
@@ -16,10 +16,7 @@ export interface DispatchProps {
 
 class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & DispatchProps, any> {
 
-  @Inject('IScreenProvider')
-  private screenProvider: IScreenProvider;
-
-  private screenRef;
+  private screenRef:any;
 
   constructor(props) {
     super(props);
@@ -31,14 +28,14 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
     this.screenRef = React.createRef();
   }
 
-  componentWillMount() {
-    this.screenProvider.getScreen(this.props.screen.menuTreeItem.project, this.props.screen.menuTreeItem.screen)
-      .then(screen => {
-        this.setState({
-          screen: screen
-        })
-      })
-  }
+  // componentWillMount() {    
+  //   this.props.screenProvider.getScreen(this.props.screen.menuTreeItem.project, this.props.screen.menuTreeItem.screen)
+  //     .then(screen => {
+  //       this.setState({
+  //         screen: screen
+  //       })
+  //     })
+  // }
 
   componentWillUnmount() {
     if (this.screenRef.current) {
@@ -57,7 +54,7 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
   }
 
   public render() {
-    const Screen = this.state.screen;
+    const Screen = this.props.screenProvider.getScreen(this.props.screen.menuTreeItem.project, this.props.screen.menuTreeItem.screen) as any;
     return (
       Screen ?
         <Screen

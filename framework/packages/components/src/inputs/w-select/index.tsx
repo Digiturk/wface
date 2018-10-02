@@ -13,7 +13,7 @@ export class WSelect extends React.Component<WSelectProps, {}> {
     const children = this.props.data ? 
       this.props.data.map(item => {
         if(this.props.render) {
-          this.props.render(item)
+          return this.props.render(item);
         }
         else {
           return <MenuItem value={item.value}>{item.label || item.value}</MenuItem>
