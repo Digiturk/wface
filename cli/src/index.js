@@ -14,6 +14,7 @@ const
     link = require('./commands/link').default,
     run = require('./commands/run').default,
     uninstall = require('./commands/uninstall').default,
+    update = require('./commands/update').default,
     unlink = require('./commands/unlink').default,
     version = require('./commands/version').default;
 
@@ -41,6 +42,7 @@ program.command("install").action(() => { install(); });
 program.command("link").action(() => { link(); });     
 program.command("run").action(() => { run(); });     
 program.command("uninstall").action(() => { uninstall(); });
+program.command("update").action(() => { update(); });
 program.command("unlink").action(() => { unlink(); });
 program.command("version").action(() => { version(); });     
    
