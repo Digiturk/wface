@@ -17,7 +17,7 @@ export class TestScreen2 extends React.Component<WFace.BaseScreenProps, TestScre
   public render() {    
     return (
       <div>      
-        <WFace.WButton>DENEME</WFace.WButton>        
+        <WFace.WButton>a</WFace.WButton>
       </div>
     )
   }

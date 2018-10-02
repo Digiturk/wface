@@ -3,12 +3,18 @@ const {resolve} = require('path');
 const {CheckerPlugin} = require('awesome-typescript-loader');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
   context: resolve(__dirname, '../../'),
+  optimization: {
+    removeAvailableModules: false,
+    removeEmptyChunks: false,
+    splitChunks: false,
+  },
   module: {
     rules: [
       {
@@ -19,6 +25,30 @@ module.exports = {
       {
         test: /\.tsx?$/,
         use: ['babel-loader', 'awesome-typescript-loader'],
+        // loaders: [
+        //   'babel-loader', 
+        //   {
+        //     loader: 'awesome-typescript-loader',
+        //     options: {
+        //       sourceMap: true, 
+        //       useCache: true, 
+        //       useTranspileModule: true,
+        //       "useBabel": true,
+        //       "babelCore": "@babel/core", // needed for Babel v7
+        //     }
+        //   }
+        // ]
+
+        // loaders: [
+        //   'babel-loader', 
+        //   {
+        //     loader: 'ts-loader',
+        //     options: {
+        //       transpileOnly: true,
+        //       experimentalWatchApi: true,
+        //     }
+        //   }
+        // ]
       },
       {
         test: /\.css$/,
@@ -43,13 +73,10 @@ module.exports = {
   },
   plugins: [
     new CheckerPlugin(),
+    // new ForkTsCheckerWebpackPlugin(),
     new StyleLintPlugin(),
     new HtmlWebpackPlugin({template: './public/index.html',}),
   ],
-  // externals: {
-  //   'react': 'React',
-  //   'react-dom': 'ReactDOM',
-  // },
   performance: {
     hints: false,
   },

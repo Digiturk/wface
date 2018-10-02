@@ -15,12 +15,12 @@
 	"scripts": {
 		"start": "npm --prefix ./packages/client-app start",
 		"clean-framework": "rimraf node_modules",
-		"clean-client-app": "rimraf ./packages/client-app/node_modules ./packages/client-app/package-lock.json",
-		"clean-components": "rimraf ./packages/components/node_modules ./packages/components/package-lock.json",
-		"clean-container": "rimraf ./packages/container/node_modules ./packages/container/package-lock.json",
-		"clean-ioc": "rimraf ./packages/ioc/node_modules ./packages/ioc/package-lock.json",
-		"clean-store": "rimraf ./packages/store/node_modules ./packages/store/package-lock.json",
-		"clean-system": "rimraf ./packages/system/node_modules ./packages/system/package-lock.json",
+		"clean-client-app": "rimraf ./packages/client-app/node_modules",
+		"clean-components": "rimraf ./packages/components/node_modules",
+		"clean-container": "rimraf ./packages/container/node_modules",
+		"clean-ioc": "rimraf ./packages/ioc/node_modules",
+		"clean-store": "rimraf ./packages/store/node_modules",
+		"clean-system": "rimraf ./packages/system/node_modules",
 		"clean": "npm run clean-framework && npm run clean-client-app && npm run clean-components && npm run clean-container && npm run clean-ioc && npm run clean-store && npm run clean-system"
 	},
 	"dependencies": {}
