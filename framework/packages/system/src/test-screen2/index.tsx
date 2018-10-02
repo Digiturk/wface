@@ -14,15 +14,10 @@ export class TestScreen2 extends React.Component<WFace.BaseScreenProps, TestScre
     }
   }
 
-  public render() {
-    var components = [];
-    for(var i=0;i<50;i++){
-        components.push(<div> {i}. Line</div>);  
-    }
-
+  public render() {    
     return (
-      <div>
-        {components}
+      <div>      
+        <WFace.WButton>DENEME</WFace.WButton>                
       </div>
     )
   }

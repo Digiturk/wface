@@ -12,25 +12,47 @@ export default class ScreenProvider implements IScreenProvider {
     this.projects = projects;    
   }
 
-  public getScreen(project: string, screen: string): Promise<object> {
-    return new Promise((resolve, reject) => {
-      const screenKey = project + "/" + screen;
+  public getScreen(project: string, screen: string): object {
+    const screenKey = project + "/" + screen;
 
-      if (this.cache[screenKey]) {
-        resolve(this.cache[screenKey]);
-      }
-      else {
-        const projectName = this.getRealName(this.projects, project)
-        if (projectName) {
-          const screenName = this.getRealName(this.projects[projectName].screenList, screen);
-          if (screenName) {
-            this.cache[screenKey] = this.projects[projectName].screenList[screenName];
-            resolve(this.cache[screenKey]);
-          }
+    if (this.cache[screenKey]) {
+      return this.cache[screenKey];
+    }
+    else 
+    {
+      const projectName = this.getRealName(this.projects, project)
+      if (projectName) {
+        const screenName = this.getRealName(this.projects[projectName].screenList, screen);
+        if (screenName) {
+          this.cache[screenKey] = this.projects[projectName].screenList[screenName];
+          return this.cache[screenKey];
         }
       }
-    });
+    }
+
+    return undefined;
   }
+
+  // public getScreen(project: string, screen: string): Promise<object> {
+  //   return new Promise((resolve, reject) => {
+  //     const screenKey = project + "/" + screen;
+
+  //     if (this.cache[screenKey]) {
+  //       resolve(this.cache[screenKey]);
+  //     }
+  //     else 
+  //     {
+  //       const projectName = this.getRealName(this.projects, project)
+  //       if (projectName) {
+  //         const screenName = this.getRealName(this.projects[projectName].screenList, screen);
+  //         if (screenName) {
+  //           this.cache[screenKey] = this.projects[projectName].screenList[screenName];
+  //           resolve(this.cache[screenKey]);
+  //         }
+  //       }
+  //     }
+  //   });
+  // }
 
   private getRealName(object: any, indexer: string): string {
     const compare = this.getComparableString(indexer);
