@@ -4,7 +4,7 @@ import MuiDownshift from 'mui-downshift'
 export interface WDropdownProps { 
   items?: {label: string | React.ReactNode, value: any}[];
   label?: string;
-  onChange?: (event, newValue) => void;
+  onChange?: (event:any, newValue:any) => void;
   style?: any;
 }
 

@@ -16,7 +16,7 @@ export interface DispatchProps {
 
 class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & DispatchProps, any> {
 
-  private screenRef;
+  private screenRef:any;
 
   constructor(props) {
     super(props);
@@ -54,8 +54,7 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
   }
 
   public render() {
-    // const Screen = this.state.screen;
-    const Screen = this.props.screenProvider.getScreen(this.props.screen.menuTreeItem.project, this.props.screen.menuTreeItem.screen);
+    const Screen = this.props.screenProvider.getScreen(this.props.screen.menuTreeItem.project, this.props.screen.menuTreeItem.screen) as any;
     return (
       Screen ?
         <Screen

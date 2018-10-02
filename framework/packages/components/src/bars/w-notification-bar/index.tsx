@@ -16,7 +16,7 @@ export interface WNotificationBarProps {
 }
 
 class WNotificationBarInner extends React.Component<WNotificationBarProps, {}> {
-  constructor(props) {
+  constructor(props:any) {
     super(props);
   }
 
@@ -45,7 +45,7 @@ class WNotificationBarInner extends React.Component<WNotificationBarProps, {}> {
   }
 }
 
-const styles = theme => ({
+const styles = (theme:any) => ({
   notification: theme.mixins.gutters({
     paddingTop: 5,
     paddingBottom: 5,

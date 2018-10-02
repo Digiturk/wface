@@ -54,6 +54,6 @@ const mapStateToProps = (state:any) => ({
   userContext: state.userContext
 });
 
-const Routes = withRouter(connect(mapStateToProps)(RoutesInner) as any)
+const Routes = withRouter(connect(mapStateToProps)(RoutesInner) as any) as any
 
 export default WContainer;
