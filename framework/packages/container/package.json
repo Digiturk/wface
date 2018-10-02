@@ -16,7 +16,7 @@
     "@wface/store": "^0.3.0",
     "classnames": "2.2.5",
     "prop-types": "15.6.2",
-    "react": "16.4.1",
+    "react": "16.5.2",
     "react-redux": "5.0.7",
     "react-router-dom": "4.2.2",
     "react.di": "2.0.0",

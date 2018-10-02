@@ -7,7 +7,7 @@
     "allowJs": true,
     "module": "commonjs",
     "importHelpers": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "noImplicitReturns": true,
     "suppressImplicitAnyIndexErrors": true,
     "experimentalDecorators": true,
@@ -15,6 +15,7 @@
     "lib": [
       "dom",
       "es6"
-    ]
+    ],
   }
+
 }

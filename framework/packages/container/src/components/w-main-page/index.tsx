@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { Close } from "@material-ui/icons";
 import MenuIcon from '@material-ui/icons/Menu';
 import { WAppBar, WDrawer, WGrid, WIconButton, WTab, WTabs, WToolBar, WTypography } from '@wface/components';
-import { IAuthService, IMenuTreeItem, MenuTreeUtil, IConfiguration } from "@wface/ioc";
+import { IAuthService, IMenuTreeItem, MenuTreeUtil, IConfiguration, IScreenProvider } from "@wface/ioc";
 import { AppContextActions, WStore } from '@wface/store';
 import * as classNames from 'classnames';
 import * as React from "react";
@@ -19,7 +19,8 @@ import NavList from './NavList';
 
 export interface WMainPageProps {
   classes: any,
-  history?: any
+  history?: any,
+  screenProvider: IScreenProvider
 }
 
 export interface DispatchProps {
@@ -115,7 +116,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
 
   //#region Render
 
-  render() {
+  render() {    
     const { classes } = this.props;
     return (
       <div className={classes.root}>
@@ -202,7 +203,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
                   {
                     (() => {
                       return this.props.appContext.openedScreens.map(screen => {
-                        const screenComponent = <WScreenWrapper screen={screen} />
+                        const screenComponent = <WScreenWrapper screen={screen} screenProvider={this.props.screenProvider} />
                         const route = <Route key={screen.menuTreeItem.id} path={(this.props as any).match.url + this.getScreenUrl(screen.menuTreeItem)} render={props => { return screenComponent; }} />
                         return route;
                       });
