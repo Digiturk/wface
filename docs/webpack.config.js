@@ -7,7 +7,7 @@ module.exports = {
         fs: 'empty'
     },
     output: {
-        path: path.join(__dirname, "dist3"),
+        path: path.join(__dirname, "dist"),
         filename: "[name].bundle.js",
         chunkFilename: "[name].chunk.js"
     },
