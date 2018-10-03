@@ -13,8 +13,8 @@ export default class Setup extends React.Component<any, any> {
           <WFace.WList>
             <Command command="npm set registry http://registry.digiturk.com" desc="DigiTürk npm reposunu ayarla"/>
             <Command command="npm install -g @wface/cli" desc="WFace komut satırı uygulamasını indir"/>
-            <Command command="set ASPNETCORE_Environment Development" desc=".Net Core uygulamasının çalışması için ortam ayarını Development olarak ayarla"/>
-            <Command command="wface run" desc="WFace uygulamasını çalıştır. WFace uygulaması ilk çalışmada ihtiyaç duyacağı client-app ve server-app uygulamalarını indirecektir."/>
+            <Command command="wface install" desc="WFace uygulamasının ihtiyaç duyacağı client-app uygulamasını indirecektir."/>
+            <Command command="wface run" desc="WFace uygulamasını çalıştır."/>
           </WFace.WList>
         </WFace.WCardContent>
         <WFace.WCardActions>
