@@ -30,7 +30,7 @@ class App extends React.Component<any, any> {
 
             {this.renderMenuLink("Main", "Ana Sayfa")}            
             {this.renderMenuLink("Pages/GetStarted/Architecture", "Başlangıç")}
-            {this.renderMenuLink("Pages/Components/General", "Bileşenler")}
+            {this.renderMenuLink("Pages/Components/ComponentList", "Bileşenler")}
             {/* {this.renderMenuLink("Blog", "Blog")} */}
             {/* {this.renderMenuLink("Faq", "S.S.S.")} */}
             {/* {this.renderMenuLink("Contribute", "Katkı")}*/}

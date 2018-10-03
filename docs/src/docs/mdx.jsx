@@ -14,18 +14,23 @@ import Versions from './get-started/versions.mdx'
 
 import CommandList from './cli/command-list.mdx'
 import CreateCommand from './cli/commands/create.mdx'
+import InstallCommand from './cli/commands/install.mdx'
 import LinkCommand from './cli/commands/link.mdx'
 import RunCommand from './cli/commands/run.mdx'
+import UninstallCommand from './cli/commands/uninstall.mdx'
+import UpdateCommand from './cli/commands/update.mdx'
 import VersionCommand from './cli/commands/version.mdx'
 
 import ComponentList from './components/component-list.mdx'
 import WAppBarComponent from './components/components/bars/w-app-bar.mdx'
 import WAvatarComponent from './components/components/medias/w-avatar.mdx'
+import WBasicDialogComponent from './components/components/dialogs/w-basic-dialog.mdx'
 import WButtonComponent from './components/components/buttons/w-button.mdx'
 import WCardComponent from './components/components/layouts/w-card.mdx'
 import WCheckboxComponent from './components/components/inputs/w-checkbox.mdx'
 import WCircularProgressComponent from './components/components/progress/w-circular-progress.mdx'
 import WCollapseComponent from './components/components/layouts/w-collapse.mdx'
+import WDialogComponent from './components/components/dialogs/w-dialog.mdx'
 import WDividerComponent from './components/components/layouts/w-divider.mdx'
 import WDrawerComponent from './components/components/layouts/w-drawer.mdx'
 import WGridComponent from './components/components/layouts/w-grid.mdx'
@@ -35,6 +40,7 @@ import WLinearProgressComponent from './components/components/progress/w-linear-
 import WListComponent from './components/components/lists/w-list.mdx'
 import WLoadingButtonComponent from './components/components/buttons/w-loading-button.mdx'
 import WMenuComponent from './components/components/lists/w-menu.mdx'
+import WMessageDialogComponent from './components/components/dialogs/w-message-dialog.mdx'
 import WNotificationBarComponent from './components/components/bars/w-notification-bar.mdx'
 import WPaperComponent from './components/components/layouts/w-paper.mdx'
 import WRadioGroupComponent from './components/components/inputs/w-radio-group.mdx'
@@ -178,19 +184,24 @@ const Mdx = {
   WFaceCLI: {
     CommandList: () => <CommandList components={components}/>,
     CreateCommand: () => <CreateCommand components={components}/>,
+    InstallCommand: () => <InstallCommand components={components}/>,
     LinkCommand: () => <LinkCommand components={components}/>,
     RunCommand: () => <RunCommand components={components}/>,
+    UninstallCommand: () => <UninstallCommand components={components}/>,
+    UpdateCommand: () => <UpdateCommand components={components}/>,
     VersionCommand: () => <VersionCommand components={components}/>
   },
   Components: {
     ComponentList: () => <ComponentList components={components}/>,
     WAppBarComponent: () => <WAppBarComponent components={components}/>,        
     WAvatarComponent: () => <WAvatarComponent components={components}/>,        
+    WBasicDialogComponent: () => <WBasicDialogComponent components={components}/>,  
     WButtonComponent: () => <WButtonComponent components={components}/>,
     WCardComponent: () => <WCardComponent components={components}/>,            
     WCheckboxComponent: () => <WCheckboxComponent components={components}/>,            
     WCircularProgressComponent: () => <WCircularProgressComponent components={components}/>,  
     WCollapseComponent: () => <WCollapseComponent components={components}/>,            
+    WDialogComponent: () => <WDialogComponent components={components}/>,
     WDividerComponent: () => <WDividerComponent components={components}/>,
     WDrawerComponent: () => <WDrawerComponent components={components}/>,
     WGridComponent: () => <WGridComponent components={components}/>,                    
@@ -199,6 +210,7 @@ const Mdx = {
     WLinearProgressComponent: () => <WLinearProgressComponent components={components}/>,    
     WListComponent: () => <WListComponent components={components}/>,
     WLoadingButtonComponent: () => <WLoadingButtonComponent components={components}/>,
+    WMessageDialogComponent: () => <WMessageDialogComponent components={components}/>,
     WMenuComponent: () => <WMenuComponent components={components}/>,    
     WNotificationBarComponent: () => <WNotificationBarComponent components={components}/>,    
     WPaperComponent: () => <WPaperComponent components={components}/>,    

@@ -1,0 +1,33 @@
+import WPlayground from '../../w-playground'
+import WBasicDialogExample from './w-basic-dialog-example'
+
+# WBasicDialog
+
+WBasicDialog @material-ui Dialog kullanılarak geliştirilmiştir. 
+Dialog içerisinde form ve daha detaylı dialoglar için kullanılabilir.
+
+### Ek Özellikler
+
+| Adı                 | Veri Tipi                                                     | Default | Açıklama                                                |
+|:--------------------|:--------------------------------------------------------------|:--------|:--------------------------------------------------------|
+| actions             | WDialogAction[]                                               |         | Dialoga eklenecek butonlar bu parametre ile verilebilir |
+| open                | boolean                                                       | false   | Dialogun açık olup olmama durumunu belirleyen değişken  |
+| title               | string                                                        | ''      | Dialogun bağlığı                                        |
+
+
+### Örnekler
+
+<WPlayground header="Temel Kullanım"code={
+`<WButton onClick={() => this.setState({isOpen: true})}>Dialogu Aç</WButton>
+<WBasicDialog 
+  title="Başlık"
+  open={this.state.isOpen}
+  actions={[
+    {text: 'Kapat', onClick: () => this.setState({isOpen: false})},
+    {text: 'Tamam', onClick: () => alert('Tamam tıklandı')},
+  ]}
+>
+  <WTextField label="Dialog içeriği"/>
+</WBasicDialog>`}>
+<WBasicDialogExample/>
+</WPlayground><br/>
