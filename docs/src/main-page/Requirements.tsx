@@ -35,12 +35,6 @@ export default class Requirements extends React.Component<any, any> {
               "https://nodejs.org/static/images/logo-hexagon-card.png"
             )}
             {this.renderRequirement(
-              ".Net Core SDK", 
-              "min version 2.1.0", 
-              "https://www.microsoft.com/net/learn/get-started/windows", 
-              "https://docs.microsoft.com/en-us/dotnet/images/hub/netcore.svg"
-            )}
-            {this.renderRequirement(
               "Visual Studio Code", 
               "min version 1.24.0", 
               "https://code.visualstudio.com/", 
