@@ -204,7 +204,7 @@ const Mdx = {
     WCheckboxComponent: () => <WCheckboxComponent components={components}/>,            
     WCircularProgressComponent: () => <WCircularProgressComponent components={components}/>,  
     WCollapseComponent: () => <WCollapseComponent components={components}/>,            
-    WDateTimePickerComponent: () => <WDateTimePickerComponent components={components}/>,
+    WDateTimePickerComponent: () => <WDateTimePickerComponentgit components={components}/>,
     WDatePickerComponent: () => <WDatePickerComponent components={components}/>,
     WDialogComponent: () => <WDialogComponent components={components}/>,
     WDividerComponent: () => <WDividerComponent components={components}/>,
