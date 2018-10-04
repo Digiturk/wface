@@ -430,23 +430,40 @@ const menuTree = [
           },
           {
             id: '3.4.2',
+            text: 'WDateTimePicker',
+            path: 'Components/WDateTimePicker',
+            mdx: Mdx.Components.WDateTimePickerComponent
+          },
+          {
+            id: '3.4.3',
+            text: 'WDatePicker',
+            path: 'Components/WDatePicker',
+            mdx: Mdx.Components.WDatePickerComponent
+          },
+          {
+            id: '3.4.4',
             text: 'WRadioGroup',
             path: 'Components/WRadioGroup',
             mdx: Mdx.Components.WRadioGroupComponent
           },
           {
-            id: '3.4.3',
+            id: '3.4.5',
             text: 'WSwitch',
             path: 'Components/WSwitch',
             mdx: Mdx.Components.WSwitchComponent
           },
           {
-            id: '3.4.4',
+            id: '3.4.6',
             text: 'WTextField',
             path: 'Components/WTextField',
             mdx: Mdx.Components.WTextFieldComponent
           },
-          
+          {
+            id: '3.4.7',
+            text: 'WTimePicker',
+            path: 'Components/WTimePicker',
+            mdx: Mdx.Components.WTimePickerComponent
+          },
         ]
       },
       {
