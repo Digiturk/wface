@@ -30,6 +30,8 @@ import WCardComponent from './components/components/layouts/w-card.mdx'
 import WCheckboxComponent from './components/components/inputs/w-checkbox.mdx'
 import WCircularProgressComponent from './components/components/progress/w-circular-progress.mdx'
 import WCollapseComponent from './components/components/layouts/w-collapse.mdx'
+import WDateTimePickerComponent from './components/components/inputs/w-date-time-picker.mdx'
+import WDatePickerComponent from './components/components/inputs/w-date-picker.mdx'
 import WDialogComponent from './components/components/dialogs/w-dialog.mdx'
 import WDividerComponent from './components/components/layouts/w-divider.mdx'
 import WDrawerComponent from './components/components/layouts/w-drawer.mdx'
@@ -48,6 +50,7 @@ import WSwipeableViewComponent from './components/components/layouts/w-swipeable
 import WSwitchComponent from './components/components/inputs/w-switch.mdx'
 import WTabsComponent from './components/components/layouts/w-tabs.mdx'
 import WTextFieldComponent from './components/components/inputs/w-text-field.mdx'
+import WTimePickerComponent from './components/components/inputs/w-time-picker.mdx'
 import WToolBarComponent from './components/components/bars/w-tool-bar.mdx'
 import WTypographyComponent from './components/components/others/w-typography.mdx'
 
@@ -201,6 +204,8 @@ const Mdx = {
     WCheckboxComponent: () => <WCheckboxComponent components={components}/>,            
     WCircularProgressComponent: () => <WCircularProgressComponent components={components}/>,  
     WCollapseComponent: () => <WCollapseComponent components={components}/>,            
+    WDateTimePickerComponent: () => <WDateTimePickerComponent components={components}/>,
+    WDatePickerComponent: () => <WDatePickerComponent components={components}/>,
     WDialogComponent: () => <WDialogComponent components={components}/>,
     WDividerComponent: () => <WDividerComponent components={components}/>,
     WDrawerComponent: () => <WDrawerComponent components={components}/>,
@@ -219,6 +224,7 @@ const Mdx = {
     WSwitchComponent: () => <WSwitchComponent components={components}/>,        
     WTabsComponent: () => <WTabsComponent components={components}/>,    
     WTextFieldComponent: () => <WTextFieldComponent components={components}/>,    
+    WTimePickerComponent: () => <WTimePickerComponent components={components}/>,
     WToolBarComponent: () => <WToolBarComponent components={components}/>,    
     WTypographyComponent: () => <WTypographyComponent components={components}/>,    
   }
