@@ -5,6 +5,9 @@
   "main": "index.ts",
   "author": "baran",
   "license": "ISC",
+  "dependencies": {
+    "react.di": "2.0.0"
+  },
   "peerDependencies": {
     "react": ">=16.4.1"
   }

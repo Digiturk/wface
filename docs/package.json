@@ -1,6 +1,6 @@
 {
     "name": "@wface/docs",
-    "version": "0.1.1",
+    "version": "0.2.0",
     "description": "",
     "scripts": {
         "build": "webpack",
@@ -20,6 +20,8 @@
         "react-element-to-jsx-string": "^14.0.1",
         "react-redux": "^5.0.7",
         "react-router-dom": "^4.3.1",
+        "react.di": "^2.0.0",
+        "reflect-metadata": "^0.1.12",
         "tslib": "^1.9.0",
         "webpack-cli": "^3.1.0"
     },

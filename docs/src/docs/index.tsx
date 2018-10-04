@@ -289,11 +289,19 @@ const menuTree = [
       },
       {
         id: '2.2',
+        text: 'Install',
+        path: 'WFaceCLI/InstallCommand',        
+        mdx: Mdx.WFaceCLI.InstallCommand,
+        prev: '2.1',
+        next: '2.3'
+      },
+      {
+        id: '2.3',
         text: 'Link',
         path: 'WFaceCLI/LinkCommand',        
         mdx: Mdx.WFaceCLI.LinkCommand,
-        prev: '2.1',
-        next: '2.3'
+        prev: '2.2',
+        next: '2.4'
       },
       {
         id: '2.3',
@@ -305,11 +313,26 @@ const menuTree = [
       },
       {
         id: '2.4',
+        text: 'Uninstall',
+        path: 'WFaceCLI/UninstallCommand',        
+        mdx: Mdx.WFaceCLI.UninstallCommand,
+        prev: '2.3',
+        next: '2.5'
+      },
+      {
+        id: '2.5',
+        text: 'Update',
+        path: 'WFaceCLI/UpdateCommand',        
+        mdx: Mdx.WFaceCLI.UpdateCommand,
+        prev: '2.4',
+        next: '2.6'
+      },
+      {
+        id: '2.7',
         text: 'Version',
         path: 'WFaceCLI/VersionCommand',        
         mdx: Mdx.WFaceCLI.VersionCommand,
-        prev: '2.3'        
-        
+        prev: '2.6'        
       }
     ]
   },
@@ -319,7 +342,7 @@ const menuTree = [
     subNodes: [
       {
         id: '3.0',
-        text: 'Bileşen Listesi',
+        text: 'Bileşen Kullanımı',
         path: 'Components/ComponentList',
         mdx: Mdx.Components.ComponentList
       },
@@ -371,30 +394,54 @@ const menuTree = [
           }
         ]
       },  
-      {
+      { 
         id: '3.3',
-        text: 'Inputlar',
+        text: 'Dialoglar',
         subNodes: [
           {
             id: '3.3.1',
+            text: 'WBasicDialog',
+            path: 'Components/WBasicDialog',
+            mdx: Mdx.Components.WBasicDialogComponent
+          },
+          {
+            id: '3.3.2',
+            text: 'WDialog',
+            path: 'Components/WDialog',
+            mdx: Mdx.Components.WDialogComponent
+          },
+          {
+            id: '3.3.3',
+            text: 'WMessageDialog',
+            path: 'Components/WMessageDialog',
+            mdx: Mdx.Components.WMessageDialogComponent
+          }
+        ]
+      },
+      {
+        id: '3.4',
+        text: 'Inputlar',
+        subNodes: [
+          {
+            id: '3.4.1',
             text: 'WCheckbox',
             path: 'Components/WCheckbox',
             mdx: Mdx.Components.WCheckboxComponent
           },
           {
-            id: '3.3.2',
+            id: '3.4.2',
             text: 'WRadioGroup',
             path: 'Components/WRadioGroup',
             mdx: Mdx.Components.WRadioGroupComponent
           },
           {
-            id: '3.3.3',
+            id: '3.4.3',
             text: 'WSwitch',
             path: 'Components/WSwitch',
             mdx: Mdx.Components.WSwitchComponent
           },
           {
-            id: '3.3.4',
+            id: '3.4.4',
             text: 'WTextField',
             path: 'Components/WTextField',
             mdx: Mdx.Components.WTextFieldComponent
@@ -403,53 +450,53 @@ const menuTree = [
         ]
       },
       {
-        id: '3.4',
+        id: '3.5',
         text: 'Layoutlar',
         subNodes: [
           {
-            id: '3.4.1',
+            id: '3.5.1',
             text: 'WCard',
             path: 'Components/WCard',
             mdx: Mdx.Components.WCardComponent
           },
           {
-            id: '3.4.2',
+            id: '3.5.2',
             text: 'WCollapse',
             path: 'Components/WCollapse',
             mdx: Mdx.Components.WCollapseComponent
           },
           {
-            id: '3.4.3',
+            id: '3.5.3',
             text: 'WDivider',
             path: 'Components/WDivider',
             mdx: Mdx.Components.WDividerComponent
           },
           {
-            id: '3.4.4',
+            id: '3.5.4',
             text: 'WDrawer',
             path: 'Components/WDrawer',
             mdx: Mdx.Components.WDrawerComponent
           },
           {
-            id: '3.4.5',
+            id: '3.5.5',
             text: 'WGrid',
             path: 'Components/WGrid',
             mdx: Mdx.Components.WGridComponent
           },
           {
-            id: '3.4.6',
+            id: '3.5.6',
             text: 'WPaper',
             path: 'Components/WPaper',
             mdx: Mdx.Components.WPaperComponent
           },
           {
-            id: '3.4.7',
+            id: '3.5.7',
             text: 'WSwipeableView',
             path: 'Components/WSwipeableView',
             mdx: Mdx.Components.WSwipeableViewComponent
           },
           {
-            id: '3.4.8',
+            id: '3.5.8',
             text: 'WTabs',
             path: 'Components/WTabs',
             mdx: Mdx.Components.WTabsComponent
@@ -457,17 +504,17 @@ const menuTree = [
         ]
       },
       {
-        id: '3.5',
+        id: '3.6',
         text: 'Listeler',
         subNodes: [
           {
-            id: '3.5.1',
+            id: '3.6.1',
             text: 'WList',
             path: 'Components/WList',
             mdx: Mdx.Components.WListComponent
           },
           {
-            id: '3.5.2',
+            id: '3.6.2',
             text: 'WMenu',
             path: 'Components/WMenu',
             mdx: Mdx.Components.WMenuComponent
@@ -475,17 +522,17 @@ const menuTree = [
         ]
       },
       {
-        id: '3.6',
+        id: '3.7',
         text: 'Media Bileşenleri',
         subNodes: [
           {
-            id: '3.6.1',
+            id: '3.7.1',
             text: 'WAvatar',
             path: 'Components/WAvatar',
             mdx: Mdx.Components.WAvatarComponent
           },
           {
-            id: '3.6.2',
+            id: '3.7.2',
             text: 'WIcon',
             path: 'Components/WIcon',
             mdx: Mdx.Components.WIconComponent
@@ -493,17 +540,17 @@ const menuTree = [
         ]
       },
       { 
-        id: '3.7',
+        id: '3.8',
         text: 'Progress Barlar',
         subNodes: [
           {
-            id: '3.7.1',
+            id: '3.8.1',
             text: 'WCircularProgress',
             path: 'Components/WCircularProgress',
             mdx: Mdx.Components.WCircularProgressComponent
           },
           {
-            id: '3.7.2',
+            id: '3.8.2',
             text: 'WLinearProgress',
             path: 'Components/WLinearProgress',
             mdx: Mdx.Components.WLinearProgressComponent
