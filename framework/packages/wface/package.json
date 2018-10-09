@@ -1,11 +1,11 @@
 {
   "name": "wface",
-  "version": "1.0.0",
-  "description": "",  
-  "author": "mehmet.baran",    
+  "version": "0.4.0",
+  "description": "",
+  "author": "mehmet.baran",
   "scripts": {
     "build": "yarn run clean-dist && webpack -p --config=configs/webpack/prod.js",
-    "clean-dist": "rm -f -r -d dist",    
+    "clean-dist": "rm -f -r -d dist",
     "start": "yarn run start-dev",
     "start-dev": "webpack-dev-server --config=configs/webpack/dev.js",
     "start-prod": "yarn run build && node express.js"
@@ -46,11 +46,14 @@
     "webpack-merge": "^4.1.4"
   },
   "dependencies": {
-    "@wface/container": "0.3.0",
+    "@wface/container": "0.4.0",
+    "chalk": "2.4.1",
+    "commander": "2.19.0",
     "es6-promise": "4.2.2",
-    "fs-extra": "^5.0.0"
+    "fs-extra": "^5.0.0",
+    "npm": "6.4.1"
   },
-  "bin": {
-    "create-react-ts-app": "./bin/create-react-ts-app.js"
+  "bin": {    
+    "wface": "./bin/index.js"
   }
 }

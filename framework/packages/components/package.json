@@ -1,14 +1,14 @@
 {
   "name": "@wface/components",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "All wface components",
   "author": "baran",
   "main": "index.ts",
   "license": "ISC",
   "dependencies": {
     "@material-ui/core": "^3.1.2",
-    "@wface/ioc": "^0.3.0",
-    "@wface/store": "^0.3.0",
+    "@wface/ioc": "^0.4.0",
+    "@wface/store": "^0.4.0",
     "classnames": "^2.2.5",
     "formik": "1.3.0",
     "material-table": "^0.7.0",

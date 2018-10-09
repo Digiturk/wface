@@ -1,0 +1,22 @@
+import * as React from 'react';
+import * as WFace from '@wface/components';
+
+export interface %className%State {
+}
+
+export class %className% extends React.Component<WFace.BaseScreenProps, %className%State> {
+    constructor(props: WFace.BaseScreenProps) {
+        super(props);
+
+        this.state = this.props.screenData.state || {
+        }
+    }
+
+    public render() {
+        return (        
+            <WFace.WTypography>
+                %className% works
+            </WFace.WTypography>
+        );
+    }
+}

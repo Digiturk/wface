@@ -28,7 +28,10 @@ exec(`mkdir ${process.argv[2]} && cd ${process.argv[2]}`,
     delete newPckJson.license;
     delete newPckJson.bugs;
     delete newPckJson.bin;
+    delete newPckJson.dependencies["chalk"];
+    delete newPckJson.dependencies["commander"];
     delete newPckJson.dependencies["fs-extra"];
+    delete newPckJson.dependencies["npm"];
     const data = JSON.stringify(newPckJson, null, "\t");
     fs.writeFile(`${process.argv[2]}/package.json`, data, err2 => err2 || true);
 
