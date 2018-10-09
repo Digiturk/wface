@@ -1,8 +1,8 @@
 import { withStyles } from '@material-ui/core';
-import Close from '@material-ui/icons/Close';
 import * as classNames from 'classnames';
 import * as React from 'react';
 import { WIconButton } from '../../buttons/w-icon-button';
+import { WIcon } from '../../medias/w-icon';
 import { WGrid } from '../../layouts/w-grid';
 import { WPaper } from '../../layouts/w-paper';
 import { WTypography } from '../../others/w-typography';
@@ -36,7 +36,7 @@ class WNotificationBarInner extends React.Component<WNotificationBarProps, {}> {
           <WGrid item xs={1} style={{ height: '100%' }}>
             <WIconButton style={{ margin: 0, padding: 0 }}
               onClick={() => this.props.onCloseClick && this.props.onCloseClick()}>
-              <Close className={classes.whiteText} style={{ fontSize: 15 }} />
+              <WIcon className={classes.whiteText} style={{ fontSize: 15 }}>close</WIcon>
             </WIconButton>
           </WGrid>
         </WGrid>

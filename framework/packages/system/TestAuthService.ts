@@ -1,7 +1,5 @@
 import { IAuthService, IMenuTreeItem } from '@wface/ioc';
-import { Injectable } from 'react.di';
 
-@Injectable
 export default class TestAuthService implements IAuthService {
 
   login(username: string, password: string, values?: any): Promise<{ displayName: string; token?: string; }> {

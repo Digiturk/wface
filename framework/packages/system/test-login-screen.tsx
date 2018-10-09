@@ -11,7 +11,6 @@ import { UserContext, UserContextActions, WStore } from '@wface/store';
 import * as classNames from 'classnames';
 import * as React from "react";
 import { connect } from 'react-redux';
-import { Inject } from 'react.di';
 
 
 //#endregion
@@ -34,9 +33,6 @@ type WLoginPageProps = WStore & {
 }
 
 class TextLoginScreen extends React.Component<WLoginPageProps, WLoginPageState> {
-
-  @Inject('IAuthService')
-  private authService: IAuthService
 
   constructor(props: any) {
     super(props);

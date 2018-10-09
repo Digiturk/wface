@@ -1,13 +1,15 @@
 import IAuthService, { IMenuTreeItem } from '../interfaces/IAuthService';
-import { Inject, Injectable } from 'react.di';
 
-@Injectable
 export default class DefaultAuthService implements IAuthService {
   
-  constructor(
-    @Inject('IAuthServiceInner') private _Service: IAuthService,
-    @Inject('onLogin') private _OnLogin: (username:string, displayName: string, token?: string) => void,
-  ) { }
+  private _Service: IAuthService;
+  private _OnLogin: (username:string, displayName: string, token?: string) => void;
+
+  constructor(service: IAuthService, onLogin: (username:string, displayName: string, token?: string) => void,
+  ) { 
+    this._Service = service;
+    this._OnLogin = onLogin;
+  }
 
   login(username: string, password: string, values?: any): Promise<{ displayName: string, token?: string }> {
     return new Promise((resolve, reject) => {

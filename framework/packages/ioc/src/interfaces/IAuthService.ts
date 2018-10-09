@@ -8,7 +8,6 @@ export interface IMenuTreeItem {
   text: string;
   icon?: string;
   divideBefore?: boolean;
-  project?: string;
   screen?: string;
   subNodes?: IMenuTreeItem[];
   isDefaultScreen?: boolean;

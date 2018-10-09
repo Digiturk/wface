@@ -1,12 +1,12 @@
 import { WGrid, WPaper, WTypography } from '@wface/components';
-import { IMenuTreeItem, MenuTreeUtil, IScreenProvider, IConfiguration } from '@wface/ioc';
+import { IMenuTreeItem, MenuTreeUtil, IConfiguration } from '@wface/ioc';
 import { AppContextActions, WStore, ScreenData } from '@wface/store';
 import * as React from 'react';
 import { connect } from 'react-redux';
 
 export interface WScreenWrapperProps {
-  screen?: ScreenData,
-  screenProvider: IScreenProvider
+  screen?: ScreenData;
+  configuration: IConfiguration;
 }
 
 export interface DispatchProps {
@@ -16,7 +16,7 @@ export interface DispatchProps {
 
 class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & DispatchProps, any> {
 
-  private screenRef:any;
+  private screenRef:any;  
 
   constructor(props) {
     super(props);
@@ -44,7 +44,7 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
   }
 
   openScreen = (project: string, screen: string, initialValues: Object):boolean => {
-    const item = MenuTreeUtil.findByName(this.props.appContext.menuTree, project, screen);
+    const item = MenuTreeUtil.findByName(this.props.appContext.menuTree, screen);
     if(!item) {
       return false;
     }
@@ -54,7 +54,7 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
   }
 
   public render() {
-    const Screen = this.props.screenProvider.getScreen(this.props.screen.menuTreeItem.project, this.props.screen.menuTreeItem.screen) as any;
+    const Screen = this.props.configuration.screenList[this.props.screen.menuTreeItem.screen] as any;
     return (
       Screen ?
         <Screen

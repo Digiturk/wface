@@ -6,10 +6,8 @@ import {
   Input, InputLabel,
   InputAdornment, TextField
 } from '@material-ui/core';
-import {
-  Visibility, VisibilityOff
-} from '@material-ui/icons'
 import { WIconButton } from '../../buttons/w-icon-button';
+import { WIcon } from '../../medias/w-icon'
 import { TextFieldProps } from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
 import { AppContextActions, WStore } from '@wface/store'
@@ -23,14 +21,14 @@ export interface WTextFieldButton {
   onClick(event:any, val: String): void;
 }
 
-export interface WTextFieldProps extends TextFieldProps {
-  defaultValue?: string;
-  leftButtons?: WTextFieldButton[];
-  rightButtons?: WTextFieldButton[];
-}
-
 export interface DispatchProps {
   saveScreenAny: (key: string, value: any) => void
+}
+
+export type WTextFieldProps = TextFieldProps & {
+  defaultValue?: string;
+  leftButtons?: WTextFieldButton[];
+  rightButtons?: WTextFieldButton[];  
 }
 
 export interface WTextFieldState {
@@ -116,7 +114,7 @@ class WTextFieldInner extends React.Component<WTextFieldProps & WStore & Dispatc
 
     if (this.props.type == "password") {
       let action = {
-        icon: this.state.showPassword ? <VisibilityOff /> : <Visibility />,
+        icon: <WIcon>{this.state.showPassword ? "visibility_off" : "visibility"}</WIcon>,
         onClick: function (e, value: string) {
           this.setState({ showPassword: !this.state.showPassword });
         }

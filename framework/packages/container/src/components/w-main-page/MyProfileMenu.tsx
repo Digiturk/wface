@@ -1,7 +1,4 @@
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import ExitToApp from '@material-ui/icons/ExitToApp';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { WIconButton, WListItemIcon, WListItemText, WMenu, WMenuItem } from '@wface/components';
+import { WIcon, WIconButton, WListItemIcon, WListItemText, WMenu, WMenuItem } from '@wface/components';
 import { UserContextActions, WStore } from '@wface/store';
 import * as React from 'react';
 import { connect } from 'react-redux';
@@ -38,7 +35,7 @@ class MyProfileMenu extends React.Component<MyProfileMenuProps, MyProfileMenuSta
           onClick={(event) => this.setState({ userMenuAnchor: event.currentTarget })}
           color="inherit"
         >
-          <MoreVertIcon />
+          <WIcon>more_vert</WIcon>
         </WIconButton>
         <WMenu
           id="menu-appbar"
@@ -56,13 +53,13 @@ class MyProfileMenu extends React.Component<MyProfileMenuProps, MyProfileMenuSta
         >
           <WMenuItem>
             <WListItemIcon>
-              <AccountCircle />
+              <WIcon>account_circle</WIcon>
             </WListItemIcon>
             <WListItemText inset primary="Profilim" />
           </WMenuItem>
           <WMenuItem onClick={this.logoutClicked}>
             <WListItemIcon>
-              <ExitToApp />
+              <WIcon>exit_to_app</WIcon>
             </WListItemIcon>
             <WListItemText inset primary="Çıkış" />
           </WMenuItem>

@@ -14,10 +14,10 @@ export default class MenuTreeUtil {
     return result;
   }
 
-  public static findByName(menuTree: IMenuTreeItem[], project: String, screen: String) {
+  public static findByName(menuTree: IMenuTreeItem[], screen: String) {
     let result: IMenuTreeItem;
     this.menuTreeForEach(menuTree, item => {
-      if (item.project == project && item.screen == screen) {
+      if (item.screen == screen) {
         result = item;
         return true;
       }

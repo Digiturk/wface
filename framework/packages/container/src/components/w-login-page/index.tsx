@@ -11,7 +11,6 @@ import { UserContext, UserContextActions, WStore } from '@wface/store';
 import * as classNames from 'classnames';
 import * as React from "react";
 import { connect } from 'react-redux';
-import { Inject } from 'react.di';
 
 
 //#endregion
@@ -28,14 +27,10 @@ interface WLoginPageState {
 
 type WLoginPageProps = WStore & {
   classes: any
-  login: any,
-  history: any
+  authService: IAuthService
 }
 
 class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> {
-
-  @Inject('IAuthService')
-  private authService: IAuthService
 
   constructor(props: any) {
     super(props);
@@ -52,15 +47,9 @@ class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> {
 
   btnLoginClick() {
     this.setState({ isLoading: true }, () => {
-      this.authService.login(this.state.username, this.state.password)
+      this.props.authService.login(this.state.username, this.state.password)
         .then(result => {
           this.setState({ loadingButtonStatus: "success" }, () => {
-            // this.props.login({
-            //   username: this.state.username,
-            //   displayName: '',
-            //   token: ''
-            // });
-            // this.props.history.replace('/main');
           });
         }).
         catch(message => {

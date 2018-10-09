@@ -5,9 +5,6 @@ import {
   WCircularProgress, WTypography, WIconButton, WIcon,
 } from '@wface/components';
 import { withStyles } from '@material-ui/core/styles';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-import Cached from '@material-ui/icons/Cached';
 import Collapse from '@material-ui/core/Collapse';
 import { IMenuTreeItem } from '@wface/ioc';
 
@@ -70,7 +67,7 @@ class NavList extends React.Component<NavListProps & { classes: any }, NavListSt
               <WIcon>{item.icon}</WIcon>
             </WListItemIcon>
             <WListItemText inset primary={item.text} />
-            {open ? <ExpandLess /> : <ExpandMore />}
+            <WIcon>{open ? "expand_less" : "expand_more"}</WIcon>
           </WListItem>
           <Collapse in={open} timeout="auto">
             <WList component="div" disablePadding>

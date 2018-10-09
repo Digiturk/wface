@@ -9,8 +9,7 @@ export interface WFormProps {
 }
 
 export class WForm extends React.Component<WFormProps, {}> {
-  public render() {
-
+  public render() {    
     return (
       <Formik 
         {...this.props} 

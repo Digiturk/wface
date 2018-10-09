@@ -1,16 +1,13 @@
 //#region imports 
 
 import { withStyles } from '@material-ui/core/styles';
-import { Close } from "@material-ui/icons";
-import MenuIcon from '@material-ui/icons/Menu';
-import { WAppBar, WDrawer, WGrid, WIconButton, WTab, WTabs, WToolBar, WTypography } from '@wface/components';
-import { IAuthService, IMenuTreeItem, MenuTreeUtil, IConfiguration, IScreenProvider } from "@wface/ioc";
+import { WAppBar, WDrawer, WGrid, WIcon, WIconButton, WTab, WTabs, WToolBar, WTypography } from '@wface/components';
+import { IAuthService, IMenuTreeItem, MenuTreeUtil, IConfiguration } from "@wface/ioc";
 import { AppContextActions, WStore } from '@wface/store';
 import * as classNames from 'classnames';
 import * as React from "react";
 import { connect } from 'react-redux';
 import { Route, Switch, withRouter, Redirect } from 'react-router';
-import { Inject } from 'react.di';
 import WScreenWrapper from '../w-screen-wrapper';
 import MyProfileMenu from './MyProfileMenu';
 import NavList from './NavList';
@@ -20,7 +17,7 @@ import NavList from './NavList';
 export interface WMainPageProps {
   classes: any,
   history?: any,
-  screenProvider: IScreenProvider
+  configuration: IConfiguration
 }
 
 export interface DispatchProps {
@@ -34,13 +31,6 @@ interface WMainPageState {
 }
 
 class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps, WMainPageState> {
-
-  @Inject("IConfiguration")
-  private configuration: IConfiguration;
-
-  @Inject("IAuthService")
-  private authService: IAuthService;
-
   constructor(props:any, context:any) {
     super(props, context);
 
@@ -50,7 +40,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
   }
 
   componentWillMount() {
-    this.authService.getMenuTree()
+    this.props.configuration.authService.getMenuTree()
       .then(menuTree => {
         this.props.setMenuTree(menuTree);          
         
@@ -98,7 +88,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
   //#region Methods 
 
   getScreenUrl(screen: IMenuTreeItem) {
-    return "/" + screen.project + "/" + screen.screen;
+    return "/" + screen.screen;
   }
 
   componentDidUpdate() {    
@@ -128,11 +118,11 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
               onClick={this.handleDrawerChange.bind(this)}
               className={classes.menuButton}
             >
-              <MenuIcon />
+              <WIcon>menu</WIcon>
             </WIconButton>
             <span>
               <WTypography variant="title" color="inherit" noWrap className={classes.flex}>
-                {this.configuration.getProjectName()}
+                {this.props.configuration.projectName}
               </WTypography>
               <WTypography variant="caption" color="inherit" noWrap className={classes.flex} style={{color: '#C5CAE9'}}>
                 {" @WFace"}
@@ -157,7 +147,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
                       <WGrid item xs={2} style={{ paddingRight: 10 }} >
                         <WIconButton
                           onClick={(e) => this.handleTabCloseButtonClick(e, screen.menuTreeItem)}>
-                          <Close className={classes.whiteText} style={{ fontSize: 15 }} />
+                          <WIcon className={classes.whiteText} style={{ fontSize: 15 }}>close</WIcon>
                         </WIconButton>
                       </WGrid>
                     }
@@ -203,7 +193,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
                   {
                     (() => {
                       return this.props.appContext.openedScreens.map(screen => {
-                        const screenComponent = <WScreenWrapper screen={screen} screenProvider={this.props.screenProvider} />
+                        const screenComponent = <WScreenWrapper screen={screen} configuration={this.props.configuration}/>
                         const route = <Route key={screen.menuTreeItem.id} path={(this.props as any).match.url + this.getScreenUrl(screen.menuTreeItem)} render={props => { return screenComponent; }} />
                         return route;
                       });

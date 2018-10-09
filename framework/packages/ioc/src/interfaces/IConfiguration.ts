@@ -1,15 +1,13 @@
-import { Component } from 'react';
-import IProjectConfiguration from './IProjectConfiguration';
-import IBusinessService from './IBusinessService';
-import IAuthService from './IAuthService';
+import { IAuthService, IBusinessService } from '@wface/ioc';
 
 export default interface IConfiguration {
-  projects: {[key: string]: IProjectConfiguration};
+  title?: string,
+  projectName: string,
+  favicon?: string,
 
-  getTitle: () => string;
-  getProjectName: () => string;
-  getFavIcon: () => string;    
-  getLoginScreen: () => any;
-  getBusinessServiceType: () => any;
-  getAuthServiceType: () => any;
+  screenList: { [key: string]: any };
+  loginScreen?: any;
+
+  authService: IAuthService;
+  businessService: IBusinessService;
 }

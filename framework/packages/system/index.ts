@@ -1,4 +1,4 @@
-import { IProjectConfiguration, IBusinessService, IAuthService } from '@wface/ioc'
+import { IBusinessService, IAuthService } from '@wface/ioc'
 import TestLoginScreen from './test-login-screen';
 import TestAuthService from './TestAuthService';
 
@@ -16,6 +16,6 @@ const config = {
   loginScreen: null,
   authServiceType: null,
   businessServiceType: null,
-} as IProjectConfiguration;
+};
 
 export default config;
