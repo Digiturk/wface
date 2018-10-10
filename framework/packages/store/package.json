@@ -6,7 +6,7 @@
   "author": "baran",
   "license": "ISC",
   "dependencies": {
-    "@wface/ioc": "^0.4.0",
-    "typesafe-actions": "^2.0.4"
+    "@wface/ioc": "0.4.0",
+    "typesafe-actions": "2.0.4"
   }
 }

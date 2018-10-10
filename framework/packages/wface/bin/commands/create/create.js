@@ -35,7 +35,7 @@ const create = {
 
     inquirer.prompt(questions)
       .then(function (answers) {
-        const dir = options.dir + "/src/" + answers.name;
+        const dir = answers.name;
         if (fs.existsSync(dir)) {
           console.log(chalk.red("Error: ") + "folder is already exist. Please use another name or delete old folder.")
           return;
@@ -51,7 +51,7 @@ const create = {
         !fs.existsSync(dir + "/index.tsx") && fileSystem.writeFileSync(dir + "/index.tsx", fileText);
 
         console.log(chalk.green("Screen code created successfully."));
-        console.log(chalk.yellow("WARNING! Don't forget add your screen to index.ts file to export!"));
+        console.log(chalk.yellow("WARNING! Don't forget add your screen to wface.config.ts file to export!"));
       })
       .catch(function (err) {
         console.log(err);
@@ -99,7 +99,8 @@ const create = {
         delete newPckJson.bin;
         delete newPckJson.dependencies["chalk"];
         delete newPckJson.dependencies["commander"];
-        delete newPckJson.dependencies["fs-extra"];
+        delete newPckJson.dependencies["deasync"];
+        delete newPckJson.dependencies["fs-extra"];      
         delete newPckJson.dependencies["npm"];
         const data = JSON.stringify(newPckJson, null, "\t");
         fs.writeFileSync(`${answers.name}/package.json`, data);

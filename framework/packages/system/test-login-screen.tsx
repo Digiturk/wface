@@ -105,7 +105,7 @@ class TextLoginScreen extends React.Component<WLoginPageProps, WLoginPageState> 
                     color="primary"
                   >
                     <img
-                      src="./assets/login-logo.png" />
+                      src="./assets/wface/login-logo.png" />
                   </WTypography>
 
                   {this.state.showNotification &&

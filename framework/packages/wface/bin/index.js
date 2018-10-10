@@ -6,16 +6,9 @@
  *
  */
 const program = require('commander'),
-    chalk = require("chalk"),
-    pkg = require('../package.json');
+    chalk = require("chalk");
 const     
     create = require('./commands/create/create').default,
-    install = require('./commands/install').default,
-    link = require('./commands/link').default,
-    run = require('./commands/run').default,
-    uninstall = require('./commands/uninstall').default,
-    update = require('./commands/update').default,
-    unlink = require('./commands/unlink').default,
     version = require('./commands/version').default;
 
 /*****************************************************************************************************************/
@@ -38,12 +31,6 @@ program
     });   
 
 
-program.command("install").action(() => { install(); });     
-program.command("link").action(() => { link(); });     
-program.command("run").action(() => { run(); });     
-program.command("uninstall").action(() => { uninstall(); });
-program.command("update").action(() => { update(); });
-program.command("unlink").action(() => { unlink(); });
 program.command("version").action(() => { version(); });     
    
 /*****************************************************************************************************************/

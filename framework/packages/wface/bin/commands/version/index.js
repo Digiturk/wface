@@ -6,23 +6,21 @@ const _ = require("lodash");
 const npm = require("npm");
 
 function version() {
-  // const wfaceDir = path.join(process.argv[1], '../../../');
-  const wfaceDir = path.join(process.env.APPDATA, "npm/node_modules/@wface");
+  const wfaceDir = path.join(process.cwd(), "node_modules");
+  const global = path.join(process.env.APPDATA, "npm/node_modules");
 
   console.log();
-  logPackage("@wface/cli", path.join(wfaceDir, "cli/package.json"));
-  logPackage("@wface/client-app", path.join(wfaceDir, "client-app/package.json"));  
-  logPackage("@wface/components", path.join(wfaceDir, "client-app/node_modules/@wface/components/package.json"));  
-  logPackage("@wface/container", path.join(wfaceDir, "client-app/node_modules/@wface/container/package.json"));  
-  logPackage("@wface/ioc", path.join(wfaceDir, "client-app/node_modules/@wface/ioc/package.json"));  
-  logPackage("@wface/store", path.join(wfaceDir, "client-app/node_modules/@wface/store/package.json"));  
-  logPackage("@wface/system", path.join(wfaceDir, "client-app/node_modules/@wface/system/package.json"));  
-  logPackage("@wface/server-app", path.join(wfaceDir, "server-app/package.json")); 
+  logPackage("wface", path.join(global, "wface/package.json"));  
+  logPackage("@wface/components", path.join(wfaceDir, "@wface/components/package.json"));  
+  logPackage("@wface/container", path.join(wfaceDir, "@wface/container/package.json"));  
+  logPackage("@wface/ioc", path.join(wfaceDir, "@wface/ioc/package.json"));  
+  logPackage("@wface/store", path.join(wfaceDir, "@wface/store/package.json"));  
+  logPackage("@wface/system", path.join(wfaceDir, "@wface/system/package.json"));   
   
   console.log();
-  logPackage("react", path.join(wfaceDir, "client-app/node_modules/react/package.json")); 
-  logPackage("redux", path.join(wfaceDir, "client-app/node_modules/redux/package.json")); 
-  logPackage("@material-ui/core", path.join(wfaceDir, "client-app/node_modules/@material-ui/core/package.json")); 
+  logPackage("react", path.join(wfaceDir, "react/package.json")); 
+  logPackage("redux", path.join(wfaceDir, "redux/package.json")); 
+  logPackage("@material-ui/core", path.join(wfaceDir, "@material-ui/core/package.json")); 
 
 }
 
