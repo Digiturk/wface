@@ -1,11 +1,11 @@
 {
-  "name": "@wface/ioc",
-  "version": "0.4.7",
-  "description": "Contains all dependent interfaces and their default implementations",
-  "main": "index.ts",
-  "author": "baran",
-  "license": "ISC",
-  "dependencies": {
-    "react": "16.5.2"
-  }
+	"name": "@wface/ioc",
+	"version": "0.4.9",
+	"description": "Contains all dependent interfaces and their default implementations",
+	"main": "index.ts",
+	"author": "baran",
+	"license": "ISC",
+	"dependencies": {
+		"react": "16.5.2"
+	}
 }
