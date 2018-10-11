@@ -14,11 +14,6 @@ import Versions from './get-started/versions.mdx'
 
 import CommandList from './cli/command-list.mdx'
 import CreateCommand from './cli/commands/create.mdx'
-import InstallCommand from './cli/commands/install.mdx'
-import LinkCommand from './cli/commands/link.mdx'
-import RunCommand from './cli/commands/run.mdx'
-import UninstallCommand from './cli/commands/uninstall.mdx'
-import UpdateCommand from './cli/commands/update.mdx'
 import VersionCommand from './cli/commands/version.mdx'
 
 import ComponentList from './components/component-list.mdx'
@@ -187,11 +182,6 @@ const Mdx = {
   WFaceCLI: {
     CommandList: () => <CommandList components={components}/>,
     CreateCommand: () => <CreateCommand components={components}/>,
-    InstallCommand: () => <InstallCommand components={components}/>,
-    LinkCommand: () => <LinkCommand components={components}/>,
-    RunCommand: () => <RunCommand components={components}/>,
-    UninstallCommand: () => <UninstallCommand components={components}/>,
-    UpdateCommand: () => <UpdateCommand components={components}/>,
     VersionCommand: () => <VersionCommand components={components}/>
   },
   Components: {
@@ -204,7 +194,7 @@ const Mdx = {
     WCheckboxComponent: () => <WCheckboxComponent components={components}/>,            
     WCircularProgressComponent: () => <WCircularProgressComponent components={components}/>,  
     WCollapseComponent: () => <WCollapseComponent components={components}/>,            
-    WDateTimePickerComponent: () => <WDateTimePickerComponentgit components={components}/>,
+    WDateTimePickerComponent: () => <WDateTimePickerComponent components={components}/>,
     WDatePickerComponent: () => <WDatePickerComponent components={components}/>,
     WDialogComponent: () => <WDialogComponent components={components}/>,
     WDividerComponent: () => <WDividerComponent components={components}/>,

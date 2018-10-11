@@ -13,12 +13,10 @@ export default class Usage extends React.Component<any, any> {
           <WFace.WList>
             <Command command="wface create project" desc="Yeni proje oluştur"/>            
             <Command command="cd <proje-adi>" desc="Proje dizinine git"/>            
-            <Command command="wface create screen" desc="Projeye ekran ekle"/>            
-            <Command command="wface link" desc="Projeyi lokalde çalışan wface uygulamasına linkle"/>            
-            <Command command="wface run" desc="Oşuşturduğumuz ekranı tarayıcıda görmek için wface uygulamsını çalıştır"/>            
+            <Command command="npm start" desc="Oluşturduğumuz ekranı tarayıcıda görmek için wface uygulamasını çalıştır"/>
           </WFace.WList>
           <WFace.WTypography variant="caption">
-            Bundan sonra oluşturduğunuz ekrana ait kodları istediğiniz gibi geliştirebilirsiniz. 
+            Bundan sonra kendi ekranlarınızı geliştirebilirsiniz. 
           </WFace.WTypography>
         </WFace.WCardContent>
       </WFace.WCard>
