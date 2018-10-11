@@ -13,5 +13,5 @@ export interface IMenuTreeItem {
   isDefaultScreen?: boolean;
   notClosable?: boolean;
   hideOnNavigationList?: boolean;
-  initialValues?: Object;
+  initialValues?: any;
 }

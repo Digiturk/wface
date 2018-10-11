@@ -21,6 +21,11 @@ export default class AuthService implements IAuthService {
     return new Promise((resolve, reject) => {
       const result:IMenuTreeItem[] = [];
       let id = 0;
+      result.push({
+        id: (++id).toString(),
+        text: 'DemoScreen',
+        screen: 'DemoScreen'
+      })
       setTimeout(() => resolve(result), 1200);
     });
   }

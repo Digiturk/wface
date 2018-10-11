@@ -80,36 +80,39 @@ const create = {
         }
 
         const packageJson = require('../../../package.json');
-        const filesToCopy = ['.babelrc', '.gitignore', 'index.tsx', 'tsconfig.json'];
-        const foldersToCopy = ['assets', 'configs', 'public', 'src'];        
+        const filesToCopy = ['index.tsx', 'tsconfig.json'];
+        const foldersToCopy = ['assets', 'configs', 'src'];
 
         // create folder and initialize npm
 
 
         // replace the default scripts, with the webpack scripts in package.json
-        let newPckJson = { ...packageJson };
+        let newPckJson = {};
         newPckJson.name = answers.name;
-        newPckJson.version = "1.0.0";
-        delete newPckJson.homepage;
-        delete newPckJson.repository;
-        delete newPckJson.keywords;
-        delete newPckJson.author;
-        delete newPckJson.license;
-        delete newPckJson.bugs;
-        delete newPckJson.bin;
+        newPckJson.version = "0.1.0";
+        newPckJson.scripts = {...packageJson.scripts}
+        newPckJson.devDependencies = {...packageJson.devDependencies}
+        newPckJson.dependencies = {...packageJson.dependencies}
         delete newPckJson.dependencies["chalk"];
         delete newPckJson.dependencies["commander"];
         delete newPckJson.dependencies["deasync"];
-        delete newPckJson.dependencies["fs-extra"];      
+        delete newPckJson.dependencies["fs-extra"];     
+        delete newPckJson.dependencies["inquirer"];              
         delete newPckJson.dependencies["npm"];
         const data = JSON.stringify(newPckJson, null, "\t");
         fs.writeFileSync(`${answers.name}/package.json`, data);
         console.log(chalk.green("package.json created..."));
 
+        fs.writeFileSync(`${answers.name}/.gitignore`, "node_modules\npackage-lock.json");
+        console.log(chalk.green(".gitignore created..."));
+
         for (let i = 0; i < filesToCopy.length; i += 1) {
-          fs.createReadStream(path.join(__dirname, `../../../${filesToCopy[i]}`))
-            .pipe(fs.createWriteStream(`${answers.name}/${filesToCopy[i]}`));          
-          console.log(chalk.green(filesToCopy[i] + " created..."));
+          const filePath = path.join(__dirname, `../../../${filesToCopy[i]}`);
+          if(fs.existsSync(filePath)) {
+            fs.createReadStream(filePath)
+              .pipe(fs.createWriteStream(`${answers.name}/${filesToCopy[i]}`));          
+            console.log(chalk.green(filesToCopy[i] + " created..."));
+          }          
         }
         
         for (let i = 0; i < foldersToCopy.length; i++) {
@@ -117,7 +120,7 @@ const create = {
           console.log(chalk.green(foldersToCopy[i] + " folder created..."));
         }
 
-        console.log("Installling dependencies. This process could take a few minutes...");
+        console.log("Installing dependencies. This process could take a few minutes...");
         childProcess.execSync('npm install', {
           stdio: [0,1,2],
           cwd: answers.name 

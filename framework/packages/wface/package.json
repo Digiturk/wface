@@ -1,6 +1,6 @@
 {
   "name": "wface",
-  "version": "0.4.0",
+  "version": "0.4.7",
   "description": "",
   "author": "mehmet.baran",
   "scripts": {
@@ -46,12 +46,14 @@
     "webpack-merge": "4.1.4"
   },
   "dependencies": {
-    "@wface/container": "0.4.0",
+    "@wface/container": "0.4.7",
+    "@wface/ioc": "0.4.7",
     "chalk": "2.4.1",
     "commander": "2.19.0",
     "deasync": "0.1.13",
     "es6-promise": "4.2.2",
     "fs-extra": "5.0.0",
+    "inquirer": "6.2.0",
     "lodash": "4.17.11",
     "npm": "6.4.1"
   },

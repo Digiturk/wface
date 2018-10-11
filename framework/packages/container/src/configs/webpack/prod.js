@@ -14,4 +14,8 @@ module.exports = merge(commonConfig, {
   },
   devtool: 'source-map',
   plugins: [],
+  externals: {
+    'react': 'React',
+    'react-dom': 'ReactDOM',
+  },
 });

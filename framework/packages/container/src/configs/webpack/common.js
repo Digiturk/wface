@@ -4,6 +4,24 @@ const {CheckerPlugin} = require('awesome-typescript-loader');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const babelQuery = {
+  "presets": [
+    ["@babel/preset-env", {"modules": false}],
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    "react-hot-loader/babel"
+  ],
+  "env": { 
+    "production": {
+      "presets": ["minify"]
+    },
+    "test": {
+      "presets": ["@babel/preset-env", "@babel/preset-react"]
+    }
+  }
+}
+
 module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
@@ -13,12 +31,24 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        use: ['babel-loader', 'source-map-loader'],
+        use: [
+          { 
+            loader: 'babel-loader',
+            query: babelQuery
+          },
+          'source-map-loader'
+        ],
         exclude: /node_modules/,
       },
       {
         test: /\.tsx?$/,
-        use: ['babel-loader', 'awesome-typescript-loader'],
+        use: [ 
+          { 
+          loader: 'babel-loader',
+          query: babelQuery
+          },
+          'awesome-typescript-loader'
+        ],
       },
       {
         test: /\.css$/,
@@ -46,10 +76,7 @@ module.exports = {
     new StyleLintPlugin(),
     new HtmlWebpackPlugin({template: resolve(__dirname, '../../public/index.html')}),
   ],
-  externals: {
-    'react': 'React',
-    'react-dom': 'ReactDOM',
-  },
+  
   performance: {
     hints: false,
   },

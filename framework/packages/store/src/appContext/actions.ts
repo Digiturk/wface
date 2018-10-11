@@ -8,7 +8,7 @@ const SAVE_SCREEN_STATE = 'appContext/SAVE_SCREEN_STATE'
 const SAVE_SCREEN_ANY = 'appContext/SAVE_SCREEN_ANY'
 
 const setMenuTree = createStandardAction(SET_MENU_TREE)<IMenuTreeItem[]>();
-const openScreen = createStandardAction(OPEN_SCREEN)<{menuTreeItem: IMenuTreeItem, initialValues?: Object}>();
+const openScreen = createStandardAction(OPEN_SCREEN)<{menuTreeItem: IMenuTreeItem, initialValues?: any}>();
 const closeScreen = createStandardAction(CLOSE_SCREEN)<IMenuTreeItem>();
 const saveScreenState = createStandardAction(SAVE_SCREEN_STATE)<{screenId: string, state: any}>();
 const saveScreenAny = createStandardAction(SAVE_SCREEN_ANY)<{key: string, value: any}>();

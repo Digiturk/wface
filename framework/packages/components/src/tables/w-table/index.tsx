@@ -1,6 +1,6 @@
 import * as React from 'react'
-import MaterialTable from 'material-table'
-const X = require('material-table')
+// import MaterialTable from 'material-table'
+const MaterialTable = require('material-table')
 
 export interface WTableAction {
   icon: string;
@@ -14,7 +14,7 @@ export interface WTableColumn {
   isNumeric?: boolean;
   field?: string;
   lookup?: object;
-  render?: (data: object) => React.Component;
+  render?: (data: any) => any;
   title: string;
 }
 

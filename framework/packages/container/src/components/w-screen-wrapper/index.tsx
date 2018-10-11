@@ -11,7 +11,7 @@ export interface WScreenWrapperProps {
 
 export interface DispatchProps {
   saveScreenState: (screenId: string, state: any) => void;
-  openScreen: (menuTreeItem: IMenuTreeItem, initialValues?: Object) => void;
+  openScreen: (menuTreeItem: IMenuTreeItem, initialValues?: any) => void;
 }
 
 class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & DispatchProps, any> {
@@ -43,7 +43,7 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
     }
   }
 
-  openScreen = (project: string, screen: string, initialValues: Object):boolean => {
+  openScreen = (project: string, screen: string, initialValues: any):boolean => {
     const item = MenuTreeUtil.findByName(this.props.appContext.menuTree, screen);
     if(!item) {
       return false;
@@ -88,7 +88,7 @@ const mapStateToProps = (state:WStore) => ({
 
 const mapDispatchToProps = dispatch => ({
   saveScreenState: (screenId: string, state: any) => dispatch(AppContextActions.saveScreenState({ screenId, state })),
-  openScreen: (menuTreeItem: IMenuTreeItem, initialValues?: Object) => dispatch(AppContextActions.openScreen({menuTreeItem, initialValues})),  
+  openScreen: (menuTreeItem: IMenuTreeItem, initialValues?: any) => dispatch(AppContextActions.openScreen({menuTreeItem, initialValues})),  
 });
 
 export default connect<WStore, DispatchProps, WScreenWrapperProps>(mapStateToProps, mapDispatchToProps)(WScreenWrapper);

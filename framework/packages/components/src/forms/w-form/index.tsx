@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { createFormStore } from '../w-form-store';
 
 export interface WFormProps {
-  initialValues: object;
+  initialValues: any;
   onSubmit: (values: object) => void;
 }
 

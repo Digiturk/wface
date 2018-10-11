@@ -28,7 +28,7 @@ interface WLoginPageState {
 
 type WLoginPageProps = WStore & {
   classes: any
-  login: any,
+  authService: any,
   history: any
 }
 
@@ -50,7 +50,7 @@ class TextLoginScreen extends React.Component<WLoginPageProps, WLoginPageState> 
 
   btnLoginClick() {
     this.setState({ isLoading: true }, () => {
-      this.authService.login(this.state.username, this.state.password)
+      this.props.authService.login(this.state.username, this.state.password)
         .then(result => {
           if (result) {
             this.setState({ loadingButtonStatus: "success" });

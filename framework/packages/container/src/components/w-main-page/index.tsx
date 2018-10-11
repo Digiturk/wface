@@ -274,7 +274,7 @@ const mapStateToProps = (state:WStore) => ({
 } as WStore);
 const mapDispatchToProps = (dispatch:any) => ({
   setMenuTree: (menuTree: IMenuTreeItem[]) => dispatch(AppContextActions.setMenuTree(menuTree)),
-  openScreen: (menuTreeItem: IMenuTreeItem, initialValues?: Object) => dispatch(AppContextActions.openScreen({menuTreeItem, initialValues})),
+  openScreen: (menuTreeItem: IMenuTreeItem, initialValues?: any) => dispatch(AppContextActions.openScreen({menuTreeItem, initialValues})),
   closeScreen: (menuTreeItem: IMenuTreeItem) => dispatch(AppContextActions.closeScreen(menuTreeItem))
 });
 
