@@ -289,50 +289,10 @@ const menuTree = [
       },
       {
         id: '2.2',
-        text: 'Install',
-        path: 'WFaceCLI/InstallCommand',        
-        mdx: Mdx.WFaceCLI.InstallCommand,
-        prev: '2.1',
-        next: '2.3'
-      },
-      {
-        id: '2.3',
-        text: 'Link',
-        path: 'WFaceCLI/LinkCommand',        
-        mdx: Mdx.WFaceCLI.LinkCommand,
-        prev: '2.2',
-        next: '2.4'
-      },
-      {
-        id: '2.3',
-        text: 'Run',
-        path: 'WFaceCLI/RunCommand',        
-        mdx: Mdx.WFaceCLI.RunCommand,
-        prev: '2.2',
-        next: '2.4'
-      },
-      {
-        id: '2.4',
-        text: 'Uninstall',
-        path: 'WFaceCLI/UninstallCommand',        
-        mdx: Mdx.WFaceCLI.UninstallCommand,
-        prev: '2.3',
-        next: '2.5'
-      },
-      {
-        id: '2.5',
-        text: 'Update',
-        path: 'WFaceCLI/UpdateCommand',        
-        mdx: Mdx.WFaceCLI.UpdateCommand,
-        prev: '2.4',
-        next: '2.6'
-      },
-      {
-        id: '2.7',
         text: 'Version',
         path: 'WFaceCLI/VersionCommand',        
         mdx: Mdx.WFaceCLI.VersionCommand,
-        prev: '2.6'        
+        prev: '2.1'        
       }
     ]
   },
