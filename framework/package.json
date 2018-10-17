@@ -17,15 +17,15 @@
 		"url": "https://bitbucket.digiturk.com.tr/scm/itdev/wface.git"
 	},
 	"scripts": {
-		"start": "npm --prefix ./packages/client-app start",
+		"start": "npm --prefix ./packages/wface start",
 		"clean-framework": "rimraf node_modules",
-		"clean-client-app": "rimraf ./packages/client-app/node_modules",
 		"clean-components": "rimraf ./packages/components/node_modules",
 		"clean-container": "rimraf ./packages/container/node_modules",
 		"clean-ioc": "rimraf ./packages/ioc/node_modules",
 		"clean-store": "rimraf ./packages/store/node_modules",
 		"clean-system": "rimraf ./packages/system/node_modules",
-    "clean": "npm run clean-framework && npm run clean-client-app && npm run clean-components && npm run clean-container && npm run clean-ioc && npm run clean-store && npm run clean-system",
+		"clean-wface": "rimraf ./packages/wface/node_modules",
+    "clean": "npm run clean-framework && npm run clean-components && npm run clean-container && npm run clean-ioc && npm run clean-store && npm run clean-system && npm run clean-wface",
     "version": "gulp version",
     "publish": "gulp publish"
 	},

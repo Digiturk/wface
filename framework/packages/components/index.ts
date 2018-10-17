@@ -27,6 +27,9 @@ export { WCardHeader, WCardHeaderProps } from './src/layouts/w-card/w-card-heade
 // WCheckbox 
 export { WCheckbox, WCheckboxProps } from './src/inputs/w-checkbox'
 
+// WChip
+export { WChip, WChipProps } from './src/others/w-chip'
+
 // WCollapse
 export { WCollapse, WCollapseProps } from './src/layouts/w-collapse'
 
@@ -83,7 +86,7 @@ export { WRadioGroup, WRadioGroupProps } from './src/inputs/w-radio-group'
 export { WRadio, WRadioProps } from './src/inputs/w-radio-group/w-radio'
 
 // WSelect
-export { WSelect, WSelectProps } from './src/inputs/w-select'
+export { WSelect, WSelectProps, WSelectOption, WSelectOptionGroup } from './src/inputs/w-select'
 
 // WSwipeableViews
 export { WSwipeableViews, WSwipeableViewsProps } from './src/layouts/w-swipeable-views'

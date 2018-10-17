@@ -6,13 +6,14 @@ export interface WCardProps extends CardProps { }
 
 class WCardInner extends React.Component<WCardProps & WithStyles<string>, {}> {
   public render() {
-    return <Card {...this.props} />
+    return <Card {...this.props} classes={this.props.classes}/>
   }
 }
 
 const styles = theme => ({
   root: {
-    margin: theme.spacing.unit
+    margin: theme.spacing.unit,
+    overflow: 'initial'
   }
 });
 
