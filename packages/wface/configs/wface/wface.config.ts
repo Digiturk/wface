@@ -7,7 +7,7 @@ const config = {
   projectName: 'WFace',  
   screenList: { 
     DemoScreen
-  },      
+  },
   authService: new AuthService(),
   businessService: null,
 } as IConfiguration

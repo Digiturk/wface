@@ -41,7 +41,10 @@ const appContext = (state: AppContext = initialState, action: AppAction): AppCon
     case getType(Actions.openScreen): {      
       const openedScreens = [...state.openedScreens];
       let screenData = openedScreens.find(a => a.menuTreeItem.id == action.payload.menuTreeItem.id);
-      if(!screenData) {
+      if(screenData) {
+        screenData.initialValues = Object.assign({}, action.payload.menuTreeItem.initialValues, action.payload.initialValues);
+      }
+      else {
         screenData = { 
           menuTreeItem: action.payload.menuTreeItem, 
           values: {}, 

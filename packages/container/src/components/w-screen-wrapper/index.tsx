@@ -43,7 +43,7 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
     }
   }
 
-  openScreen = (project: string, screen: string, initialValues: any):boolean => {
+  openScreen = (screen: string, initialValues: any):boolean => {
     const item = MenuTreeUtil.findByName(this.props.appContext.menuTree, screen);
     if(!item) {
       return false;
