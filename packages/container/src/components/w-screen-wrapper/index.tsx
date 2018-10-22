@@ -1,4 +1,4 @@
-import { WGrid, WPaper, WTypography } from '@wface/components';
+import { WGrid, WPaper, WTypography, withSnackbar } from '@wface/components';
 import { IMenuTreeItem, MenuTreeUtil, IConfiguration } from '@wface/ioc';
 import { AppContextActions, WStore, ScreenData } from '@wface/store';
 import * as React from 'react';
@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 export interface WScreenWrapperProps {
   screen?: ScreenData;
   configuration: IConfiguration;
+  enqueueSnackbar?: (message: string, options: object) => void
 }
 
 export interface DispatchProps {
@@ -28,15 +29,6 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
     this.screenRef = React.createRef();
   }
 
-  // componentWillMount() {    
-  //   this.props.screenProvider.getScreen(this.props.screen.menuTreeItem.project, this.props.screen.menuTreeItem.screen)
-  //     .then(screen => {
-  //       this.setState({
-  //         screen: screen
-  //       })
-  //     })
-  // }
-
   componentWillUnmount() {
     if (this.screenRef.current) {
       this.props.saveScreenState(this.props.screen.menuTreeItem.id, this.screenRef.current.state);
@@ -53,6 +45,13 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
     return true;
   }
 
+  showSnackbar = (message: string, type: 'error' | 'success' | 'warning' | 'info' = 'info', duration: number = 5000) => {    
+    this.props.enqueueSnackbar(message, {
+      variant: type,
+      autoHideDuration: duration
+    });
+  }
+
   public render() {
     const Screen = this.props.configuration.screenList[this.props.screen.menuTreeItem.screen] as any;
     return (
@@ -63,6 +62,7 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
           screenData={this.props.appContext.currentScreen}
           userContext={this.props.userContext}
           openScreen={this.openScreen}
+          showSnackbar={this.showSnackbar}
         />
         :
         <WGrid container justify="center" style={{ paddingTop: 30 }}>
@@ -91,4 +91,4 @@ const mapDispatchToProps = dispatch => ({
   openScreen: (menuTreeItem: IMenuTreeItem, initialValues?: any) => dispatch(AppContextActions.openScreen({menuTreeItem, initialValues})),  
 });
 
-export default connect<WStore, DispatchProps, WScreenWrapperProps>(mapStateToProps, mapDispatchToProps)(WScreenWrapper);
+export default connect<WStore, DispatchProps, WScreenWrapperProps>(mapStateToProps, mapDispatchToProps)(withSnackbar(WScreenWrapper) as any);
