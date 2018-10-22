@@ -19,7 +19,11 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
   public render() {    
     return (
       <div>     
-        <WFace.WCard>          
+        <WFace.WCard>     
+          <WFace.WButton onClick={() => this.props.showSnackbar('Successfully fetched the data.', 'success')}>Show</WFace.WButton>
+          <WFace.WButton onClick={() => this.props.showSnackbar('Successfully fetched the data.', 'error')}>Show</WFace.WButton>
+          <WFace.WButton onClick={() => this.props.showSnackbar('Successfully fetched the data.', 'info')}>Show</WFace.WButton>
+          <WFace.WButton onClick={() => this.props.showSnackbar('Successfully fetched the data.', 'warning')}>Show</WFace.WButton>
         </WFace.WCard>      
       </div>
     )

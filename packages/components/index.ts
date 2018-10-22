@@ -88,6 +88,9 @@ export { WRadio, WRadioProps } from './src/inputs/w-radio-group/w-radio'
 // WSelect
 export { WSelect, WSelectProps, WSelectOption, WSelectOptionGroup } from './src/inputs/w-select'
 
+// WSnackbarProvider
+export { WSnackbarProvider, WSnackbarProviderProps, withSnackbar } from './src/others/w-snackbar-provider'
+
 // WSwipeableViews
 export { WSwipeableViews, WSwipeableViewsProps } from './src/layouts/w-swipeable-views'
 
