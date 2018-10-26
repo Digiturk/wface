@@ -1,7 +1,7 @@
 import * as React from 'react';
 import DatePicker, { DatePickerProps } from 'material-ui-pickers/DatePicker';
 import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
-import MomentUtils from 'material-ui-pickers/utils/moment-utils';
+import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils';
 
 export interface WDatePickerProps extends DatePickerProps {}
 
@@ -15,7 +15,7 @@ export class WDatePicker extends React.Component<WDatePickerProps, {}> {
 
   public render() {
     return (
-      <MuiPickersUtilsProvider utils={MomentUtils}>
+      <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <DatePicker {...this.props}/>
       </MuiPickersUtilsProvider>
     );

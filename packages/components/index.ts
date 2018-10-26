@@ -57,6 +57,10 @@ export { WDrawer, WDrawerProps } from './src/layouts/w-drawer'
 // WDropdown
 export { WDropdown, WDropdownProps } from './src/inputs/w-dropdown'
 
+// WForm
+export { WForm } from './src/forms/w-form'
+export { WFormField } from './src/forms/w-form-field'
+
 // WGrid
 export { WGrid, WGridProps } from './src/layouts/w-grid'
 
