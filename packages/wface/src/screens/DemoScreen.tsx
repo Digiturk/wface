@@ -41,8 +41,7 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
               {JSON.stringify(this.state.userData)}
             </WFace.WGrid>
           </WFace.WGrid>                    
-        </WFace.WForm>        
-        
+        </WFace.WForm>   
       </div >
     )
   }

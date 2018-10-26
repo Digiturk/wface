@@ -106,7 +106,7 @@ export { WTabs, WTabsProps } from './src/layouts/w-tabs'
 export { WTab, WTabProps } from './src/layouts/w-tabs/w-tab'
 
 // WTable
-export { WTable, WTableProps, WTableAction, WTableColumn, WTableOptions } from './src/tables/w-table'
+export { WTable, WTableProps } from './src/tables/w-table'
 
 // WTextField 
 export { WTextField, WTextFieldProps } from './src/inputs/w-text-field'

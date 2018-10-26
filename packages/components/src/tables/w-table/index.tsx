@@ -1,40 +1,7 @@
 import * as React from 'react'
-// import MaterialTable from 'material-table'
-const MaterialTable = require('material-table')
+import MaterialTable, { MaterialTableProps } from 'material-table'
 
-export interface WTableAction {
-  icon: string;
-  onClick: (event: any, data: object | object[]) => void;
-  tooltip?: string;
-  isFreeAction?: boolean;
-}
-
-export interface WTableColumn {
-  hidden?: boolean;
-  isNumeric?: boolean;
-  field?: string;
-  lookup?: object;
-  render?: (data: any) => any;
-  title: string;
-}
-
-export interface WTableOptions {
-  columnsButton?: boolean;
-  filtering?: boolean;
-  paging?: boolean;
-  pageSize?: number;
-  pageSizeOptions?: number[];
-  search?: boolean;
-  selection?: boolean;
-  toolbar?: boolean;
-}
-
-export interface WTableProps {
-  actions?: WTableAction[];
-  columns: WTableColumn[];  
-  data: object[];
-  options?: WTableOptions;
-  title?: string;
+export interface WTableProps extends MaterialTableProps {
 }
 
 class WTable extends React.Component<WTableProps, {}> {
