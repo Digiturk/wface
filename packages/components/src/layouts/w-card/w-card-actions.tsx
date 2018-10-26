@@ -3,11 +3,11 @@ import { CardActions } from '@material-ui/core'
 import { CardActionsProps } from '@material-ui/core/CardActions';
 
 export interface WCardActionsProps extends CardActionsProps {
-  float?: 'left' | 'right'
+  align?: 'left' | 'right'
 }
 
 export class WCardActions extends React.Component<WCardActionsProps, {}> {
   public render() {
-    return <CardActions {...this.props} style={{ float: this.props.float || 'right' }} />
+    return <CardActions {...this.props} style={{justifyContent: this.props.align === "left" ? "flex-start" : "flex-end"}}/>
   }
 }
