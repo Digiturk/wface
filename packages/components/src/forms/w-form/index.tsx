@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { Formik, Form, FormikProps } from 'formik';
-import { Provider } from 'react-redux';
-import { createFormStore } from '../w-form-store';
+import { Formik, Form } from 'formik';
 
 export interface WFormProps {
   initialValues: any;
@@ -14,11 +12,9 @@ export class WForm extends React.Component<WFormProps, {}> {
       <Formik 
         {...this.props} 
         render={formikProps => 
-          <Provider store={createFormStore({projectName: 'WFace'})}>
-            <Form>
-              {this.props.children}
-            </Form>
-          </Provider>
+          <Form>
+            {this.props.children}
+          </Form>
         }
       />
     );

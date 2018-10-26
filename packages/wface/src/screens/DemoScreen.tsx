@@ -1,11 +1,9 @@
 import * as React from 'react';
 import * as WFace from '@wface/components';
+// import { Formik, Form, Field } from 'formik';
 
 interface DemoScreenState {
-  inputValue?: string,
-  city1?: string;
-  city2?: string;
-  options: any;
+  userData: any
 }
 
 export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScreenState> {
@@ -13,19 +11,39 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
     super(props);
 
     this.state = this.props.screenData.state || {
+      userData: { name: '', surname: '', isMarried: false }
     }
   }
 
-  public render() {    
+  public render() {
     return (
-      <div>     
-        <WFace.WCard>     
-          <WFace.WButton onClick={() => this.props.showSnackbar('Successfully fetched the data.', 'success')}>Show</WFace.WButton>
-          <WFace.WButton onClick={() => this.props.showSnackbar('Successfully fetched the data.', 'error')}>Show</WFace.WButton>
-          <WFace.WButton onClick={() => this.props.showSnackbar('Successfully fetched the data.', 'info')}>Show</WFace.WButton>
-          <WFace.WButton onClick={() => this.props.showSnackbar('Successfully fetched the data.', 'warning')}>Show</WFace.WButton>
-        </WFace.WCard>      
-      </div>
+      <div>
+        <WFace.WForm 
+          initialValues={{ name: 'mehmet', surname: 'baran', isMarried: false }} 
+          onSubmit={(val) => this.setState({userData: val})}
+        >
+          <WFace.WGrid container>
+            <WFace.WGrid item xs={6}>
+              <WFace.WCard>
+                <WFace.WCardHeader title="Kullanıcı Bilgileri"/>
+                <WFace.WCardContent>
+                  <WFace.WFormField.WTextField name="name" label="Adı" />
+                  <WFace.WFormField.WTextField name="surname" label="Soyadı" />
+                  <WFace.WFormField.WDatePicker name="birthDate" label="Doğum Tarihi"/>
+                  <WFace.WFormField.WCheckbox name="isMarried" label="Evli" />
+                </WFace.WCardContent>
+                <WFace.WCardActions>
+                  <WFace.WFormField.Submit>Gönder</WFace.WFormField.Submit>             
+                </WFace.WCardActions>
+              </WFace.WCard>
+            </WFace.WGrid>
+            <WFace.WGrid item xs={6}>
+              {JSON.stringify(this.state.userData)}
+            </WFace.WGrid>
+          </WFace.WGrid>                    
+        </WFace.WForm>        
+        
+      </div >
     )
   }
 }
