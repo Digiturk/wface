@@ -25,6 +25,7 @@ gulp.task('version', function(){
   }
   updateVersion('./packages/components/package.json', newVersion);
   updateVersion('./packages/container/package.json', newVersion);
+  updateVersion('./packages/docs/package.json', newVersion);
   updateVersion('./packages/ioc/package.json', newVersion);
   updateVersion('./packages/store/package.json', newVersion);
   updateVersion('./packages/system/package.json', newVersion);

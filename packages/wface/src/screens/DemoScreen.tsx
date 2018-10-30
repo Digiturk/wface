@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as WFace from '@wface/components';
 // import { Formik, Form, Field } from 'formik';
+import * as Mat from '@material-ui/core';
 
 interface DemoScreenState {
   userData: any
@@ -15,7 +16,22 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
     }
   }
 
+
   public render() {
+    return (
+      <React.Fragment>       
+        <WFace.WExpansionPanel title="Panel"
+          actions={[
+            {text: "Gönder", onClick: () => { alert('ok')}}
+          ]}
+        >
+          deneme
+        </WFace.WExpansionPanel>        
+      </React.Fragment>
+    )
+  }
+
+  public renderForm() {
     return (
       <div>
         <WFace.WForm 
