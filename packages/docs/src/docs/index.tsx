@@ -462,24 +462,30 @@ const menuTree = [
           },
           {
             id: '3.5.5',
+            text: 'WExpansionPanel',
+            path: 'Components/WExpansionPanel',
+            mdx: Mdx.Components.WExpansionPanelComponent
+          },
+          {
+            id: '3.5.6',
             text: 'WGrid',
             path: 'Components/WGrid',
             mdx: Mdx.Components.WGridComponent
           },
           {
-            id: '3.5.6',
+            id: '3.5.7',
             text: 'WPaper',
             path: 'Components/WPaper',
             mdx: Mdx.Components.WPaperComponent
           },
           {
-            id: '3.5.7',
+            id: '3.5.8',
             text: 'WSwipeableView',
             path: 'Components/WSwipeableView',
             mdx: Mdx.Components.WSwipeableViewComponent
           },
           {
-            id: '3.5.8',
+            id: '3.5.9',
             text: 'WTabs',
             path: 'Components/WTabs',
             mdx: Mdx.Components.WTabsComponent
