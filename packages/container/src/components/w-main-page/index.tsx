@@ -16,6 +16,8 @@ import NavList from './NavList';
 
 export interface WMainPageProps {
   classes: any,
+  location: any,
+  match: any,  
   history?: any,
   configuration: IConfiguration
 }
@@ -40,13 +42,16 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
   }
 
   componentWillMount() {
+    const { match, location, setMenuTree, openScreen } = this.props;
+    const getScreenUrl = this.getScreenUrl;
+
     this.props.configuration.authService.getMenuTree()
       .then(menuTree => {
-        this.props.setMenuTree(menuTree);          
+        setMenuTree(menuTree);          
         
         let currentScreen: IMenuTreeItem;
         MenuTreeUtil.menuTreeForEach(menuTree, item => {
-          if (((this.props as any).match.url + this.getScreenUrl(item)) === (this.props as any).location.pathname) {
+          if ((match.url + getScreenUrl(item)) === location.pathname) {
             currentScreen = item;
             return true;
           }
@@ -54,7 +59,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
         });
 
         if (currentScreen) {
-          this.props.openScreen(currentScreen);
+          openScreen(currentScreen);
         }
       })
   }
