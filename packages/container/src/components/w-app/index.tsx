@@ -4,7 +4,7 @@ import { WContainer } from "@wface/container";
 import * as React from 'react';
 import MockAuthService from './MockAuthService';
 import { store, UserContextActions } from '@wface/store';
-import { IConfiguration, DefaultAuthService } from '@wface/ioc';
+import { IConfiguration, DefaultAuthService, DefaultHttpService } from '@wface/ioc';
 import WLoginPage from '../w-login-page';
 
 const onLogin = (username: string, displayName: string, token?: string) => store.dispatch(UserContextActions.login({username, displayName, token}));
@@ -22,6 +22,7 @@ class WApp extends React.Component<{configuration: IConfiguration}, any> {
     let config = {...props.configuration};
     config.loginScreen = props.configuration.loginScreen || WLoginPage;
     config.authService = new DefaultAuthService(props.configuration.authService || new MockAuthService(), onLogin);
+    config.httpService = config.httpService || new DefaultHttpService();
 
     return config;
   }

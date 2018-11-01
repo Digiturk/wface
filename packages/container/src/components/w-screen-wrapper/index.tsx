@@ -59,6 +59,7 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
         <Screen
           ref={this.screenRef}
           appContext={this.props.appContext}
+          httpService={this.props.configuration.httpService}
           screenData={this.props.appContext.currentScreen}
           userContext={this.props.userContext}
           openScreen={this.openScreen}
