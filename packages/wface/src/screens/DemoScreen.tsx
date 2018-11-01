@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as WFace from '@wface/components';
 // import { Formik, Form, Field } from 'formik';
 import * as Mat from '@material-ui/core';
+import DefaultHttpService from '@wface/ioc/src/implementations/DefaultHttpService'
 
 interface DemoScreenState {
   userData: any
@@ -16,17 +17,24 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
     }
   }
 
+  tryGet = () => {
+    this.props.httpService.get<RootObject>('https://reqres.in/api/users', {page: '2'})
+      .then(response => {
+        alert(response.page);
+      })
+      .catch(error => {
+
+      })
+      .finally(() => {
+
+      });
+  }
+
 
   public render() {
     return (
       <React.Fragment>       
-        <WFace.WExpansionPanel title="Panel"
-          actions={[
-            {text: "Gönder", onClick: () => { alert('ok')}}
-          ]}
-        >
-          deneme
-        </WFace.WExpansionPanel>        
+        <WFace.WButton onClick={this.tryGet}>Req</WFace.WButton>
       </React.Fragment>
     )
   }
@@ -61,4 +69,20 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
       </div >
     )
   }
+}
+
+
+export interface Datum {
+  id: number;
+  first_name: string;
+  last_name: string;
+  avatar: string;
+}
+
+export interface RootObject {
+  page: number;
+  per_page: number;
+  total: number;
+  total_pages: number;
+  data: Datum[];
 }

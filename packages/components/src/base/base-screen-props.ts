@@ -1,7 +1,9 @@
 import { AppContext, UserContext, ScreenData } from "@wface/store";
+import { IHttpService } from '@wface/ioc';
 
 export interface BaseScreenProps {
   appContext: AppContext;
+  httpService: IHttpService;
   userContext: UserContext;
   screenData: ScreenData;
   openScreen: (screen: String, initialValues?: any) => boolean;
