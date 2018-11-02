@@ -3,7 +3,7 @@ import Select from 'react-select';
 import { withStyles } from '@material-ui/core/styles';
 import NoSsr from '@material-ui/core/NoSsr';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
-import components from './components'
+import selectComponents from './components'
 import { isRegExp } from 'util';
 import { timingSafeEqual } from 'crypto';
 
@@ -95,6 +95,7 @@ class WSelectInner extends React.Component<WSelectProps, {focused: boolean}> {
         <Select
           ref={this.select}
           {...this.props}
+          styles={customStyles}
           onFocus={(event) => this.setFocus(event, true)}
           onBlur={(event) => this.setFocus(event, false)}          
           placeholder=""
@@ -103,16 +104,26 @@ class WSelectInner extends React.Component<WSelectProps, {focused: boolean}> {
           classes={classes}
           textFieldProps={{
             label: this.props.label,
-            InputLabelProps: {
-              // shrink: !this.state.focused && this.props.isMulti ? cleanValue && cleanValue.length > 0 : cleanValue,
+            InputLabelProps: {              
               shrink: this.state.focused || hasValue,
             },
           }}
-          components={components}
+          components={selectComponents}
         />
       </NoSsr>
     );
   }
+}
+
+const customStyles = {
+  dropdownIndicator: (provided) => ({
+    ...provided,
+    padding: 6
+  }),
+  clearIndicator: (provided) => ({
+    ...provided,
+    padding: 6
+  }),
 }
 
 
@@ -128,7 +139,8 @@ const styles = theme => ({
     alignItems: 'center',
   },
   chip: {
-    margin: `${theme.spacing.unit / 4}px ${theme.spacing.unit / 4}px`,    
+    margin: `${theme.spacing.unit / 4}px ${theme.spacing.unit / 4}px`,
+    height: 28
   },
   chipFocused: {
     backgroundColor: emphasize(
@@ -153,6 +165,9 @@ const styles = theme => ({
     marginTop: theme.spacing.unit,
     left: 0,
     right: 0,    
+  },
+  dropdownIndicator: {
+    padding: 40
   }
 });
 

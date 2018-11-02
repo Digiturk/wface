@@ -1,6 +1,7 @@
 import { Checkbox } from './checkbox';
 import { DatePicker } from './date-picker';
 import { DateTimePicker } from './date-time-picker';
+import { Select } from './select';
 import { Submit } from './submit';
 import { Switch } from './switch';
 import { TextField } from './text-field';
@@ -10,6 +11,7 @@ export const WFormField = {
   Checkbox, 
   DatePicker, 
   DateTimePicker, 
+  Select,
   Submit,
   Switch,
   TextField,

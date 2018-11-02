@@ -2,7 +2,8 @@ import * as React from 'react';
 import * as WFace from '@wface/components';
 
 interface DemoScreenState {
-  userData: any
+  userData: any,
+  lookup: any
 }
 
 export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScreenState> {
@@ -10,7 +11,12 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
     super(props);
 
     this.state = this.props.screenData.state || {
-      userData: {}
+      userData: {},
+      lookup: [
+        {label: 'Gaziantep', value: '27'},
+        {label: 'İstanbul', value: '34'},
+        {label: 'Şanlıurfa', value: '63'},
+      ]
     }
   }
 
@@ -47,9 +53,10 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
           initialValues={{
             checkbox: false,
             text: 'some text',
-            text2: 'some text',
             date: new Date(1987, 3, 21),
             dateTime: new Date(),
+            select: '34',
+            selectMulti: ['27'],
             switch: true,
             time: new Date(),
           }}
@@ -63,9 +70,10 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
                   <WFace.WFormField.Checkbox name="checkbox" label="Form Checkbox" />
                   <WFace.WFormField.TextField name="text" label="Form TextField" />
                   <WFace.WFormField.DatePicker name="date" label="Form Date" />
-                  <WFace.WFormField.TextField name="text2" label="Form TextField2" />
+                  <WFace.WFormField.Select name="select" label="Form Select" options={this.state.lookup} />
+                  <WFace.WFormField.Select name="selectMulti" label="Form Select Multi" options={this.state.lookup} isMulti/>
                   <WFace.WFormField.DateTimePicker name="dateTime" label="Form DateTime" />
-                  <WFace.WFormField.TimePicker name="time" label="Form Time" />
+                  <WFace.WFormField.TimePicker name="time" label="Form Time" />                
                   <WFace.WFormField.Switch name="switch" label="Form Switch" />
                 </WFace.WCardContent>
                 <WFace.WCardActions>

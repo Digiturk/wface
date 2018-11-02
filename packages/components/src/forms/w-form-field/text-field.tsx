@@ -12,8 +12,8 @@ export const TextField = (fieldProps: TextFieldProps) => (
     name={fieldProps.name}      
     component={props => (
       <WTextField
-        label={fieldProps.label}
-        {...props.field}          
+        {...props.field}        
+        {...fieldProps}
         fullWidth
       />
     )}
