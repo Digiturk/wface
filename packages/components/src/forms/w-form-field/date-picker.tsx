@@ -1,0 +1,21 @@
+import * as React from 'react';
+import WField from './w-field';
+import { WDatePicker } from '../../inputs/w-date-picker';
+import BaseFieldProps from './base-field-props';
+
+export type DatePickerProps = BaseFieldProps & {
+
+}
+
+export const DatePicker = (fieldProps: DatePickerProps) => (
+  <WField
+    name={fieldProps.name}
+    component={props => (
+      <WDatePicker
+        {...props.field}
+        label={fieldProps.label}
+        onChange={date => props.form.setFieldValue(fieldProps.name, date) }
+      />
+    )}
+  />
+)
