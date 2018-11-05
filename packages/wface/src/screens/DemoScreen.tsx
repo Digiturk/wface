@@ -13,8 +13,13 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
     this.state = this.props.screenData.state || {
       userData: {},
       lookup: [
+        // {label: 'Adana', value: '01'},
+        // {label: 'Adıyaman', value: '03'},
+        // {label: 'Ankara', value: '06'},
+        // {label: 'Antalya', value: '07'},
         {label: 'Gaziantep', value: '27'},
         {label: 'İstanbul', value: '34'},
+        {label: 'İzmir', value: '35'},
         {label: 'Şanlıurfa', value: '63'},
       ]
     }
@@ -55,6 +60,7 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
             text: 'some text',
             date: new Date(1987, 3, 21),
             dateTime: new Date(),
+            radio: '63',
             select: '34',
             selectMulti: ['27'],
             switch: true,
@@ -74,7 +80,8 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
                   <WFace.WFormField.Select name="selectMulti" label="Form Select Multi" options={this.state.lookup} isMulti/>
                   <WFace.WFormField.DateTimePicker name="dateTime" label="Form DateTime" />
                   <WFace.WFormField.TimePicker name="time" label="Form Time" />                
-                  <WFace.WFormField.Switch name="switch" label="Form Switch" />
+                  <WFace.WFormField.Switch name="switch" label="Form Switch" />        
+                  <WFace.WFormField.RadioGroup name="radio" label="Form Radio" options={this.state.lookup}/>          
                 </WFace.WCardContent>
                 <WFace.WCardActions>
                   <WFace.WFormField.Submit>Gönder</WFace.WFormField.Submit>
