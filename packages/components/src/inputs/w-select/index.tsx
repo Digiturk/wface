@@ -3,7 +3,7 @@ import Select from 'react-select';
 import { withStyles } from '@material-ui/core/styles';
 import NoSsr from '@material-ui/core/NoSsr';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
-import components from './components'
+import selectComponents from './components'
 import { isRegExp } from 'util';
 import { timingSafeEqual } from 'crypto';
 
@@ -23,7 +23,9 @@ export interface WSelectProps {
   isLoading?: boolean;
   isMulti?: boolean;
   isSearchable?: boolean;
+  error?: boolean;
   label?: string;
+  helperText?: string;
   name?: string;
   onBlur?: (event: React.FocusEvent<HTMLElement>) => void;
   onChange?: (value: any) => void;
@@ -95,24 +97,37 @@ class WSelectInner extends React.Component<WSelectProps, {focused: boolean}> {
         <Select
           ref={this.select}
           {...this.props}
+          styles={customStyles}
           onFocus={(event) => this.setFocus(event, true)}
           onBlur={(event) => this.setFocus(event, false)}          
           placeholder=""
           value={cleanValue}
           // @ts-ignore
-          classes={classes}
+          classes={classes}        
           textFieldProps={{
             label: this.props.label,
-            InputLabelProps: {
-              // shrink: !this.state.focused && this.props.isMulti ? cleanValue && cleanValue.length > 0 : cleanValue,
-              shrink: this.state.focused || hasValue,
+            InputLabelProps: {              
+              shrink: this.state.focused || hasValue,            
             },
+            error: this.props.error,
+            helperText: this.props.helperText
           }}
-          components={components}
+          components={selectComponents}
         />
       </NoSsr>
     );
   }
+}
+
+const customStyles = {
+  dropdownIndicator: (provided) => ({
+    ...provided,
+    padding: 6
+  }),
+  clearIndicator: (provided) => ({
+    ...provided,
+    padding: 6
+  }),
 }
 
 
@@ -128,7 +143,8 @@ const styles = theme => ({
     alignItems: 'center',
   },
   chip: {
-    margin: `${theme.spacing.unit / 4}px ${theme.spacing.unit / 4}px`,    
+    margin: `${theme.spacing.unit / 4}px ${theme.spacing.unit / 4}px`,
+    height: 28
   },
   chipFocused: {
     backgroundColor: emphasize(
@@ -153,6 +169,9 @@ const styles = theme => ({
     marginTop: theme.spacing.unit,
     left: 0,
     right: 0,    
+  },
+  dropdownIndicator: {
+    padding: 40
   }
 });
 

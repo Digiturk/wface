@@ -6,6 +6,8 @@ import { WMenuItem } from '../../lists/w-menu/w-menu-item'
 import { WPaper } from '../../layouts/w-paper';
 import { WTypography } from '../../others/w-typography';
 import { TextField } from '@material-ui/core';
+import { WIconButton } from '../../buttons/w-icon-button';
+import { components } from 'react-select';
 
 const inputComponent = ({ inputRef, ...props }) => <div ref={inputRef} {...props}/>;
 
@@ -24,8 +26,9 @@ const Control = (props:any) =>
     {...props.selectProps.textFieldProps}
   />
 
+// Dialogun z-index'i 1300 olarak ayarlanmıs. Bunun da 1400 alarak üzerine cıkması lazım. 
 const Menu = (props:any) => 
-  <WPaper square className={props.selectProps.classes.paper} {...props.innerProps}>
+  <WPaper square className={props.selectProps.classes.paper} {...props.innerProps} style={{zIndex: 9400}}>
     {props.children}
   </WPaper>
 
@@ -78,8 +81,14 @@ const SingleValue = (props:any) =>
 
 const ValueContainer = (props:any) => <div className={props.selectProps.classes.valueContainer}>{props.children}</div>;
 
-const components = {
+const DropdownIndicator = (props:any) => 
+  <components.DropdownIndicator {...props}>
+    <WIcon color="disabled" style={{margin: '-20px !important'}}>expand_more</WIcon>
+  </components.DropdownIndicator>;
+
+const selectComponents = {
   Control,
+  // DropdownIndicator,
   Menu,
   MultiValue,
   NoOptionsMessage,
@@ -89,4 +98,4 @@ const components = {
   ValueContainer,
 };    
 
-export default components;
+export default selectComponents;
