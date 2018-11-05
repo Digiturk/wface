@@ -1,0 +1,82 @@
+import WPlayground from '../../w-playground'
+import { WForm, WFormField, WFormValidation } from '@wface/components'
+
+# WForm
+
+WForm Formik kütüphanesinin WFace'e uyarlanmış halidir. 
+Formik hakkında daha detaylı bilgiye ulaşmak için [tıklayın](https://jaredpalmer.com/formik).
+
+### Özellikler
+
+| Adı                 | Veri Tipi                                                     | Default | Açıklama                                        |
+|:--------------------|:--------------------------------------------------------------|:--------|:------------------------------------------------|
+| initialValues       | object                                                        |         | forma yüklenecek default değerler               |
+| onSubmit            | `(values, actions) => void`                                   |         | form submit edildğinde çağrılacak fonksiyon     |
+| validationSchema    | [validation scheme](https://github.com/jquense/yup)           |         | formda yapılacak standart validasyonlar         |
+| validate            | `(values) => errors`                                          |         | formda yapılacak özel validasyonlar             |
+
+### Form bileşenleri
+
+Form bileşenleri label ve name propertyleri eklenerek aşağıdaki şekilde kullanılabilir. 
+
+| Adı             | Kullanım                                                  |
+|:----------------|:----------------------------------------------------------|
+| Checkbox        | `<WFormField.Checkbox name="name" label="label" />`       |
+| DatePicker      | `<WFormField.DatePicker name="name" label="label" />`     |
+| DateTimePicker  | `<WFormField.DateTimePicker name="name" label="label" />` |
+| RadioGroup      | `<WFormField.RadioGroup name="name" label="label" />`     |
+| Select          | `<WFormField.Select name="name" label="label" />`         |
+| Submit          | `<WFormField.Submit name="name" label="label" />`         |
+| Switch          | `<WFormField.Switch name="name" label="label" />`         |
+| TextField       | `<WFormField.TextField name="name" label="label" />`      |
+| TimePicker      | `<WFormField.TimePicker name="name" label="label" />`     |
+
+
+### Örnekler
+
+<WPlayground header="Temel Kullanım">
+  <WForm initialValues={{company: 'Digiturk', year: 1987}} onSubmit={values => alert(values.company + ", " + values.year)}>
+    <WFormField.TextField name="company" label="Şirket"/>
+    <WFormField.TextField name="year" label="Yıl"/>
+    <WFormField.Submit>GÖSTER</WFormField.Submit>
+  </WForm>
+</WPlayground><br/>
+
+### Validasyonlar
+
+
+<WPlayground header="Standart Validasyon">
+  <WForm 
+    initialValues={{company: 'Digiturk', year: 1987}} 
+    onSubmit={values => alert(values.company + ", " + values.year)}
+    validationSchema={WFormValidation.object().shape({
+      company: WFormValidation.string().required().max(10),
+      year: WFormValidation.number().required().max(2000).min(1980)
+    })}
+  >
+    <WFormField.TextField name="company" label="Şirket"/>
+    <WFormField.TextField name="year" label="Yıl"/>
+    <WFormField.Submit>GÖSTER</WFormField.Submit>
+  </WForm>
+</WPlayground><br/>
+
+> Standart validasyon için Yup kullanılmaktadır. 
+Yup hakkında daha detaylı bilgiye ulaşmak için [tıklayın](https://github.com/jquense/yup).
+
+<WPlayground header="Özel Validasyon">
+  <WForm 
+    initialValues={{company: 'Digiturk', year: 1987}} 
+    onSubmit={values => alert(values.company + ", " + values.year)}
+    validate={values => {
+      let errors = {}; 
+      if(values.company != 'Digiturk') {
+        errors.company = 'Sadece Digiturk yazabilirsiniz';
+      }
+      return errors;
+    }}
+  >
+    <WFormField.TextField name="company" label="Şirket"/>
+    <WFormField.TextField name="year" label="Yıl"/>
+    <WFormField.Submit>GÖSTER</WFormField.Submit>
+  </WForm>
+</WPlayground><br/>

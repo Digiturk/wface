@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as WFace from '@wface/components';
-import { WFormValidation } from '@wface/components/src/forms/w-form';
+import { WFormValidation } from '@wface/components';
 
 interface DemoScreenState {
   userData: any,
@@ -109,9 +109,9 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
           onSubmit={val => this.setState({ userData: val })}
           validationSchema={
             WFormValidation.object().shape({
-              text: WFormValidation.string().,
+              text: WFormValidation.string().required(),
               selectMulti: WFormValidation.array().min(2),
-              date: WFormValidation.date().min(new Date()),              
+              date: WFormValidation.date().min(new Date()),     
             })
           }
           // validate={values => {

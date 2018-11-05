@@ -30,6 +30,7 @@ import WDatePickerComponent from './components/components/inputs/w-date-picker.m
 import WDialogComponent from './components/components/dialogs/w-dialog.mdx'
 import WDividerComponent from './components/components/layouts/w-divider.mdx'
 import WDrawerComponent from './components/components/layouts/w-drawer.mdx'
+import WFormComponent from './components/components/forms/w-form.mdx'
 import WExpansionPanelComponent from './components/components/layouts/w-expansion-panel.mdx'
 import WGridComponent from './components/components/layouts/w-grid.mdx'
 import WIconButtonComponent from './components/components/buttons/w-icon-button.mdx'
@@ -202,6 +203,7 @@ const Mdx = {
     WDividerComponent: () => <WDividerComponent components={components}/>,
     WDrawerComponent: () => <WDrawerComponent components={components}/>,
     WExpansionPanelComponent: () => <WExpansionPanelComponent components={components}/>,    
+    WFormComponent: () => <WFormComponent components={components}/>,        
     WGridComponent: () => <WGridComponent components={components}/>,                    
     WIconButtonComponent: () => <WIconButtonComponent components={components}/>,    
     WIconComponent: () => <WIconComponent components={components}/>,
