@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as WFace from '@wface/components';
+import { WFormValidation } from '@wface/components/src/forms/w-form';
 
 interface DemoScreenState {
   userData: any,
@@ -102,32 +103,39 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
             select: '34',
             selectMulti: ['27'],
             switch: true,
-            text: 'some text',
+            text: 'text',
             time: new Date(),
           }}
           onSubmit={val => this.setState({ userData: val })}
-          validate={values => {
-            return {
-              checkbox: 'error text',
-              date: 'error text',
-              dateTime: 'error text',
-              radio: 'error text',
-              select: 'error text',
-              selectMulti: 'error text',
-              switch: 'error text',
-              text: 'error text',
-              time: 'error text'
-            }
+          validationSchema={
+            WFormValidation.object().shape({
+              text: WFormValidation.string().,
+              selectMulti: WFormValidation.array().min(2),
+              date: WFormValidation.date().min(new Date()),              
+            })
+          }
+          // validate={values => {
+          //   return {
+          //     checkbox: 'error text',
+          //     date: 'error text',
+          //     dateTime: 'error text',
+          //     radio: 'error text',
+          //     select: 'error text',
+          //     selectMulti: 'error text',
+          //     switch: 'error text',
+          //     text: 'error text',
+          //     time: 'error text'
+          //   }
 
-            let errors = {} as any;
-            console.log(values);
+          //   let errors = {} as any;
+          //   console.log(values);
 
-            if(values.text.length < 3) {
-              errors.text = "Text should be 3 character at least";
-            }
+          //   if(values.text.length < 3) {
+          //     errors.text = "Text should be 3 character at least";
+          //   }
 
-            return errors;
-          }}
+          //   return errors;
+          // }}
         >
           <WFace.WGrid container>
             <WFace.WGrid item xs={6}>

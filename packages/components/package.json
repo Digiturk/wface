@@ -21,14 +21,16 @@
 		"react-redux": "5.0.7",
 		"react-select": "2.1.0",
 		"redux": "4.0.0",
-		"react-swipeable-views": "0.13.0"
+    "react-swipeable-views": "0.13.0",
+    "yup": "0.26.6"
 	},
 	"devDependencies": {
 		"@types/classnames": "2.2.3",
 		"@types/promise.prototype.finally": "2.0.2",
 		"@types/react": "16.4.16",
 		"@types/react-redux": "5",
-		"@types/react-select": "2.0.5"
+    "@types/react-select": "2.0.5",
+    "@types/yup": "0.26.1"
 	},
 	"scripts": {
 		"set:reg:publish": "npm set registry http://dtl1tfsbuild2:8081/repository/digiturk-npm/",
