@@ -1,9 +1,9 @@
 import * as React from 'react';
 import WField from './w-field';
-import { WDateTimePicker } from '../../inputs/w-date-time-picker';
+import { WDateTimePicker, WDateTimePickerProps } from '../../inputs/w-date-time-picker';
 import BaseFieldProps from './base-field-props';
 
-export type DatePickerProps = BaseFieldProps & {
+export type DatePickerProps = BaseFieldProps & WDateTimePickerProps & {
 
 }
 

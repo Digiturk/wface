@@ -17,10 +17,10 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
         // {label: 'Adıyaman', value: '03'},
         // {label: 'Ankara', value: '06'},
         // {label: 'Antalya', value: '07'},
-        {label: 'Gaziantep', value: '27'},
-        {label: 'İstanbul', value: '34'},
-        {label: 'İzmir', value: '35'},
-        {label: 'Şanlıurfa', value: '63'},
+        { label: 'Gaziantep', value: '27' },
+        { label: 'İstanbul', value: '34' },
+        { label: 'İzmir', value: '35' },
+        { label: 'Şanlıurfa', value: '63' },
       ]
     }
   }
@@ -42,6 +42,43 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
     return this.renderForm();
   }
 
+  public renderDialog() {
+    return (
+      <WFace.WDialog open={true}>
+        <WFace.WForm
+          initialValues={{
+            checkbox: false,
+            date: new Date(1987, 3, 21),
+            dateTime: new Date(),
+            radio: '63',
+            select: '34',
+            selectMulti: ['27'],
+            switch: true,
+            text: 'some text',
+            time: new Date(),
+          }}
+          onSubmit={(val) => this.setState({ userData: val })}
+        >
+          <WFace.WDialogTitle>Deneme</WFace.WDialogTitle>
+          <WFace.WDialogContent>
+            <WFace.WFormField.Checkbox name="checkbox" label="Form Checkbox" />
+            <WFace.WFormField.DatePicker name="date" label="Form Date" />
+            <WFace.WFormField.DateTimePicker name="dateTime" label="Form DateTime" />
+            <WFace.WFormField.RadioGroup name="radio" label="Form Radio" options={this.state.lookup} />
+            <WFace.WFormField.Select name="select" label="Form Select" options={this.state.lookup} />
+            <WFace.WFormField.Select name="selectMulti" label="Form Select Multi" options={this.state.lookup} isMulti />
+            <WFace.WFormField.Switch name="switch" label="Form Switch" />
+            <WFace.WFormField.TextField name="text" label="Form TextField" />
+            <WFace.WFormField.TimePicker name="time" label="Form Time" />
+          </WFace.WDialogContent>
+          <WFace.WDialogActions>
+            <WFace.WFormField.Submit>Gönder</WFace.WFormField.Submit>
+          </WFace.WDialogActions>
+        </WFace.WForm>
+      </WFace.WDialog>
+    );
+  }
+
 
   public renderHttpGet() {
     return (
@@ -57,13 +94,13 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
         <WFace.WForm
           initialValues={{
             checkbox: false,
-            text: 'some text',
             date: new Date(1987, 3, 21),
             dateTime: new Date(),
             radio: '63',
             select: '34',
             selectMulti: ['27'],
             switch: true,
+            text: 'some text',
             time: new Date(),
           }}
           onSubmit={(val) => this.setState({ userData: val })}
@@ -74,14 +111,14 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
                 <WFace.WCardHeader title="Kullanıcı Bilgileri" />
                 <WFace.WCardContent>
                   <WFace.WFormField.Checkbox name="checkbox" label="Form Checkbox" />
-                  <WFace.WFormField.TextField name="text" label="Form TextField" />
-                  <WFace.WFormField.DatePicker name="date" label="Form Date" />
+                  <WFace.WFormField.DatePicker name="date" label="Form Date"/>
+                  <WFace.WFormField.DateTimePicker name="dateTime" label="Form DateTime"/>
+                  <WFace.WFormField.RadioGroup name="radio" label="Form Radio" options={this.state.lookup} />
                   <WFace.WFormField.Select name="select" label="Form Select" options={this.state.lookup} />
-                  <WFace.WFormField.Select name="selectMulti" label="Form Select Multi" options={this.state.lookup} isMulti/>
-                  <WFace.WFormField.DateTimePicker name="dateTime" label="Form DateTime" />
-                  <WFace.WFormField.TimePicker name="time" label="Form Time" />                
-                  <WFace.WFormField.Switch name="switch" label="Form Switch" />        
-                  <WFace.WFormField.RadioGroup name="radio" label="Form Radio" options={this.state.lookup}/>          
+                  <WFace.WFormField.Select name="selectMulti" label="Form Select Multi" options={this.state.lookup} isMulti />
+                  <WFace.WFormField.Switch name="switch" label="Form Switch" />
+                  <WFace.WFormField.TextField name="text" label="Form TextField" />
+                  <WFace.WFormField.TimePicker name="time" label="Form Time" />
                 </WFace.WCardContent>
                 <WFace.WCardActions>
                   <WFace.WFormField.Submit>Gönder</WFace.WFormField.Submit>
@@ -90,14 +127,14 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
             </WFace.WGrid>
             <WFace.WGrid item xs={6}>
               <WFace.WCard>
-              <WFace.WCardHeader title="Kullanıcı Bilgileri" />
-              <WFace.WCardContent>
-                {JSON.stringify(this.state.userData, null, "\t")}
-              </WFace.WCardContent>
+                <WFace.WCardHeader title="Kullanıcı Bilgileri" />
+                <WFace.WCardContent>
+                  {JSON.stringify(this.state.userData, null, "\t")}
+                </WFace.WCardContent>
               </WFace.WCard>
+            </WFace.WGrid>
           </WFace.WGrid>
-          </WFace.WGrid>                    
-        </WFace.WForm>   
+        </WFace.WForm>
       </div >
     )
   }

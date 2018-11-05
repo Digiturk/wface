@@ -1,9 +1,9 @@
 import * as React from 'react';
 import WField from './w-field';
-import { WTimePicker } from '../../inputs/w-time-picker';
+import { WTimePicker, WTimePickerProps } from '../../inputs/w-time-picker';
 import BaseFieldProps from './base-field-props';
 
-export type TimePickerProps = BaseFieldProps & {
+export type TimePickerProps = BaseFieldProps & WTimePickerProps & {
 
 }
 

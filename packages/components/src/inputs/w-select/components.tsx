@@ -26,8 +26,9 @@ const Control = (props:any) =>
     {...props.selectProps.textFieldProps}
   />
 
+// Dialogun z-index'i 1300 olarak ayarlanmıs. Bunun da 1400 alarak üzerine cıkması lazım. 
 const Menu = (props:any) => 
-  <WPaper square className={props.selectProps.classes.paper} {...props.innerProps}>
+  <WPaper square className={props.selectProps.classes.paper} {...props.innerProps} style={{zIndex: 9400}}>
     {props.children}
   </WPaper>
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Field } from 'formik';
+import { Field, FastField } from 'formik';
 
 const WField = props => {
   const component = subProps => ( 
@@ -7,7 +7,7 @@ const WField = props => {
       <props.component {...subProps}/>
     </div>
   )
-  return <Field {...props} component={component}/>
+  return <FastField {...props} component={component}/>
 }
 
 export default WField;
