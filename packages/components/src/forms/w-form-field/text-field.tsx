@@ -13,8 +13,14 @@ export const TextField = (fieldProps: TextFieldProps) => (
     component={props => (
       <WTextField
         {...props.field}        
-        {...fieldProps}
+        {...fieldProps}        
         fullWidth
+        error={props.form.errors[fieldProps.name]}
+        helperText={props.form.errors[fieldProps.name]}
+        onChange={event => {
+          props.field.onChange(event);
+          fieldProps.onChange && fieldProps.onChange(event);
+        }}
       />
     )}
   />

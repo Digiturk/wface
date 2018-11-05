@@ -13,14 +13,20 @@ export const Select = (fieldProps: SelectProps) => (
     component={props => (
       <WSelect        
         {...props.field}
-        {...fieldProps}
+        {...fieldProps}    
+        error={props.form.errors[fieldProps.name]}
+        helperText={props.form.errors[fieldProps.name]}
         onChange={value => {
+          let calculatedValue;
           if(fieldProps.isMulti) {
-            props.form.setFieldValue(fieldProps.name, value.map(a => a.value))
+            calculatedValue = value.map(a => a.value);
           }
           else {
-            props.form.setFieldValue(fieldProps.name, value.value)
+            calculatedValue = value.value;
           }
+
+          props.form.setFieldValue(fieldProps.name, calculatedValue);
+          fieldProps.onChange && fieldProps.onChange(calculatedValue);
         }}
       />
     )}

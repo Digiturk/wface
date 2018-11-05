@@ -13,10 +13,11 @@ export const Checkbox = (fieldProps: CheckboxProps) => (
       <WCheckbox
         {...fieldProps}
         label={fieldProps.label}
-        checked={props.field.value[fieldProps.name]}
-        onChange={event =>
+        checked={props.field.value[fieldProps.name]}      
+        onChange={event => {
           props.form.setFieldValue(fieldProps.name, event.target.checked)
-        }
+          fieldProps.onChange && fieldProps.onChange(event, event.target.checked);
+        }}
       />
     )}
   />

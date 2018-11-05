@@ -7,7 +7,12 @@ const WField = props => {
       <props.component {...subProps}/>
     </div>
   )
-  return <FastField {...props} component={component}/>
+  return (
+    <FastField 
+      {...props} 
+      component={component}
+    />
+  );
 }
 
 export default WField;

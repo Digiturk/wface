@@ -1,9 +1,14 @@
 import * as React from 'react';
-import { Formik, Form } from 'formik';
+import { Formik, Form, FormikActions, FormikErrors } from 'formik';
+
+export interface WFormActions extends FormikActions<any> { }
+export interface WFormErrors extends FormikErrors<any> { }
 
 export interface WFormProps {
   initialValues: any;
-  onSubmit: (values: object) => void;
+  onSubmit: (values: any, formikActions?: WFormActions) => void;
+  validationSchema?: any | (() => any);
+  validate?: ((values: any) => void | object | Promise<WFormErrors>);
 }
 
 export class WForm extends React.Component<WFormProps, {}> {
@@ -11,7 +16,7 @@ export class WForm extends React.Component<WFormProps, {}> {
     return (
       <Formik 
         {...this.props} 
-        render={formikProps => 
+        render={formikProps =>           
           <Form>
             {this.props.children}
           </Form>

@@ -23,7 +23,9 @@ export interface WSelectProps {
   isLoading?: boolean;
   isMulti?: boolean;
   isSearchable?: boolean;
+  error?: boolean;
   label?: string;
+  helperText?: string;
   name?: string;
   onBlur?: (event: React.FocusEvent<HTMLElement>) => void;
   onChange?: (value: any) => void;
@@ -101,12 +103,14 @@ class WSelectInner extends React.Component<WSelectProps, {focused: boolean}> {
           placeholder=""
           value={cleanValue}
           // @ts-ignore
-          classes={classes}
+          classes={classes}        
           textFieldProps={{
             label: this.props.label,
             InputLabelProps: {              
-              shrink: this.state.focused || hasValue,
+              shrink: this.state.focused || hasValue,            
             },
+            error: this.props.error,
+            helperText: this.props.helperText
           }}
           components={selectComponents}
         />

@@ -3,7 +3,8 @@ import * as WFace from '@wface/components';
 
 interface DemoScreenState {
   userData: any,
-  lookup: any
+  lookup: any,
+  textValue: string
 }
 
 export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScreenState> {
@@ -21,7 +22,8 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
         { label: 'İstanbul', value: '34' },
         { label: 'İzmir', value: '35' },
         { label: 'Şanlıurfa', value: '63' },
-      ]
+      ],
+      textValue: ''
     }
   }
 
@@ -94,7 +96,7 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
         <WFace.WForm
           initialValues={{
             checkbox: false,
-            date: new Date(1987, 3, 21),
+            date: new Date(1987, 2, 21),
             dateTime: new Date(),
             radio: '63',
             select: '34',
@@ -103,7 +105,29 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
             text: 'some text',
             time: new Date(),
           }}
-          onSubmit={(val) => this.setState({ userData: val })}
+          onSubmit={val => this.setState({ userData: val })}
+          validate={values => {
+            return {
+              checkbox: 'error text',
+              date: 'error text',
+              dateTime: 'error text',
+              radio: 'error text',
+              select: 'error text',
+              selectMulti: 'error text',
+              switch: 'error text',
+              text: 'error text',
+              time: 'error text'
+            }
+
+            let errors = {} as any;
+            console.log(values);
+
+            if(values.text.length < 3) {
+              errors.text = "Text should be 3 character at least";
+            }
+
+            return errors;
+          }}
         >
           <WFace.WGrid container>
             <WFace.WGrid item xs={6}>
@@ -111,8 +135,8 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
                 <WFace.WCardHeader title="Kullanıcı Bilgileri" />
                 <WFace.WCardContent>
                   <WFace.WFormField.Checkbox name="checkbox" label="Form Checkbox" />
-                  <WFace.WFormField.DatePicker name="date" label="Form Date"/>
-                  <WFace.WFormField.DateTimePicker name="dateTime" label="Form DateTime"/>
+                  <WFace.WFormField.DatePicker name="date" label="Form Date" />
+                  <WFace.WFormField.DateTimePicker name="dateTime" label="Form DateTime" />
                   <WFace.WFormField.RadioGroup name="radio" label="Form Radio" options={this.state.lookup} />
                   <WFace.WFormField.Select name="select" label="Form Select" options={this.state.lookup} />
                   <WFace.WFormField.Select name="selectMulti" label="Form Select Multi" options={this.state.lookup} isMulti />
@@ -130,6 +154,8 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
                 <WFace.WCardHeader title="Kullanıcı Bilgileri" />
                 <WFace.WCardContent>
                   {JSON.stringify(this.state.userData, null, "\t")}
+                  <br />
+                  {this.state.textValue}
                 </WFace.WCardContent>
               </WFace.WCard>
             </WFace.WGrid>

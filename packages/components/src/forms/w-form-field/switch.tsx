@@ -18,9 +18,10 @@ export const Switch = (fieldProps: SwitchProps) => (
           <WSwitch
             {...fieldProps}
             checked={props.field.value[fieldProps.name]}
-            onChange={event =>
+            onChange={event => {
               props.form.setFieldValue(fieldProps.name, event.target.checked)
-            }
+              fieldProps.onChange && fieldProps.onChange(event, event.target.checked);
+            }}
           />
         </WGrid>
       </WGrid>

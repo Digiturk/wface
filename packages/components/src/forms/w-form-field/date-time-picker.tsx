@@ -14,7 +14,13 @@ export const DateTimePicker = (fieldProps: DatePickerProps) => (
       <WDateTimePicker
         {...props.field}
         label={fieldProps.label}
-        onChange={date => props.form.setFieldValue(fieldProps.name, date)}
+        {...fieldProps}
+        error={props.form.errors[fieldProps.name]}
+        helperText={props.form.errors[fieldProps.name]}
+        onChange={date => {
+          props.form.setFieldValue(fieldProps.name, date)
+          fieldProps.onChange && fieldProps.onChange(date);
+        }}
       />
     )}
   />

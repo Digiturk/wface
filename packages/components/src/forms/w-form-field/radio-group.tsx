@@ -13,7 +13,11 @@ export const RadioGroup = (fieldProps: RadioGroupProps) => (
     component={props => (
       <WRadioGroup
         {...props.field}
-        {...fieldProps}
+        {...fieldProps}        
+        onChange={(event, value) => {
+          props.field.onChange(event, value);
+          fieldProps.onChange && fieldProps.onChange(event, value);
+        }}
       />
     )}
   />
