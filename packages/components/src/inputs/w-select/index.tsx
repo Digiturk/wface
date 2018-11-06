@@ -28,7 +28,7 @@ export interface WSelectProps {
   helperText?: string;
   name?: string;
   onBlur?: (event: React.FocusEvent<HTMLElement>) => void;
-  onChange?: (value: any) => void;
+  onChange?: (value: any, object?: any) => void;
   onFocus?: (event: React.FocusEvent<HTMLElement>) => void;
   onMenuOpen?: () => void;
   onMenuClose?: () => void;
@@ -53,7 +53,7 @@ class WSelectInner extends React.Component<WSelectProps, {focused: boolean}> {
 
   private getCleanValue = () => {
     const find = (value) => {      
-      return this.props.options.find(option => option.value === value)
+      return this.props.options.find(option => option.value == value)
     }
 
     if(this.props.isMulti && this.props.value) {
@@ -66,9 +66,9 @@ class WSelectInner extends React.Component<WSelectProps, {focused: boolean}> {
       });
       return result;
     }
-    else if(typeof this.props.value === 'string' && this.props.value.length){
+    else if(typeof this.props.value !== 'object'){
       return find(this.props.value);
-    }      
+    } 
     else {
       return this.props.value;
     }
@@ -82,6 +82,18 @@ class WSelectInner extends React.Component<WSelectProps, {focused: boolean}> {
     }
     else if(!focused && this.props.onBlur) {
       this.props.onBlur(event);
+    }
+  }
+
+  onChange = value => {    
+    if(this.props.onChange) {
+      if(this.props.isMulti) {
+        this.props.onChange(value.map(item => item.value), value);
+      }
+      else {
+        this.props.onChange(value.value, value);
+      }
+      
     }
   }
 
@@ -99,7 +111,8 @@ class WSelectInner extends React.Component<WSelectProps, {focused: boolean}> {
           {...this.props}
           styles={customStyles}
           onFocus={(event) => this.setFocus(event, true)}
-          onBlur={(event) => this.setFocus(event, false)}          
+          onBlur={(event) => this.setFocus(event, false)} 
+          onChange={this.onChange}         
           placeholder=""
           value={cleanValue}
           // @ts-ignore
