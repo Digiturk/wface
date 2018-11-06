@@ -46,6 +46,7 @@ import WRadioGroupComponent from './components/components/inputs/w-radio-group.m
 import WSelectComponent from './components/components/inputs/w-select.mdx'
 import WSwipeableViewComponent from './components/components/layouts/w-swipeable-view.mdx'
 import WSwitchComponent from './components/components/inputs/w-switch.mdx'
+import WTableComponent from './components/components/tables/w-table.mdx'
 import WTabsComponent from './components/components/layouts/w-tabs.mdx'
 import WTextFieldComponent from './components/components/inputs/w-text-field.mdx'
 import WTimePickerComponent from './components/components/inputs/w-time-picker.mdx'
@@ -218,6 +219,7 @@ const Mdx = {
     WSelectComponent: () => <WSelectComponent components={components}/>,    
     WSwipeableViewComponent: () => <WSwipeableViewComponent components={components}/>,    
     WSwitchComponent: () => <WSwitchComponent components={components}/>,        
+    WTableComponent: () => <WTableComponent components={components}/>,            
     WTabsComponent: () => <WTabsComponent components={components}/>,    
     WTextFieldComponent: () => <WTextFieldComponent components={components}/>,    
     WTimePickerComponent: () => <WTimePickerComponent components={components}/>,
