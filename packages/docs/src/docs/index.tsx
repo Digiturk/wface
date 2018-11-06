@@ -257,15 +257,7 @@ const menuTree = [
         mdx: Mdx.GetStarted.Faq,
         prev: '1.4',
         next: '1.6'
-      },
-      {
-        id: '1.6',
-        text: 'Versiyonlar',
-        path: 'GetStarted/Versions',
-        mdx: Mdx.GetStarted.Versions,
-        prev: '1.5',
-        next: '2.1'
-      },
+      }
     ]
   },
   {
@@ -583,7 +575,19 @@ const menuTree = [
         ]        
       }      
     ]
-  }  
+  },
+  {
+    id: '10', 
+    text: 'Versionlar',
+    subNodes: [
+      {
+        id: '10.100',
+        text: 'v0.7.0',
+        path: 'Versions/0.7.0',
+        mdx: Mdx.Versions.V070Component
+      },
+    ]
+  }
 ];
 
 export default withStyles(styles)(Docs)

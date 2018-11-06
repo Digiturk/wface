@@ -10,7 +10,6 @@ import Requirements from './get-started/requirements.mdx'
 import Setup from './get-started/setup.mdx'
 import SupportedPlatforms from './get-started/supported-platforms.mdx'
 import Usage from './get-started/usage.mdx'
-import Versions from './get-started/versions.mdx'
 
 import CommandList from './cli/command-list.mdx'
 import CreateCommand from './cli/commands/create.mdx'
@@ -52,6 +51,8 @@ import WTextFieldComponent from './components/components/inputs/w-text-field.mdx
 import WTimePickerComponent from './components/components/inputs/w-time-picker.mdx'
 import WToolBarComponent from './components/components/bars/w-tool-bar.mdx'
 import WTypographyComponent from './components/components/others/w-typography.mdx'
+
+import V070Component from './versions/v0.7.0.mdx'
 
 import * as WFace from '@wface/components'
 
@@ -112,7 +113,7 @@ const components = {
   th: props => <th style={{padding:'15px 30px 15px 30px'}}><WFace.WTypography variant="subheading" style={{color: '#65819D'}}>{props.children}</WFace.WTypography></th>,
   tbody: props => <tbody >{props.children}</tbody>,
   tr: props => <tr style={{padding: 20, borderTop: '1px solid #DEE5EE'}}>{props.children}</tr>,
-  td: props => <td style={{padding: 10, textAlign: 'center'}} ><WFace.WTypography variant="subheading" style={{color: '#91A0B1'}}>{props.children}</WFace.WTypography></td>,
+  td: props => <td style={{padding: 10, textAlign: 'left'}} ><WFace.WTypography variant="subheading" style={{color: '#91A0B1'}}>{props.children}</WFace.WTypography></td>,
 
   inlineCode: props =>  <code 
                           style={{
@@ -181,7 +182,6 @@ const Mdx = {
     Setup: () => <Setup components={components}/>,
     SupportedPlatforms: () => <SupportedPlatforms components={components}/>,
     Usage: () => <Usage components={components}/>,
-    Versions: () => <Versions components={components}/>
   },
   WFaceCLI: {
     CommandList: () => <CommandList components={components}/>,
@@ -225,7 +225,10 @@ const Mdx = {
     WTimePickerComponent: () => <WTimePickerComponent components={components}/>,
     WToolBarComponent: () => <WToolBarComponent components={components}/>,    
     WTypographyComponent: () => <WTypographyComponent components={components}/>,    
-  }
+  },
+  Versions: {
+    V070Component: () => <V070Component components={components}/>,
+  },
 }
 
 export default Mdx
