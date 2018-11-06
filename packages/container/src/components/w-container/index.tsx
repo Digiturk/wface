@@ -47,7 +47,7 @@ let InnerContainer = (props: any) => {
           :
           <LoginScreen {...subProps} authService={configuration.authService}/>
         }/>
-        <Route path="/main" render={(subProps:any) => isLoggedIn ? <WMainPage {...subProps} configuration={configuration}/> : <Redirect to="/login" /> }/>
+        <Route path="/main" render={(subProps:any) => isLoggedIn ? <WMainPage {...subProps} configuration={configuration}/> : <Redirect to={props.location.pathname.replace('main', 'login')}/> }/>
       </WSnackbarProvider>
     </WMuiThemeProvider >
   )

@@ -380,9 +380,15 @@ const menuTree = [
       },
       {
         id: '3.4',
-        text: 'WForm',
-        path: 'Components/WForm',
-        mdx: Mdx.Components.WFormComponent
+        text: 'Formlar',
+        subNodes: [
+          {
+            id: '3.4.1',
+            text: 'WForm',
+            path: 'Components/WForm',
+            mdx: Mdx.Components.WFormComponent
+          }
+        ]
       },
       {
         id: '3.5',
@@ -549,6 +555,18 @@ const menuTree = [
             text: 'WLinearProgress',
             path: 'Components/WLinearProgress',
             mdx: Mdx.Components.WLinearProgressComponent
+          }
+        ]
+      },
+      { 
+        id: '3.10',
+        text: 'Tablolar',
+        subNodes: [
+          {
+            id: '3.10.1',
+            text: 'WTable',
+            path: 'Components/WTable',
+            mdx: Mdx.Components.WTableComponent
           }
         ]
       },
