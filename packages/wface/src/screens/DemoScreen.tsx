@@ -28,23 +28,11 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
   }
 
   public render() {
-    return this.renderForm();
     return (
       <WFace.WCard>
-        <WFace.WCardHeader title="Select Deneme"/>
+        <WFace.WCardHeader title="Select Deneme" />
         <WFace.WCardContent>
-          <WFace.WSelect
-            label="Deneme"
-            options={this.state.lookup}
-            value={this.state.selectValue}
-            onChange={(value, object) => {
-              this.setState({selectValue: value, selectObject: object})
-            }}
-          />
-          <br/>
-          {JSON.stringify(this.state.selectValue)}
-          <br/>
-          {JSON.stringify(this.state.selectObject)}
+          <WFace.WTextField type="number"/>
         </WFace.WCardContent>
       </WFace.WCard>
     )
@@ -65,7 +53,7 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
             text: 'text',
             time: new Date(),
           }}
-          onSubmit={val => this.setState({ userData: val })}         
+          onSubmit={val => this.setState({ userData: val })}
         >
           <WFace.WGrid container>
             <WFace.WGrid item xs={6}>
