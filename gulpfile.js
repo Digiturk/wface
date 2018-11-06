@@ -7,7 +7,7 @@ var knownOptions = { string: 'version' };
 var options = minimist(process.argv.slice(2), knownOptions);
 
 gulp.task('publish', function() {
-  const command = "npm publish --registry http://dtl1tfsbuild2:8081/repository/digiturk-npm/"
+  const command = "npm publish --registry http://dtl1tfsbuild2:8081/repository/digiturk-npm/ -f"
 
   childProcess.execSync(command, { stdio: [0,1,2], cwd: './packages/components/' });
   childProcess.execSync(command, { stdio: [0,1,2], cwd: './packages/container/' });
