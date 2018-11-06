@@ -16,17 +16,9 @@ export const Select = (fieldProps: SelectProps) => (
         {...fieldProps}    
         error={props.form.errors[fieldProps.name]}
         helperText={props.form.errors[fieldProps.name]}
-        onChange={value => {
-          let calculatedValue;
-          if(fieldProps.isMulti) {
-            calculatedValue = value.map(a => a.value);
-          }
-          else {
-            calculatedValue = value.value;
-          }
-
-          props.form.setFieldValue(fieldProps.name, calculatedValue);
-          fieldProps.onChange && fieldProps.onChange(calculatedValue);
+        onChange={(value, object) => {
+          props.form.setFieldValue(fieldProps.name, value);
+          fieldProps.onChange && fieldProps.onChange(value, object);
         }}
       />
     )}
