@@ -1,42 +1,42 @@
 {
-    "name": "@wface/docs",
-    "version": "0.2.1",
-    "description": "",
-    "scripts": {
-        "build": "webpack",
-        "start": "webpack-dev-server --hot --open"
-    },
-    "author": "baran",
-    "dependencies": {
-        "@types/react-redux": "^6.0.5",
-        "@types/react-router-dom": "^4.3.0",
-        "@wface/components": "0.5.0",
-        "babel-polyfill": "^6.26.0",
-        "babel-preset-react": "^6.24.1",
-        "codemirror": "^5.39.2",
-        "react": "16.5.2",
-        "react-codemirror2": "^5.1.0",
-        "react-dom": "16.5.2",
-        "react-element-to-jsx-string": "^14.0.1",
-        "react-redux": "^5.0.7",
-        "react-router-dom": "^4.3.1",
-        "react.di": "^2.0.0",
-        "reflect-metadata": "^0.1.12",
-        "tslib": "^1.9.0",
-        "webpack-cli": "^3.1.0"
-    },
-    "devDependencies": {
-        "@mdx-js/loader": "^0.14.1",
-        "@mdx-js/mdx": "^0.14.1",
-        "@types/react": "^16.4.14",
-        "@types/react-dom": "^16.0.6",
-        "babel-core": "^6.26.3",
-        "babel-loader": "^7.1.5",
-        "file-loader": "1.1.11",
-        "ignore-loader": "0.1.2",
-        "ts-loader": "^4.0.0",
-        "typescript": "3.0.1",
-        "webpack": "^4.16.2",
-        "webpack-dev-server": "^3.1.5"
-    }
+	"name": "@wface/docs",
+	"version": "0.7.0",
+	"description": "",
+	"scripts": {
+		"build": "webpack",
+		"start": "webpack-dev-server --hot --open"
+	},
+	"author": "baran",
+	"dependencies": {
+		"@types/react-redux": "^6.0.5",
+		"@types/react-router-dom": "^4.3.0",
+		"@wface/components": "0.7.0",
+		"babel-polyfill": "^6.26.0",
+		"babel-preset-react": "^6.24.1",
+		"codemirror": "^5.39.2",
+		"react": "16.5.2",
+		"react-codemirror2": "^5.1.0",
+		"react-dom": "16.5.2",
+		"react-element-to-jsx-string": "^14.0.1",
+		"react-redux": "^5.0.7",
+		"react-router-dom": "^4.3.1",
+		"react.di": "^2.0.0",
+		"reflect-metadata": "^0.1.12",
+		"tslib": "^1.9.0",
+		"webpack-cli": "^3.1.0"
+	},
+	"devDependencies": {
+		"@mdx-js/loader": "^0.14.1",
+		"@mdx-js/mdx": "^0.14.1",
+		"@types/react": "^16.4.14",
+		"@types/react-dom": "^16.0.6",
+		"babel-core": "^6.26.3",
+		"babel-loader": "^7.1.5",
+		"file-loader": "1.1.11",
+		"ignore-loader": "0.1.2",
+		"ts-loader": "^4.0.0",
+		"typescript": "3.0.1",
+		"webpack": "^4.16.2",
+		"webpack-dev-server": "^3.1.5"
+	}
 }

@@ -3,7 +3,7 @@ import Select from 'react-select';
 import { withStyles } from '@material-ui/core/styles';
 import NoSsr from '@material-ui/core/NoSsr';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
-import components from './components'
+import selectComponents from './components'
 import { isRegExp } from 'util';
 import { timingSafeEqual } from 'crypto';
 
@@ -23,10 +23,12 @@ export interface WSelectProps {
   isLoading?: boolean;
   isMulti?: boolean;
   isSearchable?: boolean;
+  error?: boolean;
   label?: string;
+  helperText?: string;
   name?: string;
   onBlur?: (event: React.FocusEvent<HTMLElement>) => void;
-  onChange?: (value: any) => void;
+  onChange?: (value: any, object?: any) => void;
   onFocus?: (event: React.FocusEvent<HTMLElement>) => void;
   onMenuOpen?: () => void;
   onMenuClose?: () => void;
@@ -51,7 +53,7 @@ class WSelectInner extends React.Component<WSelectProps, {focused: boolean}> {
 
   private getCleanValue = () => {
     const find = (value) => {      
-      return this.props.options.find(option => option.value === value)
+      return this.props.options.find(option => option.value == value)
     }
 
     if(this.props.isMulti && this.props.value) {
@@ -64,9 +66,9 @@ class WSelectInner extends React.Component<WSelectProps, {focused: boolean}> {
       });
       return result;
     }
-    else if(typeof this.props.value === 'string' && this.props.value.length){
+    else if(typeof this.props.value !== 'object'){
       return find(this.props.value);
-    }      
+    } 
     else {
       return this.props.value;
     }
@@ -83,6 +85,18 @@ class WSelectInner extends React.Component<WSelectProps, {focused: boolean}> {
     }
   }
 
+  onChange = value => {    
+    if(this.props.onChange) {
+      if(this.props.isMulti) {
+        this.props.onChange(value.map(item => item.value), value);
+      }
+      else {
+        this.props.onChange(value.value, value);
+      }
+      
+    }
+  }
+
   render() {
     // @ts-ignore
     const { classes } = this.props;
@@ -95,24 +109,38 @@ class WSelectInner extends React.Component<WSelectProps, {focused: boolean}> {
         <Select
           ref={this.select}
           {...this.props}
+          styles={customStyles}
           onFocus={(event) => this.setFocus(event, true)}
-          onBlur={(event) => this.setFocus(event, false)}          
+          onBlur={(event) => this.setFocus(event, false)} 
+          onChange={this.onChange}         
           placeholder=""
           value={cleanValue}
           // @ts-ignore
-          classes={classes}
+          classes={classes}        
           textFieldProps={{
             label: this.props.label,
-            InputLabelProps: {
-              // shrink: !this.state.focused && this.props.isMulti ? cleanValue && cleanValue.length > 0 : cleanValue,
-              shrink: this.state.focused || hasValue,
+            InputLabelProps: {              
+              shrink: this.state.focused || hasValue,            
             },
+            error: this.props.error,
+            helperText: this.props.helperText
           }}
-          components={components}
+          components={selectComponents}
         />
       </NoSsr>
     );
   }
+}
+
+const customStyles = {
+  dropdownIndicator: (provided) => ({
+    ...provided,
+    padding: 6
+  }),
+  clearIndicator: (provided) => ({
+    ...provided,
+    padding: 6
+  }),
 }
 
 
@@ -128,7 +156,8 @@ const styles = theme => ({
     alignItems: 'center',
   },
   chip: {
-    margin: `${theme.spacing.unit / 4}px ${theme.spacing.unit / 4}px`,    
+    margin: `${theme.spacing.unit / 4}px ${theme.spacing.unit / 4}px`,
+    height: 28
   },
   chipFocused: {
     backgroundColor: emphasize(
@@ -153,6 +182,9 @@ const styles = theme => ({
     marginTop: theme.spacing.unit,
     left: 0,
     right: 0,    
+  },
+  dropdownIndicator: {
+    padding: 40
   }
 });
 

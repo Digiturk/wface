@@ -1,4 +1,4 @@
-import { IConfiguration } from "@wface/ioc";
+import { IConfiguration, IHttpService } from "@wface/ioc";
 import AuthService from '../../src/services/AuthService';
 import { DemoScreen } from '../../src/screens/DemoScreen'
 
@@ -8,8 +8,7 @@ const config = {
   screenList: { 
     DemoScreen
   },
-  authService: new AuthService(),
-  businessService: null,
+  authService: new AuthService(),  
 } as IConfiguration
 
 export default config;

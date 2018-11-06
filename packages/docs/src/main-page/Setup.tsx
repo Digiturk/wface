@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as WFace from '@wface/components';
-import Command from './Command'
+import CommandHighlight from '../docs/cli/commands/CommandHighlight'
 
 export default class Setup extends React.Component<any, any> {
   public render() {
@@ -11,8 +11,9 @@ export default class Setup extends React.Component<any, any> {
           avatar={<WFace.WIcon color="primary" style={{fontSize:25}}>build</WFace.WIcon>}/>
         <WFace.WCardContent>
           <WFace.WList>
-            <Command command="npm set registry http://registry.digiturk.com" desc="Digiturk npm reposunu ayarla"/>
-            <Command command="npm install -g wface" desc="WFace komut satırı uygulamasını indir"/>                        
+            <CommandHighlight command="npm set registry http://dtl1tfsbuild2:8081/repository/digiturk-npm-group/" dscr="Digiturk npm reposunu ayarla"/>
+            <CommandHighlight command="npm i -g yarn" dscr="yarn yükle"/>
+            <CommandHighlight command="npm i -g wface" dscr="WFace komut satırı uygulamasını indir"/>
           </WFace.WList>
         </WFace.WCardContent>
         <WFace.WCardActions>

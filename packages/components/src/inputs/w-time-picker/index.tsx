@@ -1,22 +1,33 @@
 import * as React from 'react';
 import TimePicker, { TimePickerProps } from 'material-ui-pickers/TimePicker';
-import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
+import { DateType } from 'material-ui-pickers/constants/prop-types'
 import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils';
+import MuiPickersUtilsProvider from 'material-ui-pickers/MuiPickersUtilsProvider';
+import { Omit } from '@material-ui/core';
 
-export interface WTimePickerProps extends TimePickerProps {}
+export interface WTimePickerProps extends Omit<Omit<TimePickerProps, "value">, "onChange"> {
+  fullWidth?: boolean,
+  value?: DateType,
+  onChange?: (date: DateType) => void,
+}
 
 export class WTimePicker extends React.Component<WTimePickerProps, {}> {
   static defaultProps: WTimePickerProps = {
+    ampm: false,
     clearable: true,
+    fullWidth: true,
+    format: "HH:mm",
+    keyboard: true,
+    keyboardIcon: 'access_time',
+    mask: [/\d/, /\d/, ':', /\d/, /\d/],
     onChange: undefined,
     value: null,
-    ampm: false
   }
 
   public render() {
     return (
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <TimePicker {...this.props}/>
+        <TimePicker {...this.props} value={this.props.value} onChange={this.props.onChange}/>
       </MuiPickersUtilsProvider>
     );
   }

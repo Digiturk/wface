@@ -54,11 +54,11 @@ export { WDivider, WDividerProps } from './src/layouts/w-divider'
 // WDrawer
 export { WDrawer, WDrawerProps } from './src/layouts/w-drawer'
 
-// WDropdown
-export { WDropdown, WDropdownProps } from './src/inputs/w-dropdown'
+// WExpansionPanel
+export { WExpansionPanel, WExpansionPanelProps } from './src/layouts/w-expansion-panel'
 
 // WForm
-export { WForm } from './src/forms/w-form'
+export { WForm, WFormValidation } from './src/forms/w-form'
 export { WFormField } from './src/forms/w-form-field'
 
 // WGrid
