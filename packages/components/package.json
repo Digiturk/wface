@@ -1,14 +1,14 @@
 {
 	"name": "@wface/components",
-	"version": "0.6.1",
+	"version": "0.7.0",
 	"description": "All wface components",
 	"author": "baran",
 	"main": "index.ts",
 	"license": "ISC",
 	"dependencies": {
 		"@material-ui/core": "3.2.0",
-		"@wface/ioc": "0.6.1",
-		"@wface/store": "0.6.1",
+		"@wface/ioc": "0.7.0",
+		"@wface/store": "0.7.0",
 		"classnames": "2.2.6",
 		"date-fns": "2.0.0-alpha.16",
 		"formik": "1.3.1",
@@ -21,16 +21,16 @@
 		"react-redux": "5.0.7",
 		"react-select": "2.1.0",
 		"redux": "4.0.0",
-    "react-swipeable-views": "0.13.0",
-    "yup": "0.26.6"
+		"react-swipeable-views": "0.13.0",
+		"yup": "0.26.6"
 	},
 	"devDependencies": {
 		"@types/classnames": "2.2.3",
 		"@types/promise.prototype.finally": "2.0.2",
 		"@types/react": "16.4.16",
 		"@types/react-redux": "5",
-    "@types/react-select": "2.0.5",
-    "@types/yup": "0.26.1"
+		"@types/react-select": "2.0.5",
+		"@types/yup": "0.26.1"
 	},
 	"scripts": {
 		"set:reg:publish": "npm set registry http://dtl1tfsbuild2:8081/repository/digiturk-npm/",
