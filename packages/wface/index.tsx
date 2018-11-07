@@ -10,10 +10,7 @@ const rootEl = document.getElementById("root");
 
 render(
   <AppContainer>
-    <div>
-      <button onClick={() => {alert('as')}}>Deneme</button>
-      <WApp configuration={config}/>
-    </div>
+    <WApp configuration={config}/>
   </AppContainer>,
   rootEl
 );
