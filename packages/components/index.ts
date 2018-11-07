@@ -108,6 +108,11 @@ export { WTab, WTabProps } from './src/layouts/w-tabs/w-tab'
 // WTable
 export { WTable, WTableProps } from './src/tables/w-table'
 
+// WThemeProvider 
+export { WThemeProvider } from './src/others/w-theme-provider'
+export { WTheme } from './src/others/w-theme-provider/w-theme'
+export { WPalette } from './src/others/w-theme-provider/w-palette'
+
 // WTextField 
 export { WTextField, WTextFieldProps } from './src/inputs/w-text-field'
 

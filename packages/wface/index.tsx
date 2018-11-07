@@ -10,7 +10,10 @@ const rootEl = document.getElementById("root");
 
 render(
   <AppContainer>
-    <WApp configuration={config}/>
+    <div>
+      <button onClick={() => {alert('as')}}>Deneme</button>
+      <WApp configuration={config}/>
+    </div>
   </AppContainer>,
   rootEl
 );
@@ -19,5 +22,5 @@ render(
 declare let module: { hot: any };
 
 if (module.hot) {
-  module.hot.accept();  
+  module.hot.accept();
 }

@@ -1,5 +1,6 @@
 import { IAuthService } from '@wface/ioc';
 import IHttpService from './IHttpService';
+import { WTheme } from '@wface/components';
 
 export default interface IConfiguration {
   title?: string,
@@ -10,4 +11,6 @@ export default interface IConfiguration {
 
   authService?: IAuthService;
   httpService?: IHttpService;
+
+  theme?: WTheme;
 }

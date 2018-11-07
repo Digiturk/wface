@@ -2,9 +2,8 @@ import * as React from 'react';
 import { HashRouter, Route, Redirect } from 'react-router-dom'
 import { withRouter } from 'react-router';
 import WMainPage from '../w-main-page';
-import WMuiThemeProvider from './WMuiThemeProvider';
 import { store, UserContextActions } from '@wface/store';
-import { WSnackbarProvider } from '@wface/components';
+import { WSnackbarProvider, WThemeProvider } from '@wface/components';
 import { Provider } from 'react-redux';
 import { IConfiguration } from '@wface/ioc';
 import { connect } from 'react-redux';
@@ -33,7 +32,7 @@ let InnerContainer = (props: any) => {
   const LoginScreen = configuration.loginScreen;
 
   return (
-    <WMuiThemeProvider>
+    <WThemeProvider theme={configuration.theme}>
       <WSnackbarProvider 
         maxSnack={3} 
         anchorOrigin={{vertical: 'top', horizontal: 'right'}} 
@@ -49,7 +48,7 @@ let InnerContainer = (props: any) => {
         }/>
         <Route path="/main" render={(subProps:any) => isLoggedIn ? <WMainPage {...subProps} configuration={configuration}/> : <Redirect to={props.location.pathname.replace('main', 'login')}/> }/>
       </WSnackbarProvider>
-    </WMuiThemeProvider >
+    </WThemeProvider >
   )
 }
 
