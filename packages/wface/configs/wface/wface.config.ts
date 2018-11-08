@@ -1,7 +1,14 @@
 import { IConfiguration, IHttpService } from "@wface/ioc";
 import AuthService from '../../src/services/AuthService';
-import { DemoScreen, theme } from '../../src/screens/DemoScreen'
+import { DemoScreen } from '../../src/screens/DemoScreen'
 import { WTheme } from '@wface/components';
+
+const theme = {
+  palette: {
+    type: "light"
+  }
+} as WTheme
+
 
 const config = {
   title: 'WFace Boilerplate',
@@ -10,7 +17,7 @@ const config = {
     DemoScreen
   },
   authService: new AuthService(),  
-  theme: theme as WTheme
+  theme: theme
 } as IConfiguration
 
 export default config;

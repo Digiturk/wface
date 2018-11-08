@@ -32,7 +32,7 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
       <WFace.WCard>
         <WFace.WCardHeader title="Select Deneme" />
         <WFace.WCardContent>
-          <WFace.WButton onClick={() => theme.palette.type = 'light'}>Change</WFace.WButton>
+          <WFace.WButton>Change</WFace.WButton>
         </WFace.WCardContent>
       </WFace.WCard>
     )
@@ -89,11 +89,5 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
         </WFace.WForm>
       </div >
     )
-  }
-}
-
-export const theme = {
-  palette: {
-    type: 'dark'
   }
 }

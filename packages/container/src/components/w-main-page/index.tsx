@@ -3,7 +3,7 @@
 import { withStyles } from '@material-ui/core/styles';
 import { WAppBar, WDrawer, WGrid, WIcon, WIconButton, WTab, WTabs, WToolBar, WTypography } from '@wface/components';
 import { IAuthService, IMenuTreeItem, MenuTreeUtil, IConfiguration } from "@wface/ioc";
-import { AppContextActions, WStore } from '@wface/store';
+import { AppContextActions, WStore, AppContext } from '@wface/store';
 import * as classNames from 'classnames';
 import * as React from "react";
 import { connect } from 'react-redux';
@@ -11,6 +11,7 @@ import { Route, Switch, withRouter, Redirect } from 'react-router';
 import WScreenWrapper from '../w-screen-wrapper';
 import MyProfileMenu from './MyProfileMenu';
 import NavList from './NavList';
+import appContext from '@wface/store/src/appContext/reducer';
 
 //#endregion 
 
@@ -19,7 +20,7 @@ export interface WMainPageProps {
   location: any,
   match: any,  
   history?: any,
-  configuration: IConfiguration
+  appContext: AppContext
 }
 
 export interface DispatchProps {
@@ -45,7 +46,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
     const { match, location, setMenuTree, openScreen } = this.props;
     const getScreenUrl = this.getScreenUrl;
 
-    this.props.configuration.authService.getMenuTree()
+    this.props.appContext.configuration.authService.getMenuTree()
       .then(menuTree => {
         setMenuTree(menuTree);          
         
@@ -127,7 +128,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
             </WIconButton>
             <span>
               <WTypography variant="title" color="inherit" noWrap className={classes.flex}>
-                {this.props.configuration.projectName}
+                {this.props.appContext.configuration.projectName}
               </WTypography>
               <WTypography variant="caption" color="inherit" noWrap className={classes.flex} style={{color: '#C5CAE9'}}>
                 {" @WFace"}
@@ -198,7 +199,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
                   {
                     (() => {
                       return this.props.appContext.openedScreens.map(screen => {
-                        const screenComponent = <WScreenWrapper screen={screen} configuration={this.props.configuration}/>
+                        const screenComponent = <WScreenWrapper screen={screen}/>
                         const route = <Route key={screen.menuTreeItem.id} path={(this.props as any).match.url + this.getScreenUrl(screen.menuTreeItem)} render={props => { return screenComponent; }} />
                         return route;
                       });

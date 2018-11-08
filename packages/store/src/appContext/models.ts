@@ -1,6 +1,7 @@
-import { IMenuTreeItem } from '@wface/ioc';
+import { IMenuTreeItem, IConfiguration } from '@wface/ioc';
 
 export default interface AppContext {
+    configuration: IConfiguration;
     menuTree: IMenuTreeItem[];
     openedScreens: ScreenData[];
     currentScreen?: ScreenData;
