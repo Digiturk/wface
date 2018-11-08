@@ -19,5 +19,5 @@ render(
 declare let module: { hot: any };
 
 if (module.hot) {
-  module.hot.accept();  
+  module.hot.accept();
 }

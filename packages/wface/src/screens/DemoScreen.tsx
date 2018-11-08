@@ -32,7 +32,7 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
       <WFace.WCard>
         <WFace.WCardHeader title="Select Deneme" />
         <WFace.WCardContent>
-          <WFace.WTextField type="number"/>
+          <WFace.WButton>Change</WFace.WButton>
         </WFace.WCardContent>
       </WFace.WCard>
     )

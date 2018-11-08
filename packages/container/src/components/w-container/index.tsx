@@ -2,9 +2,8 @@ import * as React from 'react';
 import { HashRouter, Route, Redirect } from 'react-router-dom'
 import { withRouter } from 'react-router';
 import WMainPage from '../w-main-page';
-import WMuiThemeProvider from './WMuiThemeProvider';
-import { store, UserContextActions } from '@wface/store';
-import { WSnackbarProvider } from '@wface/components';
+import { store, UserContextActions, AppContextActions } from '@wface/store';
+import { WSnackbarProvider, WThemeProvider } from '@wface/components';
 import { Provider } from 'react-redux';
 import { IConfiguration } from '@wface/ioc';
 import { connect } from 'react-redux';
@@ -12,15 +11,19 @@ import { connect } from 'react-redux';
 class WContainer extends React.Component<{configuration: IConfiguration}, {}> {
 
   constructor(props: any) {
-    super(props);
+    super(props);    
+    this.setConfig(props.configuration);
+  }
+
+  setConfig = (config:IConfiguration) => {
+    store.dispatch(AppContextActions.setConfig(config));
   }
 
   render() { 
-    
     return (
       <Provider store={store}>
         <HashRouter>
-          <InnerContainer configuration={this.props.configuration}/>
+          <InnerContainer/>
         </HashRouter>
       </Provider>
     );
@@ -29,11 +32,11 @@ class WContainer extends React.Component<{configuration: IConfiguration}, {}> {
 
 let InnerContainer = (props: any) => {
   const isLoggedIn = props.userContext.isLoggedIn;
-  const configuration = props.configuration as IConfiguration;
+  const configuration = props.appContext.configuration as IConfiguration;
   const LoginScreen = configuration.loginScreen;
 
   return (
-    <WMuiThemeProvider>
+    <WThemeProvider theme={configuration.theme}>
       <WSnackbarProvider 
         maxSnack={3} 
         anchorOrigin={{vertical: 'top', horizontal: 'right'}} 
@@ -47,14 +50,15 @@ let InnerContainer = (props: any) => {
           :
           <LoginScreen {...subProps} authService={configuration.authService}/>
         }/>
-        <Route path="/main" render={(subProps:any) => isLoggedIn ? <WMainPage {...subProps} configuration={configuration}/> : <Redirect to={props.location.pathname.replace('main', 'login')}/> }/>
+        <Route path="/main" render={(subProps:any) => isLoggedIn ? <WMainPage {...subProps}/> : <Redirect to={props.location.pathname.replace('main', 'login')}/> }/>
       </WSnackbarProvider>
-    </WMuiThemeProvider >
+    </WThemeProvider >
   )
 }
 
 const mapStateToProps = (state:any) => ({
-  userContext: state.userContext
+  userContext: state.userContext,
+  appContext: state.appContext
 });
 
 const mapDispatchToProps = (dispatch:any) => ({

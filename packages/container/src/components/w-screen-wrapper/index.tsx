@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 
 export interface WScreenWrapperProps {
   screen?: ScreenData;
-  configuration: IConfiguration;
   enqueueSnackbar?: (message: string, options: object) => void
 }
 
@@ -53,13 +52,13 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
   }
 
   public render() {
-    const Screen = this.props.configuration.screenList[this.props.screen.menuTreeItem.screen] as any;
+    const Screen = this.props.appContext.configuration.screenList[this.props.screen.menuTreeItem.screen] as any;
     return (
       Screen ?
         <Screen
           ref={this.screenRef}
           appContext={this.props.appContext}
-          httpService={this.props.configuration.httpService}
+          httpService={this.props.appContext.configuration.httpService}
           screenData={this.props.appContext.currentScreen}
           userContext={this.props.userContext}
           openScreen={this.openScreen}

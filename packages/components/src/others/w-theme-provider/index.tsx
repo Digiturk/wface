@@ -1,28 +1,16 @@
 import * as React from 'react';
+import { WTheme } from './w-theme';
+import { WPalette } from './w-palette';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
-import indigo from '@material-ui/core/colors/indigo';
-import pink from '@material-ui/core/colors/pink';
 import red from '@material-ui/core/colors/red';
 import blue from '@material-ui/core/colors/blue';
 import green from '@material-ui/core/colors/green';
 import orange from '@material-ui/core/colors/orange';
+import { merge } from 'lodash';
 
-import { Palette, PaletteColor, TypeText, TypeAction, TypeBackground, SimplePaletteColorOptions } from "@material-ui/core/styles/createPalette";
-import { CommonColors } from "@material-ui/core/colors/common";
-import { PaletteType, Color } from "@material-ui/core";
-
-interface WPalette extends Palette {
-  info: PaletteColor;
-  success: PaletteColor;
-  warning: PaletteColor;
-}
-
-// All the following keys are optional.
-// We try our best to provide a great default value.
-const theme = createMuiTheme({
-
+const defaultTheme = {
   palette: {
-    type: 'light', // dark
+    type: 'light',
     error: {
       light: red[300],
       main: red[500],
@@ -48,11 +36,34 @@ const theme = createMuiTheme({
       contrastText: '#fff'
     }
   } as WPalette
-});
+}
 
 // <MuiThemeProvider theme={theme}>
-export default class WMuiThemeProvider extends React.Component<{}, {}> {
+export class WThemeProvider extends React.Component<{ theme?: WTheme }, any> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      theme: this.getTheme()
+    }
+  }
+
+  componentWillUpdate(prevProps) {
+    if (prevProps.theme != this.props.theme) {
+      this.setState({
+        theme: this.getTheme()
+      });
+    }
+  }
+
+  getTheme() {
+    const merged = merge(defaultTheme, this.props.theme);
+    const theme = createMuiTheme(merged);
+
+    return theme;
+  }
+
   public render() {
+    const theme = this.getTheme();
     return (
       <MuiThemeProvider theme={theme}>
         {this.props.children}
