@@ -1,11 +1,47 @@
 import * as React from 'react';
 import { Icon } from '@material-ui/core';
 import { IconProps } from '@material-ui/core/Icon';
+import { withTheme } from '@material-ui/core/styles';
+import { WTheme } from '../../others/w-theme-provider/w-theme';
 
-export interface WIconProps extends IconProps { }
+export interface WIconProps extends IconProps {
+  icon?: string;
+  iconSource?: 'material-icons' | 'fontawesome';
+  iconSize?: 'small' | 'default' | 'large';
+  /** @deprecated use iconSize instead */
+  children?: string;
+  theme?: WTheme;
+}
 
-export class WIcon extends React.Component<WIconProps, {}> {
+const sizeMap = {
+  small: {size: 'sm', style: {verticalAlign: 'top', padding: '1.6px 2.68px', fontSize: 17}},
+  default: {size: 'lg', style: {verticalAlign: 'top', padding: '4.5px 3.68px', fontSize: 21}},
+  large: {size: '2x', style: {verticalAlign: 'top', padding: '1.8px 4.68px', fontSize: 31}},
+}
+
+class WIconInner extends React.Component<WIconProps, {}> {  
+  static defaultProps: WIconProps = {
+    iconSource: 'material-icons',
+    iconSize: 'default'
+  }
+
   public render() {
-    return <Icon {...this.props} />
+    if(this.props.iconSource == 'material-icons') {
+      return <Icon {...this.props} fontSize={this.props.iconSize}>{this.props.icon || this.props.children}</Icon>
+    }
+    else {
+      let className = this.props.icon || this.props.children;
+      className += " fa-" + sizeMap[this.props.iconSize].size;
+
+      const style = {...sizeMap[this.props.iconSize].style, ...this.props.style};
+      
+      if(this.props.color && this.props.color != "default") {
+        style.color = this.props.theme.palette[this.props.color].main;
+      }
+      
+      return <i className={className as any} style={style} />
+    }
   }
 }
+
+export const WIcon = withTheme()(WIconInner);

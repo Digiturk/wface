@@ -28,11 +28,57 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
   }
 
   public render() {
+    const size = 'small' 
+
     return (
       <WFace.WCard>
         <WFace.WCardHeader title="Select Deneme" />
         <WFace.WCardContent>
-          <WFace.WButton>Change</WFace.WButton>
+
+          <WFace.WIconButton color="secondary"><WFace.WIcon iconSource="material-icons" icon="save"   /></WFace.WIconButton>
+          <WFace.WIconButton color="secondary"><WFace.WIcon iconSource="fontawesome" icon="fa fa-save"/></WFace.WIconButton>
+          <WFace.WIconButton color="secondary"><WFace.WIcon iconSource="fontawesome" icon="fa fa-home"/></WFace.WIconButton>
+          <WFace.WIconButton color="secondary"><WFace.WIcon iconSource="material-icons" icon="home"   /></WFace.WIconButton>
+          <WFace.WIconButton color="secondary"><WFace.WIcon iconSource="material-icons" icon="save"   /></WFace.WIconButton>
+          <WFace.WIconButton color="secondary"><WFace.WIcon iconSource="fontawesome" icon="fa fa-save"/></WFace.WIconButton>
+
+          <br/>
+          
+          <WFace.WIcon iconSource="material-icons" icon="save"    iconSize={size}/>
+          <WFace.WIcon iconSource="fontawesome" icon="fa fa-save" iconSize={size}/> 
+          <WFace.WIcon iconSource="material-icons" icon="save"    iconSize={size}/>
+          <WFace.WIcon iconSource="fontawesome" icon="fa fa-save" iconSize={size}/>          
+          <WFace.WIcon iconSource="material-icons" icon="save"    iconSize={size}/>
+          <WFace.WIcon iconSource="fontawesome" icon="fa fa-save" iconSize={size}/>   
+
+          <br/>
+
+          <WFace.WIcon iconSource="fontawesome" icon="fa fa-save" iconSize={size}/>
+          <WFace.WIcon iconSource="material-icons" icon="save"    iconSize={size}/>
+          <WFace.WIcon iconSource="fontawesome" icon="fa fa-save" iconSize={size}/> 
+          <WFace.WIcon iconSource="material-icons" icon="save"    iconSize={size}/>
+          <WFace.WIcon iconSource="fontawesome" icon="fa fa-save" iconSize={size}/>          
+          <WFace.WIcon iconSource="material-icons" icon="save"    iconSize={size}/>
+
+           <br/>
+
+          <WFace.WIcon iconSource="fontawesome" icon="fa fa-home" iconSize={size}/>
+          <WFace.WIcon iconSource="material-icons" icon="home"    iconSize={size}/>
+          <WFace.WIcon iconSource="fontawesome" icon="fa fa-home" iconSize={size}/>
+          <WFace.WIcon iconSource="material-icons" icon="home"    iconSize={size}/>
+          <WFace.WIcon iconSource="fontawesome" icon="fa fa-home" iconSize={size}/>
+          <WFace.WIcon iconSource="material-icons" icon="home"    iconSize={size}/>
+
+           <br/>
+
+          <WFace.WIcon iconSource="material-icons" icon="home"    iconSize={size}/>
+          <WFace.WIcon iconSource="fontawesome" icon="fa fa-home" iconSize={size}/>
+          <WFace.WIcon iconSource="material-icons" icon="home"    iconSize={size}/>
+          <WFace.WIcon iconSource="fontawesome" icon="fa fa-home" iconSize={size}/>
+          <WFace.WIcon iconSource="material-icons" icon="home"    iconSize={size}/>
+          <WFace.WIcon iconSource="fontawesome" icon="fa fa-home" iconSize={size}/>
+          
+                          
         </WFace.WCardContent>
       </WFace.WCard>
     )
