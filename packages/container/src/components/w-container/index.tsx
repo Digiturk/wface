@@ -41,7 +41,6 @@ let InnerContainer = (props: any) => {
         maxSnack={3} 
         anchorOrigin={{vertical: 'bottom', horizontal: 'left'}} 
         autoHideDuration={5000}
-        // style={{display: 'block'}}
       >
         <Route exact path="/" render={subProps => <Redirect to="/main" />} />
         <Route path="/login/:screen?" render={(subProps:any) => isLoggedIn ? 

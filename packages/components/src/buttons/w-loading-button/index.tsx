@@ -5,7 +5,7 @@ import { WCircularProgress, WCircularProgressProps } from '../../progress/w-circ
 import { WLinearProgress, WLinearProgressProps } from '../../progress/w-linear-progress';
 import green from '@material-ui/core/colors/green';
 import red from '@material-ui/core/colors/red';
-import { withStyles } from '@material-ui/core/styles';
+import { createStyles, withStyles } from '@material-ui/core/styles';
 
 export interface WLoadingButtonProps extends WButtonProps {
   isLoading?: boolean;
@@ -41,7 +41,7 @@ class WLoadingButtonInner extends React.Component<WLoadingButtonProps & ClassNam
   }
 }
 
-const styles = (theme:any) => ({
+const styles = (theme:any) => createStyles({
   root: {
     display: 'flex',
     alignItems: 'center',
@@ -87,5 +87,5 @@ const styles = (theme:any) => ({
 });
 type ClassNames = { classes: { [className in keyof typeof styles]: string } };
 
-const WLoadingButton = withStyles(styles as any)(WLoadingButtonInner)
+const WLoadingButton = withStyles(styles)(WLoadingButtonInner)
 export { WLoadingButton }

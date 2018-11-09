@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Select from 'react-select';
-import { withStyles } from '@material-ui/core/styles';
+import { createStyles, withStyles } from '@material-ui/core/styles';
 import NoSsr from '@material-ui/core/NoSsr';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import selectComponents from './components'
@@ -144,7 +144,7 @@ const customStyles = {
 }
 
 
-const styles = theme => ({
+const styles = theme => createStyles({
   input: {
     display: 'flex',
     padding: 0,
@@ -188,5 +188,5 @@ const styles = theme => ({
   }
 });
 
-const WSelect = withStyles(styles as any, { withTheme: false })(WSelectInner);
+const WSelect = withStyles(styles, { withTheme: false })(WSelectInner);
 export { WSelect }
