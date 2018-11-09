@@ -72,7 +72,9 @@ const styles = (theme:any) => ({
     color: theme.palette.primary.main,
     position: 'absolute',
     bottom: 0,
-    width: '100%'
+    height: 3,
+    width: '100%',
+    borderRadius: '0px 0px 4px 4px'
   },
   circularProgress: {
     color: green[500],
