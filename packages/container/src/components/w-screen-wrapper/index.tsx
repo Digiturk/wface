@@ -1,4 +1,4 @@
-import { WGrid, WPaper, WTypography, withSnackbar } from '@wface/components';
+import { WGrid, WPaper, WTypography, withSnackbar, WIconButton, WIcon } from '@wface/components';
 import { IMenuTreeItem, MenuTreeUtil, IConfiguration } from '@wface/ioc';
 import { AppContextActions, WStore, ScreenData } from '@wface/store';
 import * as React from 'react';
@@ -47,7 +47,8 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
   showSnackbar = (message: string, type: 'error' | 'success' | 'warning' | 'info' = 'info', duration: number = 5000) => {    
     this.props.enqueueSnackbar(message, {
       variant: type,
-      autoHideDuration: duration
+      autoHideDuration: duration,
+      action: <WIconButton><WIcon style={{color: '#ffffff99'}} iconSize="small">close</WIcon></WIconButton>
     });
   }
 

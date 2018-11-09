@@ -3,7 +3,7 @@ import { HashRouter, Route, Redirect } from 'react-router-dom'
 import { withRouter } from 'react-router';
 import WMainPage from '../w-main-page';
 import { store, UserContextActions, AppContextActions } from '@wface/store';
-import { WSnackbarProvider, WThemeProvider } from '@wface/components';
+import { WSnackbarProvider, WThemeProvider, WIconButton, WIcon } from '@wface/components';
 import { Provider } from 'react-redux';
 import { IConfiguration } from '@wface/ioc';
 import { connect } from 'react-redux';
@@ -39,10 +39,9 @@ let InnerContainer = (props: any) => {
     <WThemeProvider theme={configuration.theme}>
       <WSnackbarProvider 
         maxSnack={3} 
-        anchorOrigin={{vertical: 'top', horizontal: 'right'}} 
+        anchorOrigin={{vertical: 'bottom', horizontal: 'left'}} 
         autoHideDuration={5000}
-        disableWindowBlurListener={true}
-        style={{display: 'block'}}
+        // style={{display: 'block'}}
       >
         <Route exact path="/" render={subProps => <Redirect to="/main" />} />
         <Route path="/login/:screen?" render={(subProps:any) => isLoggedIn ? 
@@ -50,7 +49,7 @@ let InnerContainer = (props: any) => {
           :
           <LoginScreen {...subProps} authService={configuration.authService}/>
         }/>
-        <Route path="/main" render={(subProps:any) => isLoggedIn ? <WMainPage {...subProps}/> : <Redirect to={props.location.pathname.replace('main', 'login')}/> }/>
+        <Route path="/main" render={(subProps:any) => isLoggedIn ? <WMainPage {...subProps} style={{height:'100%'}}/> : <Redirect to={props.location.pathname.replace('main', 'login')}/> }/>
       </WSnackbarProvider>
     </WThemeProvider >
   )

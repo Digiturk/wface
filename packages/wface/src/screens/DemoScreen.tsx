@@ -34,7 +34,8 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
       <WFace.WCard>
         <WFace.WCardHeader title="Select Deneme" />
         <WFace.WCardContent>
-          <WFace.WLoadingButton isLoading>Deneme</WFace.WLoadingButton>
+          <WFace.WButton onClick={() => this.props.showSnackbar("Deneme", 'info', 1 * 60 * 1000)}>Show</WFace.WButton>
+          <WFace.WButton style={{float: 'right'}} onClick={() => this.props.showSnackbar("Deneme", 'success')}>Show</WFace.WButton>
         </WFace.WCardContent>
       </WFace.WCard>
     )
