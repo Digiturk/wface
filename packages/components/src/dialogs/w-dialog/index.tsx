@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Dialog, { DialogProps } from '@material-ui/core/Dialog'
-import { withStyles } from '@material-ui/core/styles';
+import { createStyles, withStyles } from '@material-ui/core/styles';
 
 export interface WDialogProps extends DialogProps { }
 
@@ -11,6 +11,6 @@ class WDialogInner extends React.Component<WDialogProps, {}> {
   }
 }
 
-const styles = theme => ({ root: { overflow: 'visible' } });
+const styles = theme => createStyles({ root: { overflow: 'visible' } });
 
 export const WDialog = withStyles(styles)(WDialogInner);

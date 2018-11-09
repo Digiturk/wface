@@ -1,4 +1,4 @@
-import { withStyles } from '@material-ui/core';
+import { createStyles, withStyles } from '@material-ui/core';
 import * as classNames from 'classnames';
 import * as React from 'react';
 import { WIconButton } from '../../buttons/w-icon-button';
@@ -45,7 +45,7 @@ class WNotificationBarInner extends React.Component<WNotificationBarProps, {}> {
   }
 }
 
-const styles = (theme:any) => ({
+const styles = (theme:any) => createStyles({
   notification: theme.mixins.gutters({
     paddingTop: 5,
     paddingBottom: 5,
@@ -68,5 +68,5 @@ const styles = (theme:any) => ({
   }
 });
 
-const WNotificationBar = withStyles(styles as any)(WNotificationBarInner)
+const WNotificationBar = withStyles(styles)(WNotificationBarInner)
 export { WNotificationBar };
