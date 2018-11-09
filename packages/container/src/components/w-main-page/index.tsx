@@ -115,7 +115,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
   render() {    
     const { classes } = this.props;
     return (
-      <div className={classes.root}>
+      <div className={classes.root + " main-page" }>
         <WAppBar position="absolute" className={classes.appBar}>
           <WToolBar style={{minHeight:48}}>
             <WIconButton
