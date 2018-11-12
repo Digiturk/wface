@@ -9,7 +9,7 @@ export interface WCheckboxProps extends CheckboxProps {
 export class WCheckbox extends React.Component<WCheckboxProps, {}> {
   public render() {
     if(this.props.label) {
-      return <FormControlLabel label={this.props.label} control={<Checkbox {...this.props} />} {...this.props} />
+      return <FormControlLabel label={this.props.label} control={<Checkbox {...this.props} />}/>
     }
     else {
       return <Checkbox {...this.props} />

@@ -36,9 +36,16 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
         <WFace.WCard >
           <WFace.WCardHeader title="Select Deneme" />
           <WFace.WCardContent>
-            Value is {value && value.toString()}
-            <br/>
-            <WFace.WButton onClick={() => this.props.setValue("key1", new Date())}>Show</WFace.WButton>
+            <WFace.WForm onSubmit={(obj) => alert(JSON.stringify(obj)) } initialValues={{c: true, d: '2'}}> 
+              <WFace.WFormField.Checkbox name="c" label="deneme"/>
+              <WFace.WFormField.RadioGroup name="d" label="2asdlkjlkj" options={[                
+                {label:'a', value: '1'},
+                {label:'v', value: '2'},
+                {label:'c', value: '3'},
+                {label:'a', value: '4'},
+              ]}/>
+              <WFace.WFormField.Submit>Deneme</WFace.WFormField.Submit>
+            </WFace.WForm>
           </WFace.WCardContent>
         </WFace.WCard>
 
