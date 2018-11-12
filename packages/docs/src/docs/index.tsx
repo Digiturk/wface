@@ -490,9 +490,9 @@ const menuTree = [
           },
           {
             id: '3.6.9',
-            text: 'WTabs',
-            path: 'Components/WTabs',
-            mdx: Mdx.Components.WTabsComponent
+            text: 'WTabContainer',
+            path: 'Components/WTabContainer',
+            mdx: Mdx.Components.WTabContainerComponent
           },
         ]
       },
