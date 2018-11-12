@@ -22,6 +22,7 @@ import WBasicDialogComponent from './components/components/dialogs/w-basic-dialo
 import WButtonComponent from './components/components/buttons/w-button.mdx'
 import WCardComponent from './components/components/layouts/w-card.mdx'
 import WCheckboxComponent from './components/components/inputs/w-checkbox.mdx'
+import WChipComponent from './components/components/others/w-chip.mdx'
 import WCircularProgressComponent from './components/components/progress/w-circular-progress.mdx'
 import WCollapseComponent from './components/components/layouts/w-collapse.mdx'
 import WDateTimePickerComponent from './components/components/inputs/w-date-time-picker.mdx'
@@ -197,6 +198,7 @@ const Mdx = {
     WButtonComponent: () => <WButtonComponent components={components}/>,
     WCardComponent: () => <WCardComponent components={components}/>,            
     WCheckboxComponent: () => <WCheckboxComponent components={components}/>,            
+    WChipComponent: () => <WChipComponent components={components}/>,                
     WCircularProgressComponent: () => <WCircularProgressComponent components={components}/>,  
     WCollapseComponent: () => <WCollapseComponent components={components}/>,            
     WDateTimePickerComponent: () => <WDateTimePickerComponent components={components}/>,

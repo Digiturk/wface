@@ -565,9 +565,15 @@ const menuTree = [
       {
         id: '3.99',
         text: 'Diğerleri',
-        subNodes: [          
+        subNodes: [     
           {
             id: '3.99.1',
+            text: 'WChip',
+            path: 'Components/WChip',
+            mdx: Mdx.Components.WChipComponent
+          },     
+          {
+            id: '3.99.2',
             text: 'WTypography',
             path: 'Components/WTypography',
             mdx: Mdx.Components.WTypographyComponent
