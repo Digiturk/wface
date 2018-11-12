@@ -12,6 +12,7 @@ export interface WScreenWrapperProps {
 export interface DispatchProps {
   saveScreenState: (screenId: string, state: any) => void;
   openScreen: (menuTreeItem: IMenuTreeItem, initialValues?: any) => void;
+  setValue: (key: string, value: any) => void;
 }
 
 class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & DispatchProps, any> {
@@ -64,6 +65,7 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
           userContext={this.props.userContext}
           openScreen={this.openScreen}
           showSnackbar={this.showSnackbar}
+          setValue={this.props.setValue}
         />
         :
         <WGrid container justify="center" style={{ paddingTop: 30 }}>
@@ -89,7 +91,8 @@ const mapStateToProps = (state:WStore) => ({
 
 const mapDispatchToProps = dispatch => ({
   saveScreenState: (screenId: string, state: any) => dispatch(AppContextActions.saveScreenState({ screenId, state })),
-  openScreen: (menuTreeItem: IMenuTreeItem, initialValues?: any) => dispatch(AppContextActions.openScreen({menuTreeItem, initialValues})),  
+  openScreen: (menuTreeItem: IMenuTreeItem, initialValues?: any) => dispatch(AppContextActions.openScreen({menuTreeItem, initialValues})),
+  setValue: (key: string, value: any) => dispatch(AppContextActions.setValue({key, value}))
 });
 
 export default connect<WStore, DispatchProps, WScreenWrapperProps>(mapStateToProps, mapDispatchToProps)(withSnackbar(WScreenWrapper) as any);

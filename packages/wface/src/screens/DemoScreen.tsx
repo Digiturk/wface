@@ -29,27 +29,20 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
 
   public render() {
     const size = 'small'
+    const value = this.props.appContext.cache["key1"];
 
     return (
       <React.Fragment>
         <WFace.WCard >
           <WFace.WCardHeader title="Select Deneme" />
           <WFace.WCardContent>
-            <WFace.WButton onClick={() => this.props.showSnackbar("Deneme", 'info')}>Show</WFace.WButton>
-            <WFace.WButton style={{ float: 'right' }} onClick={() => this.props.showSnackbar("Deneme", 'success')}>Show</WFace.WButton>
+            Value is {value && value.toString()}
+            <br/>
+            <WFace.WButton onClick={() => this.props.setValue("key1", new Date())}>Show</WFace.WButton>
           </WFace.WCardContent>
         </WFace.WCard>
 
-        <WFace.WTable
-          columns={[
-            { title: 'Adı', field: 'name' },
-            { title: 'Soyadı', field: 'surname' },
-            { title: 'Doğum Yılı', field: 'birthYear', type: 'numeric' },
-            { title: 'Doğum Yeri', field: 'birthCity', lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' } }
-          ]}
-          data={[{ name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 }]}
-          title="Demo Title"
-        />
+        
       </React.Fragment>
     )
   }
