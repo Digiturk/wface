@@ -105,6 +105,10 @@ export { WSwitch, WSwitchProps } from './src/inputs/w-switch'
 export { WTabs, WTabsProps } from './src/layouts/w-tabs'
 export { WTab, WTabProps } from './src/layouts/w-tabs/w-tab'
 
+// WTabContainer 
+export { WTabContainer, WTabContainerProps } from './src/layouts/w-tab-container'
+export { WTabPage, WTabPageProps } from './src/layouts/w-tab-container/w-tab-page'
+
 // WTable
 export { WTable, WTableProps } from './src/tables/w-table'
 

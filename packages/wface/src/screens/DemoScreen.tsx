@@ -28,29 +28,21 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
   }
 
   public render() {
-    const size = 'small'
-    const value = this.props.appContext.cache["key1"];
 
     return (
-      <React.Fragment>
-        <WFace.WCard >
-          <WFace.WCardHeader title="Select Deneme" />
-          <WFace.WCardContent>
-            <WFace.WForm onSubmit={(obj) => alert(JSON.stringify(obj)) } initialValues={{c: true, d: '2'}}> 
-              <WFace.WFormField.Checkbox name="c" label="deneme"/>
-              <WFace.WFormField.RadioGroup name="d" label="2asdlkjlkj" options={[                
-                {label:'a', value: '1'},
-                {label:'v', value: '2'},
-                {label:'c', value: '3'},
-                {label:'a', value: '4'},
-              ]}/>
-              <WFace.WFormField.Submit>Deneme</WFace.WFormField.Submit>
-            </WFace.WForm>
-          </WFace.WCardContent>
-        </WFace.WCard>
-
-        
-      </React.Fragment>
+      <WFace.WCard>
+        <WFace.WTabContainer defaultValue={1} centered>        
+          <WFace.WTabPage label="Tab1" icon={<WFace.WIcon>save</WFace.WIcon>}>
+            item1
+          </WFace.WTabPage>
+          <WFace.WTabPage label="Tab2">
+            item2
+          </WFace.WTabPage>
+          <WFace.WTabPage label="Tab3">
+            item3
+          </WFace.WTabPage>
+        </WFace.WTabContainer>
+      </WFace.WCard>
     )
   }
 
