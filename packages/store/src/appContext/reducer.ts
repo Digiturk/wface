@@ -11,11 +11,15 @@ export const initialState = {
   configuration: null,
   menuTree: [],
   openedScreens: [],
-  currentScreen: null
+  currentScreen: null,
+  cache: {}
 } as AppContext;
 
 const appContext = (state: AppContext = initialState, action: AppAction): AppContext => {
   switch (action.type) {
+    case getType(Actions.setValue): {
+      return { ...state, cache: {...state.cache, [action.payload.key]: action.payload.value}}
+    }
     case getType(Actions.setConfig): {
       return { ...state, configuration: action.payload };
     }    

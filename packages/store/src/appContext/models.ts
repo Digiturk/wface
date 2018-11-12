@@ -5,6 +5,7 @@ export default interface AppContext {
     menuTree: IMenuTreeItem[];
     openedScreens: ScreenData[];
     currentScreen?: ScreenData;
+    cache: { [key: string]: any };
 }
 
 export interface ScreenData {
