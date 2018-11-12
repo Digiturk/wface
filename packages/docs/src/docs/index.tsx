@@ -571,7 +571,13 @@ const menuTree = [
             text: 'WChip',
             path: 'Components/WChip',
             mdx: Mdx.Components.WChipComponent
-          },     
+          },    
+          {
+            id: '3.99.3',
+            text: 'WTooltip',
+            path: 'Components/WTooltip',
+            mdx: Mdx.Components.WTooltipComponent
+          }, 
           {
             id: '3.99.2',
             text: 'WTypography',
