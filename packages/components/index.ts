@@ -122,5 +122,8 @@ export { WTimePicker, WTimePickerProps } from './src/inputs/w-time-picker'
 // WToolBar
 export { WToolBar, WToolBarProps } from './src/bars/w-tool-bar'
 
+// WTooltip
+export { WTooltip, WTooltipProps } from './src/others/w-tooltip'
+
 // WTypography
 export { WTypography, WTypographyProps } from './src/others/w-typography'

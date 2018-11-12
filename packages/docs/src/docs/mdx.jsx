@@ -51,6 +51,7 @@ import WTabsComponent from './components/components/layouts/w-tabs.mdx'
 import WTextFieldComponent from './components/components/inputs/w-text-field.mdx'
 import WTimePickerComponent from './components/components/inputs/w-time-picker.mdx'
 import WToolBarComponent from './components/components/bars/w-tool-bar.mdx'
+import WTooltipComponent from './components/components/others/w-tooltip.mdx'
 import WTypographyComponent from './components/components/others/w-typography.mdx'
 
 import V070Component from './versions/v0.7.0.mdx'
@@ -227,6 +228,7 @@ const Mdx = {
     WTextFieldComponent: () => <WTextFieldComponent components={components}/>,    
     WTimePickerComponent: () => <WTimePickerComponent components={components}/>,
     WToolBarComponent: () => <WToolBarComponent components={components}/>,    
+    WTooltipComponent: () => <WTooltipComponent components={components}/>,        
     WTypographyComponent: () => <WTypographyComponent components={components}/>,    
   },
   Versions: {
