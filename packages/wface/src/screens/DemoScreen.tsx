@@ -28,7 +28,7 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
   }
 
   public render() {
-
+    return this.renderForm();
     return (
       <WFace.WCard>
         <WFace.WTabContainer defaultValue={1} centered>        
@@ -79,6 +79,7 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
                   <WFace.WFormField.TimePicker name="time" label="Form Time" />
                 </WFace.WCardContent>
                 <WFace.WCardActions>
+                  <WFace.WFormField.Reset>Temizle</WFace.WFormField.Reset>
                   <WFace.WFormField.Submit>Gönder</WFace.WFormField.Submit>
                 </WFace.WCardActions>
               </WFace.WCard>
