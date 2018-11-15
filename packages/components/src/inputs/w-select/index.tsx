@@ -113,7 +113,7 @@ class WSelectInner extends React.Component<WSelectProps, {focused: boolean}> {
           onFocus={(event) => this.setFocus(event, true)}
           onBlur={(event) => this.setFocus(event, false)} 
           onChange={this.onChange}         
-          placeholder=""
+          placeholder=""          
           value={cleanValue}
           // @ts-ignore
           classes={classes}        
@@ -133,18 +133,18 @@ class WSelectInner extends React.Component<WSelectProps, {focused: boolean}> {
 }
 
 const customStyles = {
-  dropdownIndicator: (provided) => ({
+  dropdownIndicator: (provided: any) => ({
     ...provided,
     padding: 6
   }),
-  clearIndicator: (provided) => ({
+  clearIndicator: (provided: any) => ({
     ...provided,
     padding: 6
   }),
 }
 
 
-const styles = theme => createStyles({
+const styles = (theme: any) => createStyles({
   input: {
     display: 'flex',
     padding: 0,

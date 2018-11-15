@@ -24,6 +24,9 @@ export { WCardActions, WCardActionsProps } from './src/layouts/w-card/w-card-act
 export { WCardContent, WCardContentProps } from './src/layouts/w-card/w-card-content'
 export { WCardHeader, WCardHeaderProps } from './src/layouts/w-card/w-card-header'
 
+// WCarousel
+export { WCarousel, WCarouselProps } from './src/layouts/w-carousel'
+
 // WCheckbox 
 export { WCheckbox, WCheckboxProps } from './src/inputs/w-checkbox'
 
