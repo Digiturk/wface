@@ -14,7 +14,7 @@ export class Entry extends React.Component<EntryProps, any> {
             Web Programlama<br />
           </WTypography>
           <WTypography variant="h5" color="primary" style={{ fontWeight: 500, marginTop: 10, color: '#4655a5' }}>
-            ReactJS {"&"} WFace
+            React {"&"} WFace
           </WTypography>
 
         </div>
