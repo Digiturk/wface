@@ -30,6 +30,7 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
   }
 
   public render() {
+    return this.renderForm();
     return (
       <React.Fragment>
         <WFace.WButton onClick={() => this.setState({ isDialogOpen: true })}>Aç</WFace.WButton>
@@ -48,6 +49,7 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
       <div>
         <WFace.WForm
           initialValues={{
+            custom: 'A',
             checkbox: false,
             date: new Date(1987, 2, 21),
             dateTime: new Date(),
@@ -65,6 +67,7 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
               <WFace.WCard>
                 <WFace.WCardHeader title="Kullanıcı Bilgileri" />
                 <WFace.WCardContent>
+                  <WFace.WFormField.Custom name="custom" label="Deneme" component={TempComponent} />
                   <WFace.WFormField.Checkbox name="checkbox" label="Form Checkbox" />
                   <WFace.WFormField.DatePicker name="date" label="Form Date" />
                   <WFace.WFormField.DateTimePicker name="dateTime" label="Form DateTime" />
@@ -94,6 +97,18 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
           </WFace.WGrid>
         </WFace.WForm>
       </div >
+    )
+  }
+}
+
+class TempComponent extends React.Component<any> {
+  render() {
+    return (
+      <WFace.WButton onClick={_ => {
+        this.props.onChange(this.props.value + "+");
+      }}>
+        {this.props.label}: {this.props.value} - {this.props.suffix}
+      </WFace.WButton>     
     )
   }
 }
