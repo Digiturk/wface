@@ -1,4 +1,5 @@
 import { Checkbox } from './checkbox';
+import { Custom } from './custom';
 import { DatePicker } from './date-picker';
 import { DateTimePicker } from './date-time-picker';
 import { RadioGroup } from './radio-group';
@@ -11,6 +12,7 @@ import { TimePicker } from './time-picker';
 
 export const WFormField = {
   Checkbox, 
+  Custom,
   DatePicker, 
   DateTimePicker, 
   RadioGroup,
