@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Card, withStyles, WithStyles, StyledComponentProps } from '@material-ui/core';
+import { Card, createStyles, withStyles, WithStyles, StyledComponentProps } from '@material-ui/core';
 import { CardProps } from '@material-ui/core/Card';
 
 export interface WCardProps extends CardProps { }
@@ -10,13 +10,13 @@ class WCardInner extends React.Component<WCardProps & WithStyles<string>, {}> {
   }
 }
 
-const styles = theme => ({
+const styles = theme => createStyles({
   root: {
     margin: theme.spacing.unit,
     overflow: 'initial'
   }
 });
 
-const WCard = withStyles(styles as any)(WCardInner)
+const WCard = withStyles(styles)(WCardInner)
 export { WCard }
 

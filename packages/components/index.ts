@@ -24,6 +24,9 @@ export { WCardActions, WCardActionsProps } from './src/layouts/w-card/w-card-act
 export { WCardContent, WCardContentProps } from './src/layouts/w-card/w-card-content'
 export { WCardHeader, WCardHeaderProps } from './src/layouts/w-card/w-card-header'
 
+// WCarousel
+export { WCarousel, WCarouselProps } from './src/layouts/w-carousel'
+
 // WCheckbox 
 export { WCheckbox, WCheckboxProps } from './src/inputs/w-checkbox'
 
@@ -105,8 +108,17 @@ export { WSwitch, WSwitchProps } from './src/inputs/w-switch'
 export { WTabs, WTabsProps } from './src/layouts/w-tabs'
 export { WTab, WTabProps } from './src/layouts/w-tabs/w-tab'
 
+// WTabContainer 
+export { WTabContainer, WTabContainerProps } from './src/layouts/w-tab-container'
+export { WTabPage, WTabPageProps } from './src/layouts/w-tab-container/w-tab-page'
+
 // WTable
 export { WTable, WTableProps } from './src/tables/w-table'
+
+// WThemeProvider 
+export { WThemeProvider } from './src/others/w-theme-provider'
+export { WTheme } from './src/others/w-theme-provider/w-theme'
+export { WPalette } from './src/others/w-theme-provider/w-palette'
 
 // WTextField 
 export { WTextField, WTextFieldProps } from './src/inputs/w-text-field'
@@ -116,6 +128,9 @@ export { WTimePicker, WTimePickerProps } from './src/inputs/w-time-picker'
 
 // WToolBar
 export { WToolBar, WToolBarProps } from './src/bars/w-tool-bar'
+
+// WTooltip
+export { WTooltip, WTooltipProps } from './src/others/w-tooltip'
 
 // WTypography
 export { WTypography, WTypographyProps } from './src/others/w-typography'

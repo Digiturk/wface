@@ -1,6 +1,6 @@
 {
 	"name": "wface",
-	"version": "0.7.0",
+	"version": "0.8.0",
 	"description": "",
 	"author": "mehmet.baran",
 	"scripts": {
@@ -46,8 +46,9 @@
 		"webpack-merge": "4.1.4"
 	},
 	"dependencies": {
-		"@wface/container": "0.7.0",
-		"@wface/ioc": "0.7.0",
+		"@wface/components": "0.8.0",
+		"@wface/container": "0.8.0",
+		"@wface/ioc": "0.8.0",
 		"chalk": "2.4.1",
 		"commander": "2.19.0",
 		"deasync": "0.1.13",

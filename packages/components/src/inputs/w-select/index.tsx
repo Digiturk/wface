@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Select from 'react-select';
-import { withStyles } from '@material-ui/core/styles';
+import { createStyles, withStyles } from '@material-ui/core/styles';
 import NoSsr from '@material-ui/core/NoSsr';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import selectComponents from './components'
@@ -113,7 +113,7 @@ class WSelectInner extends React.Component<WSelectProps, {focused: boolean}> {
           onFocus={(event) => this.setFocus(event, true)}
           onBlur={(event) => this.setFocus(event, false)} 
           onChange={this.onChange}         
-          placeholder=""
+          placeholder=""          
           value={cleanValue}
           // @ts-ignore
           classes={classes}        
@@ -133,18 +133,18 @@ class WSelectInner extends React.Component<WSelectProps, {focused: boolean}> {
 }
 
 const customStyles = {
-  dropdownIndicator: (provided) => ({
+  dropdownIndicator: (provided: any) => ({
     ...provided,
     padding: 6
   }),
-  clearIndicator: (provided) => ({
+  clearIndicator: (provided: any) => ({
     ...provided,
     padding: 6
   }),
 }
 
 
-const styles = theme => ({
+const styles = (theme: any) => createStyles({
   input: {
     display: 'flex',
     padding: 0,
@@ -188,5 +188,5 @@ const styles = theme => ({
   }
 });
 
-const WSelect = withStyles(styles as any, { withTheme: false })(WSelectInner);
+const WSelect = withStyles(styles, { withTheme: false })(WSelectInner);
 export { WSelect }

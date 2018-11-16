@@ -10,4 +10,6 @@ export default interface IConfiguration {
 
   authService?: IAuthService;
   httpService?: IHttpService;
+
+  theme?: any;
 }

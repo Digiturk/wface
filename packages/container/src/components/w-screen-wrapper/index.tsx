@@ -1,4 +1,4 @@
-import { WGrid, WPaper, WTypography, withSnackbar } from '@wface/components';
+import { WGrid, WPaper, WTypography, withSnackbar, WIconButton, WIcon } from '@wface/components';
 import { IMenuTreeItem, MenuTreeUtil, IConfiguration } from '@wface/ioc';
 import { AppContextActions, WStore, ScreenData } from '@wface/store';
 import * as React from 'react';
@@ -6,13 +6,13 @@ import { connect } from 'react-redux';
 
 export interface WScreenWrapperProps {
   screen?: ScreenData;
-  configuration: IConfiguration;
   enqueueSnackbar?: (message: string, options: object) => void
 }
 
 export interface DispatchProps {
   saveScreenState: (screenId: string, state: any) => void;
   openScreen: (menuTreeItem: IMenuTreeItem, initialValues?: any) => void;
+  setValue: (key: string, value: any) => void;
 }
 
 class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & DispatchProps, any> {
@@ -48,22 +48,24 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
   showSnackbar = (message: string, type: 'error' | 'success' | 'warning' | 'info' = 'info', duration: number = 5000) => {    
     this.props.enqueueSnackbar(message, {
       variant: type,
-      autoHideDuration: duration
+      autoHideDuration: duration,
+      action: <WIconButton><WIcon style={{color: '#ffffff99'}} iconSize="small">close</WIcon></WIconButton>
     });
   }
 
   public render() {
-    const Screen = this.props.configuration.screenList[this.props.screen.menuTreeItem.screen] as any;
+    const Screen = this.props.appContext.configuration.screenList[this.props.screen.menuTreeItem.screen] as any;
     return (
       Screen ?
         <Screen
           ref={this.screenRef}
           appContext={this.props.appContext}
-          httpService={this.props.configuration.httpService}
+          httpService={this.props.appContext.configuration.httpService}
           screenData={this.props.appContext.currentScreen}
           userContext={this.props.userContext}
           openScreen={this.openScreen}
           showSnackbar={this.showSnackbar}
+          setValue={this.props.setValue}
         />
         :
         <WGrid container justify="center" style={{ paddingTop: 30 }}>
@@ -89,7 +91,8 @@ const mapStateToProps = (state:WStore) => ({
 
 const mapDispatchToProps = dispatch => ({
   saveScreenState: (screenId: string, state: any) => dispatch(AppContextActions.saveScreenState({ screenId, state })),
-  openScreen: (menuTreeItem: IMenuTreeItem, initialValues?: any) => dispatch(AppContextActions.openScreen({menuTreeItem, initialValues})),  
+  openScreen: (menuTreeItem: IMenuTreeItem, initialValues?: any) => dispatch(AppContextActions.openScreen({menuTreeItem, initialValues})),
+  setValue: (key: string, value: any) => dispatch(AppContextActions.setValue({key, value}))
 });
 
 export default connect<WStore, DispatchProps, WScreenWrapperProps>(mapStateToProps, mapDispatchToProps)(withSnackbar(WScreenWrapper) as any);

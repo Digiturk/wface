@@ -5,6 +5,7 @@ import { HashRouter, Route, Redirect, Link } from 'react-router-dom'
 import WMuiThemeProvider from './WMuiThemeProvider';
 import MainPage from './main-page';
 import Docs from './docs';
+import TrainingPage from './training';
 
 class App extends React.Component<any, any> {
 
@@ -31,9 +32,7 @@ class App extends React.Component<any, any> {
             {this.renderMenuLink("Main", "Ana Sayfa")}            
             {this.renderMenuLink("Pages/GetStarted/Architecture", "Başlangıç")}
             {this.renderMenuLink("Pages/Components/ComponentList", "Bileşenler")}
-            {/* {this.renderMenuLink("Blog", "Blog")} */}
-            {/* {this.renderMenuLink("Faq", "S.S.S.")} */}
-            {/* {this.renderMenuLink("Contribute", "Katkı")}*/}
+            {this.renderMenuLink("Training", "Eğitim")}
           </WFace.WToolBar>
         </WFace.WAppBar>
 
@@ -43,11 +42,7 @@ class App extends React.Component<any, any> {
               <Route exact path="/" render={props => <Redirect to="/Main"/>}/>
               <Route path="/Main" component={MainPage} />            
               <Route path="/Pages" component={Docs} />            
-              {/* <Route path="/Setup" component={SetupPage} />            
-              <Route path="/Components" component={ComponentsPage} />            
-              <Route path="/Blog" component={BlogPage} />            
-              <Route path="/Faq" component={FaqPage} />            
-              <Route path="/Contribute" component={ContributePage} />             */}
+              <Route path="/Training" component={TrainingPage} />            
             </WMuiThemeProvider >
           </HashRouter>        
         </main>

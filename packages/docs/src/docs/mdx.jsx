@@ -22,6 +22,7 @@ import WBasicDialogComponent from './components/components/dialogs/w-basic-dialo
 import WButtonComponent from './components/components/buttons/w-button.mdx'
 import WCardComponent from './components/components/layouts/w-card.mdx'
 import WCheckboxComponent from './components/components/inputs/w-checkbox.mdx'
+import WChipComponent from './components/components/others/w-chip.mdx'
 import WCircularProgressComponent from './components/components/progress/w-circular-progress.mdx'
 import WCollapseComponent from './components/components/layouts/w-collapse.mdx'
 import WDateTimePickerComponent from './components/components/inputs/w-date-time-picker.mdx'
@@ -46,13 +47,15 @@ import WSelectComponent from './components/components/inputs/w-select.mdx'
 import WSwipeableViewComponent from './components/components/layouts/w-swipeable-view.mdx'
 import WSwitchComponent from './components/components/inputs/w-switch.mdx'
 import WTableComponent from './components/components/tables/w-table.mdx'
-import WTabsComponent from './components/components/layouts/w-tabs.mdx'
+import WTabContainerComponent from './components/components/layouts/w-tab-container.mdx'
 import WTextFieldComponent from './components/components/inputs/w-text-field.mdx'
 import WTimePickerComponent from './components/components/inputs/w-time-picker.mdx'
 import WToolBarComponent from './components/components/bars/w-tool-bar.mdx'
+import WTooltipComponent from './components/components/others/w-tooltip.mdx'
 import WTypographyComponent from './components/components/others/w-typography.mdx'
 
 import V070Component from './versions/v0.7.0.mdx'
+import V080Component from './versions/v0.8.0.mdx'
 
 import * as WFace from '@wface/components'
 
@@ -196,6 +199,7 @@ const Mdx = {
     WButtonComponent: () => <WButtonComponent components={components}/>,
     WCardComponent: () => <WCardComponent components={components}/>,            
     WCheckboxComponent: () => <WCheckboxComponent components={components}/>,            
+    WChipComponent: () => <WChipComponent components={components}/>,                
     WCircularProgressComponent: () => <WCircularProgressComponent components={components}/>,  
     WCollapseComponent: () => <WCollapseComponent components={components}/>,            
     WDateTimePickerComponent: () => <WDateTimePickerComponent components={components}/>,
@@ -220,14 +224,16 @@ const Mdx = {
     WSwipeableViewComponent: () => <WSwipeableViewComponent components={components}/>,    
     WSwitchComponent: () => <WSwitchComponent components={components}/>,        
     WTableComponent: () => <WTableComponent components={components}/>,            
-    WTabsComponent: () => <WTabsComponent components={components}/>,    
+    WTabContainerComponent: () => <WTabContainerComponent components={components}/>,    
     WTextFieldComponent: () => <WTextFieldComponent components={components}/>,    
     WTimePickerComponent: () => <WTimePickerComponent components={components}/>,
     WToolBarComponent: () => <WToolBarComponent components={components}/>,    
+    WTooltipComponent: () => <WTooltipComponent components={components}/>,        
     WTypographyComponent: () => <WTypographyComponent components={components}/>,    
   },
   Versions: {
     V070Component: () => <V070Component components={components}/>,
+    V080Component: () => <V080Component components={components}/>,
   },
 }
 

@@ -490,9 +490,9 @@ const menuTree = [
           },
           {
             id: '3.6.9',
-            text: 'WTabs',
-            path: 'Components/WTabs',
-            mdx: Mdx.Components.WTabsComponent
+            text: 'WTabContainer',
+            path: 'Components/WTabContainer',
+            mdx: Mdx.Components.WTabContainerComponent
           },
         ]
       },
@@ -565,9 +565,21 @@ const menuTree = [
       {
         id: '3.99',
         text: 'Diğerleri',
-        subNodes: [          
+        subNodes: [     
           {
             id: '3.99.1',
+            text: 'WChip',
+            path: 'Components/WChip',
+            mdx: Mdx.Components.WChipComponent
+          },    
+          {
+            id: '3.99.3',
+            text: 'WTooltip',
+            path: 'Components/WTooltip',
+            mdx: Mdx.Components.WTooltipComponent
+          }, 
+          {
+            id: '3.99.2',
             text: 'WTypography',
             path: 'Components/WTypography',
             mdx: Mdx.Components.WTypographyComponent
@@ -580,6 +592,12 @@ const menuTree = [
     id: '10', 
     text: 'Versionlar',
     subNodes: [
+      {
+        id: '10.99',
+        text: 'v0.8.0',
+        path: 'Versions/0.8.0',
+        mdx: Mdx.Versions.V080Component
+      },
       {
         id: '10.100',
         text: 'v0.7.0',

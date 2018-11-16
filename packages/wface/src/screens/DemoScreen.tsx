@@ -3,6 +3,7 @@ import * as WFace from '@wface/components';
 import { WFormValidation } from '@wface/components';
 
 interface DemoScreenState {
+  isDialogOpen: boolean;
   userData: any,
   lookup: any,
   textValue: string,
@@ -16,11 +17,12 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
 
     this.state = this.props.screenData.state || {
       userData: {},
+      isDialogOpen: false,
       lookup: [
-        { label: 'Gaziantep', value: 27 },
+        { label: 'Gaziantep', value: '27' },
         { label: 'İstanbul', value: '34' },
-        { label: 'İzmir', value: 35 },
-        { label: 'Şanlıurfa', value: 63 },
+        { label: 'İzmir', value: '35' },
+        { label: 'Şanlıurfa', value: '63' },
       ],
       selectValue: 35,
       selectObject: {}
@@ -28,13 +30,17 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
   }
 
   public render() {
+    return this.renderForm();
     return (
-      <WFace.WCard>
-        <WFace.WCardHeader title="Select Deneme" />
-        <WFace.WCardContent>
-          <WFace.WTextField type="number"/>
-        </WFace.WCardContent>
-      </WFace.WCard>
+      <React.Fragment>
+        <WFace.WButton onClick={() => this.setState({ isDialogOpen: true })}>Aç</WFace.WButton>
+        <WFace.WDialog open={this.state.isDialogOpen} onClose={() => this.setState({ isDialogOpen: false })}>
+
+          <WFace.WDialogContent>
+            {this.renderForm()}
+          </WFace.WDialogContent>
+        </WFace.WDialog>
+      </React.Fragment>
     )
   }
 
@@ -43,6 +49,7 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
       <div>
         <WFace.WForm
           initialValues={{
+            custom: 'A',
             checkbox: false,
             date: new Date(1987, 2, 21),
             dateTime: new Date(),
@@ -60,6 +67,7 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
               <WFace.WCard>
                 <WFace.WCardHeader title="Kullanıcı Bilgileri" />
                 <WFace.WCardContent>
+                  <WFace.WFormField.Custom name="custom" label="Deneme" component={TempComponent} />
                   <WFace.WFormField.Checkbox name="checkbox" label="Form Checkbox" />
                   <WFace.WFormField.DatePicker name="date" label="Form Date" />
                   <WFace.WFormField.DateTimePicker name="dateTime" label="Form DateTime" />
@@ -67,10 +75,11 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
                   <WFace.WFormField.Select name="select" label="Form Select" options={this.state.lookup} />
                   <WFace.WFormField.Select name="selectMulti" label="Form Select Multi" options={this.state.lookup} isMulti />
                   <WFace.WFormField.Switch name="switch" label="Form Switch" />
-                  <WFace.WFormField.TextField name="text" label="Form TextField" />
+                  <WFace.WFormField.TextField name="text" label="Form TextField" id="text"/>
                   <WFace.WFormField.TimePicker name="time" label="Form Time" />
                 </WFace.WCardContent>
                 <WFace.WCardActions>
+                  <WFace.WFormField.Reset>Temizle</WFace.WFormField.Reset>
                   <WFace.WFormField.Submit>Gönder</WFace.WFormField.Submit>
                 </WFace.WCardActions>
               </WFace.WCard>
@@ -88,6 +97,18 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
           </WFace.WGrid>
         </WFace.WForm>
       </div >
+    )
+  }
+}
+
+class TempComponent extends React.Component<any> {
+  render() {
+    return (
+      <WFace.WButton onClick={_ => {
+        this.props.onChange(this.props.value + "+");
+      }}>
+        {this.props.label}: {this.props.value} - {this.props.suffix}
+      </WFace.WButton>     
     )
   }
 }
