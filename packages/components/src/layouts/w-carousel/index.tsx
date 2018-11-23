@@ -35,11 +35,11 @@ class WCarouselInner extends React.Component<WCarouselProps, any> {
       // ESC
       this.setState({ fullScreen: false });
     }
-    else if (event.keyCode === 37 && this.state.active > 0) {
+    else if (event.keyCode === 37 && active > 0) {
       // Left
       this.changeActive(active - 1);
     }
-    else if (event.keyCode === 39 && this.state.active < (this.props.children.length - 1)) {
+    else if (event.keyCode === 39 && active < (this.props.children.length - 1)) {
       // Right
       this.changeActive(active + 1);
     }
