@@ -1,13 +1,15 @@
 import * as React from 'react';
 import * as WFace from '@wface/components';
-import { Entry } from './slides/1-entry';
-import { Web } from './slides/2-web';
-import { Browser } from './slides/3-browser';
-import { Dom } from './slides/4-dom';
-import { DevTools} from './slides/5-dev-tools'
-import { HtmlSlide} from './slides/6-html'
-import { HtmlCssSlide } from './slides/8-html-css';
-import { CssSlide } from './slides/7-css';
+import { Entry } from './slides/01-entry';
+import { Web } from './slides/02-web';
+import { Browser } from './slides/03-browser';
+import { Dom } from './slides/04-dom';
+import { DevTools} from './slides/05-dev-tools'
+import { HtmlSlide} from './slides/06-html'
+import { CssSlide } from './slides/07-css';
+import { HtmlCssSlide } from './slides/08-html-css';
+import { JavaScript } from './slides/09-javascript';
+import { JavaScriptCode } from './slides/10-javascript-code';
 
 export default class TrainingPage extends React.Component<any, any> {
   slides = [
@@ -18,13 +20,15 @@ export default class TrainingPage extends React.Component<any, any> {
     { component: DevTools, header: 'DevTools' },
     { component: HtmlSlide, header: 'HTML' },
     { component: CssSlide, header: 'CSS' },
-    { component: HtmlCssSlide, header: 'HTML & CSS Example' },
+    { component: HtmlCssSlide, header: 'HTML & CSS Code' },
+    { component: JavaScript, header: 'JavaScript' },
+    { component: JavaScriptCode, header: 'JavaScript Code' },
   ];
 
   constructor(props: any) {
     super(props);
     this.state = {
-      activeSlide: 6
+      activeSlide: 0
     }
   }
 
