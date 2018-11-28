@@ -14,8 +14,8 @@ export class Prompt extends React.Component<PromptProps, any> {
     return (
       <div style={{display: 'table', height: '100%', width: '100%'}}>
         <div style={{display: 'table-cell', verticalAlign: 'middle', transform: 'scale(1.2)'}}>
-          <img src="/assets/slide/prompt.png" style={{margin:10}}/><br/>
-          <img src="/assets/slide/onbeforeunload.png" style={{margin:10}}/>          
+          <img src="./assets/slide/prompt.png" style={{margin:10}}/><br/>
+          <img src="./assets/slide/onbeforeunload.png" style={{margin:10}}/>          
         </div>
       </div >
     );

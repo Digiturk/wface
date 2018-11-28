@@ -63,8 +63,8 @@ export class Dom extends React.Component<DomProps, any> {
           </div>
           <div style={{ height: '80%' }}>
             <div style={{ padding: 10, backgroundColor: '#00000066', borderRadius: 10, width: 'fit-content', margin: 'auto', minWidth: 620 }}>
-              <img src="/assets/slide/domtree.png" style={this.getImageStyle('dom')} />
-              <img src="/assets/slide/html.png" style={this.getImageStyle('code')} />
+              <img src="./assets/slide/domtree.png" style={this.getImageStyle('dom')} />
+              <img src="./assets/slide/html.png" style={this.getImageStyle('code')} />
             </div>
           </div>
         </div>

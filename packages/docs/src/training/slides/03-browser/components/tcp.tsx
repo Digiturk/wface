@@ -16,7 +16,7 @@ export class Tcp extends React.Component<TcpProps, any> {
     return (
       <div style={{ display: 'table', height: '100%', width: '100%' }}>
         <div style={{ display: 'table-cell', verticalAlign: 'middle' }}>
-          <img src="/assets/slide/tcp.png"/>
+          <img src="./assets/slide/tcp.png"/>
         </div>
       </div >
     );

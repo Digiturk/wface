@@ -34,7 +34,7 @@ export class HtmlSlide extends React.Component<HtmlSlideProps, any> {
             <div style={{ display: 'table', height: '100%', width: '100%' }}>
               <div style={{ display: 'table-cell', verticalAlign: 'middle', textAlign: 'center' }}>
                 <div style={{ backgroundColor: '#FFFFFFAA', borderRadius: 10, padding: 10, width: 'fit-content', margin: 'auto' }}>
-                  <img src="/assets/slide/html-tag-parts.png" />
+                  <img src="./assets/slide/html-tag-parts.png" />
                 </div>
               </div>
             </div>
@@ -42,18 +42,6 @@ export class HtmlSlide extends React.Component<HtmlSlideProps, any> {
           <div style={{ height: '20%' }}></div>
         </div>
       </div >
-
-
-      // <div style={{ display: 'table', height: '100%', width: '100%' }}>
-      //   <div style={{ display: 'table-cell', verticalAlign: 'middle', textAlign: 'center', }}>
-      //     <WTypography style={{ color: constants.primaryColor, fontSize: 40, fontWeight: 500, textAlign: 'center', marginBottom: 10 }}>
-
-      //     </WTypography>
-      //     <div style={{ backgroundColor: '#FFFFFFAA', borderRadius: 10, padding: 10, width: 'fit-content', margin: 'auto' }}>
-
-      //     </div>
-      //   </div>
-      // </div >
     );
   }
 }

@@ -14,7 +14,7 @@ export class Dns extends React.Component<DnsProps, any> {
     return (
       <div style={{display: 'table', height: '100%', width: '100%'}}>
         <div style={{display: 'table-cell', verticalAlign: 'middle', transform: 'scale(1.2)'}}>
-          <img src="/assets/slide/dns.png"/>
+          <img src="./assets/slide/dns.png"/>
         </div>
       </div >
     );

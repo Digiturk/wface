@@ -14,7 +14,7 @@ export class Request extends React.Component<RequestProps, any> {
     return (
       <div style={{display: 'table', height: '100%', width: '100%'}}>
         <div style={{display: 'table-cell', verticalAlign: 'middle', transform: 'scale(1.2)'}}>
-          <img src="/assets/slide/request.png" />
+          <img src="./assets/slide/request.png" />
         </div>
       </div >
     );

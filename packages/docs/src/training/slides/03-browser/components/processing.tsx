@@ -14,7 +14,7 @@ export class Processing extends React.Component<ProcessingProps, any> {
     return (
       <div style={{display: 'table', height: '100%', width: '100%'}}>
         <div style={{display: 'table-cell', verticalAlign: 'middle', transform: 'scale(1.2)'}}>
-          <img src="/assets/slide/processing.png" />
+          <img src="./assets/slide/processing.png" />
         </div>
       </div >
     );

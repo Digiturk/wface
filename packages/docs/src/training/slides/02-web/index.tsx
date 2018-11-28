@@ -29,14 +29,14 @@ export class Web extends React.Component<WebProps, any> {
     return (
       <div>
         <WGrid container style={{ height: '50%' }}>
-          <WGrid item xs={4} style={style}><img style={imgStyle} src="/assets/slide/Microsoft IIS.png" /></WGrid>
-          <WGrid item xs={4} style={style}><img style={imgStyle} src="/assets/slide/apache_tomcat-card-min.png" /></WGrid>
-          <WGrid item xs={4} style={style}><img style={imgStyle} src="/assets/slide/nodejs-new-pantone-black.png" /></WGrid>
+          <WGrid item xs={4} style={style}><img style={imgStyle} src="./assets/slide/Microsoft IIS.png" /></WGrid>
+          <WGrid item xs={4} style={style}><img style={imgStyle} src="./assets/slide/apache_tomcat-card-min.png" /></WGrid>
+          <WGrid item xs={4} style={style}><img style={imgStyle} src="./assets/slide/nodejs-new-pantone-black.png" /></WGrid>
         </WGrid>
         <WGrid container style={{ height: '50%' }}>
-          <WGrid item xs={4} style={style}><img style={imgStyle} src="/assets/slide/asp-net-core-logo.png" /></WGrid>
-          <WGrid item xs={4} style={style}><img style={imgStyle} src="/assets/slide/java.png" /></WGrid>
-          <WGrid item xs={4} style={style}><img style={imgStyle} src="/assets/slide/js.png" /></WGrid>
+          <WGrid item xs={4} style={style}><img style={imgStyle} src="./assets/slide/asp-net-core-logo.png" /></WGrid>
+          <WGrid item xs={4} style={style}><img style={imgStyle} src="./assets/slide/java.png" /></WGrid>
+          <WGrid item xs={4} style={style}><img style={imgStyle} src="./assets/slide/js.png" /></WGrid>
         </WGrid>
       </div>
     )
@@ -71,13 +71,13 @@ export class Web extends React.Component<WebProps, any> {
           <WGrid item xs={4} style={{ padding: 10 }}>
             <div style={{ background: '#00000022', borderRadius: 10, paddingTop: 20, paddingBottom: 20, margin: 10 }}>
               <WTypography style={{ color: constants.primaryColor, fontSize: 30, fontWeight: 500, textAlign: 'center', textDecoration: 'underline' }}>CLIENT REQUEST</WTypography>
-              <img src="/assets/slide/http_get.png" />
+              <img src="./assets/slide/http_get.png" />
             </div>
           </WGrid>
           <WGrid item xs={5} style={{ padding: 10 }}>
             <div style={{ background: '#00000022', borderRadius: 10, paddingTop: 20, paddingBottom: 20, margin: 10 }}>
               <WTypography style={{ color: constants.primaryColor, fontSize: 30, fontWeight: 500, textAlign: 'center', textDecoration: 'underline' }}>SERVER RESPONSE</WTypography>
-              <img src="/assets/slide/http_resp.png" />
+              <img src="./assets/slide/http_resp.png" />
             </div>
           </WGrid>
         </WGrid>
@@ -90,8 +90,8 @@ export class Web extends React.Component<WebProps, any> {
   renderFrontEnd() {
     return (
       <div>
-        <img src="/assets/slide/main-desktop-browser-logos.png" /><br />
-        <img src="/assets/slide/front-end.png" />
+        <img src="./assets/slide/main-desktop-browser-logos.png" /><br />
+        <img src="./assets/slide/front-end.png" />
       </div>
     )
   }

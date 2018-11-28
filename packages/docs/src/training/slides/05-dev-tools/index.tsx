@@ -27,7 +27,7 @@ export class DevTools extends React.Component<DevToolsProps, any> {
             <div style={{ display: 'table', height: '100%', width: '100%' }}>
               <div style={{ display: 'table-cell', verticalAlign: 'middle', textAlign: 'center' }}>
                 <div style={{ padding: 10, backgroundColor: constants.primaryColor, borderRadius: 10, width: 'fit-content', margin: 'auto' }}>
-                  <WTypography variant="h1" style={{ color: 'white', fontWeight: 500 }}>
+                  <WTypography variant="h2" style={{ color: 'white', fontWeight: 500 }}>
                     F12
                 </WTypography>
                 </div>

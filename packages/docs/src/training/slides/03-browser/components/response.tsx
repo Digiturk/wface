@@ -14,7 +14,7 @@ export class Response extends React.Component<ResponseProps, any> {
     return (
       <div style={{ display: 'table', height: '100%', width: '100%' }}>
         <div style={{ display: 'table-cell', verticalAlign: 'middle', transform: 'scale(1.2)' }}>
-          <img src="/assets/slide/response.png" />
+          <img src="./assets/slide/response.png" />
         </div>
       </div >
     );

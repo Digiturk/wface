@@ -6,12 +6,14 @@ import { WIconButton } from '../../buttons/w-icon-button';
 import { WGrid } from '../w-grid';
 import { WTheme } from '../../others/w-theme-provider/w-theme';
 import { WTypography } from '../../others/w-typography';
+import { WTooltip } from '../../others/w-tooltip';
 
 export interface WCarouselProps {
   active?: number;
   children: React.ReactElement<any>[];
   onActiveChanged?: (step: number) => void;
   theme?: WTheme;
+  slideTitles: string[];
 }
 
 class WCarouselInner extends React.Component<WCarouselProps, any> {
@@ -75,9 +77,11 @@ class WCarouselInner extends React.Component<WCarouselProps, any> {
           <WGrid item xs={2} style={{ display: 'flex', justifyContent: 'flex-end' }}>
             <WIconButton color="primary" onClick={() => this.changeActive(0)} disabled={active === 0}><WIcon>first_page</WIcon></WIconButton>
             <WIconButton color="primary" onClick={() => this.changeActive(active - 1)} disabled={active === 0}><WIcon>chevron_left</WIcon></WIconButton>
-            <span style={{ display: 'flex' }}>
-              <WTypography color="primary" variant="button" style={{ minWidth: 50, textAlign: 'center', margin: 'auto' }}>{(active + 1)}{" / "}{count}</WTypography>
-            </span>
+            <WTooltip title={this.props.slideTitles[active]}>
+              <span style={{ display: 'flex' }}>
+                <WTypography color="primary" variant="button" style={{ minWidth: 50, textAlign: 'center', margin: 'auto' }}>{(active + 1)}{" / "}{count}</WTypography>
+              </span>
+            </WTooltip>
             <WIconButton color="primary" onClick={() => this.changeActive(active + 1)} disabled={active === count - 1}><WIcon>chevron_right</WIcon></WIconButton>
             <WIconButton color="primary" onClick={() => this.changeActive(count - 1)} disabled={active === count - 1}><WIcon>last_page</WIcon></WIconButton>
           </WGrid>
