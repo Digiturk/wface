@@ -30,7 +30,7 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
   }
 
   public render() {
-    return this.renderForm();
+    return this.renderForm();    
     return (
       <React.Fragment>
         <WFace.WButton onClick={() => this.setState({ isDialogOpen: true })}>Aç</WFace.WButton>
