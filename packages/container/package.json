@@ -15,7 +15,7 @@
 		"@wface/store": "0.8.0",
 		"classnames": "2.2.6",
 		"prop-types": "15.6.2",
-		"react": "16.5.2",
+		"react": "16.6.3",
 		"react-redux": "5.0.7",
 		"react-router-dom": "4.2.2",
 		"redux": "4.0.0",
@@ -24,13 +24,14 @@
 	"devDependencies": {
 		"@types/classnames": "2.2.3",
 		"@types/promise.prototype.finally": "2.0.2",
-		"@types/react": "16.4.16",
+		"@types/react": "16.7.9",
 		"@types/react-redux": "5",
 		"@types/react-router-dom": "4.2.6",
 		"awesome-typescript-loader": "5.2.1",
 		"html-webpack-plugin": "3.2.0",
 		"stylelint-webpack-plugin": "0.10.5",
 		"webpack": "4.19.1",
-		"webpack-merge": "4.1.4"
+    "webpack-merge": "4.1.4",
+    "copy-webpack-plugin": "4.6.0"
 	}
 }

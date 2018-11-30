@@ -1,12 +1,11 @@
 import { createStyles, withStyles } from '@material-ui/core';
-import * as classNames from 'classnames';
+import classNames from 'classnames';
 import * as React from 'react';
 import { WIconButton } from '../../buttons/w-icon-button';
-import { WIcon } from '../../medias/w-icon';
 import { WGrid } from '../../layouts/w-grid';
 import { WPaper } from '../../layouts/w-paper';
+import { WIcon } from '../../medias/w-icon';
 import { WTypography } from '../../others/w-typography';
-
 
 export interface WNotificationBarProps {
   text: string;
@@ -70,3 +69,4 @@ const styles = (theme:any) => createStyles({
 
 const WNotificationBar = withStyles(styles)(WNotificationBarInner)
 export { WNotificationBar };
+

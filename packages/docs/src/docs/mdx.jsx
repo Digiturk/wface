@@ -56,6 +56,7 @@ import WTypographyComponent from './components/components/others/w-typography.md
 
 import V070Component from './versions/v0.7.0.mdx'
 import V080Component from './versions/v0.8.0.mdx'
+import V090Component from './versions/v0.9.0.mdx'
 
 import * as WFace from '@wface/components'
 
@@ -234,6 +235,7 @@ const Mdx = {
   Versions: {
     V070Component: () => <V070Component components={components}/>,
     V080Component: () => <V080Component components={components}/>,
+    V090Component: () => <V090Component components={components}/>,
   },
 }
 

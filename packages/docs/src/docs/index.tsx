@@ -593,6 +593,12 @@ const menuTree = [
     text: 'Versionlar',
     subNodes: [
       {
+        id: '10.98',
+        text: 'v0.9.0',
+        path: 'Versions/0.9.0',
+        mdx: Mdx.Versions.V090Component
+      },
+      {
         id: '10.99',
         text: 'v0.8.0',
         path: 'Versions/0.8.0',

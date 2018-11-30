@@ -8,7 +8,7 @@ import {
 } from '@wface/components';
 import { IAuthService } from "@wface/ioc";
 import { UserContext, UserContextActions, WStore } from '@wface/store';
-import * as classNames from 'classnames';
+import classNames from 'classnames';
 import * as React from "react";
 import { connect } from 'react-redux';
 

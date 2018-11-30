@@ -1,11 +1,9 @@
-import { combineReducers, ReducersMapObject } from 'redux';
+import { MenuTreeUtil } from '@wface/ioc';
 import { ActionType, getType } from 'typesafe-actions';
-import AppContext, { ScreenData } from './models'
 import Actions from './actions';
-import { IMenuTreeItem, MenuTreeUtil } from '@wface/ioc';
+import AppContext, { ScreenData } from './models';
 
 export type AppAction = ActionType<typeof Actions>;
-
 
 export const initialState = {
   configuration: null,
