@@ -1,8 +1,6 @@
 import * as React from 'react';
-import WField from './w-field';
-import { WTextField, WTextFieldProps } from '../../inputs/w-text-field';
 import BaseFieldProps from './base-field-props';
-import { Omit } from '@material-ui/core';
+import WField from './w-field';
 
 export interface ComponentProps {
   value: any;
@@ -10,7 +8,7 @@ export interface ComponentProps {
 }
 
 export type CustomProps = BaseFieldProps & {
-  component: any; //React.Component<ComponentProps>
+  component: any; 
   componentProps?: any;
 }
 
@@ -18,9 +16,9 @@ export const Custom = (fieldProps: CustomProps) => (
   <WField
     name={fieldProps.name}
     component={props => {
-      const X = fieldProps.component as any;
+      const CustomComponent = fieldProps.component as any;
       return (
-        <X
+        <CustomComponent
           {...props.field}        
           {...fieldProps}
           {...fieldProps.componentProps}

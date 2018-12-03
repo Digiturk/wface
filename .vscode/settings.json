@@ -5,5 +5,7 @@
     "window.zoomLevel": -1,
     "gitlens.historyExplorer.enabled": true,
     "editor.detectIndentation": false,
-    "editor.tabSize": 2    
+    "editor.tabSize": 2,
+    "gitlens.views.fileHistory.enabled": true,
+    "gitlens.views.lineHistory.enabled": true
 }

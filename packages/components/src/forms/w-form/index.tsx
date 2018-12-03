@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Formik, Form, FormikActions, FormikErrors } from 'formik';
+import { Formik, Form, FormikActions, FormikErrors, FormikProps } from 'formik';
 import * as Yup from 'yup';
 
 export interface WFormActions extends FormikActions<any> { }
@@ -10,22 +10,26 @@ export interface WFormProps {
   onSubmit: (values: any, formikActions?: WFormActions) => void;
   validationSchema?: any | (() => any);
   validate?: ((values: any) => void | object | Promise<WFormErrors>);
+  enableReinitialize?: boolean;
 }
 
 export class WForm extends React.Component<WFormProps, {}> {
-  public render() {       
+  state = {}
+  public render() {
     return (
-      <Formik 
-        {...this.props}         
-        render={formikProps =>           
-          <Form>
-            {this.props.children}
-          </Form>
+      <Formik
+        {...this.props}
+        render={(formikProps: FormikProps<any>) => {
+          return(
+            <Form>
+              {this.props.children}
+            </Form>
+          );
+        }
         }
       />
     );
   }
 }
-
 
 export { Yup as WFormValidation }

@@ -8,7 +8,8 @@ interface DemoScreenState {
   lookup: any,
   textValue: string,
   selectValue: number,
-  selectObject: any
+  selectObject: any,
+  counter: number
 }
 
 export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScreenState> {
@@ -25,7 +26,8 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
         { label: 'Şanlıurfa', value: '63' },
       ],
       selectValue: 35,
-      selectObject: {}
+      selectObject: {},
+      counter: 0
     }
   }
 
@@ -47,9 +49,16 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
   public renderForm() {
     return (
       <div>
+        {"Counter: " + this.state.counter}
+        <WFace.WButton
+          onClick={() => this.setState(prevState => ({counter : prevState.counter + 1 }))}
+        >
+          Değiştir
+        </WFace.WButton>
         <WFace.WForm
+          enableReinitialize
           initialValues={{
-            custom: 'A',
+            custom: this.state.counter,
             checkbox: false,
             date: new Date(1987, 2, 21),
             dateTime: new Date(),
@@ -57,7 +66,7 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
             select: '34',
             selectMulti: ['27'],
             switch: true,
-            text: 'text',
+            text: this.state.counter,
             time: new Date(),
           }}
           onSubmit={val => this.setState({ userData: val })}
