@@ -14,6 +14,7 @@
 		"@wface/ioc": "0.8.0",
 		"@wface/store": "0.8.0",
 		"classnames": "2.2.6",
+		"horizontal": "0.2.2",
 		"prop-types": "15.6.2",
 		"react": "16.6.3",
 		"react-redux": "5.0.7",
@@ -31,7 +32,7 @@
 		"html-webpack-plugin": "3.2.0",
 		"stylelint-webpack-plugin": "0.10.5",
 		"webpack": "4.19.1",
-    "webpack-merge": "4.1.4",
-    "copy-webpack-plugin": "4.6.0"
+		"webpack-merge": "4.1.4",
+		"copy-webpack-plugin": "4.6.0"
 	}
 }
