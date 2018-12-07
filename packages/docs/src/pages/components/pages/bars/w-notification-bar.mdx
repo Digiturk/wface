@@ -1,0 +1,28 @@
+import WPlayground from '../../../../components/w-playground'
+import { WNotificationBar } from '@wface/components'
+
+# WNotificationBar
+
+WNotificationBar, WPaper kullanılarak geliştirilmiştir.
+Hata, uyarı, bilgilendirme ve başarılı işlem sonucu olarak kullanılabilir.
+
+### Ek Özellikler
+
+| Adı                 | Veri Tipi                                                     | Default | Açıklama                                        |
+|:--------------------|:--------------------------------------------------------------|:--------|:------------------------------------------------|
+| text                | string                                                        |         | Gösterilen metin                                |
+| type                | string: error, warning, info, success                         | error   | Mesaj tipi                                      |
+
+
+### Örnekler
+
+<WPlayground header="Temel Kullanım">
+<WNotificationBar text="Bu bir hata mesajıdır." type="error"/>
+<WNotificationBar text="Bu bir uyarı mesajıdır." type="warning"/>
+<WNotificationBar text="Bu bir bilgilendirme mesajıdır." type="info"/>
+<WNotificationBar text="Bu bir başarılı işlem mesajıdır." type="success"/>
+</WPlayground>
+
+
+
+

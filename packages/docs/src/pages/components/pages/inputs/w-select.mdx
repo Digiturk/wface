@@ -1,0 +1,43 @@
+import WPlayground from '../../../../components/w-playground'
+import { WSelect } from '@wface/components'
+
+# WSelect
+
+WSelect material-ui-pickers react-select'den türetilmiştir.
+react-select'un propertylerine erişmek için [tıklayın](https://react-select.com/home).
+
+### Ek Özellikler
+
+Eklenen ve değiştirilen özellikler aşağıdaki gibidir:
+
+| Adı                 | Veri Tipi                                                     | Default | Açıklama                                        |
+|:--------------------|:--------------------------------------------------------------|:--------|:------------------------------------------------|
+|                     |                                                               |         |                                                 |
+
+
+### Örnekler
+
+<WPlayground header="Temel Kullanım">
+  <WSelect  
+    label="Şehir"
+    options={[
+      {label: 'Adana', value: '1'},
+      {label: 'Gaziantep', value: '27'},
+      {label: 'İstanbul', value: '34'},
+      {label: 'Şanlıurfa', value: '63'}
+    ]}
+  />
+</WPlayground><br/>
+
+<WPlayground header="Çoklu Seçim">
+  <WSelect
+    label="Şehirler"
+    options={[
+      {label: 'Adana', value: '1'},
+      {label: 'Gaziantep', value: '27'},
+      {label: 'İstanbul', value: '34'},
+      {label: 'Şanlıurfa', value: '63'}
+    ]}
+    isMulti
+  />
+</WPlayground><br/>

@@ -1,57 +1,66 @@
-import * as React from 'react';
-import * as WFace from '@wface/components';
 import { withStyles } from '@material-ui/core';
-import { HashRouter, Route, Redirect, Link } from 'react-router-dom'
-import WMuiThemeProvider from './WMuiThemeProvider';
-import MainPage from './main-page';
-import Docs from './docs';
-import TrainingPage from './training';
+import * as WFace from '@wface/components';
+import * as React from 'react';
+import { Redirect, Route, withRouter } from 'react-router-dom';
+import GetStartedPage from './pages/get-started';
+import MainPage from './pages/main-page';
+import ComponentsPage from './pages/components';
+import CliPage from './pages/cli';
+import TrainingPage from './pages/training';
+import VersionsPage from './pages/versions';
+import BlogPage from './pages/blog';
 
-class App extends React.Component<any, any> {
+class AppInner extends React.Component<any, any> {
 
-  private renderMenuLink(href: string, text:string): React.ReactNode {
-    return <WFace.WButton 
-            variant="flat" 
-            color="inherit"
-            href={"#" + href} 
-            className={this.props.classes.linkButton}>
-              {text}
-          </WFace.WButton>
-  }
+  renderMenuLink = (href: string, text: string): React.ReactNode => (
+    <WFace.WButton
+      variant="flat"
+      color="inherit"
+      href={"#" + href}
+      className={this.props.classes.linkButton}
+      style={{opacity: this.props.location.pathname.startsWith("/" + href) ? 1: 0.5}}
+    >
+      {text}
+    </WFace.WButton>
+  )
 
   public render() {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <WFace.WAppBar position="absolute" className={classes.appBar}>
+        <WFace.WAppBar position="absolute" className={classes.appBar} elevation={0}>
           <WFace.WToolBar>
             <WFace.WTypography variant="title" color="inherit" noWrap className={classes.flex}>
               WFace Dökümantasyon
             </WFace.WTypography>
 
-            {this.renderMenuLink("Main", "Ana Sayfa")}            
-            {this.renderMenuLink("Pages/GetStarted/Architecture", "Başlangıç")}
-            {this.renderMenuLink("Pages/Components/ComponentList", "Bileşenler")}
-            {this.renderMenuLink("Training", "Eğitim")}
+            {this.renderMenuLink("main", "Ana Sayfa")}
+            {this.renderMenuLink("get-started", "Başlangıç")}
+            {this.renderMenuLink("components", "Bileşenler")}
+            {this.renderMenuLink("cli", "WFace CLI")}
+            {this.renderMenuLink("blog", "Blog")}
+            {this.renderMenuLink("versions", "Versiyonlar")}
+            {this.renderMenuLink("training", "Eğitim")}
           </WFace.WToolBar>
         </WFace.WAppBar>
 
         <main className={classes.content}>
-          <HashRouter> 
-            <WMuiThemeProvider>                        
-              <Route exact path="/" render={props => <Redirect to="/Main"/>}/>
-              <Route path="/Main" component={MainPage} />            
-              <Route path="/Pages" component={Docs} />            
-              <Route path="/Training" component={TrainingPage} />            
-            </WMuiThemeProvider >
-          </HashRouter>        
+         
+            <Route exact path="/" render={props => <Redirect to="/main" />} />
+            <Route path="/main" component={MainPage} />
+            <Route path="/get-started" component={GetStartedPage} />
+            <Route path="/components" component={ComponentsPage} />
+            <Route path="/cli" component={CliPage} />
+            <Route path="/blog" component={BlogPage} />
+            <Route path="/versions" component={VersionsPage} />
+            <Route path="/training" component={TrainingPage} />
         </main>
       </div>
     )
   }
 }
 
-const styles:any = (theme:any) => ({
+const styles: any = (theme: any) => ({
   root: {
     flexGrow: 1,
     height: '%100',
@@ -67,17 +76,18 @@ const styles:any = (theme:any) => ({
     flex: 1,
   },
   linkButton: {
-    textTransform: 'none'
+    textTransform: 'none',
   },
   content: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.default,        
+    backgroundColor: theme.palette.background.default,
     padding: 0, // theme.spacing.unit * 3
     minWidth: 0, // So the Typography noWrap works
-    marginTop: 64,  
-    maxHeight:'100%', 
+    marginTop: 64,
+    maxHeight: '100%',
     overflow: 'auto'
   }
 });
 
-export default withStyles(styles)(App)
+const App = withStyles(styles)(AppInner)
+export default withRouter(App as any)
