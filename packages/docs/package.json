@@ -23,7 +23,8 @@
 		"react.di": "^2.0.0",
 		"reflect-metadata": "^0.1.12",
 		"tslib": "^1.9.0",
-		"webpack-cli": "^3.1.0"
+    "webpack-cli": "^3.1.0",
+    "react-custom-scrollbars": "4.2.1"
 	},
 	"devDependencies": {
 		"@mdx-js/loader": "^0.14.1",

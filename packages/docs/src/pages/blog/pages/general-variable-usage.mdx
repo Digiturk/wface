@@ -1,0 +1,35 @@
+import { WDivider, WIcon } from '@wface/components'
+import CodeView from '../../../components/code-view'
+
+# Genel Değişken Kullanımı
+
+Bazı verileri ekranlarımız kapansa bile saklamak isteyebiliriz. 
+Bu gibi durumlar için genel bir cache nesnesi içinde verilerimizi belirlediğimiz bir key iler saklayabilir 
+ve istediğimiz ekrandan erişim sağlayabiliriz. 
+
+### Cache'e Veri Eklemek
+
+Ekranda istediğimiz herhangi bir noktada this.props.setValue metodunu kullanarak istediğimiz değeri cache atabiliriz. 
+
+<CodeView>
+  this.props.setValue("valueKey", "value");
+</CodeView>
+
+### Cache'den Veri Okumak
+
+`render` metodu da dahil olmak üzere istediğimiz herhangi bir noktada veriye aşağıdaki gibi ulaşabiliriz. 
+
+<CodeView>
+  this.props.appContext.cache["valueKey"]
+</CodeView>
+
+### Cache Kullanımında Dikkat Edilmesi Gerekenler
+
+ - Cache içerisinde ekranlarını uygulama boyunca ilgilendiren veriler saklanmalıdır. 
+   Bir ekran kapansa dahi daha sonra tekrar açıldığında ulaşabileceğimiz veriler için cache kullanımı uygundur. 
+ - Bir ekrandan başka bir ekran açarken parametre geçişleri için cache kullanılmamalıdır. 
+   Ekranlar parametre ile çağrılabilmektedir. 
+ - Başka bir ekrandan yapılan veri eklemeleri ile aynı key'i kullanma ihtimaline karşın keylerin ortak bir dosyada
+   oluşturulması muhtemel hatalara engel olabilir. 
+   
+
