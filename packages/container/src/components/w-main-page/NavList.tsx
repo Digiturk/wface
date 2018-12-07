@@ -70,7 +70,7 @@ class NavList extends React.Component<NavListProps & { classes: any }, NavListSt
             <WIcon>{open ? "expand_less" : "expand_more"}</WIcon>
           </WListItem>
           <Collapse in={open} timeout="auto">
-            <WList component="div" disablePadding>
+            <WList disablePadding>
               {item.subNodes.map(subItem => { return this.renderNavItem(subItem, nestingLevel + 1); })}
             </WList>
           </Collapse>

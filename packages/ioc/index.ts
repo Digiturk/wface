@@ -7,4 +7,3 @@ export { default as MenuTreeUtil } from './src/implementations/MenuTreeUtil'
 export { default as IConfiguration } from './src/interfaces/IConfiguration'
 export { default as IAuthService, IMenuTreeItem } from './src/interfaces/IAuthService'
 export { default as IHttpService } from './src/interfaces/IHttpService'
-

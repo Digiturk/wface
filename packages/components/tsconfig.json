@@ -10,7 +10,9 @@
     "lib": [
       "dom",
       "es6"
-    ]
+    ],
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
   },
   "include": [
     "src/**/*"

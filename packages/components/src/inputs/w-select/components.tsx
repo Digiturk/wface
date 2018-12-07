@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as classNames from 'classnames';
+import classNames from 'classnames';
 import { WChip } from '../../others/w-chip';
 import { WIcon } from '../../medias/w-icon';
 import { WMenuItem } from '../../lists/w-menu/w-menu-item'

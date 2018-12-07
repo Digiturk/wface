@@ -1,0 +1,87 @@
+import { WDivider, WIcon } from '@wface/components'
+import CodeView from '../../../components/code-view'
+
+# Yeni Ekran Tanımlamak
+
+Geliştirdiğiniz bir ekranı aşağıdaki adımları izleyerek WFace projenizde kullanmaya başlayabilirsiniz. 
+
+### 1. Ekranın Konfigurasyon Dosyasına Eklenmesi
+
+Projenizin `/configs/wface/wface.config.ts` dosyasında ekranınızı import edip `config` değişkeninin 
+`screenList` objesine eklemeniz gerekir. Bu işlem aşağıdaki kodda commentlerle gösterilmiştir.
+
+<CodeView 
+code={
+`import { IConfiguration, IHttpService } from "@wface/ioc";
+import AuthService from '../../src/services/AuthService';
+import { DemoScreen } from '../../src/screens/DemoScreen'; // Burda import yapılıyor
+import { WTheme } from '@wface/components';
+\n
+const config = {
+  title: 'WFace Boilerplate',
+  projectName: 'WFace',  
+  screenList: { 
+    DemoScreen // Ekranı burada configurasyona veriyoruz    
+  },
+  authService: new AuthService(),  
+  theme: theme
+} as IConfiguration
+\n
+export default config;`}/>
+
+### 2. Ekranın Çalışma Zamanında Yüklenmesi
+
+Ekranımızı projeye ekledikten sonra menü ağacında çizilmesini sağlamak için IAuthService implementasyonumuzda 
+bulunan getMenuTree metodunun dönüş değerine ekliyoruz. 
+
+<CodeView 
+code={
+`import { IAuthService, IMenuTreeItem } from '@wface/ioc';
+\n
+export default class AuthService implements IAuthService {
+\n
+  public login(username: string, password: string, values?: any)
+    : Promise<{ displayName: string, token?: string }> {
+    return new Promise((resolve, reject) => {
+      resolve({displayName: 'MockUser', token: 'MockToken'});
+    });
+  }
+\n
+  public getMenuTree(): Promise<IMenuTreeItem[]> {
+    return new Promise((resolve, reject) => {
+      const result:IMenuTreeItem[] = [];
+      let id = 0;
+\n
+      // result nesnesine ekran tanımımızı ekliyoruz. 
+      result.push({
+        id: (++id).toString(),
+        text: 'DemoScreen',
+        screen: 'DemoScreen'
+      });      
+      setTimeout(() => resolve(result), 1200);
+    });
+  }
+}`}/>
+<br/>
+
+> Yukarıdaki örnekte getMenuTree metodu içinde menü ağacı oluşturulmuş ve resolve ile async olarak geri 
+döndürülmüştür. Sizin projenizde menü ağacının sunucu tarafından kullanıcının yetkisine göre alınması daha
+uygun olacaktır. 
+
+### Ekran Tanımı Seçenekleri
+
+Ekran tanımı IMenutTreeItem implementasyonu olmak zorundadır. Aşağıda IMenuTreeItem özellikleri listelenmiştir. 
+Bu özellikler kullanılarak ekranın davranışları değiştirilebilir.
+
+| Alan                  | Tip             | Zorunlu | Açıklama                                                                          |
+|:----------------------|:----------------|:--------|:----------------------------------------------------------------------------------|
+| id                    | string          | Evet    | Ekranın tekil numarası                                                            |
+| text                  | string          | Evet    | Ekranın menü ağacındaki ismi                                                      |
+| icon                  | string          | Hayır   | Ekranın menü ağacındaki icon                                                      |
+| divideBefore          | boolean         | Hayır   | Ekranın menü ağacındaki çiziminden önce ayraç kullanılıp kullanılmayacağı flagi   |
+| screen                | string          | Hayır   | Ekranın configde verilen adı                                                      |
+| subNodes              | IMenuTreeItem[] | Hayır   | Ekran yerine menü tanımlamak için kullanılır. IMenuTreeItem listesi verilmelidir  |
+| isDefaultScreen       | boolean         | Hayır   | Ekranın uygulama açılırken açılmasını sağlar                                      |
+| notClosable           | boolean         | Hayır   | Ekranın kapatılabilmesini engeller                                                |
+| hideOnNavigationList  | boolean         | Hayır   | Ekranın menü ağacında çizilmesini engeller                                        |
+| initialValues         | any             | Hayır   | Ekranın parametreleri                                                             |

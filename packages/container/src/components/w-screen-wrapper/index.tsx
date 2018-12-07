@@ -1,6 +1,6 @@
-import { WGrid, WPaper, WTypography, withSnackbar, WIconButton, WIcon } from '@wface/components';
-import { IMenuTreeItem, MenuTreeUtil, IConfiguration } from '@wface/ioc';
-import { AppContextActions, WStore, ScreenData } from '@wface/store';
+import { WGrid, WIcon, WIconButton, withSnackbar, WPaper, WTypography } from '@wface/components';
+import { IMenuTreeItem, MenuTreeUtil } from '@wface/ioc';
+import { AppContextActions, ScreenData, WStore } from '@wface/store';
 import * as React from 'react';
 import { connect } from 'react-redux';
 
@@ -17,7 +17,7 @@ export interface DispatchProps {
 
 class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & DispatchProps, any> {
 
-  private screenRef:any;  
+  private screenRef:any;
 
   constructor(props) {
     super(props);

@@ -2,16 +2,15 @@
 
 import { withStyles } from '@material-ui/core/styles';
 import { WAppBar, WDrawer, WGrid, WIcon, WIconButton, WTab, WTabs, WToolBar, WTypography } from '@wface/components';
-import { IAuthService, IMenuTreeItem, MenuTreeUtil, IConfiguration } from "@wface/ioc";
-import { AppContextActions, WStore, AppContext } from '@wface/store';
-import * as classNames from 'classnames';
+import { IMenuTreeItem, MenuTreeUtil } from "@wface/ioc";
+import { AppContext, AppContextActions, WStore } from '@wface/store';
+import classNames from 'classnames';
 import * as React from "react";
 import { connect } from 'react-redux';
-import { Route, Switch, withRouter, Redirect } from 'react-router';
+import { Route, Switch, withRouter } from 'react-router';
 import WScreenWrapper from '../w-screen-wrapper';
 import MyProfileMenu from './MyProfileMenu';
 import NavList from './NavList';
-import appContext from '@wface/store/src/appContext/reducer';
 
 //#endregion 
 

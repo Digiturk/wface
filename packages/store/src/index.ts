@@ -1,7 +1,7 @@
-import appContext from './appContext/reducer';
-import AppContext from './appContext/models';
-import userContext from './userContext/reducer';
-import UserContext from './userContext/models';
+import appContext from './app-context/reducer';
+import AppContext from './app-context/models';
+import userContext from './user-context/reducer';
+import UserContext from './user-context/models';
 import { combineReducers, createStore } from 'redux';
 
 
@@ -19,6 +19,6 @@ let devtools: any = window['devToolsExtension'] ? window['devToolsExtension']() 
 const store = createStore<WStore, any, any, any>(rootReducer, devtools);
 
 export default store;
-export { default as AppContextActions } from "./appcontext/actions"
-export { default as UserContextActions } from "./userContext/actions"
+export { default as AppContextActions } from "./app-context/actions"
+export { default as UserContextActions } from "./user-context/actions"
 
