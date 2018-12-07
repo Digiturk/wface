@@ -12,7 +12,7 @@ export default class Requirements extends React.Component<any, any> {
         
         <WFace.WListItemText primary={primaryText} secondary={secondaryText}/>
         <WFace.WListItemSecondaryAction>
-          <WFace.WIconButton href={href} target="_blank"> 
+          <WFace.WIconButton href={href} target="_blank" color="primary"> 
             <WFace.WIcon>get_app</WFace.WIcon>
           </WFace.WIconButton>
         </WFace.WListItemSecondaryAction> 
@@ -22,10 +22,10 @@ export default class Requirements extends React.Component<any, any> {
 
   public render() {
     return (
-      <WFace.WCard style={{height:'100%'}}>
+      <WFace.WCard style={{height:'100%'}} elevation={0}>
         <WFace.WCardHeader 
           title={<WFace.WTypography variant="headline" >Gereksinimler</WFace.WTypography> } 
-          avatar={<WFace.WIcon color="primary" style={{fontSize:25}}>get_app</WFace.WIcon>}/>
+          avatar={<WFace.WIcon color="inherit" style={{fontSize:25}}>get_app</WFace.WIcon>}/>
         <WFace.WCardContent>
           <WFace.WList>
             {this.renderRequirement(

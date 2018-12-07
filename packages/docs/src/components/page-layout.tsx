@@ -96,7 +96,8 @@ class PageLayoutInner extends React.Component<any, any> {
     const { classes } = this.props;
     
     const itemStyle = {
-        paddingLeft: 20 + 20 * nestingLevel
+        paddingLeft: 20 + 20 * nestingLevel,
+        borderRadius: 4
     }
 
     if(item.subNodes && item.subNodes.length > 0) {
@@ -123,7 +124,7 @@ class PageLayoutInner extends React.Component<any, any> {
       if(item.id === this.state.currentScreen.id) {
         listItemTextStyle = {
           color:'#3f51b5',
-          fontWeight: 500          
+          fontWeight: 500
         };
 
         listItemStyle.backgroundColor = 'rgb(239, 242, 247)';
@@ -148,10 +149,11 @@ class PageLayoutInner extends React.Component<any, any> {
       <WFace.WGrid container className={classes.root}>
         <WFace.WGrid item lg={1}/>  
         <WFace.WGrid item xs={12} sm={12} md={4} lg={3}>                        
-          <WFace.WPaper>
+          <WFace.WPaper elevation={0}>
             <WFace.WList 
               key="NavListKey"
               dense
+              style={{padding: 10}}
               component="nav">
               {
                 this.props.menuTree.map((item:any) => {
@@ -162,7 +164,7 @@ class PageLayoutInner extends React.Component<any, any> {
           </WFace.WPaper>
         </WFace.WGrid>  
         <WFace.WGrid item xs={12} sm={12} md={8} lg={7}>
-          <WFace.WPaper className={classes.content}>
+          <WFace.WPaper className={classes.content} elevation={0}>
             {this.state.currentScreen && 
               <Route key={this.state.currentScreen.id} path={(this.props as any).match.url + '/' + this.state.currentScreen.path} component={this.state.currentScreen.mdx}/> 
             }
@@ -170,7 +172,7 @@ class PageLayoutInner extends React.Component<any, any> {
           <div style={{marginTop:30, marginLeft:30, marginRight:18, paddingBottom:200}}>
             {prevButtonData && 
               <WFace.WButton 
-                variant="outlined" 
+                variant="flat" 
                 color="primary" 
                 onClick={() => this.openScreen(prevButtonData)}>
                 <WFace.WIcon style={{marginRight:10}}>arrow_back_ios</WFace.WIcon>
@@ -180,7 +182,7 @@ class PageLayoutInner extends React.Component<any, any> {
             {nextButtonData &&
               <WFace.WButton 
                 style={{float:"right"}} 
-                variant="outlined" 
+                variant="flat" 
                 color="primary"
                 onClick={() => this.openScreen(nextButtonData)}>
                 {nextButtonData.text}

@@ -10,8 +10,9 @@ const CommandHighlight = (props:any) => (
         color: '#DDD',
         backgroundColor:'rgb(40, 44, 52)',
         fontFamily: 'Inconsolata, Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace',
-        fontSize: 16,
-        whiteSpace: 'initial'
+        fontSize: 14,
+        whiteSpace: 'initial',
+        textAlign: 'left'
       }}>             
       <div style={{color: '#4B8B43', fontSize: 12}}>// {props.dscr}</div>                     
       {props.command} 
