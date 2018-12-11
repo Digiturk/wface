@@ -1,0 +1,36 @@
+import { WDivider, WIcon } from '@wface/components'
+import CodeView from '../../../components/code-view'
+
+# Ekran Açma/Kapama
+
+## Ekran Açmak
+
+Geliştirdiğiniz bir ekrandan başka bir ekranı açmak için bulunduğunuz ekrandan şu şekilde bir kod bloğu çalıştırabilirsiniz: 
+
+<CodeView 
+code={
+`
+this.props.openScreen('screen-id', {param1: 'str', param2: 1});
+`}/><br/>
+
+> Ekran bulunamazsa bu metod size `false` değerini dönecektir.
+
+## Parametrelere Erişim
+
+Açılan ekrandan parametrelere şu şekilde erişebilirsiniz. 
+
+<CodeView 
+code={
+`
+this.props.screenData.initialValues
+`}/><br/>
+
+> Ekran açılırken gönderilen parametreler ekranın default parametrelerinin üzerine yazılarak gönderilir.
+
+## Ekran Kapatmak
+
+<CodeView 
+code={
+`
+this.props.closeScreen('screen-id');
+`}/><br/>

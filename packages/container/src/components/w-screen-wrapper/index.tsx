@@ -10,8 +10,9 @@ export interface WScreenWrapperProps {
 }
 
 export interface DispatchProps {
-  saveScreenState: (screenId: string, state: any) => void;
+  closeScreen: (menuTreeItem: IMenuTreeItem) => void;
   openScreen: (menuTreeItem: IMenuTreeItem, initialValues?: any) => void;
+  saveScreenState: (screenId: string, state: any) => void;
   setValue: (key: string, value: any) => void;
 }
 
@@ -45,6 +46,16 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
     return true;
   }
 
+  closeScreen = (screen: string) => {    
+    const item = MenuTreeUtil.findByName(this.props.appContext.menuTree, screen);
+    if(!item) {
+      return false;
+    }
+
+    this.props.closeScreen(item);
+    return true;
+  }
+
   showSnackbar = (message: string, type: 'error' | 'success' | 'warning' | 'info' = 'info', duration: number = 5000) => {    
     this.props.enqueueSnackbar(message, {
       variant: type,
@@ -63,6 +74,7 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
           httpService={this.props.appContext.configuration.httpService}
           screenData={this.props.appContext.currentScreen}
           userContext={this.props.userContext}
+          closeScreen={this.closeScreen}
           openScreen={this.openScreen}
           showSnackbar={this.showSnackbar}
           setValue={this.props.setValue}
@@ -90,8 +102,9 @@ const mapStateToProps = (state:WStore) => ({
 } as WStore);
 
 const mapDispatchToProps = dispatch => ({
-  saveScreenState: (screenId: string, state: any) => dispatch(AppContextActions.saveScreenState({ screenId, state })),
+  closeScreen: (menuTreeItem: IMenuTreeItem) => dispatch(AppContextActions.closeScreen(menuTreeItem)),
   openScreen: (menuTreeItem: IMenuTreeItem, initialValues?: any) => dispatch(AppContextActions.openScreen({menuTreeItem, initialValues})),
+  saveScreenState: (screenId: string, state: any) => dispatch(AppContextActions.saveScreenState({ screenId, state })),
   setValue: (key: string, value: any) => dispatch(AppContextActions.setValue({key, value}))
 });
 

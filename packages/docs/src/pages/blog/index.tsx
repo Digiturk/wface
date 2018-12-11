@@ -35,6 +35,12 @@ const menuTree = [
     path: 'general-variable-usage',
     mdx: Mdx.GeneralVariableUsage,
   }, 
+  {
+    id: 'open-close-screen',
+    text: 'Ekran Açma/Kapama',
+    path: 'open-close-screen',
+    mdx: Mdx.OpenCloseScreen,
+  }, 
 ]
 
 

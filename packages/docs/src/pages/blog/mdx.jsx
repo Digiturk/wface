@@ -7,6 +7,7 @@ import HowToVersionUpgrade from './pages/how-to-version-upgrade.mdx'
 import ProductionBuild from './pages/production-build.mdx'
 import GeneralVariableUsage from './pages/general-variable-usage.mdx'
 import NewScreenDefinition from './pages/new-screen-definition.mdx'
+import OpenCloseScreen from './pages/open-close-screen.mdx'
 
 
 const Mdx = {
@@ -14,6 +15,7 @@ const Mdx = {
   ProductionBuild: () => <ProductionBuild components={mdxComponents}/>,
   GeneralVariableUsage: () => <GeneralVariableUsage components={mdxComponents}/>,
   NewScreenDefinition: () => <NewScreenDefinition components={mdxComponents}/>,
+  OpenCloseScreen: () => <OpenCloseScreen components={mdxComponents}/>,  
 }
 
 export default Mdx
