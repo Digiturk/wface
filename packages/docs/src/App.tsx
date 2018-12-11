@@ -82,7 +82,7 @@ const styles: any = (theme: any) => ({
   },
   content: {
     flexGrow: 1,
-    backgroundColor: '#eee',
+    backgroundColor: '#e8eaf5',
     padding: 0, // theme.spacing.unit * 3
     minWidth: 0, // So the Typography noWrap works
     marginTop: 64,
