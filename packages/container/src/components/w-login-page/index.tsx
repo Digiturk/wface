@@ -1,13 +1,13 @@
 //#region imports 
 
 import { withStyles } from '@material-ui/core';
-import { 
-  WCard, WCardContent, WGrid, 
-  WLoadingButton, WNotificationBar, WTextField, 
-  WTypography 
+import {
+  WCard, WCardContent, WGrid,
+  WLoadingButton, WNotificationBar, WTextField,
+  WTypography
 } from '@wface/components';
 import { IAuthService } from "@wface/ioc";
-import { UserContext, UserContextActions, WStore } from '@wface/store';
+import { UserContext, UserContextActions, WStore, AppContext } from '@wface/store';
 import classNames from 'classnames';
 import * as React from "react";
 import { connect } from 'react-redux';
@@ -26,8 +26,11 @@ interface WLoginPageState {
 }
 
 type WLoginPageProps = WStore & {
-  classes: any
-  authService: IAuthService
+  appContext: AppContext;
+  userContext: UserContext;
+  authService: IAuthService;
+  classes: any;
+  setValue: (key: string, value: any) => void;
 }
 
 class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> {
@@ -56,7 +59,6 @@ class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> {
           this.setState({
             showNotification: true,
             notificationText: message
-            // notificationText: "Sunucu ile iletişimde bir hata alındı. Lütfen bağlantı ayarlarınızı kontrol ediniz.",
           });
         })
         .finally(() => {
@@ -81,7 +83,7 @@ class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> {
     const { classes } = this.props;
 
     return (
-      <div style={{ height: '100%', width: '100%', backgroundImage: `url(./assets/wface/login-bg.jpg)` }}>        
+      <div style={{ height: '100%', width: '100%', backgroundImage: `url(./assets/wface/login-bg.jpg)` }}>
         <div style={{ paddingTop: '5%' }}>
           <WGrid container justify="center" style={{ paddingLeft: 10, paddingRight: 10 }}>
             <WGrid item xs={12} sm={6} md={4} lg={3}>
@@ -97,14 +99,12 @@ class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> {
                     <img
                       src="./assets/wface/login-logo.png" />
                   </WTypography>
-
                   {this.state.showNotification &&
                     <WNotificationBar
                       text={this.state.notificationText}
                       type={"error"}
                       onCloseClick={() => this.setState({ showNotification: false })} />
                   }
-
                   <WTextField
                     id="username"
                     label="Kullanıcı Adı"
@@ -182,8 +182,4 @@ const styles = (theme: any) => ({
   }
 });
 
-const mapStateToProps = (state: any) => ({ ...state } as WStore);
-const mapDispatchToProps = (dispatch: any) => ({
-  login: (userContext: UserContext) => dispatch(UserContextActions.login(userContext))
-});
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles as any)(WLoginPage) as any)
+export default withStyles(styles as any)(WLoginPage)
