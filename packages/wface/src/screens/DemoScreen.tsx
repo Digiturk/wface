@@ -12,7 +12,7 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
     }
   }
 
-  public render() {
+  public render() {    
     return (
       <div>This is demo screen</div>
     )
