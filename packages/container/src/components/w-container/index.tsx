@@ -46,7 +46,7 @@ let InnerContainer = (props: any) => {
         <Route path="/login/:screen?" render={(subProps:any) => isLoggedIn ? 
           <Redirect to={`/main/${subProps.match.params.screen || ''}`} />
           :
-          <LoginScreen {...subProps} authService={configuration.authService}/>
+          <LoginScreen {...subProps} authService={configuration.authService} appContext={props.appContext} userContext={props.userContext} setValue={props.setValue}/>
         }/>
         <Route path="/main" render={(subProps:any) => isLoggedIn ? <WMainPage {...subProps} style={{height:'100%'}}/> : <Redirect to={props.location.pathname.replace('main', 'login')}/> }/>
       </WSnackbarProvider>
@@ -60,7 +60,7 @@ const mapStateToProps = (state:any) => ({
 });
 
 const mapDispatchToProps = (dispatch:any) => ({
-  login: (username:string, displayName: string, token: string) => dispatch(UserContextActions.login({username, displayName, token})),  
+  setValue: (key:string, value: any) => dispatch(AppContextActions.setValue({key, value})),
 });
 
 InnerContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(InnerContainer) as any) as any
