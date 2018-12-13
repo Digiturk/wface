@@ -4,7 +4,9 @@
 	"description": "",
 	"scripts": {
 		"build": "webpack",
-		"start": "webpack-dev-server --hot --open"
+		"start": "webpack-dev-server --hot --open",
+    "docker": "npm run build && docker build -t digiturk/wface .",
+    "start:docker": "docker run -p 81:80 digiturk/wface"
 	},
 	"author": "baran",
 	"dependencies": {
