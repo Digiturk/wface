@@ -9,7 +9,6 @@ const theme = {
   }
 } as WTheme
 
-
 const config = {
   title: 'WFace Boilerplate',
   projectName: 'WFace',  
