@@ -1,11 +1,9 @@
+import NoSsr from '@material-ui/core/NoSsr';
+import { createStyles, withStyles } from '@material-ui/core/styles';
+import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import * as React from 'react';
 import Select from 'react-select';
-import { createStyles, withStyles } from '@material-ui/core/styles';
-import NoSsr from '@material-ui/core/NoSsr';
-import { emphasize } from '@material-ui/core/styles/colorManipulator';
-import selectComponents from './components'
-import { isRegExp } from 'util';
-import { timingSafeEqual } from 'crypto';
+import selectComponents from './components';
 
 export interface WSelectOptionGroup {
   label: string; 
@@ -189,4 +187,4 @@ const styles = (theme: any) => createStyles({
 });
 
 const WSelect = withStyles(styles, { withTheme: false })(WSelectInner);
-export { WSelect }
+export { WSelect };

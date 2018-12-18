@@ -9,8 +9,10 @@
     "lib": [
       "es5",
       "es6",
-      "dom"
+      "dom",
+      "esnext"
     ],
+    "types": ["reflect-metadata"],
     "importHelpers": true,
     "noImplicitReturns": true,
     "suppressImplicitAnyIndexErrors": true,

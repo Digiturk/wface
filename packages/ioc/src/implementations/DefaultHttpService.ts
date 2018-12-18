@@ -1,6 +1,8 @@
 import IHttpService from '../interfaces/IHttpService';
 import axios from 'axios';
+import { injectable } from "inversify";
 
+@injectable()
 export default class DefaultHttpService implements IHttpService {
   public get<T = any>(url: string, params?:{}): Promise<T> {
     return new Promise<T>((resolve, reject) => {

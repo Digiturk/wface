@@ -1,16 +1,12 @@
 //#region imports 
 
 import { withStyles } from '@material-ui/core';
-import {
-  WCard, WCardContent, WGrid,
-  WLoadingButton, WNotificationBar, WTextField,
-  WTypography
-} from '@wface/components';
+import { WCard, WCardContent, WGrid, WLoadingButton, WNotificationBar, WTextField, WTypography } from '@wface/components';
 import { IAuthService } from "@wface/ioc";
-import { UserContext, UserContextActions, WStore, AppContext } from '@wface/store';
+import { AppContext, UserContext, WStore } from '@wface/store';
+// @ts-ignore
 import classNames from 'classnames';
 import * as React from "react";
-import { connect } from 'react-redux';
 
 
 //#endregion
@@ -61,6 +57,7 @@ class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> {
             notificationText: message
           });
         })
+        // @ts-ignore
         .finally(() => {
           this.setState({ isLoading: false });
         });

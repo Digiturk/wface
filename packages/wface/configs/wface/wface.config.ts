@@ -15,7 +15,7 @@ const config = {
   screenList: { 
     DemoScreen
   },
-  authService: new AuthService(),  
+  authService: AuthService,
   theme: theme
 } as IConfiguration
 
