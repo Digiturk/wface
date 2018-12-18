@@ -1,6 +1,11 @@
 import { IAuthService, IMenuTreeItem } from '@wface/ioc';
+import { injectable, inject } from "inversify";
+import { UserContext } from '@wface/store';
 
+@injectable()
 export default class AuthService implements IAuthService {
+
+  @inject("UserContext") userContext : UserContext;
 
   public login(username: string, password: string, values?: any): Promise<{ displayName: string, token?: string }> {
     return new Promise((resolve, reject) => {

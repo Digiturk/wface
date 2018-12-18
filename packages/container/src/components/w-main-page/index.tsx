@@ -2,8 +2,9 @@
 
 import { withStyles } from '@material-ui/core/styles';
 import { WAppBar, WDrawer, WGrid, WIcon, WIconButton, WTab, WTabs, WToolBar, WTypography } from '@wface/components';
-import { IMenuTreeItem, MenuTreeUtil } from "@wface/ioc";
-import { AppContext, AppContextActions, WStore } from '@wface/store';
+import IOC, { IMenuTreeItem, MenuTreeUtil, IAuthService } from "@wface/ioc";
+import { AppContext, AppContextActions, WStore, UserContext } from '@wface/store';
+// @ts-ignore
 import classNames from 'classnames';
 import * as React from "react";
 import { connect } from 'react-redux';
@@ -48,7 +49,8 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
     const { match, location, setMenuTree, openScreen } = this.props;
     const getScreenUrl = this.getScreenUrl;
 
-    this.props.appContext.configuration.authService.getMenuTree()
+    const authService = IOC.get<IAuthService>("IAuthService");
+    authService.getMenuTree()
       .then(menuTree => {
         setMenuTree(menuTree);          
         

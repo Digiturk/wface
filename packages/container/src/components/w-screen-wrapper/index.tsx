@@ -1,5 +1,5 @@
 import { WGrid, WIcon, WIconButton, withSnackbar, WPaper, WTypography } from '@wface/components';
-import { IMenuTreeItem, MenuTreeUtil } from '@wface/ioc';
+import IOC, { IMenuTreeItem, MenuTreeUtil, IHttpService } from '@wface/ioc';
 import { AppContextActions, ScreenData, WStore } from '@wface/store';
 import * as React from 'react';
 import { connect } from 'react-redux';
@@ -71,7 +71,7 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
         <Screen
           ref={this.screenRef}
           appContext={this.props.appContext}
-          httpService={this.props.appContext.configuration.httpService}
+          httpService={IOC.get<IHttpService>("IHttpService")}
           screenData={this.props.appContext.currentScreen}
           userContext={this.props.userContext}
           closeScreen={this.closeScreen}

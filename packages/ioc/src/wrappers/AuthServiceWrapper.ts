@@ -1,15 +1,11 @@
 import IAuthService, { IMenuTreeItem } from '../interfaces/IAuthService';
+import { injectable, inject } from "inversify";
 
-export default class DefaultAuthService implements IAuthService {
+@injectable()
+export default class AuthServiceWrapper implements IAuthService {
   
-  private _Service: IAuthService;
-  private _OnLogin: (username:string, displayName: string, token?: string) => void;
-
-  constructor(service: IAuthService, onLogin: (username:string, displayName: string, token?: string) => void,
-  ) { 
-    this._Service = service;
-    this._OnLogin = onLogin;
-  }
+  @inject("IAuthServiceInner") private _Service: IAuthService;
+  @inject("onLogin") private _OnLogin: (username:string, displayName: string, token?: string) => void;
 
   login(username: string, password: string, values?: any): Promise<{ displayName: string, token?: string }> {
     return new Promise((resolve, reject) => {

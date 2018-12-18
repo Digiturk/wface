@@ -8,17 +8,18 @@ import { WIcon } from '@wface/components'
 
 ## Değişiklikler
 
-| Jira                                                        | Tür           | Açıklama                                                                                  |
-|:------------------------------------------------------------|:--------------|:------------------------------------------------------------------------------------------|
-| [WFACE-70](https://jira.digiturk.com.tr/browse/WFACE-70)    | feature       | 1200 pikselden daha dar ekranlar için menu tree default kapalı yapıldı.                   |
-| [WFACE-105](https://jira.digiturk.com.tr/browse/WFACE-105)  | feature       | appContext, userContext ve setValue login ekranına aktarıldı.                             |
-| [WFACE-100](https://jira.digiturk.com.tr/browse/WFACE-100)  | feature       | [ekranlara closeScreen metodu aktarıldı.](/#/blog/open-close-screen)                      |
+| Jira                                                        | Tür           | Açıklama                                                                                          |
+|:------------------------------------------------------------|:--------------|:--------------------------------------------------------------------------------------------------|
+| [WFACE-70](https://jira.digiturk.com.tr/browse/WFACE-70)    | feature       | 1200 pikselden daha dar ekranlar için menu tree default kapalı yapıldı.                           |
+| [WFACE-105](https://jira.digiturk.com.tr/browse/WFACE-105)  | feature       | appContext, userContext ve setValue login ekranına aktarıldı.                                     |
+| [WFACE-100](https://jira.digiturk.com.tr/browse/WFACE-100)  | feature       | [ekranlara closeScreen metodu aktarıldı.](/#/blog/open-close-screen)                              |
+| [WFACE-79](https://jira.digiturk.com.tr/browse/WFACE-79)    | feature       | AuthService IOC katmanına alındı. `@inject("UserContext")` ile userContext'e erişim sağlanabilir. |
 
 <br/>
 
 ## Zorunlu Değişiklikler
 
-### 1.Custom Login Ekranı Geliştirilen Projeler 
+### 1. Custom Login Ekranı Geliştirilen Projeler 
 
 WLoginPageProps tipini aşağıdaki gibi değiştirerek yeni eklenen alanları da kullanabilirler. 
 
@@ -31,3 +32,62 @@ type WLoginPageProps = WStore & {
   setValue: (key: string, value: any) => void;
 }
 ```
+
+### 2. AuthService Değişiklikleri
+  - __tsconfig.json__ dosyasındaki `compilerOptions` alanına `"types": ["reflect-metadata"]`
+    satırını ekleyiniz. `lib` dizisine ise `"esnext"` değerinin eklenmesi gerekiyor. Dosyanın son hali aşağıdaki gibi olacaktır. 
+    ```javascript
+    {
+      "compilerOptions": {
+        "outDir": "./dist/",
+        "sourceMap": true,
+        "noImplicitAny": false,
+        "module": "commonjs",
+        "target": "es6",
+        "jsx": "react",
+        "lib": [
+          "es5",
+          "es6",
+          "dom",
+          "esnext"
+        ],
+        "types": ["reflect-metadata"],
+        "importHelpers": true,
+        "noImplicitReturns": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true
+      },
+      "include": [
+        "./index.tsx",
+        "./src/**/*"
+      ]
+    }
+    ```
+  - __configs/wface/wface.config.ts__ dosyasında config üretilirken authService'e değer olarak `new AuthService()` yerine
+    doğrudan tipin kendisi `AuthService` şeklinde verilmelidir. Config tanımının ilgili kısmı aşağıdaki gibi olacaktır. 
+    ```javascript
+    const config = {
+      title: 'WFace Boilerplate',
+      projectName: 'WFace',  
+      screenList: { 
+        DemoScreen
+      },
+      // authService: new AuthService(),
+      authService: AuthService,
+      theme: theme
+    } as IConfiguration
+    ```
+  - __src/services/AuthService.ts__ dosyasında yapılacaklar sırası ile aşağıdaki listelenmiştir:
+    - import kısmına şu iki satır eklenir: 
+      - `import { injectable, inject } from "inversify";`
+      - `import { UserContext } from '@wface/store';`
+    - AuthService sınıfının üstüne `@injectable()` decorator'u eklenir.
+    - AuthService userContext değişkeni şu şekilde tanımlanır: `@inject("UserContext") userContext : UserContext;`
+
+    Böylece AuthService implementasyonumuzu IOC modülüne tanımlanabilir hale getirdik ve userContext'i de inject ettik. 
+    Bundan sonra userContext içerisindeki bilgilere erişebiliriz. 
+    
+    > Doğru bir AuthService implementasyonuna erişmek için [tıklayınız](https://bitbucket.digiturk.com.tr/projects/ITDEV/repos/wface/browse/packages/wface/src/services/AuthService.ts).
