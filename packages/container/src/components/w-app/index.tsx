@@ -4,7 +4,8 @@ import "reflect-metadata";
 import { WContainer } from "@wface/container";
 import * as React from 'react';
 import { store, UserContextActions, UserContext, AppContext } from '@wface/store';
-import IOC, { IAuthService, IConfiguration, AuthServiceWrapper, DefaultHttpService, IHttpService, HttpServiceWrapper } from '@wface/ioc';
+import IOC, { IAuthService, IConfiguration, AuthServiceWrapper, IHttpService, HttpServiceWrapper } from '@wface/ioc';
+import DefaultHttpService from './default-http-service';
 import WLoginPage from '../w-login-page';
 
 const onLogin = (username: string, displayName: string, token?: string) => store.dispatch(UserContextActions.login({username, displayName, token}));

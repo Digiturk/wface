@@ -1,5 +1,5 @@
-import { IAuthService } from '@wface/ioc';
 import IHttpService from './IHttpService';
+import IAuthService from './IAuthService';
 
 type X = IAuthService
 
