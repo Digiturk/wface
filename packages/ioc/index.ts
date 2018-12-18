@@ -1,5 +1,4 @@
 // implementations
-export { default as DefaultHttpService } from './src/implementations/DefaultHttpService'
 export { default as MenuTreeUtil } from './src/implementations/MenuTreeUtil'
 
 // interfaces 

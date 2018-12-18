@@ -6,8 +6,6 @@
 	"author": "baran",
 	"license": "ISC",
 	"dependencies": {
-		"react": "16.6.3",
-    "axios": "0.18.0",
     "inversify": "5.0.1"
 	}
 }

@@ -1,12 +1,24 @@
-import IHttpService from '../interfaces/IHttpService';
 import axios from 'axios';
-import { injectable } from "inversify";
+import { injectable, inject } from "inversify";
+import { IHttpService } from '@wface/ioc';
+import { UserContext } from '@wface/store';
 
 @injectable()
 export default class DefaultHttpService implements IHttpService {
+
+  @inject("UserContext") userContext: UserContext;
+
+  public getConfig(): any {
+    return {
+      headers: {
+        token: this.userContext.token
+      }
+    }
+  }
+
   public get<T = any>(url: string, params?:{}): Promise<T> {
     return new Promise<T>((resolve, reject) => {
-      axios.get<T>(url, { params: params})
+      axios.get<T>(url, {...this.getConfig(), params: params })
         .then(response => resolve(response.data))
         .catch(error => reject(error))
     });
@@ -14,7 +26,7 @@ export default class DefaultHttpService implements IHttpService {
 
   public post<T = any>(url: string, data?: {}): Promise<T> {
     return new Promise<T>((resolve, reject) => {
-      axios.post(url, data)
+      axios.post(url, data, this.getConfig())
         .then(response => resolve(response.data as T))
         .catch(error => reject(error))
     })
