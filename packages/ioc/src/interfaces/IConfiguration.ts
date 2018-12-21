@@ -1,5 +1,7 @@
-import { IAuthService } from '@wface/ioc';
 import IHttpService from './IHttpService';
+import IAuthService from './IAuthService';
+
+type X = IAuthService
 
 export default interface IConfiguration {
   title?: string,
@@ -8,8 +10,8 @@ export default interface IConfiguration {
   screenList: { [key: string]: any };
   loginScreen?: any;
 
-  authService?: IAuthService;
-  httpService?: IHttpService;
+  authService?: { new (...args: any[]): IAuthService; };
+  httpService?: { new (...args: any[]): IHttpService; };
 
   theme?: any;
 }

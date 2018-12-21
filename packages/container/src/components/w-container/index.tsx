@@ -5,7 +5,7 @@ import WMainPage from '../w-main-page';
 import { store, UserContextActions, AppContextActions } from '@wface/store';
 import { WSnackbarProvider, WThemeProvider, WIconButton, WIcon } from '@wface/components';
 import { Provider } from 'react-redux';
-import { IConfiguration } from '@wface/ioc';
+import IOC, { IConfiguration, IAuthService } from '@wface/ioc';
 import { connect } from 'react-redux';
 
 class WContainer extends React.Component<{configuration: IConfiguration}, {}> {
@@ -35,6 +35,8 @@ let InnerContainer = (props: any) => {
   const configuration = props.appContext.configuration as IConfiguration;
   const LoginScreen = configuration.loginScreen;
 
+  const authService = IOC.get<IAuthService>("IAuthService")
+
   return (
     <WThemeProvider theme={configuration.theme}>
       <WSnackbarProvider 
@@ -46,7 +48,7 @@ let InnerContainer = (props: any) => {
         <Route path="/login/:screen?" render={(subProps:any) => isLoggedIn ? 
           <Redirect to={`/main/${subProps.match.params.screen || ''}`} />
           :
-          <LoginScreen {...subProps} authService={configuration.authService}/>
+          <LoginScreen {...subProps} authService={authService} appContext={props.appContext} userContext={props.userContext} setValue={props.setValue}/>
         }/>
         <Route path="/main" render={(subProps:any) => isLoggedIn ? <WMainPage {...subProps} style={{height:'100%'}}/> : <Redirect to={props.location.pathname.replace('main', 'login')}/> }/>
       </WSnackbarProvider>
@@ -60,7 +62,7 @@ const mapStateToProps = (state:any) => ({
 });
 
 const mapDispatchToProps = (dispatch:any) => ({
-  login: (username:string, displayName: string, token: string) => dispatch(UserContextActions.login({username, displayName, token})),  
+  setValue: (key:string, value: any) => dispatch(AppContextActions.setValue({key, value})),
 });
 
 InnerContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(InnerContainer) as any) as any

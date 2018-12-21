@@ -9,14 +9,13 @@ const theme = {
   }
 } as WTheme
 
-
 const config = {
   title: 'WFace Boilerplate',
   projectName: 'WFace',  
   screenList: { 
     DemoScreen
   },
-  authService: new AuthService(),  
+  authService: AuthService,
   theme: theme
 } as IConfiguration
 

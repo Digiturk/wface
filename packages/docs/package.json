@@ -1,16 +1,18 @@
 {
 	"name": "@wface/docs",
-	"version": "0.9.0",
+	"version": "0.10.0",
 	"description": "",
 	"scripts": {
 		"build": "webpack",
-		"start": "webpack-dev-server --hot --open"
+		"start": "webpack-dev-server --hot --open",
+		"docker": "npm run build && docker build -t wface-docs .",
+		"start:docker": "docker run -p 81:80 wface-docs"
 	},
 	"author": "baran",
 	"dependencies": {
 		"@types/react-redux": "^6.0.5",
 		"@types/react-router-dom": "^4.3.0",
-		"@wface/components": "0.9.0",
+		"@wface/components": "0.10.0",
 		"babel-polyfill": "^6.26.0",
 		"babel-preset-react": "^6.24.1",
 		"codemirror": "^5.39.2",

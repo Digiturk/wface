@@ -2,8 +2,9 @@
 
 import { withStyles } from '@material-ui/core/styles';
 import { WAppBar, WDrawer, WGrid, WIcon, WIconButton, WTab, WTabs, WToolBar, WTypography } from '@wface/components';
-import { IMenuTreeItem, MenuTreeUtil } from "@wface/ioc";
-import { AppContext, AppContextActions, WStore } from '@wface/store';
+import IOC, { IMenuTreeItem, MenuTreeUtil, IAuthService } from "@wface/ioc";
+import { AppContext, AppContextActions, WStore, UserContext } from '@wface/store';
+// @ts-ignore
 import classNames from 'classnames';
 import * as React from "react";
 import { connect } from 'react-redux';
@@ -11,6 +12,7 @@ import { Route, Switch, withRouter } from 'react-router';
 import WScreenWrapper from '../w-screen-wrapper';
 import MyProfileMenu from './MyProfileMenu';
 import NavList from './NavList';
+import { Horizontal, WindowWidthType } from 'horizontal';
 
 //#endregion 
 
@@ -33,11 +35,13 @@ interface WMainPageState {
 }
 
 class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps, WMainPageState> {
+
   constructor(props:any, context:any) {
     super(props, context);
 
+    const screenType = Horizontal.getType();
     this.state = {
-      drawerOpen: true
+      drawerOpen: screenType == WindowWidthType.LG
     }
   }
 
@@ -45,7 +49,8 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
     const { match, location, setMenuTree, openScreen } = this.props;
     const getScreenUrl = this.getScreenUrl;
 
-    this.props.appContext.configuration.authService.getMenuTree()
+    const authService = IOC.get<IAuthService>("IAuthService");
+    authService.getMenuTree()
       .then(menuTree => {
         setMenuTree(menuTree);          
         
@@ -105,6 +110,14 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
     if(url != (this.props as any).location.pathname) {
       this.props.history.replace(url);
     }
+  }
+
+  onMenuItemClicked = (screen:IMenuTreeItem) => {
+    if(Horizontal.getType() !== WindowWidthType.LG) {
+      this.setState({drawerOpen: false})
+    }
+
+    this.props.openScreen(screen);
   }
 
   //#endregion
@@ -181,7 +194,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
             <div style={{ height: 96 }} />
             <div style={{ display: 'flex', flex: 1, minHeight: 0 }}>
               <div style={{flex: 1, overflow: 'auto'}}>
-                <NavList menuTree={this.props.appContext.menuTree} onItemClicked={(screen:IMenuTreeItem) => this.props.openScreen(screen)} />
+                <NavList menuTree={this.props.appContext.menuTree} onItemClicked={this.onMenuItemClicked} />
               </div>
             </div>
           </div>
