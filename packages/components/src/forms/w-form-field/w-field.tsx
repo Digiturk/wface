@@ -7,9 +7,9 @@ const WField = props => {
       {props.component(subProps)}
     </div>
   )
-  return (
-    <FastField 
-      {...props} 
+  return (    
+    <FastField
+      {...props}
       render={Component}
     />
   );

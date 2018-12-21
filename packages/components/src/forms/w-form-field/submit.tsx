@@ -8,13 +8,12 @@ export type SubmitProps = WButtonProps & {
 
 export const Submit = (fieldProps: SubmitProps) => (
   <WField
-    component={props => (
+    name="submit"
+    component={props =>      
       <WButton
         {...fieldProps}
         onClick={props.form.handleSubmit}
-      >
-        {fieldProps.children}
-      </WButton>
-    )}
+      />
+    }
   />
 )
