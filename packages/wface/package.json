@@ -1,6 +1,6 @@
 {
 	"name": "wface",
-	"version": "0.9.0",
+	"version": "0.10.0",
 	"description": "",
 	"author": "mehmet.baran",
 	"scripts": {
@@ -8,9 +8,9 @@
 		"clean-dist": "rm -f -r -d dist",
 		"start": "yarn run start-dev",
 		"start-dev": "webpack-dev-server --config=configs/webpack/dev.js --open",
-    "start-prod": "yarn run build && node express.js",
-    "docker": "npm run build && docker build -t wface .",
-    "start:docker": "docker run -p 81:80 digiturk/wface"
+		"start-prod": "yarn run build && node express.js",
+		"docker": "npm run build && docker build -t wface .",
+		"start:docker": "docker run -p 81:80 digiturk/wface"
 	},
 	"devDependencies": {
 		"@babel/cli": "7.1.0",
@@ -48,9 +48,9 @@
 		"webpack-merge": "4.1.4"
 	},
 	"dependencies": {
-		"@wface/components": "0.9.0",
-		"@wface/container": "0.9.0",
-		"@wface/ioc": "0.9.0",
+		"@wface/components": "0.10.0",
+		"@wface/container": "0.10.0",
+		"@wface/ioc": "0.10.0",
 		"chalk": "2.4.1",
 		"commander": "2.19.0",
 		"deasync": "0.1.13",
