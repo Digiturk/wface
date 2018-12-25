@@ -1,7 +1,6 @@
 //#region imports
 
 import * as React from 'react';
-import * as ReactDOM from 'react-dom'
 import { InputAdornment, TextField } from '@material-ui/core';
 import { WIconButton } from '../../buttons/w-icon-button';
 import { WIcon } from '../../medias/w-icon'
@@ -33,7 +32,10 @@ export interface WTextFieldState {
 //#endregion
 
 export class WTextField extends React.Component<WTextFieldProps, WTextFieldState> {
-  private id: string;
+  static defaultProps: WTextFieldProps = { 
+    value: '',
+    defaultValue: ''
+  }  
 
   constructor(props:any) {
     super(props);
@@ -88,8 +90,8 @@ export class WTextField extends React.Component<WTextFieldProps, WTextFieldState
   public render() {
     let adorments = this.renderAdornments();
     return (
-      <TextField
-        {...this.props}
+      <TextField        
+        {...this.props}        
         type={this.props.type == 'password' && !this.state.showPassword ? 'password' : this.props.type}        
         InputProps={adorments}
       />
