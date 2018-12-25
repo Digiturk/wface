@@ -25,18 +25,25 @@ class WApp extends React.Component<{configuration: IConfiguration}, any> {
   }
 
   buildIOC = () => {
+    !IOC.isBound("onLogin") &&
     IOC.bind("onLogin").toFunction(onLogin); // Burasi değişmeli
 
     // Bind contextes
+    !IOC.isBound("UserContext") &&
     IOC.bind<UserContext>("UserContext").toFactory(() => store.getState().userContext);
+    !IOC.isBound("AppContext") &&
     IOC.bind<AppContext>("AppContext").toFactory(() => store.getState().appContext);    
 
     // Bind auth service
+    !IOC.isBound("IAuthServiceInner") &&
     IOC.bind<IAuthService>("IAuthServiceInner").to(this.props.configuration.authService);
+    !IOC.isBound("IAuthService") &&
     IOC.bind<IAuthService>("IAuthService").to(AuthServiceWrapper);
 
     // Bind http service
+    !IOC.isBound("IHttpServiceInner") &&
     IOC.bind<IHttpService>("IHttpServiceInner").to(this.props.configuration.httpService || DefaultHttpService);
+    !IOC.isBound("IHttpService") &&
     IOC.bind<IHttpService>("IHttpService").to(HttpServiceWrapper);
   }
 

@@ -8,6 +8,7 @@ import ProductionBuild from './pages/production-build.mdx'
 import GeneralVariableUsage from './pages/general-variable-usage.mdx'
 import NewScreenDefinition from './pages/new-screen-definition.mdx'
 import OpenCloseScreen from './pages/open-close-screen.mdx'
+import FormDataPersistency from './pages/form-data-persistency.mdx'
 
 
 const Mdx = {
@@ -15,7 +16,8 @@ const Mdx = {
   ProductionBuild: () => <ProductionBuild components={mdxComponents}/>,
   GeneralVariableUsage: () => <GeneralVariableUsage components={mdxComponents}/>,
   NewScreenDefinition: () => <NewScreenDefinition components={mdxComponents}/>,
-  OpenCloseScreen: () => <OpenCloseScreen components={mdxComponents}/>,  
+  OpenCloseScreen: () => <OpenCloseScreen components={mdxComponents}/>,
+  FormDataPersistency: () => <FormDataPersistency components={mdxComponents}/>,  
 }
 
 export default Mdx

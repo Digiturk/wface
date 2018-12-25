@@ -40,6 +40,12 @@ const menuTree = [
     text: 'Ekran Açma/Kapama',
     path: 'open-close-screen',
     mdx: Mdx.OpenCloseScreen,
+  },
+  {
+    id: 'form-data-persistency',
+    text: 'Form Datasının Korunması',
+    path: 'form-data-persistency',
+    mdx: Mdx.FormDataPersistency,
   }, 
 ]
 
