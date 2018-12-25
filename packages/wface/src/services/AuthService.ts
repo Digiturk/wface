@@ -30,7 +30,12 @@ export default class AuthService implements IAuthService {
         id: (++id).toString(),
         text: 'DemoScreen',
         screen: 'DemoScreen'
-      });      
+      });    
+      result.push({
+        id: (++id).toString(),
+        text: 'DemoScreen2',
+        screen: 'DemoScreen'
+      });  
       setTimeout(() => resolve(result), 1200);
     });
   }

@@ -31,7 +31,7 @@ class AppInner extends React.Component<any, any> {
       <div className={classes.root}>
         <WFace.WAppBar position="absolute" className={classes.appBar} elevation={0}>
           <WFace.WToolBar>
-            <WFace.WTypography variant="headline" color="inherit" noWrap className={classes.flex} style={{marginLeft: 20, fontWeight: 500}}>
+            <WFace.WTypography variant="h5" color="inherit" noWrap className={classes.flex} style={{marginLeft: 20, fontWeight: 500}}>
               WFace
             </WFace.WTypography>
 

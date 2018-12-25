@@ -46,13 +46,15 @@ export class WTextField extends React.Component<WTextFieldProps, WTextFieldState
   //#region render methods
 
   private renderButtons(buttons: WTextFieldButton[]): any[] {
-    return buttons.map(btn => {
+    return buttons.map((btn, index) => {
       return (
-        <WIconButton
-          onClick={() => btn.onClick && btn.onClick.bind(this)(null)}
-          onMouseDown={() => event.preventDefault()}>
-          {btn.icon}
-        </WIconButton>
+        <span key={index}>
+          <WIconButton          
+            onClick={() => btn.onClick && btn.onClick.bind(this)(null)}
+            onMouseDown={() => event.preventDefault()}>
+            {btn.icon}
+          </WIconButton>
+        </span>
       );
     })
   }

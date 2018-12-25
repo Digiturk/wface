@@ -83,7 +83,7 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
         <WGrid container justify="center" style={{ paddingTop: 30 }}>
           <WGrid item md={6}>
             <WPaper elevation={4} style={{ padding: 20 }}>
-              <WTypography variant="headline" component="h2" align="center">
+              <WTypography variant="h5" component="h2" align="center">
                 Sayfa bulunamadı
                             </WTypography>
               <WTypography component="p" align="center">

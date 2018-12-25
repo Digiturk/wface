@@ -10,7 +10,6 @@ import WLoginPage from '../w-login-page';
 
 const onLogin = (username: string, displayName: string, token?: string) => store.dispatch(UserContextActions.login({username, displayName, token}));
 const { userContext } = store.getState();
-console.log(userContext)
 
 class WApp extends React.Component<{configuration: IConfiguration}, any> {
   constructor(props) {

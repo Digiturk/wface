@@ -139,7 +139,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
               <WIcon>menu</WIcon>
             </WIconButton>
             <span>
-              <WTypography variant="title" color="inherit" noWrap className={classes.flex}>
+              <WTypography variant="h6" color="inherit" noWrap className={classes.flex}>
                 {this.props.appContext.configuration.projectName}
               </WTypography>
               <WTypography variant="caption" color="inherit" noWrap className={classes.flex} style={{color: '#C5CAE9'}}>
@@ -171,8 +171,9 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
                     }
                   </WGrid>
                 );
-                return <WTab key={screen.menuTreeItem.id}
-                  label={label}
+                return <WTab key={screen.menuTreeItem.id} 
+                  component="div"
+                  label={label}                  
                   classes={{
                     labelContainer: classes.tabLabelContainer
                   }}

@@ -24,7 +24,7 @@ export default class Requirements extends React.Component<any, any> {
     return (
       <WFace.WCard style={{height:'100%'}} elevation={0}>
         <WFace.WCardHeader 
-          title={<WFace.WTypography variant="headline" >Gereksinimler</WFace.WTypography> } 
+          title={<WFace.WTypography variant="h5" >Gereksinimler</WFace.WTypography> } 
           avatar={<WFace.WIcon color="inherit" style={{fontSize:25}}>get_app</WFace.WIcon>}/>
         <WFace.WCardContent>
           <WFace.WList>

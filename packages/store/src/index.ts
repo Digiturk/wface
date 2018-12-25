@@ -15,7 +15,9 @@ const rootReducer = combineReducers<WStore>({
   appContext
 })
 
-let devtools: any = window['devToolsExtension'] ? window['devToolsExtension']() : (f: any) => f;
+// let devtools: any = window['devToolsExtension'] ? window['devToolsExtension']() : (f: any) => f;
+let devtools: any = window['__REDUX_DEVTOOLS_EXTENSION__'] ? window['__REDUX_DEVTOOLS_EXTENSION__']() : (f: any) => f;
+
 const store = createStore<WStore, any, any, any>(rootReducer, devtools);
 
 export default store;

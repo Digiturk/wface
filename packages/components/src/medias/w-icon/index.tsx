@@ -26,14 +26,16 @@ class WIconInner extends React.Component<WIconProps, {}> {
   }
 
   public render() {
-    if(this.props.iconSource == 'material-icons') {
-      return <Icon {...this.props} fontSize={this.props.iconSize}>{this.props.icon || this.props.children}</Icon>
+    const { iconSize, iconSource, ...iconProps } = this.props;
+
+    if(iconSource == 'material-icons') {
+      return <Icon {...iconProps} fontSize={iconSize}>{this.props.icon || this.props.children}</Icon>
     }
     else {
       let className = this.props.icon || this.props.children;
-      className += " fa-" + sizeMap[this.props.iconSize].size;
+      className += " fa-" + sizeMap[iconSize].size;
 
-      const style = {...sizeMap[this.props.iconSize].style, ...this.props.style};
+      const style = {...sizeMap[iconSize].style, ...this.props.style};
       
       if(this.props.color && this.props.color != "default") {
         style.color = this.props.theme.palette[this.props.color].main;

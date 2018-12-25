@@ -35,19 +35,22 @@ const defaultTheme = {
       dark: orange[700],
       contrastText: '#fff'
     }
-  } as WPalette
+  } as WPalette,
+  typography: {
+    useNextVariants: true
+  }
 }
 
 // <MuiThemeProvider theme={theme}>
 export class WThemeProvider extends React.Component<{ theme?: WTheme }, any> {
-  constructor(props) {
+  constructor(props: any) {
     super(props);
     this.state = {
       theme: this.getTheme()
     }
   }
 
-  componentWillUpdate(prevProps) {
+  componentWillUpdate(prevProps: any) {
     if (prevProps.theme != this.props.theme) {
       this.setState({
         theme: this.getTheme()

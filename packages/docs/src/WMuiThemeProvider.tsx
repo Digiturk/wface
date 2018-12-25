@@ -11,52 +11,54 @@ import { Palette, PaletteColor, TypeText, TypeAction, TypeBackground, SimplePale
 import { CommonColors } from "@material-ui/core/colors/common";
 import { PaletteType, Color } from "@material-ui/core";
 
-interface WPalette extends Palette {    
-    info: PaletteColor;
-    success: PaletteColor;
-    warning: PaletteColor;
+interface WPalette extends Palette {
+  info: PaletteColor;
+  success: PaletteColor;
+  warning: PaletteColor;
 }
 
 // All the following keys are optional.
 // We try our best to provide a great default value.
 const theme = createMuiTheme({
-    
-    palette: {        
-        type:'light', // dark
-        error: {
-            light: red[300],
-            main: red[500],
-            dark: red[700],
-            contrastText: '#fff'
-        },
-        info: {
-            light: blue[300],
-            main: blue[500],
-            dark: blue[700],
-            contrastText: '#fff'
-        },
-        success: {
-            light: green[300],
-            main: green[500],
-            dark: green[700],
-            contrastText: '#fff'
-        },
-        warning: {
-            light: orange[300],
-            main: orange[500],
-            dark: orange[700],
-            contrastText: '#fff'
-        }
-    } as WPalette
+  palette: {
+    type: 'light', // dark
+    error: {
+      light: red[300],
+      main: red[500],
+      dark: red[700],
+      contrastText: '#fff'
+    },
+    info: {
+      light: blue[300],
+      main: blue[500],
+      dark: blue[700],
+      contrastText: '#fff'
+    },
+    success: {
+      light: green[300],
+      main: green[500],
+      dark: green[700],
+      contrastText: '#fff'
+    },
+    warning: {
+      light: orange[300],
+      main: orange[500],
+      dark: orange[700],
+      contrastText: '#fff'
+    }
+  } as WPalette,
+  typography: {
+    useNextVariants: true
+  }
 });
 
 // <MuiThemeProvider theme={theme}>
 export default class WMuiThemeProvider extends React.Component<{}, {}> {
-    public render() {
-        return (
-            <MuiThemeProvider theme={theme}>
-                {this.props.children}
-            </MuiThemeProvider>
-        );
-    }
+  public render() {
+    return (
+      <MuiThemeProvider theme={theme}>
+        {this.props.children}
+      </MuiThemeProvider>
+    );
+  }
 }
