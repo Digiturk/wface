@@ -90,9 +90,9 @@ export class WTextField extends React.Component<WTextFieldProps, WTextFieldState
   public render() {
     let adorments = this.renderAdornments();
     return (
-      <TextField        
-        {...this.props}        
-        type={this.props.type == 'password' && !this.state.showPassword ? 'password' : this.props.type}        
+      <TextField
+        {...this.props}
+        type={this.props.type == 'password' && !this.state.showPassword ? 'password' : 'text'}
         InputProps={adorments}
       />
     );
