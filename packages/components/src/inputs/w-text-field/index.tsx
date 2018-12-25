@@ -33,8 +33,7 @@ export interface WTextFieldState {
 
 export class WTextField extends React.Component<WTextFieldProps, WTextFieldState> {
   static defaultProps: WTextFieldProps = { 
-    value: '',
-    defaultValue: ''
+    value: ''
   }  
 
   constructor(props:any) {

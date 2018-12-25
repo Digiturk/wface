@@ -1,12 +1,7 @@
 import * as React from 'react';
 import * as WFace from '@wface/components';
-import { noop } from 'react-select/lib/utils';
 
 interface DemoScreenState {
-  textValue: string;
-  textValue2: string;
-  isDialogOpen: boolean;
-  formData: any;
 }
 
 export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScreenState> {
@@ -14,36 +9,42 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
     super(props);
 
     this.state = this.props.screenData.state || {
-      textValue: '',
-      isDialogOpen: false,
-      formData: {
-        name: ''
-      }
     }
-  }
-
-  componentWillMount() {
-    // setTimeout(() => this.setState({ formData: { name: 'deneme' } }), 2000);
-    setTimeout(() => this.setState({ textValue: 'deneme', textValue2: 'sadsad' }), 300);
   }
 
   public render() {
     return (
-      <>        
-        <WFace.WTextField label="Değer" value={this.state.textValue} onChange={event => this.setState({textValue: event.target.value})}/>
-        <br/>
-        <WFace.WTextField label="Değer2" value={this.state.textValue2} onChange={event => this.setState({textValue: event.target.value})}/>
-        <WFace.WDialog title="Deneme" open={this.state.isDialogOpen}>
-          <WFace.WDialogContent>
-            <WFace.WForm initialValues={this.state.formData} onSubmit={() => noop} enableReinitialize>
-              <WFace.WFormField.TextField label="Adı" name="name"/>
-              {/* <WFace.WTextField label="Text" value={this.state.textValue} onChange={event => this.setState({ textValue: event.target.value })} /> */}
-            </WFace.WForm>
-          </WFace.WDialogContent>
-          <WFace.WDialogActions>
-            <WFace.WButton onClick={() => this.setState({ isDialogOpen: false })}>Kapat</WFace.WButton>
-          </WFace.WDialogActions>
-        </WFace.WDialog>
+      <>
+        <WFace.WTabContainer
+          centered
+          defaultValue={0}
+          indicatorColor="primary"
+          title="T1"
+          textColor="primary">
+          <WFace.WTabPage label="SUB1">            
+            <WFace.WTabContainer
+              centered
+              defaultValue={0}
+              indicatorColor="primary"
+              textColor="primary"
+              title="T1.1">
+              <WFace.WTabPage label="sub1 tab 1">sub1 1</WFace.WTabPage>
+              <WFace.WTabPage label="sub1 tab 2">sub1 2</WFace.WTabPage>
+            </WFace.WTabContainer>
+          </WFace.WTabPage>
+          <WFace.WTabPage label="SUB2">
+            <WFace.WTabContainer
+              centered
+              defaultValue={0}
+              indicatorColor="primary"
+              textColor="primary"
+              title="T1.2">
+              <WFace.WTabPage label="sub2 tab 1">sub2 1</WFace.WTabPage>
+              <WFace.WTabPage label="sub2 tab 2">sub2 2</WFace.WTabPage>
+              <WFace.WTabPage label="sub2 tab 3">sub2 3</WFace.WTabPage>
+            </WFace.WTabContainer>
+          </WFace.WTabPage>
+        </WFace.WTabContainer>
       </>
     )
   }
