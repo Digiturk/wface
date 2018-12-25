@@ -9,11 +9,12 @@ import { createStyles, withStyles } from '@material-ui/core/styles';
 
 export interface WLoadingButtonProps extends WButtonProps {
   isLoading?: boolean;
+  classes?: any;
   status?: "error" | "normal" | "success";
-  progressType?: "circular" | "linear";
+  progressType?: "circular" | "linear";  
 }
 
-class WLoadingButtonInner extends React.Component<WLoadingButtonProps & ClassNames & any, {}> {
+class WLoadingButtonInner extends React.Component<WLoadingButtonProps & ClassNames, {}> {
   public render() {
     const { classes } = this.props;
     const buttonClassname = classNames({
@@ -87,5 +88,6 @@ const styles = (theme:any) => createStyles({
 });
 type ClassNames = { classes: { [className in keyof typeof styles]: string } };
 
-const WLoadingButton = withStyles(styles)(WLoadingButtonInner)
+const WLoadingButton = withStyles(styles)((props: WLoadingButtonProps & ClassNames) => <WLoadingButtonInner {...props}/>)
+
 export { WLoadingButton }

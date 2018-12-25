@@ -15,7 +15,7 @@ interface WLoginPageState {
   username: string;
   password: string;
   isLoading: boolean;
-  loadingButtonStatus: string;
+  loadingButtonStatus: "error" | "normal" | "success";
   notificationText: string;
   showNotification: boolean;
   [key: string]: any
@@ -132,7 +132,7 @@ class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> {
                     color="primary"
                     className={classes.vSpace}
                     style={{ marginTop: 50, marginBottom: 20 }}
-                    isLoading={this.state.isLoading}
+                    isLoading={this.state.isLoading}                    
                     status={this.state.loadingButtonStatus}
                     disableFocusRipple
                     onClick={this.btnLoginClick.bind(this)}>

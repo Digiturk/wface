@@ -13,4 +13,4 @@ class WDialogInner extends React.Component<WDialogProps, {}> {
 
 const styles = theme => createStyles({ root: { overflow: 'visible' } });
 
-export const WDialog = withStyles(styles)(WDialogInner);
+export const WDialog = withStyles(styles)((props: WDialogProps) => <WDialogInner {...props}/>)

@@ -1,9 +1,7 @@
 import * as React from 'react';
 import * as WFace from '@wface/components';
-import { WFormValidation } from '@wface/components';
 
 interface DemoScreenState {
-  formData: any;
 }
 
 export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScreenState> {
@@ -16,7 +14,9 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
 
   public render() {
     return (
-      <div>This is demo screen</div>
+      <>              
+        This is demo screen
+      </>
     )
   }
 }

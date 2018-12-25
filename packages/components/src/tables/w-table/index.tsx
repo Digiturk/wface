@@ -25,5 +25,4 @@ const styles = theme => createStyles({
   }
 });
 
-const WTable = withStyles(styles)(WTableInner)
-export { WTable }
+export const WTable = withStyles(styles)((props: WTableProps) => <WTableInner {...props}/>)
