@@ -1,6 +1,6 @@
 import { IConfiguration, IHttpService } from "@wface/ioc";
-import AuthService from '../../src/services/AuthService';
-import { DemoScreen } from '../../src/screens/DemoScreen'
+import AuthService from '../../src/services/auth-service';
+import { DemoScreen } from '../../src/screens/demo-screen'
 import { WTheme } from '@wface/components';
 
 const theme = {

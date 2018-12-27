@@ -1,3 +1,56 @@
+import CommandHighlight from '../../../components/command-highlight.tsx'
+import ProjectStructure from '../../../components/project-structure.tsx'
+import { WPaper } from '@wface/components'
+
 # Kullanım
 
-Burası sunucuya bağlandıktan sonra yazmak lazım
+Bilgisayarımıza gerekli tüm programları ve wface komut satırı uygulamasını da kurduğumuza 
+göre proje oluşturup ekranlarımızı geliştirmeye başlayabiliriz. 
+
+### 1. Proje oluşturma
+
+Herhangi bir komut satırı uygulamasını kullanarak projeyi oluşturmak istediğimiz 
+klasörde aşağıdaki komutu çalıştırarak projeyi oluşturabiliriz. 
+
+<CommandHighlight command="wface create project" dscr="Mevcut konuma projeyi oluşturur."/>
+
+> Bu komutu çalıştırdığınızda size proje adını soracaktır. Proje adınızı küçük harflerle ve sadece - 
+ayracını kullanarak girebilirsiniz. Girdiğiniz proje adıyla bir klasör oluşuturulup gerekli tüm dosyalar bu
+klasör içine oluşturulacaktır. 
+
+### 2. Proje Yapısı
+
+Proje oluşturulduktan sonra klasörün içine bir çok dosya yerleştirilecektir. Bu dosyalar aşağıki gibidir:
+
+<ProjectStructure files={[
+  {text: 'project', description: 'Projenin ana klasörü'},
+  {text: '│─ assets', description: 'Projeye ait resim, video vb dosyaları koyabileceğiniz bir klasör'},
+  {text: '│ └─ wface', description: 'WFace ait sabit media dosyaları. Değiştirilebilir.'},
+  {text: '│   │─ favicon.ico', description: 'Uygulamanızın iconu'},
+  {text: '│   │─ login-bg.jpg', description: 'Login ekranının arka plan resmi'},
+  {text: '│   └─ login-logo.jpg', description: 'Login ekranında kullanılan logo'},
+  {text: '│─ configs', description: 'Projenin konfigürasyon dosyaları'},
+  {text: '│ │─ webpack', description: 'Webpack konfigürasyonları'},
+  {text: '│ │ │─ common.js', description: 'Webpack genel konfigürasyonun tutulduğu dosya'},
+  {text: '│ │ │─ dev.js', description: 'Webpack dev ortamına özgü konfigürasyonun tutulduğu dosya'},
+  {text: '│ │ └─ prod.js', description: 'Webpack prod ortamına özgü konfigürasyonun tutulduğu dosya'},
+  {text: '│ └─ wface', description: 'WFace konfigürasyonu'},
+  {text: '│   └─ wface.config.ts', description: 'Uygulamanızın WFace ile ilgili tüm ayarlarının bulunduğu dosya'},
+  {text: '│─ node_modules', description: 'Projenin bağımlı olduğu tüm paketlerin yüklendiği klasör'},
+  {text: '│─ src', description: 'Projeye ait kaynak kodların saklanacağı klasör'},
+  {text: '│ │─ screens', description: 'Ekranlarınızı bu klasöre koyabilirsiniz.'},
+  {text: '│ │ └─ demo-screen.tsx', description: 'Örnek bir ekran dosyası.'},
+  {text: '│ └─ services', description: 'Projenin genel servislerini koyabileceğiniz klasör'},
+  {text: '│   └─ auth-service.tsx', description: 'Projenin auth service implementasyonu. Projeye göre düzenlenmelidir.'},
+  {text: '│─ .gitignore', description: 'Varsayılan git ignore dosyası'},
+  {text: '│─ index.tsx', description: 'Projenin başlangıç dosyası. Asla değiştirilmemelidir.'},
+  {text: '│─ package.json', description: 'Npm paketinizi yönettiğiniz dosya'},
+  {text: '│─ package-lock.json', description: 'Yüklenen bağımlılıklar hakkında tutulan cache dosyası.'},
+  {text: '└─ tsconfig.json', description: 'Projenin Typescript ayarlarının bulunduğu klasör'},
+]}/>
+
+
+### 3. Ekran Geliştirme
+
+Ekran geliştirme ile ilgili yazılan [__blog__](./#/blog/new-screen-definition)
+yazısından faydalanabilirsiniz. 

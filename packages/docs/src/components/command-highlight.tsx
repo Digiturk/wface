@@ -14,8 +14,8 @@ const CommandHighlight = (props:any) => (
         whiteSpace: 'initial',
         textAlign: 'left'
       }}>             
-      <div style={{color: '#4B8B43', fontSize: 12}}>// {props.dscr}</div>                     
-      {props.command} 
+      <div style={{color: '#4B8B43', fontSize: 12}}>// {props.dscr}</div>
+      {props.command}
     </WFace.WPaper>
     <br/>
   </div>

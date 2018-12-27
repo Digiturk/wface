@@ -12,59 +12,50 @@ export default class GetStartedPage extends React.Component<any, any> {
 
 const menuTree = [
   {
-    id: '1.-1',
+    id: 'wface',
     text: 'WFace Framework',
-    path: 'architecture',
-    mdx: Mdx.Architecture,
-    next: '1.0'
+    path: 'wface',
+    mdx: Mdx.WFace,
+    next: 'requirements'
   },
   {
-    id: '1.0',
+    id: 'requirements',
     text: 'Gereksinimler',
     path: 'requirements',
     mdx: Mdx.Requirements,
-    prev: '1.-1',
-    next: '1.1'
+    prev: 'wface',
+    next: 'setup'
   },
   {
-    id: '1.1',
+    id: 'setup',
     text: 'Kurulum',
     path: 'setup',
     mdx: Mdx.Setup,
-    prev: '1.0',
-    next: '1.2'
+    prev: 'requirements',
+    next: 'usage'
   },
   {
-    id: '1.2',
+    id: 'usage',
     text: 'Kullanım',
     path: 'usage',
     mdx: Mdx.Usage,
-    prev: '1.1',
-    next: '1.3'
+    prev: 'setup',
+    next: 'additional-tools'
   },
   {
-    id: '1.3',
+    id: 'additional-tools',
     text: 'Ek Araçlar',
     path: 'additional-tools',
     mdx: Mdx.AdditionalTools,
-    prev: '1.2',
-    next: '1.4'
+    prev: 'usage',
+    next: 'supported-platforms'
   },
   {
-    id: '1.4',
+    id: 'supported-platforms',
     text: 'Desteklenen Ortamlar',
     path: 'supported-platforms',
     mdx: Mdx.SupportedPlatforms,
-    prev: '1.3',
-    next: '1.5'
-  },
-  {
-    id: '1.5',
-    text: 'Sık Sorulan Sorular',
-    path: 'faq',
-    mdx: Mdx.Faq,
-    prev: '1.4',
-    next: '1.6'
+    prev: 'additional-tools'
   }
 ]
 

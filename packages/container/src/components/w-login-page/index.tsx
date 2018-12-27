@@ -1,7 +1,7 @@
 //#region imports 
 
 import { withStyles } from '@material-ui/core';
-import { WCard, WCardContent, WGrid, WLoadingButton, WNotificationBar, WTextField, WTypography } from '@wface/components';
+import { WCard, WCardContent, WButton, WGrid, WLoadingButton, WNotificationBar, WTextField, WTypography } from '@wface/components';
 import { IAuthService } from "@wface/ioc";
 import { AppContext, UserContext, WStore } from '@wface/store';
 // @ts-ignore
