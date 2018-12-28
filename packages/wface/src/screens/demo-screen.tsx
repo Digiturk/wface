@@ -3,6 +3,7 @@ import * as WFace from '@wface/components';
 
 interface DemoScreenState {
   isLoading: boolean;
+  text: string
 }
 
 export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScreenState> {
@@ -10,7 +11,8 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
     super(props);
 
     this.state = this.props.screenData.state || {
-      isLoading: false
+      isLoading: false,
+      text: 'A'
     }
   }
 
@@ -18,12 +20,26 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
     
     return (
       <>        
+        Text: {this.state.text}
+        <br/>
         <ImageUpload 
           src="https://www.w3schools.com/howto/img_avatar.png" 
           isLoading={this.state.isLoading}
           size={128}
           onChange={(e) => console.log(e.target.files)}
-        />
+        />        
+
+        <WFace.WButton onClick={() => {         
+          this.setState({isLoading: true, text: 'B'}, () => {
+            this.props.changeScreenMode('loading');
+            setTimeout(() => { 
+              this.setState({isLoading: false, text: 'C'}, () => this.props.changeScreenMode('normal'));
+            }, 3000)
+          });
+          
+        }}>
+          Getir
+        </WFace.WButton>
         
         <br/>
         <br/>

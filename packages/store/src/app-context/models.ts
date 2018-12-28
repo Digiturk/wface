@@ -9,8 +9,9 @@ export default interface AppContext {
 }
 
 export interface ScreenData {
-  menuTreeItem: IMenuTreeItem
-  state: any,
-  initialValues: any,
-  values: { [key: string]: any }
+  menuTreeItem: IMenuTreeItem;
+  state: any;
+  initialValues: any;
+  values: { [key: string]: any };
+  mode: 'normal' | 'loading';
 }

@@ -1,9 +1,9 @@
 //#region imports 
 
 import { withStyles } from '@material-ui/core/styles';
-import { WAppBar, WDrawer, WGrid, WIcon, WIconButton, WTab, WTabs, WToolBar, WTypography } from '@wface/components';
+import { WAppBar, WDrawer, WGrid, WIcon, WIconButton, WTab, WTabs, WToolBar, WTypography, WCircularProgress, WLinearProgress } from '@wface/components';
 import IOC, { IMenuTreeItem, MenuTreeUtil, IAuthService } from "@wface/ioc";
-import { AppContext, AppContextActions, WStore, UserContext } from '@wface/store';
+import { AppContext, AppContextActions, WStore, UserContext, ScreenData } from '@wface/store';
 // @ts-ignore
 import classNames from 'classnames';
 import * as React from "react";
@@ -19,7 +19,7 @@ import { Horizontal, WindowWidthType } from 'horizontal';
 export interface WMainPageProps {
   classes: any,
   location: any,
-  match: any,  
+  match: any,
   history?: any,
   appContext: AppContext
 }
@@ -36,7 +36,7 @@ interface WMainPageState {
 
 class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps, WMainPageState> {
 
-  constructor(props:any, context:any) {
+  constructor(props: any, context: any) {
     super(props, context);
 
     const screenType = Horizontal.getType();
@@ -52,8 +52,8 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
     const authService = IOC.get<IAuthService>("IAuthService");
     authService.getMenuTree()
       .then(menuTree => {
-        setMenuTree(menuTree);          
-        
+        setMenuTree(menuTree);
+
         let currentScreen: IMenuTreeItem;
         MenuTreeUtil.menuTreeForEach(menuTree, item => {
           if ((match.url + getScreenUrl(item)) === location.pathname) {
@@ -77,19 +77,19 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
     this.setState((prevState) => { return { drawerOpen: !prevState.drawerOpen } });
   };
 
-  handleTabCloseButtonClick(event:any, screen: IMenuTreeItem) {
+  handleTabCloseButtonClick(event: any, screen: IMenuTreeItem) {
     event.stopPropagation();
     this.props.closeScreen(screen);
   }
 
-  handleTabButton(event:any, screen: IMenuTreeItem) {
-    if(screen.notClosable) {
+  handleTabButton(event: any, screenData: ScreenData) {
+    if (screenData.menuTreeItem.notClosable || screenData.mode === "loading") {
       return;
     }
 
     event.persist();
     if (event.button == 1) {
-      this.props.closeScreen(screen);
+      this.props.closeScreen(screenData.menuTreeItem);
     }
   }
 
@@ -101,20 +101,20 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
     return "/" + screen.screen;
   }
 
-  componentDidUpdate() {    
-    let url = (this.props as any).match.url 
-    if(this.props.appContext.currentScreen) {
+  componentDidUpdate() {
+    let url = (this.props as any).match.url
+    if (this.props.appContext.currentScreen) {
       url += this.getScreenUrl(this.props.appContext.currentScreen.menuTreeItem);
     }
 
-    if(url != (this.props as any).location.pathname) {
+    if (url != (this.props as any).location.pathname) {
       this.props.history.replace(url);
     }
   }
 
-  onMenuItemClicked = (screen:IMenuTreeItem) => {
-    if(Horizontal.getType() !== WindowWidthType.LG) {
-      this.setState({drawerOpen: false})
+  onMenuItemClicked = (screen: IMenuTreeItem) => {
+    if (Horizontal.getType() !== WindowWidthType.LG) {
+      this.setState({ drawerOpen: false })
     }
 
     this.props.openScreen(screen);
@@ -124,12 +124,12 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
 
   //#region Render
 
-  render() {    
+  render() {
     const { classes } = this.props;
     return (
-      <div className={classes.root + " main-page" }>
+      <div className={classes.root + " main-page"}>
         <WAppBar position="absolute" className={classes.appBar}>
-          <WToolBar style={{minHeight:48}}>
+          <WToolBar style={{ minHeight: 48 }}>
             <WIconButton
               color="inherit"
               aria-label="open drawer"
@@ -142,11 +142,11 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
               <WTypography variant="h6" color="inherit" noWrap className={classes.flex}>
                 {this.props.appContext.configuration.projectName}
               </WTypography>
-              <WTypography variant="caption" color="inherit" noWrap className={classes.flex} style={{color: '#C5CAE9'}}>
+              <WTypography variant="caption" color="inherit" noWrap className={classes.flex} style={{ color: '#C5CAE9' }}>
                 {" @WFace"}
               </WTypography>
             </span>
-            <div style={{flexGrow: 1}} />
+            <div style={{ flexGrow: 1 }} />
             <MyProfileMenu />
           </WToolBar>
           <WTabs
@@ -156,29 +156,37 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
           >
             {
               this.props.appContext.openedScreens.map(screen => {
+                const hasRightGrid = !screen.menuTreeItem.notClosable || screen.mode === "loading";
+
                 const label = (
                   <WGrid container alignItems="center">
-                    <WGrid item xs={screen.menuTreeItem.notClosable ? 12 : 10}>
+                    <WGrid item xs={hasRightGrid ? 10 : 12}>
                       {screen.menuTreeItem.text}
                     </WGrid>
-                    {!screen.menuTreeItem.notClosable && 
-                      <WGrid item xs={2} style={{ paddingRight: 10 }} >
-                        <WIconButton
-                          onClick={(e) => this.handleTabCloseButtonClick(e, screen.menuTreeItem)}>
-                          <WIcon className={classes.whiteText} style={{ fontSize: 15 }}>close</WIcon>
-                        </WIconButton>
+                    {hasRightGrid &&
+                      <WGrid item xs={2} zeroMinWidth>
+                        {screen.mode === "loading" ?
+                          <div style={{minWidth: 39}}>
+                            <WCircularProgress size={25} style={{color: 'white'}}/>
+                          </div>
+                          :
+                          <WIconButton
+                            onClick={(e) => this.handleTabCloseButtonClick(e, screen.menuTreeItem)}>
+                            <WIcon className={classes.whiteText} style={{ fontSize: 15 }}>close</WIcon>
+                          </WIconButton>
+                        }
                       </WGrid>
                     }
                   </WGrid>
                 );
-                return <WTab key={screen.menuTreeItem.id} 
+                return <WTab key={screen.menuTreeItem.id}
                   component="div"
-                  label={label}                  
+                  label={label}
                   classes={{
                     labelContainer: classes.tabLabelContainer
                   }}
                   value={screen.menuTreeItem}
-                  onMouseUp={e => this.handleTabButton(e, screen.menuTreeItem)} />
+                  onMouseUp={e => this.handleTabButton(e, screen)} />
               })
             }
           </WTabs>
@@ -191,10 +199,10 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
             paper: classes.drawerPaper,
           }}
         >
-          <div style={{ height:'100%', display: 'flex', flexDirection: 'column' }}>
+          <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
             <div style={{ height: 96 }} />
             <div style={{ display: 'flex', flex: 1, minHeight: 0 }}>
-              <div style={{flex: 1, overflow: 'auto'}}>
+              <div style={{ flex: 1, overflow: 'auto' }}>
                 <NavList menuTree={this.props.appContext.menuTree} onItemClicked={this.onMenuItemClicked} />
               </div>
             </div>
@@ -206,20 +214,23 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
         })}>
           <div style={{ height: 96 }} />
           <div style={{ display: 'flex', flex: 1, minHeight: 0 }}>
-            <div style={{flex: 1, overflow: 'auto'}}>
-              <div style={{ padding: 10 }}>
-                <Switch>
-                  {
-                    (() => {
-                      return this.props.appContext.openedScreens.map(screen => {
-                        const screenComponent = <WScreenWrapper screen={screen}/>
-                        const route = <Route key={screen.menuTreeItem.id} path={(this.props as any).match.url + this.getScreenUrl(screen.menuTreeItem)} render={props => { return screenComponent; }} />
-                        return route;
-                      });
-                    })()                
-                  }
-                  {/* {this.props.appContext.currentScreen && <Redirect to={(this.props as any).match.url + this.getScreenUrl(this.props.appContext.currentScreen.screenInfo)} />} */}
-                </Switch>
+            <div style={{ flex: 1, overflow: 'auto' }}>
+              <div style={{ width: '100%', height: '100%' }}>
+                {
+                  this.props.appContext.openedScreens.map(screen => {
+                    if (this.props.appContext.currentScreen.menuTreeItem.id === screen.menuTreeItem.id) {
+                      const component = <div style={{ width: '100%', height: '100%' }} key={"screen-" + screen.menuTreeItem.id}><WScreenWrapper screen={screen} /></div>
+                      return component;
+                      // return <Route path={(this.props as any).match.url + this.getScreenUrl(screen.menuTreeItem)} render={props => component} />
+                    }
+                    else if (screen.mode === "loading") {
+                      const component = <div style={{ display: 'none' }} key={"screen-" + screen.menuTreeItem.id}><WScreenWrapper screen={screen} /></div>;
+                      return component;
+                    }
+
+                    return null;
+                  })
+                }
               </div>
             </div>
           </div>
@@ -232,7 +243,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
 };
 
 const drawerWidth = 300;
-const styles: any = (theme:any) => ({
+const styles: any = (theme: any) => ({
   root: {
     flexGrow: 1,
     height: '%100',
@@ -287,13 +298,13 @@ const styles: any = (theme:any) => ({
   }
 });
 
-const mapStateToProps = (state:WStore) => ({
+const mapStateToProps = (state: WStore) => ({
   appContext: state.appContext,
   userContext: state.userContext
 } as WStore);
-const mapDispatchToProps = (dispatch:any) => ({
+const mapDispatchToProps = (dispatch: any) => ({
   setMenuTree: (menuTree: IMenuTreeItem[]) => dispatch(AppContextActions.setMenuTree(menuTree)),
-  openScreen: (menuTreeItem: IMenuTreeItem, initialValues?: any) => dispatch(AppContextActions.openScreen({menuTreeItem, initialValues})),
+  openScreen: (menuTreeItem: IMenuTreeItem, initialValues?: any) => dispatch(AppContextActions.openScreen({ menuTreeItem, initialValues })),
   closeScreen: (menuTreeItem: IMenuTreeItem) => dispatch(AppContextActions.closeScreen(menuTreeItem))
 });
 

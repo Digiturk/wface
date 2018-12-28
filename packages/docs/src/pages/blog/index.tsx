@@ -46,6 +46,12 @@ const menuTree = [
     text: 'Form Datasının Korunması',
     path: 'form-data-persistency',
     mdx: Mdx.FormDataPersistency,
+  },
+  {
+    id: 'screen-mode-usage',
+    text: 'Ekran Modu Kullanımı',
+    path: 'screen-mode-usage',
+    mdx: Mdx.ScreenModeUsage,
   }, 
 ]
 

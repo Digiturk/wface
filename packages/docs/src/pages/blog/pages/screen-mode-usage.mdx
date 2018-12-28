@@ -1,0 +1,53 @@
+# Ekran Modu Kullanımı
+
+Ekranlarda yaptığınız asenkron işlemlerde ekranı `loading` moduna almalısınız. Bunun için ekranın herhangi bir yerinde
+aşağıdaki kod satırları ile ekran modunu değiştirebilirsiniz. 
+
+```javascript
+this.props.changeScreenMode('loading'); // Loading moduna almak için
+this.props.changeScreenMode('normal'); // Normal moda geri dönmek için
+```
+
+> Loading modu ekranda görsel bir deneyime ek olarak başka ekranlara geçseniz bile ekranınızdaki işlemlerin devam etmesini sağlar. 
+Yani ekranınız `loading` modunda olduğu sürece unmount edilmez. 
+
+## Örnek Bir Kullanım
+
+Sunucuyla olan iletişimlerde `loading` modunu kullanmak faydalıdır. Aşağıdaki örnek kodda bu şekilde bir kullanım yapılmıştır.
+
+```javascript
+export class DemoScreen extends React.Component<WFace.BaseScreenProps, any> {
+  constructor(props: WFace.BaseScreenProps) {
+    super(props);
+    this.state = this.props.screenData.state || {
+    }
+  }
+
+  public render() {
+    return (
+      <>
+        <WFace.WButton onClick={() => {
+          this.props.changeScreenMode('loading');
+          this.props.httpService.get("https://reqres.in/api/users?page=2&delay=10")
+            .then(data => {
+              this.setState({data}, () => this.props.changeScreenMode('normal'));
+            })
+        }}>
+          GETİR
+        </WFace.WButton>
+
+        {this.state.data && 
+          this.state.data.data.map(user => (
+            <div>{user.first_name}</div>
+          ))
+        }
+      </>
+    )
+  }
+}
+```
+
+> Burda dikkat etmeniz gereken en önemli husus `normal` moda geçmeden önce state üzerindeki işlemlerinizin bitmiş olması gerekliliğidir. 
+Aksi durumda ekranınız unmount edildikten sonra state üzerinde yapacağınız işlemler geçersiz olacaktır. 
+Bu nedenle `this.props.changeScreenMode('normal')` kodu setState metoduna callBack olarak verilmiş ve state değişikliklerinden sonra 
+çalışması garanti altına alınmıştır.

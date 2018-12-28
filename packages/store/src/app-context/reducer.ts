@@ -31,7 +31,8 @@ const appContext = (state: AppContext = initialState, action: AppAction): AppCon
               menuTreeItem: item,
               values: {},
               state: undefined,
-              initialValues: item.initialValues
+              initialValues: item.initialValues,
+              mode: 'normal'
             } as ScreenData);
           }
           return false;
@@ -55,7 +56,8 @@ const appContext = (state: AppContext = initialState, action: AppAction): AppCon
           menuTreeItem: action.payload.menuTreeItem,
           values: {},
           state: undefined,
-          initialValues: Object.assign({}, action.payload.menuTreeItem.initialValues, action.payload.initialValues)
+          initialValues: Object.assign({}, action.payload.menuTreeItem.initialValues, action.payload.initialValues),
+          mode: 'normal'
         } as ScreenData;
         openedScreens.push(screenData);
       }
@@ -95,6 +97,15 @@ const appContext = (state: AppContext = initialState, action: AppAction): AppCon
       const screen = openedScreens.find(a => a.menuTreeItem.id === action.payload.screenId);
       if (screen) {
         screen.state = action.payload.state;
+      }
+
+      return { ...state, openedScreens };
+    }
+    case getType(Actions.changeScreenMode): {
+      const openedScreens = [...state.openedScreens];
+      const screen = openedScreens.find(a => a.menuTreeItem.id === action.payload.screenId);
+      if (screen) {
+        screen.mode = action.payload.mode;
       }
 
       return { ...state, openedScreens };

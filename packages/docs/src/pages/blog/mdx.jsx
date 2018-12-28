@@ -9,6 +9,7 @@ import GeneralVariableUsage from './pages/general-variable-usage.mdx'
 import NewScreenDefinition from './pages/new-screen-definition.mdx'
 import OpenCloseScreen from './pages/open-close-screen.mdx'
 import FormDataPersistency from './pages/form-data-persistency.mdx'
+import ScreenModeUsage from './pages/screen-mode-usage.mdx'
 
 
 const Mdx = {
@@ -18,6 +19,7 @@ const Mdx = {
   NewScreenDefinition: () => <NewScreenDefinition components={mdxComponents}/>,
   OpenCloseScreen: () => <OpenCloseScreen components={mdxComponents}/>,
   FormDataPersistency: () => <FormDataPersistency components={mdxComponents}/>,  
+  ScreenModeUsage: () => <ScreenModeUsage components={mdxComponents}/>,  
 }
 
 export default Mdx

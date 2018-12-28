@@ -10,4 +10,5 @@ export interface BaseScreenProps {
   openScreen: (screen: String, initialValues?: any) => boolean;
   showSnackbar: (message: string, type?: 'error' | 'success' | 'warning' | 'info', duration?: number) => void;
   setValue: (key: string, value: any) => void;
+  changeScreenMode: (mode: 'normal' | 'loading') => void;
 }
