@@ -9,7 +9,7 @@
 	"author": "baran",
 	"license": "ISC",
 	"dependencies": {
-		"@material-ui/core": "3.4.0",
+		"@material-ui/core": "3.8.1",
 		"@wface/components": "0.10.0",
 		"@wface/ioc": "0.10.0",
 		"@wface/store": "0.10.0",
