@@ -26,7 +26,6 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
-  // context: resolve(__dirname, '../../'),
   module: {
     rules: [
       {
@@ -74,7 +73,10 @@ module.exports = {
   plugins: [
     new CheckerPlugin(),
     new StyleLintPlugin(),
-    new HtmlWebpackPlugin({template: resolve(__dirname, '../../public/index.html')}),
+    new HtmlWebpackPlugin({
+      template: resolve(__dirname, '../../public/index.html.js'),      
+      title: 'WFace App'
+    }),
   ],
   
   performance: {
