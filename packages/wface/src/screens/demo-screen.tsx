@@ -16,6 +16,8 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
 
     return (
       <>
+        <WFace.WButton>Deneme</WFace.WButton>
+        <br/>
         This is demo screen
       </>
     )
