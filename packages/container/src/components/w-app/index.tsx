@@ -58,10 +58,6 @@ class WApp extends React.Component<{configuration: IConfiguration}, any> {
       <WContainer configuration={this.state.configuration} />
     );
   }
-
-  public componentDidMount() {
-    document.title = this.props.configuration.title;
-  }
 }
 
 export default WApp

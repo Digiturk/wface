@@ -19,8 +19,30 @@ import { WIcon } from '@wface/components'
 | [WFACE-80](https://jira.digiturk.com.tr/browse/WFACE-80)    | feature       | Ekran modu özelliği ve bekleme deneyimi özelliği eklendi. [__Blog__](./#/blog/screen-mode-usage)  |
 | [WFACE-97](https://jira.digiturk.com.tr/browse/WFACE-97)    | bug           | `WTable`, seçili kayıtların kaybolması problemi giderildi                                         |
 | [WFACE-83](https://jira.digiturk.com.tr/browse/WFACE-83)    | bug           | `WButton` default uppercase sorunu giderildi.                                                     |
-
-
+| [WFACE-44](https://jira.digiturk.com.tr/browse/WFACE-44)    | feature       | HTML üretimi dinamik hale getirildi.                                                              |
 
 <br/>
+<br/>
+
+## Zorunlu Değişiklikler
+
+### 1. Title Değişikliği
+
+Web Sayfası başlığının sayfa yüklenmeden önce belirlenmesi için yapılan değişiklik ile (wface-44) 
+birlikte projelerde aşağıdaki değişikliklerin yapılması gerekiyor. 
+
+  - __configs/wface/wface.config.ts__ dosyasındaki `title` alanını siliniz.
+  - Bunun yerine __configs/webpack/common.js__ dosyasına `name` alanını ekleyiniz. 
+    Eklemeyi yaptıktan sonra dosyanızın son hali şu şekilde olacaktır. 
+    ```javascript
+    // shared config (dev and prod)
+    const {resolve} = require('path');
+    const merge = require('webpack-merge');
+    const WebpackCommonConfig = require('@wface/container/src/configs/webpack/common');
+
+    module.exports = merge(WebpackCommonConfig, {  
+      name: 'WFace App',
+      context: resolve(__dirname, '../../')
+    });
+    ```
 

@@ -8,7 +8,7 @@ module.exports = function (templateParams) {
       <meta charset="UTF-8"/>
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <meta name="theme-color" content="#000000">
-      <title>${templateParams.htmlWebpackPlugin.options.title}</title>
+      <title>${templateParams.webpackConfig.name || templateParams.htmlWebpackPlugin.options.title}</title>
       <link rel="icon" type="image/x-icon" href="assets/wface/favicon.ico">
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">

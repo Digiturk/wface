@@ -5,7 +5,7 @@ const commonConfig = require('./common');
 const _ = require("lodash");
 const WebpackDevConfig = require('@wface/container/src/configs/webpack/dev');
 
-module.exports = merge(
+module.exports = merge(  
   {
     customizeArray(a, b, key) {
       if (key === 'resolve.extensions') {

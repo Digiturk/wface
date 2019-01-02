@@ -10,8 +10,7 @@ const theme = {
   }
 } as WTheme
 
-const config = {
-  title: 'WFace Boilerplate',
+const config = {  
   projectName: 'WFace',  
   screenList: { 
     DemoScreen,
