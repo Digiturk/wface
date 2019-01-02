@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as WFace from '@wface/components';
 
 interface DemoScreenState {
+  text: string;
 }
 
 export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScreenState> {
@@ -16,7 +17,9 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
 
     return (
       <>
+        <WFace.WTextField value={this.state.text} onChange={event => this.setState({text: event.target.value})}/>
         <WFace.WButton>Deneme</WFace.WButton>
+        {this.state.text}
         <br/>
         This is demo screen
       </>

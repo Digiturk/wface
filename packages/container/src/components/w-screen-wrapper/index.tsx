@@ -36,7 +36,17 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
     this.screenRef = React.createRef();
   }
 
+  componentWillMount() {
+    window.onbeforeunload = () => {
+      this.saveState();
+    }
+  }
+
   componentWillUnmount() {
+    this.saveState();
+  }
+
+  saveState = () => {
     if (this.screenRef.current) {
       this.props.saveScreenState(this.props.screen.menuTreeItem.id, this.screenRef.current.state);
     }
@@ -98,7 +108,7 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
             </div>
           </div>
         }
-        <div style={{ padding: 10 }}>
+        <div style={{ padding: 10}}>
           <Screen
             ref={this.screenRef}
             appContext={this.props.appContext}

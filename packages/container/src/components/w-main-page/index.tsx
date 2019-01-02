@@ -1,7 +1,7 @@
 //#region imports 
 
 import { withStyles } from '@material-ui/core/styles';
-import { WAppBar, WDrawer, WGrid, WIcon, WIconButton, WTab, WTabs, WToolBar, WTypography, WCircularProgress, WLinearProgress } from '@wface/components';
+import { WAppBar, WDrawer, WGrid, WIcon, WIconButton, WTab, WTabs, WToolBar, WTypography, WCircularProgress, WLinearProgress, WScrollBar } from '@wface/components';
 import IOC, { IMenuTreeItem, MenuTreeUtil, IAuthService } from "@wface/ioc";
 import { AppContext, AppContextActions, WStore, UserContext, ScreenData } from '@wface/store';
 // @ts-ignore
@@ -166,8 +166,8 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
                     {hasRightGrid &&
                       <WGrid item xs={2} zeroMinWidth>
                         {screen.mode === "loading" ?
-                          <div style={{minWidth: 39}}>
-                            <WCircularProgress size={25} style={{color: 'white'}}/>
+                          <div style={{ minWidth: 39 }}>
+                            <WCircularProgress size={25} style={{ color: 'white' }} />
                           </div>
                           :
                           <WIconButton
@@ -199,41 +199,32 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
             paper: classes.drawerPaper,
           }}
         >
-          <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-            <div style={{ height: 96 }} />
-            <div style={{ display: 'flex', flex: 1, minHeight: 0 }}>
-              <div style={{ flex: 1, overflow: 'auto' }}>
-                <NavList menuTree={this.props.appContext.menuTree} onItemClicked={this.onMenuItemClicked} />
-              </div>
-            </div>
-          </div>
+          <div style={{marginTop: 96}}></div>
+          <WScrollBar>            
+              <NavList menuTree={this.props.appContext.menuTree} onItemClicked={this.onMenuItemClicked} />
+          </WScrollBar>
         </WDrawer>
         <main className={classNames(classes.content, classes[`content-left`], {
           [classes.contentShift]: this.state.drawerOpen,
           [classes[`contentShift-left`]]: this.state.drawerOpen,
-        })}>
-          <div style={{ height: 96 }} />
-          <div style={{ display: 'flex', flex: 1, minHeight: 0 }}>
-            <div style={{ flex: 1, overflow: 'auto' }}>
-              <div style={{ width: '100%', height: '100%' }}>
-                {
-                  this.props.appContext.openedScreens.map(screen => {
-                    if (this.props.appContext.currentScreen.menuTreeItem.id === screen.menuTreeItem.id) {
-                      const component = <div style={{ width: '100%', height: '100%' }} key={"screen-" + screen.menuTreeItem.id}><WScreenWrapper screen={screen} /></div>
-                      return component;
-                      // return <Route path={(this.props as any).match.url + this.getScreenUrl(screen.menuTreeItem)} render={props => component} />
-                    }
-                    else if (screen.mode === "loading") {
-                      const component = <div style={{ display: 'none' }} key={"screen-" + screen.menuTreeItem.id}><WScreenWrapper screen={screen} /></div>;
-                      return component;
-                    }
-
-                    return null;
-                  })
+        })} style={{marginTop: 96}}>
+          <WScrollBar>
+            {
+              this.props.appContext.openedScreens.map(screen => {
+                if (this.props.appContext.currentScreen.menuTreeItem.id === screen.menuTreeItem.id) {
+                  const component = <div style={{ width: '100%', height: '100%' }} key={"screen-" + screen.menuTreeItem.id}><WScreenWrapper screen={screen} /></div>
+                  return component;
+                  // return <Route path={(this.props as any).match.url + this.getScreenUrl(screen.menuTreeItem)} render={props => component} />
                 }
-              </div>
-            </div>
-          </div>
+                else if (screen.mode === "loading") {
+                  const component = <div style={{ display: 'none' }} key={"screen-" + screen.menuTreeItem.id}><WScreenWrapper screen={screen} /></div>;
+                  return component;
+                }
+
+                return null;
+              })
+            }
+          </WScrollBar>
         </main>
       </div>
     );

@@ -34,6 +34,12 @@ const menuTree = [
         mdx: Mdx.WNotificationBarComponent
       },
       {
+        id: 'w-scroll-bar',
+        text: 'WScrollBar',
+        path: 'w-scroll-bar',
+        mdx: Mdx.WScrollBar
+      },
+      {
         id: '3.1.3',
         text: 'WToolBar',
         path: 'w-tool-bar',
