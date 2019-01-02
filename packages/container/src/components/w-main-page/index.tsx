@@ -142,9 +142,6 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
               <WTypography variant="h6" color="inherit" noWrap className={classes.flex}>
                 {this.props.appContext.configuration.projectName}
               </WTypography>
-              <WTypography variant="caption" color="inherit" noWrap className={classes.flex} style={{ color: '#C5CAE9' }}>
-                {" @WFace"}
-              </WTypography>
             </span>
             <div style={{ flexGrow: 1 }} />
             <MyProfileMenu />
@@ -199,15 +196,24 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
             paper: classes.drawerPaper,
           }}
         >
-          <div style={{marginTop: 96}}></div>
-          <WScrollBar>            
+          <div style={{ marginTop: 96, height: '100%', paddingBottom: 30 }}>
+            <WScrollBar>
               <NavList menuTree={this.props.appContext.menuTree} onItemClicked={this.onMenuItemClicked} />
-          </WScrollBar>
+            </WScrollBar>
+            <div style={{display: 'table', position: 'absolute', bottom: 0, height: 30, backgroundColor: '#fafafa', width: '100%', 
+            borderTop: '1px #e0e0e0 solid'}}>
+              <div style={{display: 'table-cell', verticalAlign: 'middle', textAlign: 'center'}}>
+                <span style={{color: '#9c9999', fontSize: 11}}>
+                  Bu proje <a style={{fontWeight: 600, textDecoration: 'none', color: '#3f51b5'}} href="http://wface.digiturk.net">WFace</a> ile geliştirilmiştir.
+                </span>
+              </div>
+            </div>
+          </div>
         </WDrawer>
         <main className={classNames(classes.content, classes[`content-left`], {
           [classes.contentShift]: this.state.drawerOpen,
           [classes[`contentShift-left`]]: this.state.drawerOpen,
-        })} style={{marginTop: 96}}>
+        })} style={{ marginTop: 96 }}>
           <WScrollBar>
             {
               this.props.appContext.openedScreens.map(screen => {
