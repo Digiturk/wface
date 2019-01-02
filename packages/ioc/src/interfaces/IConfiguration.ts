@@ -13,4 +13,5 @@ export default interface IConfiguration {
   httpService?: { new (...args: any[]): IHttpService; };
 
   theme?: any;
+  useLocalStorage?: boolean;
 }

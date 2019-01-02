@@ -1,8 +1,14 @@
-import { WGrid, WIcon, WIconButton, withSnackbar, WPaper, WTypography, WCircularProgress } from '@wface/components';
-import IOC, { IMenuTreeItem, MenuTreeUtil, IHttpService } from '@wface/ioc';
+import { WCircularProgress, WIcon, WIconButton, withSnackbar } from '@wface/components';
+import IOC, { IHttpService, IMenuTreeItem, MenuTreeUtil } from '@wface/ioc';
 import { AppContextActions, ScreenData, WStore } from '@wface/store';
 import * as React from 'react';
 import { connect } from 'react-redux';
+import NoPage from './no-page';
+import PageError from './page-error';
+
+interface WScreenWrapperState {
+  pageError?: {error: any, info: any};
+}
 
 export interface WScreenWrapperProps {
   screen?: ScreenData;
@@ -17,15 +23,14 @@ export interface DispatchProps {
   changeScreenMode: (screenId: string, mode: 'normal' | 'loading') => void;
 }
 
-class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & DispatchProps, any> {
+class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & DispatchProps, WScreenWrapperState> {
 
   private screenRef: any;
 
   constructor(props) {
     super(props);
 
-    this.state = {
-      screen: undefined
+    this.state = {      
     }
 
     this.screenRef = React.createRef();
@@ -35,6 +40,10 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
     if (this.screenRef.current) {
       this.props.saveScreenState(this.props.screen.menuTreeItem.id, this.screenRef.current.state);
     }
+  }
+
+  componentDidCatch(error, info) {
+    this.setState({ pageError : { error, info }});
   }
 
   openScreen = (screen: string, initialValues: any): boolean => {
@@ -70,7 +79,16 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
   }
 
   public render() {
+    if (this.state.pageError) {
+      return <PageError {...this.state.pageError}/>
+    }
+
     const Screen = this.props.appContext.configuration.screenList[this.props.screen.menuTreeItem.screen] as any;
+
+    if (!Screen) {
+      return <NoPage />
+    }
+
     return (
       <div style={{ position: 'relative', width: '100%', height: '100%', }}>
         {this.props.appContext.currentScreen.mode === 'loading' &&
@@ -80,37 +98,22 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
             </div>
           </div>
         }
-        {Screen ?
-          <div style={{padding: 10}}>
-            <Screen
-              ref={this.screenRef}
-              appContext={this.props.appContext}
-              changeScreenMode={(mode) => {
-                this.changeScreenMode(mode)
-              }}
-              httpService={IOC.get<IHttpService>("IHttpService")}
-              screenData={this.props.appContext.currentScreen}
-              userContext={this.props.userContext}
-              closeScreen={this.closeScreen}
-              openScreen={this.openScreen}
-              showSnackbar={this.showSnackbar}
-              setValue={this.props.setValue}
-            />
-          </div>
-          :
-          <WGrid container justify="center" style={{ paddingTop: 30 }}>
-            <WGrid item md={6}>
-              <WPaper elevation={4} style={{ padding: 20 }}>
-                <WTypography variant="h5" component="h2" align="center">
-                  Sayfa bulunamadı
-                              </WTypography>
-                <WTypography component="p" align="center">
-                  Lütfen proje ve ekran alanlarını doğru tanımladığınızdan emin olunuz.
-                              </WTypography>
-              </WPaper>
-            </WGrid>
-          </WGrid>
-        }
+        <div style={{ padding: 10 }}>
+          <Screen
+            ref={this.screenRef}
+            appContext={this.props.appContext}
+            changeScreenMode={(mode) => {
+              this.changeScreenMode(mode)
+            }}
+            httpService={IOC.get<IHttpService>("IHttpService")}
+            screenData={this.props.appContext.currentScreen}
+            userContext={this.props.userContext}
+            closeScreen={this.closeScreen}
+            openScreen={this.openScreen}
+            showSnackbar={this.showSnackbar}
+            setValue={this.props.setValue}
+          />
+        </div>
       </div>
     )
   }

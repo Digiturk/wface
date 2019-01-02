@@ -1,30 +1,23 @@
 import { WSnackbarProvider, WThemeProvider } from '@wface/components';
 import IOC, { IAuthService, IConfiguration } from '@wface/ioc';
-import { AppContextActions, store } from '@wface/store';
+import { AppContextActions } from '@wface/store';
 import * as React from 'react';
 import { connect, Provider } from 'react-redux';
 import { withRouter } from 'react-router';
 import { HashRouter, Redirect, Route } from 'react-router-dom';
 import WMainPage from '../w-main-page';
 
-class WContainer extends React.Component<{ configuration: IConfiguration }, {}> {
+class WContainer extends React.Component<{}, {}> {
 
   constructor(props: any) {
     super(props);
-    this.setConfig(props.configuration);
-  }
-
-  setConfig = (config: IConfiguration) => {
-    store.dispatch(AppContextActions.setConfig(config));
   }
 
   render() {
     return (
-      <Provider store={store}>
-        <HashRouter>
-          <InnerContainer />
-        </HashRouter>
-      </Provider>
+      <HashRouter>
+        <InnerContainer />
+      </HashRouter>
     );
   }
 };

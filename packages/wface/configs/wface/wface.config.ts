@@ -17,7 +17,8 @@ const config = {
     DemoScreen2
   },
   authService: AuthService,
-  theme: theme
+  theme: theme,
+  useLocalStorage: true
 } as IConfiguration
 
 export default config;

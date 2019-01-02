@@ -53,6 +53,12 @@ const menuTree = [
     path: 'screen-mode-usage',
     mdx: Mdx.ScreenModeUsage,
   }, 
+  {
+    id: 'localstorage-usage',
+    text: 'Localstorage Kullanımı',
+    path: 'localstorage-usage',
+    mdx: Mdx.LocalstorageUsage,
+  },
 ]
 
 
