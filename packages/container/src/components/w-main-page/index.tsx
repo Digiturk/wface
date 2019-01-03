@@ -1,7 +1,7 @@
 //#region imports 
 
 import { withStyles } from '@material-ui/core/styles';
-import { WAppBar, WCircularProgress, WDrawer, WGrid, WIcon, WIconButton, WScrollBar, WTab, WTabs, WToolBar, WTypography } from '@wface/components';
+import { WAppBar, WCircularProgress, WDrawer, WGrid, WIcon, WIconButton, WScrollBar, WTab, WTabs, WToolBar, WTypography, WPaper } from '@wface/components';
 import IOC, { IAuthService, IMenuTreeItem, MenuTreeUtil } from "@wface/ioc";
 import { AppContext, AppContextActions, ScreenData, WStore } from '@wface/store';
 // @ts-ignore
@@ -11,8 +11,8 @@ import * as React from "react";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import WScreenWrapper from '../w-screen-wrapper';
-import MyProfileMenu from './MyProfileMenu';
-import NavList from './NavList';
+import MyProfileMenu from './my-profile-menu';
+import NavList from './nav-list';
 
 //#endregion 
 
@@ -124,57 +124,71 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
 
   //#region Render
 
-  renderTabs = (classes) => (
-    <WTabs
-      centered
-      value={this.props.appContext.currentScreen && this.props.appContext.currentScreen.menuTreeItem.id}
-      onChange={(event, value) => {
-        MenuTreeUtil.menuTreeForEach(this.props.appContext.menuTree, item => {
-          if (item.id === value) {
-            this.props.openScreen(item);
-            return true;
-          }
-          return false;
-        });
-      }}
-    >
-      {
-        this.props.appContext.openedScreens.map(screen => {
-          const hasRightGrid = !screen.menuTreeItem.notClosable || screen.mode === "loading";
+  renderTabs = (classes) => {
+    const screenType = Horizontal.getType();    
+    return (
+      <WTabs
+        variant={
+          (screenType == WindowWidthType.LG && this.props.appContext.openedScreens.length > 7) ||
+          (screenType == WindowWidthType.MD && this.props.appContext.openedScreens.length > 5) ||
+          (screenType == WindowWidthType.SM && this.props.appContext.openedScreens.length > 4) ||
+          (screenType == WindowWidthType.XS && this.props.appContext.openedScreens.length > 2)
+          ? "scrollable" : undefined
+        }
+        // variant="scrollable"
+        scrollButtons="off"
+        centered
+        value={this.props.appContext.currentScreen && this.props.appContext.currentScreen.menuTreeItem.id}
+        onChange={(event, value) => {
+          MenuTreeUtil.menuTreeForEach(this.props.appContext.menuTree, item => {
+            if (item.id === value) {
+              this.props.openScreen(item);
+              return true;
+            }
+            return false;
+          });
+        }}
+      >
+        {
+          this.props.appContext.openedScreens.map(screen => {
+            const hasRightGrid = !screen.menuTreeItem.notClosable || screen.mode === "loading";
 
-          const label = (
-            <WGrid container alignItems="center">
-              <WGrid item xs={hasRightGrid ? 10 : 12}>
-                {screen.menuTreeItem.text}
-              </WGrid>
-              {hasRightGrid &&
-                <WGrid item xs={2} zeroMinWidth>
-                  {screen.mode === "loading" ?
-                    <div style={{ minWidth: 39 }}>
-                      <WCircularProgress size={25} style={{ color: 'white' }} />
-                    </div>
-                    :
-                    <WIconButton
-                      onClick={(e) => this.handleTabCloseButtonClick(e, screen.menuTreeItem)}>
-                      <WIcon className={classes.whiteText} style={{ fontSize: 15 }}>close</WIcon>
-                    </WIconButton>
-                  }
+            const label = (
+              <WGrid container alignItems="center">
+                <WGrid item xs={hasRightGrid ? 10 : 12}>
+                  {screen.menuTreeItem.text.length > 25 ?
+                  (screen.menuTreeItem.text.substr(0, 25) + "...") : screen.menuTreeItem.text}
                 </WGrid>
-              }
-            </WGrid>
-          );
-          return <WTab key={screen.menuTreeItem.id}
-            component="div"
-            label={label}
-            classes={{
-              labelContainer: classes.tabLabelContainer
-            }}
-            value={screen.menuTreeItem.id}
-            onMouseUp={e => this.handleTabButton(e, screen)} />
-        })
-      }
-    </WTabs>
-  )
+                {hasRightGrid &&
+                  <WGrid item xs={2} zeroMinWidth>
+                    {screen.mode === "loading" ?                      
+                      <div style={{ minWidth: 39 }}>
+                        <WCircularProgress size={25} style={{ color: 'white' }} />
+                      </div>
+                      :
+                      <WIconButton
+                        onClick={(e) => this.handleTabCloseButtonClick(e, screen.menuTreeItem)}>
+                        <WIcon className={classes.whiteText} style={{ fontSize: 15 }}>close</WIcon>
+                      </WIconButton>
+                    }
+                  </WGrid>
+                }
+              </WGrid>
+            );
+            return <WTab key={screen.menuTreeItem.id}
+              component="div"
+              label={label}
+              classes={{
+                labelContainer: classes.tabLabelContainer
+              }}
+              value={screen.menuTreeItem.id}
+              onMouseUp={e => this.handleTabButton(e, screen)}
+              />
+          })
+        }
+      </WTabs>
+    );
+  }
 
   render() {
     const { classes } = this.props;
@@ -185,16 +199,17 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
             <WIconButton
               color="inherit"
               aria-label="open drawer"
+              style={{ transition: 'all ease 250ms', transform: this.state.drawerOpen ? 'rotate(180deg)' : 'none' }}
               onClick={this.handleDrawerChange.bind(this)}
             >
-              <WIcon>menu</WIcon>
+              <WIcon >{this.state.drawerOpen && Horizontal.getType() !== WindowWidthType.LG ? "close" : "menu"}</WIcon>
             </WIconButton>
             <span>
               <WTypography variant="h6" color="inherit" noWrap className={classes.flex}>
                 {this.props.appContext.configuration.projectName}
               </WTypography>
             </span>
-            <div style={{ flexGrow: 1 }}/>
+            <div style={{ flexGrow: 1 }} />
             <MyProfileMenu />
           </WToolBar>
           {this.renderTabs(classes)}
@@ -207,8 +222,8 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
             paper: classes.drawerPaper,
           }}
         >
-          <div style={{ marginTop: 84, height: '100%', paddingBottom: 30 }}>
-            <WScrollBar>
+          <div style={{ marginTop: 84, height: '100%', paddingBottom: 30, overflow: 'none' }}>
+            <WScrollBar >
               <NavList menuTree={this.props.appContext.menuTree} onItemClicked={this.onMenuItemClicked} />
             </WScrollBar>
             <div style={{
@@ -252,7 +267,10 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
   //#endregion
 };
 
-const drawerWidth = 300;
+const screenData = Horizontal.getData();
+
+
+const drawerWidth = screenData.widthType === WindowWidthType.XS ? screenData.width : 240;
 const styles: any = (theme: any) => ({
   root: {
     flexGrow: 1,
@@ -276,7 +294,11 @@ const styles: any = (theme: any) => ({
   tabLabelContainer: {
     paddingTop: 0,
     paddingBottom: 0,
-    textTransform: 'none',    
+    paddingLeft: 0,
+    paddingRight: 10,
+    textTransform: 'none',
+    maxWidth: 144,
+    wordBreak: 'break-word'
   },
   content: {
     flexGrow: 1,
@@ -285,6 +307,7 @@ const styles: any = (theme: any) => ({
     minWidth: 0, // So the Typography noWrap works        
     display: 'flex',
     flexDirection: 'column',
+    transition: 'all ease 250ms'
   },
   "content-left": {
     marginLeft: -drawerWidth,

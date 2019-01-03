@@ -1,4 +1,4 @@
-import { WCircularProgress, WIcon, WIconButton, withSnackbar } from '@wface/components';
+import { WCircularProgress, WIcon, WIconButton, withSnackbar, WPaper } from '@wface/components';
 import IOC, { IHttpService, IMenuTreeItem, MenuTreeUtil } from '@wface/ioc';
 import { AppContextActions, ScreenData, WStore } from '@wface/store';
 import * as React from 'react';
@@ -7,7 +7,7 @@ import NoPage from './no-page';
 import PageError from './page-error';
 
 interface WScreenWrapperState {
-  pageError?: {error: any, info: any};
+  pageError?: { error: any, info: any };
 }
 
 export interface WScreenWrapperProps {
@@ -30,7 +30,7 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
   constructor(props) {
     super(props);
 
-    this.state = {      
+    this.state = {
     }
 
     this.screenRef = React.createRef();
@@ -53,7 +53,7 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
   }
 
   componentDidCatch(error, info) {
-    this.setState({ pageError : { error, info }});
+    this.setState({ pageError: { error, info } });
   }
 
   openScreen = (screen: string, initialValues: any): boolean => {
@@ -90,7 +90,7 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
 
   public render() {
     if (this.state.pageError) {
-      return <PageError {...this.state.pageError}/>
+      return <PageError {...this.state.pageError} />
     }
 
     const Screen = this.props.appContext.configuration.screenList[this.props.screen.menuTreeItem.screen] as any;
@@ -108,7 +108,7 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
             </div>
           </div>
         }
-        <div style={{ padding: 10}}>
+        <div style={{ padding: 10 }}>
           <Screen
             ref={this.screenRef}
             appContext={this.props.appContext}

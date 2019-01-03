@@ -4,7 +4,11 @@ export const loadState = () => {
     if (serializedState === null) {
       return undefined;
     }
-    return JSON.parse(serializedState);
+    const result = JSON.parse(serializedState);
+    result.appContext.openedScreens.forEach(element => {
+      element.mode = 'normal';
+    });
+    return result;
   } catch (err) {
     return undefined;
   }

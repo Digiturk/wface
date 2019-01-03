@@ -21,7 +21,7 @@ export default class PageError extends React.Component<{ error: any, info: any }
     return (
       <WFace.WGrid container justify="center" style={{ paddingTop: 30 }}>
         <WFace.WGrid item md={12} xs={12}>
-          <WFace.WCard>
+          <WFace.WCard>            
             <WFace.WCardContent style={{ paddingBottom: 0 }}>
               <div style={{ display: 'flex' }}>
                 <WFace.WIcon style={{ fontSize: 75, color: '#C62828' }}>error_outline</WFace.WIcon>

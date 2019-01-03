@@ -17,11 +17,31 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
 
     return (
       <>
-        <WFace.WTextField value={this.state.text} onChange={event => this.setState({text: event.target.value})}/>
-        <WFace.WButton>Deneme</WFace.WButton>
+        <WFace.WTextField value={this.state.text} onChange={event => this.setState({ text: event.target.value })} />
+        <WFace.WButton onClick={() => {
+
+          this.props.changeScreenMode("loading")
+          // setTimeout(() => this.props.changeScreenMode("normal"), 1000);
+        }}>Deneme</WFace.WButton>
         {this.state.text}
-        <br/>
+        <br />
         This is demo screen
+        <WFace.WTable
+          columns={[
+            { title: 'Adı', field: 'name' },
+            { title: 'Soyadı', field: 'surname' },
+            { title: 'Doğum Yılı', field: 'birthYear', type: 'numeric' },
+            {
+              title: 'Doğum Yeri',
+              field: 'birthCity',
+              lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
+            },
+          ]}
+          data={[
+            { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
+          ]}
+          title="Demo Title"
+        />
       </>
     )
   }
@@ -41,15 +61,6 @@ const ImageUpload = props => {
           <WFace.WCircularProgress size={size} />
         </div>
       }
-
-      {/* <div style={{ position: 'absolute', padding: 4, backgroundColor: 'white', right: 7, bottom: 7, borderRadius: '50%', color: 'white' }}>
-        <WFace.WIcon icon="camera" />
-      </div>
-      
-      <div style={{ position: 'absolute', padding: 4, backgroundColor: 'transparent', right: 7, bottom: 7, borderRadius: '50%', color: '#888' }}>
-        <WFace.WIcon icon="camera" />
-      </div> */}
-
 
       <input
         type="file"

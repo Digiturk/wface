@@ -6,7 +6,7 @@ import {
 } from '@wface/components';
 import { withStyles } from '@material-ui/core/styles';
 import Collapse from '@material-ui/core/Collapse';
-import { IMenuTreeItem } from '@wface/ioc';
+import { IMenuTreeItem, MenuTreeUtil } from '@wface/ioc';
 
 export interface NavListProps {
   menuTree: IMenuTreeItem[];
@@ -48,8 +48,8 @@ class NavList extends React.Component<NavListProps & { classes: any }, NavListSt
     }
   }
 
-  renderNavItem(item: IMenuTreeItem, nestingLevel: number = 0): React.ReactNode {
-    if(item.hideOnNavigationList) {
+  renderNavItem(item: IMenuTreeItem, hasAnyIcon: boolean, nestingLevel: number = 0): React.ReactNode {
+    if (item.hideOnNavigationList) {
       return null;
     }
 
@@ -63,15 +63,17 @@ class NavList extends React.Component<NavListProps & { classes: any }, NavListSt
         <div key={item.id}>
           {item.divideBefore && <WDivider />}
           <WListItem key={item.id} button onClick={() => { this.handleNodeClick(item.id) }} style={itemStyle}>
-            <WListItemIcon>
-              <WIcon>{item.icon}</WIcon>
-            </WListItemIcon>
-            <WListItemText inset primary={item.text} />
+            {hasAnyIcon &&
+              <WListItemIcon className={this.props.classes.listItemIconRoot}>
+                <WIcon>{item.icon}</WIcon>
+              </WListItemIcon>
+            }
+            <WListItemText inset={hasAnyIcon} primary={item.text} />
             <WIcon>{open ? "expand_less" : "expand_more"}</WIcon>
           </WListItem>
           <Collapse in={open} timeout="auto">
             <WList disablePadding>
-              {item.subNodes.map(subItem => { return this.renderNavItem(subItem, nestingLevel + 1); })}
+              {item.subNodes.map(subItem => { return this.renderNavItem(subItem, hasAnyIcon, nestingLevel + 1); })}
             </WList>
           </Collapse>
 
@@ -81,23 +83,34 @@ class NavList extends React.Component<NavListProps & { classes: any }, NavListSt
     else {
       return (
         <WListItem key={item.id} button style={itemStyle} onClick={() => { this.handleLeafClick(item) }} >
-          <WListItemIcon>
-            <WIcon>{item.icon}</WIcon>
-          </WListItemIcon>
-          <WListItemText inset primary={item.text} />
+          {hasAnyIcon &&
+            <WListItemIcon className={this.props.classes.listItemIconRoot}>
+              <WIcon>{item.icon}</WIcon>
+            </WListItemIcon>
+          }
+          <WListItemText inset={hasAnyIcon} primary={item.text} />
         </WListItem>
       );
     }
   }
 
   public render() {
+    let hasAnyIcon = false;
+    MenuTreeUtil.menuTreeForEach(this.props.menuTree, item => {
+      if (item.icon) {
+        hasAnyIcon = true;
+        return true;
+      }
+      return false;
+    });
+
     if (this.props.menuTree && this.props.menuTree.length > 0) {
       return (
         <WList key="NavListKey"
           component="nav">
           {this.props.menuTree &&
             this.props.menuTree.map(item => {
-              return this.renderNavItem(item);
+              return this.renderNavItem(item, hasAnyIcon);
             })
           }
         </WList>
@@ -118,8 +131,11 @@ class NavList extends React.Component<NavListProps & { classes: any }, NavListSt
 const styles = theme => ({
   root: {
     width: '100%',
-    maxWidth: 320,
+    maxWidth: 240,
     backgroundColor: theme.palette.background.paper,
+  },
+  listItemIconRoot: {
+    marginRight: 0,    
   }
 });
 

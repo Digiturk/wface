@@ -28,7 +28,7 @@ export default class AuthService implements IAuthService {
       let id = 0;
       result.push({
         id: (++id).toString(),
-        text: 'DemoScreen',
+        text: 'DemoScreen1',
         screen: 'DemoScreen'
       });    
       result.push({
