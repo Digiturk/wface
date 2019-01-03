@@ -110,6 +110,9 @@ const appContext = (state: AppContext = initialState, action: AppAction): AppCon
 
       return { ...state, openedScreens };
     }
+    case getType(Actions.clear): {
+      return { ...initialState, configuration: state.configuration }
+    }
   }
 
   return state;

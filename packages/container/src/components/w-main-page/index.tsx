@@ -45,7 +45,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const { match, location, setMenuTree, openScreen } = this.props;
     const getScreenUrl = this.getScreenUrl;
 
@@ -147,9 +147,17 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
             <MyProfileMenu />
           </WToolBar>
           <WTabs
-            value={this.props.appContext.currentScreen && this.props.appContext.currentScreen.menuTreeItem}
-            onChange={(event, value) => this.props.openScreen(value)}
             centered
+            value={this.props.appContext.currentScreen && this.props.appContext.currentScreen.menuTreeItem.id}
+            onChange={(event, value) => {
+              MenuTreeUtil.menuTreeForEach(this.props.appContext.menuTree, item => {
+                if (item.id === value) {
+                  this.props.openScreen(item);
+                  return true;
+                }
+                return false;
+              });
+            }}
           >
             {
               this.props.appContext.openedScreens.map(screen => {
@@ -182,7 +190,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
                   classes={{
                     labelContainer: classes.tabLabelContainer
                   }}
-                  value={screen.menuTreeItem}
+                  value={screen.menuTreeItem.id}
                   onMouseUp={e => this.handleTabButton(e, screen)} />
               })
             }
@@ -204,7 +212,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
             borderTop: '1px #e0e0e0 solid'}}>
               <div style={{display: 'table-cell', verticalAlign: 'middle', textAlign: 'center'}}>
                 <span style={{color: '#9c9999', fontSize: 11}}>
-                  Bu proje <a style={{fontWeight: 600, textDecoration: 'none', color: '#3f51b5'}} href="http://wface.digiturk.net">WFace</a> ile geliştirilmiştir.
+                  Bu proje <a style={{fontWeight: 600, textDecoration: 'none', color: '#3f51b5'}} href="http://wface.digiturk.net" target="_blank">WFace</a> ile geliştirilmiştir.
                 </span>
               </div>
             </div>
@@ -262,7 +270,8 @@ const styles: any = (theme: any) => ({
   },
   tabLabelContainer: {
     paddingTop: 0,
-    paddingBottom: 0
+    paddingBottom: 0,
+    textTransform: 'none'
   },
   content: {
     flexGrow: 1,

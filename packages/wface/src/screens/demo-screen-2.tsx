@@ -15,15 +15,9 @@ export class DemoScreen2 extends React.Component<WFace.BaseScreenProps, DemoScre
   }
 
   public render() {
-    const x = {} as any;
-    console.log(x.name.length);
-
     return (
       <>
         <WFace.WButton onClick={() => {
-          
-
-
           this.props.changeScreenMode('loading');
           this.props.httpService.get("https://reqres.in/api/users?page=2&delay=10")            
             .then(data => {

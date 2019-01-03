@@ -1,5 +1,5 @@
 import { WIcon, WIconButton, WListItemIcon, WListItemText, WMenu, WMenuItem } from '@wface/components';
-import { UserContextActions, WStore } from '@wface/store';
+import { UserContextActions, WStore, AppContextActions } from '@wface/store';
 import * as React from 'react';
 import { connect } from 'react-redux';
 
@@ -8,7 +8,8 @@ export interface MyProfileMenuState {
 }
 
 type MyProfileMenuProps = WStore & {
-  logout
+  clearAppContext: () => void;
+  logout: () => void;
 }
 
 class MyProfileMenu extends React.Component<MyProfileMenuProps, MyProfileMenuState> {
@@ -24,6 +25,7 @@ class MyProfileMenu extends React.Component<MyProfileMenuProps, MyProfileMenuSta
 
   logoutClicked() {
     this.props.logout();
+    this.props.clearAppContext();    
   }
 
   public render() {
@@ -70,6 +72,9 @@ class MyProfileMenu extends React.Component<MyProfileMenuProps, MyProfileMenuSta
 }
 
 const mapStateToProps = state => ({ ...state });
-const mapDispatchToProps = dispatch => ({ logout: () => dispatch(UserContextActions.logout()) })
+const mapDispatchToProps = dispatch => ({
+  clearAppContext: () => dispatch(AppContextActions.clear()),
+  logout: () => dispatch(UserContextActions.logout())
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyProfileMenu)
