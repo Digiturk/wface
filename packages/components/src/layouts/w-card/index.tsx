@@ -17,6 +17,5 @@ const styles = theme => createStyles({
   }
 });
 
-const WCard = withStyles(styles)(WCardInner)
-export { WCard }
+export const WCard = withStyles(styles)((props: WCardProps & WithStyles<string>) => <WCardInner {...props}/>)
 

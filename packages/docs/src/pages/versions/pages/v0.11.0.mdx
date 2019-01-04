@@ -1,0 +1,56 @@
+import { WIcon } from '@wface/components'
+
+# v0.11.0
+
+**04.01.2019**
+
+> Blog: [__Versiyon yükseltme nasıl yapılır?__](./#/blog/how-to-version-upgrade)
+
+## Değişiklikler
+
+| Jira                                                        | Tür           | Açıklama                                                                                          |
+|:------------------------------------------------------------|:--------------|:--------------------------------------------------------------------------------------------------|
+| [WFACE-98](https://jira.digiturk.com.tr/browse/WFACE-98)    | feature       | Unmount edilen formların datasının kaybedilmesinin önüne geçilmesi sağlandı. [__Blog__](./#/blog/form-data-persistency) |
+| [WFACE-108](https://jira.digiturk.com.tr/browse/WFACE-108)  | bug           | WSelect ve diğer bazı bileşenlerin Typescript problemleri giderildi.                              |
+| [WFACE-101](https://jira.digiturk.com.tr/browse/WFACE-101)  | bug           | WTextField floating label sorunu giderildi.                                                       |
+| [WFACE-107](https://jira.digiturk.com.tr/browse/WFACE-107)  | bug           | WTextField floating label sorunu giderildi.                                                       |
+|                                                             | bug           | Password WTextField bileşenlerinin şifreyi gösterme hatası giderildi.                             |
+| [WFACE-99](https://jira.digiturk.com.tr/browse/WFACE-99)    | bug           | WTabContainer nested render problemi giderildi.                                                   |
+| [WFACE-80](https://jira.digiturk.com.tr/browse/WFACE-80)    | feature       | Ekran modu özelliği ve bekleme deneyimi özelliği eklendi. [__Blog__](./#/blog/screen-mode-usage)  |
+| [WFACE-97](https://jira.digiturk.com.tr/browse/WFACE-97)    | bug           | `WTable`, seçili kayıtların kaybolması problemi giderildi                                         |
+| [WFACE-83](https://jira.digiturk.com.tr/browse/WFACE-83)    | bug           | `WButton` default uppercase sorunu giderildi.                                                     |
+| [WFACE-44](https://jira.digiturk.com.tr/browse/WFACE-44)    | feature       | HTML üretimi dinamik hale getirildi.                                                              |
+| [WFACE-71](https://jira.digiturk.com.tr/browse/WFACE-71)    | feature       | Redux localstorage özelliği eklendi. [__Blog__](./#/blog/localstorage-usage)                      |
+| [WFACE-67](https://jira.digiturk.com.tr/browse/WFACE-67)    | feature       | Ekranlarda gerçekleşen hataların yakalanması sağlandı.                                            |
+|                                                             | feature       | `WScrollBar` bileşeni eklendi. [__Bileşen__](./#/components/w-scroll-bar)                         |
+| [WFACE-110](https://jira.digiturk.com.tr/browse/WFACE-110)  | feature       | @WFace yazısı footera taşındı.                                                                    |
+|                                                             | design        | Header yüksekliği 96 pikselden 84 piksele düşürüldü.                                              |
+| [WFACE-112](https://jira.digiturk.com.tr/browse/WFACE-112)  | design        | Menu bar genişliği 240 olarak değiştirildi. Ayrıca mobil cihazlar için optimizasyon yapıldı.      |
+| [WFACE-113](https://jira.digiturk.com.tr/browse/WFACE-113)  | desing        | Ekran tabları cihaza göre scrollable yapıldı.                                                     |
+
+
+<br/>
+<br/>
+
+## Zorunlu Değişiklikler
+
+### 1. Title Değişikliği
+
+Web Sayfası başlığının sayfa yüklenmeden önce belirlenmesi için yapılan değişiklik ile (wface-44) 
+birlikte projelerde aşağıdaki değişikliklerin yapılması gerekiyor. 
+
+  - __configs/wface/wface.config.ts__ dosyasındaki `title` alanını siliniz.
+  - Bunun yerine __configs/webpack/common.js__ dosyasına `name` alanını ekleyiniz. 
+    Eklemeyi yaptıktan sonra dosyanızın son hali şu şekilde olacaktır. 
+    ```javascript
+    // shared config (dev and prod)
+    const {resolve} = require('path');
+    const merge = require('webpack-merge');
+    const WebpackCommonConfig = require('@wface/container/src/configs/webpack/common');
+
+    module.exports = merge(WebpackCommonConfig, {  
+      name: 'WFace App',
+      context: resolve(__dirname, '../../')
+    });
+    ```
+

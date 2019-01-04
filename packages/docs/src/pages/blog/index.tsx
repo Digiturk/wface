@@ -40,7 +40,25 @@ const menuTree = [
     text: 'Ekran Açma/Kapama',
     path: 'open-close-screen',
     mdx: Mdx.OpenCloseScreen,
+  },
+  {
+    id: 'form-data-persistency',
+    text: 'Form Datasının Korunması',
+    path: 'form-data-persistency',
+    mdx: Mdx.FormDataPersistency,
+  },
+  {
+    id: 'screen-mode-usage',
+    text: 'Ekran Modu Kullanımı',
+    path: 'screen-mode-usage',
+    mdx: Mdx.ScreenModeUsage,
   }, 
+  {
+    id: 'localstorage-usage',
+    text: 'Localstorage Kullanımı',
+    path: 'localstorage-usage',
+    mdx: Mdx.LocalstorageUsage,
+  },
 ]
 
 

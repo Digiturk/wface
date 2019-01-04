@@ -67,6 +67,6 @@ const styles = (theme:any) => createStyles({
   }
 });
 
-const WNotificationBar = withStyles(styles)(WNotificationBarInner)
+const WNotificationBar = withStyles(styles)((props: WNotificationBarProps) => <WNotificationBarInner {...props}/>)
 export { WNotificationBar };
 

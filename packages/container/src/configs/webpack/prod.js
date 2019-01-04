@@ -18,9 +18,5 @@ module.exports = merge(commonConfig, {
     new CopyWebpackPlugin([
       { from: path.resolve(process.cwd(), 'assets'), to: 'assets' }
     ]),
-  ],
-  externals: {
-    'react': 'React',
-    'react-dom': 'ReactDOM',
-  },
+  ]
 });

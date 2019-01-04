@@ -33,6 +33,7 @@ import WNotificationBarComponent from './pages/bars/w-notification-bar.mdx'
 import WPaperComponent from './pages/layouts/w-paper.mdx'
 import WRadioGroupComponent from './pages/inputs/w-radio-group.mdx'
 import WSelectComponent from './pages/inputs/w-select.mdx'
+import WScrollBar from './pages/bars/w-scroll-bar.mdx'
 import WSwipeableViewComponent from './pages/layouts/w-swipeable-view.mdx'
 import WSwitchComponent from './pages/inputs/w-switch.mdx'
 import WTableComponent from './pages/tables/w-table.mdx'
@@ -73,6 +74,7 @@ const Mdx = {
     WPaperComponent: () => <WPaperComponent components={mdxComponents}/>,    
     WRadioGroupComponent: () => <WRadioGroupComponent components={mdxComponents}/>,    
     WSelectComponent: () => <WSelectComponent components={mdxComponents}/>,    
+    WScrollBar: () => <WScrollBar components={mdxComponents}/>,    
     WSwipeableViewComponent: () => <WSwipeableViewComponent components={mdxComponents}/>,    
     WSwitchComponent: () => <WSwitchComponent components={mdxComponents}/>,        
     WTableComponent: () => <WTableComponent components={mdxComponents}/>,            

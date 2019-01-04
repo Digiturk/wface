@@ -92,6 +92,9 @@ export { WPaper, WPaperProps } from './src/layouts/w-paper'
 export { WRadioGroup, WRadioGroupProps } from './src/inputs/w-radio-group'
 export { WRadio, WRadioProps } from './src/inputs/w-radio-group/w-radio'
 
+// WScrollBar
+export { WScrollBar, WScrollBarProps } from './src/bars/w-scroll-bar';
+
 // WSelect
 export { WSelect, WSelectProps, WSelectOption, WSelectOptionGroup } from './src/inputs/w-select'
 

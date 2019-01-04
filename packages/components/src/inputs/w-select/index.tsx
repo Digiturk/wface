@@ -1,5 +1,5 @@
 import NoSsr from '@material-ui/core/NoSsr';
-import { createStyles, withStyles } from '@material-ui/core/styles';
+import { createStyles, withStyles, WithStyles, Theme } from '@material-ui/core/styles';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import * as React from 'react';
 import Select from 'react-select';
@@ -15,7 +15,7 @@ export interface WSelectOption {
   value: any;
 }
 
-export interface WSelectProps {
+export interface WSelectProps extends WithStyles<typeof styles>  {
   isClearable?: boolean;
   isDisabled?: boolean;
   isLoading?: boolean;
@@ -141,8 +141,7 @@ const customStyles = {
   }),
 }
 
-
-const styles = (theme: any) => createStyles({
+const styles = (theme: Theme) => createStyles({
   input: {
     display: 'flex',
     padding: 0,
@@ -186,5 +185,6 @@ const styles = (theme: any) => createStyles({
   }
 });
 
-const WSelect = withStyles(styles, { withTheme: false })(WSelectInner);
+const WSelect = withStyles(styles, { withTheme: false })((props:WSelectProps) => <WSelectInner {...props}/>)
+
 export { WSelect };

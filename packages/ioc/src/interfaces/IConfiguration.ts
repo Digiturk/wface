@@ -4,7 +4,6 @@ import IAuthService from './IAuthService';
 type X = IAuthService
 
 export default interface IConfiguration {
-  title?: string,
   projectName: string,
 
   screenList: { [key: string]: any };
@@ -14,4 +13,5 @@ export default interface IConfiguration {
   httpService?: { new (...args: any[]): IHttpService; };
 
   theme?: any;
+  useLocalStorage?: boolean;
 }

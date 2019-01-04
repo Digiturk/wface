@@ -1,6 +1,7 @@
 import { IConfiguration, IHttpService } from "@wface/ioc";
-import AuthService from '../../src/services/AuthService';
-import { DemoScreen } from '../../src/screens/DemoScreen'
+import AuthService from '../../src/services/auth-service';
+import { DemoScreen } from '../../src/screens/demo-screen'
+import { DemoScreen2 } from '../../src/screens/demo-screen-2'
 import { WTheme } from '@wface/components';
 
 const theme = {
@@ -9,14 +10,15 @@ const theme = {
   }
 } as WTheme
 
-const config = {
-  title: 'WFace Boilerplate',
+const config = {  
   projectName: 'WFace',  
   screenList: { 
-    DemoScreen
+    DemoScreen,
+    DemoScreen2
   },
   authService: AuthService,
-  theme: theme
+  theme: theme,
+  useLocalStorage: true
 } as IConfiguration
 
 export default config;

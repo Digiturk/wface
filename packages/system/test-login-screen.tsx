@@ -98,7 +98,7 @@ class TextLoginScreen extends React.Component<WLoginPageProps, WLoginPageState> 
               <WCard>
                 <WCardContent>
                   <WTypography
-                    variant="display1"
+                    variant="h4"
                     gutterBottom
                     className={classNames(classes.textCenter)}
                     style={{ marginTop: 75 }}
@@ -150,7 +150,7 @@ class TextLoginScreen extends React.Component<WLoginPageProps, WLoginPageState> 
                   />
                   <div className={classes.vSpace} />
                   <WLoadingButton
-                    variant="raised"
+                    variant="contined"
                     size="large"
                     fullWidth
                     color="primary"

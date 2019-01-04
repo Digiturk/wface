@@ -7,7 +7,7 @@ import * as WFace from '@wface/components'
 const mdxComponents = {
   h1: (props: any) => <div>
     <WFace.WTypography
-      variant="display1" {...props} />
+      variant="h4" {...props} />
     <div style={{
       width: 50,
       borderBottom: '4px solid #3f51b5',
@@ -16,13 +16,13 @@ const mdxComponents = {
     <br />
     <br />
   </div>,
-  h2: (props: any) => <div><WFace.WTypography variant="headline" {...props} /><br /></div>,  
-  p: (props: any) => <div><WFace.WTypography variant="subheading" {...props} style={{ color: '#65819D' }} /><br /></div>,
+  h2: (props: any) => <div><WFace.WTypography variant="h5" {...props} /><br /></div>,  
+  p: (props: any) => <div><WFace.WTypography variant="subtitle1" {...props} style={{ color: '#65819D' }} /><br /></div>,
   ul: (props: any) => <WFace.WList>{props.children}</WFace.WList>,
   li: (props: any) => (
     <WFace.WListItem>
       <WFace.WListItemIcon style={{marginRight: 0, alignSelf: 'flex-start'}}><WFace.WIcon style={{ color: '#65819D' }} iconSize="small">keyboard_arrow_right</WFace.WIcon></WFace.WListItemIcon>
-      <WFace.WListItemText><WFace.WTypography variant="subheading" {...props} style={{ color: '#65819D' }} /></WFace.WListItemText>
+      <WFace.WListItemText><WFace.WTypography variant="subtitle1" {...props} style={{ color: '#65819D' }} /></WFace.WListItemText>
     </WFace.WListItem>
   ),
   a: (props: any) => <a href={props.href}
@@ -64,10 +64,10 @@ const mdxComponents = {
     }}>
     {props.children}
   </thead>,
-  th: (props: any) => <th style={{ padding: '15px 30px 15px 30px' }}><WFace.WTypography variant="subheading" style={{ color: '#65819D' }}>{props.children}</WFace.WTypography></th>,
+  th: (props: any) => <th style={{ padding: '15px 30px 15px 30px' }}><WFace.WTypography variant="subtitle1" style={{ color: '#65819D' }}>{props.children}</WFace.WTypography></th>,
   tbody: (props:any) => <tbody >{props.children}</tbody>,
   tr: (props: any) => <tr style={{ padding: 20, borderTop: '1px solid #DEE5EE' }}>{props.children}</tr>,
-  td: (props: any) => <td style={{ padding: 10, textAlign: 'left' }} ><WFace.WTypography variant="subheading" style={{ color: '#91A0B1' }}>{props.children}</WFace.WTypography></td>,
+  td: (props: any) => <td style={{ padding: 10, textAlign: 'left' }} ><WFace.WTypography variant="subtitle1" style={{ color: '#91A0B1' }}>{props.children}</WFace.WTypography></td>,
 
   inlineCode: (props: any) => <code
     style={{

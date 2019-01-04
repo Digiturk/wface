@@ -25,7 +25,7 @@ class MainPage extends React.Component<any, any> {
         <WFace.WGrid container justify="center" style={{ paddingTop: 80, paddingBottom: 80, marginBottom: 0, backgroundColor: '#3f51b5' }}>
           <WFace.WGrid item style={{ textAlign: 'center' }} xs={12}>
             <WFace.WIcon style={{ fontSize: 200, height: 160, color: '#fff' }}>code</WFace.WIcon>
-            <WFace.WTypography variant="title" style={{ fontSize: 50, color: '#fff', marginBottom: 30 }} color="primary">WFace</WFace.WTypography>
+            <WFace.WTypography variant="h6" style={{ fontSize: 50, color: '#fff', marginBottom: 30 }} color="primary">WFace</WFace.WTypography>
             <this.MainButton href={"#/get-started"} text="Başlangıç"/>
             <this.MainButton href={"#/components"} text="Bileşenler"/>
             <this.MainButton href={"#/blog"} text="Blog"/>                        

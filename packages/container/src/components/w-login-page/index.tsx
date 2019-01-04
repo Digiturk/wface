@@ -1,7 +1,7 @@
 //#region imports 
 
 import { withStyles } from '@material-ui/core';
-import { WCard, WCardContent, WGrid, WLoadingButton, WNotificationBar, WTextField, WTypography } from '@wface/components';
+import { WCard, WCardContent, WButton, WGrid, WLoadingButton, WNotificationBar, WTextField, WTypography } from '@wface/components';
 import { IAuthService } from "@wface/ioc";
 import { AppContext, UserContext, WStore } from '@wface/store';
 // @ts-ignore
@@ -15,7 +15,7 @@ interface WLoginPageState {
   username: string;
   password: string;
   isLoading: boolean;
-  loadingButtonStatus: string;
+  loadingButtonStatus: "error" | "normal" | "success";
   notificationText: string;
   showNotification: boolean;
   [key: string]: any
@@ -47,20 +47,15 @@ class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> {
   btnLoginClick() {
     this.setState({ isLoading: true }, () => {
       this.props.authService.login(this.state.username, this.state.password)
-        .then(result => {
-          this.setState({ loadingButtonStatus: "success" }, () => {
-          });
+        .then(result => {          
         }).
         catch(message => {
           this.setState({
             showNotification: true,
-            notificationText: message
+            notificationText: message,
+            isLoading: false
           });
         })
-        // @ts-ignore
-        .finally(() => {
-          this.setState({ isLoading: false });
-        });
     });
   }
 
@@ -87,7 +82,7 @@ class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> {
               <WCard>
                 <WCardContent>
                   <WTypography
-                    variant="display1"
+                    variant="h4"
                     gutterBottom
                     className={classNames(classes.textCenter)}
                     style={{ marginTop: 75 }}
@@ -126,16 +121,17 @@ class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> {
                   />
                   <div className={classes.vSpace} />
                   <WLoadingButton
-                    variant="raised"
+                    variant="contained"
                     size="large"
                     fullWidth
                     color="primary"
                     className={classes.vSpace}
                     style={{ marginTop: 50, marginBottom: 20 }}
-                    isLoading={this.state.isLoading}
+                    isLoading={this.state.isLoading}                                        
                     status={this.state.loadingButtonStatus}
                     disableFocusRipple
-                    onClick={this.btnLoginClick.bind(this)}>
+                    onClick={this.btnLoginClick.bind(this)}                    
+                    >
                     GİRİŞ
                                     </WLoadingButton>
                 </WCardContent>

@@ -9,13 +9,14 @@ import { createStyles, withStyles } from '@material-ui/core/styles';
 
 export interface WLoadingButtonProps extends WButtonProps {
   isLoading?: boolean;
+  classes?: any;
   status?: "error" | "normal" | "success";
-  progressType?: "circular" | "linear";
+  progressType?: "circular" | "linear";  
 }
 
-class WLoadingButtonInner extends React.Component<WLoadingButtonProps & ClassNames & any, {}> {
+class WLoadingButtonInner extends React.Component<WLoadingButtonProps, {}> {
   public render() {
-    const { classes } = this.props;
+    const { classes, isLoading, ...buttonProps } = this.props;
     const buttonClassname = classNames({
       [classes.buttonError]: this.props.status == "error",
       [classes.buttonSuccess]: this.props.status == "success",
@@ -24,16 +25,16 @@ class WLoadingButtonInner extends React.Component<WLoadingButtonProps & ClassNam
     return (
       <span className={classes.wrapper}>
         <WButton
-          {...this.props}
-          variant="raised"
+          {...buttonProps}
+          variant="contained"
           color="primary"
           className={buttonClassname}
-          disabled={this.props.isLoading}>
-          {this.props.children}
-          {this.props.isLoading &&
+          disabled={isLoading}>
+          {isLoading ?
             (this.props.progressType == "circular" ?
               <WCircularProgress size={24} className={classes.circularProgress} /> :
-              <WLinearProgress className={classes.linearProgress} />)
+              <>{this.props.children}<WLinearProgress className={classes.linearProgress} /></>) :
+            this.props.children            
           }
         </WButton>
       </span>
@@ -41,7 +42,7 @@ class WLoadingButtonInner extends React.Component<WLoadingButtonProps & ClassNam
   }
 }
 
-const styles = (theme:any) => createStyles({
+const styles = (theme:any) => ({
   root: {
     display: 'flex',
     alignItems: 'center',
@@ -61,13 +62,6 @@ const styles = (theme:any) => createStyles({
       backgroundColor: theme.palette.success.dark,
     },
   },
-  fabProgress: {
-    color: green[500],
-    position: 'absolute',
-    top: -6,
-    left: -6,
-    zIndex: 1,
-  },
   linearProgress: {
     color: theme.palette.primary.main,
     position: 'absolute',
@@ -77,7 +71,7 @@ const styles = (theme:any) => createStyles({
     borderRadius: '0px 0px 4px 4px'
   },
   circularProgress: {
-    color: green[500],
+    color: theme.palette.primary.main,
     position: 'absolute',
     top: '50%',
     left: '50%',
@@ -85,7 +79,7 @@ const styles = (theme:any) => createStyles({
     marginLeft: -12,
   },
 });
-type ClassNames = { classes: { [className in keyof typeof styles]: string } };
 
-const WLoadingButton = withStyles(styles)(WLoadingButtonInner)
+const WLoadingButton = withStyles(styles as any)((props: WLoadingButtonProps ) => <WLoadingButtonInner {...props}/>)
+
 export { WLoadingButton }
