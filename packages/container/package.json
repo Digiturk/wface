@@ -1,6 +1,6 @@
 {
 	"name": "@wface/container",
-	"version": "0.10.0",
+	"version": "0.11.0",
 	"description": "",
 	"main": "index.ts",
 	"scripts": {
@@ -10,9 +10,9 @@
 	"license": "ISC",
 	"dependencies": {
 		"@material-ui/core": "3.8.1",
-		"@wface/components": "0.10.0",
-		"@wface/ioc": "0.10.0",
-		"@wface/store": "0.10.0",
+		"@wface/components": "0.11.0",
+		"@wface/ioc": "0.11.0",
+		"@wface/store": "0.11.0",
 		"axios": "0.18.0",
 		"classnames": "2.2.6",
 		"horizontal": "0.2.2",
@@ -32,8 +32,8 @@
 		"@types/react-router-dom": "4.2.6",
 		"awesome-typescript-loader": "5.2.1",
 		"html-webpack-plugin": "3.2.0",
-    "stylelint-webpack-plugin": "0.10.5",
-    "source-map-loader": "0.2.4",
+		"stylelint-webpack-plugin": "0.10.5",
+		"source-map-loader": "0.2.4",
 		"webpack": "4.19.1",
 		"webpack-merge": "4.1.4",
 		"copy-webpack-plugin": "4.6.0"
