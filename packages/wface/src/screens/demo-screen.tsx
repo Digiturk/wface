@@ -16,7 +16,7 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
   public render() {
 
     return (
-      <>
+      <>        
         <WFace.WTextField value={this.state.text} onChange={event => this.setState({ text: event.target.value })} />
         <WFace.WButton onClick={() => {
 

@@ -34,6 +34,7 @@ export interface WSelectProps extends WithStyles<typeof styles>  {
   value?: any;
   defaultValue?: any;
   theme?: any;
+  style?: React.CSSProperties;
 }
 
 class WSelectInner extends React.Component<WSelectProps, {focused: boolean}> {
@@ -103,7 +104,7 @@ class WSelectInner extends React.Component<WSelectProps, {focused: boolean}> {
     hasValue = hasValue || (this.props.isMulti ? cleanValue && cleanValue.length > 0 : cleanValue);
 
     return (
-      <NoSsr>
+      <NoSsr>        
         <Select
           ref={this.select}
           {...this.props}
@@ -112,7 +113,7 @@ class WSelectInner extends React.Component<WSelectProps, {focused: boolean}> {
           onBlur={(event) => this.setFocus(event, false)} 
           onChange={this.onChange}         
           placeholder=""          
-          value={cleanValue}
+          value={cleanValue}          
           // @ts-ignore
           classes={classes}        
           textFieldProps={{
