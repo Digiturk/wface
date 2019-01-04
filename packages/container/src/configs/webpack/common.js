@@ -1,18 +1,18 @@
 // shared config (dev and prod)
-const {resolve} = require('path');
-const {CheckerPlugin} = require('awesome-typescript-loader');
+const { resolve } = require('path');
+const { CheckerPlugin } = require('awesome-typescript-loader');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const babelQuery = {
   "presets": [
-    ["@babel/preset-env", {"modules": false}],
+    ["@babel/preset-env", { "modules": false }],
     "@babel/preset-react"
   ],
   "plugins": [
     "react-hot-loader/babel"
   ],
-  "env": { 
+  "env": {
     "production": {
       "presets": ["minify"]
     },
@@ -31,7 +31,7 @@ module.exports = {
       {
         test: /\.js$/,
         use: [
-          { 
+          {
             loader: 'babel-loader',
             query: babelQuery
           },
@@ -41,10 +41,10 @@ module.exports = {
       },
       {
         test: /\.tsx?$/,
-        use: [ 
-          { 
-          loader: 'babel-loader',
-          query: babelQuery
+        use: [
+          {
+            loader: 'babel-loader',
+            query: babelQuery
           },
           'awesome-typescript-loader'
         ],
@@ -74,11 +74,11 @@ module.exports = {
     new CheckerPlugin(),
     new StyleLintPlugin(),
     new HtmlWebpackPlugin({
-      template: resolve(__dirname, '../../public/index.html.js'),      
+      template: resolve(__dirname, '../../public/index.html.js'),
       title: 'WFace App'
-    }),
+    })
   ],
-  
+
   performance: {
     hints: false,
   },

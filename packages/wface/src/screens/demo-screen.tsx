@@ -21,7 +21,7 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
         <WFace.WButton onClick={() => {
 
           this.props.changeScreenMode("loading")
-          // setTimeout(() => this.props.changeScreenMode("normal"), 1000);
+          setTimeout(() => this.props.changeScreenMode("normal"), 3000);
         }}>Deneme</WFace.WButton>
         {this.state.text}
         <br />

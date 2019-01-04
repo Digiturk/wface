@@ -83,7 +83,8 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
   }
 
   handleTabButton(event: any, screenData: ScreenData) {
-    if (screenData.menuTreeItem.notClosable || screenData.mode === "loading") {
+    // if (screenData.menuTreeItem.notClosable || screenData.mode === "loading") {
+    if (screenData.menuTreeItem.notClosable) {
       return;
     }
 
