@@ -7,6 +7,6 @@
 	"license": "ISC",
 	"dependencies": {
 		"@wface/ioc": "0.11.1",
-		"typesafe-actions": "2.0.4"
+    "typesafe-actions": "2.0.4"
 	}
 }

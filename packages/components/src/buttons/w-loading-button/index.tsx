@@ -66,6 +66,7 @@ const styles = (theme:any) => ({
     color: theme.palette.primary.main,
     position: 'absolute',
     bottom: 0,
+    left:0,
     height: 3,
     width: '100%',
     borderRadius: '0px 0px 4px 4px'

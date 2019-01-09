@@ -27,7 +27,7 @@ const getStore = (useLocalStorage: boolean) => {
   if(useLocalStorage) {
     store.subscribe(() => {
       saveState(store.getState());
-    });
+    })
   }
 
   return store

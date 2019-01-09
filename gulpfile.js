@@ -7,13 +7,12 @@ var knownOptions = { string: 'version' };
 var options = minimist(process.argv.slice(2), knownOptions);
 
 gulp.task('publish', function() {
-  const command = "npm publish --registry http://dtl1tfsbuild2:8081/repository/digiturk-npm/ -f"
+  const command = "npm publish --access=public"
 
   childProcess.execSync(command, { stdio: [0,1,2], cwd: './packages/components/' });
   childProcess.execSync(command, { stdio: [0,1,2], cwd: './packages/container/' });
   childProcess.execSync(command, { stdio: [0,1,2], cwd: './packages/ioc/' });
   childProcess.execSync(command, { stdio: [0,1,2], cwd: './packages/store/' });
-  childProcess.execSync(command, { stdio: [0,1,2], cwd: './packages/system/' });
   childProcess.execSync(command, { stdio: [0,1,2], cwd: './packages/wface/' });
 });
 
@@ -28,7 +27,6 @@ gulp.task('version', function(){
   updateVersion('./packages/docs/package.json', newVersion);
   updateVersion('./packages/ioc/package.json', newVersion);
   updateVersion('./packages/store/package.json', newVersion);
-  updateVersion('./packages/system/package.json', newVersion);
   updateVersion('./packages/wface/package.json', newVersion);
 });
 
@@ -41,7 +39,6 @@ const updateVersion = (path, version) => {
   if(package.dependencies["@wface/container"]) package.dependencies["@wface/container"] = version;
   if(package.dependencies["@wface/ioc"]) package.dependencies["@wface/ioc"] = version;
   if(package.dependencies["@wface/store"]) package.dependencies["@wface/store"] = version;
-  if(package.dependencies["@wface/system"]) package.dependencies["@wface/system"] = version;
 
   const data = JSON.stringify(package, null, "\t");
   fs.writeFileSync(path, data);  

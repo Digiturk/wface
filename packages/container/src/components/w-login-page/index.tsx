@@ -137,10 +137,10 @@ class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> {
                 </WCardContent>
               </WCard>
             </WGrid>
-            <WGrid item lg={12} style={{ textAlign: 'center', position: 'absolute', bottom: 50 }}>
+            <WGrid item xs={12} style={{ textAlign: 'center'}}>
               <WTypography style={{ color: '#ddd' }}>
                 @2018 DigiTurk
-                            </WTypography>
+              </WTypography>
             </WGrid>
           </WGrid>
         </div>

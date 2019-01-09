@@ -7,7 +7,10 @@ const commonConfig = require('./common');
 
 module.exports = merge(commonConfig, {
   mode: 'production',
-  entry: './index.tsx',
+  entry: [
+    'babel-polyfill',
+    './index.tsx',
+  ],
   output: {
     filename: 'js/main.min.js',
     path: path.resolve(process.cwd(), './dist'),
