@@ -4,6 +4,7 @@ import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import * as React from 'react';
 import Select from 'react-select';
 import selectComponents from './components';
+import { Omit } from '@material-ui/core';
 
 export interface WSelectOptionGroup {
   label: string; 
@@ -15,7 +16,8 @@ export interface WSelectOption {
   value: any;
 }
 
-export interface WSelectProps extends WithStyles<typeof styles>  {
+export interface WSelectProps extends Omit<WithStyles<typeof styles>, "classes">   {
+  classes?: any;
   isClearable?: boolean;
   isDisabled?: boolean;
   isLoading?: boolean;
@@ -101,7 +103,7 @@ class WSelectInner extends React.Component<WSelectProps, {focused: boolean}> {
     const { classes } = this.props;
     const cleanValue = this.getCleanValue();
     let hasValue = (this.select.current && this.select.current.select.commonProps.getValue().length > 0);
-    hasValue = hasValue || (this.props.isMulti ? cleanValue && cleanValue.length > 0 : cleanValue);
+    hasValue = hasValue || (this.props.isMulti ? cleanValue && cleanValue.length > 0 : cleanValue);    
 
     return (
       <NoSsr>
