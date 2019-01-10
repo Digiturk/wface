@@ -104,22 +104,22 @@ class WSelectInner extends React.Component<WSelectProps, {focused: boolean}> {
     hasValue = hasValue || (this.props.isMulti ? cleanValue && cleanValue.length > 0 : cleanValue);
 
     return (
-      <NoSsr>        
+      <NoSsr>
         <Select
           ref={this.select}
           {...this.props}
           styles={customStyles}
           onFocus={(event) => this.setFocus(event, true)}
-          onBlur={(event) => this.setFocus(event, false)} 
-          onChange={this.onChange}         
-          placeholder=""          
-          value={cleanValue}          
+          onBlur={(event) => this.setFocus(event, false)}
+          onChange={this.onChange}
+          placeholder=""
+          value={cleanValue}
           // @ts-ignore
-          classes={classes}        
+          classes={classes}
           textFieldProps={{
             label: this.props.label,
-            InputLabelProps: {              
-              shrink: this.state.focused || hasValue,            
+            InputLabelProps: {
+              shrink: this.state.focused || hasValue,
             },
             error: this.props.error,
             helperText: this.props.helperText
