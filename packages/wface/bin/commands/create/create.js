@@ -103,7 +103,7 @@ const create = {
         fs.writeFileSync(`${answers.name}/package.json`, data);
         console.log(chalk.green("package.json created..."));
 
-        fs.writeFileSync(`${answers.name}/.gitignore`, "node_modules\npackage-lock.json");
+        fs.writeFileSync(`${answers.name}/.gitignore`, "node_modules\ndist\npackage-lock.json");
         console.log(chalk.green(".gitignore created..."));
 
         for (let i = 0; i < filesToCopy.length; i += 1) {

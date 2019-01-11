@@ -31,14 +31,14 @@ class MainPage extends React.Component<any, any> {
             <this.MainButton href={"#/blog"} text="Blog"/>                        
           </WFace.WGrid>
         </WFace.WGrid>
-        <WFace.WGrid container style={{ padding:30, textAlign: 'left' }}>
-          <WFace.WGrid item xs={12} sm={12} md={4} lg={4} style={{ padding: '0 10px' }}>
+        <WFace.WGrid container style={{ padding:'20px 0px 20px 0px', textAlign: 'left' }}>
+          <WFace.WGrid item xs={12} sm={12} md={4} lg={4} style={{ padding: 4 }}>
             <Requirements />
           </WFace.WGrid>
-          <WFace.WGrid item xs={12} sm={12} md={4} lg={4} style={{ padding: '0 10px' }}>
+          <WFace.WGrid item xs={12} sm={12} md={4} lg={4} style={{ padding: 4 }}>
             <Setup />
           </WFace.WGrid>
-          <WFace.WGrid item xs={12} sm={12} md={4} lg={4} style={{ padding: '0 10px' }}>
+          <WFace.WGrid item xs={12} sm={12} md={4} lg={4} style={{ padding: 4 }}>
             <Usage />
           </WFace.WGrid>
         </WFace.WGrid>

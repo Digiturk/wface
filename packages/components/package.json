@@ -36,10 +36,5 @@
 		"@types/react-redux": "5",
 		"@types/react-select": "2.0.5",
 		"@types/yup": "0.26.1"
-	},
-	"scripts": {
-		"set:reg:publish": "npm set registry http://dtl1tfsbuild2:8081/repository/digiturk-npm/",
-		"set:reg:retrieve": "npm set registry http://dtl1tfsbuild2:8081/repository/digiturk-npm-group/",
-		"fast:publish": "npm version patch && npm run set:reg:publish && npm publish && npm run set:reg:retrieve"
 	}
 }

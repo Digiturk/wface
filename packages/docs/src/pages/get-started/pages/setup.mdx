@@ -5,16 +5,7 @@ Siyah bölgelerde yazılan komutları komut satırı uygulamasında çalıştır
 
 > Komut satırı uygulamasını Administrator modunda çalıştırmanız daha uygun olacaktır.
 
-#### 1. Private Npm Sunucusunu Ayarlama
-
-WFace paketlerinin tamamı DigiTürk'a ati yerel sistemlerde olduğu için onları indirebileceğimiz adresi değiştiriyoruz
-
-```console
-npm set registry http://dtl1tfsbuild2:8081/repository/digiturk-npm-group/
-```
-> __`npm get registry`__ komutu ile mevcut npm sunucu adresinizi kontrol edebilirsiniz.
-
-#### 2. Yarn paket yöneticisini kuralım
+#### 1. Yarn paket yöneticisini kuralım
 
 Kurulum ve geliştirme sırasında kullanacağımız birçok komutu barındıran WFace CLI uygulamasını kuruyoruz. 
 
@@ -22,12 +13,12 @@ Kurulum ve geliştirme sırasında kullanacağımız birçok komutu barındıran
 npm i -g yarn
 ```
 
-#### 3. WFace Komut Satırı Uygulaması
+#### 2. WFace Komut Satırı Uygulaması
 
 Kurulum ve geliştirme sırasında kullanacağımız birçok komutu barındıran WFace CLI uygulamasını kuruyoruz. 
 
 ```console
-npm i -g wface
+npm i -g @wface/cli
 ```
 
 
