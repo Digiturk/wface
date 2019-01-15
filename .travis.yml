@@ -3,14 +3,58 @@ sudo: false
 node_js:
  - 10
 install:
-  - npm install lerna -g
-  - lerna bootstrap
+  - npm install lerna -g  
 script:  
-  - npm run publish
-deploy:
-  provider: npm
-  email: "argeopensource@digiturk.com.tr"
-  api_key: "$NPM_TOKEN"
-  skip_cleanup: true
-  on:
-    branch: master
+  - lerna bootstrap
+jobs:
+  components:
+    before_deploy: cd packages/components
+    deploy:
+      provider: npm
+      email: "argeopensource@digiturk.com.tr"
+      api_key: "$NPM_TOKEN"
+      skip_cleanup: true
+      on:
+        branch: master
+    after_deploy: cd ../../
+  container:
+    before_deploy: cd packages/container
+    deploy:
+      provider: npm
+      email: "argeopensource@digiturk.com.tr"
+      api_key: "$NPM_TOKEN"
+      skip_cleanup: true
+      on:
+        branch: master
+    after_deploy: cd ../../
+  ioc:
+    before_deploy: cd packages/ioc
+    deploy:
+      provider: npm
+      email: "argeopensource@digiturk.com.tr"
+      api_key: "$NPM_TOKEN"
+      skip_cleanup: true
+      on:
+        branch: master
+    after_deploy: cd ../../
+  store:
+    before_deploy: cd packages/store
+    deploy:
+      provider: npm
+      email: "argeopensource@digiturk.com.tr"
+      api_key: "$NPM_TOKEN"
+      skip_cleanup: true
+      on:
+        branch: master
+    after_deploy: cd ../../
+  cli:
+    before_deploy: cd packages/wface
+    deploy:
+      provider: npm
+      email: "argeopensource@digiturk.com.tr"
+      api_key: "$NPM_TOKEN"
+      skip_cleanup: true
+      on:
+        branch: master
+    after_deploy: cd ../../
+
