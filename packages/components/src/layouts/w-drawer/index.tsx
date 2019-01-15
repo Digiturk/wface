@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Drawer } from '@material-ui/core';
-import { DrawerProps } from '@material-ui/core/drawer';
+import { DrawerProps } from '@material-ui/core/Drawer';
 
 export interface WDrawerProps extends DrawerProps { }
 
