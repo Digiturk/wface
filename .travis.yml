@@ -6,7 +6,7 @@ install:
   - npm install lerna -g
   - lerna bootstrap
 script:  
-  - echo ok
+  - npm run publish
 deploy:
   provider: npm
   email: "argeopensource@digiturk.com.tr"
