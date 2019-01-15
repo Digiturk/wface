@@ -8,6 +8,18 @@ script:
   - lerna bootstrap
 jobs:
   include:
+    - stage: cli publish
+      node_js: "10"
+      script: echo "Deploying cli to npm ..."
+      before_deploy: cd packages/cli
+      after_deploy: cd ../../
+      deploy:
+        provider: npm
+        email: "argeopensource@digiturk.com.tr"
+        api_key: "$NPM_TOKEN"
+        skip_cleanup: true
+        on:
+          branch: master
     - stage: components publish
       node_js: "10"
       script: echo "Deploying components to npm ..."
@@ -55,19 +67,7 @@ jobs:
         api_key: "$NPM_TOKEN"
         skip_cleanup: true
         on:
-          branch: master
-    - stage: cli publish
-      node_js: "10"
-      script: echo "Deploying cli to npm ..."
-      before_deploy: cd packages/cli
-      after_deploy: cd ../../
-      deploy:
-        provider: npm
-        email: "argeopensource@digiturk.com.tr"
-        api_key: "$NPM_TOKEN"
-        skip_cleanup: true
-        on:
-          branch: master
+          branch: master    
       
 
 
