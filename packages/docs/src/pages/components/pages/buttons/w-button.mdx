@@ -17,13 +17,28 @@ Eklenen ve değiştirilen özellikler aşağıdaki gibidir:
 
 ### Örnekler
 
-<WPlayground header="Temel Kullanım">
+<WPlayground header="Temel Kullanım"
+code={`
+<WButton style={{margin:10}}>Default Button</WButton>
+<WButton style={{margin:10}} color="secondary">Secondary Color</WButton>
+<WButton style={{margin:10}} disabled={true}>Disabled</WButton>
+`}
+>
 <WButton style={{margin:10}}>Default Button</WButton>
 <WButton style={{margin:10}} color="secondary">Secondary Color</WButton>
 <WButton style={{margin:10}} disabled={true}>Disabled</WButton>
 </WPlayground><br/>
 
-<WPlayground header="Farklı Görünümler">
+<WPlayground header="Farklı Görünümler"
+code={`
+<WButton style={{margin:10}} variant="text">Text</WButton>
+<WButton style={{margin:10}} variant="flat">Flat</WButton>
+<WButton style={{margin:10}} variant="outlined">Outlined</WButton>
+<WButton style={{margin:10}} variant="contained">Contained</WButton>
+<WButton style={{margin:10}} variant="fab"><WIcon>save</WIcon></WButton>
+<WButton style={{margin:10}} variant="extendedFab">ExtendedFab</WButton>
+`}
+>
 <WButton style={{margin:10}} variant="text">Text</WButton>
 <WButton style={{margin:10}} variant="flat">Flat</WButton>
 <WButton style={{margin:10}} variant="outlined">Outlined</WButton>
@@ -32,7 +47,16 @@ Eklenen ve değiştirilen özellikler aşağıdaki gibidir:
 <WButton style={{margin:10}} variant="extendedFab">ExtendedFab</WButton>
 </WPlayground><br/>
 
-<WPlayground header="Boyutlar">
+<WPlayground header="Boyutlar"
+code={`
+<WButton style={{margin:10}} size="small">Small</WButton>
+<WButton style={{margin:10}} size="medium">Medium</WButton>
+<WButton style={{margin:10}} size="large">Large</WButton>
+<br/>
+<WButton style={{margin:10}} variant="fab" mini><WIcon>add</WIcon></WButton>
+<WButton style={{margin:10}} variant="fab"><WIcon>add</WIcon></WButton>
+`}
+>
 <WButton style={{margin:10}} size="small">Small</WButton>
 <WButton style={{margin:10}} size="medium">Medium</WButton>
 <WButton style={{margin:10}} size="large">Large</WButton>
@@ -41,7 +65,12 @@ Eklenen ve değiştirilen özellikler aşağıdaki gibidir:
 <WButton style={{margin:10}} variant="fab"><WIcon>add</WIcon></WButton>
 </WPlayground><br/>
 
-<WPlayground header="Icon Kullanımı">
+<WPlayground header="Icon Kullanımı"
+code={`
+<WButton style={{margin:10}}><WIcon style={{marginRight:10}}>send</WIcon>Send</WButton>
+<WButton style={{margin:10}}>Check<WIcon style={{marginLeft:10}}>check</WIcon></WButton>
+`}
+>
 <WButton style={{margin:10}}><WIcon style={{marginRight:10}}>send</WIcon>Send</WButton>
 <WButton style={{margin:10}}>Check<WIcon style={{marginLeft:10}}>check</WIcon></WButton>
 </WPlayground><br/>

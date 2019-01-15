@@ -36,7 +36,14 @@ Form bileşenleri label ve name propertyleri eklenerek aşağıdaki şekilde kul
 
 ### Örnekler
 
-<WPlayground header="Temel Kullanım">
+<WPlayground header="Temel Kullanım"
+code={`
+<WForm initialValues={{company: 'Digiturk', year: 1987}} onSubmit={values => alert(values.company + ", " + values.year)}>
+  <WFormField.TextField name="company" label="Şirket"/>
+  <WFormField.TextField name="year" label="Yıl"/>
+  <WFormField.Submit>GÖSTER</WFormField.Submit>
+</WForm>
+`}>
   <WForm initialValues={{company: 'Digiturk', year: 1987}} onSubmit={values => alert(values.company + ", " + values.year)}>
     <WFormField.TextField name="company" label="Şirket"/>
     <WFormField.TextField name="year" label="Yıl"/>
@@ -47,7 +54,21 @@ Form bileşenleri label ve name propertyleri eklenerek aşağıdaki şekilde kul
 ### Validasyonlar
 
 
-<WPlayground header="Standart Validasyon">
+<WPlayground header="Standart Validasyon"
+code={`
+<WForm 
+    initialValues={{company: 'Digiturk', year: 1987}} 
+    onSubmit={values => alert(values.company + ", " + values.year)}
+    validationSchema={WFormValidation.object().shape({
+      company: WFormValidation.string().required().max(10),
+      year: WFormValidation.number().required().max(2000).min(1980)
+    })}
+  >
+    <WFormField.TextField name="company" label="Şirket"/>
+    <WFormField.TextField name="year" label="Yıl"/>
+    <WFormField.Submit>GÖSTER</WFormField.Submit>
+  </WForm>
+`}>>
   <WForm 
     initialValues={{company: 'Digiturk', year: 1987}} 
     onSubmit={values => alert(values.company + ", " + values.year)}
@@ -65,7 +86,24 @@ Form bileşenleri label ve name propertyleri eklenerek aşağıdaki şekilde kul
 > Standart validasyon için Yup kullanılmaktadır. 
 Yup hakkında daha detaylı bilgiye ulaşmak için [tıklayın](https://github.com/jquense/yup).
 
-<WPlayground header="Özel Validasyon">
+<WPlayground header="Özel Validasyon"
+code={`
+<WForm 
+  initialValues={{company: 'Digiturk', year: 1987}} 
+  onSubmit={values => alert(values.company + ", " + values.year)}
+  validate={values => {
+    let errors = {}; 
+    if(values.company != 'Digiturk') {
+      errors.company = 'Sadece Digiturk yazabilirsiniz';
+    }
+    return errors;
+  }}
+>
+  <WFormField.TextField name="company" label="Şirket"/>
+  <WFormField.TextField name="year" label="Yıl"/>
+  <WFormField.Submit>GÖSTER</WFormField.Submit>
+</WForm>
+`}>
   <WForm 
     initialValues={{company: 'Digiturk', year: 1987}} 
     onSubmit={values => alert(values.company + ", " + values.year)}

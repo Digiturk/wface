@@ -11,7 +11,7 @@ export default class WPlayground extends React.Component<any, any> {
     let codeText = this.props.code;
     if (!codeText) {
       if (Array.isArray(props.children)) {
-        codeText = props.children.map((e: any) => { return reactElementToJSXString(e) }).join('\n');
+        codeText = props.children.map((e: any) => reactElementToJSXString(e)).join('\n');
       } else if (this.props.children) {
         codeText = reactElementToJSXString(this.props.children);
       }

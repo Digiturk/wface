@@ -17,7 +17,71 @@ Eklenen ve değiştirilen özellikler aşağıdaki gibidir:
 
 ### Örnekler
 
-<WPlayground header="Temel Kullanım">
+<WPlayground header="Temel Kullanım"
+code={`
+<WChip label="Basic Chip" style={{margin: 10}}/>
+<WChip
+  avatar={<WAvatar>MB</WAvatar>}
+  label="Clickable Chip"
+  onClick={() => alert('Chip tıklandı')}
+  style={{margin: 10}}
+/>
+<WChip
+  avatar={
+    <WAvatar>
+      <WIcon>face</WIcon>
+    </WAvatar>
+  }
+  label="Clickable Deletable Chip"
+  onClick={() => alert('Chip tıklandı')}
+  style={{margin: 10}}
+/>
+<WChip
+  icon={<WIcon>face</WIcon>}
+  label="Clickable Deletable Chip"
+  onClick={() => alert('Chip tıklandı')}
+  style={{margin: 10}}
+/>
+<WChip
+  label="Custom delete icon Chip"
+  onClick={() => alert('Chip tıklandı')}
+  deleteIcon={<WIcon>done</WIcon>}
+  style={{margin: 10}}
+/>
+<WChip
+  avatar={<WAvatar>MB</WAvatar>}
+  label="Primary Clickable Chip"
+  clickable
+  color="primary"
+  deleteIcon={<WIcon>clear</WIcon>}
+  onDelete={() => alert('Delete tıklandı')}
+  style={{margin: 10}}
+/>
+<WChip
+  icon={<WIcon>done</WIcon>}
+  label="Primary Clickable Chip"
+  clickable
+  color="primary"
+  deleteIcon={<WIcon>face</WIcon>}
+  style={{margin: 10}}
+/>
+<WChip
+  avatar={
+    <WAvatar>
+      <WIcon>face</WIcon>
+    </WAvatar>
+  }
+  label="Deletable Secondary Chip"
+  color="secondary"
+  style={{margin: 10}}
+/>
+<WChip
+  icon={<WIcon>face</WIcon>}
+  label="Deletable Secondary Chip"
+  color="secondary"
+  style={{margin: 10}}
+/>
+`}>
 <WChip label="Basic Chip" style={{margin: 10}}/>
 <WChip
   avatar={<WAvatar>MB</WAvatar>}

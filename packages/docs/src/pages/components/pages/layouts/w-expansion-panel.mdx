@@ -24,7 +24,17 @@ Eklenen ve değiştirilen özellikler aşağıdaki gibidir:
 </WExpansionPanel>
 </WPlayground><br/>
 
-<WPlayground header="Actions Kullanımı">
+<WPlayground header="Actions Kullanımı"
+code={`
+<WExpansionPanel title="Panel"
+  actions={[
+    {text: "Gönder", onClick: () => { alert('ok')}},
+    {custom: <WButton><WIcon>send</WIcon></WButton>}
+  ]}
+>
+  İçerik
+</WExpansionPanel>
+`}>
 <WExpansionPanel title="Panel"
   actions={[
     {text: "Gönder", onClick: () => { alert('ok')}},

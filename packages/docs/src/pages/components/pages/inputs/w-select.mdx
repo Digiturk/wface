@@ -17,7 +17,18 @@ Eklenen ve değiştirilen özellikler aşağıdaki gibidir:
 
 ### Örnekler
 
-<WPlayground header="Temel Kullanım">
+<WPlayground header="Temel Kullanım"
+code={`
+<WSelect  
+  label="Şehir"
+  options={[
+    {label: 'Adana', value: '1'},
+    {label: 'Gaziantep', value: '27'},
+    {label: 'İstanbul', value: '34'},
+    {label: 'Şanlıurfa', value: '63'}
+  ]}
+/>
+`}>
   <WSelect  
     label="Şehir"
     options={[
@@ -29,7 +40,19 @@ Eklenen ve değiştirilen özellikler aşağıdaki gibidir:
   />
 </WPlayground><br/>
 
-<WPlayground header="Çoklu Seçim">
+<WPlayground header="Çoklu Seçim"
+code={`
+<WSelect
+  label="Şehirler"
+  options={[
+    {label: 'Adana', value: '1'},
+    {label: 'Gaziantep', value: '27'},
+    {label: 'İstanbul', value: '34'},
+    {label: 'Şanlıurfa', value: '63'}
+  ]}
+  isMulti
+/>
+`}>
   <WSelect
     label="Şehirler"
     options={[

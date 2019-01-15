@@ -16,7 +16,14 @@ Hata, uyarı, bilgilendirme ve başarılı işlem sonucu olarak kullanılabilir.
 
 ### Örnekler
 
-<WPlayground header="Temel Kullanım">
+<WPlayground header="Temel Kullanım"
+  code={`
+<WNotificationBar text="Bu bir hata mesajıdır." type="error"/>
+<WNotificationBar text="Bu bir uyarı mesajıdır." type="warning"/>
+<WNotificationBar text="Bu bir bilgilendirme mesajıdır." type="info"/>
+<WNotificationBar text="Bu bir başarılı işlem mesajıdır." type="success"/>
+`}
+>
 <WNotificationBar text="Bu bir hata mesajıdır." type="error"/>
 <WNotificationBar text="Bu bir uyarı mesajıdır." type="warning"/>
 <WNotificationBar text="Bu bir bilgilendirme mesajıdır." type="info"/>

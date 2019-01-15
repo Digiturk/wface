@@ -18,7 +18,20 @@ Eklenen ve değiştirilen özellikler aşağıdaki gibidir:
 
 ### Örnekler
 
-<WPlayground header="Temel Kullanım" code="sdfşlk">
+<WPlayground header="Temel Kullanım" 
+code={`
+<WTextField label="Name" style={{margin:10}}/>
+<br/>
+<WTextField 
+  label="Surname"
+  style={{margin:10}}
+  leftButtons={[
+    { icon: <WIcon>add</WIcon>, onClick: () => alert('add button clicked') },    
+  ]}
+  rightButtons={[
+    { icon: <WIcon>save</WIcon>, onClick: () => alert('save button clicked') },    
+  ]}/>
+`}>
 <WTextField label="Name" style={{margin:10}}/>
 <br/>
 <WTextField 

@@ -22,7 +22,22 @@ Eklenen ve değiştirilen özellikler aşağıdaki gibidir:
 
 ### Örnekler
 
-<WPlayground header="Temel Kullanım">
+<WPlayground header="Temel Kullanım"
+code={`
+<WCard>
+  <WTabContainer defaultValue={1} centered>        
+    <WTabPage icon={<WIcon>face</WIcon>}>
+      Page 1
+    </WTabPage>
+    <WTabPage label="Tab2">
+      Page 2
+    </WTabPage>
+    <WTabPage label="Tab3">
+      Page 3
+    </WTabPage>
+  </WTabContainer>
+</WCard>
+`}>
 <WCard>
   <WTabContainer defaultValue={1} centered>        
     <WTabPage icon={<WIcon>face</WIcon>}>

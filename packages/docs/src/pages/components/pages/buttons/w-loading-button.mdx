@@ -16,7 +16,11 @@ WLoadingButton, WButton kullanılarak geliştirilmiştir. Loading özelliğine s
 
 ### Örnekler
 
-<WPlayground header="Temel Kullanım">
+<WPlayground header="Temel Kullanım"
+code={`
+<WLoadingButton style={{margin: 10}} isLoading={true}>Linear</WLoadingButton>
+<WLoadingButton style={{margin: 10}} isLoading={true} progressType="circular">Circular</WLoadingButton> 
+`}>
 <WLoadingButton style={{margin: 10}} isLoading={true}>Linear</WLoadingButton>
 <WLoadingButton style={{margin: 10}} isLoading={true} progressType="circular">Circular</WLoadingButton> 
 </WPlayground>
