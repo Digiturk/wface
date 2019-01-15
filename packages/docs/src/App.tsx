@@ -42,6 +42,9 @@ class AppInner extends React.Component<any, any> {
             {this.renderMenuLink("blog", "Blog")}
             {this.renderMenuLink("versions", "Versiyonlar")}
             {this.renderMenuLink("training", "Eğitim")}
+            <a href="https://github.com/digiturk-dev/wface" style={{ color: '#FFFFFFCC' }}>
+              <WFace.WIcon style={{ fontSize: 25 }} iconSource="fontawesome" icon="fab fa-github" />
+            </a>
           </WFace.WToolBar>
         </WFace.WAppBar>
 
