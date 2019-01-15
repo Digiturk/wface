@@ -7,54 +7,67 @@ install:
 script:  
   - lerna bootstrap
 jobs:
-  components:
-    before_deploy: cd packages/components
-    deploy:
-      provider: npm
-      email: "argeopensource@digiturk.com.tr"
-      api_key: "$NPM_TOKEN"
-      skip_cleanup: true
-      on:
-        branch: master
-    after_deploy: cd ../../
-  container:
-    before_deploy: cd packages/container
-    deploy:
-      provider: npm
-      email: "argeopensource@digiturk.com.tr"
-      api_key: "$NPM_TOKEN"
-      skip_cleanup: true
-      on:
-        branch: master
-    after_deploy: cd ../../
-  ioc:
-    before_deploy: cd packages/ioc
-    deploy:
-      provider: npm
-      email: "argeopensource@digiturk.com.tr"
-      api_key: "$NPM_TOKEN"
-      skip_cleanup: true
-      on:
-        branch: master
-    after_deploy: cd ../../
-  store:
-    before_deploy: cd packages/store
-    deploy:
-      provider: npm
-      email: "argeopensource@digiturk.com.tr"
-      api_key: "$NPM_TOKEN"
-      skip_cleanup: true
-      on:
-        branch: master
-    after_deploy: cd ../../
-  cli:
-    before_deploy: cd packages/wface
-    deploy:
-      provider: npm
-      email: "argeopensource@digiturk.com.tr"
-      api_key: "$NPM_TOKEN"
-      skip_cleanup: true
-      on:
-        branch: master
-    after_deploy: cd ../../
+  include:
+    - stage: components publish
+      node_js: "10"
+      script: echo "Deploying components to npm ..."
+      before_deploy: cd packages/components
+      after_deploy: cd ../../
+      deploy:
+        provider: npm
+        email: "argeopensource@digiturk.com.tr"
+        api_key: "$NPM_TOKEN"
+        skip_cleanup: true
+        on:
+          branch: master
+    - stage: container publish
+      node_js: "10"
+      script: echo "Deploying container to npm ..."
+      before_deploy: cd packages/container
+      after_deploy: cd ../../
+      deploy:
+        provider: npm
+        email: "argeopensource@digiturk.com.tr"
+        api_key: "$NPM_TOKEN"
+        skip_cleanup: true
+        on:
+          branch: master
+    - stage: ioc publish
+      node_js: "10"
+      script: echo "Deploying ioc to npm ..."
+      before_deploy: cd packages/ioc
+      after_deploy: cd ../../
+      deploy:
+        provider: npm
+        email: "argeopensource@digiturk.com.tr"
+        api_key: "$NPM_TOKEN"
+        skip_cleanup: true
+        on:
+          branch: master
+    - stage: store publish
+      node_js: "10"
+      script: echo "Deploying store to npm ..."
+      before_deploy: cd packages/store
+      after_deploy: cd ../../
+      deploy:
+        provider: npm
+        email: "argeopensource@digiturk.com.tr"
+        api_key: "$NPM_TOKEN"
+        skip_cleanup: true
+        on:
+          branch: master
+    - stage: cli publish
+      node_js: "10"
+      script: echo "Deploying cli to npm ..."
+      before_deploy: cd packages/cli
+      after_deploy: cd ../../
+      deploy:
+        provider: npm
+        email: "argeopensource@digiturk.com.tr"
+        api_key: "$NPM_TOKEN"
+        skip_cleanup: true
+        on:
+          branch: master
+      
+
 
