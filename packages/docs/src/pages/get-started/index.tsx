@@ -16,6 +16,14 @@ const menuTree = [
     text: 'WFace Framework',
     path: 'wface',
     mdx: Mdx.WFace,
+    next: 'modules'
+  },
+  {
+    id: 'modules',
+    text: 'Modüller',
+    path: 'modules',
+    mdx: Mdx.Modules,
+    prev: 'wface',
     next: 'requirements'
   },
   {
@@ -23,7 +31,7 @@ const menuTree = [
     text: 'Gereksinimler',
     path: 'requirements',
     mdx: Mdx.Requirements,
-    prev: 'wface',
+    prev: 'modules',
     next: 'setup'
   },
   {

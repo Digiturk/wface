@@ -9,6 +9,7 @@ import Requirements from './pages/requirements.mdx'
 import Setup from './pages/setup.mdx'
 import SupportedPlatforms from './pages/supported-platforms.mdx'
 import Usage from './pages/usage.mdx'
+import Modules from './pages/modules.mdx'
 
 const Mdx = {
   WFace: () => <WFace components={mdxComponents} />,
@@ -18,6 +19,7 @@ const Mdx = {
   Setup: () => <Setup components={mdxComponents} />,
   SupportedPlatforms: () => <SupportedPlatforms components={mdxComponents} />,
   Usage: () => <Usage components={mdxComponents} />,
+  Modules: () => <Modules components={mdxComponents} />,
 }
 
 export default Mdx

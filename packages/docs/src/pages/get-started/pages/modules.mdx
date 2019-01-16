@@ -1,0 +1,38 @@
+# Modüller
+
+WFace tasarlanırken birden fazla modüle ayrılmıştır. 
+Bu modüllerin birbirine bağımlılıklarını gösteren grafik aşağıdaki gibidir. 
+
+<img src="./assets/modules-dependency.png" style={{margin: 'auto', display: 'block', marginBottom: 30, marginTop: 30}}/>
+
+Grafikte oklar bağımlılıkların yönünü göstermektedir. Örneğin tüm modüller @wface/ioc modülüne bağımlıdır ama @wface/ioc herhangi 
+bir modüle bağımlı değildir.
+
+### WFace App
+
+WFace komut satırı uygulamasını kullanarak oluşturduğunuz projenizdir. 
+WFace kodları içerisindeki `cli` modülü bu projenin taslak halini oluşturmaktadır. 
+WFace modüllerini kullanan uygulamadır. 
+
+### @wface/container
+
+WFace uygulaması tarafından doğrudan kullanılan bileşenleri içeren modüldür. 
+WFace uygulamasında bulunan `index.tsx` dosyasında @wface/container modülünde bulunan `AppContainer` bileşeni render edilir ve 
+böylece uygulamanın kontrolü WFace'e devredilmiş olur. 
+WFace uygulamanızda yetkilendirme, sayfaların kontrolü, konfigürasyonlar bu modül tarafından yönetilir.
+
+### @wface/components
+
+WFace için `material-ui` kütüphanesi baz alınarak geliştirilmiş bütün bileşenlerin yer aldığı modüldür. 
+Uygulamanızda ekran geliştirirken kullanabileceğiniz bileşenlerin tamamı bu modüle yerleştirilmiştir.
+
+### @wface/store
+
+WFace uygulamanızın state yönetimi için Redux kullanılmaktadır. Bu state'e ait tüm action ve reducer'lar bu modülde yönetilmektedir. 
+
+### @wface/ioc
+
+WFace uygulamalarının birçok ihtiyacı karşılayabilecek şekilde esnek olabilmesi için mimari bir IOC container üzerine inşa edilmiştir. 
+WFace uygulamanızın herhangi bir yerinde IOC modülünü kullanarak gerekli sınıflara erişebilirsiniz. 
+Örneğin WFace'de varsayılan httpService yerine kendi geliştirdiğiniz httpService sınıfının kullanılmasını istiyorsanız bunu WFace 
+konfigürasyonunda belirtmeniz yeterli olacaktır. WFace tüm httpService kullanım noktalarında bu değişikliği yönetecektir. 
