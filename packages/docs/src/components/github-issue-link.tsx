@@ -4,7 +4,7 @@ import * as React from 'react'
 export default (props: {no: string}) => (
   <a 
     target="_blank"
-    href={"https://github.com/digiturk-dev/wface/issues/" + props.no}
+    href={"https://github.com/Digiturk/wface/issues/" + props.no}
     style={{
       color: '#3f51b5',
       textDecoration: 'none',
