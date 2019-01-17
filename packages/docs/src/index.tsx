@@ -4,7 +4,7 @@ import "reflect-metadata";
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import App from './App'
-import { store } from '@wface/store';
+import store from './store';
 import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
 import WMuiThemeProvider from './WMuiThemeProvider';
