@@ -4,10 +4,11 @@ import { withStyles } from '@material-ui/core';
 import Requirements from './Requirements';
 import Setup from './Setup';
 import Usage from './Usage';
+import Text from '../../components/text';
 
 class MainPage extends React.Component<any, any> {
 
-  MainButton = (props: {href: string, text: string}) => (
+  MainButton = (props: {href: string, text: string | React.ReactElement<any>}) => (
     <WFace.WButton 
       href={props.href}
       className={this.props.classes.mainButton}       
@@ -26,8 +27,8 @@ class MainPage extends React.Component<any, any> {
           <WFace.WGrid item style={{ textAlign: 'center' }} xs={12}>
             <WFace.WIcon style={{ fontSize: 200, height: 160, color: '#fff' }}>code</WFace.WIcon>
             <WFace.WTypography variant="h6" style={{ fontSize: 50, color: '#fff', marginBottom: 30 }} color="primary">WFace</WFace.WTypography>
-            <this.MainButton href={"#/get-started"} text="Başlangıç"/>
-            <this.MainButton href={"#/components"} text="Bileşenler"/>
+            <this.MainButton href={"#/get-started"} text={<Text tr="Başlangıç" en="Get Started"/>}/>
+            <this.MainButton href={"#/components"} text={<Text tr="Bileşenler" en="Components"/>}/>
             <this.MainButton href={"#/blog"} text="Blog"/>                   
           </WFace.WGrid>
         </WFace.WGrid>
@@ -55,7 +56,7 @@ const styles: any = ({
     fontSize: 120
   },
   mainButton: {
-    width: 100,
+    width: 110,
     margin: 20,
     textTransform: 'none',
     color: '#DDD',

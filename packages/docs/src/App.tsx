@@ -12,6 +12,7 @@ import BlogPage from './pages/blog';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { AppContextActions } from './store';
 import { connect } from 'react-redux';
+import Text from './components/text';
 
 class AppInner extends React.Component<any, any> {
 
@@ -22,7 +23,7 @@ class AppInner extends React.Component<any, any> {
     }
   }
 
-  renderMenuLink = (href: string, text: string): React.ReactNode => (
+  renderMenuLink = (href: string, text: string | React.ReactElement<any>): React.ReactNode => (
     <WFace.WButton
       variant="flat"
       color="inherit"
@@ -49,13 +50,13 @@ class AppInner extends React.Component<any, any> {
               WFace
             </WFace.WTypography>
 
-            {this.renderMenuLink("main", "Ana Sayfa")}
-            {this.renderMenuLink("get-started", "Başlangıç")}
-            {this.renderMenuLink("components", "Bileşenler")}
+            {this.renderMenuLink("main", <Text tr="Ana Sayfa" en="Home"/>)}
+            {this.renderMenuLink("get-started", <Text tr="Başlangıç" en="Get Started"/>)}
+            {this.renderMenuLink("components", <Text tr="Bileşenler" en="Components"/>)}
             {this.renderMenuLink("cli", "WFace CLI")}
             {this.renderMenuLink("blog", "Blog")}
-            {this.renderMenuLink("versions", "Versiyonlar")}
-            {this.renderMenuLink("training", "Eğitim")}
+            {this.renderMenuLink("versions", <Text tr="Versiyonlar" en="Versions"/>)}
+            {this.renderMenuLink("training", <Text tr="Eğitim" en="Training"/>)}
             <a href="https://github.com/Digiturk/wface" style={{ color: '#FFFFFFCC' }}>
               <WFace.WIcon style={{ fontSize: 25 }} iconSource="fontawesome" icon="fab fa-github" />
             </a>
@@ -82,12 +83,11 @@ class AppInner extends React.Component<any, any> {
                 open={Boolean(this.state.userMenuAnchor)}
                 onClose={() => this.setState({ userMenuAnchor: null })}
               >
-                <WFace.WMenuItem dense onClick={() => this.changeLang("en")}>
-                  <WFace.WListItemText primary="EN" />
-                </WFace.WMenuItem>
-                <WFace.WMenuItem dense onClick={() => this.changeLang("tr")}>
-                  <WFace.WListItemText primary="TR" />
-                </WFace.WMenuItem>
+                {["en", "tr"].map(lang => (
+                  <WFace.WMenuItem dense onClick={() => this.changeLang(lang)} selected={this.props.appContext.lang === lang}>
+                    <WFace.WListItemText primary={lang.toUpperCase()} />
+                  </WFace.WMenuItem>
+                ))}
               </WFace.WMenu>
             </div>
           </WFace.WToolBar>
@@ -140,7 +140,7 @@ const styles: any = (theme: any) => ({
   }
 });
 
-const App = withRouter(withStyles(styles)(AppInner) as any)
+// const App = withRouter(withStyles(styles)(AppInner) as any)
 
 const mapStateToProps = (state: any) => ({
   appContext: state.appContext
@@ -150,5 +150,7 @@ const mapDispatchToProps = (dispatch: any) => ({
   changeLang: (lang: 'en' | 'tr', value: any) => dispatch(AppContextActions.changeLang(lang)),
 });
 
+const App = connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(AppInner))
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+export default withRouter(App as any);

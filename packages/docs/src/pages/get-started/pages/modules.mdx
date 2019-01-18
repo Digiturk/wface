@@ -1,47 +1,91 @@
 import MultiLang from '../../../components/multi-lang'
 
-# Modüller
-
 <MultiLang lang="en">
-  Some english text
+  # Modules
 </MultiLang>
 <MultiLang lang="tr">
-  turkçe text
+  # Modüller
 </MultiLang>
 
-WFace tasarlanırken birden fazla modüle ayrılmıştır. 
+<MultiLang lang="en">
+  WFace divided into multiple modules when designing. 
+  Dependency graph of these modules are below
+</MultiLang>
+<MultiLang lang="tr">
+  WFace tasarlanırken birden fazla modüle ayrılmıştır. 
 Bu modüllerin birbirine bağımlılıklarını gösteren grafik aşağıdaki gibidir. 
+</MultiLang>
 
 <img src="./assets/modules-dependency.png" style={{margin: 'auto', display: 'block', marginBottom: 30, marginTop: 30}}/>
 
+<MultiLang lang="en">
+  Arrows in the graph shows the direction of dependencies. 
+  For example all modules are dependent to @wface/ioc, but @wface/ioc is not dependent to any other module. 
+</MultiLang>
+<MultiLang lang="tr">
 Grafikte oklar bağımlılıkların yönünü göstermektedir. Örneğin tüm modüller @wface/ioc modülüne bağımlıdır ama @wface/ioc herhangi 
 bir modüle bağımlı değildir.
+</MultiLang>
 
 ### WFace App
 
+<MultiLang lang="en">
+  WFace App is the project that you created with wface command line interface.
+  `cli` module in wface codes is template of WFace App. WFace App uses other WFace modules. 
+</MultiLang>
+<MultiLang lang="tr">
 WFace komut satırı uygulamasını kullanarak oluşturduğunuz projenizdir. 
 WFace kodları içerisindeki `cli` modülü bu projenin taslak halini oluşturmaktadır. 
 WFace modüllerini kullanan uygulamadır. 
+</MultiLang>
 
 ### @wface/container
 
+<MultiLang lang="en">
+  Contains components that used by WFace App directly. 
+  `AppContainer` component is rendered in `index.tsx` file that is in root folder of WFace App. So WFace takes control of application.
+  @wface/container manages authorization, pages and configuration application.
+</MultiLang>
+<MultiLang lang="tr">
 WFace uygulaması tarafından doğrudan kullanılan bileşenleri içeren modüldür. 
 WFace uygulamasında bulunan `index.tsx` dosyasında @wface/container modülünde bulunan `AppContainer` bileşeni render edilir ve 
 böylece uygulamanın kontrolü WFace'e devredilmiş olur. 
 WFace uygulamanızda yetkilendirme, sayfaların kontrolü, konfigürasyonlar bu modül tarafından yönetilir.
+</MultiLang>
 
 ### @wface/components
 
+<MultiLang lang="en">
+  Contains all UI components of WFace and built based on `material-ui` library. 
+  All components are in this module for development of application screens. 
+</MultiLang>
+<MultiLang lang="tr">
 WFace için `material-ui` kütüphanesi baz alınarak geliştirilmiş bütün bileşenlerin yer aldığı modüldür. 
 Uygulamanızda ekran geliştirirken kullanabileceğiniz bileşenlerin tamamı bu modüle yerleştirilmiştir.
+</MultiLang>
 
 ### @wface/store
 
-WFace uygulamanızın state yönetimi için Redux kullanılmaktadır. Bu state'e ait tüm action ve reducer'lar bu modülde yönetilmektedir. 
+<MultiLang lang="en">
+  Redux is used for state management of WFace App. 
+  All actions and reducers of this state are managed in this module. 
+</MultiLang>
+<MultiLang lang="tr">
+WFace uygulamanızın state yönetimi için Redux kullanılmaktadır. 
+Bu state'e ait tüm action ve reducer'lar bu modülde yönetilmektedir. 
+</MultiLang>
 
 ### @wface/ioc
 
+<MultiLang lang="en">
+  The architecture of WFace designed based on IOC container to be extendible to handling various requirements. 
+You can access required classes by using IOC module anywhere in your application.
+For example, if you want to use your own httpService class instead of default one, adding this change in WFace configuration
+file would be enough. WFace would manage this change in every httpService requirements. 
+</MultiLang>
+<MultiLang lang="tr">
 WFace uygulamalarının birçok ihtiyacı karşılayabilecek şekilde esnek olabilmesi için mimari bir IOC container üzerine inşa edilmiştir. 
 WFace uygulamanızın herhangi bir yerinde IOC modülünü kullanarak gerekli sınıflara erişebilirsiniz. 
 Örneğin WFace'de varsayılan httpService yerine kendi geliştirdiğiniz httpService sınıfının kullanılmasını istiyorsanız bunu WFace 
 konfigürasyonunda belirtmeniz yeterli olacaktır. WFace tüm httpService kullanım noktalarında bu değişikliği yönetecektir. 
+</MultiLang>

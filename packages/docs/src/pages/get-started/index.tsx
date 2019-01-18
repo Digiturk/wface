@@ -1,6 +1,7 @@
 import * as React from 'react'
 import Mdx from './mdx'
 import PageLayout from '../../components/page-layout';
+import Text from '../../components/text';
 
 export default class GetStartedPage extends React.Component<any, any> {
   public render() {
@@ -20,7 +21,7 @@ const menuTree = [
   },
   {
     id: 'modules',
-    text: 'Modüller',
+    text: <Text tr="Modüller" en="Modules"/>,
     path: 'modules',
     mdx: Mdx.Modules,
     prev: 'wface',
@@ -28,7 +29,7 @@ const menuTree = [
   },
   {
     id: 'requirements',
-    text: 'Gereksinimler',
+    text: <Text tr="Gereksinimler" en="Requirements"/>,
     path: 'requirements',
     mdx: Mdx.Requirements,
     prev: 'modules',
@@ -36,7 +37,7 @@ const menuTree = [
   },
   {
     id: 'setup',
-    text: 'Kurulum',
+    text: <Text tr="Kurulum" en="Setup"/>,
     path: 'setup',
     mdx: Mdx.Setup,
     prev: 'requirements',
@@ -44,7 +45,7 @@ const menuTree = [
   },
   {
     id: 'usage',
-    text: 'Kullanım',
+    text: <Text tr="Kullanım" en="Usage"/>,
     path: 'usage',
     mdx: Mdx.Usage,
     prev: 'setup',
@@ -52,7 +53,7 @@ const menuTree = [
   },
   {
     id: 'additional-tools',
-    text: 'Ek Araçlar',
+    text: <Text tr="Ek Araçlar" en="Additional Tools"/>,
     path: 'additional-tools',
     mdx: Mdx.AdditionalTools,
     prev: 'usage',
@@ -60,7 +61,7 @@ const menuTree = [
   },
   {
     id: 'supported-platforms',
-    text: 'Desteklenen Ortamlar',
+    text: <Text tr="Desteklenen Ortamlar" en="Supported Platforms"/>,
     path: 'supported-platforms',
     mdx: Mdx.SupportedPlatforms,
     prev: 'additional-tools'

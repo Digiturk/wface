@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as WFace from '@wface/components';
+import Text from '../../components/text';
 
 export default class Requirements extends React.Component<any, any> {
 
@@ -24,7 +25,7 @@ export default class Requirements extends React.Component<any, any> {
     return (
       <WFace.WCard style={{height:'100%'}} elevation={0}>
         <WFace.WCardHeader 
-          title={<WFace.WTypography variant="h5" >Gereksinimler</WFace.WTypography> } 
+          title={<WFace.WTypography variant="h5" ><Text tr="Gereksinimler" en="Requirements"/></WFace.WTypography> }
           avatar={<WFace.WIcon color="inherit" style={{fontSize:25}}>get_app</WFace.WIcon>}/>
         <WFace.WCardContent>
           <WFace.WList>
