@@ -3,6 +3,8 @@ import * as WFace from '@wface/components';
 
 interface DemoScreenState {
   text: string;
+  data: any[];
+  selected: any;
 }
 
 export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScreenState> {
@@ -10,22 +12,18 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
     super(props);
 
     this.state = this.props.screenData.state || {
+      data: [
+        { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
+        { name: 'Hakan', surname: 'Baran', birthYear: 1989, birthCity: 63 },
+        { name: 'Baran', surname: 'Baran', birthYear: 1995, birthCity: 63 },
+      ],
+      selected: null
     }
   }
 
   public render() {
     return (
-      <>        
-        <WFace.WTextField value={this.state.text} onChange={event => this.setState({ text: event.target.value })} />
-        <WFace.WButton onClick={() => {
-
-          this.props.changeScreenMode("loading")
-          setTimeout(() => this.props.changeScreenMode("normal"), 3000);
-        }}>Deneme</WFace.WButton>
-        <WFace.WSelect />
-        {this.state.text}
-        <br />
-        This is demo screen
+      <>
         <WFace.WTable
           columns={[
             { title: 'Adı', field: 'name' },
@@ -37,11 +35,21 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
               lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
             },
           ]}
-          data={[
-            { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-          ]}
+          data={this.state.data}
+          onRowClick={(event, rowData) => this.setState({selected: rowData})}
           title="Demo Title"
+          options={{
+            rowStyle: (rowData) => {
+              if(rowData === this.state.selected) {
+                return { backgroundColor: '#ddd' };
+              }
+              else {
+                return {};
+              }
+            }
+          }}
         />
+        {this.state.selected && <div>{this.state.selected.name}</div>}
       </>
     )
   }

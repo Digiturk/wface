@@ -13,7 +13,7 @@ gulp.task('publish', function() {
   childProcess.execSync(command, { stdio: [0,1,2], cwd: './packages/container/' });
   childProcess.execSync(command, { stdio: [0,1,2], cwd: './packages/ioc/' });
   childProcess.execSync(command, { stdio: [0,1,2], cwd: './packages/store/' });
-  childProcess.execSync(command, { stdio: [0,1,2], cwd: './packages/wface/' });
+  childProcess.execSync(command, { stdio: [0,1,2], cwd: './packages/cli/' });
 });
 
 gulp.task('version', function(){  
@@ -24,10 +24,9 @@ gulp.task('version', function(){
   }
   updateVersion('./packages/components/package.json', newVersion);
   updateVersion('./packages/container/package.json', newVersion);
-  updateVersion('./packages/docs/package.json', newVersion);
   updateVersion('./packages/ioc/package.json', newVersion);
   updateVersion('./packages/store/package.json', newVersion);
-  updateVersion('./packages/wface/package.json', newVersion);
+  updateVersion('./packages/cli/package.json', newVersion);
 });
 
 const updateVersion = (path, version) => {
