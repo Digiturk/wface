@@ -12,6 +12,7 @@ export interface WFormProps {
   validate?: ((values: any) => void | object | Promise<WFormErrors>);
   enableReinitialize?: boolean;
   onChange?: (values: any) => void;
+  formStyle?: React.CSSProperties;  
 }
 
 export class WForm extends React.Component<WFormProps, {}> {
@@ -31,7 +32,7 @@ export class WForm extends React.Component<WFormProps, {}> {
         render={(
           formikProps: FormikProps<any>) => {
           return(
-            <Form>
+            <Form style={this.props.formStyle}>
               {this.props.children}
             </Form>
           );
