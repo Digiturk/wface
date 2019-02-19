@@ -8,51 +8,71 @@ import IOC, { IAuthService, IConfiguration, AuthServiceWrapper, IHttpService, Ht
 import DefaultHttpService from './default-http-service';
 import WLoginPage from '../w-login-page';
 import { Provider } from 'react-redux';
+import IAppHooks from '@wface/ioc/src/interfaces/i-app-hooks';
 
 
-class WApp extends React.Component<{configuration: IConfiguration}, any> {
+class WApp extends React.Component<{ configuration: IConfiguration }, { configuration: IConfiguration }> {
   store: any;
 
   constructor(props) {
     super(props);
 
-    const configuration = this.getConfig(props);  
+    const configuration = this.getConfig(props);
     this.store = getStore(configuration.useLocalStorage);
     this.store.dispatch(AppContextActions.setConfig(configuration));
     this.buildIOC(configuration);
-    
+
     this.state = {
       configuration: configuration
     }
   }
 
+  componentDidMount() {
+    if(IOC.isBound("IAppHooks")) {
+      const hooks = IOC.get<IAppHooks>("IAppHooks");
+      hooks.onAppMount && hooks.onAppMount();
+    }
+  }
+
+  componentWillUnmount() {
+    if(IOC.isBound("IAppHooks")) {
+      const hooks = IOC.get<IAppHooks>("IAppHooks");
+      hooks.onAppUnmount && hooks.onAppUnmount();
+    }
+  }
+
   buildIOC = (configuration: IConfiguration) => {
 
-    const onLogin = (username: string, displayName: string, token?: string) => this.store.dispatch(UserContextActions.login({username, displayName, token}));
+    const onLogin = (username: string, displayName: string, token?: string) => this.store.dispatch(UserContextActions.login({ username, displayName, token }));
     !IOC.isBound("onLogin") &&
-    IOC.bind("onLogin").toFunction(onLogin); // Burasi değişmeli
+      IOC.bind("onLogin").toFunction(onLogin); // Burasi değişmeli
 
     // Bind contextes
     !IOC.isBound("UserContext") &&
-    IOC.bind<UserContext>("UserContext").toFactory(() => this.store.getState().userContext);
+      IOC.bind<UserContext>("UserContext").toFactory(() => this.store.getState().userContext);
     !IOC.isBound("AppContext") &&
-    IOC.bind<AppContext>("AppContext").toFactory(() => this.store.getState().appContext);
+      IOC.bind<AppContext>("AppContext").toFactory(() => this.store.getState().appContext);
 
     // Bind auth service
     !IOC.isBound("IAuthServiceInner") &&
-    IOC.bind<IAuthService>("IAuthServiceInner").to(this.props.configuration.authService);
+      IOC.bind<IAuthService>("IAuthServiceInner").to(configuration.authService);
     !IOC.isBound("IAuthService") &&
-    IOC.bind<IAuthService>("IAuthService").to(AuthServiceWrapper);
+      IOC.bind<IAuthService>("IAuthService").to(AuthServiceWrapper);
 
     // Bind http service
     !IOC.isBound("IHttpServiceInner") &&
-    IOC.bind<IHttpService>("IHttpServiceInner").to(this.props.configuration.httpService || DefaultHttpService);
+      IOC.bind<IHttpService>("IHttpServiceInner").to(configuration.httpService || DefaultHttpService);
     !IOC.isBound("IHttpService") &&
-    IOC.bind<IHttpService>("IHttpService").to(HttpServiceWrapper);
+      IOC.bind<IHttpService>("IHttpService").to(HttpServiceWrapper);
+
+    // Bind hooks 
+    configuration.hooks &&
+    !IOC.isBound("IAppHooks") &&
+      IOC.bind<IAppHooks>("IAppHooks").to(configuration.hooks);
   }
 
-  getConfig(props: {configuration: IConfiguration}): IConfiguration {    
-    let config = {...props.configuration};
+  getConfig(props: { configuration: IConfiguration }): IConfiguration {
+    let config = { ...props.configuration };
     config.loginScreen = props.configuration.loginScreen || WLoginPage;
     return config;
   }

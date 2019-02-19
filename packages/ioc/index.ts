@@ -1,14 +1,14 @@
 // implementations
-export { default as MenuTreeUtil } from './src/implementations/MenuTreeUtil'
+export { default as MenuTreeUtil } from './src/implementations/menu-tree-util';
 
 // interfaces 
-export { default as IConfiguration } from './src/interfaces/IConfiguration'
-export { default as IAuthService, IMenuTreeItem } from './src/interfaces/IAuthService'
-export { default as IHttpService } from './src/interfaces/IHttpService'
+export { default as IConfiguration } from './src/interfaces/i-configuration';
+export { default as IAuthService, IMenuTreeItem } from './src/interfaces/i-auth-service';
+export { default as IHttpService } from './src/interfaces/i-http-service';
 
 // wrappers
-export { default as AuthServiceWrapper } from './src/wrappers/AuthServiceWrapper';
-export { default as HttpServiceWrapper } from './src/wrappers/HttpServiceWrapper';
+export { default as AuthServiceWrapper } from './src/wrappers/auth-service-wrapper';
+export { default as HttpServiceWrapper } from './src/wrappers/http-service-wrapper';
 
 
 // Inversify Implementation

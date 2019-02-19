@@ -1,5 +1,6 @@
-import IHttpService from './IHttpService';
-import IAuthService from './IAuthService';
+import IHttpService from './i-http-service';
+import IAuthService from './i-auth-service';
+import IAppHooks from './i-app-hooks';
 
 type X = IAuthService
 
@@ -14,4 +15,5 @@ export default interface IConfiguration {
 
   theme?: any;
   useLocalStorage?: boolean;
+  hooks?: { new (...args: any[]): IAppHooks; };
 }

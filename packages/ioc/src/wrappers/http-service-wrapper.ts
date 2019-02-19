@@ -1,4 +1,4 @@
-import IHttpService from '../interfaces/IHttpService';
+import IHttpService from '../interfaces/i-http-service';
 import { injectable, inject } from "inversify";
 
 @injectable()

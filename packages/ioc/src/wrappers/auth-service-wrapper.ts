@@ -1,4 +1,4 @@
-import IAuthService, { IMenuTreeItem } from '../interfaces/IAuthService';
+import IAuthService, { IMenuTreeItem } from '../interfaces/i-auth-service';
 import { injectable, inject } from "inversify";
 
 @injectable()

@@ -47,7 +47,7 @@ class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> {
   btnLoginClick() {
     this.setState({ isLoading: true }, () => {
       this.props.authService.login(this.state.username, this.state.password)
-        .then(result => {          
+        .then(result => {
         }).
         catch(message => {
           this.setState({
@@ -127,17 +127,17 @@ class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> {
                     color="primary"
                     className={classes.vSpace}
                     style={{ marginTop: 50, marginBottom: 20 }}
-                    isLoading={this.state.isLoading}                                        
+                    isLoading={this.state.isLoading}
                     status={this.state.loadingButtonStatus}
                     disableFocusRipple
-                    onClick={this.btnLoginClick.bind(this)}                    
-                    >
+                    onClick={this.btnLoginClick.bind(this)}
+                  >
                     GİRİŞ
                                     </WLoadingButton>
                 </WCardContent>
               </WCard>
             </WGrid>
-            <WGrid item xs={12} style={{ textAlign: 'center'}}>
+            <WGrid item xs={12} style={{ textAlign: 'center' }}>
               <WTypography style={{ color: '#ddd' }}>
                 @2018 DigiTurk
               </WTypography>

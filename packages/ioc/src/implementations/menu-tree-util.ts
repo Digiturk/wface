@@ -1,4 +1,4 @@
-import { IMenuTreeItem } from '../interfaces/IAuthService';
+import { IMenuTreeItem } from '../interfaces/i-auth-service';
 
 export default class MenuTreeUtil {
   public static find(menuTree: IMenuTreeItem[], id: String): IMenuTreeItem {
