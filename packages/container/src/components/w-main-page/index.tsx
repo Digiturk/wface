@@ -126,15 +126,15 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
   //#region Render
 
   renderTabs = (classes) => {
-    const screenType = Horizontal.getType();    
+    const screenType = Horizontal.getType();
     return (
       <WTabs
         variant={
           (screenType == WindowWidthType.LG && this.props.appContext.openedScreens.length > 7) ||
-          (screenType == WindowWidthType.MD && this.props.appContext.openedScreens.length > 5) ||
-          (screenType == WindowWidthType.SM && this.props.appContext.openedScreens.length > 4) ||
-          (screenType == WindowWidthType.XS && this.props.appContext.openedScreens.length > 2)
-          ? "scrollable" : undefined
+            (screenType == WindowWidthType.MD && this.props.appContext.openedScreens.length > 5) ||
+            (screenType == WindowWidthType.SM && this.props.appContext.openedScreens.length > 4) ||
+            (screenType == WindowWidthType.XS && this.props.appContext.openedScreens.length > 2)
+            ? "scrollable" : undefined
         }
         // variant="scrollable"
         scrollButtons="off"
@@ -158,11 +158,11 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
               <WGrid container alignItems="center">
                 <WGrid item xs={hasRightGrid ? 10 : 12}>
                   {screen.menuTreeItem.text.length > 25 ?
-                  (screen.menuTreeItem.text.substr(0, 25) + "...") : screen.menuTreeItem.text}
+                    (screen.menuTreeItem.text.substr(0, 25) + "...") : screen.menuTreeItem.text}
                 </WGrid>
                 {hasRightGrid &&
                   <WGrid item xs={2} zeroMinWidth>
-                    {screen.mode === "loading" ?                      
+                    {screen.mode === "loading" ?
                       <div style={{ minWidth: 39 }}>
                         <WCircularProgress size={25} style={{ color: 'white' }} />
                       </div>
@@ -176,14 +176,14 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
                 }
               </WGrid>
             );
-            return <WTab key={screen.menuTreeItem.id}              
+            return <WTab key={screen.menuTreeItem.id}
               label={label}
               classes={{
                 labelContainer: classes.tabLabelContainer
               }}
               value={screen.menuTreeItem.id}
               onMouseUp={e => this.handleTabButton(e, screen)}
-              />
+            />
           })
         }
       </WTabs>
@@ -194,8 +194,8 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
     const { classes } = this.props;
     return (
       <div className={classes.root + " main-page"}>
-        <WAppBar position="absolute" className={classes.appBar}>
-          <WToolBar style={{ minHeight: 36, height: 36, padding: 0 }}>
+        <WAppBar position="fixed" className={classes.appBar}>
+          <WToolBar variant="dense">
             <WIconButton
               color="inherit"
               aria-label="open drawer"
@@ -222,8 +222,9 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
             paper: classes.drawerPaper,
           }}
         >
-          <div style={{ marginTop: 84, height: '100%', paddingBottom: 30, overflow: 'none' }}>
-            <WScrollBar >
+          <div style={{minHeight: 96}}/>
+          <div style={{ height: 'calc(100% - 96px)', overflow: 'none' }}>
+            <WScrollBar>
               <NavList menuTree={this.props.appContext.menuTree} onItemClicked={this.onMenuItemClicked} />
             </WScrollBar>
             <div style={{
@@ -232,16 +233,18 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
             }}>
               <div style={{ display: 'table-cell', verticalAlign: 'middle', textAlign: 'center' }}>
                 <span style={{ color: '#9c9999', fontSize: 11 }}>
-                  Bu proje <a style={{ fontWeight: 600, textDecoration: 'none', color: '#3f51b5' }} href="http://wface.digiturk.net" target="_blank">WFace</a> ile geliştirilmiştir.
+                  Bu proje <a style={{ fontWeight: 600, textDecoration: 'none', color: '#3f51b5' }} href="http://wface.digiturk.io" target="_blank">WFace</a> ile geliştirilmiştir.
                 </span>
               </div>
             </div>
           </div>
         </WDrawer>
+
         <main className={classNames(classes.content, classes[`content-left`], {
           [classes.contentShift]: this.state.drawerOpen,
           [classes[`contentShift-left`]]: this.state.drawerOpen,
-        })} style={{ marginTop: 84 }}>
+        })}>
+          <div style={{minHeight: 96}}/>
           <WScrollBar>
             {
               this.props.appContext.openedScreens.map(screen => {
@@ -273,12 +276,9 @@ const screenData = Horizontal.getData();
 const drawerWidth = screenData.widthType === WindowWidthType.XS ? screenData.width : 240;
 const styles: any = (theme: any) => ({
   root: {
-    flexGrow: 1,
-    height: '%100',
-    zIndex: 1,
-    overflow: 'hidden',
-    position: 'relative',
-    display: 'flex',
+    height: '100%',
+    zIndex: theme.zIndex.drawer + 1,
+    overflow: 'hidden',    
   },
   flex: {
     flex: 1,
@@ -288,8 +288,8 @@ const styles: any = (theme: any) => ({
     zIndex: theme.zIndex.drawer + 1,
   },
   drawerPaper: {
-    position: 'relative',
     width: drawerWidth,
+    height: '100%'
   },
   tabLabelContainer: {
     paddingTop: 0,
@@ -307,13 +307,14 @@ const styles: any = (theme: any) => ({
     minWidth: 0, // So the Typography noWrap works        
     display: 'flex',
     flexDirection: 'column',
-    transition: 'all ease 250ms'
+    transition: 'all ease 250ms',
+    height: 'inherit'
   },
   "content-left": {
-    marginLeft: -drawerWidth,
+    marginLeft: 0,
   },
   "content-right": {
-    marginRight: -drawerWidth,
+    marginRight: 0
   },
   contentShift: {
     transition: theme.transitions.create('margin', {
@@ -322,14 +323,15 @@ const styles: any = (theme: any) => ({
     }),
   },
   'contentShift-left': {
-    marginLeft: 0,
+    marginLeft: drawerWidth,
   },
   'contentShift-right': {
     marginRight: 0,
   },
   whiteText: {
     color: '#bbb'
-  }
+  },
+  toolbar: theme.mixins.toolbar,
 });
 
 const mapStateToProps = (state: WStore) => ({

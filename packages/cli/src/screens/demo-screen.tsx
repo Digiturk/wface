@@ -39,6 +39,7 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
           onRowClick={(event, rowData) => this.setState({selected: rowData})}
           title="Demo Title"
           options={{
+            pageSize: 5,
             rowStyle: (rowData) => {
               if(rowData === this.state.selected) {
                 return { backgroundColor: '#ddd' };

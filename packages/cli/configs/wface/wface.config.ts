@@ -7,7 +7,10 @@ import { WTheme } from '@wface/components';
 
 const theme = {
   palette: {
-    type: "light"
+    type: "light",
+    background: {
+      default: '#e8eaf5'
+    }    
   }
 } as WTheme
 
