@@ -28,7 +28,7 @@ const Control = (props: any) =>
 
 // Dialogun z-index'i 1300 olarak ayarlanmıs. Bunun da 1400 alarak üzerine cıkması lazım. 
 const Menu = (props: any) =>
-  <WPaper square className={props.selectProps.classes.paper} {...props.innerProps} style={{ zIndex: 1400 }}>
+  <WPaper square className={props.selectProps.classes.paper} {...props.innerProps}>
     {props.children}
   </WPaper>
 
@@ -89,7 +89,7 @@ const DropdownIndicator = (props: any) =>
 const selectComponents = {
   Control,
   // DropdownIndicator,
-  Menu,
+  Menu,  
   MultiValue,
   NoOptionsMessage,
   Option,

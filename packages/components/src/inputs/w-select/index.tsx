@@ -127,6 +127,7 @@ class WSelectInner extends React.Component<WSelectProps, {focused: boolean}> {
             helperText: this.props.helperText
           }}
           components={selectComponents}
+          menuPortalTarget={document.body}
         />
       </NoSsr>
     );
@@ -142,6 +143,10 @@ const customStyles = {
     ...provided,
     padding: 6
   }),
+  menuPortal: (provided: any) => ({ 
+    ...provided, 
+    zIndex: 9999 
+  })
 }
 
 const styles = (theme: Theme) => createStyles({
@@ -178,7 +183,7 @@ const styles = (theme: Theme) => createStyles({
   },
   paper: {
     position: 'absolute',
-    zIndex: 1,
+    zIndex: theme.zIndex.modal + 1,
     marginTop: theme.spacing.unit,
     left: 0,
     right: 0

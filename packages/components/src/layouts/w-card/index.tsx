@@ -12,8 +12,7 @@ class WCardInner extends React.Component<WCardProps & WithStyles<string>, {}> {
 
 const styles = theme => createStyles({
   root: {
-    margin: theme.spacing.unit,
-    overflow: 'visible'
+    margin: theme.spacing.unit
   }
 });
 

@@ -54,6 +54,7 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
 
   componentDidCatch(error, info) {
     this.setState({ pageError: { error, info } });
+    this.changeScreenMode("normal");
   }
 
   openScreen = (screen: string, initialValues: any): boolean => {
