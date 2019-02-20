@@ -28,15 +28,7 @@ module.exports = function (templateParams) {
       <noscript>
         You need to enable JavaScript to run this app.
       </noscript>   
-      <div id="root"></div>
-        
-      ${templateParams.webpackConfig.mode === 'production' ? 
-        `<script crossorigin src="https://unpkg.com/react@16.6.3/umd/react.production.min.js"></script>
-        <script crossorigin src="https://unpkg.com/react-dom@16.6.3/umd/react-dom.production.min.js"></script>`
-        :
-        `<script crossorigin src="https://unpkg.com/react@16.5.2/umd/react.development.js"></script>
-        <script crossorigin src="https://unpkg.com/react-dom@16.5.2/umd/react-dom.development.js"></script>`
-      }
+      <div id="root"></div>              
     </body>
   </html>
   `
