@@ -2,9 +2,7 @@ import * as React from 'react';
 import * as WFace from '@wface/components';
 
 interface DemoScreenState {
-  text: string;
-  data: any[];
-  selected: any;
+  isDialogOpen: boolean;
 }
 
 export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScreenState> {
@@ -12,45 +10,40 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
     super(props);
 
     this.state = this.props.screenData.state || {
-      data: [
-        { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-        { name: 'Hakan', surname: 'Baran', birthYear: 1989, birthCity: 63 },
-        { name: 'Baran', surname: 'Baran', birthYear: 1995, birthCity: 63 },
-      ],
-      selected: null
+      isDialogOpen: false
     }
   }
 
   public render() {
     return (
       <>
-        <WFace.WTable
-          columns={[
-            { title: 'Adı', field: 'name' },
-            { title: 'Soyadı', field: 'surname' },
-            { title: 'Doğum Yılı', field: 'birthYear', type: 'numeric' },
-            {
-              title: 'Doğum Yeri',
-              field: 'birthCity',
-              lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-            },
-          ]}
-          data={this.state.data}
-          onRowClick={(event, rowData) => this.setState({selected: rowData})}
-          title="Demo Title"
-          options={{
-            pageSize: 5,
-            rowStyle: (rowData) => {
-              if(rowData === this.state.selected) {
-                return { backgroundColor: '#ddd' };
-              }
-              else {
-                return {};
-              }
-            }
-          }}
-        />ddd
-        {this.state.selected && <div>{this.state.selected.name}</div>}
+        <WFace.WCard>
+          <WFace.WCardContent>
+            <WFace.WSelect
+              label="Şehir"
+              options={[
+                { label: 'Adana', value: '1' },
+                { label: 'Gaziantep', value: '27' },
+                { label: 'İstanbul', value: '34' },
+                { label: 'Şanlıurfa', value: '63' }
+              ]}
+            />
+          </WFace.WCardContent>
+          <WFace.WCardActions>
+            <WFace.WButton onClick={() => this.setState({isDialogOpen: true})}>Dialog</WFace.WButton>
+          </WFace.WCardActions>
+        </WFace.WCard>
+        <WFace.WBasicDialog open={this.state.isDialogOpen} onClose={() => this.setState({isDialogOpen: false})} fullWidth>
+          <WFace.WSelect
+            label="Şehir"
+            options={[
+              { label: 'Adana', value: '1' },
+              { label: 'Gaziantep', value: '27' },
+              { label: 'İstanbul', value: '34' },
+              { label: 'Şanlıurfa', value: '63' }
+            ]}
+          />
+        </WFace.WBasicDialog>
       </>
     )
   }

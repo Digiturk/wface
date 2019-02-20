@@ -9,9 +9,9 @@ import { TextField } from '@material-ui/core';
 import { WIconButton } from '../../buttons/w-icon-button';
 import { components } from 'react-select';
 
-const inputComponent = ({ inputRef, ...props }) => <div ref={inputRef} {...props}/>;
+const inputComponent = ({ inputRef, ...props }) => <div ref={inputRef} {...props} />;
 
-const Control = (props:any) => 
+const Control = (props: any) =>
   <TextField
     fullWidth
     InputProps={{
@@ -27,12 +27,12 @@ const Control = (props:any) =>
   />
 
 // Dialogun z-index'i 1300 olarak ayarlanmıs. Bunun da 1400 alarak üzerine cıkması lazım. 
-const Menu = (props:any) => 
-  <WPaper square className={props.selectProps.classes.paper} {...props.innerProps} style={{zIndex: 9400}}>
+const Menu = (props: any) =>
+  <WPaper square className={props.selectProps.classes.paper} {...props.innerProps} style={{ zIndex: 1400 }}>
     {props.children}
   </WPaper>
 
-const MultiValue = (props:any) => 
+const MultiValue = (props: any) =>
   <WChip
     tabIndex={-1}
     label={props.children}
@@ -43,7 +43,7 @@ const MultiValue = (props:any) =>
     deleteIcon={<WIcon {...props.removeProps}>cancel</WIcon>}
   />
 
-const NoOptionsMessage = (props:any) =>
+const NoOptionsMessage = (props: any) =>
   <WTypography
     color="textSecondary"
     className={props.selectProps.classes.noOptionsMessage}
@@ -52,7 +52,7 @@ const NoOptionsMessage = (props:any) =>
     {props.children}
   </WTypography>
 
-const Option = (props) => 
+const Option = (props) =>
   <WMenuItem
     buttonRef={props.innerRef}
     selected={props.isFocused}
@@ -65,7 +65,7 @@ const Option = (props) =>
     {props.children}
   </WMenuItem>
 
-const Placeholder = (props:any) => 
+const Placeholder = (props: any) =>
   <WTypography
     color="textSecondary"
     className={props.selectProps.classes.placeholder}
@@ -74,16 +74,16 @@ const Placeholder = (props:any) =>
     {props.children}
   </WTypography>
 
-const SingleValue = (props:any) => 
+const SingleValue = (props: any) =>
   <WTypography className={props.selectProps.classes.singleValue} {...props.innerProps}>
     {props.children}
   </WTypography>
 
-const ValueContainer = (props:any) => <div className={props.selectProps.classes.valueContainer}>{props.children}</div>;
+const ValueContainer = (props: any) => <div className={props.selectProps.classes.valueContainer}>{props.children}</div>;
 
-const DropdownIndicator = (props:any) => 
+const DropdownIndicator = (props: any) =>
   <components.DropdownIndicator {...props}>
-    <WIcon color="disabled" style={{margin: '-20px !important'}}>expand_more</WIcon>
+    <WIcon color="disabled" style={{ margin: '-20px !important' }}>expand_more</WIcon>
   </components.DropdownIndicator>;
 
 const selectComponents = {
@@ -96,6 +96,6 @@ const selectComponents = {
   Placeholder,
   SingleValue,
   ValueContainer,
-};    
+};
 
 export default selectComponents;

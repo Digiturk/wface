@@ -153,7 +153,7 @@ const styles = (theme: Theme) => createStyles({
     display: 'flex',
     flexWrap: 'wrap',
     flex: 1,
-    alignItems: 'center',
+    alignItems: 'center'    
   },
   chip: {
     margin: `${theme.spacing.unit / 4}px ${theme.spacing.unit / 4}px`,
@@ -181,7 +181,7 @@ const styles = (theme: Theme) => createStyles({
     zIndex: 1,
     marginTop: theme.spacing.unit,
     left: 0,
-    right: 0,    
+    right: 0
   },
   dropdownIndicator: {
     padding: 40

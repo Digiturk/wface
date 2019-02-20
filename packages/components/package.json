@@ -23,7 +23,7 @@
 		"react-fast-compare": "2.0.4",
 		"react-redux": "5.0.7",
 		"react-swipeable-views": "0.13.0",
-		"react-select": "2.1.0",
+		"react-select": "2.4.1",
 		"react-custom-scrollbars": "4.2.1",
 		"redux": "4.0.0",
 		"yup": "0.26.6"
