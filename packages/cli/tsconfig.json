@@ -12,7 +12,7 @@
       "dom",
       "esnext"
     ],
-    "types": ["reflect-metadata"],
+    "types": ["reflect-metadata", "node"],
     "importHelpers": true,
     "noImplicitReturns": true,
     "suppressImplicitAnyIndexErrors": true,
