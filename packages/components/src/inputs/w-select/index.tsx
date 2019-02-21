@@ -103,10 +103,12 @@ class WSelectInner extends React.Component<WSelectProps, {focused: boolean}> {
     const { classes } = this.props;
     const cleanValue = this.getCleanValue();
     let hasValue = (this.select.current && this.select.current.select.commonProps.getValue().length > 0);
-    hasValue = hasValue || (this.props.isMulti ? cleanValue && cleanValue.length > 0 : cleanValue);    
+    hasValue = hasValue || (this.props.isMulti ? cleanValue && cleanValue.length > 0 : cleanValue);
 
     return (
-      <NoSsr>
+      <NoSsr> 
+        {/* 
+        // @ts-ignore */}
         <Select
           ref={this.select}
           {...this.props}
