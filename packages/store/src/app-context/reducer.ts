@@ -57,7 +57,9 @@ const appContext = (state: AppContext = initialState, action: AppAction): AppCon
           values: {},
           state: undefined,
           initialValues: Object.assign({}, action.payload.menuTreeItem.initialValues, action.payload.initialValues),
-          mode: 'normal'
+          mode: 'normal',
+          confirmOnClose: false,
+          confirmOnCloseMessage: ''
         } as ScreenData;
         openedScreens.push(screenData);
       }
@@ -106,6 +108,16 @@ const appContext = (state: AppContext = initialState, action: AppAction): AppCon
       const screen = openedScreens.find(a => a.menuTreeItem.id === action.payload.screenId);
       if (screen) {
         screen.mode = action.payload.mode;
+      }
+
+      return { ...state, openedScreens };
+    }
+    case getType(Actions.setConfirmOnClose): {      
+      const openedScreens = [...state.openedScreens];
+      const screen = openedScreens.find(a => a.menuTreeItem.id === action.payload.screenId);
+      if (screen) {
+        screen.confirmOnClose = action.payload.confirmOnClose;
+        screen.confirmOnCloseMessage = action.payload.confirmOnCloseMessage;
       }
 
       return { ...state, openedScreens };

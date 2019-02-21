@@ -21,6 +21,7 @@ export interface DispatchProps {
   saveScreenState: (screenId: string, state: any) => void;
   setValue: (key: string, value: any) => void;
   changeScreenMode: (screenId: string, mode: 'normal' | 'loading') => void;
+  setConfirmOnClose: (screenId: string, confirmOnClose: boolean, confirmOnCloseMessage: string) => void;
 }
 
 class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & DispatchProps, WScreenWrapperState> {
@@ -76,6 +77,10 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
     this.props.closeScreen(item);
     return true;
   }
+  
+  setConfirmOnClose = (confirm: boolean, confirmMessage: string = "Ekranı kapatmak istediğinize emin misiniz?") => {
+    this.props.setConfirmOnClose(this.props.screen.menuTreeItem.id, confirm, confirmMessage);
+  }
 
   showSnackbar = (message: string, type: 'error' | 'success' | 'warning' | 'info' = 'info', duration: number = 5000) => {
     this.props.enqueueSnackbar(message, {
@@ -123,6 +128,7 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
             openScreen={this.openScreen}
             showSnackbar={this.showSnackbar}
             setValue={this.props.setValue}
+            setConfirmOnClose={this.setConfirmOnClose}
           />
         </div>
       </div>
@@ -141,6 +147,7 @@ const mapDispatchToProps = dispatch => ({
   saveScreenState: (screenId: string, state: any) => dispatch(AppContextActions.saveScreenState({ screenId, state })),
   setValue: (key: string, value: any) => dispatch(AppContextActions.setValue({ key, value })),
   changeScreenMode: (screenId: string, mode: 'normal' | 'loading') => dispatch(AppContextActions.changeScreenMode({ screenId, mode })),
+  setConfirmOnClose: (screenId: string, confirmOnClose: boolean, confirmOnCloseMessage: string) => dispatch(AppContextActions.setConfirmOnClose({screenId, confirmOnClose, confirmOnCloseMessage}))
 });
 
 export default connect<WStore, DispatchProps, WScreenWrapperProps>(mapStateToProps, mapDispatchToProps)(withSnackbar(WScreenWrapper) as any);

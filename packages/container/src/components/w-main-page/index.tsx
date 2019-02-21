@@ -1,7 +1,7 @@
 //#region imports 
 
 import { withStyles } from '@material-ui/core/styles';
-import { WAppBar, WCircularProgress, WDrawer, WGrid, WIcon, WIconButton, WScrollBar, WTab, WTabs, WToolBar, WTypography, WPaper } from '@wface/components';
+import { WAppBar, WCircularProgress, WDrawer, WGrid, WIcon, WIconButton, WScrollBar, WTab, WTabs, WToolBar, WTypography, WPaper, WMessageDialog } from '@wface/components';
 import IOC, { IAuthService, IMenuTreeItem, MenuTreeUtil } from "@wface/ioc";
 import { AppContext, AppContextActions, ScreenData, WStore } from '@wface/store';
 // @ts-ignore
@@ -32,6 +32,8 @@ export interface DispatchProps {
 
 interface WMainPageState {
   drawerOpen?: boolean;
+  showConfirmCloseScreenDialog: boolean;
+  closingScreen?: ScreenData;
 }
 
 class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps, WMainPageState> {
@@ -41,7 +43,8 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
 
     const screenType = Horizontal.getType();
     this.state = {
-      drawerOpen: screenType == WindowWidthType.LG
+      drawerOpen: screenType == WindowWidthType.LG,
+      showConfirmCloseScreenDialog: false
     }
   }
 
@@ -79,7 +82,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
 
   handleTabCloseButtonClick(event: any, screen: IMenuTreeItem) {
     event.stopPropagation();
-    this.props.closeScreen(screen);
+    this.closeScreen(screen);
   }
 
   handleTabButton(event: any, screenData: ScreenData) {
@@ -90,7 +93,18 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
 
     event.persist();
     if (event.button == 1) {
-      this.props.closeScreen(screenData.menuTreeItem);
+      this.closeScreen(screenData.menuTreeItem);
+    }
+  }
+
+  closeScreen = (screen: IMenuTreeItem) => {
+    const closingScreen = this.props.appContext.openedScreens.find(s => s.menuTreeItem.id === screen.id);
+
+    if (closingScreen && closingScreen.confirmOnClose) {
+      this.setState({ showConfirmCloseScreenDialog: true, closingScreen });
+    }
+    else {
+      this.props.closeScreen(screen);
     }
   }
 
@@ -190,6 +204,27 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
     );
   }
 
+  renderConfirmCloseScreenDialog = () => {
+    if(!this.state.showConfirmCloseScreenDialog) {
+      return null;
+    }
+    return (
+      <WMessageDialog        
+        open={this.state.showConfirmCloseScreenDialog}
+        title="Uyarı"
+        buttons="YesNo"
+        text={this.state.closingScreen.confirmOnCloseMessage}
+        onButtonClick={(e, button) => {
+          this.setState({ showConfirmCloseScreenDialog: false }, () => {
+            if (button === "Yes") {
+              this.props.closeScreen(this.state.closingScreen.menuTreeItem);
+            }
+          })
+        }}
+      />
+    )
+  }
+
   render() {
     const { classes } = this.props;
     return (
@@ -222,7 +257,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
             paper: classes.drawerPaper,
           }}
         >
-          <div style={{minHeight: 96}}/>
+          <div style={{ minHeight: 96 }} />
           <div style={{ height: 'calc(100% - 96px)', overflow: 'none' }}>
             <WScrollBar>
               <NavList menuTree={this.props.appContext.menuTree} onItemClicked={this.onMenuItemClicked} />
@@ -244,7 +279,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
           [classes.contentShift]: this.state.drawerOpen,
           [classes[`contentShift-left`]]: this.state.drawerOpen,
         })}>
-          <div style={{minHeight: 96}}/>
+          <div style={{ minHeight: 96 }} />
           <WScrollBar>
             {
               this.props.appContext.openedScreens.map(screen => {
@@ -263,6 +298,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
             }
           </WScrollBar>
         </main>
+        {this.renderConfirmCloseScreenDialog()}
       </div>
     );
   }
@@ -278,7 +314,7 @@ const styles: any = (theme: any) => ({
   root: {
     height: '100%',
     zIndex: theme.zIndex.drawer + 1,
-    overflow: 'hidden',    
+    overflow: 'hidden',
   },
   flex: {
     flex: 1,

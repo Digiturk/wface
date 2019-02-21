@@ -14,4 +14,6 @@ export interface ScreenData {
   initialValues: any;
   values: { [key: string]: any };
   mode: 'normal' | 'loading';
+  confirmOnClose: boolean;
+  confirmOnCloseMessage: string;
 }

@@ -11,4 +11,5 @@ export interface BaseScreenProps {
   showSnackbar: (message: string, type?: 'error' | 'success' | 'warning' | 'info', duration?: number) => void;
   setValue: (key: string, value: any) => void;
   changeScreenMode: (mode: 'normal' | 'loading') => void;
+  setConfirmOnClose: (confirmOnClose: boolean, confirmOnCloseMessage?: string) => void;
 }

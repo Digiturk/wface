@@ -24,6 +24,10 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
     }
   }
 
+  componentDidMount() {
+    this.props.setConfirmOnClose(true);
+  }
+
   public render() {
     return (
       <>

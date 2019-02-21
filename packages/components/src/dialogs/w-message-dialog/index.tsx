@@ -7,7 +7,7 @@ export interface WMessageDialogProps {
   text: string;
   icon?: 'error' | 'warning' | 'info' | 'success';
   buttons?: 'YesNo' | 'YesNoCancel' | 'Ok';
-  onButtonClick?: (event:any, button: String) => void;
+  onButtonClick?: (event:any, button: String) => void;  
 }
 
 export class WMessageDialog extends React.Component<WMessageDialogProps, {}> {
@@ -57,6 +57,7 @@ export class WMessageDialog extends React.Component<WMessageDialogProps, {}> {
         title={this.props.title}
         children={this.props.text} 
         actions={this.getButtons()}
+        fullWidth
       />
     )
   }
