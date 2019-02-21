@@ -263,12 +263,12 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
               <NavList menuTree={this.props.appContext.menuTree} onItemClicked={this.onMenuItemClicked} />
             </WScrollBar>
             <div style={{
-              display: 'table', position: 'absolute', bottom: 0, height: 30, backgroundColor: '#fafafa', width: '100%',
+              display: 'table', position: 'absolute', bottom: 0, height: 25, backgroundColor: '#fafafa', width: '100%',
               borderTop: '1px #e0e0e0 solid'
             }}>
               <div style={{ display: 'table-cell', verticalAlign: 'middle', textAlign: 'center' }}>
-                <span style={{ color: '#9c9999', fontSize: 11 }}>
-                  Bu proje <a style={{ fontWeight: 600, textDecoration: 'none', color: '#3f51b5' }} href="http://wface.digiturk.io" target="_blank">WFace</a> ile geliştirilmiştir.
+                <span style={{ color: '#9c9999', fontSize: 10 }}>
+                  Developed based on <a style={{ fontWeight: 600, textDecoration: 'none', color: '#888' }} href="http://wface.digiturk.io" target="_blank">WFace</a>
                 </span>
               </div>
             </div>
