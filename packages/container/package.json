@@ -1,6 +1,6 @@
 {
 	"name": "@wface/container",
-	"version": "0.12.0",
+	"version": "0.13.0",
 	"description": "",
 	"main": "index.ts",
 	"scripts": {
@@ -10,9 +10,9 @@
 	"license": "ISC",
 	"dependencies": {
 		"@material-ui/core": "3.8.1",
-		"@wface/components": "0.12.0",
-		"@wface/ioc": "0.12.0",
-		"@wface/store": "0.12.0",
+		"@wface/components": "0.13.0",
+		"@wface/ioc": "0.13.0",
+		"@wface/store": "0.13.0",
 		"axios": "0.18.0",
 		"classnames": "2.2.6",
 		"horizontal": "0.2.2",
