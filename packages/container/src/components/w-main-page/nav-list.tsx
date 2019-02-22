@@ -2,22 +2,26 @@ import * as React from 'react'
 import {
   WDivider, WList, WListItem,
   WListItemIcon, WListItemText,
-  WCircularProgress, WTypography, WIconButton, WIcon,
+  WCircularProgress, WTypography, WIconButton, WIcon, WTheme,
 } from '@wface/components';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, withTheme } from '@material-ui/core/styles';
 import Collapse from '@material-ui/core/Collapse';
 import { IMenuTreeItem, MenuTreeUtil } from '@wface/ioc';
+import { WStore } from '@wface/store';
+import { connect } from 'react-redux';
 
 export interface NavListProps {
   menuTree: IMenuTreeItem[];
-  onItemClicked?: (item: IMenuTreeItem) => void
+  onItemClicked?: (item: IMenuTreeItem) => void;
+  theme?: WTheme;
+  classes?: any;
 }
 
 interface NavListState {
   expandedItems: string[],
 }
 
-class NavList extends React.Component<NavListProps & { classes: any }, NavListState> {
+class NavList extends React.Component<NavListProps & WStore, NavListState> {
 
   constructor(props) {
     super(props);
@@ -54,7 +58,7 @@ class NavList extends React.Component<NavListProps & { classes: any }, NavListSt
     }
 
     const itemStyle = {
-      paddingLeft: 20 + 20 * nestingLevel
+      paddingLeft: 10 + 20 * nestingLevel,
     }
 
     if (item.subNodes && item.subNodes.length > 0) {
@@ -62,7 +66,7 @@ class NavList extends React.Component<NavListProps & { classes: any }, NavListSt
       return (
         <div key={item.id}>
           {item.divideBefore && <WDivider />}
-          <WListItem key={item.id} button onClick={() => { this.handleNodeClick(item.id) }} style={itemStyle}>
+          <WListItem key={item.id} button onClick={() => { this.handleNodeClick(item.id) }} style={itemStyle} divider>
             {hasAnyIcon &&
               <WListItemIcon className={this.props.classes.listItemIconRoot}>
                 <WIcon>{item.icon}</WIcon>
@@ -81,14 +85,34 @@ class NavList extends React.Component<NavListProps & { classes: any }, NavListSt
       );
     }
     else {
+
+      let listItemTextStyle = {};
+      let listItemStyle = Object.assign({}, itemStyle) as any;
+
+      if (this.props.appContext.currentScreen && this.props.appContext.currentScreen.menuTreeItem.id === item.id) {
+        listItemTextStyle = {
+          color: this.props.theme.palette.primary.main,
+          fontWeight: 500
+        };
+
+        listItemStyle.backgroundColor = this.props.theme.palette.background.default;
+      }
+
       return (
-        <WListItem key={item.id} button style={itemStyle} onClick={() => { this.handleLeafClick(item) }} >
+        <WListItem
+          key={item.id}
+          button
+          classes={{ root: this.props.classes.listItemRoot }}
+          style={listItemStyle}
+          onClick={() => { this.handleLeafClick(item) }}
+          divider
+        >
           {hasAnyIcon &&
             <WListItemIcon className={this.props.classes.listItemIconRoot}>
-              <WIcon>{item.icon}</WIcon>
+              <WIcon iconSize="small" style={listItemTextStyle}>{item.icon}</WIcon>
             </WListItemIcon>
           }
-          <WListItemText inset={hasAnyIcon} primary={item.text} />
+          <WListItemText inset={hasAnyIcon} primary={<div style={listItemTextStyle as any}>{item.text}</div>} />
         </WListItem>
       );
     }
@@ -106,14 +130,18 @@ class NavList extends React.Component<NavListProps & { classes: any }, NavListSt
 
     if (this.props.menuTree && this.props.menuTree.length > 0) {
       return (
-        <WList key="NavListKey"
-          component="nav">
-          {this.props.menuTree &&
-            this.props.menuTree.map(item => {
-              return this.renderNavItem(item, hasAnyIcon);
-            })
-          }
-        </WList>
+        <div style={{ paddingLeft: 5 }}>
+          <WList
+            key="NavListKey"
+            component="nav"
+          >
+            {this.props.menuTree &&
+              this.props.menuTree.map(item => {
+                return this.renderNavItem(item, hasAnyIcon);
+              })
+            }
+          </WList>
+        </div>
       );
     }
     else {
@@ -128,15 +156,25 @@ class NavList extends React.Component<NavListProps & { classes: any }, NavListSt
   }
 }
 
-const styles = theme => ({
-  root: {
-    width: '100%',
-    maxWidth: 240,
-    backgroundColor: theme.palette.background.paper,
-  },
+const styles = (theme: WTheme) => ({
   listItemIconRoot: {
-    marginRight: 0,    
+    marginRight: 0,
+  },
+  listItemRoot: {
+    borderRadius: '4px 0px 0px 4px',
+    borderBottomColor: theme.palette.background.paper,
+    '&:hover': {
+      backgroundColor: theme.palette.background.default
+    }
   }
 });
 
-export default withStyles(styles)(NavList)
+const mapStateToProps = (state: WStore) => ({
+  appContext: state.appContext,
+  userContext: state.userContext,
+} as WStore);
+
+const mapDispatchToProps = dispatch => ({
+});
+
+export default connect<WStore, {}, NavListProps>(mapStateToProps, mapDispatchToProps)(withTheme()(withStyles(styles)(NavList)) as any)

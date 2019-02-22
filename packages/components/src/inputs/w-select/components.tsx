@@ -5,9 +5,9 @@ import { WIcon } from '../../medias/w-icon';
 import { WMenuItem } from '../../lists/w-menu/w-menu-item'
 import { WPaper } from '../../layouts/w-paper';
 import { WTypography } from '../../others/w-typography';
-import { TextField } from '@material-ui/core';
-import { WIconButton } from '../../buttons/w-icon-button';
+import { TextField, withStyles, withTheme, createStyles } from '@material-ui/core';
 import { components } from 'react-select';
+import { WTheme } from '../../others/w-theme-provider/w-theme';
 
 const inputComponent = ({ inputRef, ...props }) => <div ref={inputRef} {...props} />;
 
@@ -55,11 +55,8 @@ const NoOptionsMessage = (props: any) =>
 const Option = (props) =>
   <WMenuItem
     buttonRef={props.innerRef}
-    selected={props.isFocused}
+    selected={props.isSelected}
     component="div"
-    style={{
-      fontWeight: props.isSelected ? 500 : 400,
-    }}
     {...props.innerProps}
   >
     {props.children}
@@ -89,7 +86,7 @@ const DropdownIndicator = (props: any) =>
 const selectComponents = {
   Control,
   // DropdownIndicator,
-  Menu,  
+  Menu,
   MultiValue,
   NoOptionsMessage,
   Option,

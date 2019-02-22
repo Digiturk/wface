@@ -25,7 +25,7 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
   }
 
   componentDidMount() {
-    this.props.setConfirmOnClose(true);
+    // this.props.setConfirmOnClose(true);    
   }
 
   public render() {
@@ -34,7 +34,33 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
         <WFace.WForm onSubmit={(formValue) => this.setState({ formValue })} initialValues={this.state.formValue} onChange={(formValue) => this.setState({ formValue })}>
           <WFace.WCard>
             <WFace.WCardContent>
+              <WFace.WList>
+                <WFace.WListItem button>
+                  <WFace.WListItemIcon>
+                    <WFace.WIcon iconSize="small">save</WFace.WIcon>
+                  </WFace.WListItemIcon>
+                  <WFace.WListItemText primary="Text" />
+                </WFace.WListItem>
 
+                <WFace.WListItem button>
+                  <WFace.WListItemIcon>
+                    <WFace.WIcon iconSize="small">save</WFace.WIcon>
+                  </WFace.WListItemIcon>
+                  <WFace.WListItemText primary="Text" />
+                </WFace.WListItem>
+
+                <WFace.WListItem button selected>
+                  <WFace.WListItemIcon>
+                    <WFace.WIcon iconSize="small">save</WFace.WIcon>
+                  </WFace.WListItemIcon>
+                  <WFace.WListItemText primary="Text" />
+                </WFace.WListItem>
+              </WFace.WList>
+
+            </WFace.WCardContent>
+          </WFace.WCard>
+          <WFace.WCard>
+            <WFace.WCardContent>
               <WFace.WFormField.Select label="s1" name="n1"
                 options={[
                   { label: 'Adana', value: '1' },
@@ -42,11 +68,6 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
                   { label: 'İstanbul', value: '34' },
                   { label: 'Şanlıurfa', value: '63' }
                 ]} />
-            </WFace.WCardContent>
-
-          </WFace.WCard>
-          <WFace.WCard>
-            <WFace.WCardContent>
               <WFace.WFormField.TextField label="Text" name="text" />
               <WFace.WFormField.Checkbox label="Check1" name="check1" />
               <WFace.WFormField.Checkbox label="Check2" name="check2" />
@@ -64,11 +85,17 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
             </WFace.WCardActions>
           </WFace.WCard>
 
-          <div>
+          {/* <WFace.WTable
+            title="df"
+            columns={[]}
+            data={[]}
+          /> */}
+
+          {/* <div>
             <pre>
               {JSON.stringify(this.state.formValue, null, 2)}
             </pre>
-          </div>
+          </div> */}
 
           <WFace.WDialog open={this.state.isDialogOpen} fullWidth>
             <WFace.WDialogTitle>Dialog</WFace.WDialogTitle>

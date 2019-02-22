@@ -1,7 +1,7 @@
 //#region imports 
 
-import { withStyles } from '@material-ui/core/styles';
-import { WAppBar, WCircularProgress, WDrawer, WGrid, WIcon, WIconButton, WScrollBar, WTab, WTabs, WToolBar, WTypography, WPaper, WMessageDialog } from '@wface/components';
+import { withStyles, withTheme } from '@material-ui/core/styles';
+import { WAppBar, WCircularProgress, WDrawer, WGrid, WIcon, WIconButton, WScrollBar, WTab, WTabs, WToolBar, WTypography, WPaper, WMessageDialog, WTheme } from '@wface/components';
 import IOC, { IAuthService, IMenuTreeItem, MenuTreeUtil } from "@wface/ioc";
 import { AppContext, AppContextActions, ScreenData, WStore } from '@wface/store';
 // @ts-ignore
@@ -21,7 +21,8 @@ export interface WMainPageProps {
   location: any,
   match: any,
   history?: any,
-  appContext: AppContext
+  appContext: AppContext,
+  theme?: WTheme;
 }
 
 export interface DispatchProps {
@@ -205,11 +206,11 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
   }
 
   renderConfirmCloseScreenDialog = () => {
-    if(!this.state.showConfirmCloseScreenDialog) {
+    if (!this.state.showConfirmCloseScreenDialog) {
       return null;
     }
     return (
-      <WMessageDialog        
+      <WMessageDialog
         open={this.state.showConfirmCloseScreenDialog}
         title="Uyarı"
         buttons="YesNo"
@@ -229,7 +230,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
     const { classes } = this.props;
     return (
       <div className={classes.root + " main-page"}>
-        <WAppBar position="fixed" className={classes.appBar}>
+        <WAppBar position="fixed" className={classes.appBar} elevation={this.props.theme.designDetails.defaultElevation}>
           <WToolBar variant="dense">
             <WIconButton
               color="inherit"
@@ -256,16 +257,17 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
           classes={{
             paper: classes.drawerPaper,
           }}
+          PaperProps={{
+            style: { border: 'none' },
+            elevation: this.props.theme.designDetails.defaultElevation
+          }}
         >
           <div style={{ minHeight: 96 }} />
           <div style={{ height: 'calc(100% - 96px)', overflow: 'none' }}>
             <WScrollBar>
               <NavList menuTree={this.props.appContext.menuTree} onItemClicked={this.onMenuItemClicked} />
             </WScrollBar>
-            <div style={{
-              display: 'table', position: 'absolute', bottom: 0, height: 25, backgroundColor: '#fafafa', width: '100%',
-              borderTop: '1px #e0e0e0 solid'
-            }}>
+            <div style={{ display: 'table', position: 'absolute', bottom: 0, height: 25, width: '100%' }}>
               <div style={{ display: 'table-cell', verticalAlign: 'middle', textAlign: 'center' }}>
                 <span style={{ color: '#9c9999', fontSize: 10 }}>
                   Developed based on <a style={{ fontWeight: 600, textDecoration: 'none', color: '#888' }} href="http://wface.digiturk.io" target="_blank">WFace</a>
@@ -284,9 +286,8 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
             {
               this.props.appContext.openedScreens.map(screen => {
                 if (this.props.appContext.currentScreen.menuTreeItem.id === screen.menuTreeItem.id) {
-                  const component = <div style={{ width: '100%', height: '100%' }} key={"screen-" + screen.menuTreeItem.id}><WScreenWrapper screen={screen} /></div>
+                  const component = <div style={{ width: '100%', height: 'calc(100% - 8px)' }} key={"screen-" + screen.menuTreeItem.id}><WScreenWrapper screen={screen} /></div>
                   return component;
-                  // return <Route path={(this.props as any).match.url + this.getScreenUrl(screen.menuTreeItem)} render={props => component} />
                 }
                 else if (screen.mode === "loading") {
                   const component = <div style={{ display: 'none' }} key={"screen-" + screen.menuTreeItem.id}><WScreenWrapper screen={screen} /></div>;
@@ -380,4 +381,4 @@ const mapDispatchToProps = (dispatch: any) => ({
   closeScreen: (menuTreeItem: IMenuTreeItem) => dispatch(AppContextActions.closeScreen(menuTreeItem))
 });
 
-export default connect<WStore, DispatchProps, WMainPageProps>(mapStateToProps, mapDispatchToProps)(withRouter(withStyles(styles)(WMainPage as any) as any) as any)
+export default connect<WStore, DispatchProps, WMainPageProps>(mapStateToProps, mapDispatchToProps)(withRouter(withStyles(styles)(withTheme()(WMainPage as any) as any) as any) as any)

@@ -1,6 +1,7 @@
-import { WCircularProgress, WIcon, WIconButton, withSnackbar, WPaper } from '@wface/components';
+import { WCircularProgress, WIcon, WIconButton, withSnackbar, WPaper, WTheme } from '@wface/components';
 import IOC, { IHttpService, IMenuTreeItem, MenuTreeUtil } from '@wface/ioc';
 import { AppContextActions, ScreenData, WStore } from '@wface/store';
+import { withTheme } from '@material-ui/core';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import NoPage from './no-page';
@@ -12,7 +13,8 @@ interface WScreenWrapperState {
 
 export interface WScreenWrapperProps {
   screen?: ScreenData;
-  enqueueSnackbar?: (message: string, options: object) => void
+  enqueueSnackbar?: (message: string, options: object) => void,
+  theme?: WTheme;
 }
 
 export interface DispatchProps {
@@ -114,7 +116,7 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
             </div>
           </div>
         }
-        <div style={{ padding: 10 }}>
+        <div style={{ padding: this.props.theme.designDetails.pagePadding, paddingBottom: 10 }}>
           <Screen
             ref={this.screenRef}
             appContext={this.props.appContext}
@@ -150,4 +152,4 @@ const mapDispatchToProps = dispatch => ({
   setConfirmOnClose: (screenId: string, confirmOnClose: boolean, confirmOnCloseMessage: string) => dispatch(AppContextActions.setConfirmOnClose({screenId, confirmOnClose, confirmOnCloseMessage}))
 });
 
-export default connect<WStore, DispatchProps, WScreenWrapperProps>(mapStateToProps, mapDispatchToProps)(withSnackbar(WScreenWrapper) as any);
+export default connect<WStore, DispatchProps, WScreenWrapperProps>(mapStateToProps, mapDispatchToProps)(withTheme()(withSnackbar(WScreenWrapper) as any) as any);

@@ -7,6 +7,7 @@ import blue from '@material-ui/core/colors/blue';
 import green from '@material-ui/core/colors/green';
 import orange from '@material-ui/core/colors/orange';
 import { merge } from 'lodash';
+import { WDesignDetails } from './w-design-details';
 
 const defaultTheme = {
   palette: {
@@ -34,12 +35,19 @@ const defaultTheme = {
       main: orange[500],
       dark: orange[700],
       contrastText: '#fff'
+    },
+    background: {
+      default: '#e8eaf5'
     }
   } as WPalette,
   typography: {
     useNextVariants: true
-  }
-}
+  },
+  designDetails: {
+    defaultElevation: 0,
+    pagePadding: 0
+  } as WDesignDetails
+};
 
 // <MuiThemeProvider theme={theme}>
 export class WThemeProvider extends React.Component<{ theme?: WTheme }, any> {

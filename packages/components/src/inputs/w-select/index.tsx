@@ -5,18 +5,19 @@ import * as React from 'react';
 import Select from 'react-select';
 import selectComponents from './components';
 import { Omit } from '@material-ui/core';
+import { WTheme } from '../../others/w-theme-provider/w-theme';
 
 export interface WSelectOptionGroup {
-  label: string; 
+  label: string;
   options: WSelectOption[];
 }
 
 export interface WSelectOption {
-  label?: string; 
+  label?: string;
   value: any;
 }
 
-export interface WSelectProps extends Omit<WithStyles<typeof styles>, "classes">   {
+export interface WSelectProps extends Omit<WithStyles<typeof styles>, "classes"> {
   classes?: any;
   isClearable?: boolean;
   isDisabled?: boolean;
@@ -36,65 +37,65 @@ export interface WSelectProps extends Omit<WithStyles<typeof styles>, "classes">
   value?: any;
   defaultValue?: any;
   theme?: any;
-  style?: React.CSSProperties;
+  style?: React.CSSProperties;
 }
 
-class WSelectInner extends React.Component<WSelectProps, {focused: boolean}> {
+class WSelectInner extends React.Component<WSelectProps, { focused: boolean }> {
   private select: any;
 
   constructor(props) {
-    super(props); 
+    super(props);
     this.select = React.createRef();
-    
+
     this.state = {
-      focused: false,      
+      focused: false,
     }
   }
-  
+
 
   private getCleanValue = () => {
-    const find = (value) => {      
+    const find = (value) => {
       return this.props.options.find(option => option.value == value)
     }
 
-    if(this.props.isMulti && this.props.value) {
+    if (this.props.isMulti && this.props.value) {
       const result = [];
       (this.props.value as any as string[]).forEach(value => {
         const option = find(value);
-        if(option) {
+        if (option) {
           result.push(option);
-        }        
+        }
       });
       return result;
     }
-    else if(typeof this.props.value !== 'object'){
+    else if (typeof this.props.value !== 'object') {
       return find(this.props.value);
-    } 
+    }
     else {
       return this.props.value;
     }
   }
 
   private setFocus = (event: any, focused: boolean) => {
-    this.setState({focused: focused});
+    this.setState({ focused: focused });
 
-    if(focused && this.props.onFocus) {
+    if (focused && this.props.onFocus) {
       this.props.onFocus(event);
     }
-    else if(!focused && this.props.onBlur) {
+    else if (!focused && this.props.onBlur) {
       this.props.onBlur(event);
     }
   }
 
-  onChange = value => {    
-    if(this.props.onChange) {
-      if(this.props.isMulti) {
+  onChange = value => {
+    if (this.props.onChange) {
+      if (this.props.isMulti) {
         this.props.onChange(value.map(item => item.value), value);
       }
       else {
         this.props.onChange(value.value, value);
       }
-      
+
     }
   }
 
@@ -106,7 +107,7 @@ class WSelectInner extends React.Component<WSelectProps, {focused: boolean}> {
     hasValue = hasValue || (this.props.isMulti ? cleanValue && cleanValue.length > 0 : cleanValue);
 
     return (
-      <NoSsr> 
+      <NoSsr>
         {/* 
         // @ts-ignore */}
         <Select
@@ -145,13 +146,13 @@ const customStyles = {
     ...provided,
     padding: 6
   }),
-  menuPortal: (provided: any) => ({ 
-    ...provided, 
-    zIndex: 9999 
+  menuPortal: (provided: any) => ({
+    ...provided,
+    zIndex: 9999
   })
 }
 
-const styles = (theme: Theme) => createStyles({
+const styles = (theme: WTheme) => createStyles({
   input: {
     display: 'flex',
     padding: 0,
@@ -160,7 +161,7 @@ const styles = (theme: Theme) => createStyles({
     display: 'flex',
     flexWrap: 'wrap',
     flex: 1,
-    alignItems: 'center'    
+    alignItems: 'center'
   },
   chip: {
     margin: `${theme.spacing.unit / 4}px ${theme.spacing.unit / 4}px`,
@@ -195,6 +196,6 @@ const styles = (theme: Theme) => createStyles({
   }
 });
 
-const WSelect = withStyles(styles, { withTheme: false })((props:WSelectProps) => <WSelectInner {...props}/>)
+const WSelect = withStyles(styles, { withTheme: false })((props: WSelectProps) => <WSelectInner {...props} />)
 
 export { WSelect };

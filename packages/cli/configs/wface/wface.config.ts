@@ -5,13 +5,7 @@ import { DemoScreen } from '../../src/screens/demo-screen'
 import { DemoScreen2 } from '../../src/screens/demo-screen-2'
 import { WTheme } from '@wface/components';
 
-const theme = {
-  palette: {
-    type: "light",
-    background: {
-      default: '#e8eaf5'
-    }    
-  }
+const theme = {  
 } as WTheme
 
 const config = {  
