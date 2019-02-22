@@ -26,6 +26,13 @@ export class DemoScreen2 extends React.Component<WFace.BaseScreenProps, DemoScre
         }}>
           GETİR
         </WFace.WButton>
+        <WFace.WCard>
+            <WFace.WCardContent>
+            </WFace.WCardContent>
+            <WFace.WCardActions>
+              <WFace.WButton>Dialog</WFace.WButton>
+            </WFace.WCardActions>
+          </WFace.WCard>
 
         {this.state.data && 
           this.state.data.data.map(user => (

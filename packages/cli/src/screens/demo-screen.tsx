@@ -89,6 +89,11 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
             title="df"
             columns={[]}
             data={[]}
+          />
+           <WFace.WTable
+            title="df"
+            columns={[]}
+            data={[]}
           /> */}
 
           {/* <div>
