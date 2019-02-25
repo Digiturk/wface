@@ -6,6 +6,9 @@ import { DemoScreen2 } from '../../src/screens/demo-screen-2'
 import { WTheme } from '@wface/components';
 
 const theme = {
+  designDetails: {
+    defaultElevation: 1
+  }
 } as WTheme
 
 const config = {

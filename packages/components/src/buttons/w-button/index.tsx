@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Button } from '@material-ui/core';
 import { ButtonProps } from '@material-ui/core/Button';
 import { createStyles, withStyles } from '@material-ui/core/styles';
+import { WTheme } from '../../others/w-theme-provider/w-theme';
 
 export interface WButtonProps extends ButtonProps { }
 
@@ -15,9 +16,10 @@ class WButtonInner extends React.Component<WButtonProps, any> {
   }
 }
 
-const styles = (theme:any) => ({
+const styles = (theme: WTheme) => ({
   root: {
-    textTransform: 'none'
+    textTransform: 'none',
+    boxShadow: theme.designDetails.defaultElevation ? '' : 'none',
   }
 });
 
