@@ -110,7 +110,7 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
     return (
       <div style={{ position: 'relative', width: '100%', height: '100%', }}>
         {this.props.appContext.currentScreen.mode === 'loading' &&
-          <div style={{ display: 'table', position: 'absolute', width: '100%', height: 'calc(100% + 8px)', background: '#3f51b544', zIndex: 9999 }}>
+          <div style={{ display: 'table', position: 'absolute', width: '100%', height: 'calc(100% + 8px)', background: '#3f51b544', zIndex: this.props.theme.zIndex.modal + 1 }}>
             <div style={{ display: 'table-cell', verticalAlign: 'middle', textAlign: 'center' }}>
               <WCircularProgress size={60} />
             </div>

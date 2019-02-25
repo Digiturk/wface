@@ -12,13 +12,13 @@ import { TextFieldProps } from '@material-ui/core/TextField';
 
 export interface WTextFieldButton {
   icon: React.ReactNode;
-  onClick(event:any, val: String): void;
+  onClick(event: any, val: String): void;
 }
 
-export type WTextFieldProps = TextFieldProps & {  
+export type WTextFieldProps = TextFieldProps & {
   defaultValue?: string;
   leftButtons?: WTextFieldButton[];
-  rightButtons?: WTextFieldButton[];  
+  rightButtons?: WTextFieldButton[];
 }
 
 export interface WTextFieldState {
@@ -28,16 +28,23 @@ export interface WTextFieldState {
 //#endregion
 
 export class WTextField extends React.Component<WTextFieldProps, WTextFieldState> {
-  static defaultProps: WTextFieldProps = { 
+  static defaultProps: WTextFieldProps = {
     value: ''
-  }  
+  }
 
-  constructor(props:any) {
+  private textFieldRef: any;
+
+  constructor(props: any) {
     super(props);
+    this.textFieldRef = React.createRef();
 
     this.state = {
       showPassword: false
     }
+  }
+
+  public focus() {
+    this.textFieldRef.current && this.textFieldRef.current.focus();
   }
 
   //#region render methods
@@ -46,7 +53,7 @@ export class WTextField extends React.Component<WTextFieldProps, WTextFieldState
     return buttons.map((btn, index) => {
       return (
         <span key={index}>
-          <WIconButton          
+          <WIconButton
             onClick={() => btn.onClick && btn.onClick.bind(this)(null)}
             onMouseDown={() => event.preventDefault()}>
             {btn.icon}
@@ -57,6 +64,10 @@ export class WTextField extends React.Component<WTextFieldProps, WTextFieldState
   }
 
   private renderAdornments() {
+    const result = {
+      // ref: this.textFieldRef
+    } as any;
+
     let leftButtons = this.props.leftButtons || [];
     let rightButtons = this.props.rightButtons || [];
 
@@ -69,26 +80,37 @@ export class WTextField extends React.Component<WTextFieldProps, WTextFieldState
       } as WTextFieldButton;
       rightButtons.push(action);
     }
-
-    return {
-      startAdornment: leftButtons.length > 0 &&
+    
+    if (leftButtons.length > 0) {
+      result.startAdornment = (
         <InputAdornment position="start">
           {this.renderButtons(leftButtons)}
-        </InputAdornment>,
-      endAdornment: rightButtons.length > 0 &&
+        </InputAdornment>
+      );
+    }
+
+    if(rightButtons.length > 0) {
+      result.endAdornment = (
         <InputAdornment position="end">
           {this.renderButtons(rightButtons)}
         </InputAdornment>
-    };
+      );
+    }
+ 
+    return result;
   }
 
   public render() {
-    let adorments = this.renderAdornments();
+    let inputProps = { ...this.props.InputProps, ...this.renderAdornments() };
+
     return (
       <TextField
         {...this.props}
         type={this.props.type == 'password' && !this.state.showPassword ? 'password' : 'text'}
-        InputProps={adorments}
+        InputProps={inputProps}
+        inputProps={{
+          ref: this.textFieldRef
+        }}
       />
     );
   }

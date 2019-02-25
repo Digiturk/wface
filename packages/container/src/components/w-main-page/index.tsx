@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import WScreenWrapper from '../w-screen-wrapper';
 import MyProfileMenu from './my-profile-menu';
+import Search from './search';
 import NavList from './nav-list';
 
 //#endregion 
@@ -246,6 +247,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
               </WTypography>
             </span>
             <div style={{ flexGrow: 1 }} />
+            <Search/>
             <MyProfileMenu items={this.props.appContext.configuration.rightContextItems}/>
           </WToolBar>
           {this.renderTabs(classes)}
