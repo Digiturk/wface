@@ -8,7 +8,7 @@ type WTabsPropsBase = Omit<WTabsProps, "defaultValue">
 
 export interface WTabContainerProps extends WTabsPropsBase {
   defaultValue?: number;
-  children: React.ReactElement<WTabPage> | React.ReactElement<WTabPage>[]
+  children: React.ReactElement<WTabPage> | React.ReactElement<WTabPage>[];  
 }
 
 export class WTabContainer extends React.Component<WTabContainerProps, any> {
@@ -40,7 +40,11 @@ export class WTabContainer extends React.Component<WTabContainerProps, any> {
         <WTabs
           {...this.props as WTabsPropsBase}
           value={tabSelected}
-          onChange={(e, value) => this.setState({ tabSelected: value })}>
+          onChange={(e, value) => {
+            this.setState({ tabSelected: value }, () => {
+              this.props.onChange && this.props.onChange(e, value);
+            })
+          }}>
           {tabs}          
         </WTabs>
         <span key={tabSelected}>

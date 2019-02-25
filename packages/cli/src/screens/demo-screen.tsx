@@ -1,11 +1,6 @@
 import * as React from 'react';
 import * as WFace from '@wface/components';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import { MTableBody } from 'material-table';
 
 interface DemoScreenState {
   formValue: any;
@@ -32,33 +27,68 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
     return (
       <>
         <WFace.WForm onSubmit={(formValue) => this.setState({ formValue })} initialValues={this.state.formValue} onChange={(formValue) => this.setState({ formValue })}>
-          <WFace.WCard>
-            <WFace.WCardContent>
-              <WFace.WList>
-                <WFace.WListItem button>
-                  <WFace.WListItemIcon>
-                    <WFace.WIcon iconSize="small">save</WFace.WIcon>
-                  </WFace.WListItemIcon>
-                  <WFace.WListItemText primary="Text" />
-                </WFace.WListItem>
-
-                <WFace.WListItem button>
-                  <WFace.WListItemIcon>
-                    <WFace.WIcon iconSize="small">save</WFace.WIcon>
-                  </WFace.WListItemIcon>
-                  <WFace.WListItemText primary="Text" />
-                </WFace.WListItem>
-
-                <WFace.WListItem button selected>
-                  <WFace.WListItemIcon>
-                    <WFace.WIcon iconSize="small">save</WFace.WIcon>
-                  </WFace.WListItemIcon>
-                  <WFace.WListItemText primary="Text" />
-                </WFace.WListItem>
-              </WFace.WList>
-
-            </WFace.WCardContent>
-          </WFace.WCard>
+          <WFace.WGrid container>
+            <WFace.WGrid item lg={6}>
+              <WFace.WTable
+                title="Users"
+                columns={[
+                  { title: 'Adı', field: 'name' },
+                  { title: 'Soyadı', field: 'lastName' },
+                  { title: 'Doğum Yeri', field: 'birthCity', lookup: { 63: 'Şanlıurfa' } },
+                ]}
+                data={[
+                  { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                  { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                  { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                  { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                  { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                  { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                  { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                  { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                  { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                  { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                  { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                  { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                  { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                  { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                ]}
+                actions={[
+                  {
+                    icon: 'add_circle',
+                    isFreeAction: true,
+                    tooltip: 'Add New',
+                    onClick: () => alert('ok')
+                  },
+                  {
+                    icon: 'edit',
+                    tooltip: 'Edit',
+                    onClick: () => alert('ok')
+                  }
+                ]}
+                options={{
+                  columnsButton: true,
+                  exportButton: true,
+                  actionsColumnIndex: -1,
+                  paging: false
+                }}
+              />
+            </WFace.WGrid>
+            <WFace.WGrid item lg={6}>
+              <WFace.WTable
+                title="df"
+                columns={[
+                  { title: 'Adı', field: 'name' },
+                  { title: 'Soyadı', field: 'lastName' },
+                  { title: 'Doğum Yeri', field: 'birthCity', lookup: { 63: 'Şanlıurfa' } },
+                ]}
+                data={[
+                  { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                  { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                  { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                ]}
+              />
+            </WFace.WGrid>
+          </WFace.WGrid>
           <WFace.WCard>
             <WFace.WCardContent>
               <WFace.WFormField.Select label="s1" name="n1"
@@ -85,12 +115,8 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
             </WFace.WCardActions>
           </WFace.WCard>
 
+
           {/* <WFace.WTable
-            title="df"
-            columns={[]}
-            data={[]}
-          />
-           <WFace.WTable
             title="df"
             columns={[]}
             data={[]}

@@ -7,16 +7,16 @@ import { WTheme } from '../../others/w-theme-provider/w-theme';
 export interface WTableProps extends MaterialTableProps {
   classes?: any;
   theme?: WTheme;
+  style?: React.CSSProperties;
 }
 
 class WTableInner extends React.Component<WTableProps, {}> {
   public render() {
-    const { classes } = this.props;
+    const { classes, style, ...tableProps } = this.props;
     return (
-      // margin: theme.spacing.unit, seklinde style ile alinabilir.
-      <div className={classes.root}>
+      <div className={classes.root} style={style}>
         <MaterialTable 
-          {...this.props}
+          {...tableProps}
           components={{
             Container: (props) => <WPaper {...props} elevation={this.props.theme.designDetails.defaultElevation}/>
           }}
@@ -29,7 +29,7 @@ class WTableInner extends React.Component<WTableProps, {}> {
 
 const styles = theme => createStyles({
   root: {
-    margin: theme.spacing.unit    
+    margin: theme.spacing.unit
   }
 });
 
