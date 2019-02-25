@@ -5,19 +5,26 @@ import { DemoScreen } from '../../src/screens/demo-screen'
 import { DemoScreen2 } from '../../src/screens/demo-screen-2'
 import { WTheme } from '@wface/components';
 
-const theme = {  
+const theme = {
 } as WTheme
 
-const config = {  
-  projectName: 'WFace',  
-  screenList: { 
+const config = {
+  projectName: 'WFace',
+  screenList: {
     DemoScreen,
     DemoScreen2
   },
   authService: AuthService,
   theme: theme,
   useLocalStorage: true,
-  hooks: AppHooks
+  hooks: AppHooks,
+  rightContextItems: [
+    {
+      icon: 'account_circle',
+      text: 'My Profile',
+      onClick: () => alert('You clicked my profile')
+    }
+  ]
 } as IConfiguration
 
 export default config;

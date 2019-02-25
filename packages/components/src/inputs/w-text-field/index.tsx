@@ -15,10 +15,6 @@ export interface WTextFieldButton {
   onClick(event:any, val: String): void;
 }
 
-export interface DispatchProps {
-  saveScreenAny: (key: string, value: any) => void
-}
-
 export type WTextFieldProps = TextFieldProps & {  
   defaultValue?: string;
   leftButtons?: WTextFieldButton[];

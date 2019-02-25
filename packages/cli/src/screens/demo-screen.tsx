@@ -26,132 +26,80 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
   public render() {
     return (
       <>
-        <WFace.WForm onSubmit={(formValue) => this.setState({ formValue })} initialValues={this.state.formValue} onChange={(formValue) => this.setState({ formValue })}>
-          <WFace.WGrid container>
-            <WFace.WGrid item lg={6}>
-              <WFace.WTable
-                title="Users"
-                columns={[
-                  { title: 'Adı', field: 'name' },
-                  { title: 'Soyadı', field: 'lastName' },
-                  { title: 'Doğum Yeri', field: 'birthCity', lookup: { 63: 'Şanlıurfa' } },
-                ]}
-                data={[
-                  { name: 'mehmet', lastName: 'baran', birthCity: 63 },
-                  { name: 'mehmet', lastName: 'baran', birthCity: 63 },
-                  { name: 'mehmet', lastName: 'baran', birthCity: 63 },
-                  { name: 'mehmet', lastName: 'baran', birthCity: 63 },
-                  { name: 'mehmet', lastName: 'baran', birthCity: 63 },
-                  { name: 'mehmet', lastName: 'baran', birthCity: 63 },
-                  { name: 'mehmet', lastName: 'baran', birthCity: 63 },
-                  { name: 'mehmet', lastName: 'baran', birthCity: 63 },
-                  { name: 'mehmet', lastName: 'baran', birthCity: 63 },
-                  { name: 'mehmet', lastName: 'baran', birthCity: 63 },
-                  { name: 'mehmet', lastName: 'baran', birthCity: 63 },
-                  { name: 'mehmet', lastName: 'baran', birthCity: 63 },
-                  { name: 'mehmet', lastName: 'baran', birthCity: 63 },
-                  { name: 'mehmet', lastName: 'baran', birthCity: 63 },
-                ]}
-                actions={[
-                  {
-                    icon: 'add_circle',
-                    isFreeAction: true,
-                    tooltip: 'Add New',
-                    onClick: () => alert('ok')
-                  },
-                  {
-                    icon: 'edit',
-                    tooltip: 'Edit',
-                    onClick: () => alert('ok')
-                  }
-                ]}
-                options={{
-                  columnsButton: true,
-                  exportButton: true,
-                  actionsColumnIndex: -1,
-                  paging: false
-                }}
-              />
-            </WFace.WGrid>
-            <WFace.WGrid item lg={6}>
-              <WFace.WTable
-                title="df"
-                columns={[
-                  { title: 'Adı', field: 'name' },
-                  { title: 'Soyadı', field: 'lastName' },
-                  { title: 'Doğum Yeri', field: 'birthCity', lookup: { 63: 'Şanlıurfa' } },
-                ]}
-                data={[
-                  { name: 'mehmet', lastName: 'baran', birthCity: 63 },
-                  { name: 'mehmet', lastName: 'baran', birthCity: 63 },
-                  { name: 'mehmet', lastName: 'baran', birthCity: 63 },
-                ]}
-              />
-            </WFace.WGrid>
+        <WFace.WGrid container>
+          <WFace.WGrid item lg={6}>
+            <WFace.WTable
+              title="Users"
+              columns={[
+                { title: 'Adı', field: 'name' },
+                { title: 'Soyadı', field: 'lastName' },
+                { title: 'Doğum Yeri', field: 'birthCity', lookup: { 63: 'Şanlıurfa' } },
+              ]}
+              data={[
+                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+              ]}
+            />
           </WFace.WGrid>
-          <WFace.WCard>
-            <WFace.WCardContent>
-              <WFace.WFormField.Select label="s1" name="n1"
-                options={[
-                  { label: 'Adana', value: '1' },
-                  { label: 'Gaziantep', value: '27' },
-                  { label: 'İstanbul', value: '34' },
-                  { label: 'Şanlıurfa', value: '63' }
-                ]} />
-              <WFace.WFormField.TextField label="Text" name="text" />
-              <WFace.WFormField.Checkbox label="Check1" name="check1" />
-              <WFace.WFormField.Checkbox label="Check2" name="check2" />
-              <WFace.WFormField.Select label="s1" name="n1"
-                options={[
-                  { label: 'Adana', value: '1' },
-                  { label: 'Gaziantep', value: '27' },
-                  { label: 'İstanbul', value: '34' },
-                  { label: 'Şanlıurfa', value: '63' }
-                ]} />
-            </WFace.WCardContent>
-            <WFace.WCardActions>
-              <WFace.WButton onClick={() => this.setState({ isDialogOpen: true })}>Dialog</WFace.WButton>
-              <WFace.WFormField.Submit>Submit</WFace.WFormField.Submit>
-            </WFace.WCardActions>
-          </WFace.WCard>
+          <WFace.WGrid item lg={6}>
+            <WFace.WTable
+              title="df"
+              columns={[
+                { title: 'Adı', field: 'name' },
+                { title: 'Soyadı', field: 'lastName' },
+                { title: 'Doğum Yeri', field: 'birthCity', lookup: { 63: 'Şanlıurfa' } },
+              ]}
+              data={[
+                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+              ]}
+            />
+          </WFace.WGrid>
+        </WFace.WGrid>
+        <WFace.WCard>
+          <WFace.WCardContent>
+
+          </WFace.WCardContent>
+          <WFace.WCardActions>
+            <WFace.WButton onClick={() => this.setState({ isDialogOpen: true })}>Dialog</WFace.WButton>
+          </WFace.WCardActions>
+        </WFace.WCard>
 
 
-          {/* <WFace.WTable
+        {/* <WFace.WTable
             title="df"
             columns={[]}
             data={[]}
           /> */}
 
-          {/* <div>
+        {/* <div>
             <pre>
               {JSON.stringify(this.state.formValue, null, 2)}
             </pre>
           </div> */}
 
-          <WFace.WDialog open={this.state.isDialogOpen} fullWidth>
-            <WFace.WDialogTitle>Dialog</WFace.WDialogTitle>
-            <WFace.WDialogContent>
-              <WFace.WFormField.TextField label="l1" name="n1" />
-              <WFace.WFormField.TextField label="l2" name="n1" />
-              <WFace.WFormField.TextField label="l3" name="n1" />
-              <WFace.WFormField.TextField label="l4" name="n1" />
-              <WFace.WFormField.TextField label="l5" name="n1" />
-              <WFace.WFormField.TextField label="l6" name="n1" />
-              <WFace.WFormField.TextField label="l7" name="n1" />
-              <WFace.WSelect label="s1" name="n1"
-                options={[
-                  { label: 'Adana', value: '1' },
-                  { label: 'Gaziantep', value: '27' },
-                  { label: 'İstanbul', value: '34' },
-                  { label: 'Şanlıurfa', value: '63' }
-                ]} />
-              <WFace.WFormField.TextField label="l8" name="n1" />
-            </WFace.WDialogContent>
-            <WFace.WDialogActions>
-              <WFace.WButton onClick={() => this.setState({ isDialogOpen: false })}>Close</WFace.WButton>
-            </WFace.WDialogActions>
-          </WFace.WDialog>
-        </WFace.WForm>
+        <WFace.WDialog open={this.state.isDialogOpen} fullWidth>
+          <WFace.WDialogTitle>Dialog</WFace.WDialogTitle>
+          <WFace.WDialogContent>
+
+          </WFace.WDialogContent>
+          <WFace.WDialogActions>
+            <WFace.WButton onClick={() => this.setState({ isDialogOpen: false })}>Close</WFace.WButton>
+          </WFace.WDialogActions>
+        </WFace.WDialog>
       </>
     )
   }

@@ -246,7 +246,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
               </WTypography>
             </span>
             <div style={{ flexGrow: 1 }} />
-            <MyProfileMenu />
+            <MyProfileMenu items={this.props.appContext.configuration.rightContextItems}/>
           </WToolBar>
           {this.renderTabs(classes)}
         </WAppBar>
