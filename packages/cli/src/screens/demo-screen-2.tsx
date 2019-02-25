@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as WFace from '@wface/components';
+import IOC from '@wface/ioc';
 
 interface DemoScreen2State {
   data: any;
@@ -18,6 +19,7 @@ export class DemoScreen2 extends React.Component<WFace.BaseScreenProps, DemoScre
     return (
       <>
         <WFace.WButton onClick={() => {
+          // IOC.get<any>("logout")();
           this.props.changeScreenMode('loading');
           this.props.httpService.get("https://reqres.in/api/users?page=2&delay=10")            
             .then(data => {

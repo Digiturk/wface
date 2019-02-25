@@ -43,9 +43,15 @@ class WApp extends React.Component<{ configuration: IConfiguration }, { configur
 
   buildIOC = (configuration: IConfiguration) => {
 
+    // Bind login function
     const onLogin = (username: string, displayName: string, token?: string) => this.store.dispatch(UserContextActions.login({ username, displayName, token }));
     !IOC.isBound("onLogin") &&
-      IOC.bind("onLogin").toFunction(onLogin); // Burasi değişmeli
+      IOC.bind("onLogin").toFunction(onLogin); 
+
+    // Bind logout function
+    const logout = () => this.store.dispatch(UserContextActions.logout());
+    !IOC.isBound("logout") &&
+      IOC.bind("logout").toFunction(logout);
 
     // Bind contextes
     !IOC.isBound("UserContext") &&
