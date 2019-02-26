@@ -109,7 +109,7 @@ class WSelectInner extends React.Component<WSelectProps, { focused: boolean }> {
     return (
       <NoSsr>
         {/* 
-        // @ts-ignore */}
+        // @ts-ignore */}        
         <Select
           ref={this.select}
           {...this.props}
@@ -119,6 +119,7 @@ class WSelectInner extends React.Component<WSelectProps, { focused: boolean }> {
           onChange={this.onChange}
           placeholder=""
           value={cleanValue}
+
           // @ts-ignore
           classes={classes}
           textFieldProps={{

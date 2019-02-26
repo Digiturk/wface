@@ -5,6 +5,7 @@ export { default as MenuTreeUtil } from './src/implementations/menu-tree-util';
 export { default as IConfiguration } from './src/interfaces/i-configuration';
 export { default as IAuthService, IMenuTreeItem } from './src/interfaces/i-auth-service';
 export { default as IHttpService } from './src/interfaces/i-http-service';
+export { default as ISearchProvider } from './src/interfaces/i-search-provider';
 
 // wrappers
 export { default as AuthServiceWrapper } from './src/wrappers/auth-service-wrapper';

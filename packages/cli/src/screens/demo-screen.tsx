@@ -23,7 +23,7 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
     // this.props.setConfirmOnClose(true);    
   }
 
-  public render() {
+  public render() {    
     return (
       <>
         <WFace.WGrid container>

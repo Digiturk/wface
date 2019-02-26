@@ -1,6 +1,7 @@
 import IHttpService from './i-http-service';
 import IAuthService from './i-auth-service';
 import IAppHooks from './i-app-hooks';
+import ISearchProvider from './i-search-provider';
 
 export default interface IConfiguration {
   projectName: string,
@@ -15,4 +16,5 @@ export default interface IConfiguration {
   theme?: any;
   useLocalStorage?: boolean;
   hooks?: { new(...args: any[]): IAppHooks; };
+  search?: boolean | { new(...args: any[]): ISearchProvider; };
 }

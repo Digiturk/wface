@@ -1,36 +1,48 @@
-import * as WFace from '@wface/components';
-import { UserContextActions, WStore, AppContextActions } from '@wface/store';
-import { createStyles, withStyles } from '@material-ui/core/styles';
+import IOC, { ISearchProvider } from '@wface/ioc';
+import { WStore } from '@wface/store';
 import * as React from 'react';
+import *  as WFace from '@wface/components';
 import { connect } from 'react-redux';
-import { IMenuTreeItem, MenuTreeUtil } from '@wface/ioc';
+import Select, { components } from 'react-select';
+import { th } from 'date-fns/esm/locale';
+import { stat } from 'fs';
+import { withTheme } from '@material-ui/core';
+
 
 interface SearchState {
   focused: boolean;
   value: string;
+  searchResults: any[];
+  isLoading: boolean;
+  anchorEl: any;
 }
 
 export interface SearchProps {
   classes?: any;
+  theme?: WFace.WTheme;
 }
 
 export interface DispatchProps {
-  openScreen: (menuTreeItem: IMenuTreeItem) => void;
-  clearAppContext: () => void;
-  logout: () => void;
+  // openScreen: (menuTreeItem: IMenuTreeItem) => void;
+  // clearAppContext: () => void;
+  // logout: () => void;
 }
 
 class Search extends React.Component<SearchProps & WStore & DispatchProps, SearchState> {
   private textFieldRef: any;
+  private searchProvider: ISearchProvider = IOC.get<ISearchProvider>("ISearchProvider");
 
   constructor(props) {
     super(props);
-    
+
     this.textFieldRef = React.createRef();
 
     this.state = {
       focused: false,
-      value: ""
+      value: "",
+      searchResults: [],
+      isLoading: false,
+      anchorEl: null
     }
 
     this.focusSearch = this.focusSearch.bind(this);
@@ -45,34 +57,109 @@ class Search extends React.Component<SearchProps & WStore & DispatchProps, Searc
   }
 
   focusSearch(e) {
-    if (e.ctrlKey && e.shiftKey && e.keyCode === 70) {      
+    if (e.ctrlKey && e.shiftKey && e.keyCode === 70) {
       this.textFieldRef.current && this.textFieldRef.current.focus()
       e.stopPropagation();
     }
   }
 
+  onChange = (value, action) => {
+    if (action.action !== "input-blur" && action.action !== "menu-close") {
+      this.setState({ value }, () => {
+        this.searchResults();
+      });
+    }
+  }
+
+  searchResults = () => {
+    if (this.state.value.length === 0) {
+      this.setState({ searchResults: [] });
+      return;
+    }
+
+    this.setState({ isLoading: true }, () => {
+      this.searchProvider.search(this.state.value)
+        .then(results => {
+          this.setState({ searchResults: results });
+        })
+        .catch(reason => {
+          this.setState({ searchResults: [] });
+        })
+        .finally(() => {
+          this.setState({ isLoading: false });
+        })
+    });
+  }
+
   public render() {
     return (
       <div>
-        <WFace.WTextField
-          value={this.state.value}
-          onChange={(e) => this.setState({ value: e.target.value })}
+        <Select
           ref={this.textFieldRef}
-          classes={this.props.classes}          
-          style={{ width: this.state.focused ? 400 : 200, backgroundColor: this.state.focused ? '#FFFFFF33' : '#FFFFFF11' }}
+          isSearchable
+          value={this.state.value}
+          onChange={(option, e) => this.searchProvider.onItemSelected(option)}
+          noOptionsMessage={() => "No result found"}
+          blurInputOnSelect={true}
+          inputValue={this.state.value}
+          onInputChange={(value, action) => this.onChange(value, action)}
+          options={this.state.searchResults}
+          formatOptionLabel={(option, context) => this.searchProvider.renderSearchItem(option)}
+          getOptionValue={(option) => this.state.value}
+          menuIsOpen={this.state.value.length > 0 && this.state.focused}
+          placeholder="Search..."
+          isLoading={this.state.isLoading}
           onFocus={() => this.setState({ focused: true })}
           onBlur={() => this.setState({ focused: false })}
-          InputProps={{
-            disableUnderline: true,
-            startAdornment: <WFace.WIcon style={{ color: '#ffffffaa', padding: '0 10px' }}>search</WFace.WIcon>,
-            style: {
-              color: '#fff',
-            }
+          styles={{
+            control: (base) => ({
+              ...base,
+              width: this.state.focused ? 400 : 200,
+              backgroundColor: this.state.focused ? '#00000066' : '#00000033',
+              border: '0',
+              height: 30,
+              minHeight: 30,
+              transition: 'all ease 400ms',
+              // color: '#FFF',
+              boxShadow: 'none',
+              fontSize: 14,
+            }),
+            placeholder: (base) => ({
+              ...base,
+              color: '#FFFFFF66',
+              lineHeight: '26px',
+            }),
+            container: (base) => ({
+              ...base,
+              border: 'none',
+            }),
+            dropdownIndicator: (base) => ({
+              height: 30
+            }),
+            input: (base) => ({
+              ...base,
+              color: '#FFF'
+            }),
+            option: (base, state) => ({
+              ...base,
+              color: 'initial',
+              backgroundColor: state.isFocused ? this.props.theme.palette.background.default : 'initial',
+              padding: 0,
+            }),
           }}
-          InputLabelProps={{
-            classes: this.props.classes
+          components={{
+            DropdownIndicator: (props) => (
+              <div style={{ padding: '2px 5px 0px' }}>
+                <WFace.WIcon icon="search" style={{ color: '#FFFFFF66' }} />
+              </div>
+            ),
+            IndicatorSeparator: () => null,
+            LoadingIndicator: (props) => (
+              <div style={{ padding: '2px 5px 0px' }}>
+                <WFace.WCircularProgress size={22} style={{ color: '#FFFFFFCC' }} />
+              </div>
+            )
           }}
-          placeholder="Search..."
         />
       </div>
     )
@@ -81,18 +168,10 @@ class Search extends React.Component<SearchProps & WStore & DispatchProps, Searc
 
 const mapStateToProps = state => ({ ...state });
 const mapDispatchToProps = dispatch => ({
-  openScreen: (menuTreeItem: IMenuTreeItem, initialValues?: any) => dispatch(AppContextActions.openScreen({ menuTreeItem, initialValues })),
-  clearAppContext: () => dispatch(AppContextActions.clear()),
-  logout: () => dispatch(UserContextActions.logout())
+  // openScreen: (menuTreeItem: IMenuTreeItem, initialValues?: any) => dispatch(AppContextActions.openScreen({ menuTreeItem, initialValues })),
+  // clearAppContext: () => dispatch(AppContextActions.clear()),
+  // logout: () => dispatch(UserContextActions.logout())
 })
 
 
-const styles = (theme: WFace.WTheme) => createStyles({
-  root: {
-    borderRadius: 4,
-    transition: 'all ease 400ms',
-    color: '#FFF'
-  },
-});
-
-export default connect<WStore, DispatchProps, SearchProps>(mapStateToProps, mapDispatchToProps)(withStyles(styles, { withTheme: false })((props) => <Search {...props} />))
+export default connect<WStore, DispatchProps, SearchProps>(mapStateToProps, mapDispatchToProps)(withTheme()((props) => <Search {...props} />));

@@ -4,11 +4,12 @@ import "reflect-metadata";
 import { WContainer } from "@wface/container";
 import * as React from 'react';
 import { getStore, AppContextActions, UserContextActions, UserContext, AppContext } from '@wface/store';
-import IOC, { IAuthService, IConfiguration, AuthServiceWrapper, IHttpService, HttpServiceWrapper } from '@wface/ioc';
+import IOC, { IAuthService, IConfiguration, AuthServiceWrapper, IHttpService, HttpServiceWrapper, ISearchProvider, IMenuTreeItem } from '@wface/ioc';
 import DefaultHttpService from './default-http-service';
 import WLoginPage from '../w-login-page';
 import { Provider } from 'react-redux';
 import IAppHooks from '@wface/ioc/src/interfaces/i-app-hooks';
+import MenuSearchProvider from '../w-main-page/menu-search-provider';
 
 
 class WApp extends React.Component<{ configuration: IConfiguration }, { configuration: IConfiguration }> {
@@ -53,6 +54,11 @@ class WApp extends React.Component<{ configuration: IConfiguration }, { configur
     !IOC.isBound("logout") &&
       IOC.bind("logout").toFunction(logout);
 
+    // Bind openScreen function
+    const openScreen = (menuTreeItem: IMenuTreeItem) => this.store.dispatch(AppContextActions.openScreen({menuTreeItem}));
+    !IOC.isBound("openScreen") &&
+      IOC.bind("openScreen").toFunction(openScreen);
+
     // Bind contextes
     !IOC.isBound("UserContext") &&
       IOC.bind<UserContext>("UserContext").toFactory(() => this.store.getState().userContext);
@@ -75,6 +81,18 @@ class WApp extends React.Component<{ configuration: IConfiguration }, { configur
     configuration.hooks &&
     !IOC.isBound("IAppHooks") &&
       IOC.bind<IAppHooks>("IAppHooks").to(configuration.hooks);
+
+    // Bind search provider
+    if(configuration.search && !IOC.isBound("ISearchProvider")) {
+      if(configuration.search === true) {
+
+        IOC.bind<ISearchProvider>("ISearchProvider").to(MenuSearchProvider);  
+      }
+      else {
+        IOC.bind<ISearchProvider>("ISearchProvider").to(configuration.search);  
+      }
+    }     
+      
   }
 
   getConfig(props: { configuration: IConfiguration }): IConfiguration {

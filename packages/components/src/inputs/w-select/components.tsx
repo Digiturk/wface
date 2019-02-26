@@ -1,4 +1,5 @@
 import * as React from 'react';
+// @ts-ignore
 import classNames from 'classnames';
 import { WChip } from '../../others/w-chip';
 import { WIcon } from '../../medias/w-icon';
