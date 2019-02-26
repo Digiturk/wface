@@ -18,14 +18,14 @@ const config = {
   theme: theme,
   useLocalStorage: true,
   hooks: AppHooks,
+  search: true,
   rightContextItems: [
     {
       icon: 'account_circle',
       text: 'My Profile',
       onClick: () => alert('You clicked my profile')
     }
-  ],
-  search: true  
+  ]
 } as IConfiguration
 
 export default config;
