@@ -3,6 +3,7 @@ import * as WFace from '@wface/components';
 import { ISearchProvider, MenuTreeUtil, IMenuTreeItem } from '@wface/ioc';
 import { injectable, inject } from "inversify";
 import { AppContext } from '@wface/store';
+// @ts-ignore
 import Fuse from 'fuse.js';
 
 @injectable()
