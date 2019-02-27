@@ -3,30 +3,41 @@ import * as WFace from '@wface/components';
 import { ISearchProvider, MenuTreeUtil, IMenuTreeItem } from '@wface/ioc';
 import { injectable, inject } from "inversify";
 import { AppContext } from '@wface/store';
+import Fuse from 'fuse.js';
 
 @injectable()
 export default class MenuSearchProvider implements ISearchProvider {
 
-  @inject("AppContext") appContext: AppContext;
+  // @inject("AppContext") appContext: AppContext;
   @inject("openScreen") openScreen: (item: IMenuTreeItem) => void;
+
+  private list: IMenuTreeItem[] = [];
+  private fuse = new Fuse(this.list, {
+    shouldSort: true,
+    threshold: 0.3,
+    location: 0,
+    distance: 100,
+    maxPatternLength: 32,
+    minMatchCharLength: 1,
+    keys: [
+      "text",
+    ]
+  });
+
+  constructor(@inject("AppContext") appContext: AppContext) {
+    MenuTreeUtil.menuTreeForEach(appContext.menuTree, (item: IMenuTreeItem) => {
+      if (item.subNodes && item.subNodes.length > 0) {
+        return false;
+      }
+
+      this.list.push(item);
+      return false;
+    });
+  }
 
   search(term: string): Promise<any[]> {
     return new Promise((resolve, reject) => {
-
-      const result = [];
-      MenuTreeUtil.menuTreeForEach(this.appContext.menuTree, (item: IMenuTreeItem) => {
-        if (item.subNodes && item.subNodes.length > 0) {
-          return false;
-        }
-
-        if (item.text.toLocaleLowerCase().indexOf(term.toLocaleLowerCase()) != -1) {
-          result.push(item);
-        }
-
-        return false;
-      });
-
-      // setTimeout(() => resolve(result), 1000);
+      const result = this.fuse.search(term);
       resolve(result);
     })
   }
