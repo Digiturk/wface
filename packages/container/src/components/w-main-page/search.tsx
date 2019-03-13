@@ -3,9 +3,7 @@ import { WStore } from '@wface/store';
 import * as React from 'react';
 import *  as WFace from '@wface/components';
 import { connect } from 'react-redux';
-import Select, { components } from 'react-select';
-import { th } from 'date-fns/esm/locale';
-import { stat } from 'fs';
+import Select from 'react-select';
 import { withTheme } from '@material-ui/core';
 
 
