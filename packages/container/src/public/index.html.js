@@ -11,8 +11,8 @@ module.exports = function (templateParams) {
       <title>${templateParams.webpackConfig.name || templateParams.htmlWebpackPlugin.options.title}</title>
       <link rel="icon" type="image/x-icon" href="assets/wface/favicon.ico">
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
-      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">      
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
       <style>
         html, body, #root, #root>div.main-page {
           height: 100%

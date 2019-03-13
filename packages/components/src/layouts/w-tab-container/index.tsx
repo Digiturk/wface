@@ -30,7 +30,7 @@ export class WTabContainer extends React.Component<WTabContainerProps, any> {
     // @ts-ignore
     const children = Array.isArray(this.props.children) ? this.props.children[tabSelected].props.children : this.props.children.props.children;
     // @ts-ignore
-    const tabs = Array.isArray(this.props.children) ? this.props.children.map((tab, index) => <WTab {...tab.props as WTabProps} />) :
+    const tabs = Array.isArray(this.props.children) ? this.props.children.filter(a => a).map((tab, index) => <WTab {...tab.props as WTabProps} />) :
       <WTab {...this.props.children.props as WTabProps} />
 
     return (
