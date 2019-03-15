@@ -5,12 +5,12 @@
 		"packages/*"
 	],
 	"devDependencies": {
-    "child_process": "1.0.2",
-    "concurrently": "3.6.0",
-    "fs-extra": "7.0.0",
-    "gulp": "3.9.1",
-    "minimist": "1.2.0",
-		"lerna": "3.4.3"
+		"child_process": "1.0.2",
+		"concurrently": "4.1.0",
+		"fs-extra": "7.0.1",
+		"gulp": "4.0.0",
+		"minimist": "1.2.0",
+		"lerna": "3.13.1"
 	},
 	"repository": {
 		"type": "git",
@@ -25,9 +25,9 @@
 		"clean-store": "rimraf ./packages/store/node_modules",
 		"clean-system": "rimraf ./packages/system/node_modules",
 		"clean-cli": "rimraf ./packages/cli/node_modules",
-    "clean": "npm run clean-framework && npm run clean-components && npm run clean-container && npm run clean-ioc && npm run clean-store && npm run clean-system && npm run clean-cli",
-    "version": "gulp version",
-    "publish": "gulp publish"
+		"clean": "npm run clean-framework && npm run clean-components && npm run clean-container && npm run clean-ioc && npm run clean-store && npm run clean-system && npm run clean-cli",
+		"version": "gulp version",
+		"publish": "gulp publish"
 	},
 	"dependencies": {}
 }
