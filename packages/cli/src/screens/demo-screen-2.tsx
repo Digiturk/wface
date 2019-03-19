@@ -20,11 +20,12 @@ export class DemoScreen2 extends React.Component<WFace.BaseScreenProps, DemoScre
       <>
         <WFace.WButton onClick={() => {
           // IOC.get<any>("logout")();
-          this.props.changeScreenMode('loading');
-          this.props.httpService.get("https://reqres.in/api/users?page=2&delay=10")            
-            .then(data => {
-              this.setState({data}, () => this.props.changeScreenMode('normal'));
-            })
+          this.props.setConfirmOnClose(!this.props.appContext.currentScreen.confirmOnClose);
+          // this.props.changeScreenMode('loading');
+          // this.props.httpService.get("https://reqres.in/api/users?page=2&delay=10")            
+          //   .then(data => {
+          //     this.setState({data}, () => this.props.changeScreenMode('normal'));
+          //   })
         }}>
           GETİR
         </WFace.WButton>

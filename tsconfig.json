@@ -5,6 +5,7 @@
     "lib": ["es6", "dom"],
     "declaration": true,
     "jsx": "react",
+    "skipLibCheck": true,
 
     /* START: Compiler options */
     "noImplicitReturns": true,

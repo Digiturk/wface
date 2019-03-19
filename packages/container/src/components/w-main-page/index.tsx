@@ -1,7 +1,7 @@
 //#region imports 
 
 import { withStyles, withTheme } from '@material-ui/core/styles';
-import { WAppBar, WCircularProgress, WDrawer, WGrid, WIcon, WIconButton, WScrollBar, WTab, WTabs, WToolBar, WTypography, WPaper, WMessageDialog, WTheme } from '@wface/components';
+import { WAppBar, WCircularProgress, WDrawer, WGrid, WIcon, WIconButton, WScrollBar, WTab, WTabs, WToolBar, WTypography, WPaper, WMessageDialog, WTheme, WTooltip, withSnackbar } from '@wface/components';
 import IOC, { IAuthService, IMenuTreeItem, MenuTreeUtil } from "@wface/ioc";
 import { AppContext, AppContextActions, ScreenData, WStore } from '@wface/store';
 // @ts-ignore
@@ -24,6 +24,7 @@ export interface WMainPageProps {
   history?: any,
   appContext: AppContext,
   theme?: WTheme;
+  enqueueSnackbar?: (message: string, options: object) => void,
 }
 
 export interface DispatchProps {
@@ -110,6 +111,21 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
     }
   }
 
+  closeAllOpenedScreens = () => {
+    if (this.props.appContext.openedScreens.some(screen => screen.confirmOnClose)) {
+      this.props.enqueueSnackbar("Kaydedilmemiş ekranlar var. Lütfen öncelikle onları kapatın.", {
+        variant: 'warning',
+        autoHideDuration: 5000,
+        action: <WIconButton><WIcon style={{ color: '#ffffff99' }} iconSize="small">close</WIcon></WIconButton>
+      });
+    }
+    else {
+      this.props.appContext.openedScreens.forEach(screen => {
+        this.props.closeScreen(screen.menuTreeItem);
+      })
+    }
+  }
+
   //#endregion
 
   //#region Methods 
@@ -185,7 +201,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
                       :
                       <WIconButton
                         onClick={(e) => this.handleTabCloseButtonClick(e, screen.menuTreeItem)}>
-                        <WIcon className={classes.whiteText} style={{ fontSize: 15 }}>close</WIcon>
+                        <WIcon className={classes.whiteText} style={{ fontSize: 15 }}>{screen.confirmOnClose ? "lens" : "close"}</WIcon>
                       </WIconButton>
                     }
                   </WGrid>
@@ -247,10 +263,20 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
               </WTypography>
             </span>
             <div style={{ flexGrow: 1 }} />
-            {this.props.appContext.configuration.search && <Search/>}
-            <MyProfileMenu items={this.props.appContext.configuration.rightContextItems}/>
+            {this.props.appContext.configuration.search && <Search />}
+            <MyProfileMenu items={this.props.appContext.configuration.rightContextItems} />
           </WToolBar>
-          {this.renderTabs(classes)}
+          <div style={{ display: 'flex' }}>
+            <div style={{ flex: 1 }}>
+              {this.renderTabs(classes)}
+            </div>
+            <WTooltip title="Close All Tabs">
+              <WIconButton onClick={this.closeAllOpenedScreens}>
+                <WIcon style={{ color: '#FFFFFF66' }} iconSize="small">close</WIcon>
+              </WIconButton>
+            </WTooltip>
+          </div>
+
         </WAppBar>
         <WDrawer
           variant="persistent"
@@ -368,7 +394,7 @@ const styles: any = (theme: any) => ({
     marginRight: 0,
   },
   whiteText: {
-    color: '#bbb'
+    color: '#FFFFFFFF'
   },
   toolbar: theme.mixins.toolbar,
 });
@@ -383,4 +409,4 @@ const mapDispatchToProps = (dispatch: any) => ({
   closeScreen: (menuTreeItem: IMenuTreeItem) => dispatch(AppContextActions.closeScreen(menuTreeItem))
 });
 
-export default connect<WStore, DispatchProps, WMainPageProps>(mapStateToProps, mapDispatchToProps)(withRouter(withStyles(styles)(withTheme()(WMainPage as any) as any) as any) as any)
+export default connect<WStore, DispatchProps, WMainPageProps>(mapStateToProps, mapDispatchToProps)(withRouter(withStyles(styles)(withTheme()(withSnackbar(WMainPage) as any) as any) as any) as any)

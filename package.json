@@ -10,14 +10,14 @@
 		"fs-extra": "7.0.1",
 		"gulp": "4.0.0",
 		"minimist": "1.2.0",
-		"lerna": "3.13.1"
+    "lerna": "3.13.1"
 	},
 	"repository": {
 		"type": "git",
 		"url": "https://bitbucket.digiturk.com.tr/scm/itdev/wface.git"
 	},
-	"scripts": {
-		"start": "npm --prefix ./packages/cli start",
+	"scripts": {    
+    "start": "webpack-dev-server --config=packages/cli/configs/webpack/dev.js --open",
 		"clean-framework": "rimraf node_modules",
 		"clean-components": "rimraf ./packages/components/node_modules",
 		"clean-container": "rimraf ./packages/container/node_modules",

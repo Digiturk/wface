@@ -1,4 +1,5 @@
 import { createStyles, withStyles } from '@material-ui/core';
+// @ts-ignore
 import classNames from 'classnames';
 import * as React from 'react';
 import { WIconButton } from '../../buttons/w-icon-button';

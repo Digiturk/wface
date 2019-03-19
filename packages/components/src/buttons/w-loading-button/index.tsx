@@ -1,4 +1,5 @@
 import * as React from 'react';
+// @ts-ignore
 import classNames from 'classnames';
 import { WButton, WButtonProps } from '../w-button';
 import { WCircularProgress, WCircularProgressProps } from '../../progress/w-circular-progress';
