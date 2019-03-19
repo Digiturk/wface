@@ -1,14 +1,14 @@
 {
 	"name": "@wface/components",
-	"version": "0.14.1",
+	"version": "0.15.0",
 	"description": "All wface components",
 	"author": "baran",
 	"main": "index.ts",
 	"license": "ISC",
 	"dependencies": {
 		"@material-ui/core": "3.8.1",
-		"@wface/ioc": "0.14.1",
-		"@wface/store": "0.14.1",
+		"@wface/ioc": "0.15.0",
+		"@wface/store": "0.15.0",
 		"classnames": "2.2.6",
 		"date-fns": "2.0.0-alpha.16",
 		"formik": "1.4.1",
