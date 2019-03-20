@@ -8,11 +8,10 @@ import * as Fuse from 'fuse.js';
 @injectable()
 export default class MenuSearchProvider implements ISearchProvider {
 
-  // @inject("AppContext") appContext: AppContext;
   @inject("openScreen") openScreen: (item: IMenuTreeItem) => void;
 
   search(term: string): Promise<any[]> {
-    return new Promise((resolve, reject) => {
+    return new Promise<any[]>((resolve, reject) => {
       
       const appContext = IOC.get<AppContext>("AppContext");
 
@@ -26,6 +25,7 @@ export default class MenuSearchProvider implements ISearchProvider {
         return false;
       });
 
+      // @ts-ignore
       const fuse = new Fuse(list, {
         shouldSort: true,
         threshold: 0.3,
