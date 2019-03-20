@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as WFace from '@wface/components';
-import { ISearchProvider, MenuTreeUtil, IMenuTreeItem } from '@wface/ioc';
+import IOC, { ISearchProvider, MenuTreeUtil, IMenuTreeItem } from '@wface/ioc';
 import { injectable, inject } from "inversify";
 import { AppContext } from '@wface/store';
 import * as Fuse from 'fuse.js';
@@ -11,33 +11,35 @@ export default class MenuSearchProvider implements ISearchProvider {
   // @inject("AppContext") appContext: AppContext;
   @inject("openScreen") openScreen: (item: IMenuTreeItem) => void;
 
-  private list: IMenuTreeItem[] = [];
-  private fuse = new Fuse(this.list, {
-    shouldSort: true,
-    threshold: 0.3,
-    location: 0,
-    distance: 100,
-    maxPatternLength: 32,
-    minMatchCharLength: 1,
-    keys: [
-      "text",
-    ]
-  });
-
-  constructor(@inject("AppContext") appContext: AppContext) {
-    MenuTreeUtil.menuTreeForEach(appContext.menuTree, (item: IMenuTreeItem) => {
-      if (item.subNodes && item.subNodes.length > 0) {
-        return false;
-      }
-
-      this.list.push(item);
-      return false;
-    });
-  }
-
   search(term: string): Promise<any[]> {
     return new Promise((resolve, reject) => {
-      const result = this.fuse.search(term);
+      
+      const appContext = IOC.get<AppContext>("AppContext");
+
+      const list: IMenuTreeItem[] = [];
+      MenuTreeUtil.menuTreeForEach(appContext.menuTree, (item: IMenuTreeItem) => {
+        if (item.subNodes && item.subNodes.length > 0) {
+          return false;
+        }
+  
+        list.push(item);
+        return false;
+      });
+
+      const fuse = new Fuse(list, {
+        shouldSort: true,
+        threshold: 0.3,
+        location: 0,
+        distance: 100,
+        maxPatternLength: 32,
+        minMatchCharLength: 1,
+        keys: [
+          "text",
+        ]
+      });
+
+
+      const result = fuse.search(term);
       resolve(result);
     })
   }

@@ -270,11 +270,13 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
             <div style={{ flex: 1 }}>
               {this.renderTabs(classes)}
             </div>
-            <WTooltip title="Close All Tabs">
-              <WIconButton onClick={this.closeAllOpenedScreens}>
-                <WIcon style={{ color: '#FFFFFF66' }} iconSize="small">close</WIcon>
-              </WIconButton>
-            </WTooltip>
+            {this.props.appContext.openedScreens.length > 0 &&
+              <WTooltip title="Close All Tabs">
+                <WIconButton onClick={this.closeAllOpenedScreens}>
+                  <WIcon style={{ color: '#FFFFFF66' }} iconSize="small">close</WIcon>
+                </WIconButton>
+              </WTooltip>
+            }
           </div>
 
         </WAppBar>
