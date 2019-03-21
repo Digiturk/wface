@@ -6,6 +6,7 @@ interface DemoScreenState {
   formValue: any;
   isDialogOpen: boolean;
   isDialogOpen2: boolean;
+  textValue: string;
 }
 
 export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScreenState> {
@@ -15,7 +16,8 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
     this.state = this.props.screenData.state || {
       formValue: { text: 'text val', check1: true, check2: false },
       isDialogOpen: false,
-      isDialogOpen2: true
+      isDialogOpen2: true,
+      textValue: 'desad'
     }
   }
 

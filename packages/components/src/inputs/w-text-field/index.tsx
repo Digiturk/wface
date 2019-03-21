@@ -109,6 +109,7 @@ export class WTextField extends React.Component<WTextFieldProps, WTextFieldState
         type={this.props.type == 'password' && !this.state.showPassword ? 'password' : 'text'}
         InputProps={inputProps}
         inputProps={{
+          ...this.props.inputProps,
           ref: this.textFieldRef
         }}
       />
