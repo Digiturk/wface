@@ -7,7 +7,7 @@ export default interface IConfiguration {
   projectName: string,
 
   screenList: { [key: string]: any };
-  rightContextItems?: { icon?: string, text: string, onClick: (event: any) => void | string }[];
+  rightContextItems?: { icon?: string, text: string, onClick: ((event: any) => void) | string }[];
   loginScreen?: any;
 
   authService?: { new(...args: any[]): IAuthService; };
