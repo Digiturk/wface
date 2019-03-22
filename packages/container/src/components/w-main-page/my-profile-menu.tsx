@@ -9,8 +9,7 @@ interface MyProfileMenuState {
 }
 
 export interface MyProfileMenuProps {
-  items: { icon?: string, text: string, onClick?: (event: any) => void | string }[];
-
+  items: { icon?: string, text: string, onClick?: ((event: any) => void) | string }[];
 }
 
 export interface DispatchProps {
