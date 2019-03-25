@@ -69,7 +69,7 @@ export class WTextField extends React.Component<WTextFieldProps, WTextFieldState
     } as any;
 
     let leftButtons = this.props.leftButtons || [];
-    let rightButtons = this.props.rightButtons || [];
+    let rightButtons = this.props.rightButtons || [];  
 
     if (this.props.type == "password") {
       let action = {
@@ -103,10 +103,15 @@ export class WTextField extends React.Component<WTextFieldProps, WTextFieldState
   public render() {
     let inputProps = { ...this.props.InputProps, ...this.renderAdornments() };
 
+    let { type } = this.props;
+    if(type === "password" && this.state.showPassword) {
+      type = "text"
+    }
+
     return (
       <TextField
         {...this.props}
-        type={this.props.type == 'password' && !this.state.showPassword ? 'password' : 'text'}
+        type={type}
         InputProps={inputProps}
         inputProps={{
           ...this.props.inputProps,
