@@ -37,13 +37,13 @@ export default class AuthService implements IAuthService {
         text: 'DemoScreen2',
         screen: 'DemoScreen2'
       });
-      // for(let i = 3; i < 20; i++) {
-      //   result.push({
-      //     id: i.toString(),
-      //     text: 'DemoScreen' + i,
-      //     screen: 'DemoScreen2'
-      //   });
-      // }
+      for(let i = 3; i < 20; i++) {
+        result.push({
+          id: i.toString(),
+          text: 'DemoScreen' + i,
+          screen: 'DemoScreen2'
+        });
+      }
       setTimeout(() => resolve(result), 1000);
     });
   }

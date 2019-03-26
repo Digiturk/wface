@@ -169,7 +169,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
             ? "scrollable" : undefined
         }
         // variant="scrollable"
-        scrollButtons="off"
+        scrollButtons="auto"
         centered
         value={this.props.appContext.currentScreen && this.props.appContext.currentScreen.menuTreeItem.id}
         onChange={(event, value) => {
@@ -248,7 +248,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
     return (
       <div className={classes.root + " main-page"}>
         <WAppBar position="fixed" className={classes.appBar} elevation={this.props.theme.designDetails.defaultElevation}>
-          <WToolBar variant="dense">
+          <WToolBar variant="dense" className={classes.toolbar}>
             <WIconButton
               color="inherit"
               aria-label="open drawer"
@@ -267,7 +267,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
             <MyProfileMenu items={this.props.appContext.configuration.rightContextItems} />
           </WToolBar>
           <div style={{ display: 'flex' }}>
-            <div style={{ flex: 1 }}>
+            <div style={{ flex: 1, maxWidth: '100%' }}>
               {this.renderTabs(classes)}
             </div>
             {this.props.appContext.openedScreens.length > 0 &&
@@ -398,7 +398,14 @@ const styles: any = (theme: any) => ({
   whiteText: {
     color: '#FFFFFFFF'
   },
-  toolbar: theme.mixins.toolbar,
+  toolbar: {
+    // ...theme.mixins.toolbar,
+    height: 48,
+    maxHeight: 48,
+    '@media only screen and (max-width: 400px)': {
+      paddingLeft: 0
+    }
+  },
 });
 
 const mapStateToProps = (state: WStore) => ({
