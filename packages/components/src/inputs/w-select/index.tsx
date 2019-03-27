@@ -93,7 +93,7 @@ class WSelectInner extends React.Component<WSelectProps, { focused: boolean }> {
         this.props.onChange(value.map(item => item.value), value);
       }
       else {
-        this.props.onChange(value.value, value);
+        this.props.onChange(value ? value.value : null, value);
       }
 
     }
@@ -115,7 +115,7 @@ class WSelectInner extends React.Component<WSelectProps, { focused: boolean }> {
           {...this.props}
           styles={customStyles}
           onFocus={(event) => this.setFocus(event, true)}
-          onBlur={(event) => this.setFocus(event, false)}
+          onBlur={(event) => this.setFocus(event, false)}          
           onChange={this.onChange}
           placeholder=""
           value={cleanValue}

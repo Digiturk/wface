@@ -15,7 +15,7 @@ export const Select = (fieldProps: SelectProps) => (
         {...props.field}
         {...fieldProps}    
         error={props.form.errors[fieldProps.name]}
-        helperText={props.form.errors[fieldProps.name]}
+        helperText={props.form.errors[fieldProps.name]}        
         onChange={(value, object) => {
           props.form.setFieldValue(fieldProps.name, value);
           fieldProps.onChange && fieldProps.onChange(value, object);

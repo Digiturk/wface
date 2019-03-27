@@ -18,7 +18,10 @@ export class DemoScreen2 extends React.Component<WFace.BaseScreenProps, DemoScre
   public render() {
     return (
       <>
-        <WFace.WTextField type="number" value={this.state.data} onChange={e => this.setState({ data: e.target.value })} />
+        <WFace.WForm onSubmit={() => {}} initialValues={{}}>
+          <WFace.WFormField.Select label="lbl" name="lbl" options={[{ label: 'A', value: 'A' }, { label: 'B', value: 'B' }]} isClearable/>
+        </WFace.WForm>
+        <WFace.WSelect options={[{ label: 'A', value: 'A' }, { label: 'B', value: 'B' }]} isClearable/>
       </>
     )
   }
