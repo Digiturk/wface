@@ -10,6 +10,7 @@ export type RadioGroupProps = BaseFieldProps & WRadioGroupProps & {
 export const RadioGroup = (fieldProps: RadioGroupProps) => (
   <WField
     name={fieldProps.name}
+    useFastField={fieldProps.useFastField}
     component={props => (
       <WRadioGroup
         {...props.field}

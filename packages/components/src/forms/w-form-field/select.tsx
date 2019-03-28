@@ -9,7 +9,8 @@ export type SelectProps = BaseFieldProps & WSelectProps & {
 
 export const Select = (fieldProps: SelectProps) => (
   <WField
-    name={fieldProps.name}      
+    name={fieldProps.name}
+    useFastField={fieldProps.useFastField}
     component={props => (
       <WSelect        
         {...props.field}

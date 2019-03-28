@@ -11,6 +11,7 @@ export type SwitchProps = BaseFieldProps & WSwitchProps & {
 
 export const Switch = (fieldProps: SwitchProps) => (
   <WField
+    useFastField={fieldProps.useFastField}
     component={props => (
       <WGrid container>
         <WGrid item xs={7} style={{alignSelf: 'center'}}><WTypography>{fieldProps.label}</WTypography></WGrid>

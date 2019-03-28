@@ -19,9 +19,9 @@ export class DemoScreen2 extends React.Component<WFace.BaseScreenProps, DemoScre
     return (
       <>
         <WFace.WForm onSubmit={() => {}} initialValues={{}}>
-          <WFace.WFormField.Select label="lbl" name="lbl" options={[{ label: 'A', value: 'A' }, { label: 'B', value: 'B' }]} isClearable/>
-        </WFace.WForm>
-        <WFace.WSelect options={[{ label: 'A', value: 'A' }, { label: 'B', value: 'B' }]} isClearable/>
+          <WFace.WFormField.Select useFastField={false} label="lbl" name="lbl" options={[{ label: 'A', value: 'A' }, { label: 'B', value: 'B' }]} isClearable/>
+          <WFace.WFormField.Submit>asd</WFace.WFormField.Submit>
+        </WFace.WForm>        
       </>
     )
   }

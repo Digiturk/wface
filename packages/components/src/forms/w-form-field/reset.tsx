@@ -8,6 +8,7 @@ export type ResetProps = WButtonProps & {
 
 export const Reset = (fieldProps: ResetProps) => (
   <WField
+    useFastField={false}
     component={props => (
       <WButton
         color="default"

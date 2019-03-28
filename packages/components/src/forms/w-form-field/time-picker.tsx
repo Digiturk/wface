@@ -10,6 +10,7 @@ export type TimePickerProps = BaseFieldProps & WTimePickerProps & {
 export const TimePicker = (fieldProps: TimePickerProps) => (
   <WField
     name={fieldProps.name}
+    useFastField={fieldProps.useFastField}
     component={props => (
       <WTimePicker
         {...props.field}

@@ -1,5 +1,7 @@
 import IAuthService, { IMenuTreeItem } from '../interfaces/i-auth-service';
 import { injectable, inject } from "inversify";
+import IOC from '../..';
+import IAppHooks from '../interfaces/i-app-hooks';
 
 @injectable()
 export default class AuthServiceWrapper implements IAuthService {
@@ -12,6 +14,12 @@ export default class AuthServiceWrapper implements IAuthService {
       this._Service.login(username, password, values) 
         .then(result => {
           this._OnLogin(username, result.displayName, result.token);
+
+          if(IOC.isBound("IAppHooks")) {
+            const hooks = IOC.get<IAppHooks>("IAppHooks");
+            hooks.onLogin && hooks.onLogin();
+          }
+
           resolve(result);
         }).
         catch(reason => {

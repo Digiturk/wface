@@ -2,7 +2,8 @@ import { WIcon, WIconButton, WListItemIcon, WListItemText, WMenu, WMenuItem } fr
 import { UserContextActions, WStore, AppContextActions } from '@wface/store';
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { IMenuTreeItem, MenuTreeUtil } from '@wface/ioc';
+import IOC, { IMenuTreeItem, MenuTreeUtil } from '@wface/ioc';
+import IAppHooks from '@wface/ioc/src/interfaces/i-app-hooks';
 
 interface MyProfileMenuState {
   userMenuAnchor?: HTMLElement
@@ -31,6 +32,17 @@ class MyProfileMenu extends React.Component<MyProfileMenuProps & WStore & Dispat
 
   logoutClicked() {
     this.props.logout();
+
+    try {
+      if (IOC.isBound("IAppHooks")) {
+        const hooks = IOC.get<IAppHooks>("IAppHooks");
+        hooks.onLogout && hooks.onLogout();
+      }
+    }
+    catch(e) {
+      console.log(e);
+    }
+    
     this.props.clearAppContext();
   }
 

@@ -10,6 +10,7 @@ export type DatePickerProps = BaseFieldProps & WDatePickerProps & {
 export const DatePicker = (fieldProps: DatePickerProps) => (
   <WField
     name={fieldProps.name}
+    useFastField={fieldProps.useFastField}
     component={props => (
       <WDatePicker
         {...props.field}

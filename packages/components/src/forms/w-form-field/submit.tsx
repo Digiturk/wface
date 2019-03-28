@@ -9,6 +9,7 @@ export type SubmitProps = WButtonProps & {
 export const Submit = (fieldProps: SubmitProps) => (
   <WField
     name="submit"
+    useFastField={false}
     component={props =>      
       <WButton
         {...fieldProps}

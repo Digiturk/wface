@@ -15,6 +15,7 @@ export type CustomProps = BaseFieldProps & {
 export const Custom = (fieldProps: CustomProps) => (
   <WField
     name={fieldProps.name}
+    useFastField={fieldProps.useFastField}
     component={props => {
       const CustomComponent = fieldProps.component as any;
       return (

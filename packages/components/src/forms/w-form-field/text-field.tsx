@@ -10,6 +10,7 @@ export type TextFieldProps = BaseFieldProps & WTextFieldProps & {
 export const TextField = (fieldProps: TextFieldProps) => (
   <WField
     name={fieldProps.name}      
+    useFastField={fieldProps.useFastField}
     component={props => (
       <WTextField
         {...props.field}        

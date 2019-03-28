@@ -9,6 +9,7 @@ export type CheckboxProps = BaseFieldProps & WCheckboxProps & {
 
 export const Checkbox = (fieldProps: CheckboxProps) => (
   <WField
+    useFastField={fieldProps.useFastField}
     component={props => (
       <WCheckbox
         {...fieldProps}
