@@ -37,10 +37,12 @@ export class WTabContainer extends React.Component<WTabContainerProps, any> {
           children = null;          
         }
         else {
+          // @ts-ignore
           children = childrenArray[tabSelected - 1].props.children;
         }
       }
       else {
+        // @ts-ignore
         children = childrenArray[tabSelected].props.children;
       }
     }
