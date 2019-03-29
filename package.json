@@ -26,7 +26,8 @@
 		"clean-system": "rimraf ./packages/system/node_modules",
 		"clean-cli": "rimraf ./packages/cli/node_modules",
 		"clean": "npm run clean-framework && npm run clean-components && npm run clean-container && npm run clean-ioc && npm run clean-store && npm run clean-system && npm run clean-cli",
-		"version": "gulp version",
+    "version": "gulp version",
+    "versions": "gulp versions",
 		"publish": "gulp publish"
 	},
 	"dependencies": {}
