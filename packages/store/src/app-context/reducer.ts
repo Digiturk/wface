@@ -125,6 +125,9 @@ const appContext = (state: AppContext = initialState, action: AppAction): AppCon
     case getType(Actions.clear): {
       return { ...initialState, configuration: state.configuration }
     }
+    case getType(Actions.setQueryParams): {
+      return { ...state, queryParams: action.payload };
+    }
   }
 
   return state;

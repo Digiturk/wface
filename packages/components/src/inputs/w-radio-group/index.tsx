@@ -7,6 +7,7 @@ import { WTypography } from '../../others/w-typography';
 export interface WRadioGroupOption {
   label: string; 
   value: any;
+  disabled?: boolean;
 }
 
 export interface WRadioGroupProps extends RadioGroupProps { 
@@ -24,7 +25,7 @@ export class WRadioGroup extends React.Component<WRadioGroupProps, {}> {
   public render() {
     let { children } = this.props; 
     if (this.props.options) {
-      children = this.props.options.map(option => <WRadio {...option} />)
+      children = this.props.options.map(option => <WRadio {...option}/>)
     }
 
     const style = { 

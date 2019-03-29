@@ -10,6 +10,7 @@ const SAVE_SCREEN_STATE = 'appContext/SAVE_SCREEN_STATE';
 const SAVE_SCREEN_ANY = 'appContext/SAVE_SCREEN_ANY';
 const CHANGE_SCREEN_MODE = 'appContext/CHANGE_SCREEN_MODE';
 const SET_CONFIRM_ON_CLOSE = 'appContext/SET_CONFIRM_ON_CLOSE';
+const SET_QUERY_PARAMS = 'appContext/SET_QUERY_PARAMS';
 const CLEAR = 'appContext/CLEAR';
 
 const setValue = createStandardAction(SET_VALUE)<{key: string, value: any}>();
@@ -21,6 +22,7 @@ const saveScreenState = createStandardAction(SAVE_SCREEN_STATE)<{screenId: strin
 const saveScreenAny = createStandardAction(SAVE_SCREEN_ANY)<{key: string, value: any}>();
 const changeScreenMode = createStandardAction(CHANGE_SCREEN_MODE)<{screenId: string, mode: 'normal' | 'loading',}>();
 const setConfirmOnClose = createStandardAction(SET_CONFIRM_ON_CLOSE)<{screenId: string, confirmOnClose: boolean, confirmOnCloseMessage: string}>();
+const setQueryParams = createStandardAction(SET_QUERY_PARAMS)<{ [key: string]: any }>();
 const clear = createStandardAction(CLEAR)();
 const Actions = { 
   setValue,
@@ -32,6 +34,7 @@ const Actions = {
   saveScreenAny,
   changeScreenMode,
   setConfirmOnClose,
+  setQueryParams,
   clear
 };
 export default Actions;

@@ -14,7 +14,7 @@ module.exports = merge(commonConfig, {
   output: {
     filename: 'js/main.min.js',
     path: path.resolve(process.cwd(), './dist'),
-    publicPath: './',
+    publicPath: '/',
   },
   devtool: 'source-map',
   plugins: [

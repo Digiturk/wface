@@ -6,6 +6,7 @@ export default interface AppContext {
     openedScreens: ScreenData[];
     currentScreen?: ScreenData;
     cache: { [key: string]: any };
+    queryParams: { [key: string]: any };
 }
 
 export interface ScreenData {

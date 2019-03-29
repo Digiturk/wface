@@ -16,6 +16,10 @@ module.exports = merge(commonConfig, {
   devServer: {
     hot: true, // enable HMR on the server
     inline: true,
+    historyApiFallback: true
+  },
+  output: {
+    publicPath: '/'
   },
   devtool: 'cheap-module-eval-source-map',
   plugins: [

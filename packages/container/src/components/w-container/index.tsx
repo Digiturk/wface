@@ -4,51 +4,70 @@ import { AppContextActions } from '@wface/store';
 import * as React from 'react';
 import { connect, Provider } from 'react-redux';
 import { withRouter } from 'react-router';
-import { HashRouter, Redirect, Route } from 'react-router-dom';
+import { HashRouter, Redirect, Route, BrowserRouter } from 'react-router-dom';
 import WMainPage from '../w-main-page';
+// @ts-ignore
+import * as queryString from 'query-string'
 
 class WContainer extends React.Component<{}, {}> {
 
   constructor(props: any) {
-    super(props);
+    super(props);        
   }
 
   render() {
     return (
-      <HashRouter>
-        <InnerContainer />
-      </HashRouter>
+      <BrowserRouter>
+        <WrappedInnerContainer />
+      </BrowserRouter>
     );
   }
 };
 
-let InnerContainer = (props: any) => {
-  const isLoggedIn = props.userContext.isLoggedIn;
-  const configuration = props.appContext.configuration as IConfiguration;
-  const LoginScreen = configuration.loginScreen;
 
-  const authService = IOC.get<IAuthService>("IAuthService")
+class InnerContainer extends React.Component<any, any> {
 
-  return (
-    <WThemeProvider theme={configuration.theme}>
-      <WSnackbarProvider
-        maxSnack={3}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-        autoHideDuration={5000}
-      >
-        <>
-          <Route exact path="/" render={subProps => <Redirect to="/main" />} />
-          <Route path="/login/:screen?" render={(subProps: any) => isLoggedIn ?
-            <Redirect to={`/main/${subProps.match.params.screen || ''}`} />
-            :
-            <LoginScreen {...subProps} authService={authService} appContext={props.appContext} userContext={props.userContext} setValue={props.setValue} />
-          } />
-          <Route path="/main" render={(subProps: any) => isLoggedIn ? <WMainPage {...subProps} style={{ height: '100%' }} /> : <Redirect to={props.location.pathname.replace('main', 'login')} />} />
-        </>
-      </WSnackbarProvider>
-    </WThemeProvider >
-  )
+  constructor(props: any) {
+    super(props);      
+
+    const values = queryString.parse(this.props.location.search);
+    this.props.setQueryParams(values);    
+  }
+
+  render() {
+    const isLoggedIn = this.props.userContext.isLoggedIn;
+    const configuration = this.props.appContext.configuration as IConfiguration;
+    const LoginScreen = configuration.loginScreen;
+  
+    
+  
+    const authService = IOC.get<IAuthService>("IAuthService")
+  
+    return (
+      <WThemeProvider theme={configuration.theme}>
+        <WSnackbarProvider
+          maxSnack={3}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+          autoHideDuration={5000}
+        >
+          <>
+            <Route exact path="/" render={subProps => <Redirect to="/main" />} />
+            <Route path="/login/:screen?" render={(subProps: any) => isLoggedIn ?
+              <Redirect to={`/main/${subProps.match.params.screen || ''}`} />
+              :
+              <LoginScreen {...subProps} authService={authService} appContext={this.props.appContext} userContext={this.props.userContext} setValue={this.props.setValue} />
+            } />
+            <Route path="/main" render={(subProps: any) => isLoggedIn ? <WMainPage {...subProps} style={{ height: '100%' }} /> : <Redirect to={this.props.location.pathname.replace('main', 'login')} />} />
+          </>
+        </WSnackbarProvider>
+      </WThemeProvider >
+    )
+  }
 }
+
+// let InnerContainer = (props: any) => {
+  
+// }
 
 const mapStateToProps = (state: any) => ({
   userContext: state.userContext,
@@ -57,8 +76,9 @@ const mapStateToProps = (state: any) => ({
 
 const mapDispatchToProps = (dispatch: any) => ({
   setValue: (key: string, value: any) => dispatch(AppContextActions.setValue({ key, value })),
+  setQueryParams: (search: { [key: string]: any }) => dispatch(AppContextActions.setQueryParams(search))
 });
 
-InnerContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(InnerContainer) as any) as any
+const WrappedInnerContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(InnerContainer) as any) as any
 
 export default WContainer;

@@ -25,7 +25,7 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
     // this.props.setConfirmOnClose(true);    
   }
 
-  public render() {    
+  public render() {
     return (
       <>
         <WFace.WGrid container>
@@ -68,6 +68,9 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
                 { name: 'mehmet', lastName: 'baran', birthCity: 63 },
                 { name: 'mehmet', lastName: 'baran', birthCity: 63 },
               ]}
+              detailPanel={rowData => (
+                <div>{rowData.name}</div>
+              )}
             />
           </WFace.WGrid>
         </WFace.WGrid>
