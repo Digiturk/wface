@@ -31,7 +31,7 @@ export class WTabContainer extends React.Component<WTabContainerProps, any> {
 
     if(Array.isArray(this.props.children)) {
       // @ts-ignore
-      const childrenArray = this.props.filter(a => a);
+      const childrenArray = this.props.children.filter(a => a);
       if(childrenArray.length >= tabSelected) {
         if(tabSelected === 0) {
           children = null;          
