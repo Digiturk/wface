@@ -120,7 +120,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
       });
     }
     else {
-      this.props.appContext.openedScreens.forEach(screen => {
+      this.props.appContext.openedScreens.filter(screen => !screen.menuTreeItem.notClosable).forEach(screen => {
         this.props.closeScreen(screen.menuTreeItem);
       })
     }
@@ -270,7 +270,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
             <div style={{ flex: 1, maxWidth: '100%' }}>
               {this.renderTabs(classes)}
             </div>
-            {this.props.appContext.openedScreens.length > 0 &&
+            {this.props.appContext.openedScreens.filter(screen => !screen.menuTreeItem.notClosable).length > 0 &&
               <WTooltip title="Close All Tabs">
                 <WIconButton onClick={this.closeAllOpenedScreens}>
                   <WIcon style={{ color: '#FFFFFF66' }} iconSize="small">close</WIcon>
