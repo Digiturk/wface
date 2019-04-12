@@ -66,7 +66,7 @@ class NavList extends React.Component<NavListProps & WStore, NavListState> {
       return (
         <div key={item.id}>
           {item.divideBefore && <WDivider />}
-          <WListItem key={item.id} button onClick={() => { this.handleNodeClick(item.id) }} style={itemStyle} divider>
+          <WListItem key={item.id} id={"menu-item-" + item.id} button onClick={() => { this.handleNodeClick(item.id) }} style={itemStyle} divider>
             {hasAnyIcon &&
               <WListItemIcon className={this.props.classes.listItemIconRoot}>
                 <WIcon>{item.icon}</WIcon>
@@ -101,6 +101,7 @@ class NavList extends React.Component<NavListProps & WStore, NavListState> {
       return (
         <WListItem
           key={item.id}
+          id={"menu-item-" + item.id}
           button
           classes={{ root: this.props.classes.listItemRoot }}
           style={listItemStyle}
