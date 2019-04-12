@@ -14,10 +14,10 @@ export class DemoScreen2 extends React.Component<WFace.BaseScreenProps, DemoScre
     this.state = this.props.screenData.state || {
       open: false,
       data: [
-        { label: 'A1', value: 'A1' },
-        { label: 'B1', value: 'B1' },
-        { label: 'C1', value: 'C1' },
-        { label: 'D1', value: 'D1' },
+        { label: 'A1', value: 'A1', icon: 'save' },
+        { label: 'B1', value: 'B1', icon: <WFace.WIcon icon="refresh"/> },
+        { label: 'C1', value: 'C1', icon: 'fas fa-blog', iconSource: 'fontawesome' },
+        { label: 'D1', value: 'D1', icon: 'fas fa-save', iconSource: 'fontawesome'  },
         { label: 'E1', value: 'E1' },
         { label: 'F1', value: 'F1' },
         { label: 'G1', value: 'G1' },

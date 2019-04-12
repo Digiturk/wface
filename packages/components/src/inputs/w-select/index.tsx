@@ -13,6 +13,8 @@ export interface WSelectOptionGroup {
 }
 
 export interface WSelectOption {
+  icon?: string | React.ReactElement<any>;
+  iconSource?: 'material-icons' | 'fontawesome';
   label?: string;
   value: any;
 }

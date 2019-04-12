@@ -60,7 +60,13 @@ const Option = (props) =>
     component="div"
     {...props.innerProps}
   >
-    {props.children}
+    <div style={{ display: 'flex' }}>
+      {props.data.icon && <div style={{ marginRight: 10 }}>{typeof props.data.icon === 'string' ? <WIcon color="primary" icon={props.data.icon} iconSource={props.data.iconSource} /> : props.data.icon}</div>}
+      <div style={{ flex: 1 }}>
+        {props.data.label || props.data.value}
+      </div>
+    </div>
+
   </WMenuItem>
 
 const Placeholder = (props: any) =>
@@ -73,9 +79,13 @@ const Placeholder = (props: any) =>
   </WTypography>
 
 const SingleValue = (props: any) =>
-  <WTypography className={props.selectProps.classes.singleValue} {...props.innerProps}>
-    {props.children}
-  </WTypography>
+  <div style={{ display: 'flex' }}>
+    {props.data.icon && <div style={{ marginLeft: 10, marginRight: 10 }}>{typeof props.data.icon === 'string' ? <WIcon color="primary" icon={props.data.icon} iconSource={props.data.iconSource} /> : props.data.icon}</div>}
+    <WTypography className={props.selectProps.classes.singleValue} {...props.innerProps} style={{ flex: 1 }}>
+      {props.data.label || props.data.value}
+    </WTypography>
+  </div>
+
 
 const ValueContainer = (props: any) => <div className={props.selectProps.classes.valueContainer}>{props.children}</div>;
 
