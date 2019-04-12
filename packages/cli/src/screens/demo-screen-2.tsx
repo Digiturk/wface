@@ -60,6 +60,7 @@ export class DemoScreen2 extends React.Component<WFace.BaseScreenProps, DemoScre
         <WFace.WButton onClick={() => this.setState({ open: true })}>Open</WFace.WButton>
         <WFace.WSelect options={this.state.data}>
         </WFace.WSelect>
+        <WFace.WTextField name="deneme"/>
         <WFace.WDialog open={this.state.open} fullWidth>
           <WFace.WDialogContent>
             <WFace.WSelect options={this.state.data}>
