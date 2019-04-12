@@ -114,6 +114,7 @@ class WSelectInner extends React.Component<WSelectProps, { focused: boolean }> {
         // @ts-ignore */}        
         <Select
           ref={this.select}
+          components={selectComponents}
           {...this.props}
           styles={customStyles}
           onFocus={(event) => this.setFocus(event, true)}
@@ -131,8 +132,7 @@ class WSelectInner extends React.Component<WSelectProps, { focused: boolean }> {
             error: this.props.error,
             helperText: this.props.helperText,
             style: this.props.style
-          }}
-          components={selectComponents}
+          }}          
           menuPortalTarget={document.body}
         />
       </NoSsr>
