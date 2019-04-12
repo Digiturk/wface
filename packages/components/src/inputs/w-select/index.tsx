@@ -118,8 +118,7 @@ class WSelectInner extends React.Component<WSelectProps, { focused: boolean }> {
           onBlur={(event) => this.setFocus(event, false)}          
           onChange={this.onChange}
           placeholder=""
-          value={cleanValue}
-
+          value={cleanValue}          
           // @ts-ignore
           classes={classes}
           textFieldProps={{
@@ -128,7 +127,8 @@ class WSelectInner extends React.Component<WSelectProps, { focused: boolean }> {
               shrink: this.state.focused || hasValue,
             },
             error: this.props.error,
-            helperText: this.props.helperText
+            helperText: this.props.helperText,
+            style: this.props.style
           }}
           components={selectComponents}
           menuPortalTarget={document.body}
