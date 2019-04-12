@@ -131,6 +131,7 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
             showSnackbar={this.showSnackbar}
             setValue={this.props.setValue}
             setConfirmOnClose={this.setConfirmOnClose}
+            theme={this.props.theme}
           />
         </div>
       </div>
