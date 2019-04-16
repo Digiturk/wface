@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { AppContext, UserContext, ScreenData } from "@wface/store";
 import { IHttpService } from '@wface/ioc';
 import { WTheme } from '../others/w-theme-provider/w-theme';
@@ -15,3 +16,5 @@ export interface BaseScreenProps {
   changeScreenMode: (mode: 'normal' | 'loading') => void;
   setConfirmOnClose: (confirmOnClose: boolean, confirmOnCloseMessage?: string) => void;
 }
+
+export const BaseScreenPropsContext = React.createContext<BaseScreenProps>(null);

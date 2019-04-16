@@ -1,5 +1,5 @@
 // Base
-export { BaseScreenProps } from './src/base/base-screen-props';
+export { BaseScreenProps, BaseScreenPropsContext } from './src/base/base-screen-props';
 
 // Buttons
 export { WButton, WButtonProps } from './src/buttons/w-button'
@@ -81,6 +81,9 @@ export { WListSubheader, WListSubheaderProps } from './src/lists/w-list/w-list-s
 // WMenu
 export { WMenu, WMenuProps } from './src/lists/w-menu'
 export { WMenuItem, WMenuItemProps } from './src/lists/w-menu/w-menu-item'
+
+// WNestedPageLayout
+export { WNestedPageLayout, WNestedPageLayoutProps, WNestedPageComponentProps } from './src/layouts/w-nested-page-layout'
 
 // WNotificationBar
 export { WNotificationBar, WNotificationBarProps } from './src/bars/w-notification-bar'

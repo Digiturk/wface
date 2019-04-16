@@ -1,4 +1,4 @@
-import { WCircularProgress, WIcon, WIconButton, withSnackbar, WPaper, WTheme } from '@wface/components';
+import { WCircularProgress, WIcon, WIconButton, withSnackbar, WPaper, WTheme, BaseScreenProps, BaseScreenPropsContext } from '@wface/components';
 import IOC, { IHttpService, IMenuTreeItem, MenuTreeUtil } from '@wface/ioc';
 import { AppContextActions, ScreenData, WStore } from '@wface/store';
 import { withTheme } from '@material-ui/core';
@@ -79,7 +79,7 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
     this.props.closeScreen(item);
     return true;
   }
-  
+
   setConfirmOnClose = (confirm: boolean, confirmMessage: string = "Ekranı kapatmak istediğinize emin misiniz?") => {
     this.props.setConfirmOnClose(this.props.screen.menuTreeItem.id, confirm, confirmMessage);
   }
@@ -94,6 +94,22 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
 
   changeScreenMode = (mode: 'normal' | 'loading' = 'normal') => {
     this.props.changeScreenMode(this.props.screen.menuTreeItem.id, mode);
+  }
+
+  getBaseScreenProps = (): BaseScreenProps => {
+    return {
+      appContext: this.props.appContext,
+      changeScreenMode: (mode) => this.changeScreenMode(mode),
+      closeScreen: this.closeScreen,
+      httpService: IOC.get<IHttpService>("IHttpService"),
+      openScreen: this.openScreen,
+      screenData: this.props.appContext.currentScreen,
+      setConfirmOnClose: this.setConfirmOnClose,
+      setValue: this.props.setValue,
+      showSnackbar: this.showSnackbar,
+      theme: this.props.theme,
+      userContext: this.props.userContext
+    } as BaseScreenProps;
   }
 
   public render() {
@@ -117,22 +133,11 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
           </div>
         }
         <div style={{ padding: this.props.theme.designDetails.pagePadding, paddingBottom: 10 }}>
-          <Screen
-            ref={this.screenRef}
-            appContext={this.props.appContext}
-            changeScreenMode={(mode) => {
-              this.changeScreenMode(mode)
-            }}
-            httpService={IOC.get<IHttpService>("IHttpService")}
-            screenData={this.props.appContext.currentScreen}
-            userContext={this.props.userContext}
-            closeScreen={this.closeScreen}
-            openScreen={this.openScreen}
-            showSnackbar={this.showSnackbar}
-            setValue={this.props.setValue}
-            setConfirmOnClose={this.setConfirmOnClose}
-            theme={this.props.theme}
-          />
+          <BaseScreenPropsContext.Provider value={this.getBaseScreenProps()}>
+            <BaseScreenPropsContext.Consumer>
+              {(value: BaseScreenProps) => <Screen ref={this.screenRef} {...value} />}
+            </BaseScreenPropsContext.Consumer>
+          </BaseScreenPropsContext.Provider>
         </div>
       </div>
     )
@@ -150,7 +155,7 @@ const mapDispatchToProps = dispatch => ({
   saveScreenState: (screenId: string, state: any) => dispatch(AppContextActions.saveScreenState({ screenId, state })),
   setValue: (key: string, value: any) => dispatch(AppContextActions.setValue({ key, value })),
   changeScreenMode: (screenId: string, mode: 'normal' | 'loading') => dispatch(AppContextActions.changeScreenMode({ screenId, mode })),
-  setConfirmOnClose: (screenId: string, confirmOnClose: boolean, confirmOnCloseMessage: string) => dispatch(AppContextActions.setConfirmOnClose({screenId, confirmOnClose, confirmOnCloseMessage}))
+  setConfirmOnClose: (screenId: string, confirmOnClose: boolean, confirmOnCloseMessage: string) => dispatch(AppContextActions.setConfirmOnClose({ screenId, confirmOnClose, confirmOnCloseMessage }))
 });
 
 export default connect<WStore, DispatchProps, WScreenWrapperProps>(mapStateToProps, mapDispatchToProps)(withTheme()(withSnackbar(WScreenWrapper) as any) as any);
