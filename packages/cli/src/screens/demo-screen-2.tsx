@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as WFace from '@wface/components';
-import IOC from '@wface/ioc';
 
 interface DemoScreen2State {
   data: any;
