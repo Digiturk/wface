@@ -22,34 +22,22 @@ export class DemoScreen2 extends React.Component<WFace.BaseScreenProps, DemoScre
   public render() {
     return (
       <>
-        <WFace.WNestedPageLayout
-          state={this.state.nestedPageState}
-          onStateChanged={nestedPageState => this.setState({ nestedPageState })}
-          root={{
-            title: 'Kullanıcılar',
-            name: "users",
-            component: Users,
-            subItems: [
-              {
-                title: (payload) => payload.name + ' Adresleri',
-                name: 'addresses',
-                component: Addresses,
-                subItems: [
-                  {
-                    title: (payload) => payload.name + ' Adres Düzenleme',
-                    name: 'edit-address',
-                    component: EditAddress
-                  }
-                ]
-              },
-              {
-                title: (payload) => payload.name + ' Telefonları',
-                name: 'phones',
-                component: Phones,
-              }
-            ]
-          }}
-        />
+        <div style={{ maxWidth: 500, background: 'white', padding: 10 }}>
+          <WFace.WTabContainer scrollButtons="auto" scrollable>
+            <WFace.WTabPage label="Tab Page 1 of Tab Container">
+              content 1
+          </WFace.WTabPage>
+            <WFace.WTabPage label="Tab Page 2 of Tab Container">
+              content 2
+          </WFace.WTabPage>
+            <WFace.WTabPage label="Tab Page 3 of Tab Container">
+              content 3
+          </WFace.WTabPage>
+            <WFace.WTabPage label="Tab Page 4 of Tab Container">
+              content 4
+          </WFace.WTabPage>
+          </WFace.WTabContainer>
+        </div>
       </>
     )
   }

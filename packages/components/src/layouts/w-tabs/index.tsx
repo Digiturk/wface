@@ -5,6 +5,7 @@ import { WIconButton, WIcon, WTheme } from '../../..';
 
 export interface WTabsProps extends TabsProps {
   theme?: WTheme;
+  scrollButtonStyle?: React.CSSProperties;
 }
 
 export class WTabsInner extends React.Component<WTabsProps, {}> {
@@ -17,7 +18,7 @@ export class WTabsInner extends React.Component<WTabsProps, {}> {
             return null;
           }
           const icon = props.direction === 'left' ? 'chevron_left' : 'chevron_right';
-          return <WIconButton icon={icon} {...props} style={{ color: 'white' }} />
+          return <WIconButton icon={icon} {...props} style={this.props.scrollButtonStyle}/>
         }}
         {...this.props}
       />

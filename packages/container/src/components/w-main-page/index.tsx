@@ -170,6 +170,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
         }
         // variant="scrollable"
         scrollButtons="auto"
+        scrollButtonStyle={{color: 'white'}}
         centered
         value={this.props.appContext.currentScreen && this.props.appContext.currentScreen.menuTreeItem.id}
         onChange={(event, value) => {

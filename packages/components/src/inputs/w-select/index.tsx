@@ -21,6 +21,7 @@ export interface WSelectOption {
 
 export interface WSelectProps extends Omit<WithStyles<typeof styles>, "classes"> {
   classes?: any;
+  id?: string;
   isClearable?: boolean;
   isDisabled?: boolean;
   isLoading?: boolean;
@@ -124,7 +125,7 @@ class WSelectInner extends React.Component<WSelectProps, { focused: boolean }> {
           value={cleanValue}          
           // @ts-ignore
           classes={classes}
-          textFieldProps={{
+          textFieldProps={{            
             label: this.props.label,
             InputLabelProps: {
               shrink: this.state.focused || hasValue,
