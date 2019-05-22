@@ -6,6 +6,7 @@ import Select from 'react-select';
 import selectComponents from './components';
 import { Omit } from '@material-ui/core';
 import { WTheme } from '../../others/w-theme-provider/w-theme';
+import { BaseComponentProps } from '../../base/base-component-props';
 
 export interface WSelectOptionGroup {
   label: string;
@@ -19,9 +20,8 @@ export interface WSelectOption {
   value: any;
 }
 
-export interface WSelectProps extends Omit<WithStyles<typeof styles>, "classes"> {
+export type WSelectProps = BaseComponentProps & Omit<WithStyles<typeof styles>, "classes"> & { 
   classes?: any;
-  id?: string;
   isClearable?: boolean;
   isDisabled?: boolean;
   isLoading?: boolean;

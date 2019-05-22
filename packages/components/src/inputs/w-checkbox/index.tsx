@@ -1,8 +1,9 @@
 import * as React from 'react'
 import { Checkbox, FormControlLabel } from '@material-ui/core'
 import { CheckboxProps } from '@material-ui/core/Checkbox'
+import { BaseComponentProps } from '../../base/base-component-props';
 
-export interface WCheckboxProps extends CheckboxProps {
+export type WCheckboxProps = BaseComponentProps & CheckboxProps & { 
   label?: string
 }
 

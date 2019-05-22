@@ -35,7 +35,7 @@ export default class PageError extends React.Component<{ error: any, info: any }
               </div>
             </WFace.WCardContent>
             <WFace.WCardActions>
-              <WFace.WButton onClick={() => this.setState({ showDetail: !this.state.showDetail })}>
+              <WFace.WButton id="btn-show-error-detail" onClick={() => this.setState({ showDetail: !this.state.showDetail })}>
                 HATA DETAYI
               </WFace.WButton>
             </WFace.WCardActions>

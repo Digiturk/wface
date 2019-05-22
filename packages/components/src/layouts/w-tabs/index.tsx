@@ -2,25 +2,27 @@ import * as React from 'react';
 import { Tabs, withTheme } from '@material-ui/core';
 import { TabsProps } from '@material-ui/core/Tabs';
 import { WIconButton, WIcon, WTheme } from '../../..';
+import { BaseComponentProps } from '../../base/base-component-props';
 
-export interface WTabsProps extends TabsProps {
+export type WTabsProps = BaseComponentProps & TabsProps & { 
   theme?: WTheme;
   scrollButtonStyle?: React.CSSProperties;
 }
 
 export class WTabsInner extends React.Component<WTabsProps, {}> {
   public render() {
+    const { scrollButtonStyle, ...tabsProps } = this.props;
+
     return (
       <Tabs
-        ScrollButtonComponent={(props) => {
-          console.log(props);
+        ScrollButtonComponent={(props) => {          
           if (!props.visible) {
             return null;
           }
           const icon = props.direction === 'left' ? 'chevron_left' : 'chevron_right';
-          return <WIconButton icon={icon} {...props} style={this.props.scrollButtonStyle}/>
+          return <WIconButton id={this.props.id + "scroll-component"} icon={icon} {...props} style={scrollButtonStyle}/>
         }}
-        {...this.props}
+        {...tabsProps}
       />
     )
   }

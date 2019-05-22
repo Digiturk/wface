@@ -3,8 +3,9 @@ import MaterialTable, { MaterialTableProps } from 'material-table'
 import { createStyles, withStyles, withTheme } from '@material-ui/core'
 import { WPaper } from '../../layouts/w-paper';
 import { WTheme } from '../../others/w-theme-provider/w-theme';
+import { BaseComponentProps } from '../../base/base-component-props';
 
-export interface WTableProps extends MaterialTableProps {
+export type WTableProps = BaseComponentProps & MaterialTableProps & { 
   classes?: any;
   theme?: WTheme;
   style?: React.CSSProperties;
@@ -12,9 +13,9 @@ export interface WTableProps extends MaterialTableProps {
 
 class WTableInner extends React.Component<WTableProps, {}> {
   public render() {
-    const { classes, style, ...tableProps } = this.props;
+    const { classes, style, id, ...tableProps } = this.props;
     return (
-      <div className={classes.root} style={style}>
+      <div id={id} className={classes.root} style={style}>
         <MaterialTable 
           {...tableProps}
           components={{

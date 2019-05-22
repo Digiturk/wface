@@ -3,11 +3,14 @@ import { MenuItem, createStyles, withStyles } from '@material-ui/core';
 import { MenuItemProps } from '@material-ui/core/MenuItem';
 import { WTheme } from '../../others/w-theme-provider/w-theme';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
+import { BaseComponentProps } from '../../base/base-component-props';
 
-export interface WMenuItemProps extends MenuItemProps { }
+export type WMenuItemProps = BaseComponentProps & MenuItemProps & { 
+}
 
 class WMenuItemInner extends React.Component<WMenuItemProps, {}> {
   static defaultProps: WMenuItemProps = { 
+    id: '',
     dense: true 
   }
 

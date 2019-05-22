@@ -31,6 +31,7 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
         <WFace.WGrid container>
           <WFace.WGrid item lg={6}>
             <WFace.WTable
+              id="table-users"
               title="Users"
               columns={[
                 { title: 'Adı', field: 'name' },
@@ -57,6 +58,7 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
           </WFace.WGrid>
           <WFace.WGrid item lg={6}>
             <WFace.WTable
+              id="table-2"
               title="df"
               columns={[
                 { title: 'Adı', field: 'name' },
@@ -79,7 +81,7 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
 
           </WFace.WCardContent>
           <WFace.WCardActions>
-            <WFace.WButton onClick={() => this.setState({ isDialogOpen: true })}>Dialog</WFace.WButton>
+            <WFace.WButton id="btn-show-dialog" onClick={() => this.setState({ isDialogOpen: true })}>Dialog</WFace.WButton>
           </WFace.WCardActions>
         </WFace.WCard>
 
@@ -96,13 +98,13 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
             </pre>
           </div> */}
 
-        <WFace.WDialog open={this.state.isDialogOpen} fullWidth>
+        <WFace.WDialog id="dialog" open={this.state.isDialogOpen} fullWidth>
           <WFace.WDialogTitle>Dialog</WFace.WDialogTitle>
           <WFace.WDialogContent>
 
           </WFace.WDialogContent>
           <WFace.WDialogActions>
-            <WFace.WButton onClick={() => this.setState({ isDialogOpen: false })}>Close</WFace.WButton>
+            <WFace.WButton id="btn-close-dialog" onClick={() => this.setState({ isDialogOpen: false })}>Close</WFace.WButton>
           </WFace.WDialogActions>
         </WFace.WDialog>
       </>

@@ -116,7 +116,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
       this.props.enqueueSnackbar("Kaydedilmemiş ekranlar var. Lütfen öncelikle onları kapatın.", {
         variant: 'warning',
         autoHideDuration: 5000,
-        action: <WIconButton><WIcon style={{ color: '#ffffff99' }} iconSize="small">close</WIcon></WIconButton>
+        action: <WIconButton id="btn-close-confirm-dialog"><WIcon style={{ color: '#ffffff99' }} iconSize="small">close</WIcon></WIconButton>
       });
     }
     else {
@@ -161,6 +161,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
     const screenType = Horizontal.getType();
     return (
       <WTabs
+        id="tabs-screens"
         variant={
           (screenType == WindowWidthType.LG && this.props.appContext.openedScreens.length > 7) ||
             (screenType == WindowWidthType.MD && this.props.appContext.openedScreens.length > 5) ||
@@ -170,7 +171,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
         }
         // variant="scrollable"
         scrollButtons="auto"
-        scrollButtonStyle={{color: 'white'}}
+        scrollButtonStyle={{ color: 'white' }}
         centered
         value={this.props.appContext.currentScreen && this.props.appContext.currentScreen.menuTreeItem.id}
         onChange={(event, value) => {
@@ -201,7 +202,12 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
                       </div>
                       :
                       <WIconButton
-                        onClick={(e) => this.handleTabCloseButtonClick(e, screen.menuTreeItem)}>
+                        component="span"
+                        id={"btn-close-screen-" + screen.menuTreeItem.id}
+                        onClick={(e) => {                           
+                          this.handleTabCloseButtonClick(e, screen.menuTreeItem); 
+                          e.preventDefault();
+                        }}>
                         <WIcon className={classes.whiteText} style={{ fontSize: 15 }}>{screen.confirmOnClose ? "lens" : "close"}</WIcon>
                       </WIconButton>
                     }
@@ -209,7 +215,9 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
                 }
               </WGrid>
             );
-            return <WTab key={screen.menuTreeItem.id}
+            return <WTab
+              id={"tab-screen-" + screen.menuTreeItem.id}
+              key={screen.menuTreeItem.id}
               label={label}
               classes={{
                 labelContainer: classes.tabLabelContainer
@@ -248,9 +256,10 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
     const { classes } = this.props;
     return (
       <div className={classes.root + " main-page"}>
-        <WAppBar position="fixed" className={classes.appBar} elevation={this.props.theme.designDetails.defaultElevation}>
-          <WToolBar variant="dense" className={classes.toolbar}>
+        <WAppBar id="main-app-bar" position="fixed" className={classes.appBar} elevation={this.props.theme.designDetails.defaultElevation}>
+          <WToolBar id="main-tool-bar" variant="dense" className={classes.toolbar}>
             <WIconButton
+              id="main-hamburger-button"
               color="inherit"
               aria-label="open drawer"
               style={{ transition: 'all ease 250ms', transform: this.state.drawerOpen ? 'rotate(180deg)' : 'none' }}
@@ -273,7 +282,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
             </div>
             {this.props.appContext.openedScreens.filter(screen => !screen.menuTreeItem.notClosable).length > 0 &&
               <WTooltip title="Close All Tabs">
-                <WIconButton onClick={this.closeAllOpenedScreens}>
+                <WIconButton id="btn-close-all-screens" onClick={this.closeAllOpenedScreens}>
                   <WIcon style={{ color: '#FFFFFF66' }} iconSize="small">close</WIcon>
                 </WIconButton>
               </WTooltip>

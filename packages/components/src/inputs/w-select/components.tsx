@@ -35,6 +35,7 @@ const Menu = (props: any) =>
 
 const MultiValue = (props: any) =>
   <WChip
+    id=""
     tabIndex={-1}
     label={props.children}
     className={classNames(props.selectProps.classes.chip, {

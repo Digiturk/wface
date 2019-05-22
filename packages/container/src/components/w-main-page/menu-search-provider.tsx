@@ -46,7 +46,7 @@ export default class MenuSearchProvider implements ISearchProvider {
 
   renderSearchItem(item: IMenuTreeItem): React.ReactNode {
     return (
-      <WFace.WListItem dense key={"key-search-item-" + item.id}>
+      <WFace.WListItem id={"search-item-" + item.id} dense key={"key-search-item-" + item.id}>
         <WFace.WListItemIcon>
           <WFace.WIcon iconSize="small">{item.icon}</WFace.WIcon>
         </WFace.WListItemIcon>

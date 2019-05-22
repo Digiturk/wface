@@ -1,18 +1,19 @@
 import * as React from 'react';
 import { Formik, Form, FormikActions, FormikErrors, FormikProps } from 'formik';
 import * as Yup from 'yup';
+import { BaseComponentProps } from '../../base/base-component-props';
 
 export interface WFormActions extends FormikActions<any> { }
 export interface WFormErrors extends FormikErrors<any> { }
 
-export interface WFormProps {
+export type WFormProps = BaseComponentProps & { 
   initialValues: any;
   onSubmit: (values: any, formikActions?: WFormActions) => void;
   validationSchema?: any | (() => any);
   validate?: ((values: any) => void | object | Promise<WFormErrors>);
   enableReinitialize?: boolean;
   onChange?: (values: any) => void;
-  formStyle?: React.CSSProperties;  
+  formStyle?: React.CSSProperties; 
 }
 
 export class WForm extends React.Component<WFormProps, {}> {

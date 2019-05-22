@@ -4,8 +4,9 @@ import { ExpansionPanelDetails, ExpansionPanelSummary, ExpansionPanelActions } f
 import { WIcon } from '../../medias/w-icon';
 import { WTypography } from '../../others/w-typography';
 import { WButton } from '../../buttons/w-button';
+import { BaseComponentProps } from '../../base/base-component-props';
 
-export interface WExpansionPanelProps extends ExpansionPanelProps {  
+export type WExpansionPanelProps = BaseComponentProps & ExpansionPanelProps & { 
   title: string;
   actions?: {text?: string, onClick?: (event) => void, custom?: React.ReactNode}[];
 }
@@ -28,7 +29,7 @@ export class WExpansionPanel extends React.Component<WExpansionPanelProps, any> 
                 return action.custom;
               }
               else {
-                return <WButton size="small" onClick={action.onClick}>{action.text}</WButton>;
+                return <WButton id={this.props.id + "-btn"} size="small" onClick={action.onClick}>{action.text}</WButton>;
               }
             })
           }

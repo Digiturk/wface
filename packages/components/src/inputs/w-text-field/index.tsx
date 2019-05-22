@@ -5,17 +5,18 @@ import { InputAdornment, TextField } from '@material-ui/core';
 import { WIconButton } from '../../buttons/w-icon-button';
 import { WIcon } from '../../medias/w-icon'
 import { TextFieldProps } from '@material-ui/core/TextField';
+import { BaseComponentProps } from '../../base/base-component-props';
 
 //#endregion
 
 //#region export subtypes
 
-export interface WTextFieldButton {
+export type WTextFieldButton = BaseComponentProps & {
   icon: React.ReactNode;
   onClick(event: any, val: String): void;
 }
 
-export type WTextFieldProps = TextFieldProps & {
+export type WTextFieldProps = BaseComponentProps & TextFieldProps & {
   defaultValue?: string;
   leftButtons?: WTextFieldButton[];
   rightButtons?: WTextFieldButton[];
@@ -29,6 +30,7 @@ export interface WTextFieldState {
 
 export class WTextField extends React.Component<WTextFieldProps, WTextFieldState> {
   static defaultProps: WTextFieldProps = {
+    id: '',
     value: ''
   }
 
@@ -53,7 +55,8 @@ export class WTextField extends React.Component<WTextFieldProps, WTextFieldState
     return buttons.map((btn, index) => {
       return (
         <span key={index}>
-          <WIconButton
+          <WIconButton            
+            id={btn.id}
             onClick={() => btn.onClick && btn.onClick.bind(this)(null)}
             onMouseDown={() => event.preventDefault()}>
             {btn.icon}

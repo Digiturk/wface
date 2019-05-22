@@ -10,7 +10,7 @@ interface MyProfileMenuState {
 }
 
 export interface MyProfileMenuProps {
-  items: { icon?: string, text: string, onClick?: ((event: any) => void) | string }[];
+  items: { id: string, icon?: string, text: string, onClick?: ((event: any) => void) | string }[];
 }
 
 export interface DispatchProps {
@@ -39,10 +39,10 @@ class MyProfileMenu extends React.Component<MyProfileMenuProps & WStore & Dispat
         hooks.onLogout && hooks.onLogout();
       }
     }
-    catch(e) {
+    catch (e) {
       console.log(e);
     }
-    
+
     this.props.clearAppContext();
   }
 
@@ -50,6 +50,7 @@ class MyProfileMenu extends React.Component<MyProfileMenuProps & WStore & Dispat
     return (
       <div>
         <WIconButton
+          id="btn-main-more"
           aria-owns={Boolean(this.state.userMenuAnchor) ? 'menu-appbar' : null}
           aria-haspopup="true"
           onClick={(event) => this.setState({ userMenuAnchor: event.currentTarget })}
@@ -73,21 +74,24 @@ class MyProfileMenu extends React.Component<MyProfileMenuProps & WStore & Dispat
         >
           {this.props.items &&
             this.props.items.map(item => (
-              <WMenuItem onClick={(e) => {
-                if (typeof item.onClick === 'function') {
-                  item.onClick(e);
-                  this.setState({ userMenuAnchor: null });
-                }
-                else {
-                  const screenItem = MenuTreeUtil.findByName(this.props.appContext.menuTree, item.onClick);
-                  if (!screenItem) {
-                    return;
+              <WMenuItem
+                id={item.id}
+                key={item.id}
+                onClick={(e) => {
+                  if (typeof item.onClick === 'function') {
+                    item.onClick(e);
+                    this.setState({ userMenuAnchor: null });
                   }
+                  else {
+                    const screenItem = MenuTreeUtil.findByName(this.props.appContext.menuTree, item.onClick);
+                    if (!screenItem) {
+                      return;
+                    }
 
-                  this.props.openScreen(screenItem);
-                  this.setState({ userMenuAnchor: null });
-                }
-              }}>
+                    this.props.openScreen(screenItem);
+                    this.setState({ userMenuAnchor: null });
+                  }
+                }}>
                 {item.icon &&
                   <WListItemIcon>
                     <WIcon>{item.icon}</WIcon>
@@ -97,7 +101,7 @@ class MyProfileMenu extends React.Component<MyProfileMenuProps & WStore & Dispat
               </WMenuItem>
             ))
           }
-          <WMenuItem onClick={this.logoutClicked}>
+          <WMenuItem id="menu-item-logout" key="menu-item-logout" onClick={this.logoutClicked}>
             <WListItemIcon>
               <WIcon>exit_to_app</WIcon>
             </WListItemIcon>

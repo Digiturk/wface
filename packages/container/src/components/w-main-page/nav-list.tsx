@@ -76,7 +76,7 @@ class NavList extends React.Component<NavListProps & WStore, NavListState> {
             <WIcon>{open ? "expand_less" : "expand_more"}</WIcon>
           </WListItem>
           <Collapse in={open} timeout="auto">
-            <WList disablePadding>
+            <WList id={"sub-menu-" + item.id} disablePadding>
               {item.subNodes.map(subItem => { return this.renderNavItem(subItem, hasAnyIcon, nestingLevel + 1); })}
             </WList>
           </Collapse>
@@ -133,6 +133,7 @@ class NavList extends React.Component<NavListProps & WStore, NavListState> {
       return (
         <div style={{ paddingLeft: 5 }}>
           <WList
+            id="list-menu-tree"
             key="NavListKey"
             component="nav"
           >

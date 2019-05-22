@@ -3,11 +3,13 @@ import { Button } from '@material-ui/core';
 import { ButtonProps } from '@material-ui/core/Button';
 import { createStyles, withStyles } from '@material-ui/core/styles';
 import { WTheme } from '../../others/w-theme-provider/w-theme';
+import { BaseComponentProps } from '../../base/base-component-props';
 
-export interface WButtonProps extends ButtonProps { }
+export type WButtonProps = BaseComponentProps & ButtonProps & { 
+}
 
 class WButtonInner extends React.Component<WButtonProps, any> {
-  static defaultProps: WButtonProps = { color: "primary" }
+  static defaultProps: WButtonProps = { color: "primary" } as any
 
   public render() {
     return (
@@ -16,13 +18,13 @@ class WButtonInner extends React.Component<WButtonProps, any> {
   }
 }
 
-const styles = (theme: WTheme) => ({
+const styles = (theme: WTheme) => createStyles({
   root: {
     textTransform: 'none',
     boxShadow: theme.designDetails.defaultElevation ? '' : 'none',
   }
 });
 
-const WButton = withStyles(styles as any)((props: WButtonProps ) => <WButtonInner {...props}/>)
+const WButton = withStyles(styles)((props: WButtonProps) => <WButtonInner {...props}/>)
 
 export { WButton }

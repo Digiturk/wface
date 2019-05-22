@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { Menu } from '@material-ui/core';
 import { MenuProps } from '@material-ui/core/Menu';
+import { BaseComponentProps } from '../../base/base-component-props';
 
-
-export interface WMenuProps extends MenuProps { }
+export type WMenuProps = BaseComponentProps & MenuProps & { 
+}
 
 export class WMenu extends React.Component<WMenuProps, {}> {
   public render() {

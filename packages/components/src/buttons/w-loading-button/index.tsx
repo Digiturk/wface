@@ -7,12 +7,13 @@ import { WLinearProgress, WLinearProgressProps } from '../../progress/w-linear-p
 import green from '@material-ui/core/colors/green';
 import red from '@material-ui/core/colors/red';
 import { createStyles, withStyles } from '@material-ui/core/styles';
+import { BaseComponentProps } from '../../base/base-component-props';
 
-export interface WLoadingButtonProps extends WButtonProps {
+export type WLoadingButtonProps = BaseComponentProps & WButtonProps & { 
   isLoading?: boolean;
   classes?: any;
   status?: "error" | "normal" | "success";
-  progressType?: "circular" | "linear";  
+  progressType?: "circular" | "linear"; 
 }
 
 class WLoadingButtonInner extends React.Component<WLoadingButtonProps, {}> {

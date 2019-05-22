@@ -21,6 +21,7 @@ const config = {
   search: true,
   rightContextItems: [
     {
+      id: 'my-profile',
       icon: 'account_circle',
       text: 'My Profile',
       onClick: () => alert('You clicked my profile')

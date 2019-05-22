@@ -88,7 +88,7 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
     this.props.enqueueSnackbar(message, {
       variant: type,
       autoHideDuration: duration,
-      action: <WIconButton><WIcon style={{ color: '#ffffff99' }} iconSize="small">close</WIcon></WIconButton>
+      action: <WIconButton id="btn-close-snackbar"><WIcon style={{ color: '#ffffff99' }} iconSize="small">close</WIcon></WIconButton>
     });
   }
 

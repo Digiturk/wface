@@ -3,11 +3,14 @@ import { ListItem, createStyles, withStyles } from '@material-ui/core';
 import { ListItemProps } from '@material-ui/core/ListItem';
 import { WTheme } from '../../others/w-theme-provider/w-theme';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
+import { BaseComponentProps } from '../../base/base-component-props';
 
-export interface WListItemProps extends ListItemProps { }
+export type WListItemProps = BaseComponentProps & ListItemProps & { 
+}
 
 class WListItemInner extends React.Component<WListItemProps, {}> {
   static defaultProps: WListItemProps = { 
+    id: '',
     dense: true 
   }
 

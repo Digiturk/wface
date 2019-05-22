@@ -23,20 +23,7 @@ export class DemoScreen2 extends React.Component<WFace.BaseScreenProps, DemoScre
     return (
       <>
         <div style={{ maxWidth: 500, background: 'white', padding: 10 }}>
-          <WFace.WTabContainer scrollButtons="auto" scrollable>
-            <WFace.WTabPage label="Tab Page 1 of Tab Container">
-              content 1
-          </WFace.WTabPage>
-            <WFace.WTabPage label="Tab Page 2 of Tab Container">
-              content 2
-          </WFace.WTabPage>
-            <WFace.WTabPage label="Tab Page 3 of Tab Container">
-              content 3
-          </WFace.WTabPage>
-            <WFace.WTabPage label="Tab Page 4 of Tab Container">
-              content 4
-          </WFace.WTabPage>
-          </WFace.WTabContainer>
+          <WFace.WButton id="btn-test">Test</WFace.WButton>
         </div>
       </>
     )
@@ -46,6 +33,7 @@ export class DemoScreen2 extends React.Component<WFace.BaseScreenProps, DemoScre
 const Users = (props) => (
   <>
     <WFace.WTable
+      id="table"
       columns={[
         { title: 'Name', field: 'name' },
         { title: 'Surname', field: 'surname' },
@@ -97,10 +85,10 @@ class Addresses extends React.Component<WFace.WNestedPageComponentProps & WFace.
           Bu sayfada {this.props.payload.name} adresleri olacak
         </WFace.WTypography>
         <WFace.WTextField value={this.state.value} onChange={(event) => this.setState({ value: event.target.value })} />
-        <WFace.WButton onClick={() => this.props.navigateTo("edit-address", this.props.payload)}>
+        <WFace.WButton id="btn-edit-address" onClick={() => this.props.navigateTo("edit-address", this.props.payload)}>
           Adresi Düzenle
         </WFace.WButton>
-        <WFace.WButton onClick={() => this.props.goBack()}>Kullanıcılara dön</WFace.WButton>
+        <WFace.WButton id="btn-back" onClick={() => this.props.goBack()}>Kullanıcılara dön</WFace.WButton>
       </div>
     );
   }
@@ -111,7 +99,7 @@ const EditAddress = (props) => (
     <WFace.WTypography>
       Bu sayfada {props.payload.name} adresi düzenlenebilecek
     </WFace.WTypography>
-    <WFace.WButton onClick={() => props.goBack()}>Adreslere dön</WFace.WButton>
+    <WFace.WButton id="btn-back" onClick={() => props.goBack()}>Adreslere dön</WFace.WButton>
   </div>
 );
 
@@ -124,8 +112,8 @@ class Phones extends React.Component<WFace.WNestedPageComponentProps & WFace.Bas
         <WFace.WTypography>
           Bu sayfada {this.props.payload.name} telefonlar olacak
         </WFace.WTypography>
-        <WFace.WButton onClick={() => this.props.goBack()}>Kullanıcılara dön</WFace.WButton>
-        <WFace.WButton onClick={() => this.props.showSnackbar("Phones snackbar")}>Snackbar</WFace.WButton>
+        <WFace.WButton id="btn-back" onClick={() => this.props.goBack()}>Kullanıcılara dön</WFace.WButton>
+        <WFace.WButton id="btn-snackbar" onClick={() => this.props.showSnackbar("Phones snackbar")}>Snackbar</WFace.WButton>
       </>
     );
   }

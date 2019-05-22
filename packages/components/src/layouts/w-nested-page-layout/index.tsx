@@ -3,6 +3,7 @@ import * as React from 'react';
 import { WButton, WIconButton, WMenuItem, BaseScreenProps, BaseScreenPropsContext } from '../../..';
 import { WTheme } from '../../others/w-theme-provider/w-theme';
 import { lastDayOfISOWeek } from 'date-fns';
+import { BaseComponentProps } from '../../base/base-component-props';
 
 export interface WNestedPageComponentProps {
   payload: any;
@@ -11,7 +12,7 @@ export interface WNestedPageComponentProps {
   goBack: () => void;
 }
 
-export interface WNestedPageItem {
+export interface WNestedPageItem extends BaseComponentProps {
   component: React.ReactType<WNestedPageComponentProps & BaseScreenProps>
   name: string;
   title?: string | ((payload: any) => string);
@@ -94,6 +95,7 @@ export class WNestedPageLayoutInner extends React.Component<WNestedPageLayoutPro
               return (
                 <div style={{ display: 'inline-block' }}>
                   <WButton
+                    id={current.item.id}
                     disabled={index === this.state.stack.length - 1}
                     className={this.props.classes.button}
                     onClick={() => {
@@ -108,6 +110,7 @@ export class WNestedPageLayoutInner extends React.Component<WNestedPageLayoutPro
                   {index !== this.state.stack.length - 1 &&
                     <>
                       <WIconButton
+                        id={current.item.id + "-btn-menu"}
                         aria-owns={this.state.anchorEl ? 'simple-menu' : undefined}
                         aria-haspopup="true"
                         className={this.props.classes.iconButton}
@@ -128,6 +131,7 @@ export class WNestedPageLayoutInner extends React.Component<WNestedPageLayoutPro
                                 <MenuList dense>
                                   {current.item.subItems.map(item => (
                                     <WMenuItem
+                                      id={item.id}
                                       key={item.name}
                                       dense
                                       onClick={() => {

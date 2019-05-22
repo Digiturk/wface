@@ -7,8 +7,9 @@ import { WGrid } from '../../layouts/w-grid';
 import { WPaper } from '../../layouts/w-paper';
 import { WIcon } from '../../medias/w-icon';
 import { WTypography } from '../../others/w-typography';
+import { BaseComponentProps } from '../../base/base-component-props';
 
-export interface WNotificationBarProps {
+export type WNotificationBarProps = BaseComponentProps & { 
   text: string;
   type: string;
   classes?: any;
@@ -35,6 +36,7 @@ class WNotificationBarInner extends React.Component<WNotificationBarProps, {}> {
           </WGrid>
           <WGrid item xs={1} style={{ height: '100%' }}>
             <WIconButton style={{ margin: 0, padding: 0 }}
+              id={this.props.id + "-close"}
               onClick={() => this.props.onCloseClick && this.props.onCloseClick()}>
               <WIcon className={classes.whiteText} style={{ fontSize: 15 }}>close</WIcon>
             </WIconButton>

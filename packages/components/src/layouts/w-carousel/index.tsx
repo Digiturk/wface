@@ -7,8 +7,9 @@ import { WGrid } from '../w-grid';
 import { WTheme } from '../../others/w-theme-provider/w-theme';
 import { WTypography } from '../../others/w-typography';
 import { WTooltip } from '../../others/w-tooltip';
+import { BaseComponentProps } from '../../base/base-component-props';
 
-export interface WCarouselProps {
+export type WCarouselProps = BaseComponentProps & { 
   active?: number;
   children: React.ReactElement<any>[];
   onActiveChanged?: (step: number) => void;
@@ -72,18 +73,18 @@ class WCarouselInner extends React.Component<WCarouselProps, any> {
           style={{ opacity: 0.7 }}
         >
           <WGrid item xs={10} style={{ padding: 10 }}>
-            <WIconButton color="primary" onClick={() => this.setState((prevState: any) => { return { fullScreen: !prevState.fullScreen } })}><WIcon>fullscreen</WIcon></WIconButton>
+            <WIconButton id={this.props.id + "-btn-fullscreen"} color="primary" onClick={() => this.setState((prevState: any) => { return { fullScreen: !prevState.fullScreen } })}><WIcon>fullscreen</WIcon></WIconButton>
           </WGrid>
           <WGrid item xs={2} style={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <WIconButton color="primary" onClick={() => this.changeActive(0)} disabled={active === 0}><WIcon>first_page</WIcon></WIconButton>
-            <WIconButton color="primary" onClick={() => this.changeActive(active - 1)} disabled={active === 0}><WIcon>chevron_left</WIcon></WIconButton>
+            <WIconButton id={this.props.id + "-btn-first-page"} color="primary" onClick={() => this.changeActive(0)} disabled={active === 0}><WIcon>first_page</WIcon></WIconButton>
+            <WIconButton id={this.props.id + "-btn-previous-page"} color="primary" onClick={() => this.changeActive(active - 1)} disabled={active === 0}><WIcon>chevron_left</WIcon></WIconButton>
             <WTooltip title={this.props.slideTitles[active]}>
               <span style={{ display: 'flex' }}>
                 <WTypography color="primary" variant="button" style={{ minWidth: 50, textAlign: 'center', margin: 'auto' }}>{(active + 1)}{" / "}{count}</WTypography>
               </span>
             </WTooltip>
-            <WIconButton color="primary" onClick={() => this.changeActive(active + 1)} disabled={active === count - 1}><WIcon>chevron_right</WIcon></WIconButton>
-            <WIconButton color="primary" onClick={() => this.changeActive(count - 1)} disabled={active === count - 1}><WIcon>last_page</WIcon></WIconButton>
+            <WIconButton id={this.props.id + "-btn-next-page"} color="primary" onClick={() => this.changeActive(active + 1)} disabled={active === count - 1}><WIcon>chevron_right</WIcon></WIconButton>
+            <WIconButton id={this.props.id + "-btn-last-page"} color="primary" onClick={() => this.changeActive(count - 1)} disabled={active === count - 1}><WIcon>last_page</WIcon></WIconButton>
           </WGrid>
         </WGrid>
         <SwipeableViews

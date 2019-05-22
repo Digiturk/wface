@@ -3,6 +3,7 @@ import { RadioGroup } from '@material-ui/core'
 import { RadioGroupProps } from '@material-ui/core/RadioGroup'
 import { WRadio } from './w-radio';
 import { WTypography } from '../../others/w-typography';
+import { BaseComponentProps } from '../../base/base-component-props';
 
 export interface WRadioGroupOption {
   label: string; 
@@ -10,7 +11,7 @@ export interface WRadioGroupOption {
   disabled?: boolean;
 }
 
-export interface WRadioGroupProps extends RadioGroupProps { 
+export type WRadioGroupProps = BaseComponentProps & RadioGroupProps & { 
   axis?: 'horizontal' | 'vertical';
   label: string;
   options?: WRadioGroupOption[];
@@ -18,6 +19,7 @@ export interface WRadioGroupProps extends RadioGroupProps {
 
 export class WRadioGroup extends React.Component<WRadioGroupProps, {}> {
   static defaultProps: WRadioGroupProps = {
+    id: '',
     axis: 'horizontal',
     label: ''
   }

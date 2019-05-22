@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { WBasicDialog } from '../w-basic-dialog';
+import { BaseComponentProps } from '../../base/base-component-props';
 
-export interface WMessageDialogProps {
+export type WMessageDialogProps = BaseComponentProps & { 
   open: boolean;
   title: string;
   text: string;
@@ -11,7 +12,8 @@ export interface WMessageDialogProps {
 }
 
 export class WMessageDialog extends React.Component<WMessageDialogProps, {}> {
-  static defaultProps: WMessageDialogProps = { 
+  static defaultProps: WMessageDialogProps = {
+    id: "",
     open: false, 
     title: '', 
     text: '', 
@@ -52,7 +54,8 @@ export class WMessageDialog extends React.Component<WMessageDialogProps, {}> {
 
   public render() {
     return (
-      <WBasicDialog      
+      <WBasicDialog
+        id={this.props.id}
         open={this.props.open}
         title={this.props.title}
         children={this.props.text} 

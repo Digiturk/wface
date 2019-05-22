@@ -2,13 +2,15 @@ import * as React from 'react';
 import Dialog, { DialogProps } from '@material-ui/core/Dialog'
 import { createStyles, withStyles, withTheme } from '@material-ui/core/styles';
 import { WTheme } from '../../others/w-theme-provider/w-theme';
+import { BaseComponentProps } from '../../base/base-component-props';
 
-export interface WDialogProps extends DialogProps { 
+export type WDialogProps = BaseComponentProps & DialogProps & { 
   theme?: WTheme;
 }
 
 class WDialogInner extends React.Component<WDialogProps, any> {
-  static defaultProps: WDialogProps = { 
+  static defaultProps: WDialogProps = {
+    id: "",
     open: false,
     scroll: "paper" 
   }

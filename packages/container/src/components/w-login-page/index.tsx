@@ -93,6 +93,7 @@ class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> {
                   </WTypography>
                   {this.state.showNotification &&
                     <WNotificationBar
+                      id="login-page-notification-bar"
                       text={this.state.notificationText}
                       type={"error"}
                       onCloseClick={() => this.setState({ showNotification: false })} />
@@ -121,6 +122,7 @@ class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> {
                   />
                   <div className={classes.vSpace} />
                   <WLoadingButton
+                    id="btn-login"
                     variant="contained"
                     size="large"
                     fullWidth

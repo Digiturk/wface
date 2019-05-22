@@ -4,10 +4,9 @@ import { DateType } from 'material-ui-pickers/constants/prop-types'
 import DateFnsUtils from '@date-io/date-fns'
 import MuiPickersUtilsProvider from 'material-ui-pickers/MuiPickersUtilsProvider';
 import { Omit } from '@material-ui/core';
+import { BaseComponentProps } from '../../base/base-component-props';
 
-// type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
-
-export interface WDatePickerProps extends Omit<Omit<DatePickerProps, "value">, "onChange"> {
+export type WDatePickerProps = BaseComponentProps & Omit<Omit<DatePickerProps, "value">, "onChange"> & { 
   fullWidth?: boolean,
   value?: DateType,
   onChange?: (date: DateType) => void,
@@ -15,6 +14,7 @@ export interface WDatePickerProps extends Omit<Omit<DatePickerProps, "value">, "
 
 export class WDatePicker extends React.Component<WDatePickerProps, {}> {
   static defaultProps: WDatePickerProps = {
+    id: '',
     clearable: true,
     format: "dd.MM.yyyy",
     fullWidth: true,
