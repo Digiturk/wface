@@ -38,9 +38,7 @@ class InnerContainer extends React.Component<any, any> {
     const isLoggedIn = this.props.userContext.isLoggedIn;
     const configuration = this.props.appContext.configuration as IConfiguration;
     const LoginScreen = configuration.loginScreen;
-  
-    
-  
+        
     const authService = IOC.get<IAuthService>("IAuthService")
   
     return (
@@ -52,12 +50,12 @@ class InnerContainer extends React.Component<any, any> {
         >
           <>
             <Route exact path="/" render={subProps => <Redirect to="/main" />} />
-            <Route path="/login/:screen?" render={(subProps: any) => isLoggedIn ?
+            <Route path="/login/:screen?" render={(subProps: any) => isLoggedIn || configuration.authRequired === false ?
               <Redirect to={`/main/${subProps.match.params.screen || ''}`} />
               :
               <LoginScreen {...subProps} authService={authService} appContext={this.props.appContext} userContext={this.props.userContext} setValue={this.props.setValue} />
             } />
-            <Route path="/main" render={(subProps: any) => isLoggedIn ? <WMainPage {...subProps} style={{ height: '100%' }} /> : <Redirect to={this.props.location.pathname.replace('main', 'login')} />} />
+            <Route path="/main" render={(subProps: any) => isLoggedIn  || configuration.authRequired === false ? <WMainPage {...subProps} style={{ height: '100%' }} /> : <Redirect to={this.props.location.pathname.replace('main', 'login')} />} />
           </>
         </WSnackbarProvider>
       </WThemeProvider >

@@ -98,6 +98,7 @@ class WApp extends React.Component<{ configuration: IConfiguration }, { configur
   getConfig(props: { configuration: IConfiguration }): IConfiguration {
     let config = { ...props.configuration };
     config.loginScreen = props.configuration.loginScreen || WLoginPage;
+    config.authRequired = props.configuration.authRequired === undefined ? true : props.configuration.authRequired;
     return config;
   }
 

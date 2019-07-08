@@ -14,6 +14,7 @@ const config = {
     DemoScreen,
     DemoScreen2
   },
+  authRequired: false,
   authService: AuthService,
   theme: theme,
   useLocalStorage: true,

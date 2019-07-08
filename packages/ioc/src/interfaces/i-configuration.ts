@@ -10,6 +10,7 @@ export default interface IConfiguration {
   rightContextItems?: { id: string, icon?: string, text: string, onClick: ((event: any) => void) | string }[];
   loginScreen?: any;
 
+  authRequired?: any;
   authService?: { new(...args: any[]): IAuthService; };
   httpService?: { new(...args: any[]): IHttpService; };
 

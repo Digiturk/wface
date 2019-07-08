@@ -24,7 +24,6 @@ class WTableInner extends React.Component<WTableProps, {}> {
         />
       </div>
     )
-
   }
 }
 
