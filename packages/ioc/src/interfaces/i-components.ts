@@ -5,4 +5,6 @@ export default interface IComponents {
   LoginPage?: React.ReactType;
   MainPage?: React.ReactType;
   ScreenWrapper?: React.ReactType;  
+  NoPage: React.ReactType;  
+  ErrorPage: React.ReactType; 
 }

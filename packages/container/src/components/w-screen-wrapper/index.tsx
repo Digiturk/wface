@@ -4,8 +4,6 @@ import { AppContextActions, ScreenData, WStore } from '@wface/store';
 import { withTheme } from '@material-ui/core';
 import * as React from 'react';
 import { connect } from 'react-redux';
-import NoPage from './no-page';
-import PageError from './page-error';
 
 interface WScreenWrapperState {
   pageError?: { error: any, info: any };
@@ -114,13 +112,13 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
 
   public render() {
     if (this.state.pageError) {
-      return <PageError {...this.state.pageError} />
+      return <this.props.appContext.configuration.components.ErrorPage {...this.state.pageError} />
     }
 
     const Screen = this.props.appContext.configuration.screenList[this.props.screen.menuTreeItem.screen] as any;
 
     if (!Screen) {
-      return <NoPage />
+      return <this.props.appContext.configuration.components.NoPage />
     }
 
     return (

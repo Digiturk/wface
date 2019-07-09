@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as WFace from '@wface/components';
 
-export default class PageError extends React.Component<{ error: any, info: any }, any> {
+export default class ErrorPage extends React.Component<{ error: any, info: any }, any> {
   state = {
     showDetail: false
   }
