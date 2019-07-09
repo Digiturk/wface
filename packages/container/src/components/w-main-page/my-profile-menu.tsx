@@ -101,12 +101,14 @@ class MyProfileMenu extends React.Component<MyProfileMenuProps & WStore & Dispat
               </WMenuItem>
             ))
           }
-          <WMenuItem id="menu-item-logout" key="menu-item-logout" onClick={this.logoutClicked}>
-            <WListItemIcon>
-              <WIcon>exit_to_app</WIcon>
-            </WListItemIcon>
-            <WListItemText inset primary="Çıkış" />
-          </WMenuItem>
+          {this.props.appContext.configuration.authRequired && 
+            <WMenuItem id="menu-item-logout" key="menu-item-logout" onClick={this.logoutClicked}>
+              <WListItemIcon>
+                <WIcon>exit_to_app</WIcon>
+              </WListItemIcon>
+              <WListItemText inset primary="Çıkış" />
+            </WMenuItem>
+          }
         </WMenu>
       </div>
     )
