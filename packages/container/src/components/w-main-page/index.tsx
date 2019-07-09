@@ -10,7 +10,6 @@ import { Horizontal, WindowWidthType } from 'horizontal';
 import * as React from "react";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import WScreenWrapper from '../w-screen-wrapper';
 import MyProfileMenu from './my-profile-menu';
 import Search from './search';
 import NavList from './nav-list';
@@ -204,8 +203,8 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
                       <WIconButton
                         component="span"
                         id={"btn-close-screen-" + screen.menuTreeItem.id}
-                        onClick={(e) => {                           
-                          this.handleTabCloseButtonClick(e, screen.menuTreeItem); 
+                        onClick={(e) => {
+                          this.handleTabCloseButtonClick(e, screen.menuTreeItem);
                           e.preventDefault();
                         }}>
                         <WIcon className={classes.whiteText} style={{ fontSize: 15 }}>{screen.confirmOnClose ? "lens" : "close"}</WIcon>
@@ -326,11 +325,11 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
             {
               this.props.appContext.openedScreens.map(screen => {
                 if (this.props.appContext.currentScreen.menuTreeItem.id === screen.menuTreeItem.id) {
-                  const component = <div style={{ width: '100%', height: 'calc(100% - 8px)' }} key={"screen-" + screen.menuTreeItem.id}><WScreenWrapper screen={screen} /></div>
+                  const component = <div style={{ width: '100%', height: 'calc(100% - 8px)' }} key={"screen-" + screen.menuTreeItem.id}><this.props.appContext.configuration.components.ScreenWrapper screen={screen} /></div>
                   return component;
                 }
                 else if (screen.mode === "loading") {
-                  const component = <div style={{ display: 'none' }} key={"screen-" + screen.menuTreeItem.id}><WScreenWrapper screen={screen} /></div>;
+                  const component = <div style={{ display: 'none' }} key={"screen-" + screen.menuTreeItem.id}><this.props.appContext.configuration.components.ScreenWrapper screen={screen} /></div>;
                   return component;
                 }
 

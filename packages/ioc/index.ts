@@ -6,6 +6,7 @@ export { default as IConfiguration } from './src/interfaces/i-configuration';
 export { default as IAuthService, IMenuTreeItem } from './src/interfaces/i-auth-service';
 export { default as IHttpService } from './src/interfaces/i-http-service';
 export { default as ISearchProvider } from './src/interfaces/i-search-provider';
+export { default as IComponents } from './src/interfaces/i-components';
 
 // wrappers
 export { default as AuthServiceWrapper } from './src/wrappers/auth-service-wrapper';

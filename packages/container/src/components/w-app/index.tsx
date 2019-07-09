@@ -1,7 +1,6 @@
 // We have to provide a Promise polyfill if we're targeting older browsers
 // because import() returns a promise which resolves once the module is loaded
 import "reflect-metadata";
-import { WContainer } from "@wface/container";
 import * as React from 'react';
 import { getStore, AppContextActions, UserContextActions, UserContext, AppContext } from '@wface/store';
 import IOC, { IAuthService, IConfiguration, AuthServiceWrapper, IHttpService, HttpServiceWrapper, ISearchProvider, IMenuTreeItem } from '@wface/ioc';
@@ -10,6 +9,7 @@ import WLoginPage from '../w-login-page';
 import { Provider } from 'react-redux';
 import IAppHooks from '@wface/ioc/src/interfaces/i-app-hooks';
 import MenuSearchProvider from '../w-main-page/menu-search-provider';
+import Components from '../index';
 
 
 class WApp extends React.Component<{ configuration: IConfiguration }, { configuration: IConfiguration }> {
@@ -91,22 +91,22 @@ class WApp extends React.Component<{ configuration: IConfiguration }, { configur
       else {
         IOC.bind<ISearchProvider>("ISearchProvider").to(configuration.search);  
       }
-    }     
-      
+    }           
   }
 
   getConfig(props: { configuration: IConfiguration }): IConfiguration {
-    let config = { ...props.configuration };
-    config.loginScreen = props.configuration.loginScreen || WLoginPage;
+    let config = { ...props.configuration };    
     config.authRequired = props.configuration.authRequired === undefined ? true : props.configuration.authRequired;
+    config.components = { ...Components, ...config.components };
     return config;
   }
 
   public render() {
-
+    const { configuration } = this.state;
     return (
       <Provider store={this.store}>
-        <WContainer />
+        {/* <WContainer /> */}
+        <configuration.components.Container/>
       </Provider>
     );
   }
