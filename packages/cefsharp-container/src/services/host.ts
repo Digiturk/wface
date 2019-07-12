@@ -25,6 +25,17 @@ export default class Host {
     return await this.SendCommand({ Name: "ECHO", Parameter: 'text' }) as any;    
   }
 
+  public static async OpenForm(formName, messageCode, parameters: any): Promise<string> {
+    return await this.SendCommand({
+      Name: "OPEN_FORM",
+      Parameter: JSON.stringify({
+        Name: formName,
+        MessageCode: messageCode,
+        Args: parameters
+      })
+    }) as any;
+  }
+
   public static async RunService(service: string, parameters: any): Promise<string> {
     return await this.SendCommand({
       Name: "RUN_SERVICE",

@@ -1,7 +1,5 @@
-import axios from 'axios';
-import { injectable, inject } from "inversify";
+import { injectable } from "inversify";
 import { IHttpService } from '@wface/ioc';
-import { UserContext } from '@wface/store';
 import Host from './host';
 
 @injectable()

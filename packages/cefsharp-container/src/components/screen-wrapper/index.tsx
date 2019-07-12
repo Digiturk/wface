@@ -4,6 +4,8 @@ import { AppContextActions, ScreenData, WStore } from '@wface/store';
 import { withTheme } from '@material-ui/core';
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { th } from 'date-fns/esm/locale';
+import Host from '../../services/host';
 
 interface ScreenWrapperState {
   pageError?: { error: any, info: any };
@@ -59,12 +61,11 @@ class ScreenWrapper extends React.Component<ScreenWrapperProps & WStore & Dispat
   }
 
   openScreen = (screen: string, initialValues: any): boolean => {
-    const item = MenuTreeUtil.findByName(this.props.appContext.menuTree, screen);
-    if (!item) {
-      return false;
-    }
+    Host.OpenForm(screen, "", initialValues).then(result => {    
+    }).catch(reason => {
+      this.showSnackbar(reason, "error");
+    });
 
-    this.props.openScreen(item, initialValues);
     return true;
   }
 

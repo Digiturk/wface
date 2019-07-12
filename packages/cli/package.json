@@ -1,6 +1,6 @@
 {
 	"name": "@wface/cli",
-	"version": "0.19.3",
+	"version": "0.19.4",
 	"description": "",
 	"author": "mehmet.baran",
 	"scripts": {
@@ -50,9 +50,9 @@
 		"webpack-merge": "4.2.1"
 	},
 	"dependencies": {
-		"@wface/components": "0.19.3",
-		"@wface/container": "0.19.3",
-		"@wface/ioc": "0.19.3",
+		"@wface/components": "0.19.4",
+		"@wface/container": "0.19.4",
+		"@wface/ioc": "0.19.4",
 		"chalk": "2.4.1",
 		"commander": "2.19.0",
 		"deasync": "0.1.13",
