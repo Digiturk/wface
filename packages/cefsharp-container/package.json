@@ -1,6 +1,6 @@
 {
 	"name": "@wface/cefsharp-container",
-	"version": "0.20.3",
+	"version": "0.20.4",
 	"description": "",
 	"main": "index.ts",
 	"scripts": {
@@ -10,9 +10,9 @@
 	"author": "mbrn",
 	"license": "ISC",
 	"dependencies": {
-		"@wface/components": "0.20.3",
-		"@wface/ioc": "0.20.3",
-		"@wface/store": "0.20.3",
+		"@wface/components": "0.20.4",
+		"@wface/ioc": "0.20.4",
+		"@wface/store": "0.20.4",
 		"react": "16.6.3",
 		"react-redux": "5.0.7",
 		"react-router-dom": "5.0.0",

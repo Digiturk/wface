@@ -10,16 +10,10 @@ import { Provider } from 'react-redux';
 import IAppHooks from '@wface/ioc/src/interfaces/i-app-hooks';
 import MenuSearchProvider from '../w-main-page/menu-search-provider';
 import Components from '../index';
-import { withRouter } from 'react-router';
 // @ts-ignore
 import * as queryString from 'query-string'
 
-export interface WAppProps {
-  location?: any
-  configuration: IConfiguration;
-}
-
-class WApp extends React.Component<WAppProps, { configuration: IConfiguration }> {
+class WApp extends React.Component<{ configuration: IConfiguration }, { configuration: IConfiguration }> {
   store: any;
 
   constructor(props) {
@@ -29,6 +23,7 @@ class WApp extends React.Component<WAppProps, { configuration: IConfiguration }>
     this.store = getStore(configuration.useLocalStorage);
     this.store.dispatch(AppContextActions.setConfig(configuration));
     this.buildIOC(configuration);
+    this.parseQueryParams();
 
     this.state = {
       configuration: configuration
@@ -114,7 +109,7 @@ class WApp extends React.Component<WAppProps, { configuration: IConfiguration }>
   }
 
   parseQueryParams = () => {
-    const values = queryString.parse(this.props.location.search);
+    const values = queryString.parse(window.location.search);
     this.store.dispatch(AppContextActions.setQueryParams(values));    
   }
 
@@ -136,4 +131,4 @@ class WApp extends React.Component<WAppProps, { configuration: IConfiguration }>
   }
 }
 
-export default withRouter(WApp)
+export default WApp

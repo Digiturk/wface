@@ -4,7 +4,8 @@ import { AppContext } from '@wface/store';
 import HttpService from './http-service';
 import MainPage from '../components/main-page';
 import ScreenWrapper from '../components/screen-wrapper';
-import { IConfiguration } from '@wface/ioc';
+import IOC, { IConfiguration, IHttpService } from '@wface/ioc';
+
 
 @injectable()
 export default class AppHooks implements IAppHooks {
@@ -17,7 +18,7 @@ export default class AppHooks implements IAppHooks {
       var configuration = {...this._AppContext.configuration};
       configuration.components.MainPage = MainPage;
       configuration.components.ScreenWrapper = ScreenWrapper;
-      configuration.httpService = HttpService;
+      IOC.bind<IHttpService>("IHttpServiceInner").to(HttpService);      
 
       this._SetConfig(configuration);
     }
