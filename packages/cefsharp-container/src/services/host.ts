@@ -7,6 +7,9 @@ export default class Host {
 
   private static async SendCommand(command: Command): Promise<CommandResult> {    
     return new Promise<CommandResult>((resolve, reject) => {
+      if(!this.host)
+        reject("Host could not loaded");
+        
       const commandStr = JSON.stringify(command);
       this.host.process(commandStr).then(response => {
         const commandResult = JSON.parse(response) as CommandResult;
