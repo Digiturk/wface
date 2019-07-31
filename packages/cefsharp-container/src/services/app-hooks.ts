@@ -18,7 +18,7 @@ export default class AppHooks implements IAppHooks {
       var configuration = {...this._AppContext.configuration};
       configuration.components.MainPage = MainPage;
       configuration.components.ScreenWrapper = ScreenWrapper;
-      IOC.bind<IHttpService>("IHttpServiceInner").to(HttpService);      
+      IOC.rebind<IHttpService>("IHttpServiceInner").to(HttpService);      
 
       this._SetConfig(configuration);
     }
