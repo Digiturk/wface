@@ -1,6 +1,7 @@
 export default interface IAppHooks {
-  onAppMount?(): void;
-  onAppUnmount?(): void;
+  onAppDidMount?(): void;
+  onAppWillMount?(): void;
+  onAppWillUnmount?(): void;
   onLogin?();
   onLogout?();
 }

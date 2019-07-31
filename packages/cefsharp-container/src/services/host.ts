@@ -1,10 +1,11 @@
+import { reject } from 'q';
 
 
 export default class Host {
   //@ts-ignore
-  static host: any = window.jsHost;
+  static host: any = window["jsHost"];
 
-  private static async SendCommand(command: Command): Promise<CommandResult> {
+  private static async SendCommand(command: Command): Promise<CommandResult> {    
     return new Promise<CommandResult>((resolve, reject) => {
       const commandStr = JSON.stringify(command);
       this.host.process(commandStr).then(response => {

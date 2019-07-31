@@ -28,17 +28,24 @@ class WApp extends React.Component<{ configuration: IConfiguration }, { configur
     }
   }
 
+  componentWillMount() {
+    if(IOC.isBound("IAppHooks")) {
+      const hooks = IOC.get<IAppHooks>("IAppHooks");
+      hooks.onAppWillMount && hooks.onAppWillMount();
+    }
+  }
+
   componentDidMount() {
     if(IOC.isBound("IAppHooks")) {
       const hooks = IOC.get<IAppHooks>("IAppHooks");
-      hooks.onAppMount && hooks.onAppMount();
+      hooks.onAppDidMount && hooks.onAppDidMount();
     }
   }
 
   componentWillUnmount() {
     if(IOC.isBound("IAppHooks")) {
       const hooks = IOC.get<IAppHooks>("IAppHooks");
-      hooks.onAppUnmount && hooks.onAppUnmount();
+      hooks.onAppWillUnmount && hooks.onAppWillUnmount();
     }
   }
 
@@ -59,7 +66,12 @@ class WApp extends React.Component<{ configuration: IConfiguration }, { configur
     !IOC.isBound("openScreen") &&
       IOC.bind("openScreen").toFunction(openScreen);
 
-    // Bind contextes
+    // Bind setConfig function
+    const setConfig = (configuration: IConfiguration) => this.store.dispatch(AppContextActions.setConfig(configuration));
+    !IOC.isBound("setConfig") &&
+      IOC.bind("setConfig").toFunction(setConfig);
+
+    // Bind contexts
     !IOC.isBound("UserContext") &&
       IOC.bind<UserContext>("UserContext").toFactory(() => this.store.getState().userContext);
     !IOC.isBound("AppContext") &&
