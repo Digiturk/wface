@@ -10,9 +10,16 @@ import { Provider } from 'react-redux';
 import IAppHooks from '@wface/ioc/src/interfaces/i-app-hooks';
 import MenuSearchProvider from '../w-main-page/menu-search-provider';
 import Components from '../index';
+import { withRouter } from 'react-router';
+// @ts-ignore
+import * as queryString from 'query-string'
 
+export interface WAppProps {
+  location?: any
+  configuration: IConfiguration;
+}
 
-class WApp extends React.Component<{ configuration: IConfiguration }, { configuration: IConfiguration }> {
+class WApp extends React.Component<WAppProps, { configuration: IConfiguration }> {
   store: any;
 
   constructor(props) {
@@ -106,6 +113,11 @@ class WApp extends React.Component<{ configuration: IConfiguration }, { configur
     }           
   }
 
+  parseQueryParams = () => {
+    const values = queryString.parse(this.props.location.search);
+    this.store.dispatch(AppContextActions.setQueryParams(values));    
+  }
+
   getConfig(props: { configuration: IConfiguration }): IConfiguration {
     let config = { ...props.configuration };    
     config.authRequired = props.configuration.authRequired === undefined ? true : props.configuration.authRequired;
@@ -124,4 +136,4 @@ class WApp extends React.Component<{ configuration: IConfiguration }, { configur
   }
 }
 
-export default WApp
+export default withRouter(WApp)

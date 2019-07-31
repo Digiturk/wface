@@ -2,12 +2,9 @@ import { WSnackbarProvider, WThemeProvider } from '@wface/components';
 import IOC, { IAuthService, IConfiguration } from '@wface/ioc';
 import { AppContextActions } from '@wface/store';
 import * as React from 'react';
-import { connect, Provider } from 'react-redux';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { HashRouter, Redirect, Route, BrowserRouter } from 'react-router-dom';
-import WMainPage from '../w-main-page';
-// @ts-ignore
-import * as queryString from 'query-string'
+import { Redirect, Route, BrowserRouter } from 'react-router-dom';
 
 class WContainer extends React.Component<{}, {}> {
 
@@ -24,14 +21,10 @@ class WContainer extends React.Component<{}, {}> {
   }
 };
 
-
 class InnerContainer extends React.Component<any, any> {
 
   constructor(props: any) {
     super(props);      
-
-    const values = queryString.parse(this.props.location.search);
-    this.props.setQueryParams(values);    
   }
 
   render() {
@@ -62,10 +55,6 @@ class InnerContainer extends React.Component<any, any> {
   }
 }
 
-// let InnerContainer = (props: any) => {
-  
-// }
-
 const mapStateToProps = (state: any) => ({
   userContext: state.userContext,
   appContext: state.appContext
@@ -73,7 +62,6 @@ const mapStateToProps = (state: any) => ({
 
 const mapDispatchToProps = (dispatch: any) => ({
   setValue: (key: string, value: any) => dispatch(AppContextActions.setValue({ key, value })),
-  setQueryParams: (search: { [key: string]: any }) => dispatch(AppContextActions.setQueryParams(search))
 });
 
 const WrappedInnerContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(InnerContainer) as any) as any
