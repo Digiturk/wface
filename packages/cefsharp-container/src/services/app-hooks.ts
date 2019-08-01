@@ -16,6 +16,7 @@ export default class AppHooks implements IAppHooks {
   onAppWillMount() {
     if(this._AppContext.queryParams["appType"] === "standalone"){
       var configuration = {...this._AppContext.configuration};
+      configuration.authRequired = false;
       configuration.components.MainPage = MainPage;
       configuration.components.ScreenWrapper = ScreenWrapper;
       IOC.rebind<IHttpService>("IHttpServiceInner").to(HttpService);      
