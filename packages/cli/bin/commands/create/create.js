@@ -151,9 +151,9 @@ function getTemplate(folder, name, parameters) {
 }
 
 function checkName(name) {
-  let regex = /^[a-z][a-z0-9]+([-][a-z0-9]+)*$/g;
+  let regex = /^[a-z][a-z0-9]+([-.][a-z0-9]+)*$/g;
   let result = name.match(regex) == name;
-  return result || 'Wrong naming! Please specify a name that is contains only lowercase letters, number and - as delimeter.");'
+  return result || 'Wrong naming! Please specify a name that is contains only lowercase letters, number and [-,]  as delimeter.");'
 }
 
 exports.default = create;
