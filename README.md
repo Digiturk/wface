@@ -29,3 +29,4 @@ If you have any sort of doubt, idea or just want to talk about the project, feel
 ## License
 
 This project is licensed under the terms of the [MIT license](/LICENSE).
+
