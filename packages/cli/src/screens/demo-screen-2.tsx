@@ -22,99 +22,32 @@ export class DemoScreen2 extends React.Component<WFace.BaseScreenProps, DemoScre
   public render() {
     return (
       <>
-        <div style={{ maxWidth: 500, background: 'white', padding: 10 }}>
-          <WFace.WButton id="btn-test">Test</WFace.WButton>
-        </div>
+        <WFace.WGrid container>
+          <WFace.WGrid item lg={6}>
+            <WFace.WCard>
+              <WFace.WCardHeader title="Card" />
+              <WFace.WCardContent>
+
+                <WFace.WSelect id="cmbCity"
+                  label="Şehir"
+                  options={[
+                    { label: 'Adana', value: '1' },
+                    { label: 'Gaziantep', value: '27' },
+                    { label: 'İstanbul', value: '34' },
+                    { label: 'Şanlıurfa', value: '63' }
+                  ]}
+                />
+
+              </WFace.WCardContent>
+              <WFace.WCardActions>
+                <WFace.WButton id="btn">
+                  Save
+            </WFace.WButton>
+              </WFace.WCardActions>
+            </WFace.WCard>
+          </WFace.WGrid>
+        </WFace.WGrid>
       </>
     )
-  }
-}
-
-const Users = (props) => (
-  <>
-    <WFace.WTable
-      id="table"
-      columns={[
-        { title: 'Name', field: 'name' },
-        { title: 'Surname', field: 'surname' },
-        { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-        {
-          title: 'Birth Place',
-          field: 'birthCity',
-          lookup: { 53: 'Rize', 63: 'Şanlıurfa' },
-        },
-      ]}
-      data={[
-        { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-        { name: 'Bilal', surname: 'Hocaoğlu', birthYear: 1987, birthCity: 53 },
-      ]}
-      title="Custom Actions"
-      actions={[
-        {
-          icon: 'map',
-          tooltip: 'Adresler',
-          onClick: (event, rowData) => {
-            props.navigateTo("addresses", rowData)
-          }
-        },
-        {
-          icon: 'phone',
-          tooltip: 'Telefonlar',
-          onClick: (event, rowData) => {
-            props.navigateTo("phones", rowData)
-          }
-        }
-      ]}
-    />
-  </>
-);
-
-class Addresses extends React.Component<WFace.WNestedPageComponentProps & WFace.BaseScreenProps, any> {
-  constructor(props) {
-    super(props);
-
-    this.state = this.props.lastState || {
-      value: ''
-    }
-  }
-
-  render() {
-    return (
-      <div>
-        <WFace.WTypography>
-          Bu sayfada {this.props.payload.name} adresleri olacak
-        </WFace.WTypography>
-        <WFace.WTextField value={this.state.value} onChange={(event) => this.setState({ value: event.target.value })} />
-        <WFace.WButton id="btn-edit-address" onClick={() => this.props.navigateTo("edit-address", this.props.payload)}>
-          Adresi Düzenle
-        </WFace.WButton>
-        <WFace.WButton id="btn-back" onClick={() => this.props.goBack()}>Kullanıcılara dön</WFace.WButton>
-      </div>
-    );
-  }
-}
-
-const EditAddress = (props) => (
-  <div>
-    <WFace.WTypography>
-      Bu sayfada {props.payload.name} adresi düzenlenebilecek
-    </WFace.WTypography>
-    <WFace.WButton id="btn-back" onClick={() => props.goBack()}>Adreslere dön</WFace.WButton>
-  </div>
-);
-
-// const Phones = (props: any) => <div>phones</div>;
-
-class Phones extends React.Component<WFace.WNestedPageComponentProps & WFace.BaseScreenProps> {
-  render() {
-    return (
-      <>
-        <WFace.WTypography>
-          Bu sayfada {this.props.payload.name} telefonlar olacak
-        </WFace.WTypography>
-        <WFace.WButton id="btn-back" onClick={() => this.props.goBack()}>Kullanıcılara dön</WFace.WButton>
-        <WFace.WButton id="btn-snackbar" onClick={() => this.props.showSnackbar("Phones snackbar")}>Snackbar</WFace.WButton>
-      </>
-    );
   }
 }

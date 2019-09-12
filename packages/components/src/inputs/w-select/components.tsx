@@ -82,7 +82,7 @@ const Placeholder = (props: any) =>
 const SingleValue = (props: any) =>
   <div style={{ display: 'flex' }}>
     {props.data.icon && <div style={{ marginLeft: 10, marginRight: 10 }}>{typeof props.data.icon === 'string' ? <WIcon color="primary" icon={props.data.icon} iconSource={props.data.iconSource} /> : props.data.icon}</div>}
-    <WTypography className={props.selectProps.classes.singleValue} {...props.innerProps} style={{ flex: 1 }}>
+    <WTypography className={props.selectProps.classes.singleValue} {...props.innerProps} style={{ flex: 1, flexBasis: 'auto' }}>
       {props.data.label || props.data.value}
     </WTypography>
   </div>

@@ -163,9 +163,10 @@ const styles = (theme: WTheme) => createStyles({
   },
   valueContainer: {
     display: 'flex',
-    flexWrap: 'wrap',
+    // flexWrap: 'wrap',
     flex: 1,
-    alignItems: 'center'
+    alignItems: 'center',
+    overflow: 'hidden'
   },
   chip: {
     margin: `${theme.spacing.unit / 4}px ${theme.spacing.unit / 4}px`,
