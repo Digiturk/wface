@@ -88,7 +88,6 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
   }
 
   handleTabButton(event: any, screenData: ScreenData) {
-    // if (screenData.menuTreeItem.notClosable || screenData.mode === "loading") {
     if (screenData.menuTreeItem.notClosable) {
       return;
     }
@@ -96,6 +95,9 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
     event.persist();
     if (event.button == 1) {
       this.closeScreen(screenData.menuTreeItem);
+    }
+    else {
+      event.preventDefault();
     }
   }
 
@@ -174,6 +176,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
         centered
         value={this.props.appContext.currentScreen && this.props.appContext.currentScreen.menuTreeItem.id}
         onChange={(event, value) => {
+          console.log("Tab change clicked");
           MenuTreeUtil.menuTreeForEach(this.props.appContext.menuTree, item => {
             if (item.id === value) {
               this.props.openScreen(item);
@@ -188,35 +191,37 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
             const hasRightGrid = !screen.menuTreeItem.notClosable || screen.mode === "loading";
 
             const label = (
-              <WGrid container alignItems="center">
-                <WGrid item xs={hasRightGrid ? 10 : 12}>
+              <div style={{ display: 'flex', maxWidth: 144 }}>
+                <div style={{ flex: 1, alignSelf: 'center', wordBreak: 'break-all' }}>
                   {screen.menuTreeItem.text.length > 25 ?
                     (screen.menuTreeItem.text.substr(0, 25) + "...") : screen.menuTreeItem.text}
-                </WGrid>
+                </div>
                 {hasRightGrid &&
-                  <WGrid item xs={2} zeroMinWidth>
+                  <div>
                     {screen.mode === "loading" ?
                       <div style={{ minWidth: 39 }}>
                         <WCircularProgress size={25} style={{ color: 'white' }} />
                       </div>
                       :
                       <WIconButton
-                        component="span"
+                        // component="div"
                         id={"btn-close-screen-" + screen.menuTreeItem.id}
                         onClick={(e) => {
+                          console.log("Tab close clicked");
                           this.handleTabCloseButtonClick(e, screen.menuTreeItem);
                           e.preventDefault();
                         }}>
                         <WIcon className={classes.whiteText} style={{ fontSize: 15 }}>{screen.confirmOnClose ? "lens" : "close"}</WIcon>
                       </WIconButton>
                     }
-                  </WGrid>
+                  </div>
                 }
-              </WGrid>
+              </div>
             );
             return <WTab
               id={"tab-screen-" + screen.menuTreeItem.id}
               key={screen.menuTreeItem.id}
+              component="div"
               label={label}
               classes={{
                 labelContainer: classes.tabLabelContainer
@@ -368,12 +373,9 @@ const styles: any = (theme: any) => ({
     height: '100%'
   },
   tabLabelContainer: {
-    paddingTop: 0,
-    paddingBottom: 0,
-    paddingLeft: 0,
-    paddingRight: 10,
+    padding: 0,
+    paddingLeft: 5,
     textTransform: 'none',
-    maxWidth: 144,
     wordBreak: 'break-word'
   },
   content: {
