@@ -72,7 +72,7 @@ module.exports = {
   },
   plugins: [
     new CheckerPlugin(),
-    new StyleLintPlugin(),
+    // new StyleLintPlugin(),
     new HtmlWebpackPlugin({
       template: resolve(__dirname, '../../public/index.html.js'),
       title: 'WFace App'

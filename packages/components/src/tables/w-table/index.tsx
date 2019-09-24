@@ -5,7 +5,7 @@ import { WPaper } from '../../layouts/w-paper';
 import { WTheme } from '../../others/w-theme-provider/w-theme';
 import { BaseComponentProps } from '../../base/base-component-props';
 
-export type WTableProps = BaseComponentProps & MaterialTableProps & { 
+export type WTableProps = BaseComponentProps & MaterialTableProps<any> & { 
   classes?: any;
   theme?: WTheme;
   style?: React.CSSProperties;
@@ -27,10 +27,10 @@ class WTableInner extends React.Component<WTableProps, {}> {
   }
 }
 
-const styles = theme => createStyles({
+const styles = (theme:WTheme) => createStyles({
   root: {
-    margin: theme.spacing.unit
+    margin: theme.spacing()
   }
 });
 
-export const WTable = withStyles(styles)(withTheme()((props: WTableProps) => <WTableInner {...props}/>))
+export const WTable = withStyles(styles, {withTheme: true})((props:WTableProps) => <WTableInner {...props}/>)

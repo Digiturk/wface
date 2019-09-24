@@ -2,18 +2,17 @@ import * as React from 'react';
 // @ts-ignore
 import classNames from 'classnames';
 import { WButton, WButtonProps } from '../w-button';
-import { WCircularProgress, WCircularProgressProps } from '../../progress/w-circular-progress';
-import { WLinearProgress, WLinearProgressProps } from '../../progress/w-linear-progress';
-import green from '@material-ui/core/colors/green';
-import red from '@material-ui/core/colors/red';
-import { createStyles, withStyles } from '@material-ui/core/styles';
+import { WCircularProgress } from '../../progress/w-circular-progress';
+import { WLinearProgress } from '../../progress/w-linear-progress';
+import { createStyles, withStyles } from '@material-ui/styles';
 import { BaseComponentProps } from '../../base/base-component-props';
+import { WTheme } from '../../others/w-theme-provider/w-theme';
 
-export type WLoadingButtonProps = BaseComponentProps & WButtonProps & { 
+export type WLoadingButtonProps = BaseComponentProps & WButtonProps & {
   isLoading?: boolean;
   classes?: any;
   status?: "error" | "normal" | "success";
-  progressType?: "circular" | "linear"; 
+  progressType?: "circular" | "linear";
 }
 
 class WLoadingButtonInner extends React.Component<WLoadingButtonProps, {}> {
@@ -36,7 +35,7 @@ class WLoadingButtonInner extends React.Component<WLoadingButtonProps, {}> {
             (this.props.progressType == "circular" ?
               <WCircularProgress size={24} className={classes.circularProgress} /> :
               <>{this.props.children}<WLinearProgress className={classes.linearProgress} /></>) :
-            this.props.children            
+            this.props.children
           }
         </WButton>
       </span>
@@ -44,7 +43,7 @@ class WLoadingButtonInner extends React.Component<WLoadingButtonProps, {}> {
   }
 }
 
-const styles = (theme:any) => ({
+const styles = (theme: WTheme) => createStyles({
   root: {
     display: 'flex',
     alignItems: 'center',
@@ -68,7 +67,7 @@ const styles = (theme:any) => ({
     color: theme.palette.primary.main,
     position: 'absolute',
     bottom: 0,
-    left:0,
+    left: 0,
     height: 3,
     width: '100%',
     borderRadius: '0px 0px 4px 4px'
@@ -83,6 +82,4 @@ const styles = (theme:any) => ({
   },
 });
 
-const WLoadingButton = withStyles(styles as any)((props: WLoadingButtonProps ) => <WLoadingButtonInner {...props}/>)
-
-export { WLoadingButton }
+export const WLoadingButton = withStyles(styles, { withTheme: true })(WLoadingButtonInner);

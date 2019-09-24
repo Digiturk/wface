@@ -94,7 +94,7 @@ export class WNestedPageLayoutInner extends React.Component<WNestedPageLayoutPro
             {this.state.stack.map((current, index) => {
               return (
                 <div style={{ display: 'inline-block' }}>
-                  <WButton
+                  <WButton                  
                     id={current.item.id}
                     disabled={index === this.state.stack.length - 1}
                     className={this.props.classes.button}
@@ -173,7 +173,7 @@ export class WNestedPageLayoutInner extends React.Component<WNestedPageLayoutPro
 
 const styles = (theme: WTheme) => createStyles({
   root: {
-    padding: theme.spacing.unit
+    padding: theme.spacing(1)
   },
   button: {
     '&:disabled': {
@@ -182,7 +182,7 @@ const styles = (theme: WTheme) => createStyles({
   },
   iconButton: {
     transition: 'all ease 300ms',
-    padding: theme.spacing.unit / 2,
+    padding: theme.spacing(0.5),
     '&:disabled': {
       color: theme.palette.grey[600]
     }

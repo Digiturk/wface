@@ -169,7 +169,7 @@ const styles = (theme: WTheme) => createStyles({
     overflow: 'hidden'
   },
   chip: {
-    margin: `${theme.spacing.unit / 4}px ${theme.spacing.unit / 4}px`,
+    margin: `${theme.spacing(0.25)}px ${theme.spacing(0.25)}px`,
     height: 28
   },
   chipFocused: {
@@ -179,7 +179,7 @@ const styles = (theme: WTheme) => createStyles({
     ),
   },
   noOptionsMessage: {
-    padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
+    padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`,
   },
   singleValue: {
     fontSize: 16,
@@ -192,7 +192,7 @@ const styles = (theme: WTheme) => createStyles({
   paper: {
     position: 'absolute',
     zIndex: theme.zIndex.modal + 1,
-    marginTop: theme.spacing.unit,
+    marginTop: theme.spacing(1),
     left: 0,
     right: 0
   },

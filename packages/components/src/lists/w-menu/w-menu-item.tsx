@@ -1,17 +1,17 @@
 import * as React from 'react';
-import { MenuItem, createStyles, withStyles } from '@material-ui/core';
-import { MenuItemProps } from '@material-ui/core/MenuItem';
+import { createStyles, withStyles } from '@material-ui/core';
+import MenuItem, { MenuItemProps } from '@material-ui/core/MenuItem';
 import { WTheme } from '../../others/w-theme-provider/w-theme';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import { BaseComponentProps } from '../../base/base-component-props';
 
-export type WMenuItemProps = BaseComponentProps & MenuItemProps & { 
+export type WMenuItemProps<D extends React.ElementType = "li"> = BaseComponentProps & MenuItemProps<D> & { 
 }
 
 class WMenuItemInner extends React.Component<WMenuItemProps, {}> {
   static defaultProps: WMenuItemProps = { 
     id: '',
-    dense: true 
+    dense: true
   }
 
   public render() {
@@ -32,6 +32,4 @@ const styles = (theme: WTheme) => createStyles({
   }
 });
 
-const WMenuItem = withStyles(styles, { withTheme: false })((props: WMenuItemProps) => <WMenuItemInner {...props} />)
-
-export { WMenuItem };
+export const WMenuItem = withStyles(styles, { withTheme: false })(WMenuItemInner);

@@ -1,21 +1,21 @@
-import * as React from 'react';
-import { ListItem, createStyles, withStyles } from '@material-ui/core';
-import { ListItemProps } from '@material-ui/core/ListItem';
-import { WTheme } from '../../others/w-theme-provider/w-theme';
+import { createStyles, withStyles } from '@material-ui/styles';
+import ListItem, { ListItemProps } from '@material-ui/core/ListItem';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
+import * as React from 'react';
 import { BaseComponentProps } from '../../base/base-component-props';
+import { WTheme } from '../../others/w-theme-provider/w-theme';
 
-export type WListItemProps = BaseComponentProps & ListItemProps & { 
-}
+export type WListItemProps<D extends React.ElementType = "li"> = BaseComponentProps & ListItemProps<D> & { 
+};
 
 class WListItemInner extends React.Component<WListItemProps, {}> {
   static defaultProps: WListItemProps = { 
-    id: '',
-    dense: true 
+    id: '',    
+    dense: true,
   }
 
-  public render() {
-    return <ListItem {...this.props} />;
+  public render() {    
+    return <ListItem {...this.props}/>;
   }
 }
 
@@ -32,6 +32,4 @@ const styles = (theme: WTheme) => createStyles({
   }
 });
 
-const WListItem = withStyles(styles, { withTheme: false })((props: WListItemProps) => <WListItemInner {...props} />)
-
-export { WListItem };
+export const WListItem = withStyles(styles, { withTheme: false })(WListItemInner);

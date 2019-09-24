@@ -20,13 +20,7 @@ export interface SearchProps {
   theme?: WFace.WTheme;
 }
 
-export interface DispatchProps {
-  // openScreen: (menuTreeItem: IMenuTreeItem) => void;
-  // clearAppContext: () => void;
-  // logout: () => void;
-}
-
-class Search extends React.Component<SearchProps & WStore & DispatchProps, SearchState> {
+class Search extends React.Component<SearchProps, SearchState> {
   private textFieldRef: any;
   private searchProvider: ISearchProvider = IOC.get<ISearchProvider>("ISearchProvider");
 
@@ -164,12 +158,7 @@ class Search extends React.Component<SearchProps & WStore & DispatchProps, Searc
   }
 }
 
-const mapStateToProps = state => ({ ...state });
-const mapDispatchToProps = dispatch => ({
-  // openScreen: (menuTreeItem: IMenuTreeItem, initialValues?: any) => dispatch(AppContextActions.openScreen({ menuTreeItem, initialValues })),
-  // clearAppContext: () => dispatch(AppContextActions.clear()),
-  // logout: () => dispatch(UserContextActions.logout())
-})
+const mapStateToProps = (state: WStore) => ({ ...state });
 
 
-export default connect<WStore, DispatchProps, SearchProps>(mapStateToProps, mapDispatchToProps)(withTheme()((props) => <Search {...props} />));
+export default connect<WStore, {}, SearchProps>(mapStateToProps)(withTheme((props) => <Search {...props} />));

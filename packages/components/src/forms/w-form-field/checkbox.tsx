@@ -4,14 +4,14 @@ import { WCheckbox, WCheckboxProps } from '../../inputs/w-checkbox';
 import BaseFieldProps from './base-field-props';
 
 export type CheckboxProps = BaseFieldProps & WCheckboxProps & {
-
 }
 
-export const Checkbox = (fieldProps: CheckboxProps) => (
+export const Checkbox = React.forwardRef((fieldProps: CheckboxProps, ref: any) => (
   <WField
     useFastField={fieldProps.useFastField}
     component={props => (
       <WCheckbox
+        ref={ref}
         {...fieldProps}
         label={fieldProps.label}
         checked={props.field.value[fieldProps.name]}      
@@ -22,4 +22,4 @@ export const Checkbox = (fieldProps: CheckboxProps) => (
       />
     )}
   />
-)
+));
