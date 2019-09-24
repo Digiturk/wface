@@ -6,11 +6,11 @@
 	],
 	"devDependencies": {
 		"child_process": "1.0.2",
-		"concurrently": "4.1.0",
-		"fs-extra": "7.0.1",
-		"gulp": "4.0.0",
+		"concurrently": "4.1.2",
+		"fs-extra": "8.1.0",
+		"gulp": "4.0.2",
 		"minimist": "1.2.0",
-    "lerna": "3.13.1"
+    "lerna": "3.16.4"
 	},
 	"repository": {
 		"type": "git",
@@ -25,7 +25,8 @@
 		"clean-store": "rimraf ./packages/store/node_modules",
 		"clean-system": "rimraf ./packages/system/node_modules",
 		"clean-cli": "rimraf ./packages/cli/node_modules",
-		"clean": "npm run clean-framework && npm run clean-components && npm run clean-container && npm run clean-ioc && npm run clean-store && npm run clean-system && npm run clean-cli",
+		"clean-cefsharp-container": "rimraf ./packages/cefsharp-container/node_modules",
+		"clean": "npm run clean-framework && npm run clean-components && npm run clean-container && npm run clean-ioc && npm run clean-store && npm run clean-system && npm run clean-cli && npm run clean-cefsharp-container",
     "version": "gulp version",
     "versions": "gulp versions",
 		"publish": "gulp publish"

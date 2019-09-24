@@ -223,7 +223,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
               key={screen.menuTreeItem.id}              
               label={label}
               classes={{
-                labelContainer: classes.tabLabelContainer
+                root: classes.tabLabelContainer
               }}
               value={screen.menuTreeItem.id}
               onMouseUp={e => this.handleTabButton(e, screen)}
@@ -428,4 +428,4 @@ const mapDispatchToProps = (dispatch: any) => ({
   closeScreen: (menuTreeItem: IMenuTreeItem) => dispatch(AppContextActions.closeScreen(menuTreeItem))
 });
 
-export default connect<WStore, DispatchProps, WMainPageProps>(mapStateToProps, mapDispatchToProps)(withRouter(withStyles(styles)(withTheme()(withSnackbar(WMainPage) as any) as any) as any) as any)
+export default connect<WStore, DispatchProps, WMainPageProps>(mapStateToProps, mapDispatchToProps)(withRouter(withStyles(styles)(withTheme(withSnackbar(WMainPage) as any) as any) as any) as any)

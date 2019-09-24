@@ -51,7 +51,7 @@ const styles = (theme:any) => createStyles({
   notification: theme.mixins.gutters({
     paddingTop: 5,
     paddingBottom: 5,
-    marginTop: theme.spacing.unit * 3,
+    marginTop: theme.spacing(3),
   }),
   error: {
     backgroundColor: theme.palette.error.main

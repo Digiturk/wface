@@ -73,7 +73,7 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
               detailPanel={rowData => (
                 <div>{rowData.name}</div>
               )}
-            />
+            />            
           </WFace.WGrid>
         </WFace.WGrid>
         <WFace.WCard>

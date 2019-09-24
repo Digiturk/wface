@@ -13,5 +13,5 @@ export class WPaperInner extends React.Component<WPaperProps, {}> {
   }
 }
 
-export const WPaper = withTheme()((props: WPaperProps) => <WPaperInner {...props}/>)
+export const WPaper = withTheme(WPaperInner);
 

@@ -66,7 +66,7 @@ class NavList extends React.Component<NavListProps & WStore, NavListState> {
       return (
         <div key={item.id}>
           {item.divideBefore && <WDivider />}
-          <WListItem key={item.id} id={"menu-item-" + item.id} button onClick={() => { this.handleNodeClick(item.id) }} style={itemStyle} divider>
+          <WListItem key={item.id} id={"menu-item-" + item.id} onClick={() => { this.handleNodeClick(item.id) }} style={itemStyle} divider>
             {hasAnyIcon &&
               <WListItemIcon className={this.props.classes.listItemIconRoot}>
                 <WIcon>{item.icon}</WIcon>
@@ -101,8 +101,7 @@ class NavList extends React.Component<NavListProps & WStore, NavListState> {
       return (
         <WListItem
           key={item.id}
-          id={"menu-item-" + item.id}
-          button
+          id={"menu-item-" + item.id}        
           classes={{ root: this.props.classes.listItemRoot }}
           style={listItemStyle}
           onClick={() => { this.handleLeafClick(item) }}
@@ -135,7 +134,6 @@ class NavList extends React.Component<NavListProps & WStore, NavListState> {
           <WList
             id="list-menu-tree"
             key="NavListKey"
-            component="nav"
           >
             {this.props.menuTree &&
               this.props.menuTree.map(item => {
@@ -179,4 +177,4 @@ const mapStateToProps = (state: WStore) => ({
 const mapDispatchToProps = dispatch => ({
 });
 
-export default connect<WStore, {}, NavListProps>(mapStateToProps, mapDispatchToProps)(withTheme()(withStyles(styles)(NavList)) as any)
+export default connect<WStore, {}, NavListProps>(mapStateToProps, mapDispatchToProps)(withTheme(withStyles(styles as any)(NavList)) as any)

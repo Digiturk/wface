@@ -1,6 +1,7 @@
 import * as React from 'react';
 import DialogContent, { DialogContentProps } from '@material-ui/core/DialogContent'
-import { createStyles, withStyles } from '@material-ui/core/styles';
+import { createStyles, withStyles } from '@material-ui/styles';
+import { WTheme } from '../../others/w-theme-provider/w-theme';
 
 export interface WDialogContentProps extends DialogContentProps { }
 
@@ -9,15 +10,15 @@ export class WDialogContentInner extends React.Component<DialogContentProps, {}>
     const { classes } = this.props;
     return (
       <DialogContent {...this.props} className={classes.root}>
-            {this.props.children}
+        {this.props.children}
       </DialogContent>
     );
   }
 }
 
-const styles = theme => createStyles({
-  root: {    
+const styles = (theme: WTheme) => createStyles({
+  root: {
   }
 });
 
-export const WDialogContent = withStyles(styles)((props: WDialogContentProps) => <WDialogContentInner {...props} />)
+export const WDialogContent = withStyles(styles)(WDialogContentInner);

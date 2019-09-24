@@ -46,4 +46,4 @@ class WIconInner extends React.Component<WIconProps, {}> {
   }
 }
 
-export const WIcon = withTheme()(WIconInner);
+export const WIcon = withTheme(WIconInner);

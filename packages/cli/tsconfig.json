@@ -19,7 +19,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
+    "allowSyntheticDefaultImports": true,    
     "skipLibCheck": true // Bu geçisi olarak açılmıştır. Bağımlı kütüphanelerde hata yoksa açılmalıdır.
   },
   "include": [

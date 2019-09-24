@@ -14,7 +14,6 @@ export class WCheckbox extends React.Component<WCheckboxProps, {}> {
     }
     else {
       return <Checkbox {...this.props} />
-    }
-    
+    }    
   }
 }

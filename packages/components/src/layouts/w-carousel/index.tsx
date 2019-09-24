@@ -114,4 +114,4 @@ class WCarouselInner extends React.Component<WCarouselProps, any> {
   }
 }
 
-export const WCarousel = withTheme()(WCarouselInner);
+export const WCarousel = withTheme(WCarouselInner);

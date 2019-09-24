@@ -26,7 +26,7 @@ export default class ErrorPage extends React.Component<{ error: any, info: any }
               <div style={{ display: 'flex' }}>
                 <WFace.WIcon style={{ fontSize: 75, color: '#C62828' }}>error_outline</WFace.WIcon>
                 <div style={{ padding: '5px 10px 5px 20px' }}>
-                  <WFace.WTypography variant="title" component="span">
+                  <WFace.WTypography variant="h6" component="span">
 
                     Bu sayfada bir hata oluştu. Lütfen ekranı kapatıp yeniden açınız.
                     Hatanın devam etmesi durumunda sistem yöneticinizle irtibata geçebilirsiniz.
@@ -43,7 +43,7 @@ export default class ErrorPage extends React.Component<{ error: any, info: any }
           <WFace.WCollapse in={this.state.showDetail}>
             <WFace.WCard style={{ backgroundColor: '#FFEBEE', color: '#D50000' }}>
               <WFace.WCardContent>
-                <WFace.WTypography variant="title" component="span" color="inherit">
+                <WFace.WTypography variant="h6" component="span" color="inherit">
                   {this.props.error.toString()}
                 </WFace.WTypography>
                 {this.renderStack("Stack", this.props.error.stack)}

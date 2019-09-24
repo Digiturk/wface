@@ -9,7 +9,7 @@ export default interface IConfiguration {
   components?: IComponents;
 
   screenList: { [key: string]: any };
-  rightContextItems?: { id: string, icon?: string, text: string, onClick: ((event: any) => void) | string }[];  
+  rightContextItems?: { id: string, icon?: string, text: string, onClick?: ((event: any) => void) | string }[];                        
 
   authRequired?: any;
   authService?: { new(...args: any[]): IAuthService; };

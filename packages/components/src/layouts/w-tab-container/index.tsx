@@ -14,7 +14,8 @@ export interface WTabContainerProps extends WTabsPropsBase {
 export class WTabContainer extends React.Component<WTabContainerProps, any> {
   static defaultProps = {
     indicatorColor: 'primary',
-    textColor: 'primary'
+    children: null,
+    textColor: 'primary',
   } as WTabContainerProps
 
   constructor(props) {
@@ -47,7 +48,7 @@ export class WTabContainer extends React.Component<WTabContainerProps, any> {
 
     // @ts-ignore
     const tabs = Array.isArray(this.props.children) ? this.props.children.filter(a => a).map((tab, index) => <WTab {...tab.props as WTabProps} />) :
-      <WTab {...this.props.children.props as WTabProps} />
+      <WTab {...this.props.children.props as any}/>
 
     return (
       <React.Fragment>

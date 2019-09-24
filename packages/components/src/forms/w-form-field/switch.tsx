@@ -9,7 +9,7 @@ export type SwitchProps = BaseFieldProps & WSwitchProps & {
   label: string,
 }
 
-export const Switch = (fieldProps: SwitchProps) => (
+export const Switch = React.forwardRef((fieldProps: SwitchProps, ref: any) => (
   <WField
     useFastField={fieldProps.useFastField}
     component={props => (
@@ -17,6 +17,7 @@ export const Switch = (fieldProps: SwitchProps) => (
         <WGrid item xs={7} style={{alignSelf: 'center'}}><WTypography>{fieldProps.label}</WTypography></WGrid>
         <WGrid item xs={5} style={{textAlign: 'right'}}>
           <WSwitch
+            ref={ref}
             {...fieldProps}
             checked={props.field.value[fieldProps.name]}
             onChange={event => {
@@ -28,4 +29,4 @@ export const Switch = (fieldProps: SwitchProps) => (
       </WGrid>
     )}
   />
-)
+));

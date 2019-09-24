@@ -1,7 +1,7 @@
 //#region imports 
 
-import { withStyles } from '@material-ui/core';
-import { WCard, WCardContent, WButton, WGrid, WLoadingButton, WNotificationBar, WTextField, WTypography } from '@wface/components';
+import { createStyles, withStyles } from '@material-ui/styles';
+import { WCard, WCardContent, WGrid, WLoadingButton, WNotificationBar, WTextField, WTypography, WTheme } from '@wface/components';
 import { IAuthService } from "@wface/ioc";
 import { AppContext, UserContext, WStore } from '@wface/store';
 // @ts-ignore
@@ -153,7 +153,7 @@ class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> {
   }
 };
 
-const styles = (theme: any) => ({
+const styles = (theme: WTheme) => createStyles({
   card: {
     minWidth: 275,
   },
@@ -173,8 +173,8 @@ const styles = (theme: any) => ({
     textAlign: 'center'
   },
   vSpace: {
-    marginTop: theme.spacing.unit * 2,
+    marginTop: theme.spacing(2),
   }
 });
 
-export default withStyles(styles as any)(WLoginPage)
+export default withStyles(styles, { withTheme: true })(WLoginPage)
