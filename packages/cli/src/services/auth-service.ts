@@ -37,17 +37,6 @@ export default class AuthService implements IAuthService {
         text: 'DemoScreen2',
         screen: 'DemoScreen2'
       });
-      result.push({
-        id: (++id).toString(),
-        text: 'menu',
-        subNodes: [
-          {
-            id: (++id).toString(),
-            text: 'sub screen',
-            screen: 'DemoScreen2'
-          }
-        ]
-      });
       // for(let i = 3; i < 20; i++) {
       //   result.push({
       //     id: i.toString(),

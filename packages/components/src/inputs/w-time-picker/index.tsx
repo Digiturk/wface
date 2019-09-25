@@ -25,7 +25,8 @@ export class WTimePicker extends React.Component<WTimePickerProps, {}> {
       return <KeyboardTimePicker {...this.props} />;
     }
     else {
-      return <TimePicker {...this.props} />;
+      const { keyboard, ...clearProps } = this.props;
+      return <TimePicker {...clearProps} />;
     }
   }
 

@@ -25,7 +25,8 @@ export class WDatePicker extends React.Component<WDatePickerProps, {}> {
       return <KeyboardDatePicker {...this.props} />;
     }
     else {
-      return <DatePicker {...this.props} />;
+      const { keyboard, ...clearProps } = this.props;
+      return <DatePicker {...clearProps} />;
     }
   }
 
