@@ -160,13 +160,14 @@ const styles = (theme: WTheme) => createStyles({
   input: {
     display: 'flex',
     padding: 0,
+    height: 'auto'
   },
   valueContainer: {
     display: 'flex',
     // flexWrap: 'wrap',
     flex: 1,
     alignItems: 'center',
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
   chip: {
     margin: `${theme.spacing(0.25)}px ${theme.spacing(0.25)}px`,
