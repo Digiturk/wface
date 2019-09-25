@@ -66,13 +66,13 @@ class NavList extends React.Component<NavListProps & WStore, NavListState> {
       return (
         <div key={item.id}>
           {item.divideBefore && <WDivider />}
-          <WListItem key={item.id} id={"menu-item-" + item.id} onClick={() => { this.handleNodeClick(item.id) }} style={itemStyle} divider>
+          <WListItem key={item.id} id={"menu-item-" + item.id} button={true as never} onClick={() => { this.handleNodeClick(item.id) }} style={itemStyle} classes={{ root: this.props.classes.listItemRoot }}>
             {hasAnyIcon &&
               <WListItemIcon className={this.props.classes.listItemIconRoot}>
                 <WIcon>{item.icon}</WIcon>
               </WListItemIcon>
             }
-            <WListItemText inset={hasAnyIcon} primary={item.text} />
+            <WListItemText primary={item.text} />
             <WIcon>{open ? "expand_less" : "expand_more"}</WIcon>
           </WListItem>
           <Collapse in={open} timeout="auto">
@@ -100,8 +100,9 @@ class NavList extends React.Component<NavListProps & WStore, NavListState> {
 
       return (
         <WListItem
+          button={true as never}
           key={item.id}
-          id={"menu-item-" + item.id}        
+          id={"menu-item-" + item.id}
           classes={{ root: this.props.classes.listItemRoot }}
           style={listItemStyle}
           onClick={() => { this.handleLeafClick(item) }}
@@ -112,7 +113,7 @@ class NavList extends React.Component<NavListProps & WStore, NavListState> {
               <WIcon iconSize="small" style={listItemTextStyle}>{item.icon}</WIcon>
             </WListItemIcon>
           }
-          <WListItemText inset={hasAnyIcon} primary={<div style={listItemTextStyle as any}>{item.text}</div>} />
+          <WListItemText primary={<div style={listItemTextStyle as any}>{item.text}</div>} />
         </WListItem>
       );
     }
@@ -158,7 +159,8 @@ class NavList extends React.Component<NavListProps & WStore, NavListState> {
 
 const styles = (theme: WTheme) => ({
   listItemIconRoot: {
-    marginRight: 0,
+    marginRight: 6,
+    minWidth: 24,
   },
   listItemRoot: {
     borderRadius: '4px 0px 0px 4px',
