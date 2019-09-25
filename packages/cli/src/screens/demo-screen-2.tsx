@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as WFace from '@wface/components';
 
 interface DemoScreen2State {
+  date: Date;
   data: any;
   open: boolean;
   nestedPageState: any;
@@ -13,6 +14,7 @@ export class DemoScreen2 extends React.Component<WFace.BaseScreenProps, DemoScre
 
     this.state = this.props.screenData.state || {
       open: false,
+      date: null,      
       data: [
       ],
       nestedPageState: null
@@ -49,7 +51,7 @@ export class DemoScreen2 extends React.Component<WFace.BaseScreenProps, DemoScre
                 <div style={{height: 20}}/>
                 <WFace.WButton id="btn" variant="contained" fullWidth>Button</WFace.WButton>
                 <WFace.WCheckbox id="checkbox" label="Checkbox"/>
-                <WFace.WDatePicker id="datepicker" label="Datepicker"/>
+                <WFace.WDatePicker id="datepicker" label="Datepicker" onChange={date => this.setState({date})} value={this.state.date}/>
                 <WFace.WDateTimePicker id="datetimepicker" label="Datetimepicker"/>
                 <WFace.WIconButton id="btnIcon">
                   <WFace.WIcon>save</WFace.WIcon>

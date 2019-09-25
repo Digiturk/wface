@@ -15,7 +15,7 @@ class WListItemInner extends React.Component<WListItemProps, {}> {
   }
 
   public render() {    
-    return <ListItem {...this.props}/>;
+    return <ListItem {...this.props} button={this.props.button as never}/>;
   }
 }
 

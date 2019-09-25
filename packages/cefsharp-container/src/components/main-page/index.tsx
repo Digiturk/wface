@@ -165,4 +165,4 @@ const mapDispatchToProps = (dispatch: any) => ({
   closeScreen: (menuTreeItem: IMenuTreeItem) => dispatch(AppContextActions.closeScreen(menuTreeItem))
 });
 
-export default connect<WStore, DispatchProps, MainPageProps>(mapStateToProps, mapDispatchToProps)(withRouter(withStyles(styles)(withTheme()(withSnackbar(MainPage) as any) as any) as any) as any)
+export default connect<WStore, DispatchProps, MainPageProps>(mapStateToProps, mapDispatchToProps)(withRouter(withStyles(styles)(withTheme(withSnackbar(MainPage) as any) as any) as any) as any)

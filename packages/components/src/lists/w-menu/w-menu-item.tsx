@@ -15,7 +15,7 @@ class WMenuItemInner extends React.Component<WMenuItemProps, {}> {
   }
 
   public render() {
-    return <MenuItem {...this.props} />
+    return <MenuItem {...this.props} button={this.props.button as never} />
   }
 }
 
