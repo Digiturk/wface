@@ -8,16 +8,23 @@ import { WPaper } from '../../layouts/w-paper';
 import { WIcon } from '../../medias/w-icon';
 import { WTypography } from '../../others/w-typography';
 import { BaseComponentProps } from '../../base/base-component-props';
+import { WTheme } from '../../others/w-theme-provider/w-theme';
 
-export type WNotificationBarProps = BaseComponentProps & { 
+export type WNotificationBarProps = BaseComponentProps & {
   text: string;
-  type: string;
+  type?: "error" | "warning" | "info" | "success";
   classes?: any;
   onCloseClick?: () => void; // TODO: kendisini gizleme konusunda wrapperindan yardim almamalı. 
 }
 
 class WNotificationBarInner extends React.Component<WNotificationBarProps, {}> {
-  constructor(props:any) {
+  static defaultProps: WNotificationBarProps = {
+    id: '',
+    text: '',
+    type: 'info'
+  }
+
+  constructor(props: any) {
     super(props);
   }
 
@@ -25,34 +32,29 @@ class WNotificationBarInner extends React.Component<WNotificationBarProps, {}> {
     const { classes } = this.props;
 
     return (
-      <WPaper
-        className={classNames(classes.notification, classes[this.props.type || 'error'])}
-        elevation={4}>
-        <WGrid container alignItems="center">
-          <WGrid item xs={11}>
-            <WTypography className={classes.whiteText} align="left">
+      <WPaper className={classNames(classes.notification, classes[this.props.type || 'error'])}>
+        <div style={{ display: 'flex' }}>
+            <WTypography className={classes.whiteText} style={{ flex: 1, alignSelf: 'center' }}>
               {this.props.text}
             </WTypography>
-          </WGrid>
-          <WGrid item xs={1} style={{ height: '100%' }}>
-            <WIconButton style={{ margin: 0, padding: 0 }}
-              id={this.props.id + "-close"}
-              onClick={() => this.props.onCloseClick && this.props.onCloseClick()}>
-              <WIcon className={classes.whiteText} style={{ fontSize: 15 }}>close</WIcon>
-            </WIconButton>
-          </WGrid>
-        </WGrid>
+          <WIconButton style={{ margin: 0, height: 'min-content' }}
+            id={this.props.id + "-close"}
+            onClick={() => this.props.onCloseClick && this.props.onCloseClick()}
+            disableFocusRipple
+            disableRipple
+          >
+            <WIcon className={classes.whiteText} style={{ fontSize: 15 }}>close</WIcon>
+          </WIconButton>
+        </div>
       </WPaper>
     );
   }
 }
 
-const styles = (theme:any) => createStyles({
-  notification: theme.mixins.gutters({
-    paddingTop: 5,
-    paddingBottom: 5,
-    marginTop: theme.spacing(3),
-  }),
+const styles = (theme: WTheme) => createStyles({
+  notification: {
+    padding: '4px 4px 4px 16px'
+  },
   error: {
     backgroundColor: theme.palette.error.main
   },
@@ -70,6 +72,4 @@ const styles = (theme:any) => createStyles({
   }
 });
 
-const WNotificationBar = withStyles(styles)((props: WNotificationBarProps) => <WNotificationBarInner {...props}/>)
-export { WNotificationBar };
-
+export const WNotificationBar = withStyles(styles)(WNotificationBarInner); 
