@@ -5,16 +5,19 @@ import { WIcon } from '../../medias/w-icon';
 import { WTypography } from '../../others/w-typography';
 import { WButton } from '../../buttons/w-button';
 import { BaseComponentProps } from '../../base/base-component-props';
+import { withTheme } from '@material-ui/styles';
+import { WTheme } from '../../others/w-theme-provider/w-theme';
 
 export type WExpansionPanelProps = BaseComponentProps & ExpansionPanelProps & { 
   title: string;
   actions?: {text?: string, onClick?: (event) => void, custom?: React.ReactNode}[];
+  theme?: WTheme;
 }
 
-export class WExpansionPanel extends React.Component<WExpansionPanelProps, any> {
+class WExpansionPanelInner extends React.Component<WExpansionPanelProps, any> {
   public render() {
     return (
-      <ExpansionPanel {...this.props}>
+      <ExpansionPanel elevation={this.props.theme.designDetails.defaultElevation} {...this.props}>
         <ExpansionPanelSummary expandIcon={<WIcon>expand_more</WIcon>}>
           <WTypography variant="subtitle1">{this.props.title}</WTypography>
         </ExpansionPanelSummary>
@@ -39,3 +42,5 @@ export class WExpansionPanel extends React.Component<WExpansionPanelProps, any> 
     );
   }
 }
+
+export const WExpansionPanel = withTheme(WExpansionPanelInner);
