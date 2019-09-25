@@ -6,9 +6,8 @@ import { WIcon } from '../../medias/w-icon';
 import { WMenuItem } from '../../lists/w-menu/w-menu-item'
 import { WPaper } from '../../layouts/w-paper';
 import { WTypography } from '../../others/w-typography';
-import { TextField, withStyles, withTheme, createStyles } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
 import { components } from 'react-select';
-import { WTheme } from '../../others/w-theme-provider/w-theme';
 
 const inputComponent = ({ inputRef, ...props }) => <div ref={inputRef} {...props} />;
 
