@@ -1,15 +1,11 @@
 import * as React from 'react';
-import TimePicker, { TimePickerProps } from 'material-ui-pickers/TimePicker';
-import { DateType } from 'material-ui-pickers/constants/prop-types'
+import  { MuiPickersUtilsProvider, KeyboardTimePicker, TimePicker, TimePickerProps } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns'
-import MuiPickersUtilsProvider from 'material-ui-pickers/MuiPickersUtilsProvider';
-import { Omit } from '@material-ui/core';
 import { BaseComponentProps } from '../../base/base-component-props';
 
-export type WTimePickerProps = BaseComponentProps & Omit<Omit<TimePickerProps, "value">, "onChange"> & { 
+export type WTimePickerProps = BaseComponentProps & TimePickerProps & { 
   fullWidth?: boolean,
-  value?: DateType,
-  onChange?: (date: DateType) => void,
+  keyboard?: boolean  
 }
 
 export class WTimePicker extends React.Component<WTimePickerProps, {}> {
@@ -19,17 +15,24 @@ export class WTimePicker extends React.Component<WTimePickerProps, {}> {
     clearable: true,
     fullWidth: true,
     format: "HH:mm",
-    keyboard: true,
-    keyboardIcon: 'access_time',
-    mask: [/\d/, /\d/, ':', /\d/, /\d/],
-    onChange: undefined,
+    keyboard: true,    
+    onChange: null,
     value: null,
+  }
+
+  private renderPicker = () => {
+    if (this.props.keyboard) {
+      return <KeyboardTimePicker {...this.props} />;
+    }
+    else {
+      return <TimePicker {...this.props} />;
+    }
   }
 
   public render() {
     return (
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <TimePicker {...this.props} value={this.props.value} onChange={this.props.onChange}/>
+        {this.renderPicker()}
       </MuiPickersUtilsProvider>
     );
   }
