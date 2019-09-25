@@ -77,6 +77,7 @@ class MyProfileMenu extends React.Component<MyProfileMenuProps & WStore & Dispat
               <WMenuItem
                 id={item.id}
                 key={item.id}
+                button
                 onClick={(e) => {
                   if (typeof item.onClick === 'function') {
                     item.onClick(e);
@@ -93,20 +94,20 @@ class MyProfileMenu extends React.Component<MyProfileMenuProps & WStore & Dispat
                   }
                 }}>
                 {item.icon &&
-                  <WListItemIcon>
+                  <WListItemIcon style={{minWidth: 'auto'}}>
                     <WIcon>{item.icon}</WIcon>
                   </WListItemIcon>
                 }
-                <WListItemText inset primary={item.text} />
+                <WListItemText style={{marginLeft: 12}} primary={item.text} />
               </WMenuItem>
             ))
           }
           {this.props.appContext.configuration.authRequired && 
-            <WMenuItem id="menu-item-logout" key="menu-item-logout" onClick={this.logoutClicked}>
-              <WListItemIcon>
+            <WMenuItem id="menu-item-logout" key="menu-item-logout" onClick={this.logoutClicked} button>
+              <WListItemIcon style={{minWidth: 'auto'}}>
                 <WIcon>exit_to_app</WIcon>
-              </WListItemIcon>
-              <WListItemText inset primary="Çıkış" />
+              </WListItemIcon >
+              <WListItemText style={{marginLeft: 12}} primary="Çıkış" />
             </WMenuItem>
           }
         </WMenu>
