@@ -1,15 +1,11 @@
 import * as React from 'react';
-import DateTimePicker, { DateTimePickerProps } from 'material-ui-pickers/DateTimePicker';
-import { DateType } from 'material-ui-pickers/constants/prop-types'
+import { MuiPickersUtilsProvider, KeyboardDateTimePicker, DateTimePicker, DateTimePickerProps } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns'
-import MuiPickersUtilsProvider from 'material-ui-pickers/MuiPickersUtilsProvider';
-import { Omit } from '@material-ui/core';
 import { BaseComponentProps } from '../../base/base-component-props';
 
-export type WDateTimePickerProps = BaseComponentProps & Omit<Omit<DateTimePickerProps, "value">, "onChange"> & { 
+export type WDateTimePickerProps = BaseComponentProps & DateTimePickerProps & {
   fullWidth?: boolean,
-  value?: DateType,
-  onChange?: (date: DateType) => void,
+  keyboard?: boolean
 }
 
 export class WDateTimePicker extends React.Component<WDateTimePickerProps, {}> {
@@ -17,20 +13,27 @@ export class WDateTimePicker extends React.Component<WDateTimePickerProps, {}> {
     id: '',
     ampm: false,
     clearable: true,
-    format:"dd.MM.yyyy HH:mm",
+    format: "dd.MM.yyyy HH:mm",
     fullWidth: true,
     keyboard: true,
-    keyboardIcon: 'event',
-    mask: [/\d/, /\d/, '.', /\d/, /\d/, '.', /\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, ':', /\d/, /\d/,],
     onChange: undefined,
     showTodayButton: true,
-    value: null,    
+    value: null,
+  }
+
+  private renderPicker = () => {
+    if (this.props.keyboard) {
+      return <KeyboardDateTimePicker {...this.props} />;
+    }
+    else {
+      return <DateTimePicker {...this.props} />;
+    }
   }
 
   public render() {
     return (
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <DateTimePicker {...this.props} value={this.props.value} onChange={this.props.onChange}/>
+        {this.renderPicker()}
       </MuiPickersUtilsProvider>
     );
   }

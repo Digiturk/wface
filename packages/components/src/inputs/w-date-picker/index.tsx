@@ -15,8 +15,6 @@ export class WDatePicker extends React.Component<WDatePickerProps, {}> {
     format: "dd.MM.yyyy",
     fullWidth: true,
     keyboard: true,
-    // keyboardIcon: 'date_range',
-    // mask: [/\d/, /\d/, '.', /\d/, /\d/, '.', /\d/, /\d/, /\d/, /\d/],    
     showTodayButton: true,
     value: null,
     onChange: null,
