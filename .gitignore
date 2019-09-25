@@ -2,6 +2,9 @@
 
 # dependencies
 /node_modules
+/packages/cefsharp-container/node_modules
+/packages/cli/node_modules
+/packages/cli/dist
 /packages/components/node_modules
 /packages/container/node_modules
 /packages/system/node_modules

@@ -220,8 +220,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
             );
             return <WTab
               id={"tab-screen-" + screen.menuTreeItem.id}
-              key={screen.menuTreeItem.id}
-              component="div"
+              key={screen.menuTreeItem.id}              
               label={label}
               classes={{
                 labelContainer: classes.tabLabelContainer

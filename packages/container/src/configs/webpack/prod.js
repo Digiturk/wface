@@ -2,6 +2,7 @@
 const merge = require('webpack-merge');
 const path = require('path');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const commonConfig = require('./common');
 
@@ -12,14 +13,21 @@ module.exports = merge(commonConfig, {
     './index.tsx',
   ],
   output: {
-    filename: 'js/main.min.js',
+    filename: 'js/main-[contenthash].js',
     path: path.resolve(process.cwd(), './dist'),
     publicPath: '/',
   },
-  devtool: 'source-map',
   plugins: [
     new CopyWebpackPlugin([
       { from: path.resolve(process.cwd(), 'assets'), to: 'assets' }
     ]),
-  ]
+  ],
+  optimization: {
+    minimize: true,
+    minimizer: [new UglifyJsPlugin()],
+    splitChunks: {
+      minSize: 256 * 1024,
+      maxSize: 512 * 1024
+    }
+  },
 });
