@@ -157,4 +157,4 @@ const mapDispatchToProps = dispatch => ({
   setConfirmOnClose: (screenId: string, confirmOnClose: boolean, confirmOnCloseMessage: string) => dispatch(AppContextActions.setConfirmOnClose({ screenId, confirmOnClose, confirmOnCloseMessage }))
 });
 
-export default connect<WStore, DispatchProps, ScreenWrapperProps>(mapStateToProps, mapDispatchToProps)(withTheme()(withSnackbar(ScreenWrapper) as any) as any);
+export default connect<WStore, DispatchProps, ScreenWrapperProps>(mapStateToProps, mapDispatchToProps)(withTheme(withSnackbar(ScreenWrapper) as any) as any);
