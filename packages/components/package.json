@@ -6,17 +6,11 @@
 	"main": "index.ts",
 	"license": "ISC",
 	"dependencies": {
-<<<<<<< HEAD
-		"@material-ui/core": "3.8.1",
-		"@wface/ioc": "0.22.0",
-		"@wface/store": "0.22.0",
-=======
     "@material-ui/core": "4.4.3",
     "@material-ui/pickers": "3.2.6",
     "@material-ui/styles": "4.4.3",
-		"@wface/ioc": "0.21.0",
-		"@wface/store": "0.21.0",
->>>>>>> compile errors resolved
+		"@wface/ioc": "0.22.0",
+		"@wface/store": "0.22.0",
 		"classnames": "2.2.6",
 		"date-fns": "2.2.1",
 		"formik": "1.5.8",

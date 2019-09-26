@@ -6,12 +6,7 @@
 	"author": "mbrn",
 	"license": "ISC",
 	"dependencies": {
-<<<<<<< HEAD
 		"@wface/ioc": "0.22.0",
-		"typesafe-actions": "2.0.4"
-=======
-		"@wface/ioc": "0.21.0",
 		"typesafe-actions": "4.4.2"
->>>>>>> compile errors resolved
 	}
 }

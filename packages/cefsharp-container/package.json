@@ -10,23 +10,13 @@
 	"author": "mbrn",
 	"license": "ISC",
 	"dependencies": {
-<<<<<<< HEAD
 		"@wface/components": "0.22.0",
 		"@wface/ioc": "0.22.0",
 		"@wface/store": "0.22.0",
-		"react": "16.6.3",
-		"react-redux": "5.0.7",
-		"react-router-dom": "5.0.0",
-		"redux": "4.0.0"
-=======
-		"@wface/components": "0.21.0",
-		"@wface/ioc": "0.21.0",
-		"@wface/store": "0.21.0",
 		"react": "16.9.0",
 		"react-redux": "7.1.1",
 		"react-router-dom": "5.0.1",
 		"redux": "4.0.4"
->>>>>>> compile errors resolved
 	},
 	"devDependencies": {
 		"@types/classnames": "2.2.9",
