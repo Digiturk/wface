@@ -66,7 +66,6 @@ export class DemoScreen2 extends React.Component<WFace.BaseScreenProps, DemoScre
         <WFace.WGrid container>
           <WFace.WGrid item lg={6} md={6} sm={6}>
             <WFace.WCard>
-              asd              
               <WFace.WCardHeader title="Form" />
               <WFace.WCardContent>
                 <WFace.WForm id="form" initialValues={this.state.formData} onSubmit={formData => this.setState({ formData })}>
