@@ -122,7 +122,10 @@ export class DemoScreen2 extends React.Component<WFace.BaseScreenProps, DemoScre
                 <div style={{ height: 20 }} />
                 <WFace.WTooltip title="Tooltip text">
                   <WFace.WButton id="btn2" variant="contained" fullWidth onClick={() => this.setState({ isDialogOpen: true })}>Button</WFace.WButton>
-                </WFace.WTooltip>
+                </WFace.WTooltip> 
+                <div style={{ height: 20 }} />
+                <WFace.WLoadingButton id="btn-loading" isLoading progressType="linear">Loading Button</WFace.WLoadingButton>
+                <WFace.WLoadingButton id="btn-loading2" isLoading progressType="circular">Loading Button</WFace.WLoadingButton>
               </WFace.WCardContent>
               <WFace.WCardActions>
                 <WFace.WButton id="btn">

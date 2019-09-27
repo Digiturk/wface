@@ -33,7 +33,7 @@ class WLoadingButtonInner extends React.Component<WLoadingButtonProps, {}> {
           disabled={isLoading}>
           {isLoading ?
             (this.props.progressType == "circular" ?
-              <WCircularProgress size={24} className={classes.circularProgress} /> :
+              <><WCircularProgress size={24} className={classes.circularProgress} /></>:
               <>{this.props.children}<WLinearProgress className={classes.linearProgress} /></>) :
             this.props.children
           }
@@ -74,11 +74,6 @@ const styles = (theme: WTheme) => createStyles({
   },
   circularProgress: {
     color: theme.palette.primary.main,
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    marginTop: -12,
-    marginLeft: -12,
   },
 });
 
