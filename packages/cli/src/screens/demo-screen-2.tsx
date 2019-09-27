@@ -66,11 +66,12 @@ export class DemoScreen2 extends React.Component<WFace.BaseScreenProps, DemoScre
         <WFace.WGrid container>
           <WFace.WGrid item lg={6} md={6} sm={6}>
             <WFace.WCard>
+              asd              
               <WFace.WCardHeader title="Form" />
               <WFace.WCardContent>
                 <WFace.WForm id="form" initialValues={this.state.formData} onSubmit={formData => this.setState({ formData })}>
                   <WFace.WFormField.TextField id="name" label="name" name="name" />
-                  <WFace.WFormField.TextField id="surname" label="surname" name="surname" />
+                  <WFace.WFormField.TextField id="surname" label="Surname" name="surname" />
                   <WFace.WFormField.Select id="city" name="city" label="city" options={[
                     { label: 'Adana', value: '1' },
                     { label: 'Gaziantep', value: '27' },
