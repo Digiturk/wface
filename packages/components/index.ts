@@ -6,6 +6,9 @@ export { WButton, WButtonProps } from './src/buttons/w-button'
 export { WIconButton, WIconButtonProps } from './src/buttons/w-icon-button'
 export { WLoadingButton, WLoadingButtonProps } from './src/buttons/w-loading-button'
 
+// Charts 
+export * from './src/charts';
+
 // Progress
 export { WCircularProgress, WCircularProgressProps } from './src/progress/w-circular-progress'
 export { WLinearProgress, WLinearProgressProps } from './src/progress/w-linear-progress'

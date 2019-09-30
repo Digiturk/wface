@@ -6,6 +6,7 @@
 	"main": "index.ts",
 	"license": "ISC",
 	"dependencies": {
+		"@date-io/date-fns": "1.3.11",
 		"@material-ui/core": "4.4.3",
 		"@material-ui/pickers": "3.2.6",
 		"@material-ui/styles": "4.4.3",
@@ -16,16 +17,16 @@
 		"formik": "1.5.8",
 		"lodash": "4.17.15",
 		"material-table": "1.50.0",
-		"@date-io/date-fns": "1.3.11",
 		"notistack": "0.9.0",
 		"prop-types": "15.7.2",
 		"react": "16.9.0",
+		"react-custom-scrollbars": "4.2.1",
 		"react-dom": "16.9.0",
 		"react-fast-compare": "2.0.4",
 		"react-redux": "7.1.1",
-		"react-swipeable-views": "0.13.3",
 		"react-select": "3.0.5",
-		"react-custom-scrollbars": "4.2.1",
+		"react-swipeable-views": "0.13.3",
+		"recharts": "1.7.1",
 		"redux": "4.0.4",
 		"yup": "0.27.0"
 	},
@@ -35,7 +36,8 @@
 		"@types/promise.prototype.finally": "2.0.3",
 		"@types/react": "16.9.2",
 		"@types/react-redux": "7.1.2",
-		"@types/react-select": "3.0.4",
+    "@types/react-select": "3.0.4",
+    "@types/recharts": "1.1.21",
 		"@types/yup": "0.26.24"
 	}
 }

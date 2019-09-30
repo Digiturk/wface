@@ -7,6 +7,7 @@ interface DemoScreenState {
   isDialogOpen: boolean;
   isDialogOpen2: boolean;
   textValue: string;
+  chartData: any[];
 }
 
 export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScreenState> {
@@ -17,7 +18,51 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
       formValue: { text: 'text val', check1: true, check2: false },
       isDialogOpen: false,
       isDialogOpen2: true,
-      textValue: 'desad'
+      textValue: 'desad',
+      chartData: [
+        {
+          "name": "Page A",
+          "uv": 4000,
+          "pv": 2400,
+          "amt": 2400
+        },
+        {
+          "name": "Page B",
+          "uv": 3000,
+          "pv": 1398,
+          "amt": 2210
+        },
+        {
+          "name": "Page C",
+          "uv": 2000,
+          "pv": 9800,
+          "amt": 2290
+        },
+        {
+          "name": "Page D",
+          "uv": 2780,
+          "pv": 3908,
+          "amt": 2000
+        },
+        {
+          "name": "Page E",
+          "uv": 1890,
+          "pv": 4800,
+          "amt": 2181
+        },
+        {
+          "name": "Page F",
+          "uv": 2390,
+          "pv": 3800,
+          "amt": 2500
+        },
+        {
+          "name": "Page G",
+          "uv": 3490,
+          "pv": 4300,
+          "amt": 2100
+        }
+      ]
     }
   }
 
@@ -29,34 +74,27 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
     return (
       <>
         <WFace.WGrid container>
-          <WFace.WGrid item lg={6}>
-            <WFace.WTable
-              id="table-users"
-              title="Users"
-              columns={[
-                { title: 'Adı', field: 'name' },
-                { title: 'Soyadı', field: 'lastName' },
-                { title: 'Doğum Yeri', field: 'birthCity', lookup: { 63: 'Şanlıurfa' } },
-              ]}
-              data={[
-                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
-                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
-                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
-                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
-                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
-                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
-                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
-                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
-                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
-                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
-                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
-                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
-                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
-                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
-              ]}
-            />
+          <WFace.WGrid item xl={6} lg={6}>
+            <WFace.WCard>
+              <WFace.WCardHeader title="Area Chart" />
+              <WFace.WCardContent>
+                <WFace.WChart data={this.state.chartData} xAxisDataKey="name" legend={true} chartData={[
+                 
+                  {
+                    chartType: 'area',
+                    dataKey: 'pv',
+                    name: 'Data 1',
+                  },
+                  {
+                    chartType: 'area',
+                    dataKey: 'uv',                    
+                    name: 'Data XYZ',
+                  },
+                ]} />
+              </WFace.WCardContent>
+            </WFace.WCard>
           </WFace.WGrid>
-          <WFace.WGrid item lg={6}>
+          <WFace.WGrid item xl={6} lg={6}>
             <WFace.WTable
               id="table-2"
               title="df"
@@ -73,12 +111,11 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
               detailPanel={rowData => (
                 <div>{rowData.name}</div>
               )}
-            />            
+            />
           </WFace.WGrid>
         </WFace.WGrid>
         <WFace.WCard>
           <WFace.WCardContent>
-
           </WFace.WCardContent>
           <WFace.WCardActions>
             <WFace.WButton id="btn-show-dialog" onClick={() => this.setState({ isDialogOpen: true })}>Dialog</WFace.WButton>
