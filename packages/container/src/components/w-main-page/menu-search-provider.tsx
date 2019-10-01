@@ -3,7 +3,8 @@ import * as WFace from '@wface/components';
 import IOC, { ISearchProvider, MenuTreeUtil, IMenuTreeItem } from '@wface/ioc';
 import { injectable, inject } from "inversify";
 import { AppContext } from '@wface/store';
-import * as Fuse from 'fuse.js';
+// import * as Fuse from 'fuse.js';
+var Fuse = require('fuse.js');
 
 @injectable()
 export default class MenuSearchProvider implements ISearchProvider {
