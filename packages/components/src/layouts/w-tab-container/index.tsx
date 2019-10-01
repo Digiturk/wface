@@ -71,3 +71,5 @@ export class WTabContainer extends React.Component<WTabContainerProps, any> {
     );
   }
 }
+
+export * from './w-tab-page';

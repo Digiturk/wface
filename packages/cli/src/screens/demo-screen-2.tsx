@@ -125,7 +125,8 @@ export class DemoScreen2 extends React.Component<WFace.BaseScreenProps, DemoScre
                 </WFace.WTooltip> 
                 <div style={{ height: 20 }} />
                 <WFace.WLoadingButton id="btn-loading" isLoading progressType="linear">Loading Button</WFace.WLoadingButton>
-                <WFace.WLoadingButton id="btn-loading2" isLoading progressType="circular">Loading Button</WFace.WLoadingButton>
+                <WFace.WToggleButton id="btn-toggle">ToggleButton</WFace.WToggleButton>
+
               </WFace.WCardContent>
               <WFace.WCardActions>
                 <WFace.WButton id="btn">

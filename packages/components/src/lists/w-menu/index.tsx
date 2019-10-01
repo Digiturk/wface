@@ -11,3 +11,5 @@ export class WMenu extends React.Component<WMenuProps, {}> {
     return <Menu {...this.props} />
   }
 }
+
+export * from './w-menu-item';

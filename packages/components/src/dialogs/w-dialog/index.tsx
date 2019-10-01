@@ -24,3 +24,8 @@ class WDialogInner extends React.Component<WDialogProps, any> {
 const styles = (theme: WTheme) => createStyles({ root: {} });
 
 export const WDialog = withStyles(styles, { withTheme: true })(WDialogInner);
+
+export * from './w-dialog-actions';
+export * from './w-dialog-content-text';
+export * from './w-dialog-content';
+export * from './w-dialog-title';

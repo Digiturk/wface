@@ -47,3 +47,5 @@ export class WRadioGroup extends React.Component<WRadioGroupProps, {}> {
     );
   }
 }
+
+export * from './w-radio';

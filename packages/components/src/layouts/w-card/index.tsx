@@ -22,3 +22,7 @@ const styles = (theme: WTheme) => createStyles({
 
 export const WCard = withStyles(styles, { withTheme: true })((props: WCardProps & WithStyles<string>) => <WCardInner {...props}/>)
 
+export * from './w-card-action-area';
+export * from './w-card-actions';
+export * from './w-card-content';
+export * from './w-card-header';

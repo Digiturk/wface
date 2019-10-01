@@ -31,3 +31,4 @@ export class WTabsInner extends React.Component<WTabsProps, {}> {
   }
 }
 export const WTabs = withTheme(WTabsInner);
+export * from './w-tab';

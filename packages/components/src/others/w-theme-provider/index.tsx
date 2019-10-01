@@ -82,3 +82,7 @@ export class WThemeProvider extends React.Component<{ theme?: WTheme }, any> {
     );
   }
 }
+
+export * from './w-design-details';
+export * from './w-palette';
+export * from './w-theme';
