@@ -64,7 +64,7 @@ class WApp extends React.Component<{ configuration: IConfiguration }, { configur
       IOC.bind("logout").toFunction(logout);
 
     // Bind openScreen function
-    const openScreen = (menuTreeItem: IMenuTreeItem) => this.store.dispatch(AppContextActions.openScreen({menuTreeItem}));
+    const openScreen = (menuTreeItem: IMenuTreeItem, initialValues?: any) => this.store.dispatch(AppContextActions.openScreen({menuTreeItem, initialValues}));
     !IOC.isBound("openScreen") &&
       IOC.bind("openScreen").toFunction(openScreen);
 

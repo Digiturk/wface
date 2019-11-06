@@ -24,7 +24,7 @@ module.exports = merge(commonConfig, {
   ],
   optimization: {
     minimize: true,
-    minimizer: [new UglifyJsPlugin()],
+    // minimizer: [new UglifyJsPlugin()],
     splitChunks: {
       minSize: 256 * 1024,
       maxSize: 512 * 1024

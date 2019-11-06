@@ -131,7 +131,7 @@ class ScreenWrapper extends React.Component<ScreenWrapperProps & WStore & Dispat
             </div>
           </div>
         }
-        <div style={{ padding: this.props.theme.designDetails.pagePadding, paddingTop: 1, paddingBottom: 10 }}>
+        <div style={{ padding: this.props.theme.designDetails.pagePadding, paddingBottom: 10 }}>
           <BaseScreenPropsContext.Provider value={this.getBaseScreenProps()}>
             <BaseScreenPropsContext.Consumer>
               {(value: BaseScreenProps) => <Screen ref={this.screenRef} {...value} />}
