@@ -8,6 +8,7 @@ interface DemoScreenState {
   isDialogOpen2: boolean;
   textValue: string;
   chartData: any[];
+  cityList: any[];
 }
 
 export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScreenState> {
@@ -19,6 +20,7 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
       isDialogOpen: false,
       isDialogOpen2: true,
       textValue: 'desad',
+      cityList: [],
       chartData: [
         {
           "name": "Page A",
@@ -67,7 +69,15 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
   }
 
   componentDidMount() {
-    // this.props.setConfirmOnClose(true);    
+    setTimeout(() => {
+      this.setState({
+        cityList: [
+          { label: 'Istanbul', value: '34' },
+          { label: 'Gaziantep', value: '27' },
+        ],
+        textValue: 'loaded'
+      });
+    }, 1000);
   }
 
   public render() {
@@ -79,7 +89,7 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
               <WFace.WCardHeader title="Area Chart" />
               <WFace.WCardContent>
                 <WFace.WChart data={this.state.chartData} xAxisDataKey="name" legend={true} chartData={[
-                 
+
                   {
                     chartType: 'area',
                     dataKey: 'pv',
@@ -87,7 +97,7 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
                   },
                   {
                     chartType: 'area',
-                    dataKey: 'uv',                    
+                    dataKey: 'uv',
                     name: 'Data XYZ',
                   },
                 ]} />
@@ -116,6 +126,14 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
         </WFace.WGrid>
         <WFace.WCard>
           <WFace.WCardContent>
+            <WFace.WForm id="form" initialValues={{ cityId: '' }} onSubmit={() => { }}>
+              {/* <WFace.WFormField.Select id="select1" label="City" name="cityId" options={[
+                { label: 'Istanbul', value: '34' },
+                { label: 'Gaziantep', value: '27' },
+              ]} /> */}
+              <WFace.WFormField.Select id="select2" label="City" name="cityId" options={this.state.cityList} useFastField={false}/>
+              {this.state.textValue}
+            </WFace.WForm>
           </WFace.WCardContent>
           <WFace.WCardActions>
             <WFace.WButton id="btn-show-dialog" onClick={() => this.setState({ isDialogOpen: true })}>Dialog</WFace.WButton>
