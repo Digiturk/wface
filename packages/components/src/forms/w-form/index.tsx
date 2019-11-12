@@ -27,7 +27,7 @@ export class WForm extends React.Component<WFormProps, {}> {
           }
 
           if(this.props.validate) { 
-            this.props.validate(values);
+            return this.props.validate(values);
           }
         }}        
         render={(

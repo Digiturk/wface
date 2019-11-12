@@ -126,13 +126,21 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
         </WFace.WGrid>
         <WFace.WCard>
           <WFace.WCardContent>
-            <WFace.WForm id="form" initialValues={{ cityId: '' }} onSubmit={() => { }}>
-              {/* <WFace.WFormField.Select id="select1" label="City" name="cityId" options={[
-                { label: 'Istanbul', value: '34' },
-                { label: 'Gaziantep', value: '27' },
-              ]} /> */}
-              <WFace.WFormField.Select id="select2" label="City" name="cityId" options={this.state.cityList} useFastField={false}/>
-              {this.state.textValue}
+            <WFace.WForm
+              id="deneme"
+              initialValues={{ company: 'Digiturk', year: 1987 }}
+              onSubmit={values => alert(values.company + ", " + values.year)}
+              validate={values => {
+                let errors = {} as any;
+                if (values.company != 'Digiturk') {
+                  errors.company = 'Sadece Digiturk yazabilirsiniz';
+                }
+                return errors;
+              }}
+            >
+              <WFace.WFormField.TextField id="txtCompany" name="company" label="Şirket"/>
+              <WFace.WFormField.TextField id="txtYear" name="year" label="Yıl" />
+              <WFace.WFormField.Submit id="btnSubmit">GÖSTER</WFace.WFormField.Submit>
             </WFace.WForm>
           </WFace.WCardContent>
           <WFace.WCardActions>
