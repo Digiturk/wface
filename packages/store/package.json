@@ -1,12 +1,12 @@
 {
 	"name": "@wface/store",
-	"version": "0.25.1",
+	"version": "0.25.2",
 	"description": "Contains all store management reducers and actions",
 	"main": "index.ts",
 	"author": "mbrn",
 	"license": "ISC",
 	"dependencies": {
-		"@wface/ioc": "0.25.1",
+		"@wface/ioc": "0.25.2",
 		"typesafe-actions": "4.4.2"
 	}
 }

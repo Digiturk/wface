@@ -1,6 +1,6 @@
 {
 	"name": "@wface/components",
-	"version": "0.25.1",
+	"version": "0.25.2",
 	"description": "All wface components",
 	"author": "mbrn",
 	"main": "index.ts",
@@ -11,8 +11,8 @@
 		"@material-ui/lab": "4.0.0-alpha.28",
 		"@material-ui/pickers": "3.2.6",
 		"@material-ui/styles": "4.5.0",
-		"@wface/ioc": "0.25.1",
-		"@wface/store": "0.25.1",
+		"@wface/ioc": "0.25.2",
+		"@wface/store": "0.25.2",
 		"classnames": "2.2.6",
 		"date-fns": "2.2.1",
 		"formik": "1.5.8",
