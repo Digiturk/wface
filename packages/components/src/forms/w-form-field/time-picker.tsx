@@ -3,8 +3,8 @@ import WField from './w-field';
 import { WTimePicker, WTimePickerProps } from '../../inputs/w-time-picker';
 import BaseFieldProps from './base-field-props';
 
-export type TimePickerProps = BaseFieldProps & WTimePickerProps & {
-
+export type TimePickerProps = BaseFieldProps &  Omit<Omit<WTimePickerProps, "value">, "onChange"> & {
+  onChange?: (date: Date) => void;
 }
 
 export const TimePicker = (fieldProps: TimePickerProps) => (

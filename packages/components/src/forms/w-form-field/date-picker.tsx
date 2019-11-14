@@ -3,8 +3,8 @@ import WField from './w-field';
 import { WDatePicker, WDatePickerProps } from '../../inputs/w-date-picker';
 import BaseFieldProps from './base-field-props';
 
-export type DatePickerProps = BaseFieldProps & WDatePickerProps & {
-
+export type DatePickerProps = BaseFieldProps & Omit<Omit<WDatePickerProps, "value">, "onChange"> & {
+  onChange?: (date: Date) => void;
 }
 
 export const DatePicker = (fieldProps: DatePickerProps) => (

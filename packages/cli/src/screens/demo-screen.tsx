@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as WFace from '@wface/components';
 import { MTableBody } from 'material-table';
+import { WDateTimePicker } from '@wface/components';
 
 interface DemoScreenState {
   formValue: any;
@@ -9,6 +10,7 @@ interface DemoScreenState {
   textValue: string;
   chartData: any[];
   cityList: any[];
+  dateTime: Date;
 }
 
 export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScreenState> {
@@ -21,6 +23,7 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
       isDialogOpen2: true,
       textValue: 'desad',
       cityList: [],
+      dateTime: new Date(),
       chartData: [
         {
           "name": "Page A",
@@ -138,10 +141,11 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
                 return errors;
               }}
             >
-              <WFace.WFormField.TextField id="txtCompany" name="company" label="Şirket"/>
+              <WFace.WFormField.TextField id="txtCompany" name="company" label="Şirket" />
               <WFace.WFormField.TextField id="txtYear" name="year" label="Yıl" />
               <WFace.WFormField.Submit id="btnSubmit">GÖSTER</WFace.WFormField.Submit>
             </WFace.WForm>
+            <WDateTimePicker id="dtp" value={this.state.dateTime} onChange={dateTime => this.setState({ dateTime })} />
           </WFace.WCardContent>
           <WFace.WCardActions>
             <WFace.WButton id="btn-show-dialog" onClick={() => this.setState({ isDialogOpen: true })}>Dialog</WFace.WButton>
