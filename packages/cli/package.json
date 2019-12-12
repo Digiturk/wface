@@ -1,11 +1,11 @@
 {
 	"name": "@wface/cli",
-	"version": "0.25.4",
+	"version": "0.25.5",
 	"description": "",
 	"author": "mehmet.baran",
 	"scripts": {
-    "build": "yarn run clean-dist && webpack -p --config=configs/webpack/prod.js",
-    "build-dev": "yarn run clean-dist && webpack --config=configs/webpack/prod.js --mode=development",
+		"build": "yarn run clean-dist && webpack -p --config=configs/webpack/prod.js",
+		"build-dev": "yarn run clean-dist && webpack --config=configs/webpack/prod.js --mode=development",
 		"clean-dist": "rimraf dist",
 		"start": "yarn run start-dev",
 		"start-dev": "webpack-dev-server --config=configs/webpack/dev.js --open",
@@ -51,9 +51,9 @@
 		"webpack-merge": "4.2.2"
 	},
 	"dependencies": {
-		"@wface/components": "0.25.4",
-		"@wface/container": "0.25.4",
-		"@wface/ioc": "0.25.4",
+		"@wface/components": "0.25.5",
+		"@wface/container": "0.25.5",
+		"@wface/ioc": "0.25.5",
 		"chalk": "2.4.2",
 		"commander": "3.0.1",
 		"deasync": "0.1.15",
