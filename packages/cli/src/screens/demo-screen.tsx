@@ -117,9 +117,9 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
                 { title: 'Doğum Yeri', field: 'birthCity', lookup: { 63: 'Şanlıurfa' } },
               ]}
               data={[
-                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
-                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
-                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                // { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                // { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                // { name: 'mehmet', lastName: 'baran', birthCity: 63 },
               ]}
               detailPanel={rowData => (
                 <div>{rowData.name}</div>

@@ -14,10 +14,20 @@ export type WTableProps = BaseComponentProps & MaterialTableProps<any> & {
 class WTableInner extends React.Component<WTableProps, {}> {
   public render() {
     const { classes, style, id, ...tableProps } = this.props;
+
+    const extendedProps = {
+      ...this.props.theme.props.WTable,
+      ...tableProps,
+      components: { ...(this.props.theme.props.WTable || {}).components, ...tableProps.components },
+      icons: { ...(this.props.theme.props.WTable || {}).icons, ...tableProps.icons },
+      localization: { ...(this.props.theme.props.WTable || {}).localization, ...tableProps.localization },
+      options: { ...(this.props.theme.props.WTable || {}).options, ...tableProps.options },
+    }
+
     return (
       <div id={id} className={classes.root} style={style}>
         <MaterialTable 
-          {...tableProps}
+          {...extendedProps}
           components={{
             Container: (props) => <WPaper {...props} elevation={this.props.theme.designDetails.defaultElevation}/>
           }}

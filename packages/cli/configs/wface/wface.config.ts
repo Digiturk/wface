@@ -5,7 +5,7 @@ import { DemoScreen } from '../../src/screens/demo-screen'
 import { DemoScreen2 } from '../../src/screens/demo-screen-2'
 import { WTheme } from '@wface/components';
 
-const theme = {
+const theme = {  
 } as WTheme
 
 const config = {
