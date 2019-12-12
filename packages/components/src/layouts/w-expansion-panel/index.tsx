@@ -24,7 +24,7 @@ class WExpansionPanelInner extends React.Component<WExpansionPanelProps, any> {
     return (
       <ExpansionPanel elevation={this.props.theme.designDetails.defaultElevation} {...this.props}>
         <ExpansionPanelSummary expandIcon={<WIcon>expand_more</WIcon>} classes={{ root: classes.summaryRoot, content: classes.summaryContent }}>
-          <WTypography variant="h5">{this.props.title}</WTypography>
+          <WTypography variant="h6">{this.props.title}</WTypography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           {this.props.children}
