@@ -4,7 +4,8 @@
 	"description": "",
 	"author": "mehmet.baran",
 	"scripts": {
-		"build": "yarn run clean-dist && webpack -p --config=configs/webpack/prod.js",
+    "build": "yarn run clean-dist && webpack -p --config=configs/webpack/prod.js",
+    "build-dev": "yarn run clean-dist && webpack --config=configs/webpack/prod.js --mode=development",
 		"clean-dist": "rimraf dist",
 		"start": "yarn run start-dev",
 		"start-dev": "webpack-dev-server --config=configs/webpack/dev.js --open",
