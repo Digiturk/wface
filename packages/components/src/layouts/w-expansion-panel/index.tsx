@@ -5,7 +5,7 @@ import { WIcon } from '../../medias/w-icon';
 import { WTypography } from '../../others/w-typography';
 import { WButton } from '../../buttons/w-button';
 import { BaseComponentProps } from '../../base/base-component-props';
-import { createStyles, withStyles } from '@material-ui/styles';
+import { createStyles, withStyles } from '@material-ui/core';
 import { WTheme } from '../../others/w-theme-provider/w-theme';
 // @ts-ignore
 import classNames from 'classnames';

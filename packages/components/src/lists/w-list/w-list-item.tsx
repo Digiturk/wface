@@ -1,4 +1,4 @@
-import { createStyles, withStyles } from '@material-ui/styles';
+import { createStyles, withStyles } from '@material-ui/core';
 import ListItem, { ListItemProps } from '@material-ui/core/ListItem';
 import { emphasize } from '@material-ui/core/styles/colorManipulator';
 import * as React from 'react';

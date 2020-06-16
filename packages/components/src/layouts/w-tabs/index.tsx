@@ -1,4 +1,4 @@
-import { withTheme } from '@material-ui/styles';
+import { withTheme } from '@material-ui/core';
 import Tabs, { TabsProps } from '@material-ui/core/Tabs';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import * as React from 'react';

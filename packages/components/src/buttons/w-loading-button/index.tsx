@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { WButton, WButtonProps } from '../w-button';
 import { WCircularProgress } from '../../progress/w-circular-progress';
 import { WLinearProgress } from '../../progress/w-linear-progress';
-import { createStyles, withStyles } from '@material-ui/styles';
+import { createStyles, withStyles } from '@material-ui/core';
 import { BaseComponentProps } from '../../base/base-component-props';
 import { WTheme } from '../../others/w-theme-provider/w-theme';
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Dialog, { DialogProps } from '@material-ui/core/Dialog'
-import { createStyles, withStyles } from '@material-ui/styles';
+import { createStyles, withStyles } from '@material-ui/core';
 import { WTheme } from '../../others/w-theme-provider/w-theme';
 import { BaseComponentProps } from '../../base/base-component-props';
 

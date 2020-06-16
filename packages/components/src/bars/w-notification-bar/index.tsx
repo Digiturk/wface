@@ -3,7 +3,6 @@ import { createStyles, withStyles } from '@material-ui/core';
 import classNames from 'classnames';
 import * as React from 'react';
 import { WIconButton } from '../../buttons/w-icon-button';
-import { WGrid } from '../../layouts/w-grid';
 import { WPaper } from '../../layouts/w-paper';
 import { WIcon } from '../../medias/w-icon';
 import { WTypography } from '../../others/w-typography';

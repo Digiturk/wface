@@ -1,6 +1,6 @@
 //#region imports 
 
-import { createStyles, withStyles } from '@material-ui/styles';
+import { createStyles, withStyles } from '@material-ui/core';
 import { WCard, WCardContent, WGrid, WLoadingButton, WNotificationBar, WTextField, WTypography, WTheme } from '@wface/components';
 import { IAuthService } from "@wface/ioc";
 import { AppContext, UserContext, WStore } from '@wface/store';
