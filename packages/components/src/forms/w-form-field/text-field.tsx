@@ -2,6 +2,7 @@ import * as React from 'react';
 import WField from './w-field';
 import { WTextField, WTextFieldProps } from '../../inputs/w-text-field';
 import BaseFieldProps from './base-field-props';
+import { byString } from '../util';
 
 export type TextFieldProps = BaseFieldProps & WTextFieldProps & {
 
@@ -15,9 +16,9 @@ export const TextField = (fieldProps: TextFieldProps) => (
       <WTextField
         {...props.field}        
         {...fieldProps}        
-        fullWidth
-        error={props.form.errors[fieldProps.name]}
-        helperText={props.form.errors[fieldProps.name]}
+        fullWidth        
+        error={byString(props.form.errors, fieldProps.name)}
+        helperText={byString(props.form.errors, fieldProps.name)}      
         onChange={event => {
           props.field.onChange(event);
           fieldProps.onChange && fieldProps.onChange(event);
