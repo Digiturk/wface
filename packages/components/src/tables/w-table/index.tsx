@@ -29,7 +29,8 @@ class WTableInner extends React.Component<WTableProps, {}> {
         <MaterialTable 
           {...extendedProps}
           components={{
-            Container: (props) => <WPaper {...props} elevation={this.props.theme.designDetails.defaultElevation}/>
+            Container: (props) => <WPaper {...props} elevation={this.props.theme.designDetails.defaultElevation}/>,
+            ...extendedProps.components
           }}
         />
       </div>
