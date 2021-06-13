@@ -3,6 +3,7 @@ import AuthService from '../../src/services/auth-service';
 import AppHooks from '../../src/services/app-hooks';
 import { DemoScreen } from '../../src/screens/demo-screen'
 import { DemoScreen2 } from '../../src/screens/demo-screen-2'
+import { DemoScreen3 } from '../../src/screens/demo-screen-3'
 import { WTheme } from '@wface/components';
 
 const theme = {  
@@ -12,7 +13,8 @@ const config = {
   projectName: 'WFace',
   screenList: {
     DemoScreen,
-    DemoScreen2
+    DemoScreen2,
+    DemoScreen3
   },    
   authService: AuthService,
   theme: theme,

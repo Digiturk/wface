@@ -2,7 +2,7 @@
     "gitlens.advanced.messages": {
         "suppressShowKeyBindingsNotice": true
     },
-    "window.zoomLevel": -1,
+    "window.zoomLevel": 0,
     "gitlens.historyExplorer.enabled": true,
     "editor.detectIndentation": false,
     "editor.tabSize": 2,
