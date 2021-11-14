@@ -192,7 +192,7 @@ class WMainPage extends React.Component<WMainPageProps & WStore & DispatchProps,
 
             const label = (
               <div style={{ display: 'flex', maxWidth: 144 }}>
-                <div style={{ flex: 1, alignSelf: 'center', wordBreak: 'break-all' }}>
+                <div style={{ flex: 1, alignSelf: 'center' }}>
                   {screen.menuTreeItem.text.length > 25 ?
                     (screen.menuTreeItem.text.substr(0, 25) + "...") : screen.menuTreeItem.text}
                 </div>

@@ -35,9 +35,9 @@ module.exports = {
             loader: 'babel-loader',
             query: babelQuery
           },
-          'source-map-loader'
+          // 'source-map-loader'
         ],
-        exclude: /node_modules/,
+        // exclude: /node_modules/,
       },
       {
         test: /\.tsx?$/,
