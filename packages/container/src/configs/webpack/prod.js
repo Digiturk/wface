@@ -18,9 +18,11 @@ module.exports = merge(commonConfig, {
     publicPath: '/',
   },
   plugins: [
-    new CopyWebpackPlugin([
-      { from: path.resolve(process.cwd(), 'assets'), to: 'assets' }
-    ]),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: path.resolve(process.cwd(), 'assets'), to: 'assets' }
+      ],
+    }),
   ],
   optimization: {
     minimize: true,
