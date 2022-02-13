@@ -6,6 +6,6 @@
 	"author": "mbrn",
 	"license": "ISC",
 	"dependencies": {
-		"inversify": "5.0.1"
+		"inversify": "6.0.1"
 	}
 }
