@@ -177,4 +177,4 @@ const styles = (theme: WTheme) => createStyles({
   }
 });
 
-export default withStyles(styles, { withTheme: true })(WLoginPage)
+export default withStyles(styles as any, { withTheme: true })(WLoginPage)

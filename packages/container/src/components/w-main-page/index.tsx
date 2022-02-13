@@ -9,6 +9,7 @@ import classNames from 'classnames';
 import { Horizontal, WindowWidthType } from 'horizontal';
 import * as React from "react";
 import { connect } from 'react-redux';
+// @ts-ignore
 import { withRouter } from 'react-router';
 import MyProfileMenu from './my-profile-menu';
 import Search from './search';

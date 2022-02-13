@@ -1,5 +1,5 @@
 // This function has to return a string or promised string:
-module.exports = function (templateParams) {
+function getTemplate (templateParams) {
 
   var html = `
   <!DOCTYPE html>
@@ -35,3 +35,5 @@ module.exports = function (templateParams) {
   
   return html;
 };
+
+export default getTemplate;

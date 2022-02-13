@@ -6,10 +6,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const babelQuery = {
   "presets": [
-    ["@babel/preset-env", { "modules": false }],
+    ["@babel/preset-env"],
     "@babel/preset-react"
   ],
   "plugins": [
+    "add-module-exports",
     "react-hot-loader/babel"
   ],
   "env": {
@@ -33,7 +34,7 @@ module.exports = {
         use: [
           {
             loader: 'babel-loader',
-            query: babelQuery
+            options: babelQuery
           },
           // 'source-map-loader'
         ],
@@ -44,9 +45,9 @@ module.exports = {
         use: [
           {
             loader: 'babel-loader',
-            query: babelQuery
+            options: babelQuery
           },
-          'awesome-typescript-loader'
+          'ts-loader' //'awesome-typescript-loader'
         ],
       },
       {
@@ -55,30 +56,30 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loaders: [
+        use: [
           'style-loader',
           { loader: 'css-loader', options: { importLoaders: 1 } },
           'sass-loader',
         ],
       },
       {
-        test: /\.(jpe?g|png|gif|svg)$/i,
-        loaders: [
-          'file-loader?hash=sha512&digest=hex&name=img/[hash].[ext]',
-          'image-webpack-loader?bypassOnDebug&optipng.optimizationLevel=7&gifsicle.interlaced=false',
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
         ],
-      },
+      }
     ],
   },
   plugins: [
-    new CheckerPlugin(),
+    // new CheckerPlugin(),
     // new StyleLintPlugin(),
     new HtmlWebpackPlugin({
       template: resolve(__dirname, '../../public/index.html.js'),
       title: 'WFace App'
     })
   ],
-
   performance: {
     hints: false,
   },

@@ -1,5 +1,5 @@
 // production config
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const path = require('path');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -8,6 +8,7 @@ const commonConfig = require('./common');
 
 module.exports = merge(commonConfig, {
   mode: 'production',
+  devtool: false,
   entry: [
     'babel-polyfill',
     './index.tsx',

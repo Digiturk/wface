@@ -1,5 +1,5 @@
 // development config
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const path = require('path');
 const commonConfig = require('./common');
 const _ = require("lodash");

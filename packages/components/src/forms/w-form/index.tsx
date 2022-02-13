@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Formik, Form, FormikActions, FormikErrors, FormikProps } from 'formik';
+import { Formik, Form, FormikHelpers, FormikErrors, FormikProps } from 'formik';
 import * as Yup from 'yup';
 import { BaseComponentProps } from '../../base/base-component-props';
 
-export interface WFormActions extends FormikActions<any> { }
+export interface WFormActions extends FormikHelpers<any> { }
 export interface WFormErrors extends FormikErrors<any> { }
 
 export type WFormProps = BaseComponentProps & { 

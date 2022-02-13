@@ -9,7 +9,13 @@ import red from '@material-ui/core/colors/red';
 import teal from '@material-ui/core/colors/teal';
 import { darken, fade } from '@material-ui/core/styles';
 import * as React from 'react';
-import { Area, AreaProps, Bar, BarProps, CartesianGrid, CartesianGridProps, ComposedChart, ComposedChartProps, Legend, LegendProps, Line, LineProps, ResponsiveContainer, Tooltip, TooltipProps, XAxis, XAxisProps, YAxis, YAxisProps } from 'recharts';
+import { 
+  Area, AreaProps, Bar, BarProps, CartesianGrid, CartesianGridProps, 
+  // @ts-ignore
+  ComposedChart, ComposedChartProps, Legend, LegendProps, Line, 
+  LineProps, ResponsiveContainer, Tooltip, TooltipProps, XAxis, 
+  XAxisProps, YAxis, YAxisProps
+} from 'recharts';
 
 export type ChartType = (AreaProps | BarProps | LineProps) & {
   chartType: 'area' | 'bar' | 'line';
@@ -21,7 +27,7 @@ export interface WChartProps extends Omit<Omit<ComposedChartProps, "width">, "he
   height?: string | number;
   legend?: boolean | LegendProps;
   grid?: boolean | CartesianGridProps;
-  tooltip?: boolean | TooltipProps;
+  tooltip?: boolean | TooltipProps<any, any>;
   width?: string;
   xAxisDataKey: string;
   xAxis?: boolean | XAxisProps;
@@ -146,7 +152,7 @@ export class WChart extends React.Component<WChartProps, any> {
         opacity: 0.9,
         fontSize: 12,
       }
-    } as TooltipProps;
+    } as TooltipProps<any, any>;
 
     if (typeof this.props.tooltip !== "boolean") {
       tooltipProps = { ...tooltipProps, ...this.props.tooltip };
@@ -185,17 +191,17 @@ export class WChart extends React.Component<WChartProps, any> {
 
     if (chartType === "area") {
       return (
-        <Area stroke={color} fill={fade(color, 0.15)} type="monotone" fillOpacity={1} {...chartProps as AreaProps} />
+        <Area stroke={color} fill={fade(color, 0.15)} type="monotone" fillOpacity={1} {...chartProps as any} />
       )
     }
     else if (chartType === "bar") {
       return (
-        <Bar fill={color} fillOpacity={0.75} {...chartProps as BarProps} />
+        <Bar fill={color} fillOpacity={0.75} {...chartProps as any} />
       )
     }
     else if (chartType === "line") {
       return (
-        <Line stroke={color} {...chartProps as LineProps} />
+        <Line stroke={color} {...chartProps as any} />
       )
     }
 

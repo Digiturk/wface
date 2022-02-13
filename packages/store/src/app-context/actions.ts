@@ -1,4 +1,4 @@
-import { createStandardAction } from 'typesafe-actions';
+import { createAction } from 'typesafe-actions';
 import { IMenuTreeItem, IConfiguration } from '@wface/ioc';
 
 const SET_VALUE = 'appContext/SET_VALUE';
@@ -13,17 +13,17 @@ const SET_CONFIRM_ON_CLOSE = 'appContext/SET_CONFIRM_ON_CLOSE';
 const SET_QUERY_PARAMS = 'appContext/SET_QUERY_PARAMS';
 const CLEAR = 'appContext/CLEAR';
 
-const setValue = createStandardAction(SET_VALUE)<{key: string, value: any}>();
-const setConfig = createStandardAction(SET_CONFIG)<IConfiguration>();
-const setMenuTree = createStandardAction(SET_MENU_TREE)<IMenuTreeItem[]>();
-const openScreen = createStandardAction(OPEN_SCREEN)<{menuTreeItem: IMenuTreeItem, initialValues?: any}>();
-const closeScreen = createStandardAction(CLOSE_SCREEN)<IMenuTreeItem>();
-const saveScreenState = createStandardAction(SAVE_SCREEN_STATE)<{screenId: string, state: any}>();
-const saveScreenAny = createStandardAction(SAVE_SCREEN_ANY)<{key: string, value: any}>();
-const changeScreenMode = createStandardAction(CHANGE_SCREEN_MODE)<{screenId: string, mode: 'normal' | 'loading',}>();
-const setConfirmOnClose = createStandardAction(SET_CONFIRM_ON_CLOSE)<{screenId: string, confirmOnClose: boolean, confirmOnCloseMessage: string}>();
-const setQueryParams = createStandardAction(SET_QUERY_PARAMS)<{ [key: string]: any }>();
-const clear = createStandardAction(CLEAR)();
+const setValue = createAction(SET_VALUE)<{key: string, value: any}>();
+const setConfig = createAction(SET_CONFIG)<IConfiguration>();
+const setMenuTree = createAction(SET_MENU_TREE)<IMenuTreeItem[]>();
+const openScreen = createAction(OPEN_SCREEN)<{menuTreeItem: IMenuTreeItem, initialValues?: any}>();
+const closeScreen = createAction(CLOSE_SCREEN)<IMenuTreeItem>();
+const saveScreenState = createAction(SAVE_SCREEN_STATE)<{screenId: string, state: any}>();
+const saveScreenAny = createAction(SAVE_SCREEN_ANY)<{key: string, value: any}>();
+const changeScreenMode = createAction(CHANGE_SCREEN_MODE)<{screenId: string, mode: 'normal' | 'loading',}>();
+const setConfirmOnClose = createAction(SET_CONFIRM_ON_CLOSE)<{screenId: string, confirmOnClose: boolean, confirmOnCloseMessage: string}>();
+const setQueryParams = createAction(SET_QUERY_PARAMS)<{ [key: string]: any }>();
+const clear = createAction(CLEAR)();
 const Actions = { 
   setValue,
   setConfig,
