@@ -2,73 +2,71 @@ import { WSnackbarProvider, WThemeProvider } from '@wface/components';
 import IOC, { IAuthService, IConfiguration } from '@wface/ioc';
 import { AppContextActions } from '@wface/store';
 import * as React from 'react';
-import { connect } from 'react-redux';
+import { FC, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useLocation, useParams } from 'react-router';
 // @ts-ignore
-import { withRouter } from 'react-router';
-// @ts-ignore
-import { Redirect, Route, BrowserRouter } from 'react-router-dom';
+import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom';
 
-class WContainer extends React.Component<{}, {}> {
 
-  constructor(props: any) {
-    super(props);        
-  }
 
-  render() {
-    return (
-      <BrowserRouter>
-        <WrappedInnerContainer />
-      </BrowserRouter>
-    );
-  }
-};
+const InnerContainer: FC<any> = () => {
 
-class InnerContainer extends React.Component<any, any> {
+  const { userContext, appContext } = useSelector((state: any) => state);
+  const dispatch = useDispatch();
+  const setValue = useCallback((key: string, value: any) => dispatch(AppContextActions.setValue({ key, value })), []);
+  const { pathname } = useLocation();
+  const params = useParams();
 
-  constructor(props: any) {
-    super(props);      
-  }
+  const { isLoggedIn } = userContext;
+  const { configuration }: { configuration: IConfiguration } = appContext;
 
-  render() {
-    const isLoggedIn = this.props.userContext.isLoggedIn;
-    const configuration = this.props.appContext.configuration as IConfiguration;    
-        
-    const authService = IOC.get<IAuthService>("IAuthService")
-  
-    return (
-      <WThemeProvider theme={configuration.theme}>
-        <WSnackbarProvider
-          maxSnack={3}
-          anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-          autoHideDuration={5000}
-        >
-          <>
-            {/** @ts-ignore */}
-            <Route path="/" render={subProps => <Redirect to="/main" />} />
-            {/** @ts-ignore */}
-            <Route path="/login/:screen?" render={(subProps: any) => isLoggedIn || configuration.authRequired === false ?
-              <Redirect to={`/main/${subProps.match.params.screen || ''}`} />
-              :
-              <configuration.components.LoginPage {...subProps} authService={authService} appContext={this.props.appContext} userContext={this.props.userContext} setValue={this.props.setValue} />
-            } />
-            {/** @ts-ignore */}
-            <Route path="/main" render={(subProps: any) => isLoggedIn  || configuration.authRequired === false ? <configuration.components.MainPage {...subProps} style={{ height: '100%' }} /> : <Redirect to={this.props.location.pathname.replace('main', 'login')} />} />
-          </>
-        </WSnackbarProvider>
-      </WThemeProvider >
-    )
-  }
+  const authService = IOC.get<IAuthService>("IAuthService");
+
+  return (
+    <WThemeProvider theme={configuration.theme}>
+      <WSnackbarProvider
+        maxSnack={3}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+        autoHideDuration={5000}
+      >
+        <Routes>
+
+          <Route path="/" element={<Navigate to="/main" />} />
+          {(isLoggedIn || configuration.authRequired === false)
+            ? <Route path="/login/:screen?" element={<Navigate to={`/main/${params.screen || ''}`} />} />
+            : <Route path="/login/:screen?" element={<configuration.components.LoginPage authService={authService} appContext={appContext} userContext={userContext} setValue={setValue} />} />
+          }
+          {/* <Route path="/login/:screen?" element={(subProps: any) => isLoggedIn || configuration.authRequired === false ?
+            <Redirect to={`/main/${subProps.match.params.screen || ''}`} />
+            :
+            <configuration.components.LoginPage {...subProps} authService={authService} appContext={appContext} userContext={userContext} setValue={setValue} />
+          } />
+          */}
+
+          {(isLoggedIn || configuration.authRequired === false)
+            ? <Route path="/main" element={<configuration.components.MainPage style={{ height: '100%' }} />} />
+            : <Route path="/main" element={<Navigate to={pathname.replace('main', 'login')} />} />
+          }
+          {(isLoggedIn || configuration.authRequired === false)
+            ? <Route path="/main/:screen" element={<configuration.components.MainPage style={{ height: '100%' }} />} />
+            : <Route path="/main/:screen" element={<Navigate to={pathname.replace('main', 'login')} />} />
+          }
+
+          {/* <Route path="/main" element={(subProps: any) => isLoggedIn || configuration.authRequired === false
+            ? <configuration.components.MainPage {...subProps} style={{ height: '100%' }} />
+            : <Navigate to={pathname.replace('main', 'login')} />}
+          /> */}
+        </Routes>
+      </WSnackbarProvider>
+    </WThemeProvider >
+  )
 }
 
-const mapStateToProps = (state: any) => ({
-  userContext: state.userContext,
-  appContext: state.appContext
-});
-
-const mapDispatchToProps = (dispatch: any) => ({
-  setValue: (key: string, value: any) => dispatch(AppContextActions.setValue({ key, value })),
-});
-
-const WrappedInnerContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(InnerContainer) as any) as any
+const WContainer: FC = () => (
+  <BrowserRouter>
+    <InnerContainer />
+  </BrowserRouter>
+);
 
 export default WContainer;

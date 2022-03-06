@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SnackbarProvider, SnackbarProviderProps, withSnackbar } from 'notistack';
+import { SnackbarProvider, SnackbarProviderProps, withSnackbar, useSnackbar } from 'notistack';
 
 export interface WSnackbarProviderProps extends SnackbarProviderProps{
 }
@@ -14,4 +14,4 @@ export class WSnackbarProvider extends React.Component<WSnackbarProviderProps, a
   }
 }
 
-export { withSnackbar };
+export { withSnackbar, useSnackbar };

@@ -4,6 +4,7 @@ const path = require('path');
 const commonConfig = require('./common');
 const _ = require("lodash");
 const WebpackDevConfig = require('@wface/container/src/configs/webpack/dev');
+const { exit } = require('process');
 
 
 const config = mergeWithCustomize(  
@@ -26,7 +27,8 @@ const config = mergeWithCustomize(
 (WebpackDevConfig, commonConfig, {  
 });
 
-// console.log(config.module.rules[4]);
+// console.log(JSON.stringify(config, null, 2));
+// exit();
 
 module.exports = config;
 

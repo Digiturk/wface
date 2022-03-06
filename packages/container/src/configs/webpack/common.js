@@ -11,7 +11,7 @@ const babelQuery = {
   ],
   "plugins": [
     "add-module-exports",
-    "react-hot-loader/babel"
+    // "react-hot-loader/babel"
   ],
   "env": {
     "production": {
@@ -38,7 +38,7 @@ module.exports = {
           },
           // 'source-map-loader'
         ],
-        // exclude: /node_modules/,
+        exclude: /node_modules/,
       },
       {
         test: /\.tsx?$/,
