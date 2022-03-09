@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Slider, { SliderProps } from '@material-ui/core/Slider';
+import Slider, { SliderProps } from '@mui/material/Slider';
 import { BaseComponentProps } from '../../base/base-component-props';
 
 export type WSliderProps = BaseComponentProps & SliderProps & {  

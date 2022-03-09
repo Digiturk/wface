@@ -4,8 +4,9 @@ import {
   WListItemIcon, WListItemText,
   WCircularProgress, WTypography, WIconButton, WIcon, WTheme,
 } from '@wface/components';
-import { withStyles, withTheme } from '@material-ui/core/styles';
-import Collapse from '@material-ui/core/Collapse';
+import withStyles from '@mui/styles/withStyles';
+import withTheme from '@mui/styles/withTheme';
+import Collapse from '@mui/material/Collapse';
 import { IMenuTreeItem, MenuTreeUtil } from '@wface/ioc';
 import { WStore } from '@wface/store';
 import { connect } from 'react-redux';

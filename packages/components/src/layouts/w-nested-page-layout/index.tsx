@@ -1,4 +1,7 @@
-import { createStyles, Paper, Popper, withStyles, WithStyles, Grow, ClickAwayListener, MenuList } from '@material-ui/core';
+import { Paper, Popper, Grow, ClickAwayListener, MenuList } from '@mui/material';
+import { WithStyles } from '@mui/styles';
+import createStyles from '@mui/styles/createStyles';
+import withStyles from '@mui/styles/withStyles';
 import * as React from 'react';
 import { WButton, WIconButton, WMenuItem, BaseScreenProps, BaseScreenPropsContext } from '../../..';
 import { WTheme } from '../../others/w-theme-provider/w-theme';

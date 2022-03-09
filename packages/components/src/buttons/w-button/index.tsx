@@ -1,7 +1,8 @@
 import * as React from 'react';
-import Button from '@material-ui/core/Button';
-import { ButtonProps } from '@material-ui/core/Button';
-import { createStyles, withStyles } from '@material-ui/core';
+import Button from '@mui/material/Button';
+import { ButtonProps } from '@mui/material/Button';
+import createStyles from '@mui/styles/createStyles';
+import withStyles from '@mui/styles/withStyles';
 import { WTheme } from '../../others/w-theme-provider/w-theme';
 import { BaseComponentProps } from '../../base/base-component-props';
 

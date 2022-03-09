@@ -1,9 +1,12 @@
-import { Stepper, Step, StepLabel, withTheme } from '@material-ui/core';
+import { Stepper, Step, StepLabel } from '@mui/material';
 
-import { PaperProps } from '@material-ui/core/Paper';
+import withTheme from '@mui/styles/withTheme';
+
+import { PaperProps } from '@mui/material/Paper';
 import * as React from 'react';
 import { WTheme } from '../../others/w-theme-provider/w-theme';
-import { createStyles, withStyles } from '@material-ui/core';
+import createStyles from '@mui/styles/createStyles';
+import withStyles from '@mui/styles/withStyles';
 
 export interface WWizardStepProps {
   data: any;
@@ -85,7 +88,7 @@ export class WWizardInner extends React.Component<WWizardProps, WWizardState> {
 
 const styles = (theme: WTheme) => createStyles({
   stepContainer: {
-    padding: `${theme.spacing(1)}px ${theme.spacing(2)}px ${theme.spacing(2)}px ${theme.spacing(2)}px`
+    padding: `${theme.spacing(1)} ${theme.spacing(2)} ${theme.spacing(2)} ${theme.spacing(2)}`
   }
 });
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import CardActionArea, { CardActionAreaProps } from '@material-ui/core/CardActionArea';
+import CardActionArea, { CardActionAreaProps } from '@mui/material/CardActionArea';
 
 export interface WCardActionAreaProps extends CardActionAreaProps { }
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { ListItemIcon } from '@material-ui/core';
-import { ListItemIconProps } from '@material-ui/core/ListItemIcon';
+import { ListItemIcon } from '@mui/material';
+import { ListItemIconProps } from '@mui/material/ListItemIcon';
 
 export interface WListItemIconProps extends ListItemIconProps { }
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Badge, { BadgeProps } from '@material-ui/core/Badge';
+import Badge, { BadgeProps } from '@mui/material/Badge';
 
 export interface WBadgeProps extends BadgeProps {
 }

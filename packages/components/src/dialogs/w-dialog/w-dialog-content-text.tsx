@@ -1,5 +1,5 @@
 import * as React from 'react';
-import DialogContentText, { DialogContentTextProps } from '@material-ui/core/DialogContentText'
+import DialogContentText, { DialogContentTextProps } from '@mui/material/DialogContentText'
 
 export interface WDialogContentTextProps extends DialogContentTextProps {}
 

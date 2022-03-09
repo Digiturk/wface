@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Chip } from '@material-ui/core';
-import { ChipProps } from '@material-ui/core/Chip';
+import { Chip } from '@mui/material';
+import { ChipProps } from '@mui/material/Chip';
 import { BaseComponentProps } from '../../base/base-component-props';
 
 export type WChipProps = BaseComponentProps & ChipProps & { 

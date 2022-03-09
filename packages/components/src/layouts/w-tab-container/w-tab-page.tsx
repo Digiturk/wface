@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { WTabProps } from '../w-tabs/w-tab';
-import { Omit } from '@material-ui/core';
+import { Omit } from '@mui/material';
 
 export interface WTabPageProps extends Omit<WTabProps, "value">{  
 }

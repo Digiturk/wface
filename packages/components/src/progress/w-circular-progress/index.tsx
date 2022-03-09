@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { CircularProgress } from '@material-ui/core';
-import { CircularProgressProps } from '@material-ui/core/CircularProgress';
+import { CircularProgress } from '@mui/material';
+import { CircularProgressProps } from '@mui/material/CircularProgress';
 
 export interface WCircularProgressProps extends CircularProgressProps { }
 

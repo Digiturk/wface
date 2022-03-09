@@ -1,11 +1,11 @@
 import * as React from 'react';
-import  { MuiPickersUtilsProvider, KeyboardTimePicker, TimePicker, TimePickerProps } from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns'
+import  { LocalizationProvider, TimePicker, TimePickerProps } from '@mui/lab';
 import { BaseComponentProps } from '../../base/base-component-props';
+import AdapterDateFns from '@date-io/date-fns'
 
 export type WTimePickerProps = BaseComponentProps & TimePickerProps & { 
   fullWidth?: boolean,
-  keyboard?: boolean  
+  format?: string;
 }
 
 export class WTimePicker extends React.Component<WTimePickerProps, {}> {
@@ -15,26 +15,16 @@ export class WTimePicker extends React.Component<WTimePickerProps, {}> {
     clearable: true,
     fullWidth: true,
     format: "HH:mm",
-    keyboard: true,    
     onChange: null,
     value: null,
-  }
-
-  private renderPicker = () => {
-    if (this.props.keyboard) {
-      return <KeyboardTimePicker {...this.props} />;
-    }
-    else {
-      const { keyboard, ...clearProps } = this.props;
-      return <TimePicker {...clearProps} />;
-    }
+    renderInput: null
   }
 
   public render() {
     return (
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        {this.renderPicker()}
-      </MuiPickersUtilsProvider>
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <TimePicker {...this.props} />
+      </LocalizationProvider>
     );
   }
 }

@@ -1,11 +1,8 @@
 import * as React from 'react';
 import { WTheme } from './w-theme';
 import { WPalette } from './w-palette';
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
-import red from '@material-ui/core/colors/red';
-import blue from '@material-ui/core/colors/blue';
-import green from '@material-ui/core/colors/green';
-import orange from '@material-ui/core/colors/orange';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { blue, green, orange, red } from '@mui/material/colors';
 import { merge } from 'lodash';
 import { WDesignDetails } from './w-design-details';
 
@@ -37,7 +34,8 @@ const defaultTheme = {
       contrastText: '#fff'
     },
     background: {
-      default: '#e8eaf5'
+      default: '#e8eaf5', 
+      paper: '#FFFFFF'
     }
   } as WPalette,
   typography: {
@@ -68,7 +66,7 @@ export class WThemeProvider extends React.Component<{ theme?: WTheme }, any> {
 
   getTheme() {
     const merged = merge(defaultTheme, this.props.theme);
-    const theme = createMuiTheme(merged);
+    const theme = createTheme(merged);
 
     return theme;
   }
@@ -76,9 +74,9 @@ export class WThemeProvider extends React.Component<{ theme?: WTheme }, any> {
   public render() {
     const theme = this.getTheme();
     return (
-      <MuiThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
         {this.props.children}
-      </MuiThemeProvider>
+      </ThemeProvider>
     );
   }
 }

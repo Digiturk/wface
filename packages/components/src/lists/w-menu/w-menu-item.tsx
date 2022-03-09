@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { createStyles, withStyles } from '@material-ui/core';
-import MenuItem, { MenuItemProps } from '@material-ui/core/MenuItem';
+import createStyles from '@mui/styles/createStyles';
+import withStyles from '@mui/styles/withStyles';
+import MenuItem, { MenuItemProps } from '@mui/material/MenuItem';
 import { WTheme } from '../../others/w-theme-provider/w-theme';
-import { emphasize } from '@material-ui/core/styles/colorManipulator';
+import { emphasize } from '@mui/material/styles';
 import { BaseComponentProps } from '../../base/base-component-props';
 
 export type WMenuItemProps<D extends React.ElementType = "li"> = BaseComponentProps & MenuItemProps<D> & { 

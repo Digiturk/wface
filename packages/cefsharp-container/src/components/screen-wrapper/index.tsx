@@ -1,7 +1,7 @@
 import { WCircularProgress, WIcon, WIconButton, withSnackbar, WTheme, BaseScreenProps, BaseScreenPropsContext } from '@wface/components';
 import IOC, { IHttpService, IMenuTreeItem, MenuTreeUtil } from '@wface/ioc';
 import { AppContextActions, ScreenData, WStore } from '@wface/store';
-import { withTheme } from '@material-ui/core';
+import withTheme from '@mui/styles/withTheme';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { th } from 'date-fns/esm/locale';

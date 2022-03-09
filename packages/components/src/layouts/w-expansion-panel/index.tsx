@@ -1,16 +1,17 @@
 import * as React from 'react';
-import ExpansionPanel, { ExpansionPanelProps } from '@material-ui/core/ExpansionPanel';
-import { ExpansionPanelDetails, ExpansionPanelSummary, ExpansionPanelActions } from '@material-ui/core';
+import Accordion, { AccordionProps } from '@mui/material/Accordion';
+import { AccordionDetails, AccordionSummary, AccordionActions } from '@mui/material';
 import { WIcon } from '../../medias/w-icon';
 import { WTypography } from '../../others/w-typography';
 import { WButton } from '../../buttons/w-button';
 import { BaseComponentProps } from '../../base/base-component-props';
-import { createStyles, withStyles } from '@material-ui/core';
+import createStyles from '@mui/styles/createStyles';
+import withStyles from '@mui/styles/withStyles';
 import { WTheme } from '../../others/w-theme-provider/w-theme';
 // @ts-ignore
 import classNames from 'classnames';
 
-export type WExpansionPanelProps = BaseComponentProps & ExpansionPanelProps & {
+export type WExpansionPanelProps = BaseComponentProps & AccordionProps & {
   title: string;
   actions?: { text?: string, onClick?: (event) => void, custom?: React.ReactNode }[];
   theme?: WTheme;
@@ -22,15 +23,15 @@ class WExpansionPanelInner extends React.Component<WExpansionPanelProps, any> {
     const { classes } = this.props;
 
     return (
-      <ExpansionPanel elevation={this.props.theme.designDetails.defaultElevation} {...this.props}>
-        <ExpansionPanelSummary expandIcon={<WIcon>expand_more</WIcon>} classes={{ root: classes.summaryRoot, content: classes.summaryContent }}>
+      <Accordion elevation={this.props.theme.designDetails.defaultElevation} {...this.props}>
+        <AccordionSummary expandIcon={<WIcon>expand_more</WIcon>} classes={{ root: classes.summaryRoot, content: classes.summaryContent }}>
           <WTypography variant="h6">{this.props.title}</WTypography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
+        </AccordionSummary>
+        <AccordionDetails>
           {this.props.children}
-        </ExpansionPanelDetails>
+        </AccordionDetails>
         {this.props.actions &&
-          <ExpansionPanelActions>
+          <AccordionActions>
             {
               this.props.actions.map(action => {
                 if (action.custom) {
@@ -41,9 +42,9 @@ class WExpansionPanelInner extends React.Component<WExpansionPanelProps, any> {
                 }
               })
             }
-          </ExpansionPanelActions>
+          </AccordionActions>
         }
-      </ExpansionPanel>
+      </Accordion>
     );
   }
 }

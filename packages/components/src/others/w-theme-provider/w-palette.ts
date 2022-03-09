@@ -1,6 +1,6 @@
-import { Palette, PaletteColor } from "@material-ui/core/styles/createPalette";
+import { Palette, PaletteColor } from '@mui/material/styles';
 
-export interface WPalette extends Palette {
+export interface WPalette extends Partial<Palette> {
   info: PaletteColor;
   success: PaletteColor;
   warning: PaletteColor;

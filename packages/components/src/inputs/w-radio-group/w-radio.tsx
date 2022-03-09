@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { Radio, FormControlLabel } from '@material-ui/core'
-import { RadioProps } from '@material-ui/core/Radio'
+import { Radio, FormControlLabel } from '@mui/material'
+import { RadioProps } from '@mui/material/Radio'
 
 export interface WRadioProps extends RadioProps {
   label: string

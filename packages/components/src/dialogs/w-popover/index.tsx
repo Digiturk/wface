@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Popover, { PopoverProps } from '@material-ui/core/Popover';
+import Popover, { PopoverProps } from '@mui/material/Popover';
 
 export interface WPopoverProps extends PopoverProps {
 }

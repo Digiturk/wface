@@ -20,7 +20,7 @@ function version() {
   console.log();
   logPackage("react", path.join(wfaceDir, "react/package.json")); 
   logPackage("redux", path.join(wfaceDir, "redux/package.json")); 
-  logPackage("@material-ui/core", path.join(wfaceDir, "@material-ui/core/package.json")); 
+  logPackage("@mui/material", path.join(wfaceDir, "@mui/material/package.json")); 
 
 }
 

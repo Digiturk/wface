@@ -1,6 +1,7 @@
-import { createStyles, withStyles } from '@material-ui/core';
-import ListItem, { ListItemProps } from '@material-ui/core/ListItem';
-import { emphasize } from '@material-ui/core/styles/colorManipulator';
+import createStyles from '@mui/styles/createStyles';
+import withStyles from '@mui/styles/withStyles';
+import ListItem, { ListItemProps } from '@mui/material/ListItem';
+import { emphasize } from '@mui/material/styles';
 import * as React from 'react';
 import { BaseComponentProps } from '../../base/base-component-props';
 import { WTheme } from '../../others/w-theme-provider/w-theme';

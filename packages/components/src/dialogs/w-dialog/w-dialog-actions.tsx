@@ -1,5 +1,5 @@
 import * as React from 'react';
-import DialogActions, { DialogActionsProps } from '@material-ui/core/DialogActions'
+import DialogActions, { DialogActionsProps } from '@mui/material/DialogActions'
 
 export interface WDialogActionsProps extends DialogActionsProps {}
 

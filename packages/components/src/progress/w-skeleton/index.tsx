@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Skeleton, { SkeletonProps } from '@material-ui/lab/Skeleton';
+import Skeleton, { SkeletonProps } from '@mui/material/Skeleton';
 
 export interface WSkeletonProps extends SkeletonProps {
 }

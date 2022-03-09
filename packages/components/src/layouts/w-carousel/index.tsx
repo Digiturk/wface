@@ -1,6 +1,6 @@
 import * as React from 'react';
 import SwipeableViews from 'react-swipeable-views';
-import { withTheme } from '@material-ui/core';
+import withTheme from '@mui/styles/withTheme';
 import { WIcon } from '../../medias/w-icon';
 import { WIconButton } from '../../buttons/w-icon-button';
 import { WGrid } from '../w-grid';

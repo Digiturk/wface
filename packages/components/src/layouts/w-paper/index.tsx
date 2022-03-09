@@ -1,5 +1,6 @@
-import { Paper, withTheme } from '@material-ui/core';
-import { PaperProps } from '@material-ui/core/Paper';
+import { Paper } from '@mui/material';
+import withTheme from '@mui/styles/withTheme';
+import { PaperProps } from '@mui/material/Paper';
 import * as React from 'react';
 import { WTheme } from '../../others/w-theme-provider/w-theme';
 

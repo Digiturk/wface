@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Divider } from '@material-ui/core';
-import { DividerProps } from '@material-ui/core/Divider';
+import { Divider } from '@mui/material';
+import { DividerProps } from '@mui/material/Divider';
 
 export interface WDividerProps extends DividerProps { }
 

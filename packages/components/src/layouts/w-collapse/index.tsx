@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { Collapse } from '@material-ui/core'
-import { CollapseProps } from '@material-ui/core/Collapse'
+import { Collapse } from '@mui/material'
+import { CollapseProps } from '@mui/material/Collapse'
 
 export interface WCollapseProps extends CollapseProps { }
 

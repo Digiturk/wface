@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Box } from '@material-ui/core';
-import { BoxProps } from '@material-ui/core/Box';
+import { Box } from '@mui/material';
+import { BoxProps } from '@mui/material/Box';
 
 export interface WBoxProps extends BoxProps { }
 

@@ -36,7 +36,7 @@ export class DemoScreen2 extends React.Component<WFace.BaseScreenProps, DemoScre
   public render() {
     return (
       <>
-        <WFace.WExpansionPanel id="expansionPanel" title="ExpansionPanel">
+        <WFace.WExpansionPanel id="expansionPanel" title="Accordion">
           <WFace.WTable
             id="table"
             title="Simple Action Preview"

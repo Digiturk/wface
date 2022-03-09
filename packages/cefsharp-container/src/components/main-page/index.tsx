@@ -1,6 +1,9 @@
 //#region imports 
 
-import { withStyles, withTheme, makeStyles } from '@material-ui/core/styles';
+import withStyles from '@mui/styles/withStyles';
+
+import withTheme from '@mui/styles/withTheme';
+import makeStyles from '@mui/styles/makeStyles';
 import { WScrollBar, WTheme, withSnackbar, useSnackbar } from '@wface/components';
 import IOC, { IAuthService, IMenuTreeItem, MenuTreeUtil } from "@wface/ioc";
 import { AppContext, AppContextActions, ScreenData, WStore } from '@wface/store';

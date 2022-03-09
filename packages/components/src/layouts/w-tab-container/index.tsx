@@ -2,7 +2,7 @@ import * as React from 'react';
 import { WTabs, WTabsProps } from '../w-tabs';
 import { WTab, WTabProps } from '../w-tabs/w-tab';
 import { WTabPage } from './w-tab-page';
-import { Omit } from '@material-ui/core'
+import { Omit } from '@mui/material'
 
 type WTabsPropsBase = Omit<WTabsProps, "defaultValue">
 

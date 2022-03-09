@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Popper, { PopperProps } from '@material-ui/core/Popper';
+import Popper, { PopperProps } from '@mui/material/Popper';
 
 export interface WPopperProps extends PopperProps {
 }

@@ -1,4 +1,4 @@
-import { Theme } from '@material-ui/core/styles';
+import { Theme } from '@mui/material/styles';
 import { WPalette } from './w-palette';
 import { WDesignDetails } from './w-design-details';
 import { WComponentsProps } from './w-component-props';

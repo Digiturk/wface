@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Avatar, { AvatarProps } from '@material-ui/core/Avatar';
+import Avatar, { AvatarProps } from '@mui/material/Avatar';
 
 export interface WAvatarProps extends AvatarProps { }
 

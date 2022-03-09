@@ -1,5 +1,5 @@
 import * as React from 'react';
-import SpeedDial, { SpeedDialProps } from '@material-ui/lab/SpeedDial';
+import SpeedDial, { SpeedDialProps } from '@mui/material/SpeedDial';
 import { BaseComponentProps } from '../../base/base-component-props';
 
 export type WSpeedDialProps = BaseComponentProps & SpeedDialProps & {  

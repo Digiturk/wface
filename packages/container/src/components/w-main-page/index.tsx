@@ -1,6 +1,7 @@
 //#region imports 
 
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { useTheme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import {
   WAppBar, WCircularProgress, WDrawer, WIcon, WIconButton, WScrollBar,
   WTab, WTabs, WToolBar, WTypography,

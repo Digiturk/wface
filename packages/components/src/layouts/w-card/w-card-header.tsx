@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { CardHeader } from '@material-ui/core'
-import { CardHeaderProps } from '@material-ui/core/CardHeader';
+import { CardHeader } from '@mui/material'
+import { CardHeaderProps } from '@mui/material/CardHeader';
 
 export interface WCardHeaderProps extends CardHeaderProps { }
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ClickAwayListener, { ClickAwayListenerProps } from '@material-ui/core/ClickAwayListener';
+import ClickAwayListener, { ClickAwayListenerProps } from '@mui/material/ClickAwayListener';
 
 export interface WClickAwayListenerProps extends ClickAwayListenerProps {
 }

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { ListItemSecondaryAction } from '@material-ui/core';
-import { ListItemSecondaryActionProps } from '@material-ui/core/ListItemSecondaryAction';
+import { ListItemSecondaryAction } from '@mui/material';
+import { ListItemSecondaryActionProps } from '@mui/material/ListItemSecondaryAction';
 
 export interface WListItemSecondaryActionProps extends ListItemSecondaryActionProps { }
 

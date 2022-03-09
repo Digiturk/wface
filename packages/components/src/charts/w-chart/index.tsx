@@ -1,13 +1,10 @@
-import blue from '@material-ui/core/colors/blue';
-import blueGrey from '@material-ui/core/colors/blueGrey';
-import deepOrange from '@material-ui/core/colors/deepOrange';
-import deepPurple from '@material-ui/core/colors/deepPurple';
-import green from '@material-ui/core/colors/green';
-import indigo from '@material-ui/core/colors/indigo';
-import orange from '@material-ui/core/colors/orange';
-import red from '@material-ui/core/colors/red';
-import teal from '@material-ui/core/colors/teal';
-import { darken, fade } from '@material-ui/core/styles';
+import { 
+  blue, blueGrey, deepOrange, deepPurple, green,
+  indigo, orange, red, teal
+} from '@mui/material/colors';
+
+import { darken, alpha } from '@mui/material';
+
 import * as React from 'react';
 import { 
   Area, AreaProps, Bar, BarProps, CartesianGrid, CartesianGridProps, 
@@ -170,7 +167,7 @@ export class WChart extends React.Component<WChartProps, any> {
     }
 
     let gridProps = {
-      stroke: fade(this.props.grayColor, 0.25),
+      stroke: alpha(this.props.grayColor, 0.25),
       strokeDasharray: "3 3",
     } as CartesianGridProps;
 
@@ -191,7 +188,7 @@ export class WChart extends React.Component<WChartProps, any> {
 
     if (chartType === "area") {
       return (
-        <Area stroke={color} fill={fade(color, 0.15)} type="monotone" fillOpacity={1} {...chartProps as any} />
+        <Area stroke={color} fill={alpha(color, 0.15)} type="monotone" fillOpacity={1} {...chartProps as any} />
       )
     }
     else if (chartType === "bar") {

@@ -1,10 +1,12 @@
-import NoSsr from '@material-ui/core/NoSsr';
-import { createStyles, withStyles, WithStyles, Theme } from '@material-ui/core/styles';
-import { emphasize } from '@material-ui/core/styles/colorManipulator';
+import NoSsr from '@mui/material/NoSsr';
+import { Theme, emphasize } from '@mui/material/styles';
+import { WithStyles } from '@mui/styles';
+import createStyles from '@mui/styles/createStyles';
+import withStyles from '@mui/styles/withStyles';
 import * as React from 'react';
 import Select from 'react-select';
 import selectComponents from './components';
-import { Omit } from '@material-ui/core';
+import { Omit } from '@mui/material';
 import { WTheme } from '../../others/w-theme-provider/w-theme';
 import { BaseComponentProps } from '../../base/base-component-props';
 
@@ -170,17 +172,17 @@ const styles = (theme: WTheme) => createStyles({
     overflow: 'hidden',
   },
   chip: {
-    margin: `${theme.spacing(0.25)}px ${theme.spacing(0.25)}px`,
+    margin: `${theme.spacing(0.25)} ${theme.spacing(0.25)}`,
     height: 28
   },
   chipFocused: {
     backgroundColor: emphasize(
-      theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[700],
+      theme.palette.mode === 'light' ? theme.palette.grey[300] : theme.palette.grey[700],
       0.08,
     ),
   },
   noOptionsMessage: {
-    padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`,
+    padding: `${theme.spacing(1)} ${theme.spacing(2)}`,
   },
   singleValue: {
     fontSize: 16,

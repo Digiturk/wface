@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { ListSubheader } from '@material-ui/core';
-import { ListSubheaderProps } from '@material-ui/core/ListSubheader';
+import { ListSubheader } from '@mui/material';
+import { ListSubheaderProps } from '@mui/material/ListSubheader';
 
 export interface WListSubheaderProps extends ListSubheaderProps { }
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import SpeedDialIcon, { SpeedDialIconProps } from '@material-ui/lab/SpeedDialIcon';
+import SpeedDialIcon, { SpeedDialIconProps } from '@mui/material/SpeedDialIcon';
 
 export interface WSpeedDialIconProps extends SpeedDialIconProps {
 }

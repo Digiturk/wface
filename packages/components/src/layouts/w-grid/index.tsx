@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Grid } from '@material-ui/core';
-import { GridProps } from '@material-ui/core/Grid';
+import { Grid } from '@mui/material';
+import { GridProps } from '@mui/material/Grid';
 
 export interface WGridProps extends GridProps { }
 

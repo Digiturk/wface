@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Link, { LinkProps } from '@material-ui/core/Link';
+import Link, { LinkProps } from '@mui/material/Link';
 
 export interface WLinkProps extends LinkProps {
 }

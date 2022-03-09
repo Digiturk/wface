@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ToggleButtonGroup, { ToggleButtonGroupProps } from '@material-ui/lab/ToggleButtonGroup';
+import ToggleButtonGroup, { ToggleButtonGroupProps } from '@mui/material/ToggleButtonGroup';
 
 export interface WToggleButtonGroupProps extends ToggleButtonGroupProps {
 }

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Menu } from '@material-ui/core';
-import { MenuProps } from '@material-ui/core/Menu';
+import { Menu } from '@mui/material';
+import { MenuProps } from '@mui/material/Menu';
 import { BaseComponentProps } from '../../base/base-component-props';
 
 export type WMenuProps = BaseComponentProps & MenuProps & { 

@@ -1,6 +1,10 @@
 import * as React from 'react';
-import { Card, createStyles, withStyles, WithStyles, withTheme } from '@material-ui/core';
-import { CardProps } from '@material-ui/core/Card';
+import { Card } from '@mui/material';
+import { WithStyles } from '@mui/styles';
+import createStyles from '@mui/styles/createStyles';
+import withStyles from '@mui/styles/withStyles';
+import withTheme from '@mui/styles/withTheme';
+import { CardProps } from '@mui/material/Card';
 import { WTheme } from '../../others/w-theme-provider/w-theme';
 
 export interface WCardProps extends CardProps {

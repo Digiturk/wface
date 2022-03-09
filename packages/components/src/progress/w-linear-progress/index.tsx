@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { LinearProgress } from '@material-ui/core';
-import { LinearProgressProps } from '@material-ui/core/LinearProgress';
+import { LinearProgress } from '@mui/material';
+import { LinearProgressProps } from '@mui/material/LinearProgress';
 
 export interface WLinearProgressProps extends LinearProgressProps { }
 

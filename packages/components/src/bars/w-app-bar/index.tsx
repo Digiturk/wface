@@ -1,5 +1,5 @@
 import * as React from 'react';
-import AppBar, { AppBarProps } from '@material-ui/core/AppBar';
+import AppBar, { AppBarProps } from '@mui/material/AppBar';
 import { BaseComponentProps } from '../../base/base-component-props';
 
 export type WAppBarProps = BaseComponentProps & AppBarProps & { 

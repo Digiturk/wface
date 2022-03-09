@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { CardContent } from '@material-ui/core'
-import { CardContentProps } from '@material-ui/core/CardContent';
+import { CardContent } from '@mui/material'
+import { CardContentProps } from '@mui/material/CardContent';
 
 export interface WCardContentProps extends CardContentProps { }
 

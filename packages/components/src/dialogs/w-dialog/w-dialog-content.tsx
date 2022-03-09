@@ -1,6 +1,7 @@
 import * as React from 'react';
-import DialogContent, { DialogContentProps } from '@material-ui/core/DialogContent'
-import { createStyles, withStyles } from '@material-ui/core';
+import DialogContent, { DialogContentProps } from '@mui/material/DialogContent'
+import createStyles from '@mui/styles/createStyles';
+import withStyles from '@mui/styles/withStyles';
 import { WTheme } from '../../others/w-theme-provider/w-theme';
 
 export interface WDialogContentProps extends DialogContentProps { }

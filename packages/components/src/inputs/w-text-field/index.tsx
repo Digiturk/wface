@@ -1,10 +1,10 @@
 //#region imports
 
 import * as React from 'react';
-import { InputAdornment, TextField } from '@material-ui/core';
+import { InputAdornment, TextField } from '@mui/material';
 import { WIconButton } from '../../buttons/w-icon-button';
 import { WIcon } from '../../medias/w-icon'
-import { TextFieldProps } from '@material-ui/core/TextField';
+import { TextFieldProps } from '@mui/material/TextField';
 import { BaseComponentProps } from '../../base/base-component-props';
 
 //#endregion

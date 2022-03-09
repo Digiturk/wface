@@ -1,5 +1,5 @@
 import * as React from 'react';
-import SpeedDialAction, { SpeedDialActionProps } from '@material-ui/lab/SpeedDialAction';
+import SpeedDialAction, { SpeedDialActionProps } from '@mui/material/SpeedDialAction';
 
 export interface WSpeedDialActionProps extends SpeedDialActionProps {
 }

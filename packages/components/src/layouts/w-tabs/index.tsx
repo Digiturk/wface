@@ -1,6 +1,6 @@
-import { withTheme } from '@material-ui/core';
-import Tabs, { TabsProps } from '@material-ui/core/Tabs';
-import ButtonBase from '@material-ui/core/ButtonBase';
+import withTheme from '@mui/styles/withTheme';
+import Tabs, { TabsProps } from '@mui/material/Tabs';
+import ButtonBase from '@mui/material/ButtonBase';
 import * as React from 'react';
 import { WIconButton, WTheme } from '../../..';
 import { BaseComponentProps } from '../../base/base-component-props';

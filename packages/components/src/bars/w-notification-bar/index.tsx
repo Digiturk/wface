@@ -1,4 +1,5 @@
-import { createStyles, withStyles } from '@material-ui/core';
+import createStyles from '@mui/styles/createStyles';
+import withStyles from '@mui/styles/withStyles';
 // @ts-ignore
 import classNames from 'classnames';
 import * as React from 'react';

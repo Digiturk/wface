@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { ListItemText } from '@material-ui/core';
-import { ListItemTextProps } from '@material-ui/core/ListItemText';
+import { ListItemText } from '@mui/material';
+import { ListItemTextProps } from '@mui/material/ListItemText';
 
 export interface WListItemTextProps extends ListItemTextProps { }
 

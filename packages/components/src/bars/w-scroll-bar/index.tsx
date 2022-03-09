@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Toolbar } from '@material-ui/core';
-import { ToolbarProps } from '@material-ui/core/Toolbar';
+import { Toolbar } from '@mui/material';
+import { ToolbarProps } from '@mui/material/Toolbar';
 import { Scrollbars } from 'react-custom-scrollbars';
 
 export interface WScrollBarProps { }

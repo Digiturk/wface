@@ -1,5 +1,5 @@
 import * as React from 'react';
-import DialogTitle, { DialogTitleProps } from '@material-ui/core/DialogTitle'
+import DialogTitle, { DialogTitleProps } from '@mui/material/DialogTitle'
 
 export interface WDialogTitleProps extends DialogTitleProps {}
 

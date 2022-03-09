@@ -1,6 +1,8 @@
 //#region imports 
 
-import { createStyles, withStyles } from '@material-ui/core';
+import createStyles from '@mui/styles/createStyles';
+
+import withStyles from '@mui/styles/withStyles';
 import { WCard, WCardContent, WGrid, WLoadingButton, WNotificationBar, WTextField, WTypography, WTheme } from '@wface/components';
 import { IAuthService } from "@wface/ioc";
 import { AppContext, UserContext, WStore } from '@wface/store';
@@ -151,7 +153,7 @@ class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> {
       </div>
     );
   }
-};
+}
 
 const styles = (theme: WTheme) => createStyles({
   card: {

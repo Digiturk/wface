@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Rating, { RatingProps } from '@material-ui/lab/Rating';
+import Rating, { RatingProps } from '@mui/material/Rating';
 
 export interface WRatingProps extends RatingProps {
 }

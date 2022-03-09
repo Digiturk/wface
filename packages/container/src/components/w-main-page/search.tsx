@@ -4,7 +4,7 @@ import * as React from 'react';
 import *  as WFace from '@wface/components';
 import { connect } from 'react-redux';
 import Select from 'react-select';
-import { withTheme } from '@material-ui/core';
+import withTheme from '@mui/styles/withTheme';
 
 
 interface SearchState {

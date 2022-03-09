@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Icon } from '@material-ui/core';
-import { IconProps } from '@material-ui/core/Icon';
-import { withTheme } from '@material-ui/core/styles';
+import { Icon } from '@mui/material';
+import { IconProps } from '@mui/material/Icon';
+import withTheme from '@mui/styles/withTheme';
 import { WTheme } from '../../others/w-theme-provider/w-theme';
 
 export interface WIconProps extends IconProps {

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { List } from '@material-ui/core';
-import { ListProps } from '@material-ui/core/List';
+import { List } from '@mui/material';
+import { ListProps } from '@mui/material/List';
 import { BaseComponentProps } from '../../base/base-component-props';
 
 export type WListProps = BaseComponentProps & ListProps & { 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ButtonGroup, { ButtonGroupProps } from '@material-ui/core/ButtonGroup';
+import ButtonGroup, { ButtonGroupProps } from '@mui/material/ButtonGroup';
 
 export interface WButtonGroupProps extends ButtonGroupProps { 
 }

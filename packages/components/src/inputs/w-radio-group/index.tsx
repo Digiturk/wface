@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { RadioGroup } from '@material-ui/core'
-import { RadioGroupProps } from '@material-ui/core/RadioGroup'
+import { RadioGroup } from '@mui/material'
+import { RadioGroupProps } from '@mui/material/RadioGroup'
 import { WRadio } from './w-radio';
 import { WTypography } from '../../others/w-typography';
 import { BaseComponentProps } from '../../base/base-component-props';

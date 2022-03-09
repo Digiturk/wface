@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { CardActions } from '@material-ui/core'
-import { CardActionsProps } from '@material-ui/core/CardActions';
+import { CardActions } from '@mui/material'
+import { CardActionsProps } from '@mui/material/CardActions';
 
 export interface WCardActionsProps extends CardActionsProps {
   align?: 'left' | 'right'

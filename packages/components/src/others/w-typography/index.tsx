@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Typography } from '@material-ui/core';
-import { TypographyProps } from '@material-ui/core/Typography';
+import { Typography } from '@mui/material';
+import { TypographyProps } from '@mui/material/Typography';
 
 export interface WTypographyProps extends TypographyProps { }
 

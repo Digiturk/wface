@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ToggleButton, { ToggleButtonProps } from '@material-ui/lab/ToggleButton';
+import ToggleButton, { ToggleButtonProps } from '@mui/material/ToggleButton';
 import { BaseComponentProps } from '../../base/base-component-props';
 
 export type WToggleButtonProps = BaseComponentProps & ToggleButtonProps & {

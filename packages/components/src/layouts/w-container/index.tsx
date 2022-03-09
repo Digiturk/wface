@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Container, { ContainerProps } from '@material-ui/core/Container';
+import Container, { ContainerProps } from '@mui/material/Container';
 
 export interface WContainerProps extends ContainerProps {
 
