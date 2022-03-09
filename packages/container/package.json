@@ -9,8 +9,8 @@
 	"author": "mbrn",
 	"license": "ISC",
 	"dependencies": {
-		"@material-ui/core": "4.5.0",
-		"@material-ui/styles": "4.11.4",
+		"@mui/material": "5.5.0",
+		"@mui/styles": "5.5.0",
 		"@wface/components": "0.26.2",
 		"@wface/ioc": "0.26.2",
 		"@wface/store": "0.26.2",
