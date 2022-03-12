@@ -6,17 +6,17 @@ import * as React from 'react';
 import { BaseComponentProps } from '../../base/base-component-props';
 import { WTheme } from '../../others/w-theme-provider/w-theme';
 
-export type WListItemProps<D extends React.ElementType = "li"> = BaseComponentProps & ListItemProps<D> & { 
+export type WListItemProps<D extends React.ElementType = "li"> = BaseComponentProps & ListItemProps<D> & {
 };
 
 class WListItemInner extends React.Component<WListItemProps, {}> {
-  static defaultProps: WListItemProps = { 
-    id: '',    
+  static defaultProps: WListItemProps = {
+    id: '',
     dense: true,
   }
 
-  public render() {    
-    return <ListItem {...this.props} button={this.props.button as never}/>;
+  public render() {
+    return <ListItem {...this.props} />;
   }
 }
 

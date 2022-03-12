@@ -6,7 +6,7 @@ import withStyles from '@mui/styles/withStyles';
 import * as React from 'react';
 import Select from 'react-select';
 import selectComponents from './components';
-import { Omit } from '@mui/material';
+import { DistributiveOmit } from '@mui/types';
 import { WTheme } from '../../others/w-theme-provider/w-theme';
 import { BaseComponentProps } from '../../base/base-component-props';
 
@@ -22,7 +22,7 @@ export interface WSelectOption {
   value: any;
 }
 
-export type WSelectProps = BaseComponentProps & Omit<WithStyles<typeof styles>, "classes"> & { 
+export type WSelectProps = BaseComponentProps & DistributiveOmit<WithStyles<typeof styles>, "classes"> & { 
   classes?: any;
   isClearable?: boolean;
   isDisabled?: boolean;

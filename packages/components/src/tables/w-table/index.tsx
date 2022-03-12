@@ -1,8 +1,7 @@
 import * as React from 'react'
-import MaterialTable, { MaterialTableProps } from 'material-table'
+import MaterialTable, { MaterialTableProps } from 'material-table';
 import createStyles from '@mui/styles/createStyles';
 import withStyles from '@mui/styles/withStyles';
-import withTheme from '@mui/styles/withTheme';
 import { WPaper } from '../../layouts/w-paper';
 import { WTheme } from '../../others/w-theme-provider/w-theme';
 import { BaseComponentProps } from '../../base/base-component-props';

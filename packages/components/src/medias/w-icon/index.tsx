@@ -14,12 +14,12 @@ export interface WIconProps extends IconProps {
 }
 
 const sizeMap = {
-  small: {size: 'sm', style: {verticalAlign: 'top', padding: '1.6px 2.68px', fontSize: 17}},
-  default: {size: 'lg', style: {verticalAlign: 'top', padding: '4.5px 3.68px', fontSize: 21}},
-  large: {size: '2x', style: {verticalAlign: 'top', padding: '1.8px 4.68px', fontSize: 31}},
+  small: { size: 'sm', style: { verticalAlign: 'top', padding: '1.6px 2.68px', fontSize: 17 } },
+  default: { size: 'lg', style: { verticalAlign: 'top', padding: '4.5px 3.68px', fontSize: 21 } },
+  large: { size: '2x', style: { verticalAlign: 'top', padding: '1.8px 4.68px', fontSize: 31 } },
 }
 
-class WIconInner extends React.Component<WIconProps, {}> {  
+class WIconInner extends React.Component<WIconProps, {}> {
   static defaultProps: WIconProps = {
     iconSource: 'material-icons',
     iconSize: 'default'
@@ -28,19 +28,19 @@ class WIconInner extends React.Component<WIconProps, {}> {
   public render() {
     const { iconSize, iconSource, ...iconProps } = this.props;
 
-    if(iconSource == 'material-icons') {
-      return <Icon {...iconProps} fontSize={iconSize}>{this.props.icon || this.props.children}</Icon>
+    if (iconSource == 'material-icons') {
+      return <Icon {...iconProps} style={{ fontSize: iconSize, ...iconProps.style }}>{this.props.icon || this.props.children}</Icon>
     }
     else {
       let className = this.props.icon || this.props.children;
       className += " fa-" + sizeMap[iconSize].size;
 
-      const style = {...sizeMap[iconSize].style, ...this.props.style};
-      
-      if(this.props.color && this.props.color != "default") {
+      const style = { ...sizeMap[iconSize].style, ...this.props.style };
+
+      if (this.props.color && this.props.color != "inherit") {
         style.color = this.props.theme.palette[this.props.color].main;
       }
-      
+
       return <i className={className as any} style={style} />
     }
   }

@@ -110,22 +110,22 @@ export class DemoScreen2 extends React.Component<WFace.BaseScreenProps, DemoScre
                 <div style={{ height: 20 }} />
                 <WFace.WButton id="btn" variant="contained" fullWidth>Button</WFace.WButton>
                 <WFace.WCheckbox id="checkbox" label="Checkbox" />
-                <WFace.WDatePicker id="datepicker" label="Datepicker" onChange={date => this.setState({ date })} value={this.state.date} />
-                <WFace.WDateTimePicker id="datetimepicker" label="Datetimepicker" onChange={dateTime => this.setState({ dateTime })} value={this.state.dateTime} />
+                <WFace.WDatePicker id="datepicker" label="Datepicker" onChange={(date: any) => this.setState({ date })} value={this.state.date} />
+                <WFace.WDateTimePicker id="datetimepicker" label="Datetimepicker" onChange={(dateTime: any) => this.setState({ dateTime })} value={this.state.dateTime} />
                 <WFace.WIconButton id="btnIcon" >
                   <WFace.WIcon>save</WFace.WIcon>
                 </WFace.WIconButton>
                 <WFace.WNotificationBar id="notificationBar" text="deneme" type="warning" />
                 <WFace.WSwitch id="switch" title="deneme" />
                 <WFace.WTextField id="textField" label="textField" fullWidth />
-                <WFace.WTimePicker id="timepicker" label="TimePicker" onChange={time => this.setState({ time })} value={this.state.time} />
+                <WFace.WTimePicker id="timepicker" label="TimePicker" onChange={(time: any) => this.setState({ time })} value={this.state.time} />
                 <div style={{ height: 20 }} />
                 <WFace.WTooltip title="Tooltip text">
                   <WFace.WButton id="btn2" variant="contained" fullWidth onClick={() => this.setState({ isDialogOpen: true })}>Button</WFace.WButton>
                 </WFace.WTooltip> 
                 <div style={{ height: 20 }} />
                 <WFace.WLoadingButton id="btn-loading" isLoading progressType="linear">Loading Button</WFace.WLoadingButton>
-                <WFace.WToggleButton id="btn-toggle">ToggleButton</WFace.WToggleButton>
+                <WFace.WToggleButton value="btn-toggle" id="btn-toggle">ToggleButton</WFace.WToggleButton>
 
               </WFace.WCardContent>
               <WFace.WCardActions>

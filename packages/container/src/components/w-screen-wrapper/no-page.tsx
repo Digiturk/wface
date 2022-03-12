@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as WFace from '@wface/components';
 
 export default () => (
-  <WFace.WGrid container justify="center" style={{ paddingTop: 30 }}>
+  <WFace.WGrid container justifyContent="center" style={{ paddingTop: 30 }}>
     <WFace.WGrid item md={6}>
       <WFace.WPaper elevation={4} style={{ padding: 20 }}>
         <WFace.WTypography variant="h5" align="center">

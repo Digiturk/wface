@@ -19,7 +19,7 @@ export const TimePicker = (fieldProps: TimePickerProps) => (
         {...fieldProps}        
         error={byString(props.form.errors, fieldProps.name)}
         helperText={byString(props.form.errors, fieldProps.name)}      
-        onChange={date => {
+        onChange={(date: any) => {
           props.form.setFieldValue(fieldProps.name, date)
           fieldProps.onChange && fieldProps.onChange(date);
         }}

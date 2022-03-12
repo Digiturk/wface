@@ -11,7 +11,7 @@ export const Reset = (fieldProps: ResetProps) => (
     useFastField={false}
     component={props => (
       <WButton
-        color="default"
+        color="inherit"
         {...fieldProps}
         onClick={props.form.handleReset}
       >

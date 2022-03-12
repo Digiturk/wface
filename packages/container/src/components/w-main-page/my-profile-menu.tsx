@@ -77,7 +77,6 @@ class MyProfileMenu extends React.Component<MyProfileMenuProps & WStore & Dispat
               <WMenuItem
                 id={item.id}
                 key={item.id}
-                button
                 onClick={(e) => {
                   if (typeof item.onClick === 'function') {
                     item.onClick(e);
@@ -103,7 +102,7 @@ class MyProfileMenu extends React.Component<MyProfileMenuProps & WStore & Dispat
             ))
           }
           {this.props.appContext.configuration.authRequired && 
-            <WMenuItem id="menu-item-logout" key="menu-item-logout" onClick={this.logoutClicked} button>
+            <WMenuItem id="menu-item-logout" key="menu-item-logout" onClick={this.logoutClicked}>
               <WListItemIcon style={{minWidth: 'auto'}}>
                 <WIcon>exit_to_app</WIcon>
               </WListItemIcon >

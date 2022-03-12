@@ -146,7 +146,7 @@ export class DemoScreen extends React.Component<WFace.BaseScreenProps, DemoScree
               <WFace.WFormField.TextField id="txtYear" name="year" label="Yıl" />
               <WFace.WFormField.Submit id="btnSubmit">GÖSTER</WFace.WFormField.Submit>
             </WFace.WForm>
-            <WDateTimePicker id="dtp" value={this.state.dateTime} onChange={dateTime => this.setState({ dateTime })} />
+            <WDateTimePicker id="dtp" value={this.state.dateTime} onChange={(dateTime: any) => this.setState({ dateTime })} />
           </WFace.WCardContent>
           <WFace.WCardActions>
             <WFace.WButton id="btn-show-dialog" onClick={() => this.setState({ isDialogOpen: true })}>Dialog</WFace.WButton>

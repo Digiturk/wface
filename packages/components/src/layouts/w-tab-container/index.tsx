@@ -2,9 +2,9 @@ import * as React from 'react';
 import { WTabs, WTabsProps } from '../w-tabs';
 import { WTab, WTabProps } from '../w-tabs/w-tab';
 import { WTabPage } from './w-tab-page';
-import { Omit } from '@mui/material'
+import { DistributiveOmit } from '@mui/types'
 
-type WTabsPropsBase = Omit<WTabsProps, "defaultValue">
+type WTabsPropsBase = DistributiveOmit<WTabsProps, "defaultValue">
 
 export interface WTabContainerProps extends WTabsPropsBase {
   defaultValue?: number;
