@@ -56,19 +56,19 @@ const styles = (theme: WTheme) => createStyles({
     padding: '4px 4px 4px 16px'
   },
   error: {
-    backgroundColor: theme.palette.error.main
+    backgroundColor: `${theme.palette.error.main} !important`
   },
   warning: {
-    backgroundColor: theme.palette.warning.main
+    backgroundColor: `${theme.palette.warning.main} !important`
   },
   info: {
-    backgroundColor: theme.palette.info.main
+    backgroundColor: `${theme.palette.info.main} !important`
   },
   success: {
-    backgroundColor: theme.palette.success.main
+    backgroundColor: `${theme.palette.success.main} !important`
   },
   whiteText: {
-    color: theme.palette.common.white
+    color: `${theme.palette.common.white} !important`
   }
 });
 

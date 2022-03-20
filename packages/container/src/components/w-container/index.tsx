@@ -25,42 +25,29 @@ const InnerContainer: FC<any> = () => {
 
   return (
     <WThemeProvider theme={configuration.theme}>
-      <WSnackbarProvider
-        maxSnack={3}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-        autoHideDuration={5000}
-      >
+      <WSnackbarProvider maxSnack={3} anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} autoHideDuration={5000}>
         <Routes>
-
           <Route path="/" element={<Navigate to="/main" />} />
-          {(isLoggedIn || configuration.authRequired === false)
+          {(isLoggedIn && configuration.authRequired === true)
+            ? <Route path="/login" element={<Navigate to="/main" />} />
+            : <Route path="/login" element={<configuration.components.LoginPage authService={authService} appContext={appContext} userContext={userContext} setValue={setValue} />} />
+          }
+          {(isLoggedIn && configuration.authRequired === true)
             ? <Route path="/login/:screen?" element={<Navigate to={`/main/${params.screen || ''}`} />} />
             : <Route path="/login/:screen?" element={<configuration.components.LoginPage authService={authService} appContext={appContext} userContext={userContext} setValue={setValue} />} />
           }
-          {/* <Route path="/login/:screen?" element={(subProps: any) => isLoggedIn || configuration.authRequired === false ?
-            <Redirect to={`/main/${subProps.match.params.screen || ''}`} />
-            :
-            <configuration.components.LoginPage {...subProps} authService={authService} appContext={appContext} userContext={userContext} setValue={setValue} />
-          } />
-          */}
-
           {(isLoggedIn || configuration.authRequired === false)
             ? <Route path="/main" element={<configuration.components.MainPage style={{ height: '100%' }} />} />
-            : <Route path="/main" element={<Navigate to={pathname.replace('main', 'login')} />} />
+            : <Route path="/main" element={<Navigate to="/login" />} />
           }
           {(isLoggedIn || configuration.authRequired === false)
             ? <Route path="/main/:screen" element={<configuration.components.MainPage style={{ height: '100%' }} />} />
             : <Route path="/main/:screen" element={<Navigate to={pathname.replace('main', 'login')} />} />
           }
-
-          {/* <Route path="/main" element={(subProps: any) => isLoggedIn || configuration.authRequired === false
-            ? <configuration.components.MainPage {...subProps} style={{ height: '100%' }} />
-            : <Navigate to={pathname.replace('main', 'login')} />}
-          /> */}
         </Routes>
       </WSnackbarProvider>
     </WThemeProvider >
-  )
+  );
 }
 
 const WContainer: FC = () => (

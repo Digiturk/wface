@@ -110,7 +110,7 @@ class NavList extends React.Component<NavListProps & WStore, NavListState> {
         >
           {hasAnyIcon &&
             <WListItemIcon className={this.props.classes.listItemIconRoot}>
-              <WIcon iconSize="small" style={listItemTextStyle}>{item.icon}</WIcon>
+              <WIcon style={listItemTextStyle}>{item.icon}</WIcon>
             </WListItemIcon>
           }
           <WListItemText primary={<div style={listItemTextStyle as any}>{item.text}</div>} />
@@ -160,13 +160,13 @@ class NavList extends React.Component<NavListProps & WStore, NavListState> {
 const styles = (theme: WTheme) => ({
   listItemIconRoot: {
     marginRight: 6,
-    minWidth: 24,
+    minWidth: '24px !important'
   },
   listItemRoot: {
     borderRadius: '4px 0px 0px 4px',
-    borderBottomColor: theme.palette.background.paper,
+    borderBottomColor: theme.palette.background.paper + ' !important',
     '&:hover': {
-      backgroundColor: theme.palette.background.default
+      backgroundColor: theme.palette.background.default + ' !important'
     }
   }
 });

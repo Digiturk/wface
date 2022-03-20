@@ -19,7 +19,7 @@ export default class ErrorPage extends React.Component<{ error: any, info: any }
 
   render() {
     return (
-      <WFace.WGrid container justifyContent="center" style={{ paddingTop: 30 }}>
+      <WFace.WGrid container justifyContent="center">
         <WFace.WGrid item md={12} xs={12}>
           <WFace.WCard>            
             <WFace.WCardContent style={{ paddingBottom: 0 }}>

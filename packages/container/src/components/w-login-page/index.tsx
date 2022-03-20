@@ -90,8 +90,7 @@ class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> {
                     style={{ marginTop: 75 }}
                     color="primary"
                   >
-                    <img
-                      src="./assets/wface/login-logo.png" />
+                    <img src="./assets/wface/login-logo.png" />
                   </WTypography>
                   {this.state.showNotification &&
                     <WNotificationBar

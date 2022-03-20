@@ -108,7 +108,7 @@ class WSelectInner extends React.Component<WSelectProps, { focused: boolean }> {
     // @ts-ignore
     const { classes } = this.props;
     const cleanValue = this.getCleanValue();
-    let hasValue = (this.select.current && this.select.current.select.commonProps.getValue().length > 0);
+    let hasValue = (this.select.current && this.select.current.commonProps.getValue().length > 0);
     hasValue = hasValue || (this.props.isMulti ? cleanValue && cleanValue.length > 0 : cleanValue);
 
     return (
@@ -155,14 +155,14 @@ const customStyles = {
   menuPortal: (provided: any) => ({
     ...provided,
     zIndex: 9999
-  })
+  }),
 }
 
 const styles = (theme: WTheme) => createStyles({
   input: {
-    display: 'flex',
-    padding: 0,
-    height: 'auto'
+    display: 'flex !important',
+    padding: '12px 14px !important',
+    height: 'auto !important'
   },
   valueContainer: {
     display: 'flex',

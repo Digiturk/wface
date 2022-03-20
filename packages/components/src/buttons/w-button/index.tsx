@@ -1,31 +1,26 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import { ButtonProps } from '@mui/material/Button';
-import createStyles from '@mui/styles/createStyles';
-import withStyles from '@mui/styles/withStyles';
-import { WTheme } from '../../others/w-theme-provider/w-theme';
 import { BaseComponentProps } from '../../base/base-component-props';
+import makeStyles from '@mui/styles/makeStyles';
+import { useTheme } from '@mui/styles';
+import { WTheme } from '../../others';
 
-export type WButtonProps = BaseComponentProps & ButtonProps & {
-}
-
-class WButtonInner extends React.Component<WButtonProps, any> {
-  static defaultProps: WButtonProps = { color: "primary" } as any
-
-  public render() {
-    return (
-      <Button {...this.props} classes={this.props.classes} />
-    )
-  }
-}
-
-const styles = (theme: WTheme) => createStyles({
+const useStyles = makeStyles((theme: any) => ({
   root: {
     textTransform: 'none',
     boxShadow: theme.designDetails.defaultElevation ? '' : 'none',
   }
+}));
+
+export type WButtonProps = BaseComponentProps & ButtonProps & {
+}
+
+export const WButton: React.FC<WButtonProps> = React.forwardRef((props) => {
+  const classes = useStyles();
+  const theme = useTheme<WTheme>();
+
+  return (
+    <Button {...props} classes={classes} disableElevation={theme.designDetails.defaultElevation === 0} />
+  );
 });
-
-const WButton = withStyles(styles, { withTheme: true })(React.forwardRef<any, WButtonProps>((props, ref) => <WButtonInner {...props} ref={ref} />));
-
-export { WButton }

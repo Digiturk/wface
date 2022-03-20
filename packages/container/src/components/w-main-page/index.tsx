@@ -49,7 +49,7 @@ const drawerWidth = screenData.widthType === WindowWidthType.XS ? screenData.wid
 const useStyles = makeStyles((theme: any) => ({
   root: {
     height: '100%',
-    zIndex: theme.zIndex.drawer + 1,
+    zIndex: (theme.zIndex.drawer + 1) + ' !important',
     overflow: 'hidden',
   },
   flex: {
@@ -57,17 +57,18 @@ const useStyles = makeStyles((theme: any) => ({
     display: 'inline'
   },
   appBar: {
-    zIndex: theme.zIndex.drawer + 1,
+    zIndex: (theme.zIndex.drawer + 1) + ' !important',
   },
   drawerPaper: {
     width: drawerWidth,
     height: '100%'
   },
   tabLabelContainer: {
-    padding: 0,
-    paddingLeft: 5,
-    textTransform: 'none',
-    wordBreak: 'break-word'
+    padding: '0px !important',
+    paddingLeft: '5px !important',
+    textTransform: 'none !important' as any,
+    wordBreak: 'break-word',
+    color: 'white !important'
   },
   content: {
     flexGrow: 1,
@@ -173,6 +174,7 @@ const WMainPage: FC = () => {
         scrollButtons="auto"
         scrollButtonStyle={{ color: 'white' }}
         centered
+        indicatorColor="secondary"
         value={appContext.currentScreen && appContext.currentScreen.menuTreeItem.id}
         onChange={(event, value) => {
           MenuTreeUtil.menuTreeForEach(appContext.menuTree, item => {
@@ -308,7 +310,6 @@ const WMainPage: FC = () => {
   
   return (
     <div className={classes.root + " main-page"}>
-      {pathname}
       <WAppBar id="main-app-bar" position="fixed" className={classes.appBar} elevation={theme.designDetails.defaultElevation}>
         <WToolBar id="main-tool-bar" variant="dense" className={classes.toolbar}>
           <WIconButton

@@ -13,7 +13,6 @@ export type WLoadingButtonProps = BaseComponentProps & WButtonProps & {
   isLoading?: boolean;
   classes?: any;
   status?: "error" | "normal" | "success";
-  progressType?: "circular" | "linear";
 }
 
 class WLoadingButtonInner extends React.Component<WLoadingButtonProps, {}> {
@@ -25,21 +24,17 @@ class WLoadingButtonInner extends React.Component<WLoadingButtonProps, {}> {
     });
 
     return (
-      <span className={classes.wrapper}>
-        <WButton
-          {...buttonProps}
-          variant="contained"
-          color="primary"
-          className={buttonClassname}
-          disabled={isLoading}>
-          {isLoading ?
-            (this.props.progressType == "circular" ?
-              <><WCircularProgress size={24} className={classes.circularProgress} /></>:
-              <>{this.props.children}<WLinearProgress className={classes.linearProgress} /></>) :
-            this.props.children
-          }
-        </WButton>
-      </span>
+      <WButton
+        {...buttonProps}
+        variant="contained"
+        color="primary"
+        className={buttonClassname}
+        disabled={isLoading}>
+        {isLoading
+          ? <><WCircularProgress size={24} className={classes.circularProgress} /></>
+          : this.props.children
+        }
+      </WButton>
     )
   }
 }
@@ -48,9 +43,6 @@ const styles = (theme: WTheme) => createStyles({
   root: {
     display: 'flex',
     alignItems: 'center',
-  },
-  wrapper: {
-    position: 'relative',
   },
   buttonError: {
     backgroundColor: theme.palette.error.main,
@@ -63,15 +55,6 @@ const styles = (theme: WTheme) => createStyles({
     '&:hover': {
       backgroundColor: theme.palette.success.dark,
     },
-  },
-  linearProgress: {
-    color: theme.palette.primary.main,
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    height: 3,
-    width: '100%',
-    borderRadius: '0px 0px 4px 4px'
   },
   circularProgress: {
     color: theme.palette.primary.main,

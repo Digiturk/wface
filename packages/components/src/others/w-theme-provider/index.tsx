@@ -34,7 +34,7 @@ const defaultTheme = {
       contrastText: '#fff'
     },
     background: {
-      default: '#e8eaf5', 
+      default: '#e8eaf5',
       paper: '#FFFFFF'
     }
   } as WPalette,
@@ -47,39 +47,53 @@ const defaultTheme = {
   } as WDesignDetails
 };
 
-// <MuiThemeProvider theme={theme}>
-export class WThemeProvider extends React.Component<{ theme?: WTheme }, any> {
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      theme: this.getTheme()
-    }
-  }
+export const WThemeProvider: React.FC<{ theme?: WTheme }> = ({ theme, children }) => {
 
-  componentWillUpdate(prevProps: any) {
-    if (prevProps.theme != this.props.theme) {
-      this.setState({
-        theme: this.getTheme()
-      });
-    }
-  }
+  const mergedTheme = React.useMemo(() => {
+    const merged = merge(defaultTheme, theme);
+    const result = createTheme(merged);
 
-  getTheme() {
-    const merged = merge(defaultTheme, this.props.theme);
-    const theme = createTheme(merged);
+    return result;
+  }, [theme]);
 
-    return theme;
-  }
-
-  public render() {
-    const theme = this.getTheme();
-    return (
-      <ThemeProvider theme={theme}>
-        {this.props.children}
-      </ThemeProvider>
-    );
-  }
+  return (
+    <ThemeProvider theme={mergedTheme}>
+      {children}
+    </ThemeProvider>
+  )
 }
+
+// <MuiThemeProvider theme={theme}>
+// export class WThemeProvider extends React.Component<{ theme?: WTheme }, any> {
+//   constructor(props: any) {
+//     super(props);
+//     this.state = {
+//       theme: this.getTheme()
+//     }
+//   }
+
+//   componentWillUpdate(prevProps: any) {
+//     if (prevProps.theme != this.props.theme) {
+//       this.setState({
+//         theme: this.getTheme()
+//       });
+//     }
+//   }
+
+//   getTheme() {
+//     const merged = merge(defaultTheme, this.props.theme);
+//     const theme = createTheme(merged);
+
+//     return theme;
+//   }
+
+//   public render() {
+//     const theme = this.getTheme();
+//     return (
+      
+//     );
+//   }
+// }
 
 export * from './w-design-details';
 export * from './w-palette';
