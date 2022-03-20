@@ -1,6 +1,6 @@
 {
 	"name": "@wface/container",
-	"version": "0.26.2",
+	"version": "0.27.0",
 	"description": "",
 	"main": "index.ts",
 	"scripts": {
@@ -12,9 +12,9 @@
 		"@mui/material": "5.5.0",
 		"@mui/styles": "5.5.0",
     "@mui/types": "7.1.2",
-		"@wface/components": "0.26.2",
-		"@wface/ioc": "0.26.2",
-		"@wface/store": "0.26.2",
+		"@wface/components": "0.27.0",
+		"@wface/ioc": "0.27.0",
+		"@wface/store": "0.27.0",
 		"axios": "0.26.0",
 		"classnames": "2.3.1",
 		"fuse.js": "6.5.3",
