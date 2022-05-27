@@ -115,7 +115,7 @@ const WMainPage: FC = () => {
   const classes = useStyles();
   const theme = useTheme<any>();
   const navigate = useNavigate();
-  const { pathname } = useLocation();  
+  const { pathname } = useLocation();
   console.log(pathname);
   const { enqueueSnackbar } = useSnackbar();
   const { appContext } = useSelector((state: any) => state);
@@ -307,7 +307,7 @@ const WMainPage: FC = () => {
       navigate(newUrl, { replace: true });
     }
   }, [appContext.currentScreen, getScreenUrl, pathname]);
-  
+
   return (
     <div className={classes.root + " main-page"}>
       <WAppBar id="main-app-bar" position="fixed" className={classes.appBar} elevation={theme.designDetails.defaultElevation}>
@@ -327,6 +327,9 @@ const WMainPage: FC = () => {
             </WTypography>
           </span>
           <div style={{ flexGrow: 1 }} />
+          {appContext.configuration.customToolbarComponent && (
+            <appContext.configuration.customToolbarComponent appContext={appContext} />
+          )}
           {appContext.configuration.search && <Search />}
           <MyProfileMenu items={appContext.configuration.rightContextItems} />
         </WToolBar>
