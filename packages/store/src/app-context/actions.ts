@@ -11,6 +11,7 @@ const SAVE_SCREEN_ANY = 'appContext/SAVE_SCREEN_ANY';
 const CHANGE_SCREEN_MODE = 'appContext/CHANGE_SCREEN_MODE';
 const SET_CONFIRM_ON_CLOSE = 'appContext/SET_CONFIRM_ON_CLOSE';
 const SET_QUERY_PARAMS = 'appContext/SET_QUERY_PARAMS';
+const TOGGLE_RIGHT_DRAWER = 'appContext/TOGGLE_RIGHT_DRAWER';
 const CLEAR = 'appContext/CLEAR';
 
 const setValue = createAction(SET_VALUE)<{key: string, value: any}>();
@@ -23,6 +24,7 @@ const saveScreenAny = createAction(SAVE_SCREEN_ANY)<{key: string, value: any}>()
 const changeScreenMode = createAction(CHANGE_SCREEN_MODE)<{screenId: string, mode: 'normal' | 'loading',}>();
 const setConfirmOnClose = createAction(SET_CONFIRM_ON_CLOSE)<{screenId: string, confirmOnClose: boolean, confirmOnCloseMessage: string}>();
 const setQueryParams = createAction(SET_QUERY_PARAMS)<{ [key: string]: any }>();
+const toggleRightDrawer = createAction(TOGGLE_RIGHT_DRAWER)<boolean | void>();
 const clear = createAction(CLEAR)();
 const Actions = { 
   setValue,
@@ -35,6 +37,7 @@ const Actions = {
   changeScreenMode,
   setConfirmOnClose,
   setQueryParams,
+  toggleRightDrawer,
   clear
 };
 export default Actions;

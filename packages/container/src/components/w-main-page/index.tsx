@@ -19,6 +19,7 @@ import MyProfileMenu from './my-profile-menu';
 import Search from './search';
 import NavList from './nav-list';
 import { FC, useState, useCallback, useEffect } from 'react';
+import RightDrawer from './right-drawer';
 
 //#endregion 
 
@@ -116,7 +117,6 @@ const WMainPage: FC = () => {
   const theme = useTheme<any>();
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  console.log(pathname);
   const { enqueueSnackbar } = useSnackbar();
   const { appContext } = useSelector((state: any) => state);
   const dispatch = useDispatch();
@@ -328,10 +328,11 @@ const WMainPage: FC = () => {
           </span>
           <div style={{ flexGrow: 1 }} />
           {appContext.configuration.customToolbarComponent && (
-            <appContext.configuration.customToolbarComponent appContext={appContext} />
+            <appContext.configuration.customToolbarComponent />
           )}
           {appContext.configuration.search && <Search />}
           <MyProfileMenu items={appContext.configuration.rightContextItems} />
+          {appContext.configuration.rightDrawer && <RightDrawer options={appContext.configuration.rightDrawer} />}
         </WToolBar>
         <div style={{ display: 'flex' }}>
           <div style={{ flex: 1, maxWidth: '100%' }}>
@@ -372,7 +373,7 @@ const WMainPage: FC = () => {
             </div>
           </div>
         </div>
-      </WDrawer>
+      </WDrawer>      
 
       <main className={classNames(classes.content, classes[`content-left`], {
         [classes.contentShift]: drawerOpen,

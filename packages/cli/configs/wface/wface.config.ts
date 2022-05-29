@@ -28,7 +28,10 @@ const config = {
       text: 'My Profile',
       onClick: () => alert('You clicked my profile')
     }
-  ]
+  ],
+  // rightDrawer: {
+  //   contentComponent: () => "component"
+  // }
 } as IConfiguration
 
 export default config;

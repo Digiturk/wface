@@ -128,6 +128,14 @@ const appContext = (state: AppContext = initialState, action: AppAction): AppCon
     case getType(Actions.setQueryParams): {
       return { ...state, queryParams: action.payload };
     }
+    case getType(Actions.toggleRightDrawer): {
+      let rightDrawerOpen = !state.rightDrawerOpen;
+      if(action.payload !== undefined) {
+        rightDrawerOpen = !!action.payload;
+      }
+
+      return { ...state, rightDrawerOpen };
+    }
   }
 
   return state;

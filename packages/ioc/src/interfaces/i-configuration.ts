@@ -11,6 +11,12 @@ export default interface IConfiguration {
   screenList: { [key: string]: any };
   rightContextItems?: { id: string, icon?: string, text: string, onClick?: ((event: any) => void) | string }[];
   customToolbarComponent?: any;
+  rightDrawer?: {
+    buttonIcon?: string;
+    buttonComponent?: any;
+    contentComponent?: any;
+    contentBoxStyle?: any;
+  };
 
   authRequired?: any;
   authService?: { new(...args: any[]): IAuthService; };

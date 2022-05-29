@@ -7,6 +7,7 @@ export default interface AppContext {
     currentScreen?: ScreenData;
     cache: { [key: string]: any };
     queryParams: { [key: string]: any };
+    rightDrawerOpen: boolean;
 }
 
 export interface ScreenData {
