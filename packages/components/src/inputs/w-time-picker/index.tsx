@@ -20,7 +20,7 @@ export class WTimePicker extends React.Component<WTimePickerProps, {}> {
 
   public render() {
     return (
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <LocalizationProvider dateAdapter={AdapterDateFns as any}>
         <TimePicker
           {...this.props}
           renderInput={(props: any) => <WTextField {...props} fullWidth={this.props.fullWidth} />}

@@ -21,7 +21,7 @@ export class WDateTimePicker extends React.Component<WDateTimePickerProps, {}> {
 
   public render() {
     return (
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <LocalizationProvider dateAdapter={AdapterDateFns as any}>
         <DateTimePicker
           {...this.props}
           renderInput={(props: any) => <WTextField {...props} fullWidth={this.props.fullWidth}/>}
