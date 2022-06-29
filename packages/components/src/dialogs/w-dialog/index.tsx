@@ -9,24 +9,19 @@ export type WDialogProps = BaseComponentProps & DialogProps & {
   theme?: WTheme;
 }
 
-class WDialogInner extends React.Component<WDialogProps, any> {
-  static defaultProps: WDialogProps = {
-    id: "",
-    open: false,
-    scroll: "paper"
-  }
+export const  WDialogInner: React.FC<WDialogProps> = (props: WDialogProps) => {
+  const { id="",open=false,scroll="paper",classes} = props;
 
-  public render() {
-    const { classes } = this.props;
-    return <Dialog {...this.props} classes={{ paperScrollPaper: classes.root }} PaperProps={{ elevation: this.props.theme.designDetails.defaultElevation, ...this.props.PaperProps }} />
-  }
+  return <Dialog {...props} classes={{ paperScrollPaper: classes.root }} PaperProps={{ elevation: props.theme.designDetails.defaultElevation, ...props.PaperProps }} />
+
 }
 
 const styles = (theme: WTheme) => createStyles({ root: {} });
-
+//classes hatası aldığımdan style bu şekilde bırakıldı
 export const WDialog = withStyles(styles, { withTheme: true })(WDialogInner);
 
 export * from './w-dialog-actions';
 export * from './w-dialog-content-text';
 export * from './w-dialog-content';
 export * from './w-dialog-title';
+

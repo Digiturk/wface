@@ -4,8 +4,10 @@ import Popper, { PopperProps } from '@mui/material/Popper';
 export interface WPopperProps extends PopperProps {
 }
 
-export class WPopper extends React.Component<WPopperProps, {}> {
-  public render() {
-    return <Popper {...this.props}/>
-  }
-}
+export const  WPopper: React.FC<WPopperProps> = React.forwardRef((props) => {
+  return (
+    <Popper  {...props} />
+  );
+});
+
+

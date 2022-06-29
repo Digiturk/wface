@@ -115,3 +115,91 @@ class WCarouselInner extends React.Component<WCarouselProps, any> {
 }
 
 export const WCarousel = withTheme(WCarouselInner);
+
+
+
+//FUNCTİON içinde render slide farklı bir yerde component olarka olşturulmalı
+// export const WCarouselInner: React.FC<WCarouselProps> = React.forwardRef(
+//   (props) => {
+//     const [active, setActive] = useState(props.active ? props.active : 0);
+//     const [fullScreen, setfullScreen] = useState(false);
+
+//     const keyHandler = (event: any) => {
+//       if (event.keyCode === 13 && event.altKey) {
+//         // Alt + Enter
+//         setfullScreen(true);
+//       } else if (event.keyCode === 27) {
+//         // ESC
+//         setfullScreen(false);
+//       } else if (event.keyCode === 37 && active > 0) {
+//         // Left
+//         changeActive(active - 1);
+//       } else if (event.keyCode === 39 && active < props.children.length - 1) {
+//         // Right
+//         changeActive(active + 1);
+//       }
+//     };
+
+//     useEffect(() => {
+//       document.addEventListener("keydown", keyHandler, false);
+//       return  ()=>{
+//         document.removeEventListener("keydown", keyHandler, false);
+//       }
+//     },[]);
+
+//     function changeActive(active: number){
+//       useEffect(() => {
+//         props.onActiveChanged && props.onActiveChanged(active)
+//       }, [active])
+//    }
+
+
+//   //FARKLI BİR COMPONENT OLMALI !fUCTİON STATE İ GÖRMÜYOR
+//   const renderSlide=()=> {
+//     const active = props.active === undefined ? 0: props.active;
+//     const count = props.children.length;
+
+//     return (
+//       <div key="slide" style={{ maxWidth: '100%', display: 'flex', flex: 1, flexDirection: 'column', height: '100%', background: 'radial-gradient(circle , #fff, #c3bdca)', }}>
+//         <WGrid
+//           container
+//           style={{ opacity: 0.7 }}
+//         >
+//           <WGrid item xs={10} style={{ padding: 10 }}>
+//             <WIconButton id={props.id + "-btn-fullscreen"} color="primary" onClick={() => setFullScreen({ fullScreen: !fullScreen.fullScreen })}><WIcon>fullscreen</WIcon></WIconButton>
+//           </WGrid>
+//           <WGrid item xs={2} style={{ display: 'flex', justifyContent: 'flex-end' }}>
+//             <WIconButton id={props.id + "-btn-first-page"} color="primary" onClick={() => changeActive(0)} disabled={active === 0}><WIcon>first_page</WIcon></WIconButton>
+//             <WIconButton id={props.id + "-btn-previous-page"} color="primary" onClick={() => changeActive(active - 1)} disabled={active === 0}><WIcon>chevron_left</WIcon></WIconButton>
+//             <WTooltip title={props.slideTitles[active]}>
+//               <span style={{ display: 'flex' }}>
+//                 <WTypography color="primary" variant="button" style={{ minWidth: 50, textAlign: 'center', margin: 'auto' }}>{(active + 1)}{" / "}{count}</WTypography>
+//               </span>
+//             </WTooltip>
+//             <WIconButton id={props.id + "-btn-next-page"} color="primary" onClick={() => changeActive(active + 1)} disabled={active === count - 1}><WIcon>chevron_right</WIcon></WIconButton>
+//             <WIconButton id={props.id + "-btn-last-page"} color="primary" onClick={() => changeActive(count - 1)} disabled={active === count - 1}><WIcon>last_page</WIcon></WIconButton>
+//           </WGrid>
+//         </WGrid>
+//         <SwipeableViews
+//           index={active}
+//           style={{ height: '100%', }}
+//           containerStyle={{ height: '100%' }}
+//           slideStyle={{ overflow: 'hidden', font: 'roboto' }}
+//           onChangeIndex={(active: any) => changeActive(active)}
+//         >
+//           {props.children}
+//         </SwipeableViews>
+//       </div>
+//     );
+//   }
+
+//   let style = { height: '100%' } as any;
+//   if (fullScreen) {
+//     style = { position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 9999 }
+//   }
+//   return (
+//     <div style={style}>
+//       {renderSlide()}
+//     </div>
+//   )
+// }

@@ -9,23 +9,16 @@ export type WTimePickerProps = BaseComponentProps & TimePickerProps & {
   format?: string;
 }
 
-export class WTimePicker extends React.Component<WTimePickerProps, {}> {
-  static defaultProps: Partial<WTimePickerProps> = {
-    id: '',
-    ampm: false,
-    clearable: true,
-    fullWidth: true,
-    format: "HH:mm"
-  }
 
-  public render() {
-    return (
-      <LocalizationProvider dateAdapter={AdapterDateFns as any}>
-        <TimePicker
-          {...this.props}
-          renderInput={(props: any) => <WTextField {...props} fullWidth={this.props.fullWidth} />}
-        />
-      </LocalizationProvider>
-    );
-  }
-}
+export const WTimePicker: React.FC<WTimePickerProps> =((props:WTimePickerProps) => {
+  const {id="",ampm= false,clearable=true, format="HH:mm",fullWidth= true, } = props;
+
+  return (
+    <LocalizationProvider dateAdapter={AdapterDateFns as any}>
+    <TimePicker
+      {...props}
+      renderInput={(props: any) => <WTextField {...props} fullWidth={fullWidth} />}
+    />
+  </LocalizationProvider>
+  );
+});

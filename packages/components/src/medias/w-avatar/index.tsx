@@ -3,8 +3,9 @@ import Avatar, { AvatarProps } from '@mui/material/Avatar';
 
 export interface WAvatarProps extends AvatarProps { }
 
-export class WAvatar extends React.Component<WAvatarProps, {}> {
-  public render() {
-    return <Avatar {...this.props} />
-  }
-}
+export const WAvatar : React.FC<WAvatarProps> = React.forwardRef((props) => {
+  return (
+    <Avatar  {...props} />
+  );
+});
+

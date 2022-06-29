@@ -3,15 +3,15 @@ import { SnackbarProvider, SnackbarProviderProps, withSnackbar, useSnackbar } fr
 
 export interface WSnackbarProviderProps extends SnackbarProviderProps{
 }
-
-export class WSnackbarProvider extends React.Component<WSnackbarProviderProps, any> {
-  public render() {
-    return (
-      <SnackbarProvider {...this.props}>
-        {this.props.children}
+export const WSnackbarProvider: React.FC<WSnackbarProviderProps> = React.forwardRef((props) => {
+ 
+  return (
+    <SnackbarProvider {...props}>
+        {props.children}
       </SnackbarProvider>
-    );
-  }
-}
+  );
+});
+
+
 
 export { withSnackbar, useSnackbar };

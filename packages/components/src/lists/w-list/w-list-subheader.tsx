@@ -4,8 +4,10 @@ import { ListSubheaderProps } from '@mui/material/ListSubheader';
 
 export interface WListSubheaderProps extends ListSubheaderProps { }
 
-export class WListSubheader extends React.Component<WListSubheaderProps, {}> {
-  public render() {
-    return <ListSubheader {...this.props} />;
-  }
-}
+
+export const WListSubheader : React.FC<WListSubheaderProps> = React.forwardRef((props) => {
+  return (
+    <ListSubheader {...props} />
+  );
+});
+

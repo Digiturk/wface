@@ -3,8 +3,6 @@ import SwipeableViews from 'react-swipeable-views';
 
 export interface WSwipeableViewsProps { }
 
-export class WSwipeableViews extends React.Component<WSwipeableViewsProps, {}> {
-  public render() {
-    return <SwipeableViews {...this.props} />;
-  }
-}
+export const  WSwipeableViews : React.FC<WSwipeableViewsProps> = React.forwardRef((props) => {
+  return <SwipeableViews {...props} />;})
+

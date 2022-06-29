@@ -3,8 +3,10 @@ import CardActionArea, { CardActionAreaProps } from '@mui/material/CardActionAre
 
 export interface WCardActionAreaProps extends CardActionAreaProps { }
 
-export class WCardActionArea extends React.Component<WCardActionAreaProps, {}> {
-  public render() {
-    return <CardActionArea {...this.props} />
-  }
-}
+
+export const  WCardActionArea: React.FC<WCardActionAreaProps> = React.forwardRef((props) => {
+  return (
+    <CardActionArea {...props}/>
+  );
+});
+

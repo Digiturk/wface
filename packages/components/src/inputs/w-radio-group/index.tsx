@@ -17,35 +17,30 @@ export type WRadioGroupProps = BaseComponentProps & RadioGroupProps & {
   options?: WRadioGroupOption[];
 }
 
-export class WRadioGroup extends React.Component<WRadioGroupProps, {}> {
-  static defaultProps: WRadioGroupProps = {
-    id: '',
-    axis: 'horizontal',
-    label: ''
+export const WRadioGroup: React.FC<WRadioGroupProps> =((props:WRadioGroupProps) => {
+  const {id="",axis="horizontal", label=""  } = props;
+
+  let { children } = props; 
+  if (props.options) {
+    children = props.options.map(option => <WRadio {...option}/>)
   }
 
-  public render() {
-    let { children } = this.props; 
-    if (this.props.options) {
-      children = this.props.options.map(option => <WRadio {...option}/>)
-    }
-
-    const style = { 
-      flexDirection: this.props.axis == "horizontal" ? "row" : "column"
-    }
-
-    const labelStyle = {
-      marginRight: 15, 
-      alignSelf: this.props.axis == "horizontal" ? "center" : "left"
-    }
-
-    return (
-      <RadioGroup {...this.props} style={style as any}>
-        <WTypography style={labelStyle}>{this.props.label}</WTypography>
-        {children}
-      </RadioGroup>
-    );
+  const style = { 
+    flexDirection: axis == "horizontal" ? "row" : "column"
   }
-}
+
+  const labelStyle = {
+    marginRight: 15, 
+    alignSelf: axis == "horizontal" ? "center" : "left"
+  }
+
+  return (
+    <RadioGroup {...props} style={style as any}>
+      <WTypography style={labelStyle}>{label}</WTypography>
+      {children}
+    </RadioGroup>
+  );
+});
+
 
 export * from './w-radio';

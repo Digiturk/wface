@@ -9,24 +9,16 @@ export type WDateTimePickerProps = BaseComponentProps & DateTimePickerProps & {
   format?: string;
 }
 
-export class WDateTimePicker extends React.Component<WDateTimePickerProps, {}> {
-  static defaultProps: Partial<WDateTimePickerProps> = {
-    id: '',
-    ampm: false,
-    clearable: true,
-    format: "dd.MM.yyyy HH:mm",
-    fullWidth: true,
-    showTodayButton: true,
-  }
+export const WDateTimePicker: React.FC<WDateTimePickerProps> =((props:WDateTimePickerProps) => {
+  const {id="",ampm= false,clearable=true, format= "dd.MM.yyyy HH:mm",fullWidth= true,  showTodayButton=true  } = props;
 
-  public render() {
-    return (
-      <LocalizationProvider dateAdapter={AdapterDateFns as any}>
+  return (
+   <LocalizationProvider dateAdapter={AdapterDateFns as any}>
         <DateTimePicker
-          {...this.props}
-          renderInput={(props: any) => <WTextField {...props} fullWidth={this.props.fullWidth}/>}
+          {...props}
+          renderInput={(props: any) => <WTextField {...props} fullWidth={fullWidth}/>}
         />
       </LocalizationProvider>
-    );
-  }
-}
+  );
+});
+

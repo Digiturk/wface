@@ -18,36 +18,37 @@ export type WExpansionPanelProps = BaseComponentProps & AccordionProps & {
   classes?: any;
 }
 
-class WExpansionPanelInner extends React.Component<WExpansionPanelProps, any> {
-  public render() {
-    const { classes } = this.props;
 
-    return (
-      <Accordion elevation={this.props.theme.designDetails.defaultElevation} {...this.props}>
-        <AccordionSummary expandIcon={<WIcon>expand_more</WIcon>} classes={{ root: classes.summaryRoot, content: classes.summaryContent }}>
-          <WTypography variant="h6">{this.props.title}</WTypography>
-        </AccordionSummary>
-        <AccordionDetails>
-          {this.props.children}
-        </AccordionDetails>
-        {this.props.actions &&
-          <AccordionActions>
-            {
-              this.props.actions.map(action => {
-                if (action.custom) {
-                  return action.custom;
-                }
-                else {
-                  return <WButton id={this.props.id + "-btn"} size="small" onClick={action.onClick}>{action.text}</WButton>;
-                }
-              })
-            }
-          </AccordionActions>
-        }
-      </Accordion>
-    );
-  }
-}
+export const WExpansionPanelInner: React.FC<WExpansionPanelProps> = React.forwardRef((props) => {
+  const { classes } = props;
+
+
+  return (
+    <Accordion elevation={props.theme.designDetails.defaultElevation} {...props}>
+      <AccordionSummary expandIcon={<WIcon>expand_more</WIcon>} classes={{ root: classes.summaryRoot, content: classes.summaryContent }}>
+        <WTypography variant="h6">{props.title}</WTypography>
+      </AccordionSummary>
+      <AccordionDetails>
+        {props.children}
+      </AccordionDetails>
+      {props.actions &&
+        <AccordionActions>
+          {
+            props.actions.map(action => {
+              if (action.custom) {
+                return action.custom;
+              }
+              else {
+                return <WButton id={props.id + "-btn"} size="small" onClick={action.onClick}>{action.text}</WButton>;
+              }
+            })
+          }
+        </AccordionActions>
+      }
+    </Accordion>
+  );
+})
+
 
 const styles = (theme: WTheme) => createStyles({
   summaryRoot: {

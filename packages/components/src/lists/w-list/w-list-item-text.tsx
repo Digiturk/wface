@@ -4,8 +4,10 @@ import { ListItemTextProps } from '@mui/material/ListItemText';
 
 export interface WListItemTextProps extends ListItemTextProps { }
 
-export class WListItemText extends React.Component<WListItemTextProps, {}> {
-  public render() {
-    return <ListItemText {...this.props} />;
-  }
-}
+export const WListItemText: React.FC<WListItemTextProps> = React.forwardRef((props) => {
+  return (
+    <ListItemText {...props}/>
+  );
+});
+
+

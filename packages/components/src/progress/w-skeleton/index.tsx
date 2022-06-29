@@ -4,8 +4,9 @@ import Skeleton, { SkeletonProps } from '@mui/material/Skeleton';
 export interface WSkeletonProps extends SkeletonProps {
 }
 
-export class WSkeleton extends React.Component<WSkeletonProps, {}> {
-  public render() {
-    return <Skeleton {...this.props}/>
-  }
-}
+export const  WSkeleton  : React.FC<WSkeletonProps> = React.forwardRef((props) => {
+  return (
+    <Skeleton  {...props} />
+  );
+});
+

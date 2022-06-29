@@ -4,8 +4,9 @@ import Popover, { PopoverProps } from '@mui/material/Popover';
 export interface WPopoverProps extends PopoverProps {
 }
 
-export class WPopover extends React.Component<WPopoverProps, {}> {
-  public render() {
-    return <Popover {...this.props}/>
-  }
-}
+export const  WPopover: React.FC<WPopoverProps> = React.forwardRef((props) => {
+  return (
+    <Popover  {...props} />
+  );
+});
+

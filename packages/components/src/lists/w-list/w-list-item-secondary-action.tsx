@@ -4,8 +4,9 @@ import { ListItemSecondaryActionProps } from '@mui/material/ListItemSecondaryAct
 
 export interface WListItemSecondaryActionProps extends ListItemSecondaryActionProps { }
 
-export class WListItemSecondaryAction extends React.Component<WListItemSecondaryActionProps, {}> {
-  public render() {
-    return <ListItemSecondaryAction {...this.props} />;
-  }
-}
+export const WListItemSecondaryAction: React.FC<WListItemSecondaryActionProps> = React.forwardRef((props) => {
+  return (
+    <ListItemSecondaryAction {...props}/>
+  );
+});
+

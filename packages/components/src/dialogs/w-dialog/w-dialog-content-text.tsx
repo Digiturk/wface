@@ -3,8 +3,9 @@ import DialogContentText, { DialogContentTextProps } from '@mui/material/DialogC
 
 export interface WDialogContentTextProps extends DialogContentTextProps {}
 
-export class WDialogContentText extends React.Component<DialogContentTextProps, {}> {
-  public render() {
-    return <DialogContentText {...this.props}/>
-  }
-}
+export const WDialogContentText : React.FC<DialogContentTextProps> = React.forwardRef((props) => {
+  return (
+    <DialogContentText {...props} />
+  );
+});
+

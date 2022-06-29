@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Icon } from '@mui/material';
+import { Icon, useTheme } from '@mui/material';
 import { IconProps } from '@mui/material/Icon';
 import withTheme from '@mui/styles/withTheme';
 import { WTheme } from '../../others/w-theme-provider/w-theme';
-
+import makeStyles from '@mui/styles/makeStyles';
 export interface WIconProps extends IconProps {
   icon?: string;
   iconSource?: 'material-icons' | 'fontawesome';
@@ -11,6 +11,7 @@ export interface WIconProps extends IconProps {
   /** @deprecated use iconSize instead */
   children?: string;
   theme?: WTheme;
+  color?: any;
 }
 
 const sizeMap = {
@@ -19,31 +20,32 @@ const sizeMap = {
   large: { size: '2x', style: { verticalAlign: 'top', padding: '1.8px 4.68px', fontSize: 31 } },
 }
 
-class WIconInner extends React.Component<WIconProps, {}> {
-  static defaultProps: WIconProps = {
-    iconSource: 'material-icons',
-    iconSize: 'default'
+const useStyles = makeStyles((theme: any) => ({
+  root: {
+    textTransform: 'none',
+    boxShadow: theme.designDetails.defaultElevation ? '' : 'none',
   }
+}));
 
-  public render() {
-    const { iconSize, iconSource, ...iconProps } = this.props;
 
-    if (iconSource == 'material-icons') {
-      return <Icon {...iconProps} style={{ fontSize: iconSize, ...iconProps.style }}>{this.props.icon || this.props.children}</Icon>
+export const WIcon: React.FC<WIconProps> = (props: WIconProps) => {
+  const classes = useStyles();
+  const theme = useTheme<WTheme>();
+  const { iconSize = 'default', iconSource = 'material-icons', ...iconProps } = props;
+
+  if (iconSource == 'material-icons') {
+    return <Icon classes={classes} {...iconProps} style={{ fontSize: iconSize, ...iconProps.style }}>{props.icon || props.children}</Icon>
+  }
+  else {
+    let className = props.icon || props.children;
+    className += " fa-" + sizeMap[iconSize].size;
+
+    const style = { ...sizeMap[iconSize].style, ...props.style };
+
+    if (props.color && props.color != "inherit") {
+      style.color = props.theme.palette[props.color].main;
     }
-    else {
-      let className = this.props.icon || this.props.children;
-      className += " fa-" + sizeMap[iconSize].size;
 
-      const style = { ...sizeMap[iconSize].style, ...this.props.style };
-
-      if (this.props.color && this.props.color != "inherit") {
-        style.color = this.props.theme.palette[this.props.color].main;
-      }
-
-      return <i className={className as any} style={style} />
-    }
+    return <i className={className as any} style={style} />
   }
 }
-
-export const WIcon = withTheme(WIconInner);

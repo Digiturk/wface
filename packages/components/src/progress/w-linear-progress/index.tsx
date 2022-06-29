@@ -4,8 +4,9 @@ import { LinearProgressProps } from '@mui/material/LinearProgress';
 
 export interface WLinearProgressProps extends LinearProgressProps { }
 
-export class WLinearProgress extends React.Component<WLinearProgressProps, {}> {
-  public render() {
-    return <LinearProgress {...this.props} />
-  }
-}
+export const WLinearProgress : React.FC<WLinearProgressProps> = React.forwardRef((props) => {
+  return (
+    <LinearProgress {...props} />
+  );
+});
+

@@ -4,8 +4,11 @@ import ButtonGroup, { ButtonGroupProps } from '@mui/material/ButtonGroup';
 export interface WButtonGroupProps extends ButtonGroupProps { 
 }
 
-export class WButtonGroup extends React.Component<WButtonGroupProps, {}> {
-  public render() {
-    return <ButtonGroup {...this.props}/>
-  }
-}
+export const WButtonGroup: React.FC<WButtonGroupProps> = React.forwardRef((props) => {
+  return (
+    <ButtonGroup  {...props} />
+  );
+});
+
+
+

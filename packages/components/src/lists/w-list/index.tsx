@@ -6,11 +6,13 @@ import { BaseComponentProps } from '../../base/base-component-props';
 export type WListProps = BaseComponentProps & ListProps & { 
 }
 
-export class WList extends React.Component<WListProps, {}> {
-  public render() {
-    return <List {...this.props} />
-  }
-}
+export const WList: React.FC<WListProps> = React.forwardRef((props) => {
+  return (
+    <List {...props}/>
+  );
+});
+
+
 
 export * from './w-list-item-icon';
 export * from './w-list-item-secondary-action';

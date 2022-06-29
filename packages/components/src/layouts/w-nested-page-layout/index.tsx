@@ -61,7 +61,7 @@ export class WNestedPageLayoutInner extends React.Component<WNestedPageLayoutPro
   onStateChanged = () => {
     this.props.onStateChanged && this.props.onStateChanged(this.state);
   }
-
+  //Benzeri w-carausel funtionda componentde burası ayrı bir component olablr çünkü state i görmüyır fucnt yapılığında
   renderComponent = (baseScreenProps: BaseScreenProps) => {
     const last = this.state.stack[this.state.stack.length - 1];
 
