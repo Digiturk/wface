@@ -5,8 +5,8 @@ import { BaseComponentProps } from '../../base/base-component-props';
 export type WSwitchProps = BaseComponentProps & SwitchProps & { 
 }
 
-export class WSwitch extends React.Component<WSwitchProps, {}> {
-  public render() {
-    return <Switch {...this.props} />
-  }
-}
+export const  WSwitch : React.FC<WSwitchProps> = React.forwardRef((props) => {
+  return (
+    <Switch {...props} />
+  );
+});

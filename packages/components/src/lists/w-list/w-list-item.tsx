@@ -9,16 +9,16 @@ import { WTheme } from '../../others/w-theme-provider/w-theme';
 export type WListItemProps<D extends React.ElementType = "li"> = BaseComponentProps & ListItemProps<D> & {
 };
 
-class WListItemInner extends React.Component<WListItemProps, {}> {
-  static defaultProps: WListItemProps = {
-    id: '',
-    dense: true,
-  }
 
-  public render() {
-    return <ListItem {...this.props} />;
+const WListItemInner: React.FC<WListItemProps> = (props: WListItemProps) => {
+ 
+  const {id="",dense=true} = props;
+
+  return (
+    <ListItem {...props} />
+  )
+
   }
-}
 
 const styles = (theme: WTheme) => createStyles({
   root: {

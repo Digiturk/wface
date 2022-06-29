@@ -6,12 +6,9 @@ export interface WTabPageProps extends DistributiveOmit<DistributiveOmit<WTabPro
   children?: any;
 }
 
-export class WTabPage extends React.Component<WTabPageProps, any> {
-  public render() {
-    return (
-      <div>
-        laksjdlkjdlkasjas
-      </div>
-    );
-  }
-}
+
+export const WTabPage : React.FC<WTabPageProps> = React.forwardRef((props) => {
+return (
+<div>lasdjasdhsajkhd</div>
+  )
+});

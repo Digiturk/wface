@@ -1,25 +1,27 @@
 import * as React from 'react';
+import { FC } from 'react';
 import DialogContent, { DialogContentProps } from '@mui/material/DialogContent'
 import createStyles from '@mui/styles/createStyles';
 import withStyles from '@mui/styles/withStyles';
 import { WTheme } from '../../others/w-theme-provider/w-theme';
+import makeStyles from '@mui/styles/makeStyles';
+
+
 
 export interface WDialogContentProps extends DialogContentProps { }
 
-export class WDialogContentInner extends React.Component<DialogContentProps, {}> {
-  public render() {
-    const { classes } = this.props;
-    return (
-      <DialogContent {...this.props} className={classes.root}>
-        {this.props.children}
-      </DialogContent>
-    );
-  }
-}
-
-const styles = (theme: WTheme) => createStyles({
+  const useStyles = makeStyles((theme: any) => ({
   root: {
   }
-});
+  }));
 
-export const WDialogContent = withStyles(styles)(WDialogContentInner);
+
+export const WDialogContentInner : React.FC<DialogContentProps>=React.forwardRef((props) => {
+  const classes = useStyles();
+  return (
+    <DialogContent {...props} className={classes.root}>
+    {props.children}
+  </DialogContent>
+  );
+});
+  

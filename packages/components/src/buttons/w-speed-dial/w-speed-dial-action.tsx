@@ -4,8 +4,10 @@ import SpeedDialAction, { SpeedDialActionProps } from '@mui/material/SpeedDialAc
 export interface WSpeedDialActionProps extends SpeedDialActionProps {
 }
 
-export class WSpeedDialAction extends React.Component<WSpeedDialActionProps, {}> {
-  public render() {
-    return <SpeedDialAction {...this.props}/>
-  }
-}
+export const WSpeedDialAction: React.FC<WSpeedDialActionProps> = React.forwardRef((props) => {
+  return (
+    <SpeedDialAction  {...props} />
+  );
+});
+
+

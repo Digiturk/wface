@@ -4,8 +4,10 @@ import { CardContentProps } from '@mui/material/CardContent';
 
 export interface WCardContentProps extends CardContentProps { }
 
-export class WCardContent extends React.Component<WCardContentProps, {}> {
-  public render() {
-    return <CardContent {...this.props} />
-  }
-}
+export const  WCardContent : React.FC<WCardContentProps> = React.forwardRef((props) => {
+  return (
+    <CardContent {...props}/>
+  );
+});
+
+

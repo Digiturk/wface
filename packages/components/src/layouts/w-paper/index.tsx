@@ -8,11 +8,11 @@ export interface WPaperProps extends PaperProps {
   theme?: WTheme;
 }
 
-export class WPaperInner extends React.Component<WPaperProps, {}> {
-  public render() {
-    return <Paper elevation={this.props.theme.designDetails.defaultElevation} {...this.props}/>;
-  }
-}
+export const   WPaperInner  : React.FC<WPaperProps> = React.forwardRef((props) => {
+  return <Paper elevation={props.theme.designDetails.defaultElevation} {...props}/>
+});
+
+
 
 export const WPaper = withTheme(WPaperInner);
 

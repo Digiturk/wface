@@ -18,28 +18,28 @@ export type WBasicDialogProps = BaseComponentProps & WDialogProps & {
   title?: string;
 }
 
-export class WBasicDialog extends React.Component<WBasicDialogProps, {}> {
-  public render() {
-    return (
-      <WDialog 
-        open={this.props.open}
-        {...this.props}      
+
+export const   WBasicDialog: React.FC<WBasicDialogProps> = React.forwardRef((props) => {
+  return (
+    <WDialog 
+        open={props.open}
+        {...props}      
       >
-        {this.props.title && <WDialogTitle>{this.props.title}</WDialogTitle>}
+        {props.title && <WDialogTitle>{props.title}</WDialogTitle>}
         <WDialogContent>
-          {typeof this.props.children === "string" ? 
-            <WDialogContentText>{this.props.children}</WDialogContentText> :
-            this.props.children
+          {typeof props.children === "string" ? 
+            <WDialogContentText>{props.children}</WDialogContentText> :
+            props.children
           }
         </WDialogContent>
-        {this.props.actions && this.props.actions.length > 0 && 
+        {props.actions && props.actions.length > 0 && 
           <WDialogActions>
-            {this.props.actions.map(action => (
+            {props.actions.map(action => (
               <WButton id={action.id} onClick={action.onClick} color="primary">{action.text}</WButton>
             ))}
           </WDialogActions>
         }
       </WDialog>
-    );
-  }
-}
+  );
+});
+

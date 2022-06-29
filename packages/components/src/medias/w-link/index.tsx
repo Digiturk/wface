@@ -4,8 +4,10 @@ import Link, { LinkProps } from '@mui/material/Link';
 export interface WLinkProps extends LinkProps {
 }
 
-export class WLink extends React.Component<WLinkProps, {}> {
-  public render() {
-    return <Link {...this.props}/>
-  }  
-}
+export const  WLink : React.FC<WLinkProps> = React.forwardRef((props) => {
+  return (
+    <Link  {...props} />
+  );
+});
+
+

@@ -15,28 +15,29 @@ export type WLoadingButtonProps = BaseComponentProps & WButtonProps & {
   status?: "error" | "normal" | "success";
 }
 
-class WLoadingButtonInner extends React.Component<WLoadingButtonProps, {}> {
-  public render() {
-    const { classes, isLoading, ...buttonProps } = this.props;
-    const buttonClassname = classNames({
-      [classes.buttonError]: this.props.status == "error",
-      [classes.buttonSuccess]: this.props.status == "success",
-    });
 
-    return (
-      <WButton
-        {...buttonProps}
-        variant="contained"
-        color="primary"
-        className={buttonClassname}
-        disabled={isLoading}>
-        {isLoading
-          ? <><WCircularProgress size={24} className={classes.circularProgress} /></>
-          : this.props.children
-        }
-      </WButton>
-    )
-  }
+ const WLoadingButtonInner: React.FC<WLoadingButtonProps> = (props: WLoadingButtonProps) => {
+ 
+  const {classes, isLoading, ...buttonProps } = props;
+  const buttonClassname = classNames({
+    [classes.buttonError]: props.status == "error",
+    [classes.buttonSuccess]: props.status == "success",
+  });
+
+  return (
+    <WButton
+      {...buttonProps}
+      variant="contained"
+      color="primary"
+      className={buttonClassname}
+      disabled={isLoading}>
+      {isLoading
+        ? <><WCircularProgress size={24} className={classes.circularProgress} /></>
+        : props.children
+      }
+    </WButton>
+  )
+
 }
 
 const styles = (theme: WTheme) => createStyles({
@@ -62,3 +63,4 @@ const styles = (theme: WTheme) => createStyles({
 });
 
 export const WLoadingButton = withStyles(styles, { withTheme: true })(WLoadingButtonInner);
+

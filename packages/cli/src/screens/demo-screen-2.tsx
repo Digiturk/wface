@@ -124,13 +124,13 @@ export class DemoScreen2 extends React.Component<WFace.BaseScreenProps, DemoScre
                   <WFace.WIcon>save</WFace.WIcon>
                 </WFace.WIconButton>
                 <div style={{ height: 20 }} />
-                <WFace.WNotificationBar id="notificationBar" text="success" type="success" />
+                {/* <WFace.WNotificationBar id="notificationBar" text="success" type="success" />
                 <div style={{ height: 20 }} />
                 <WFace.WNotificationBar id="notificationBar" text="info" type="info" />
                 <div style={{ height: 20 }} />
                 <WFace.WNotificationBar id="notificationBar" text="warning" type="warning" />
                 <div style={{ height: 20 }} />
-                <WFace.WNotificationBar id="notificationBar" text="error" type="error" />
+                <WFace.WNotificationBar id="notificationBar" text="error" type="error" /> */}
                 <div style={{ height: 20 }} />
                 <WFace.WSwitch id="switch" title="deneme" />
                 <div style={{ height: 20 }} />

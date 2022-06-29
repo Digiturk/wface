@@ -16,32 +16,34 @@ export type WFormProps = BaseComponentProps & {
   formStyle?: React.CSSProperties; 
 }
 
-export class WForm extends React.Component<WFormProps, {}> {
-  public render() {
-    return (
-      <Formik
-        {...this.props}
-        validate={values => {
-          if(this.props.onChange) {
-            this.props.onChange(values);
-          }
 
-          if(this.props.validate) { 
-            return this.props.validate(values);
-          }
-        }}        
-        render={(
-          formikProps: FormikProps<any>) => {
-          return(
-            <Form style={this.props.formStyle}>
-              {this.props.children}
-            </Form>
-          );
-        }
-        }
-      />
-    );
-  }
-}
 
+
+export const WForm :React.FC<WFormProps>=React.forwardRef((props)=>{
+  return (
+    <Formik
+      {...props}
+      validate={values => {
+        if(props.onChange) {
+          props.onChange(values);
+        }
+
+        if(props.validate) { 
+          return props.validate(values);
+        }
+      }}        
+      render={(
+        formikProps: FormikProps<any>) => {
+        return(
+          <Form style={props.formStyle}>
+            {props.children}
+          </Form>
+        );
+      }
+      }
+    />
+  );
+});
 export { Yup as WFormValidation }
+
+

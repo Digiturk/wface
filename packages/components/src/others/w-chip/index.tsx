@@ -3,11 +3,13 @@ import { Chip } from '@mui/material';
 import { ChipProps } from '@mui/material/Chip';
 import { BaseComponentProps } from '../../base/base-component-props';
 
+
+
 export type WChipProps = BaseComponentProps & ChipProps & { 
 }
+export const WChip: React.FC<WChipProps> = React.forwardRef((props) => {
+  return (
+    <Chip   {...props} />
+  );
+});
 
-export class WChip extends React.Component<WChipProps, any> {
-  public render() {
-    return <Chip {...this.props} />
-  }
-}

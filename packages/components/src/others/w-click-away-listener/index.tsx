@@ -4,8 +4,11 @@ import ClickAwayListener, { ClickAwayListenerProps } from '@mui/material/ClickAw
 export interface WClickAwayListenerProps extends ClickAwayListenerProps {
 }
 
-export class WClickAwayListener extends React.Component<WClickAwayListenerProps, {}> {
-  public render() {
-    return <ClickAwayListener {...this.props}/>
-  }
-}
+
+export const WClickAwayListener: React.FC<WClickAwayListenerProps> = React.forwardRef((props) => {
+  return (
+    <ClickAwayListener  {...props} />
+  );
+});
+
+
