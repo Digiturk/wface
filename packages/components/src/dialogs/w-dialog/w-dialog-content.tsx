@@ -1,9 +1,6 @@
 import * as React from 'react';
 import { FC } from 'react';
 import DialogContent, { DialogContentProps } from '@mui/material/DialogContent'
-import createStyles from '@mui/styles/createStyles';
-import withStyles from '@mui/styles/withStyles';
-import { WTheme } from '../../others/w-theme-provider/w-theme';
 import makeStyles from '@mui/styles/makeStyles';
 
 

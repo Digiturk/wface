@@ -5,6 +5,8 @@ import { WTypography } from '../../others/w-typography';
 import { BaseComponentProps } from '../../base/base-component-props';
 import makeStyles from '@mui/styles/makeStyles';
 import classNames from 'classnames';
+
+
 export type WNotificationBarProps = BaseComponentProps & {
   text: string;
   type?: "error" | "warning" | "info" | "success";

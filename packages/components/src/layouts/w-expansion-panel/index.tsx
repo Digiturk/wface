@@ -9,7 +9,7 @@ import createStyles from '@mui/styles/createStyles';
 import withStyles from '@mui/styles/withStyles';
 import { WTheme } from '../../others/w-theme-provider/w-theme';
 // @ts-ignore
-import classNames from 'classnames';
+
 
 export type WExpansionPanelProps = BaseComponentProps & AccordionProps & {
   title: string;

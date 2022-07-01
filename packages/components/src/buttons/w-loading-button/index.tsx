@@ -3,7 +3,6 @@ import * as React from 'react';
 import classNames from 'classnames';
 import { WButton, WButtonProps } from '../w-button';
 import { WCircularProgress } from '../../progress/w-circular-progress';
-import { WLinearProgress } from '../../progress/w-linear-progress';
 import createStyles from '@mui/styles/createStyles';
 import withStyles from '@mui/styles/withStyles';
 import { BaseComponentProps } from '../../base/base-component-props';
