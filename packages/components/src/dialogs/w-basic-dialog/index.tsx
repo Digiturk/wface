@@ -2,7 +2,7 @@ import * as React from 'react';
 import { WDialog, WDialogProps } from '../w-dialog'
 import { WDialogActions } from '../w-dialog/w-dialog-actions'
 import { WDialogContentText } from '../w-dialog/w-dialog-content-text'
-import { WDialogContent } from '../w-dialog/w-dialog-content'
+import { WDialogContent} from '../w-dialog/w-dialog-content'
 import { WDialogTitle } from '../w-dialog/w-dialog-title'
 import { WButton } from '../../buttons/w-button';
 import { BaseComponentProps } from '../../base/base-component-props';

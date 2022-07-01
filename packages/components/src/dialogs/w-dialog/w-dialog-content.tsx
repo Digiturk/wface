@@ -25,3 +25,4 @@ export const WDialogContentInner : React.FC<DialogContentProps>=React.forwardRef
   );
 });
   
+export const WDialogContent = (WDialogContentInner);

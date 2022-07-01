@@ -1,12 +1,9 @@
 import * as React from 'react';
-import createStyles from '@mui/styles/createStyles';
-import withStyles from '@mui/styles/withStyles';
 import MenuItem, { MenuItemProps } from '@mui/material/MenuItem';
-import { WTheme } from '../../others/w-theme-provider/w-theme';
 import { emphasize } from '@mui/material/styles';
 import { BaseComponentProps } from '../../base/base-component-props';
 import makeStyles from '@mui/styles/makeStyles';
-import { useTheme } from '@mui/styles';
+
 
 export type WMenuItemProps<D extends React.ElementType = "li"> = BaseComponentProps & MenuItemProps<D> & { 
 }
@@ -34,6 +31,9 @@ export const WMenuItemInner : React.FC<WMenuItemProps> = React.forwardRef((props
      <MenuItem {...props} classes={classes} />
   );
 });
+
+export const WMenuItem = (WMenuItemInner);
+
 
 // class WMenuItemInner extends React.Component<WMenuItemProps, {}> {
 //   static defaultProps: WMenuItemProps = { 
