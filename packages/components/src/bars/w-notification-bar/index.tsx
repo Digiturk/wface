@@ -1,6 +1,7 @@
 import React from 'react';
 import { WPaper } from '../../layouts/w-paper';
 import { WIcon } from '../../medias/w-icon';
+import { WIconButton } from '../../buttons';
 import { WTypography } from '../../others/w-typography';
 import { BaseComponentProps } from '../../base/base-component-props';
 import makeStyles from '@mui/styles/makeStyles';

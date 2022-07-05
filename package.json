@@ -10,7 +10,8 @@
 		"fs-extra": "10.0.0",
 		"gulp": "4.0.2",
 		"lerna": "4.0.0",
-		"minimist": "1.2.5"
+		"minimist": "1.2.5",
+		"webpack-cli": "^4.10.0"
 	},
 	"repository": {
 		"type": "git",
@@ -37,7 +38,7 @@
 		"@material-ui/core": "^4.12.4",
 		"@mui/lab": "^5.0.0-alpha.88",
 		"@mui/material": "^5.8.6",
-		"@types/react": "^17.0.39",
+		"@types/react": "^17.0.47",
 		"latest-version": "^7.0.0"
 	}
 }

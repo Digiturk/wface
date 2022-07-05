@@ -6,6 +6,7 @@ import { BaseComponentProps } from '../../base/base-component-props';
 
 export type WIconButtonProps = BaseComponentProps & IconButtonProps & {
   icon?: string
+
 }
 
 export const WIconButton: React.FC<WIconButtonProps> = (props) => {
@@ -15,3 +16,5 @@ export const WIconButton: React.FC<WIconButtonProps> = (props) => {
     </IconButton>
   );
 };
+
+

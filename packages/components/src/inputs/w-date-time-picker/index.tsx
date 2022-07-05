@@ -3,10 +3,14 @@ import { DateTimePicker, DateTimePickerProps, LocalizationProvider } from '@mui/
 import AdapterDateFns from '@date-io/date-fns'
 import { BaseComponentProps } from '../../base/base-component-props';
 import { WTextField } from '../w-text-field';
+import { DistributiveOmit } from '@mui/types';
 
-export type WDateTimePickerProps = BaseComponentProps & DateTimePickerProps & {
+
+
+export type WDateTimePickerProps = BaseComponentProps & DistributiveOmit<DateTimePickerProps, "renderInput"> & {
   fullWidth?: boolean,
   format?: string;
+  renderInput?: DateTimePickerProps["renderInput"];
 }
 
 export const WDateTimePicker: React.FC<WDateTimePickerProps> =((props:WDateTimePickerProps) => {
