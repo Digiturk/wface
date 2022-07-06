@@ -180,7 +180,7 @@ export class WChart extends React.Component<WChartProps, any> {
       <CartesianGrid {...gridProps} />
     );
   }
-
+  
   private renderChart = (chartData: ChartType, id: number = 0) => {
     const { chartType, ...chartProps } = chartData;
 

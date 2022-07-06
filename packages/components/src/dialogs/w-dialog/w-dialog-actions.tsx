@@ -3,9 +3,9 @@ import DialogActions, { DialogActionsProps } from '@mui/material/DialogActions'
 
 export interface WDialogActionsProps extends DialogActionsProps {}
 
-export const WDialogActions: React.FC<DialogActionsProps> = React.forwardRef((props) => {
+export const WDialogActions: React.FC<DialogActionsProps> = React.forwardRef((props,ref) => {
   return (
-    <DialogActions  {...props} />
+    <DialogActions ref={ref} {...props} />
   );
 });
 

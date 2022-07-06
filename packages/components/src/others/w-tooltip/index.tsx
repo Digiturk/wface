@@ -6,9 +6,9 @@ export interface WTooltipProps extends TooltipProps{
 }
 
 
-export const WTooltip: React.FC<WTooltipProps> = React.forwardRef((props) => {
+export const WTooltip: React.FC<WTooltipProps> = React.forwardRef((props,innerRef) => {
   return (
-    <Tooltip   {...props} />
+    <Tooltip  ref={innerRef} {...props} />
   );
 });
 
