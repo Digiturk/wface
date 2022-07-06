@@ -9,15 +9,16 @@
 		"concurrently": "7.0.0",
 		"fs-extra": "10.0.0",
 		"gulp": "4.0.2",
+		"lerna": "4.0.0",
 		"minimist": "1.2.5",
-    "lerna": "4.0.0"
+		"webpack-cli": "^4.10.0"
 	},
 	"repository": {
 		"type": "git",
 		"url": "https://bitbucket.digiturk.com.tr/scm/itdev/wface.git"
 	},
-	"scripts": {    
-    "start": "webpack-dev-server --config=packages/cli/configs/webpack/dev.js --open",
+	"scripts": {
+		"start": "webpack-dev-server --config=packages/cli/configs/webpack/dev.js --open",
 		"clean-framework": "rimraf node_modules",
 		"clean-components": "rimraf ./packages/components/node_modules",
 		"clean-container": "rimraf ./packages/container/node_modules",
@@ -27,9 +28,17 @@
 		"clean-cli": "rimraf ./packages/cli/node_modules",
 		"clean-cefsharp-container": "rimraf ./packages/cefsharp-container/node_modules",
 		"clean": "npm run clean-framework && npm run clean-components && npm run clean-container && npm run clean-ioc && npm run clean-store && npm run clean-system && npm run clean-cli && npm run clean-cefsharp-container",
-    "version": "gulp version",
-    "versions": "gulp versions",
+		"version": "gulp version",
+		"versions": "gulp versions",
 		"publish": "gulp publish"
 	},
-	"dependencies": {}
+	"dependencies": {
+		"@emotion/react": "^11.9.3",
+		"@emotion/styled": "^11.9.3",
+		"@material-ui/core": "^4.12.4",
+		"@mui/lab": "^5.0.0-alpha.88",
+		"@mui/material": "^5.8.6",
+		"@types/react": "^17.0.47",
+		"latest-version": "^7.0.0"
+	}
 }

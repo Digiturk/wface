@@ -1,3 +1,3 @@
 export interface BaseComponentProps {
-  id: string;
+  id?: string;
 }

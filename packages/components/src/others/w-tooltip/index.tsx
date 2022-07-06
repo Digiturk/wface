@@ -13,8 +13,4 @@ export const WTooltip: React.FC<WTooltipProps> = React.forwardRef((props) => {
 });
 
 
-// export class WTooltip extends React.Component<WTooltipProps, any> {
-//   public render() {
-//     return <Tooltip {...this.props}/>;
-//   }
-// }
+

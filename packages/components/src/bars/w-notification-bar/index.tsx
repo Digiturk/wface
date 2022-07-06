@@ -1,9 +1,12 @@
+import React from 'react';
 import { WPaper } from '../../layouts/w-paper';
 import { WIcon } from '../../medias/w-icon';
+import { WIconButton } from '../../buttons';
 import { WTypography } from '../../others/w-typography';
 import { BaseComponentProps } from '../../base/base-component-props';
-import { WTheme } from '../../others/w-theme-provider/w-theme';
 import makeStyles from '@mui/styles/makeStyles';
+import classNames from 'classnames';
+
 
 export type WNotificationBarProps = BaseComponentProps & {
   text: string;

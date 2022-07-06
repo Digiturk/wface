@@ -5,7 +5,6 @@ import withStyles from '@mui/styles/withStyles';
 import * as React from 'react';
 import { WButton, WIconButton, WMenuItem, BaseScreenProps, BaseScreenPropsContext } from '../../..';
 import { WTheme } from '../../others/w-theme-provider/w-theme';
-import { lastDayOfISOWeek } from 'date-fns';
 import { BaseComponentProps } from '../../base/base-component-props';
 
 export interface WNestedPageComponentProps {

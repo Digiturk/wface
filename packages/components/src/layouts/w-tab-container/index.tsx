@@ -8,7 +8,8 @@ type WTabsPropsBase = DistributiveOmit<WTabsProps, "defaultValue">
 
 export interface WTabContainerProps extends WTabsPropsBase {
   defaultValue?: number;
-  children: React.ReactElement<WTabPage> | React.ReactElement<WTabPage>[];  
+  //children?: React.ReactElement<WTabPage> | React.ReactElement<WTabPage>[];
+  //wtabpage kullanılmadığı için hata vermekte! 
 }
 
 
