@@ -19,12 +19,13 @@ export type WBasicDialogProps = BaseComponentProps & WDialogProps & {
 }
 
 
-export const   WBasicDialog: React.FC<WBasicDialogProps> = React.forwardRef((props) => {
+export const   WBasicDialog: React.FC<WBasicDialogProps> = React.forwardRef((props,ref) => {
   return (
     <WDialog 
         open={props.open}
         {...props}      
       >
+        ref={ref}
         {props.title && <WDialogTitle>{props.title}</WDialogTitle>}
         <WDialogContent>
           {typeof props.children === "string" ? 
