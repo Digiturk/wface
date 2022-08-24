@@ -122,4 +122,4 @@ const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(UserContextActions.logout())
 })
 
-export default connect<WStore, DispatchProps, MyProfileMenuProps>(mapStateToProps, mapDispatchToProps)(MyProfileMenu);
+export default connect<WStore, DispatchProps, MyProfileMenuProps>(mapStateToProps, mapDispatchToProps)(MyProfileMenu as any);

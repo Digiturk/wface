@@ -204,6 +204,5 @@ const styles = (theme: WTheme) => createStyles({
   }
 });
 
-const WSelect = withStyles(styles, { withTheme: false })((props: WSelectProps) => <WSelectInner {...props} />)
+export const WSelect = withStyles(styles, { withTheme: false })((props: WSelectProps) => <WSelectInner {...props} />) as any;
 
-export { WSelect };

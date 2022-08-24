@@ -65,6 +65,7 @@ export class WWizardInner extends React.Component<WWizardProps, WWizardState> {
           ))}
         </Stepper>
         <div className={classes.stepContainer}>
+          {/* @ts-ignore */}
           <StepComponent           
             data={data} 
             activeStep={activeStep} 
@@ -92,7 +93,7 @@ const styles = (theme: WTheme) => createStyles({
   }
 });
 
-export const WWizard = withStyles(styles, {withTheme: true})(WWizardInner);
+export const WWizard = withStyles(styles, {withTheme: true})(WWizardInner) as any;
 
 ////??? wwizardstate type hata alınmışır const içinde!classa tekrar dönüldü.
 // export const WWizardInner: React.FC<WWizardProps> = React.forwardRef((props) => {

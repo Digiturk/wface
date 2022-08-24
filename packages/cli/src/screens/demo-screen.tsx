@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as WFace from '@wface/components';
-import { MTableBody } from 'material-table';
 import { WDateTimePicker } from '@wface/components';
 
 interface DemoScreenState {

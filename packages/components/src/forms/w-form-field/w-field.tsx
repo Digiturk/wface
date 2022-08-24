@@ -18,6 +18,7 @@ const WField = props => {
   }
   else {
     return (
+      // @ts-ignore
       <FastField
         {...props}
         render={Component}

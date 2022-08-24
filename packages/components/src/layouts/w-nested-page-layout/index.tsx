@@ -15,7 +15,7 @@ export interface WNestedPageComponentProps {
 }
 
 export interface WNestedPageItem extends BaseComponentProps {
-  component: React.ReactType<WNestedPageComponentProps & BaseScreenProps>
+  component: React.ElementType<WNestedPageComponentProps & BaseScreenProps>
   name: string;
   title?: string | ((payload: any) => string);
   subItems?: WNestedPageItem[];

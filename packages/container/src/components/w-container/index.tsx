@@ -30,19 +30,29 @@ const InnerContainer: FC<any> = () => {
           <Route path="/" element={<Navigate to="/main" />} />
           {(isLoggedIn && configuration.authRequired === true)
             ? <Route path="/login" element={<Navigate to="/main" />} />
-            : <Route path="/login" element={<configuration.components.LoginPage authService={authService} appContext={appContext} userContext={userContext} setValue={setValue} />} />
+            : (
+              // @ts-ignore
+              <Route path="/login" element={<configuration.components.LoginPage authService={authService} appContext={appContext} userContext={userContext} setValue={setValue} />} />
+            )
           }
           {(isLoggedIn && configuration.authRequired === true)
             ? <Route path="/login/:screen?" element={<Navigate to={`/main/${params.screen || ''}`} />} />
-            : <Route path="/login/:screen?" element={<configuration.components.LoginPage authService={authService} appContext={appContext} userContext={userContext} setValue={setValue} />} />
+            : (
+              // @ts-ignore
+              <Route path="/login/:screen?" element={<configuration.components.LoginPage authService={authService} appContext={appContext} userContext={userContext} setValue={setValue} />} />
+            )
           }
           {(isLoggedIn || configuration.authRequired === false)
-            ? <Route path="/main" element={<configuration.components.MainPage style={{ height: '100%' }} />} />
-            : <Route path="/main" element={<Navigate to="/login" />} />
+            ? (
+              // @ts-ignore
+              <Route path="/main" element={<configuration.components.MainPage style={{ height: '100%' }} />} />
+            ) : <Route path="/main" element={<Navigate to="/login" />} />
           }
           {(isLoggedIn || configuration.authRequired === false)
-            ? <Route path="/main/:screen" element={<configuration.components.MainPage style={{ height: '100%' }} />} />
-            : <Route path="/main/:screen" element={<Navigate to={pathname.replace('main', 'login')} />} />
+            ? (
+              // @ts-ignore
+              <Route path="/main/:screen" element={<configuration.components.MainPage style={{ height: '100%' }} />} />
+            ) : <Route path="/main/:screen" element={<Navigate to={pathname.replace('main', 'login')} />} />
           }
         </Routes>
       </WSnackbarProvider>

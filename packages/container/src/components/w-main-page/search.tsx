@@ -161,4 +161,4 @@ class Search extends React.Component<SearchProps, SearchState> {
 const mapStateToProps = (state: WStore) => ({ ...state });
 
 
-export default connect<WStore, {}, SearchProps>(mapStateToProps)(withTheme((props) => <Search {...props} />));
+export default connect<WStore, {}, SearchProps>(mapStateToProps)(withTheme((props) => <Search {...props} />) as any);

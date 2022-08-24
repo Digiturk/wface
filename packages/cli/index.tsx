@@ -9,8 +9,9 @@ ES6Promise.polyfill();
 const rootEl = document.getElementById("root");
 
 render(
+  // @ts-ignore
   <AppContainer>
-    <WApp configuration={config}/>
+    <WApp configuration={config} />
   </AppContainer>,
   rootEl
 );

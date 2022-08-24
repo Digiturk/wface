@@ -112,12 +112,14 @@ class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & Disp
 
   public render() {
     if (this.state.pageError) {
+      // @ts-ignore
       return <this.props.appContext.configuration.components.ErrorPage {...this.state.pageError} />
     }
 
     const Screen = this.props.appContext.configuration.screenList[this.props.screen.menuTreeItem.screen] as any;
 
     if (!Screen) {
+      // @ts-ignore
       return <this.props.appContext.configuration.components.NoPage />
     }
 

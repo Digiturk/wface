@@ -125,6 +125,7 @@ class WApp extends React.Component<{ configuration: IConfiguration }, { configur
     return (
       <Provider store={this.store}>
         {/* <WContainer /> */}
+        {/* @ts-ignore */}
         <configuration.components.Container/>
       </Provider>
     );

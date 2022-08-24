@@ -5,12 +5,10 @@ import { WIcon } from '../../medias/w-icon';
 import { WTypography } from '../../others/w-typography';
 import { WButton } from '../../buttons/w-button';
 import { BaseComponentProps } from '../../base/base-component-props';
-import createStyles from '@mui/styles/createStyles';
-import withStyles from '@mui/styles/withStyles';
 import { WTheme } from '../../others/w-theme-provider/w-theme';
+import makeStyles from '@mui/styles/makeStyles';
+
 // @ts-ignore
-
-
 export type WExpansionPanelProps = BaseComponentProps & AccordionProps & {
   title: string;
   actions?: { text?: string, onClick?: (event) => void, custom?: React.ReactNode }[];
@@ -19,9 +17,24 @@ export type WExpansionPanelProps = BaseComponentProps & AccordionProps & {
 }
 
 
-export const WExpansionPanelInner: React.FC<WExpansionPanelProps> = React.forwardRef((props) => {
-  const { classes } = props;
+const useStyles = makeStyles((theme: any) => ({
+  summaryRoot: {
+    padding: '0px 8px',
+    margin: 0,
+    "&.Mui-expanded": {
+      minHeight: 'auto'
+    }
+  },
+  summaryContent: {
+    margin: 0,
+    "&.Mui-expanded": {
+      "margin": '0px'
+    }
+  },
+}));
 
+export const WExpansionPanel: React.FC<WExpansionPanelProps> = React.forwardRef((props) => {
+  const classes = useStyles();
 
   return (
     <Accordion elevation={props.theme.designDetails.defaultElevation} {...props}>
@@ -47,23 +60,4 @@ export const WExpansionPanelInner: React.FC<WExpansionPanelProps> = React.forwar
       }
     </Accordion>
   );
-})
-
-
-const styles = (theme: WTheme) => createStyles({
-  summaryRoot: {
-    padding: '0px 8px',
-    margin: 0,
-    "&.Mui-expanded": {
-      minHeight: 'auto'
-    }
-  },
-  summaryContent: {
-    margin: 0,
-    "&.Mui-expanded": {
-      "margin": '0px'
-    }
-  },
 });
-
-export const WExpansionPanel = withStyles(styles, { withTheme: true })(React.forwardRef<any, WExpansionPanelProps>((props, ref) => <WExpansionPanelInner {...props} ref={ref} />));

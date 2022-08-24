@@ -33,6 +33,7 @@ export const WTable: React.FC<WTableProps> = (props) => {
 
   return (
     <div id={id} className={classes.root} style={style}>
+      {/* @ts-ignore */}
       <MaterialTable
         {...extendedProps}
         components={{

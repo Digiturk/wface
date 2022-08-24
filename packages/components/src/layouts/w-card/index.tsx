@@ -1,30 +1,32 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 import { Card } from '@mui/material';
-import { WithStyles } from '@mui/styles';
-import createStyles from '@mui/styles/createStyles';
-import withStyles from '@mui/styles/withStyles';
-import withTheme from '@mui/styles/withTheme';
 import { CardProps } from '@mui/material/Card';
 import { WTheme } from '../../others/w-theme-provider/w-theme';
+import { useTheme } from '@mui/styles';
+import makeStyles from '@mui/styles/makeStyles';
 
 export interface WCardProps extends CardProps {
-  theme?: WTheme;
-  ref?:any;
+  ref?: any;
 }
 
-class WCardInner extends React.Component<WCardProps & WithStyles<string>, {}> {
-  public render() {
-    return <Card elevation={this.props.theme.designDetails.defaultElevation} {...this.props} classes={this.props.classes} />
-  }
-}
-
-const styles = (theme: WTheme) => createStyles({
+const useStyles = makeStyles((theme: any) => ({
   root: {
     margin: theme.spacing(1)
   }
-});
+}));
 
-export const WCard = withStyles(styles, { withTheme: true })((props: WCardProps & WithStyles<string>) => <WCardInner {...props}/>)
+export const WCard: FC<CardProps> = (props) => {
+  const theme = useTheme<WTheme>();
+  const classes = useStyles();
+
+  return (
+    <Card
+      elevation={theme.designDetails.defaultElevation}
+      {...props}
+      classes={classes}
+    />
+  )
+}
 
 export * from './w-card-action-area';
 export * from './w-card-actions';

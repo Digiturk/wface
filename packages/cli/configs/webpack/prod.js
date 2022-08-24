@@ -1,11 +1,11 @@
 // development config
-const { merge } = require('webpack-merge');
+const { mergeWithCustomize } = require('webpack-merge');
 const path = require('path');
 const commonConfig = require('./common');
 const _ = require("lodash");
 const WebpackProdConfig = require('@wface/container/src/configs/webpack/prod');
 
-module.exports = merge(
+module.exports = mergeWithCustomize(
   {
     customizeArray(a, b, key) {
       if (key === 'resolve.extensions') {

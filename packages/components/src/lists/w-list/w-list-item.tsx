@@ -2,25 +2,15 @@ import createStyles from '@mui/styles/createStyles';
 import withStyles from '@mui/styles/withStyles';
 import ListItem, { ListItemProps } from '@mui/material/ListItem';
 import { emphasize } from '@mui/material/styles';
-import * as React from 'react';
+import React, { FC } from 'react';
 import { BaseComponentProps } from '../../base/base-component-props';
 import { WTheme } from '../../others/w-theme-provider/w-theme';
+import makeStyles from '@mui/styles/makeStyles';
 
 export type WListItemProps<D extends React.ElementType = "li"> = BaseComponentProps & ListItemProps<D> & {
 };
 
-
-const WListItemInner: React.FC<WListItemProps> = (props: WListItemProps) => {
- 
-  const {id="",dense=true} = props;
-
-  return (
-    <ListItem {...props} />
-  )
-
-  }
-
-const styles = (theme: WTheme) => createStyles({
+const useStyles = makeStyles((theme: any) => ({
   root: {
     '&:hover': {
       backgroundColor: theme.palette.background.default
@@ -31,6 +21,10 @@ const styles = (theme: WTheme) => createStyles({
     backgroundColor: emphasize(theme.palette.background.default, 0.04) + ' !important',
     fontWeight: 500
   }
-});
+}));
 
-export const WListItem = withStyles(styles, { withTheme: false })(WListItemInner);
+export const WListItem: FC<WListItemProps> = ({ dense = true, ...rest }) => {
+  const classes = useStyles();
+
+  return <ListItem {...rest} dense={dense} classes={classes} />
+}
