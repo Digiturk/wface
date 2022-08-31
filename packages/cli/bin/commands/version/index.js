@@ -3,7 +3,6 @@ const fs = require('fs');
 const chalk = require("chalk");
 const path = require("path");
 const _ = require("lodash");
-const npm = require("npm");
 
 function version() {
   const wfaceDir = path.join(process.cwd(), "node_modules");
@@ -43,16 +42,16 @@ function logPackage(name, pckPath) {
 function getLatest(packageName) {
   var sync = true;
   var data = null;
-  npm.load({ parseable: true }, function (er, npm) {
-    if (er) {
-      sync = false;
-      return cb(er);
-    }
-    npm.commands.show([packageName, "version"], true, (version,x) => {      
-      data = x;
-      sync = false;
-    });
-  })
+  // npm.load({ parseable: true }, function (er, npm) {
+  //   if (er) {
+  //     sync = false;
+  //     return cb(er);
+  //   }
+  //   npm.commands.show([packageName, "version"], true, (version,x) => {      
+  //     data = x;
+  //     sync = false;
+  //   });
+  // })
   while(sync) {require('deasync').sleep(100);}
   return  Object.keys(data)[0];
 }
