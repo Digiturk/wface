@@ -1,6 +1,6 @@
 {
 	"name": "@wface/cli",
-	"version": "0.27.6",
+	"version": "0.27.7",
 	"description": "",
 	"author": "mehmet.baran",
 	"scripts": {
@@ -42,7 +42,6 @@
 		"style-loader": "3.3.1",
 		"stylelint": "14.5.0",
 		"stylelint-config-standard": "25.0.0",
-		"stylelint-webpack-plugin": "3.1.1",
 		"ts-loader": "9.2.6",
 		"tslint": "5.20.1",
 		"typescript": "4.6.2",
@@ -54,9 +53,9 @@
 		"webpack-merge": "5.8.0"
 	},
 	"dependencies": {
-		"@wface/components": "0.27.6",
-		"@wface/container": "0.27.6",
-		"@wface/ioc": "0.27.6",
+		"@wface/components": "0.27.7",
+		"@wface/container": "0.27.7",
+		"@wface/ioc": "0.27.7",
 		"chalk": "4.1.2",
 		"commander": "9.0.0",
 		"deasync": "0.1.24",
