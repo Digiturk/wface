@@ -1,7 +1,10 @@
 import * as React from 'react';
 import { WTheme } from './w-theme';
 import { WPalette } from './w-palette';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+// import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme } from '@mui/material';
+import { ThemeProvider } from '@mui/styles';
+
 import { blue, green, orange, red } from '@mui/material/colors';
 import { merge } from 'lodash';
 import { WDesignDetails } from './w-design-details';
@@ -90,7 +93,7 @@ export const WThemeProvider: React.FC<{ theme?: WTheme }> = ({ theme, children }
 //   public render() {
 //     const theme = this.getTheme();
 //     return (
-      
+
 //     );
 //   }
 // }

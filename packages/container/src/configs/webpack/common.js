@@ -45,7 +45,7 @@ module.exports = {
             loader: 'babel-loader',
             options: babelQuery
           },
-          'ts-loader' //'awesome-typescript-loader'
+          'ts-loader'
         ],
       },
       {
