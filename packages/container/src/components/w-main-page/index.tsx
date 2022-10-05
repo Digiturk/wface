@@ -310,7 +310,7 @@ const WMainPage: FC = () => {
 
   return (
     <div className={classes.root + " main-page"}>
-      <WAppBar id="main-app-bar" position="fixed" className={classes.appBar} elevation={theme.designDetails.defaultElevation}>
+      <WAppBar id="main-app-bar" position="fixed" className={classes.appBar} elevation={theme.designDetails?.defaultElevation}>
         <WToolBar id="main-tool-bar" variant="dense" className={classes.toolbar}>
           <WIconButton
             id="main-hamburger-button"
@@ -357,7 +357,7 @@ const WMainPage: FC = () => {
         }}
         PaperProps={{
           style: { border: 'none' },
-          elevation: theme.designDetails.defaultElevation
+          elevation: theme.designDetails?.defaultElevation || 0
         }}
       >
         <div style={{ minHeight: 96 }} />
