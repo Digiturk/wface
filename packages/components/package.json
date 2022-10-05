@@ -1,6 +1,6 @@
 {
 	"name": "@wface/components",
-	"version": "0.27.8",
+	"version": "0.27.9",
 	"description": "All wface components",
 	"author": "mbrn",
 	"main": "index.ts",
@@ -11,8 +11,8 @@
 		"@mui/lab": "5.0.0-alpha.88",
 		"@mui/styles": "5.5.0",
 		"@mui/types": "7.1.4",
-		"@wface/ioc": "0.27.8",
-		"@wface/store": "0.27.8",
+		"@wface/ioc": "0.27.9",
+		"@wface/store": "0.27.9",
 		"classnames": "2.3.1",
 		"date-fns": "2.28.0",
 		"formik": "2.2.9",
