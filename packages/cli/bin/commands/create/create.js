@@ -121,7 +121,7 @@ const create = {
         }
 
         console.log("Installing dependencies. This process could take a few minutes...");
-        childProcess.execSync('npm install', {
+        childProcess.execSync(options.yarn?'yarn':'npm install', {
           stdio: [0,1,2],
           cwd: answers.name 
         });
