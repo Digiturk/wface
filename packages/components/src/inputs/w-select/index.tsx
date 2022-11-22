@@ -136,7 +136,7 @@ class WSelectInner extends React.Component<WSelectProps, { focused: boolean }> {
             helperText: this.props.helperText,
             style: this.props.style
           }}          
-          menuPortalTarget={document.body}
+          // menuPortalTarget={document.body}
         />
       </NoSsr>
     );
