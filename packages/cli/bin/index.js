@@ -18,7 +18,8 @@ const
 
 program
     .command('create <toCreate>')
-    .option('-d, --dir <dir>', 'Directory', process.cwd())        
+    .option('-d, --dir <dir>', 'Directory', process.cwd())   
+    .option('--yarn','Install packages via YARN')     
     .action((toCreate, options)  => {  
         if(create[toCreate]) {
             create[toCreate](options);
