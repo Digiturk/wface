@@ -38,6 +38,11 @@ const RightDrawer: FC<RightDrawerProps> = ({ options }) => {
         ? <options.buttonComponent />
         : (
           <WIconButton
+          sx={{
+            minHeight: 48,
+            justifyContent: open ? 'initial' : 'center',
+            px: 2.5,
+          }}
             className={classes.button}
             id="right-drawer-icon-button"
             onClick={() => toggle()}

@@ -35,12 +35,14 @@ export default class AuthService implements IAuthService {
       result.push({
         id: (++id).toString(),
         text: 'DemoScreen2',
-        screen: 'DemoScreen2'
+        screen: 'DemoScreen2',
+        icon: 'save'
       });
       result.push({
         id: (++id).toString(),
         text: 'DemoScreen3',
-        screen: 'DemoScreen3'
+        screen: 'DemoScreen3',
+        icon:"delete"
       });
    
  

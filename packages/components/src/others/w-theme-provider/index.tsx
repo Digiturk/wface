@@ -46,7 +46,9 @@ const defaultTheme = {
   },
   designDetails: {
     defaultElevation: 0,
-    pagePadding: 0
+    pagePadding: 0,
+    isTabVisible:false,
+
   } as WDesignDetails
 };
 

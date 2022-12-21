@@ -106,15 +106,16 @@ class Search extends React.Component<SearchProps, SearchState> {
           styles={{
             control: (base) => ({
               ...base,
-              width: this.state.focused ? 400 : 200,
+              width: 500 ,
+              height:47,
               backgroundColor: this.state.focused ? '#00000066' : '#00000033',
               border: '0',
-              height: 30,
               minHeight: 30,
               transition: 'all ease 400ms',
               // color: '#FFF',
               boxShadow: 'none',
               fontSize: 14,
+              marginTop:5
             }),
             placeholder: (base) => ({
               ...base,

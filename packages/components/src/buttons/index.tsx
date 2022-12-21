@@ -5,4 +5,5 @@ export * from './w-loading-button';
 export * from './w-speed-dial';
 export * from './w-toggle-button';
 export * from './w-toggle-button-group';
+export * from  "./w-main-button";
 

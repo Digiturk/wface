@@ -101,6 +101,11 @@ class NavList extends React.Component<NavListProps & WStore, NavListState> {
 
       return (
         <WListItem
+        sx={{
+          minHeight: 48,
+          justifyContent: open ? 'initial' : 'center',
+          px: 2.5,
+        }}
           key={item.id}
           id={"menu-item-" + item.id}
           classes={{ root: this.props.classes.listItemRoot }}
@@ -109,7 +114,14 @@ class NavList extends React.Component<NavListProps & WStore, NavListState> {
           divider
         >
           {hasAnyIcon &&
-            <WListItemIcon className={this.props.classes.listItemIconRoot}>
+            <WListItemIcon 
+             sx={{
+              minWidth: 0,
+              mr: open ? 3 : 'auto',
+              justifyContent: 'center',
+
+            }}
+            className={this.props.classes.listItemIconRoot}>
               <WIcon style={listItemTextStyle}>{item.icon}</WIcon>
             </WListItemIcon>
           }
