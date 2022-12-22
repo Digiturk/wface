@@ -356,8 +356,8 @@ const WMainPage: FC = () => {
           paper: classes.drawerPaper,
         }}
         PaperProps={{
-          style: { border: 'none' },
-          elevation: theme.designDetails?.defaultElevation || 0
+          style: { border: "none",...theme.designDetails?.drawerDesign?.paper},
+          elevation: theme.designDetails?.defaultElevation || 0,
         }}
       >
         <div style={{ minHeight: 96 }} />

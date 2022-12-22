@@ -10,12 +10,19 @@ import Collapse from '@mui/material/Collapse';
 import { IMenuTreeItem, MenuTreeUtil } from '@wface/ioc';
 import { WStore } from '@wface/store';
 import { connect } from 'react-redux';
+import { SxProps } from '@mui/material';
 
 export interface NavListProps {
   menuTree: IMenuTreeItem[];
   onItemClicked?: (item: IMenuTreeItem) => void;
   theme?: WTheme;
   classes?: any;
+}
+
+export interface DrawerMenuItemProps {
+  sx?:SxProps;
+  style?:React.CSSProperties;
+  activeStyle?:React.CSSProperties;
 }
 
 interface NavListState {
@@ -87,16 +94,20 @@ class NavList extends React.Component<NavListProps & WStore, NavListState> {
     }
     else {
 
-      let listItemTextStyle = {};
+      let listItemTextStyle = {...this.props.theme.designDetails?.drawerDesign?.menuItem?.style};
       let listItemStyle = Object.assign({}, itemStyle) as any;
 
       if (this.props.appContext.currentScreen && this.props.appContext.currentScreen.menuTreeItem.id === item.id) {
         listItemTextStyle = {
-          color: this.props.theme.palette.primary.main,
-          fontWeight: 500
+          color: this.props.theme.designDetails?.drawerDesign?.menuItem?.activeStyle?.color || this.props.theme.palette.primary.main,
+          fontWeight: this.props.theme.designDetails?.drawerDesign?.menuItem?.activeStyle?.fontWeight || 500,
         };
 
-        listItemStyle.backgroundColor = this.props.theme.palette.background.default;
+        listItemStyle = {
+          backgroundColor: this.props.theme.palette.background.default,
+          ...listItemStyle,
+          ...this.props.theme.designDetails?.drawerDesign?.menuItem?.activeStyle,
+        };
       }
 
       return (
@@ -105,6 +116,7 @@ class NavList extends React.Component<NavListProps & WStore, NavListState> {
           id={"menu-item-" + item.id}
           classes={{ root: this.props.classes.listItemRoot }}
           style={listItemStyle}
+          sx={this.props.theme.designDetails?.drawerDesign?.menuItem?.sx}
           onClick={() => { this.handleLeafClick(item) }}
           divider
         >
