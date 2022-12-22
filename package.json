@@ -12,7 +12,8 @@
 	},
 	"scripts": {
 		"clean": "rm -rf ./dist",
-    "build": "yarn clean && tsc"
+    "build": "yarn clean && tsc",
+    "start": "npm start --prefix develop"
 	},
 	"dependencies": {
     "@mui/material": "5.8.6",
@@ -22,6 +23,7 @@
 		"axios": "0.26.0",
 		"classnames": "2.3.1",
 		"formik": "2.2.9",
+		"fuse.js": "6.5.3",
 		"horizontal": "0.2.2",
 		"inversify": "6.0.1",
 		"lodash": "4.17.21",
@@ -37,7 +39,9 @@
 		"react-swipeable-views": "0.14.0",
 		"recharts": "2.1.9",
 		"redux": "4.1.2",
+    "reflect-metadata": "0.1.13",
     "typesafe-actions": "5.1.0",
+		"query-string": "7.1.1",
 		"yup": "0.32.11"
 	},
   "devDependencies": {
