@@ -1,0 +1,23 @@
+{
+	"name": "@wface/components",
+	"version": "0.27.11",
+	"description": "All wface components",
+	"author": "mbrn",
+	"main": "index.ts",
+	"license": "ISC",
+	"dependencies": {
+		"@date-io/date-fns": "2.13.1",
+		"date-fns": "2.28.0",
+		"prop-types": "15.8.1",
+		"react": "17.0.2",
+		"react-dom": "17.0.2",
+		"react-fast-compare": "3.2.0",
+		"react-redux": "7.2.6",
+		"redux": "4.1.2"
+	},
+	"devDependencies": {
+		"@types/promise.prototype.finally": "2.0.4",
+		"@types/react": "17.0.39",
+		"@types/react-redux": "7.1.22"
+	}
+}

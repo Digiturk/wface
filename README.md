@@ -7,22 +7,6 @@
 
 Enterprise web application platform based on ReactJS and Typescript.
 
-## Demo and documentation
-
-You can access all examples and documentation from [WFace](http://wface.digiturk.io).
-
-## Installation
-
-    npm install @wface/cli -g
-
-## Create project
-
-    wface create project
-
-### via Yarn:
-
-    wface create project --yarn
-
 ## Contributing
 
 We'd love to have your helping hand on `wface`! See [CONTRIBUTING.md](https://github.com/Digiturk/wface/blob/master/CONTRIBUTING.md) for more information on what we're looking for and how to get started.

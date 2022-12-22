@@ -1,0 +1,137 @@
+// We have to provide a Promise polyfill if we're targeting older browsers
+// because import() returns a promise which resolves once the module is loaded
+import "reflect-metadata";
+import * as React from 'react';
+import {
+  getStore, AppContextActions, UserContextActions, UserContext, AppContext, IAppHooks,
+  IAuthService, IConfiguration, AuthServiceWrapper, IHttpService, HttpServiceWrapper, ISearchProvider, IMenuTreeItem,
+  IOC
+} from '../../../';
+import DefaultHttpService from './default-http-service';
+import WLoginPage from '../w-login-page';
+import { Provider } from 'react-redux';
+import MenuSearchProvider from '../w-main-page/menu-search-provider';
+import Components from '../index';
+// @ts-ignore
+import * as queryString from 'query-string'
+
+class WApp extends React.Component<{ configuration: IConfiguration }, { configuration: IConfiguration }> {
+  store: any;
+
+  constructor(props: { configuration: IConfiguration }) {
+    super(props);
+
+    const configuration = this.getConfig(props);
+    this.store = getStore(configuration?.useLocalStorage || false);
+    this.store.dispatch(AppContextActions.setConfig(configuration));
+    this.buildIOC(configuration);
+    this.parseQueryParams();
+
+    this.state = {
+      configuration: configuration
+    }
+  }
+
+  componentWillMount() {
+    if (IOC.isBound("IAppHooks")) {
+      const hooks = IOC.get<IAppHooks>("IAppHooks");
+      hooks.onAppWillMount && hooks.onAppWillMount();
+    }
+  }
+
+  componentDidMount() {
+    if (IOC.isBound("IAppHooks")) {
+      const hooks = IOC.get<IAppHooks>("IAppHooks");
+      hooks.onAppDidMount && hooks.onAppDidMount();
+    }
+  }
+
+  componentWillUnmount() {
+    if (IOC.isBound("IAppHooks")) {
+      const hooks = IOC.get<IAppHooks>("IAppHooks");
+      hooks.onAppWillUnmount && hooks.onAppWillUnmount();
+    }
+  }
+
+  buildIOC = (configuration: IConfiguration) => {
+
+    // Bind login function
+    const onLogin = (username: string, displayName: string, token?: string) => this.store.dispatch(UserContextActions.login({ username, displayName, token }));
+    !IOC.isBound("onLogin") &&
+      IOC.bind("onLogin").toFunction(onLogin);
+
+    // Bind logout function
+    const logout = () => this.store.dispatch(UserContextActions.logout());
+    !IOC.isBound("logout") &&
+      IOC.bind("logout").toFunction(logout);
+
+    // Bind openScreen function
+    const openScreen = (menuTreeItem: IMenuTreeItem, initialValues?: any) => this.store.dispatch(AppContextActions.openScreen({ menuTreeItem, initialValues }));
+    !IOC.isBound("openScreen") &&
+      IOC.bind("openScreen").toFunction(openScreen);
+
+    // Bind setConfig function
+    const setConfig = (configuration: IConfiguration) => this.store.dispatch(AppContextActions.setConfig(configuration));
+    !IOC.isBound("setConfig") &&
+      IOC.bind("setConfig").toFunction(setConfig);
+
+    // Bind contexts
+    !IOC.isBound("UserContext") &&
+      IOC.bind<UserContext>("UserContext").toFactory(() => this.store.getState().userContext);
+    !IOC.isBound("AppContext") &&
+      IOC.bind<AppContext>("AppContext").toFactory(() => this.store.getState().appContext);
+
+    // Bind auth service
+    !IOC.isBound("IAuthServiceInner") &&
+      IOC.bind<IAuthService>("IAuthServiceInner").to(configuration?.authService || null as any);
+    !IOC.isBound("IAuthService") &&
+      IOC.bind<IAuthService>("IAuthService").to(AuthServiceWrapper);
+
+    // Bind http service
+    !IOC.isBound("IHttpServiceInner") &&
+      IOC.bind<IHttpService>("IHttpServiceInner").to(configuration.httpService || DefaultHttpService);
+    !IOC.isBound("IHttpService") &&
+      IOC.bind<IHttpService>("IHttpService").to(HttpServiceWrapper);
+
+    // Bind hooks 
+    configuration.hooks &&
+      !IOC.isBound("IAppHooks") &&
+      IOC.bind<IAppHooks>("IAppHooks").to(configuration.hooks);
+
+    // Bind search provider
+    if (configuration.search && !IOC.isBound("ISearchProvider")) {
+      if (configuration.search === true) {
+
+        IOC.bind<ISearchProvider>("ISearchProvider").to(MenuSearchProvider);
+      }
+      else {
+        IOC.bind<ISearchProvider>("ISearchProvider").to(configuration.search);
+      }
+    }
+  }
+
+  parseQueryParams = () => {
+    const values = queryString.parse(window.location.search);
+    this.store.dispatch(AppContextActions.setQueryParams(values));
+  }
+
+  getConfig(props: { configuration: IConfiguration }): IConfiguration {
+    let config = { ...props.configuration };
+    config.authRequired = props.configuration.authRequired === undefined ? true : props.configuration.authRequired;
+    config.components = { ...Components, ...config.components };
+    return config;
+  }
+
+  public render() {
+    const { configuration } = this.state;
+    return (
+      <Provider store={this.store}>
+        {/* <WContainer /> */}
+        {/* @ts-ignore */}
+        <configuration.components.Container />
+      </Provider>
+    );
+  }
+}
+
+export default WApp
