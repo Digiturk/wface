@@ -11,7 +11,8 @@
 		"url": "https://github.com/Digiturk/wface.git"
 	},
 	"scripts": {
-		"clean": "rm -rf ./dist",
+    "clean": "rm -rf ./dist",
+    "remove-all": "yarn clean && rm -rf ./node_modules && rm yarn-error.log yarn.lock && rm -rf ./develop/node_modules && rm ./develop yarn.lock",
     "build": "yarn clean && tsc",
     "start": "npm start --prefix develop"
 	},

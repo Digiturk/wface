@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { WFace } from 'wface';
+// import { WFace } from 'wface';
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
         >
           Learn React
         </a>
-        <WFace />
+        {/* <WFace /> */}
       </header>
     </div>
   );
