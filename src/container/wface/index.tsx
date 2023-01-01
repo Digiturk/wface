@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 const WFace: FC = () => {
   return (
     <div>
-      wface2234
+      WFACE {new Date().toLocaleString()}
     </div>
   )
 };
