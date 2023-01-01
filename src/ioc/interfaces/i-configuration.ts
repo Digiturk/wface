@@ -26,4 +26,5 @@ export default interface IConfiguration {
   useLocalStorage?: boolean;
   hooks?: { new(...args: any[]): IAppHooks; };
   search?: boolean | { new(...args: any[]): ISearchProvider; };
+  singleScreen?: boolean;
 }

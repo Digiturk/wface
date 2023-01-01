@@ -34,10 +34,10 @@ const InnerContainer: FC<any> = () => {
             )
           }
           {(isLoggedIn && configuration.authRequired === true)
-            ? <Route path="/login/:screen?" element={<Navigate to={`/main/${params.screen || ''}`} />} />
+            ? <Route path="/login/:screen" element={<Navigate to={`/main/${params.screen || ''}`} />} />
             : (
               // @ts-ignore
-              <Route path="/login/:screen?" element={<configuration.components.LoginPage authService={authService} appContext={appContext} userContext={userContext} setValue={setValue} />} />
+              <Route path="/login/:screen" element={<configuration.components.LoginPage authService={authService} appContext={appContext} userContext={userContext} setValue={setValue} />} />
             )
           }
           {(isLoggedIn || configuration.authRequired === false)

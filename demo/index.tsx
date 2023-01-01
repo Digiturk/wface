@@ -15,7 +15,8 @@ const configuration: IConfiguration = {
     EmptyScreen: Screens.EmptyScreen
   },
   authService: AuthService,
-  
+  singleScreen: true,
+  useLocalStorage: true
 }
 
 const App = () => {

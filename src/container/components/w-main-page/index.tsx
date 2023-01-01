@@ -17,7 +17,7 @@ import { useNavigate, useLocation } from 'react-router';
 import MyProfileMenu from './my-profile-menu';
 import Search from './search';
 import NavList from './nav-list';
-import { FC, useState, useCallback, useEffect } from 'react';
+import { FC, useState, useCallback, useEffect, useMemo } from 'react';
 import RightDrawer from './right-drawer';
 
 //#endregion 
@@ -122,6 +122,7 @@ const WMainPage: FC = () => {
   const [drawerOpen, setDrawerOpen] = useState<boolean>(Horizontal.getType() == WindowWidthType.LG);
   const [showConfirmCloseScreenDialog, setShowConfirmCloseScreenDialog] = useState<boolean>(false);
   const [closingScreen, setClosingScreen] = useState<any>(null);
+  const topHeight = useMemo(() => appContext.configuration.singleScreen ? 48 : 96, [appContext.configuration.singleScreen]);
 
   const getScreenUrl = useCallback((screen: IMenuTreeItem) => "/" + screen.screen, []);
   const handleDrawerChange = useCallback(() => setDrawerOpen(!drawerOpen), [drawerOpen]);
@@ -333,18 +334,20 @@ const WMainPage: FC = () => {
           <MyProfileMenu items={appContext.configuration.rightContextItems} />
           {appContext.configuration.rightDrawer && <RightDrawer options={appContext.configuration.rightDrawer} />}
         </WToolBar>
-        <div style={{ display: 'flex' }}>
-          <div style={{ flex: 1, maxWidth: '100%' }}>
-            {renderTabs()}
+        {!appContext.configuration.singleScreen &&
+          <div style={{ display: 'flex' }}>
+            <div style={{ flex: 1, maxWidth: '100%' }}>
+              {renderTabs()}
+            </div>
+            {appContext.openedScreens.filter((screen: any) => !screen.menuTreeItem.notClosable).length > 0 &&
+              <WTooltip title="Close All Tabs">
+                <WIconButton id="btn-close-all-screens" onClick={closeAllOpenedScreens}>
+                  <WIcon style={{ color: '#FFFFFF66' }} iconSize="small">close</WIcon>
+                </WIconButton>
+              </WTooltip>
+            }
           </div>
-          {appContext.openedScreens.filter((screen: any) => !screen.menuTreeItem.notClosable).length > 0 &&
-            <WTooltip title="Close All Tabs">
-              <WIconButton id="btn-close-all-screens" onClick={closeAllOpenedScreens}>
-                <WIcon style={{ color: '#FFFFFF66' }} iconSize="small">close</WIcon>
-              </WIconButton>
-            </WTooltip>
-          }
-        </div>
+        }
 
       </WAppBar>
       <WDrawer
@@ -359,8 +362,8 @@ const WMainPage: FC = () => {
           elevation: theme.designDetails?.defaultElevation || 0,
         }}
       >
-        <div style={{ minHeight: 96 }} />
-        <div style={{ height: 'calc(100% - 96px)', overflow: 'none' }}>
+        <div style={{ minHeight: topHeight }} />
+        <div style={{ height: `calc(100% - ${topHeight}px)`, overflow: 'none' }}>
           <WScrollBar>
             <NavList menuTree={appContext.menuTree} onItemClicked={onMenuItemClicked} />
           </WScrollBar>
@@ -378,7 +381,7 @@ const WMainPage: FC = () => {
         [classes.contentShift]: drawerOpen,
         [classes[`contentShift-left`]]: drawerOpen,
       })}>
-        <div style={{ minHeight: 96 }} />
+        <div style={{ minHeight: topHeight }} />
         <WScrollBar>
           {
             appContext.openedScreens.map((screen: any) => {

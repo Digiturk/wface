@@ -48,7 +48,7 @@ const appContext = (state: AppContext = initialState, action: AppAction): AppCon
       return { ...state, menuTree: action.payload, openedScreens, currentScreen };
     }
     case getType(Actions.openScreen): {
-      const openedScreens = [...state.openedScreens];
+      let openedScreens = [...state.openedScreens];
       let screenData = openedScreens.find(a => a.menuTreeItem.id == action.payload.menuTreeItem.id);
       if (screenData) {
         screenData.initialValues = Object.assign({}, action.payload.menuTreeItem.initialValues, action.payload.initialValues);
@@ -63,7 +63,13 @@ const appContext = (state: AppContext = initialState, action: AppAction): AppCon
           confirmOnClose: false,
           confirmOnCloseMessage: ''
         } as ScreenData;
-        openedScreens.push(screenData);
+        
+        if(state.configuration.singleScreen) {
+          openedScreens = [screenData];
+        }
+        else {
+          openedScreens.push(screenData);
+        }
       }
 
       return { ...state, openedScreens, currentScreen: screenData };
