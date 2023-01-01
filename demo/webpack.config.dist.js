@@ -38,7 +38,7 @@ module.exports = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
     alias: {
-      wface: path.resolve(__dirname, '../src'),
+      wface: path.resolve(__dirname, '../dist'),
     },
   },
   plugins: [

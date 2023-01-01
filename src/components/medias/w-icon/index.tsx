@@ -3,6 +3,8 @@ import { Icon, useTheme } from '@mui/material';
 import { IconProps } from '@mui/material/Icon';
 import { WTheme } from '../../others/w-theme-provider/w-theme';
 import makeStyles from '@mui/styles/makeStyles';
+import * as MaterialIcons from '@mui/icons-material';
+import _ from 'lodash';
 
 
 export interface WIconProps extends IconProps {
@@ -35,7 +37,17 @@ export const WIcon: React.FC<WIconProps> = (props: WIconProps) => {
   const { iconSize = 'default', iconSource = 'material-icons', ...iconProps } = props;
 
   if (iconSource == 'material-icons') {
-    return <Icon classes={classes} {...iconProps} style={{ fontSize: iconSize, ...iconProps.style }}>{props.icon || props.children}</Icon>
+    const iconName = _.startCase(_.camelCase(props.icon || props.children)).replace(/ /g, '');
+    // @ts-ignore
+    const IconComponent = MaterialIcons[iconName];
+
+    if(IconComponent) {
+      return <IconComponent classes={classes} {...iconProps} style={{ fontSize: iconSize, ...iconProps.style }}/>;
+    } else {
+      return null;
+    }
+
+    // return <Icon classes={classes} {...iconProps} style={{ fontSize: iconSize, ...iconProps.style }}>{props.icon || props.children}</Icon>
   }
   else {
     let className = props.icon || props.children;

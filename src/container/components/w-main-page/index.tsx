@@ -48,7 +48,7 @@ const screenData = Horizontal.getData();
 const drawerWidth = screenData.widthType === WindowWidthType.XS ? screenData.width : 240;
 const useStyles = makeStyles((theme: any) => ({
   root: {
-    height: '100%',
+    height: '100vh',
     zIndex: (theme.zIndex.drawer + 1) + ' !important',
     overflow: 'hidden',
   },

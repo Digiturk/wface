@@ -10,6 +10,10 @@ import {
 // @ts-ignore
 import classNames from 'classnames';
 import * as React from "react";
+// @ts-ignore
+import loginBg from '../../../assets/login-bg.jpg';
+// @ts-ignore
+import loginLogo from '../../../assets/login-logo.png';
 
 
 //#endregion
@@ -78,7 +82,7 @@ class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> {
     const { classes } = this.props;
 
     return (
-      <div style={{ height: '100%', width: '100%', backgroundImage: `url(./assets/wface/login-bg.jpg)` }}>
+      <div style={{ height: '100vh', width: '100%', backgroundImage: `url(${loginBg})` }}>
         <div style={{ paddingTop: '5%' }}>
           <WGrid container justifyContent="center" style={{ paddingLeft: 10, paddingRight: 10 }}>
             <WGrid item xs={12} sm={6} md={4} lg={3}>
@@ -91,7 +95,7 @@ class WLoginPage extends React.Component<WLoginPageProps, WLoginPageState> {
                     style={{ marginTop: 75 }}
                     color="primary"
                   >
-                    <img src="./assets/wface/login-logo.png" />
+                    <img src={loginLogo} />
                   </WTypography>
                   {this.state.showNotification &&
                     <WNotificationBar

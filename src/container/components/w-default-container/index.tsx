@@ -58,10 +58,10 @@ const InnerContainer: FC<any> = () => {
   );
 }
 
-const WCommonContainer: FC = () => (
+const WDefaultContainer: FC = () => (
   <BrowserRouter>
     <InnerContainer />
   </BrowserRouter>
 );
 
-export default WCommonContainer;
+export default WDefaultContainer;
