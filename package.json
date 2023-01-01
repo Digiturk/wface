@@ -1,6 +1,6 @@
 {
 	"name": "wface",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "",
 	"main": "./dist/index.js",
 	"author": "Mehmet Baran",
@@ -26,7 +26,7 @@
 		"@mui/lab": "5.0.0-alpha.88",
 		"@mui/styles": "5.5.0",
 		"@mui/types": "7.1.4",
-    "@reduxjs/toolkit": "1.9.1",
+		"@reduxjs/toolkit": "1.9.1",
 		"axios": "0.26.0",
 		"classnames": "2.3.1",
 		"formik": "2.2.9",
