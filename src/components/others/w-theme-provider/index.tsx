@@ -2,12 +2,13 @@ import * as React from 'react';
 import { WTheme } from './w-theme';
 import { WPalette } from './w-palette';
 // import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { createTheme } from '@mui/material';
+import { createTheme, ThemeOptions } from '@mui/material';
 import { ThemeProvider } from '@mui/styles';
 
 import { blue, green, orange, red } from '@mui/material/colors';
 import { merge } from 'lodash';
 import { WDesignDetails } from './w-design-details';
+import { RecursivePartial } from '../../../types';
 
 const defaultTheme = {
   palette: {
@@ -50,10 +51,10 @@ const defaultTheme = {
   } as WDesignDetails
 };
 
-export const WThemeProvider: React.FC<{ theme?: WTheme, children: React.ReactNode }> = ({ theme, children }) => {
+export const WThemeProvider: React.FC<{ theme?: RecursivePartial<WTheme>, children: React.ReactNode }> = ({ theme, children }) => {
 
   const mergedTheme = React.useMemo(() => {
-    const merged = merge(defaultTheme, theme);
+    const merged = merge(defaultTheme, theme) as any;
     const result = createTheme(merged);
 
     return result;

@@ -16,7 +16,12 @@ const configuration: IConfiguration = {
   },
   authService: AuthService,
   singleScreen: true,
-  useLocalStorage: true
+  useLocalStorage: true,
+  theme: {
+    designDetails: {
+      pagePadding: 16
+    }
+  }
 }
 
 const App = () => {

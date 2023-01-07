@@ -3,6 +3,8 @@ import IComponents from './i-components';
 import IAuthService from './i-auth-service';
 import IAppHooks from './i-app-hooks';
 import ISearchProvider from './i-search-provider';
+import { WTheme } from '../../components';
+import { RecursivePartial } from '../..';
 
 export default interface IConfiguration {
   projectName: string,
@@ -22,7 +24,7 @@ export default interface IConfiguration {
   authService?: { new(...args: any[]): IAuthService; };
   httpService?: { new(...args: any[]): IHttpService; };
 
-  theme?: any;
+  theme?: RecursivePartial<WTheme>;
   useLocalStorage?: boolean;
   hooks?: { new(...args: any[]): IAppHooks; };
   search?: boolean | { new(...args: any[]): ISearchProvider; };
