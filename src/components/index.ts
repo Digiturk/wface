@@ -11,4 +11,4 @@ export * from './others';
 export * from './progress';
 export * from './tables';
 
-export { BaseScreenProps, BaseScreenPropsContext } from './base/base-screen-props';
+export * from './base/base-screen-props';

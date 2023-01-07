@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { 
+import {
   WGrid, WCard, WCardHeader,
   WCardContent, WAppBar, WToolBar,
   WNotificationBar, WBox, WButton,
@@ -42,6 +42,7 @@ export const DemoScreen4: React.FC<DemoScreen4Props> = (
   const { data, onDataChanged, onForward } = props;
   const classes = useStyles();
   const [isOpen, setIsOpen] = useState<boolean>(false);
+
   return (
     <>
       <WGrid container>
@@ -293,103 +294,103 @@ export const DemoScreen4: React.FC<DemoScreen4Props> = (
           <WCard>
             <WCardHeader title="Farklı Görünümler -Buton" />
             <WCardContent>
-            <>
-        <WGrid container spacing={3} style={{ padding: 30 }}>
-          <WGrid item xs={12} md={6}>
-            <WGrid
-              container
-              spacing={1}
-              direction="column"
-              alignItems="center"
-            >
-              <WGrid item>
-                <WButtonGroup
-                  size="small"
-                  aria-label="small outlined button group"
-                >
-                  <WButton>One</WButton>
-                  <WButton>Two</WButton>
-                  <WButton>Three</WButton>
-                </WButtonGroup>
-              </WGrid>
-              <WGrid item>
-                <WButtonGroup
-                  color="primary"
-                  aria-label="outlined primary button group"
-                >
-                  <WButton>One</WButton>
-                  <WButton>Two</WButton>
-                  <WButton>Three</WButton>
-                </WButtonGroup>
-              </WGrid>
-              <WGrid item>
-                <WButtonGroup
-                  color="secondary"
-                  size="large"
-                  aria-label="large outlined secondary button group"
-                >
-                  <WButton>One</WButton>
-                  <WButton>Two</WButton>
-                  <WButton>Three</WButton>
-                </WButtonGroup>
-              </WGrid>
-            </WGrid>
-          </WGrid>
-          <WGrid item xs={12} md={6}>
-            <WGrid
-              container
-              spacing={1}
-              direction="column"
-              alignItems="center"
-            >
-              <WGrid item>
-                <WButtonGroup
-                  variant="contained"
-                  size="small"
-                  aria-label="small contained button group"
-                >
-                  <WButton>One</WButton>
-                  <WButton>Two</WButton>
-                  <WButton>Three</WButton>
-                </WButtonGroup>
-              </WGrid>
-              <WGrid item>
-                <WButtonGroup
-                  variant="contained"
-                  color="primary"
-                  aria-label="full-width contained primary button group"
-                >
-                  <WButton>One</WButton>
-                  <WButton>Two</WButton>
-                  <WButton>Three</WButton>
-                </WButtonGroup>
-              </WGrid>
-              <WGrid item>
-                <WButtonGroup
-                  variant="contained"
-                  color="secondary"
-                  size="large"
-                  aria-label="large contained secondary button group"
-                >
-                  <WButton>One</WButton>
-                  <WButton>Two</WButton>
-                  <WButton>Three</WButton>
-                </WButtonGroup>
-              </WGrid>
-            </WGrid>
-          </WGrid>
-          <WGrid item xs={12}>
-            <WButtonGroup
-              fullWidth
-              aria-label="full width outlined button group"
-            >
-              <WButton>Full</WButton>
-              <WButton>width</WButton>
-              <WButton>ButtonGroup</WButton>
-            </WButtonGroup>
-          </WGrid>
-        </WGrid>
-      </>
+              <>
+                <WGrid container spacing={3} style={{ padding: 30 }}>
+                  <WGrid item xs={12} md={6}>
+                    <WGrid
+                      container
+                      spacing={1}
+                      direction="column"
+                      alignItems="center"
+                    >
+                      <WGrid item>
+                        <WButtonGroup
+                          size="small"
+                          aria-label="small outlined button group"
+                        >
+                          <WButton>One</WButton>
+                          <WButton>Two</WButton>
+                          <WButton>Three</WButton>
+                        </WButtonGroup>
+                      </WGrid>
+                      <WGrid item>
+                        <WButtonGroup
+                          color="primary"
+                          aria-label="outlined primary button group"
+                        >
+                          <WButton>One</WButton>
+                          <WButton>Two</WButton>
+                          <WButton>Three</WButton>
+                        </WButtonGroup>
+                      </WGrid>
+                      <WGrid item>
+                        <WButtonGroup
+                          color="secondary"
+                          size="large"
+                          aria-label="large outlined secondary button group"
+                        >
+                          <WButton>One</WButton>
+                          <WButton>Two</WButton>
+                          <WButton>Three</WButton>
+                        </WButtonGroup>
+                      </WGrid>
+                    </WGrid>
+                  </WGrid>
+                  <WGrid item xs={12} md={6}>
+                    <WGrid
+                      container
+                      spacing={1}
+                      direction="column"
+                      alignItems="center"
+                    >
+                      <WGrid item>
+                        <WButtonGroup
+                          variant="contained"
+                          size="small"
+                          aria-label="small contained button group"
+                        >
+                          <WButton>One</WButton>
+                          <WButton>Two</WButton>
+                          <WButton>Three</WButton>
+                        </WButtonGroup>
+                      </WGrid>
+                      <WGrid item>
+                        <WButtonGroup
+                          variant="contained"
+                          color="primary"
+                          aria-label="full-width contained primary button group"
+                        >
+                          <WButton>One</WButton>
+                          <WButton>Two</WButton>
+                          <WButton>Three</WButton>
+                        </WButtonGroup>
+                      </WGrid>
+                      <WGrid item>
+                        <WButtonGroup
+                          variant="contained"
+                          color="secondary"
+                          size="large"
+                          aria-label="large contained secondary button group"
+                        >
+                          <WButton>One</WButton>
+                          <WButton>Two</WButton>
+                          <WButton>Three</WButton>
+                        </WButtonGroup>
+                      </WGrid>
+                    </WGrid>
+                  </WGrid>
+                  <WGrid item xs={12}>
+                    <WButtonGroup
+                      fullWidth
+                      aria-label="full width outlined button group"
+                    >
+                      <WButton>Full</WButton>
+                      <WButton>width</WButton>
+                      <WButton>ButtonGroup</WButton>
+                    </WButtonGroup>
+                  </WGrid>
+                </WGrid>
+              </>
             </WCardContent>
           </WCard>
         </WGrid>

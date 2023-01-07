@@ -17,3 +17,5 @@ export interface BaseScreenProps {
 }
 
 export const BaseScreenPropsContext = React.createContext<BaseScreenProps>(null as any);
+
+export const useBaseScreenProps = () => React.useContext(BaseScreenPropsContext);
