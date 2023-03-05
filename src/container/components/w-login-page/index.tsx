@@ -11,7 +11,8 @@ import loginBg from '../../../assets/login-bg.jpg';
 import loginLogo from '../../../assets/login-logo.png';
 import { useCallback, useState } from 'react';
 import makeStyles from "@mui/styles/makeStyles";
-import { UserContext } from "../../../store";
+import { UserContextActions } from "../../../store";
+import { useDispatch } from "react-redux";
 
 //#endregion
 
@@ -24,7 +25,7 @@ const useStyles = makeStyles((theme: any) => ({
 const WLoginPage: React.FC = () => {
   const classes = useStyles();
   const authService = IOC.get<IAuthService>("IAuthService");
-  const userContext = IOC.get<UserContext>("UserContext");
+  const dispath = useDispatch();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [showNotification, setShowNotification] = useState<boolean>(false);
   const [notificationText, setNotificationText] = useState<string>('');
@@ -33,9 +34,11 @@ const WLoginPage: React.FC = () => {
 
   const btnLoginClick = useCallback(async () => {
     setIsLoading(true);
+        
 
     try {
-      await authService.login(username, password);
+      const response = await authService.login(username, password);
+      dispath(UserContextActions.login({ ...response, username }));
     } catch (message) {
       setNotificationText(message as string);
       setShowNotification(true);
@@ -66,7 +69,6 @@ const WLoginPage: React.FC = () => {
                 >
                   <img src={loginLogo} />
                 </WTypography>
-                {userContext.isLoggedIn ? userContext.displayName : 'Not logged in'}
                 {showNotification &&
                   <WNotificationBar
                     id="login-page-notification-bar"

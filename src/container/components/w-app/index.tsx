@@ -8,12 +8,13 @@ import {
   IOC
 } from '../../../';
 import DefaultHttpService from './default-http-service';
-import WLoginPage from '../w-login-page';
 import { Provider } from 'react-redux';
 import MenuSearchProvider from '../w-main-page/menu-search-provider';
 import Components from '../index';
 // @ts-ignore
 import * as queryString from 'query-string'
+import { WSnackbarProvider, WThemeProvider } from "../../../components";
+import { BrowserRouter } from "react-router-dom";
 
 class WApp extends React.Component<{ configuration: IConfiguration }, { configuration: IConfiguration }> {
   store: any;
@@ -22,7 +23,7 @@ class WApp extends React.Component<{ configuration: IConfiguration }, { configur
     super(props);
 
     const configuration = this.getConfig(props);
-    this.store = getStore(configuration?.useLocalStorage || false);
+    this.store = getStore(configuration?.useLocalStorage || false);
     this.store.dispatch(AppContextActions.setConfig(configuration));
     this.buildIOC(configuration);
     this.parseQueryParams();
@@ -125,11 +126,17 @@ class WApp extends React.Component<{ configuration: IConfiguration }, { configur
   public render() {
     const { configuration } = this.state;
     return (
-      <Provider store={this.store}>
-        {/* <WContainer /> */}
-        {/* @ts-ignore */}
-        <configuration.components.Container />
-      </Provider>
+      <BrowserRouter>
+        <Provider store={this.store}>
+          <WThemeProvider theme={configuration.theme}>
+            <WSnackbarProvider maxSnack={3} anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} autoHideDuration={5000}>
+              {/* <WContainer /> */}
+              {/* @ts-ignore */}
+              <configuration.components.Container />
+            </WSnackbarProvider>
+          </WThemeProvider>
+        </Provider>
+      </BrowserRouter>
     );
   }
 }
