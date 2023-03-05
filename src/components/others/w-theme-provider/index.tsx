@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { WTheme } from './w-theme';
 import { WPalette } from './w-palette';
-// import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { createTheme, ThemeOptions } from '@mui/material';
-import { ThemeProvider } from '@mui/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { blue, green, orange, red } from '@mui/material/colors';
 import { merge } from 'lodash';
@@ -48,8 +46,17 @@ const defaultTheme = {
   designDetails: {
     defaultElevation: 0,
     pagePadding: 0
-  } as WDesignDetails
-};
+  } as WDesignDetails,
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: 'none'
+        }
+      }
+    }
+  }
+} as RecursivePartial<WTheme>;
 
 export const WThemeProvider: React.FC<{ theme?: RecursivePartial<WTheme>, children: React.ReactNode }> = ({ theme, children }) => {
 
@@ -66,38 +73,6 @@ export const WThemeProvider: React.FC<{ theme?: RecursivePartial<WTheme>, childr
     </ThemeProvider>
   )
 }
-
-// <MuiThemeProvider theme={theme}>
-// export class WThemeProvider extends React.Component<{ theme?: WTheme }, any> {
-//   constructor(props: any) {
-//     super(props);
-//     this.state = {
-//       theme: this.getTheme()
-//     }
-//   }
-
-//   componentWillUpdate(prevProps: any) {
-//     if (prevProps.theme != this.props.theme) {
-//       this.setState({
-//         theme: this.getTheme()
-//       });
-//     }
-//   }
-
-//   getTheme() {
-//     const merged = merge(defaultTheme, this.props.theme);
-//     const theme = createTheme(merged);
-
-//     return theme;
-//   }
-
-//   public render() {
-//     const theme = this.getTheme();
-//     return (
-
-//     );
-//   }
-// }
 
 export * from './w-design-details';
 export * from './w-palette';
