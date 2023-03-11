@@ -1,7 +1,7 @@
 //#region imports 
 import {
-  IAuthService, WCard, WCardContent, 
-  WGrid, WLoadingButton, WNotificationBar, WTextField, WTypography, IOC, getStore
+  WCard, WCardContent,
+  WGrid, WLoadingButton, WNotificationBar, WTextField, WTypography
 } from "../../../";
 // @ts-ignore
 import * as React from "react";
@@ -11,8 +11,7 @@ import loginBg from '../../../assets/login-bg.jpg';
 import loginLogo from '../../../assets/login-logo.png';
 import { useCallback, useState } from 'react';
 import makeStyles from "@mui/styles/makeStyles";
-import { UserContextActions } from "../../../store";
-import { useDispatch } from "react-redux";
+import { useAppContext, useUserContext } from "../../../store";
 
 //#endregion
 
@@ -24,8 +23,8 @@ const useStyles = makeStyles((theme: any) => ({
 
 const WLoginPage: React.FC = () => {
   const classes = useStyles();
-  const authService = IOC.get<IAuthService>("IAuthService");
-  const dispath = useDispatch();
+  const userContext = useUserContext();
+  const appContext = useAppContext();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [showNotification, setShowNotification] = useState<boolean>(false);
   const [notificationText, setNotificationText] = useState<string>('');
@@ -34,11 +33,11 @@ const WLoginPage: React.FC = () => {
 
   const btnLoginClick = useCallback(async () => {
     setIsLoading(true);
-        
+
 
     try {
-      const response = await authService.login(username, password);
-      dispath(UserContextActions.login({ ...response, username }));
+      const response = await appContext.configuration.authService.login(username, password);
+      userContext.login({ ...response, username });
     } catch (message) {
       setNotificationText(message as string);
       setShowNotification(true);

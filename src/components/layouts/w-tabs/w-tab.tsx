@@ -7,7 +7,7 @@ import { BaseComponentProps } from '../../base/base-component-props';
 export type WTabProps = BaseComponentProps & TabProps & {   
 }
 
-export const   WTab  : React.FC<WTabProps> = React.forwardRef((props) => {
-  return <Tab {...props} />
+export const   WTab  : React.FC<WTabProps> = React.forwardRef((props, ref) => {
+  return <Tab {...props} ref={ref}/>
 });
 

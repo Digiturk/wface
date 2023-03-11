@@ -1,25 +1,22 @@
-import { IAuthService, IConfiguration, IOC, AppContextActions } from '../../../';
-import * as React from 'react';
-import { FC, useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { IConfiguration } from '../../../';
+import React, { FC, useCallback } from 'react';
 import { useLocation, useParams } from 'react-router';
 // @ts-ignore
 import { Route, Routes, Navigate } from 'react-router-dom';
+import { useAppContext, useUserContext } from '../../../store';
 
 
 
 const WDefaultContainer: FC<any> = () => {
-
-  const { userContext, appContext } = useSelector((state: any) => state);
-  const dispatch = useDispatch();
-  const setValue = useCallback((key: string, value: any) => dispatch(AppContextActions.setValue({ key, value })), []);
+  const appContext = useAppContext();
+  const userContext = useUserContext();
+  
+  const setValue = useCallback((key: string, value: any) => appContext.setValue(key, value ), []);
   const { pathname } = useLocation();
   const params = useParams();
 
   const { isLoggedIn } = userContext;
   const { configuration }: { configuration: IConfiguration } = appContext;
-
-  const authService = IOC.get<IAuthService>("IAuthService");
 
   return (
     <Routes>
@@ -28,14 +25,14 @@ const WDefaultContainer: FC<any> = () => {
         ? <Route path="/login" element={<Navigate to="/main" />} />
         : (
           // @ts-ignore
-          <Route path="/login" element={<configuration.components.LoginPage authService={authService} appContext={appContext} userContext={userContext} setValue={setValue} />} />
+          <Route path="/login" element={<configuration.components.LoginPage appContext={appContext} userContext={userContext} setValue={setValue} />} />
         )
       }
       {(isLoggedIn && configuration.authRequired === true)
         ? <Route path="/login/:screen" element={<Navigate to={`/main/${params.screen || ''}`} />} />
         : (
           // @ts-ignore
-          <Route path="/login/:screen" element={<configuration.components.LoginPage authService={authService} appContext={appContext} userContext={userContext} setValue={setValue} />} />
+          <Route path="/login/:screen" element={<configuration.components.LoginPage appContext={appContext} userContext={userContext} setValue={setValue} />} />
         )
       }
       {(isLoggedIn || configuration.authRequired === false)

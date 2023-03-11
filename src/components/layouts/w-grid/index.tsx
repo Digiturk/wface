@@ -5,9 +5,9 @@ import { GridProps } from '@mui/material/Grid';
 export interface WGridProps extends GridProps { }
 
 
-export const   WGrid   : React.FC<WGridProps> = React.forwardRef((props) => {
+export const WGrid: React.FC<WGridProps> = React.forwardRef((props, ref) => {
   return (
-    <Grid {...props}/>
+    <Grid {...props} ref={ref} />
   );
 });
 

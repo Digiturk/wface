@@ -6,9 +6,9 @@ import { BaseComponentProps } from '../../base/base-component-props';
 export type WToolBarProps = BaseComponentProps & ToolbarProps & { 
 }
 
-export const WToolBar : React.FC<WToolBarProps> = React.forwardRef((props) => {
+export const WToolBar : React.FC<WToolBarProps> = React.forwardRef((props, ref) => {
   return (
-    <Toolbar  {...props} />
+    <Toolbar  {...props} ref={ref} />
   );
 });
 

@@ -5,9 +5,9 @@ import { CircularProgressProps } from '@mui/material/CircularProgress';
 
 export interface WCircularProgressProps extends CircularProgressProps { }
 
-export const WCircularProgress : React.FC<WCircularProgressProps> = React.forwardRef((props) => {
+export const WCircularProgress : React.FC<WCircularProgressProps> = React.forwardRef((props, ref) => {
   return (
-    <CircularProgress   {...props} />
+    <CircularProgress   {...props} ref={ref} />
   );
 });
 

@@ -3,9 +3,9 @@ import ToggleButtonGroup, { ToggleButtonGroupProps } from '@mui/material/ToggleB
 
 export interface WToggleButtonGroupProps extends ToggleButtonGroupProps {
 }
-export const WToggleButtonGroup : React.FC<WToggleButtonGroupProps> = React.forwardRef((props) => {
+export const WToggleButtonGroup : React.FC<WToggleButtonGroupProps> = React.forwardRef((props, ref) => {
   return (
-    <ToggleButtonGroup  {...props} />
+    <ToggleButtonGroup  {...props} ref={ref} />
   );
 });
 

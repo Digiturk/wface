@@ -5,9 +5,9 @@ import { BaseComponentProps } from '../../base/base-component-props';
 export type WToggleButtonProps = BaseComponentProps & ToggleButtonProps & {
 }
 
-export const WToggleButton: React.FC<WToggleButtonProps> = React.forwardRef((props) => {
+export const WToggleButton: React.FC<WToggleButtonProps> = React.forwardRef((props, ref) => {
   return (
-    <ToggleButton  {...props} />
+    <ToggleButton  {...props} ref={ref} />
   );
 });
 

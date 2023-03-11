@@ -1,8 +1,8 @@
-import { IConfiguration, AppContextActions, WIconButton, WDrawer, WBox } from '../../../';
+import { IConfiguration, WIconButton, WDrawer, WBox } from '../../../';
 // @ts-ignore
-import React, { FC, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { FC } from 'react';
 import makeStyles from '@mui/styles/makeStyles';
+import { useAppContext } from '../../../store';
 
 const useStyles = makeStyles((theme: any) => ({
   button: {
@@ -21,12 +21,8 @@ interface RightDrawerProps {
 
 const RightDrawer: FC<RightDrawerProps> = ({ options }) => {
   const classes = useStyles();
-  const { appContext } = useSelector((state: any) => state);
-  const dispatch = useDispatch();
+  const { toggleRightDrawer, rightDrawerOpen } = useAppContext();
 
-  const toggle = useCallback((isOpen?: boolean) => {
-    dispatch(AppContextActions.toggleRightDrawer(isOpen));
-  }, []);
 
   return (
     <React.Fragment>
@@ -36,7 +32,7 @@ const RightDrawer: FC<RightDrawerProps> = ({ options }) => {
           <WIconButton
             className={classes.button}
             id="right-drawer-icon-button"
-            onClick={() => toggle()}
+            onClick={() => toggleRightDrawer()}
             icon={options?.buttonIcon || "chrome_reader_mode"}
           />
         )
@@ -44,8 +40,8 @@ const RightDrawer: FC<RightDrawerProps> = ({ options }) => {
 
       <WDrawer
         anchor="right"
-        open={appContext.rightDrawerOpen}
-        onClose={() => toggle(false)}
+        open={rightDrawerOpen}
+        onClose={() => toggleRightDrawer(false)}
       >
         <div style={{ minHeight: 96 }} />
         <WBox className={classes.content} style={options?.contentBoxStyle}>

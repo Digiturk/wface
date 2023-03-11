@@ -9,11 +9,11 @@ export type WCheckboxProps = BaseComponentProps & CheckboxProps & {
   label?: string
 }
 
-export const  WCheckbox :React.FC<WCheckboxProps>=React.forwardRef((props)=>{
+export const  WCheckbox :React.FC<WCheckboxProps>=React.forwardRef((props, ref)=>{
     if(props.label) {
-      return <FormControlLabel label={props.label} control={<Checkbox {...props} />}/>
+      return <FormControlLabel label={props.label} control={<Checkbox {...props} />} ref={ref}/>
     }
     else {
-      return <Checkbox {...props} />
+      return <Checkbox {...props} ref={ref}/>
     }  
 })

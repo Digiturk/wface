@@ -5,9 +5,9 @@ import { BaseComponentProps } from '../../base/base-component-props';
 export type WSpeedDialProps = BaseComponentProps & SpeedDialProps & {  
 }
 
-export const  WSpeedDial: React.FC<WSpeedDialProps> = React.forwardRef((props) => {
+export const  WSpeedDial: React.FC<WSpeedDialProps> = React.forwardRef((props, ref) => {
   return (
-    <SpeedDial {...props}/>
+    <SpeedDial {...props} ref={ref}/>
   );
 });
 

@@ -5,9 +5,9 @@ import { ListItemIconProps } from '@mui/material/ListItemIcon';
 export interface WListItemIconProps extends ListItemIconProps { }
 
 
-export const WListItemIcon: React.FC<WListItemIconProps> = React.forwardRef((props) => {
+export const WListItemIcon: React.FC<WListItemIconProps> = React.forwardRef((props, ref) => {
   return (
-    <ListItemIcon {...props} />
+    <ListItemIcon {...props} ref={ref}/>
   );
 });
 

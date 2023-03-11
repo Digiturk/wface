@@ -1,162 +1,105 @@
-import { IHttpService, IMenuTreeItem, MenuTreeUtil,
-  WCircularProgress, WIcon, WIconButton, withSnackbar, WPaper, WTheme, BaseScreenProps, BaseScreenPropsContext,
-  AppContextActions, ScreenData, WStore, IOC
- } from '../../../';
-import withTheme from '@mui/styles/withTheme';
-import * as React from 'react';
-import { connect } from 'react-redux';
+import {
+  MenuTreeUtil,
+  WCircularProgress, WIcon, WIconButton, WTheme, BaseScreenProps, BaseScreenPropsContext,
+  ScreenData
+} from '../../../';
+import React, { FC, useCallback, useRef, useState } from 'react';
+import { useAppContext } from '../../../store';
+import { useTheme } from '@mui/material';
+import { useSnackbar } from 'notistack';
 
-interface WScreenWrapperState {
-  pageError?: { error: any, info: any };
-}
 
-export interface WScreenWrapperProps {
-  screen?: ScreenData;
-  enqueueSnackbar: (message: string, options: object) => void,
-  theme?: WTheme;
-}
+const WScreenWrapper: FC<{ screen?: ScreenData; }> = ({ screen }) => {
+  const [pageError, setPageError] = useState<any>(null);
+  const theme = useTheme<WTheme>();
+  const screenRef = useRef();
+  const appContext = useAppContext();
+  const { enqueueSnackbar } = useSnackbar();
 
-export interface DispatchProps {
-  closeScreen: (menuTreeItem: IMenuTreeItem) => void;
-  openScreen: (menuTreeItem: IMenuTreeItem, initialValues?: any) => void;
-  saveScreenState: (screenId: string, state: any) => void;
-  setValue: (key: string, value: any) => void;
-  changeScreenMode: (screenId: string, mode: 'normal' | 'loading') => void;
-  setConfirmOnClose: (screenId: string, confirmOnClose: boolean, confirmOnCloseMessage: string) => void;
-}
+  try {
 
-class WScreenWrapper extends React.Component<WScreenWrapperProps & WStore & DispatchProps, WScreenWrapperState> {
+    const changeScreenMode = useCallback((mode: 'normal' | 'loading' = 'normal') => {
+      appContext.changeScreenMode(screen?.menuTreeItem?.id || '', mode);
+    }, [appContext.changeScreenMode, screen]);
 
-  private screenRef: any;
+    const closeScreen = useCallback((screen: string) => {
+      const item = MenuTreeUtil.findByName(appContext.menuTree, screen);
+      if (!item) {
+        return false;
+      }
 
-  constructor(props: WScreenWrapperProps & WStore & DispatchProps) {
-    super(props);
+      appContext.closeScreen(item.id);
+      return true;
+    }, [appContext.menuTree, appContext.closeScreen]);
 
-    this.state = {
-    }
+    const openScreen = useCallback((screen: string, initialValues: any): boolean => {
+      const item = MenuTreeUtil.findByName(appContext.menuTree, screen);
+      if (!item) {
+        return false;
+      }
 
-    this.screenRef = React.createRef();
-  }
+      appContext.openScreen(item, initialValues);
+      return true;
+    }, [appContext.menuTree, appContext.openScreen]);
 
-  componentWillMount() {
-    window.onbeforeunload = () => {
-      this.saveState();
-    }
-  }
+    const setConfirmOnClose = useCallback((confirm: boolean, confirmMessage: string = "Ekranı kapatmak istediğinize emin misiniz?") => {
+      appContext.setConfirmOnClose(screen?.menuTreeItem?.id || '', confirm, confirmMessage);
+    }, [appContext.setConfirmOnClose, screen]);
 
-  componentWillUnmount() {
-    this.saveState();
-  }
+    const showSnackbar = useCallback((message: string, type: 'error' | 'success' | 'warning' | 'info' = 'info', duration: number = 5000) => {
+      enqueueSnackbar(message, {
+        variant: type,
+        autoHideDuration: duration,
+        action: <WIconButton id="btn-close-snackbar"><WIcon style={{ color: '#ffffff99' }} iconSize="small">close</WIcon></WIconButton>
+      });
+    }, []);
 
-  saveState = () => {
-    if (this.screenRef.current) {
-      this.props.saveScreenState(this.props.screen?.menuTreeItem?.id || '', this.screenRef.current.state);
-    }
-  }
+    const getBaseScreenProps = useCallback((): BaseScreenProps => {
+      return {
+        changeScreenMode,
+        closeScreen,
+        openScreen,
+        screenData: appContext.currentScreen,
+        setConfirmOnClose,
+        showSnackbar: showSnackbar,
+      } as BaseScreenProps;
+    }, []);
 
-  componentDidCatch(error: any, info: any) {
-    this.setState({ pageError: { error, info } });
-    this.changeScreenMode("normal");
-  }
-
-  openScreen = (screen: string, initialValues: any): boolean => {
-    const item = MenuTreeUtil.findByName(this.props.appContext.menuTree, screen);
-    if (!item) {
-      return false;
-    }
-
-    this.props.openScreen(item, initialValues);
-    return true;
-  }
-
-  closeScreen = (screen: string) => {
-    const item = MenuTreeUtil.findByName(this.props.appContext.menuTree, screen);
-    if (!item) {
-      return false;
-    }
-
-    this.props.closeScreen(item);
-    return true;
-  }
-
-  setConfirmOnClose = (confirm: boolean, confirmMessage: string = "Ekranı kapatmak istediğinize emin misiniz?") => {
-    this.props.setConfirmOnClose(this.props.screen?.menuTreeItem?.id || '', confirm, confirmMessage);
-  }
-
-  showSnackbar = (message: string, type: 'error' | 'success' | 'warning' | 'info' = 'info', duration: number = 5000) => {
-    this.props.enqueueSnackbar(message, {
-      variant: type,
-      autoHideDuration: duration,
-      action: <WIconButton id="btn-close-snackbar"><WIcon style={{ color: '#ffffff99' }} iconSize="small">close</WIcon></WIconButton>
-    });
-  }
-
-  changeScreenMode = (mode: 'normal' | 'loading' = 'normal') => {
-    this.props.changeScreenMode(this.props.screen?.menuTreeItem?.id || '', mode);
-  }
-
-  getBaseScreenProps = (): BaseScreenProps => {
-    return {
-      appContext: this.props.appContext,
-      changeScreenMode: (mode) => this.changeScreenMode(mode),
-      closeScreen: this.closeScreen,
-      httpService: IOC.get<IHttpService>("IHttpService"),
-      openScreen: this.openScreen,
-      screenData: this.props.appContext.currentScreen,
-      setConfirmOnClose: this.setConfirmOnClose,
-      setValue: this.props.setValue,
-      showSnackbar: this.showSnackbar,
-      theme: this.props.theme,
-      userContext: this.props.userContext
-    } as BaseScreenProps;
-  }
-
-  public render() {
-    if (this.state.pageError) {
+    if (pageError) {
       // @ts-ignore
-      return <this.props.appContext.configuration.components.ErrorPage {...this.state.pageError} />
+      return <appContext.configuration.components.ErrorPage {...pageError} />
     }
 
-    const Screen = this.props.appContext.configuration.screenList[this.props.screen?.menuTreeItem?.screen || ''] as any;
+    const Screen = appContext.configuration.screenList[screen?.menuTreeItem?.screen || ''] as any;
 
     if (!Screen) {
       // @ts-ignore
-      return <this.props.appContext.configuration.components.NoPage />
+      return <appContext.configuration.components.NoPage />
     }
 
     return (
       <div style={{ position: 'relative', width: '100%', height: '100%', }}>
-        {this.props.appContext.currentScreen?.mode === 'loading' &&
-          <div style={{ display: 'table', position: 'absolute', width: '100%', height: 'calc(100% + 8px)', background: '#3f51b544', zIndex: (this.props.theme?.zIndex?.modal || 0) + 1 }}>
+        {appContext.currentScreen?.mode === 'loading' &&
+          <div style={{ display: 'table', position: 'absolute', width: '100%', height: 'calc(100% + 8px)', background: '#3f51b544', zIndex: (theme?.zIndex?.modal || 0) + 1 }}>
             <div style={{ display: 'table-cell', verticalAlign: 'middle', textAlign: 'center' }}>
               <WCircularProgress size={60} />
             </div>
           </div>
         }
-        <div style={{ padding: this.props.theme?.designDetails?.pagePadding, paddingBottom: 10 }}>
-          <BaseScreenPropsContext.Provider value={this.getBaseScreenProps()}>
+        <div style={{ padding: theme?.designDetails?.pagePadding, paddingBottom: 10 }}>
+          <BaseScreenPropsContext.Provider value={getBaseScreenProps()}>
             <BaseScreenPropsContext.Consumer>
-              {(value: BaseScreenProps) => <Screen ref={this.screenRef} {...value} />}
+              {(value: BaseScreenProps) => <Screen ref={screenRef} {...value} />}
             </BaseScreenPropsContext.Consumer>
           </BaseScreenPropsContext.Provider>
         </div>
       </div>
-    )
+    );
+  } catch(error) {
+    setPageError({ error });
+    appContext.changeScreenMode(screen?.menuTreeItem?.id || '', "normal");
+    return null;
   }
-}
+};
 
-const mapStateToProps = (state: WStore) => ({
-  appContext: state.appContext,
-  userContext: state.userContext,
-} as WStore);
-
-const mapDispatchToProps = (dispatch: any) => ({
-  closeScreen: (menuTreeItem: IMenuTreeItem) => dispatch(AppContextActions.closeScreen(menuTreeItem)),
-  openScreen: (menuTreeItem: IMenuTreeItem, initialValues?: any) => dispatch(AppContextActions.openScreen({ menuTreeItem, initialValues })),
-  saveScreenState: (screenId: string, state: any) => dispatch(AppContextActions.saveScreenState({ screenId, state })),
-  setValue: (key: string, value: any) => dispatch(AppContextActions.setValue({ key, value })),
-  changeScreenMode: (screenId: string, mode: 'normal' | 'loading') => dispatch(AppContextActions.changeScreenMode({ screenId, mode })),
-  setConfirmOnClose: (screenId: string, confirmOnClose: boolean, confirmOnCloseMessage: string) => dispatch(AppContextActions.setConfirmOnClose({ screenId, confirmOnClose, confirmOnCloseMessage }))
-});
-
-export default connect<WStore, DispatchProps, WScreenWrapperProps>(mapStateToProps as any, mapDispatchToProps)(withTheme(withSnackbar(WScreenWrapper as any) as any) as any);
+export default WScreenWrapper;

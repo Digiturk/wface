@@ -1,12 +1,7 @@
-import { IAuthService, IMenuTreeItem, UserContext } from 'wface';
-import { injectable, inject } from "inversify";
+import { IMenuTreeItem } from 'wface';
 
-@injectable()
-export default class AuthService implements IAuthService {
-
-  @inject("UserContext") userContext!: UserContext;
-
-  public login(username: string, password: string, values?: any): Promise<{ displayName: string, token?: string }> {
+export default {
+  login: (username: string, password: string, values?: any): Promise<{ displayName: string, token?: string }> => {
     return new Promise((resolve, reject) => {
       if (username === "connection-error") {
         setTimeout(() => reject("Connection error"), 1000);
@@ -18,9 +13,9 @@ export default class AuthService implements IAuthService {
 
       setTimeout(() => resolve({ displayName: 'MockUser', token: 'MockToken' }), 1500);
     });
-  }
+  },
 
-  public getMenuTree(): Promise<IMenuTreeItem[]> {
+  getMenuTree: (): Promise<IMenuTreeItem[]> => {
 
     return new Promise((resolve, reject) => {
       const result: IMenuTreeItem[] = [];

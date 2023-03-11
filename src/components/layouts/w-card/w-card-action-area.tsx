@@ -4,9 +4,9 @@ import CardActionArea, { CardActionAreaProps } from '@mui/material/CardActionAre
 export interface WCardActionAreaProps extends CardActionAreaProps { }
 
 
-export const  WCardActionArea: React.FC<WCardActionAreaProps> = React.forwardRef((props) => {
+export const  WCardActionArea: React.FC<WCardActionAreaProps> = React.forwardRef((props, ref) => {
   return (
-    <CardActionArea {...props}/>
+    <CardActionArea {...props} ref={ref}/>
   );
 });
 

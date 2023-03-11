@@ -5,8 +5,8 @@ import { CollapseProps } from '@mui/material/Collapse'
 export interface WCollapseProps extends CollapseProps { }
 
 
-export const  WCollapse : React.FC<WCollapseProps> = React.forwardRef((props) => {
+export const  WCollapse : React.FC<WCollapseProps> = React.forwardRef((props, ref) => {
   return (
-    <Collapse {...props}/>
+    <Collapse {...props} ref={ref}/>
   );
 });

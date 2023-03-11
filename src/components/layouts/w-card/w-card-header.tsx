@@ -5,9 +5,9 @@ import { CardHeaderProps } from '@mui/material/CardHeader';
 export interface WCardHeaderProps extends CardHeaderProps { }
 
 
-export const  WCardHeader : React.FC<WCardHeaderProps> = React.forwardRef((props) => {
+export const  WCardHeader : React.FC<WCardHeaderProps> = React.forwardRef((props, ref) => {
   return (
-     <CardHeader {...props} />
+     <CardHeader {...props} ref={ref}/>
   );
 });
 

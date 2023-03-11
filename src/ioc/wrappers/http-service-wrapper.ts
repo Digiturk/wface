@@ -1,10 +1,8 @@
 import IHttpService from '../interfaces/i-http-service';
-import { injectable, inject } from "inversify";
 
-@injectable()
 export default class HttpServiceWrapper implements IHttpService {
   
-  @inject("IHttpServiceInner") private _Service!: IHttpService;
+  private _Service!: IHttpService;
 
   getConfig() {
     return this._Service.getConfig();

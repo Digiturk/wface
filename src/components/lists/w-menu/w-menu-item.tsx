@@ -22,13 +22,13 @@ const useStyles = makeStyles((theme: any) => ({
 }));
 
 
-export const WMenuItemInner : React.FC<WMenuItemProps> = React.forwardRef((props:WMenuItemProps) => {
+export const WMenuItemInner : React.FC<WMenuItemProps> = React.forwardRef((props:WMenuItemProps, ref) => {
   const classes = useStyles();
 
   const {id="", dense="true"}=props;
 
   return (
-     <MenuItem {...props} classes={classes} />
+     <MenuItem {...props} classes={classes} ref={ref} />
   );
 });
 

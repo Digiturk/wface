@@ -6,9 +6,9 @@ import { BaseComponentProps } from '../../base/base-component-props';
 export type WMenuProps = BaseComponentProps & MenuProps & { 
 }
 
-export const WMenu : React.FC<WMenuProps> = React.forwardRef((props) => {
+export const WMenu : React.FC<WMenuProps> = React.forwardRef((props, ref) => {
   return (
-    <Menu {...props} />
+    <Menu {...props} ref={ref}/>
   );
 });
 

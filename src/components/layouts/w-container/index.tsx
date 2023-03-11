@@ -4,8 +4,8 @@ import Container, { ContainerProps } from '@mui/material/Container';
 export interface WContainerProps extends ContainerProps {
 
 }
-export const  WContainer : React.FC<WContainerProps> = React.forwardRef((props) => {
+export const  WContainer : React.FC<WContainerProps> = React.forwardRef((props, ref) => {
   return (
-    <Container {...props}/>
+    <Container {...props} ref={ref}/>
   );
 });

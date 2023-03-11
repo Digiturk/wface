@@ -1,18 +1,13 @@
-import withTheme from '@mui/styles/withTheme';
 import Tabs, { TabsProps } from '@mui/material/Tabs';
-import ButtonBase from '@mui/material/ButtonBase';
 import * as React from 'react';
-import { WIconButton, WTheme } from '../../..';
+import { WIconButton } from '../../..';
 import { BaseComponentProps } from '../../base/base-component-props';
 
 export type WTabsProps = BaseComponentProps & TabsProps<any> & {
   scrollButtonStyle?: React.CSSProperties;
 }
 
-var x: WTabsProps;
-
-
-export const WTabs: React.FC<WTabsProps> = React.forwardRef((props) => {
+export const WTabs: React.FC<WTabsProps> = (props) => {
   const { scrollButtonStyle, ...tabsProps } = props;
   return (
     <Tabs
@@ -26,6 +21,6 @@ export const WTabs: React.FC<WTabsProps> = React.forwardRef((props) => {
       {...tabsProps}
     />
   )
-});
+};
 
 export * from './w-tab';

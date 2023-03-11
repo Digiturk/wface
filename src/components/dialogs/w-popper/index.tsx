@@ -4,9 +4,9 @@ import Popper, { PopperProps } from '@mui/material/Popper';
 export interface WPopperProps extends PopperProps {
 }
 
-export const  WPopper: React.FC<WPopperProps> = React.forwardRef((props) => {
+export const  WPopper: React.FC<WPopperProps> = React.forwardRef((props, ref) => {
   return (
-    <Popper  {...props} />
+    <Popper  {...props} ref={ref} />
   );
 });
 

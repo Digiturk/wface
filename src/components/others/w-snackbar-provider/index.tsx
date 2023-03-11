@@ -4,11 +4,11 @@ import { SnackbarProvider, SnackbarProviderProps, withSnackbar, useSnackbar } fr
 export interface WSnackbarProviderProps extends SnackbarProviderProps {
   children: React.ReactNode;
 }
-export const WSnackbarProvider: React.FC<WSnackbarProviderProps> = React.forwardRef((props) => {
+export const WSnackbarProvider: React.FC<WSnackbarProviderProps> = React.forwardRef((props, ref) => {
 
   return (
     // @ts-ignore
-    <SnackbarProvider {...props}>
+    <SnackbarProvider {...props} ref={ref}>
       {props.children}
     </SnackbarProvider>
   );

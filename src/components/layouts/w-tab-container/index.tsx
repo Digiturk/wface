@@ -13,7 +13,7 @@ export interface WTabContainerProps extends WTabsPropsBase {
 }
 
 
-export const WTabContainer: React.FC<WTabContainerProps> = React.forwardRef((props: WTabContainerProps) => {
+export const WTabContainer: React.FC<WTabContainerProps> = React.forwardRef((props: WTabContainerProps, ref) => {
   //DEFAULTPROPS
   const { indicatorColor = 'primary', children = null, textColor = 'primary', } = props;
   //USESTATE
@@ -50,6 +50,7 @@ export const WTabContainer: React.FC<WTabContainerProps> = React.forwardRef((pro
       {props.title}
       <WTabs
         {...props as WTabsPropsBase}
+        ref={ref}
         value={tabSelected}
         onChange={(e, value) => {
           settabSelected((value: any) => {

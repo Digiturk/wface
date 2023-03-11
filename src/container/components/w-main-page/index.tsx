@@ -1,21 +1,20 @@
 //#region imports 
-import * as React from "react";
+import React from "react";
 import { useTheme } from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 import {
-  IOC, IAuthService, IMenuTreeItem, MenuTreeUtil, AppContext, AppContextActions, ScreenData,
+  IMenuTreeItem, MenuTreeUtil, AppContext, ScreenData,
   WAppBar, WCircularProgress, WDrawer, WIcon, WIconButton, WScrollBar,
   WTab, WTabs, WToolBar, WTypography,
-  WMessageDialog, WTheme, WTooltip, useSnackbar
+  WMessageDialog, WTheme, WTooltip, useSnackbar, useAppContext
 } from "../../../";
 // @ts-ignore
 import classNames from 'classnames';
 import { Horizontal, WindowWidthType } from 'horizontal';
 
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router';
-import MyProfileMenu from './my-profile-menu';
-import Search from './search';
+import { MyProfileMenu } from './my-profile-menu';
+import { Search } from './search';
 import NavList from './nav-list';
 import { FC, useState, useCallback, useEffect, useMemo } from 'react';
 import RightDrawer from './right-drawer';
@@ -117,17 +116,13 @@ const WMainPage: FC = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { enqueueSnackbar } = useSnackbar();
-  const { appContext } = useSelector((state: any) => state);
-  const dispatch = useDispatch();
+  const appContext = useAppContext();
   const [drawerOpen, setDrawerOpen] = useState<boolean>(Horizontal.getType() == WindowWidthType.LG);
   const [showConfirmCloseScreenDialog, setShowConfirmCloseScreenDialog] = useState<boolean>(false);
   const [closingScreen, setClosingScreen] = useState<any>(null);
   const topHeight = useMemo(() => appContext.configuration.singleScreen ? 48 : 96, [appContext.configuration.singleScreen]);
-
   const getScreenUrl = useCallback((screen: IMenuTreeItem) => "/" + screen.screen, []);
   const handleDrawerChange = useCallback(() => setDrawerOpen(!drawerOpen), [drawerOpen]);
-  const setMenuTree = useCallback((menuTree: IMenuTreeItem[]) => dispatch(AppContextActions.setMenuTree(menuTree)), []);
-  const openScreen = useCallback((menuTreeItem: IMenuTreeItem, initialValues?: any) => dispatch(AppContextActions.openScreen({ menuTreeItem, initialValues })), []);
   const closeScreen = useCallback((screen: IMenuTreeItem) => {
     const newClosingScreen = appContext.openedScreens.find((s: any) => s.menuTreeItem.id === screen.id);
     if (newClosingScreen && newClosingScreen.confirmOnClose) {
@@ -135,7 +130,7 @@ const WMainPage: FC = () => {
       setClosingScreen(newClosingScreen);
     }
     else {
-      dispatch(AppContextActions.closeScreen(screen));
+      appContext.closeScreen(screen.id);
     }
   }, [appContext.openedScreens]);
 
@@ -179,7 +174,7 @@ const WMainPage: FC = () => {
         onChange={(event, value) => {
           MenuTreeUtil.menuTreeForEach(appContext.menuTree, item => {
             if (item.id === value) {
-              openScreen(item);
+              appContext.openScreen(item);
               return true;
             }
             return false;
@@ -231,7 +226,7 @@ const WMainPage: FC = () => {
         }
       </WTabs>
     );
-  }, [appContext.openedScreens, appContext.currentScreen, openScreen, handleTabCloseButtonClick, handleTabButton]);
+  }, [appContext.openedScreens, appContext.currentScreen, appContext.openScreen, handleTabCloseButtonClick, handleTabButton]);
 
   const closeAllOpenedScreens = useCallback(() => {
     if (appContext.openedScreens.some((screen: any) => screen.confirmOnClose)) {
@@ -253,8 +248,8 @@ const WMainPage: FC = () => {
       setDrawerOpen(false);
     }
 
-    openScreen(screen);
-  }, [openScreen]);
+    appContext.openScreen(screen);
+  }, [appContext.openScreen]);
 
   const renderConfirmCloseScreenDialog = useCallback(() => {
     if (!showConfirmCloseScreenDialog) {
@@ -277,10 +272,10 @@ const WMainPage: FC = () => {
   }, [showConfirmCloseScreenDialog, closingScreen]);
 
   useEffect(() => {
-    const authService = IOC.get<IAuthService>("IAuthService");
-    authService.getMenuTree()
+    
+    appContext.configuration.authService.getMenuTree()
       .then(menuTree => {
-        setMenuTree(menuTree);
+        appContext.setMenuTree(menuTree);
 
         let currentScreen!: IMenuTreeItem;
         MenuTreeUtil.menuTreeForEach(menuTree, item => {
@@ -292,10 +287,10 @@ const WMainPage: FC = () => {
         });
 
         if (currentScreen) {
-          openScreen(currentScreen);
+          appContext.openScreen(currentScreen);
         }
       })
-  }, [setMenuTree, openScreen, getScreenUrl]);
+  }, [appContext.setMenuTree, appContext.openScreen, getScreenUrl]);
 
   useEffect(() => {
     let newUrl = '/main';
@@ -365,7 +360,7 @@ const WMainPage: FC = () => {
         <div style={{ minHeight: topHeight }} />
         <div style={{ height: `calc(100% - ${topHeight}px)`, overflow: 'none' }}>
           <WScrollBar>
-            <NavList menuTree={appContext.menuTree} onItemClicked={onMenuItemClicked} />
+            <NavList onItemClicked={onMenuItemClicked} />
           </WScrollBar>
           <div style={{ display: 'table', position: 'absolute', bottom: 0, height: 25, width: '100%' }}>
             <div style={{ display: 'table-cell', verticalAlign: 'middle', textAlign: 'center' }}>
@@ -385,12 +380,13 @@ const WMainPage: FC = () => {
         <WScrollBar>
           {
             appContext.openedScreens.map((screen: any) => {
-              if (appContext.currentScreen.menuTreeItem.id === screen.menuTreeItem.id) {
-                const component = <div style={{ width: '100%', height: 'calc(100% - 8px)' }} key={"screen-" + screen.menuTreeItem.id}><appContext.configuration.components.ScreenWrapper screen={screen} /></div>
+              const Comp = appContext.configuration.components?.ScreenWrapper as any;
+              if (appContext.currentScreen?.menuTreeItem.id === screen.menuTreeItem.id) {
+                const component = <div style={{ width: '100%', height: 'calc(100% - 8px)' }} key={"screen-" + screen.menuTreeItem.id}><Comp screen={screen} /></div>
                 return component;
               }
               else if (screen.mode === "loading") {
-                const component = <div style={{ display: 'none' }} key={"screen-" + screen.menuTreeItem.id}><appContext.configuration.components.ScreenWrapper screen={screen} /></div>;
+                const component = <div style={{ display: 'none' }} key={"screen-" + screen.menuTreeItem.id}><Comp screen={screen} /></div>;
                 return component;
               }
 

@@ -6,8 +6,8 @@ export interface WCardActionsProps extends CardActionsProps {
   align?: 'left' | 'right'
 }
 
-export const  WCardActions: React.FC<WCardActionsProps> = React.forwardRef((props) => {
+export const  WCardActions: React.FC<WCardActionsProps> = React.forwardRef((props, ref) => {
   return (
-    <CardActions {...props} style={{justifyContent: props.align === "left" ? "flex-start" : "flex-end"}}/>
+    <CardActions {...props} style={{justifyContent: props.align === "left" ? "flex-start" : "flex-end"}} ref={ref}/>
   );
 });

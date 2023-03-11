@@ -5,8 +5,8 @@ import { DrawerProps } from '@mui/material/Drawer';
 export interface WDrawerProps extends DrawerProps { }
 
 
-export const   WDrawer  : React.FC<WDrawerProps> = React.forwardRef((props) => {
+export const   WDrawer  : React.FC<WDrawerProps> = React.forwardRef((props, ref) => {
   return (
-    <Drawer {...props}/>
+    <Drawer {...props} ref={ref}/>
   );
 });

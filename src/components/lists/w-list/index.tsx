@@ -6,9 +6,9 @@ import { BaseComponentProps } from '../../base/base-component-props';
 export type WListProps = BaseComponentProps & ListProps & { 
 }
 
-export const WList: React.FC<WListProps> = React.forwardRef((props) => {
+export const WList: React.FC<WListProps> = React.forwardRef((props, ref) => {
   return (
-    <List {...props}/>
+    <List {...props} ref={ref}/>
   );
 });
 

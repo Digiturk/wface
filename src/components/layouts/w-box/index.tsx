@@ -4,9 +4,9 @@ import { BoxProps } from '@mui/material/Box';
 
 export interface WBoxProps extends BoxProps { }
 
-export const WBox: React.FC<WBoxProps> = React.forwardRef((props) => {
+export const WBox: React.FC<WBoxProps> = React.forwardRef((props, ref) => {
   return (
-    <Box {...props} />
+    <Box {...props} ref={ref} />
   );
 });
 

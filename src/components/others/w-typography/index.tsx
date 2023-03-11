@@ -4,17 +4,8 @@ import { TypographyProps } from '@mui/material/Typography';
 
 export interface WTypographyProps extends TypographyProps { }
 
-
-
-export const  WTypography: React.FC<WTypographyProps> = React.forwardRef((props) => {
+export const  WTypography: React.FC<WTypographyProps> = React.forwardRef((props, ref) => {
   return (
-    <Typography {...props} />
+    <Typography {...props} ref={ref}/>
   );
 });
-
-
-// export class WTypography extends React.Component<WTypographyProps, any> {
-//   public render() {
-//     return <Typography {...this.props} />
-//   }
-// }

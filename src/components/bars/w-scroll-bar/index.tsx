@@ -4,9 +4,9 @@ import { Scrollbars } from 'react-custom-scrollbars';
 
 export interface WScrollBarProps { }
 
-export const WScrollBar : React.FC<WScrollBarProps> = React.forwardRef((props) => {
+export const WScrollBar : React.FC<WScrollBarProps> = React.forwardRef((props, ref) => {
   return (
-    <Scrollbars  {...props} />
+    <Scrollbars  {...props} ref={ref} />
   );
 });
 

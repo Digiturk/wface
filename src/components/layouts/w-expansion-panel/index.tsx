@@ -33,11 +33,11 @@ const useStyles = makeStyles((theme: any) => ({
   },
 }));
 
-export const WExpansionPanel: React.FC<WExpansionPanelProps> = React.forwardRef((props) => {
+export const WExpansionPanel: React.FC<WExpansionPanelProps> = React.forwardRef((props, ref) => {
   const classes = useStyles();
 
   return (
-    <Accordion elevation={props.theme?.designDetails?.defaultElevation} {...props}>
+    <Accordion elevation={props.theme?.designDetails?.defaultElevation} {...props} ref={ref}>
       <AccordionSummary expandIcon={<WIcon>expand_more</WIcon>} classes={{ root: classes.summaryRoot, content: classes.summaryContent }}>
         <WTypography variant="h6">{props.title}</WTypography>
       </AccordionSummary>

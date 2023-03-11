@@ -4,14 +4,12 @@ import {
   WListItem, WListItemIcon,
   WListItemText, WIcon
 } from '../../../';
-import { injectable, inject } from "inversify";
 // @ts-ignore
 var Fuse = require('fuse.js');
 
-@injectable()
 export default class MenuSearchProvider implements ISearchProvider {
 
-  @inject("openScreen") openScreen!: (item: IMenuTreeItem) => void;
+  openScreen!: (item: IMenuTreeItem) => void;
 
   search(term: string): Promise<any[]> {
     return new Promise<any[]>((resolve, reject) => {

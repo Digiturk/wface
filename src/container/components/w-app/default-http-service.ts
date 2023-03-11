@@ -1,11 +1,9 @@
 import axios from 'axios';
-import { injectable, inject } from "inversify";
 import { IHttpService, UserContext } from '../../../';
 
-@injectable()
 export default class DefaultHttpService implements IHttpService {
 
-  @inject("UserContext") userContext!: UserContext;
+  userContext!: UserContext;
 
   public getConfig(): any {
     return {

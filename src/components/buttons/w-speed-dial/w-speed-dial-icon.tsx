@@ -4,9 +4,9 @@ import SpeedDialIcon, { SpeedDialIconProps } from '@mui/material/SpeedDialIcon';
 export interface WSpeedDialIconProps extends SpeedDialIconProps {
 }
 
-export const WSpeedDialIcon : React.FC<WSpeedDialIconProps> = React.forwardRef((props) => {
+export const WSpeedDialIcon : React.FC<WSpeedDialIconProps> = React.forwardRef((props, ref) => {
   return (
-    <SpeedDialIcon   {...props} />
+    <SpeedDialIcon   {...props} ref={ref} />
   );
 });
 

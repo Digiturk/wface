@@ -5,9 +5,9 @@ import { BaseComponentProps } from '../../base/base-component-props';
 export type WSliderProps = BaseComponentProps & SliderProps & {  
 }
 
-export const  WSlider: React.FC<WSliderProps> = React.forwardRef((props) => {
+export const  WSlider: React.FC<WSliderProps> = React.forwardRef((props, ref) => {
   return (
-    <Slider {...props}/>
+    <Slider {...props} ref={ref}/>
   );
 });
 

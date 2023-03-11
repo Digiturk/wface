@@ -4,9 +4,9 @@ import Rating, { RatingProps } from '@mui/material/Rating';
 export interface WRatingProps extends RatingProps {
 }
 
-export const WRating  : React.FC<WRatingProps> = React.forwardRef((props) => {
+export const WRating  : React.FC<WRatingProps> = React.forwardRef((props, ref) => {
   return (
-    <Rating {...props} />
+    <Rating {...props} ref={ref} />
   );
 });
 

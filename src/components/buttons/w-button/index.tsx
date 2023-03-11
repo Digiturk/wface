@@ -16,11 +16,11 @@ const useStyles = makeStyles((theme: any) => ({
 export type WButtonProps = BaseComponentProps & ButtonProps & {
 }
 
-export const WButton: React.FC<WButtonProps> = React.forwardRef((props) => {
+export const WButton: React.FC<WButtonProps> = React.forwardRef((props, ref) => {
   const classes = useStyles();
   const theme = useTheme<WTheme>();
 
   return (
-    <Button {...props} classes={classes} disableElevation={theme.designDetails?.defaultElevation === 0} />
+    <Button {...props} classes={classes} disableElevation={theme.designDetails?.defaultElevation === 0} ref={ref}/>
   );
 });

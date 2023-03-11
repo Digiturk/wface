@@ -6,9 +6,9 @@ export interface WRadioProps extends RadioProps {
   label: string
 }
 
-export const WRadio: React.FC<WRadioProps> = React.forwardRef((props) => {
+export const WRadio: React.FC<WRadioProps> = React.forwardRef((props, ref) => {
   return (
-    <FormControlLabel label={props.label} control={<Radio {...props} />} />
+    <FormControlLabel label={props.label} control={<Radio {...props} />} ref={ref}/>
   );
 });
 
