@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from "react-dom";
 import * as Screens from './src/screens';
-import { IConfiguration, WFace } from 'wface';
+import { IConfiguration, useUserContext, WFace } from 'wface';
 import AuthService from '././src/services/auth-service';
 
 const configuration: IConfiguration = {
@@ -21,7 +21,15 @@ const configuration: IConfiguration = {
     designDetails: {
       pagePadding: 16
     }
-  }
+  },
+  api: {
+    baseUrl: 'http://localhost:8080',
+    useToken: () => {
+      const userContext = useUserContext();
+      return userContext.token;
+    }
+  },
+  search: true
 }
 
 const App = () => {

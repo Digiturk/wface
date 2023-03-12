@@ -1,9 +1,8 @@
-import IHttpService from './i-http-service';
 import IComponents from './i-components';
 import { IMenuTreeItem } from './i-auth-service';
-import ISearchProvider from './i-search-provider';
 import { WTheme } from '../../components';
 import { RecursivePartial } from '../..';
+import { AppContext } from '../../store';
 
 export default interface IConfiguration {
   projectName: string,
@@ -24,8 +23,10 @@ export default interface IConfiguration {
     login(username: string, password: string, values?: any): Promise<{ displayName: string, token?: string }>;
     getMenuTree(): Promise<IMenuTreeItem[]>;
   }
-  httpService?: { new(...args: any[]): IHttpService; };
-
+  api: {
+    baseUrl: string;
+    useToken: () => string;
+  }
   theme?: RecursivePartial<WTheme>;
   useLocalStorage?: boolean;
   hooks?: {
@@ -36,9 +37,9 @@ export default interface IConfiguration {
   };
   search?: boolean;
   searchProvider?: {
-    search: (term: string) => Promise<any[]>;
-    renderSearchItem: (item: any) => React.ReactNode;
-    onItemSelected: (item: any) => void;
+    search: (term: string, appContext: AppContext) => Promise<any[]>;
+    renderSearchItem: (item: any, appContext: AppContext) => React.ReactNode;
+    onItemSelected: (item: any, appContext: AppContext) => void;
   };
   singleScreen?: boolean;
 }

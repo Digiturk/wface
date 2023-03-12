@@ -1,15 +1,27 @@
 import { useTheme } from '@mui/material';
-import React, { FC } from 'react';
-import { useBaseScreenProps, WTheme } from 'wface';
+import React, { FC, useCallback } from 'react';
+import { useApi, useBaseScreenProps, WTheme } from 'wface';
 
 export const EmptyScreen: FC = () => {
-  const baseScreenProps = useBaseScreenProps();
+  const { showSnackbar, changeScreenMode } = useBaseScreenProps();
   const theme = useTheme<WTheme>();
+  const api = useApi();
+
+  const onClick = useCallback(async () => {
+    changeScreenMode('loading');
+    try {
+      const t = api.get('/deneme');
+      showSnackbar('success');
+    } catch (e) {
+      showSnackbar('Hata');
+    }
+    changeScreenMode('normal');
+  }, [api]);
 
   return (
     <div>
       <div>
-        <button onClick={() => baseScreenProps.showSnackbar("OK", "success")}>Click</button>
+        <button onClick={onClick}>Click</button>
         <pre>
           {JSON.stringify(theme.designDetails, null, 2)}
         </pre>

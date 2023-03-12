@@ -1,9 +1,10 @@
 import React, { FC, createContext, useMemo, useContext, useCallback, useState } from "react";
 import { IMenuTreeItem, IConfiguration, MenuTreeUtil } from '..';
 import Components from '../container/components';
+import menuSearchProvider from "../container/components/w-main-page/menu-search-provider";
 import { UserContext, useUserContext } from "./user-context";
 
-export interface AppContext {
+export interface AppContextData {
   configuration: IConfiguration;
   menuTree: IMenuTreeItem[];
   openedScreens: ScreenData[];
@@ -23,7 +24,7 @@ export interface ScreenData {
   confirmOnCloseMessage: string;
 }
 
-const defaultData: AppContext = {
+const defaultData: AppContextData = {
   configuration: {
     authRequired: true,
     projectName: 'WFace',
@@ -37,7 +38,7 @@ const defaultData: AppContext = {
   rightDrawerOpen: false
 }
 
-const getDefaultData = (configuration: IConfiguration, userContextLogin: (values: UserContext) => void): AppContext => ({
+const getDefaultData = (configuration: IConfiguration, userContextLogin: (values: UserContext) => void): AppContextData => ({
   ...defaultData,
   configuration: {
     ...defaultData.configuration,
@@ -63,11 +64,15 @@ const getDefaultData = (configuration: IConfiguration, userContextLogin: (values
           throw e;
         }
       },
+    },
+    searchProvider: {
+      ...menuSearchProvider,
+      ...configuration.searchProvider
     }
   }
 });
 
-interface AppContextValue extends AppContext {
+export interface AppContext extends AppContextData {
   setValue: (key: string, value: any) => void,
   setMenuTree: (menuTree: IMenuTreeItem[]) => void,
   openScreen: (menuTreeItem: IMenuTreeItem, initialValues?: any) => void,
@@ -79,11 +84,11 @@ interface AppContextValue extends AppContext {
   clear: () => void,
 }
 
-const AppContextReact = createContext<AppContextValue>(defaultData as AppContextValue);
+const AppContextReact = createContext<AppContext>(defaultData as AppContext);
 
 export const AppContextProvider: FC<{ children: React.ReactNode, configuration: IConfiguration }> = ({ children, configuration }) => {
   const userContext = useUserContext();
-  const [data, setData] = useState<AppContext>(getDefaultData(configuration, userContext.login));
+  const [data, setData] = useState<AppContextData>(getDefaultData(configuration, userContext.login));
 
   const changeScreenMode = useCallback((screenId: string, mode: ScreenData["mode"]) => {
     setData(prev => {
@@ -213,7 +218,7 @@ export const AppContextProvider: FC<{ children: React.ReactNode, configuration: 
     });
   }, []);
 
-  const value = useMemo<AppContextValue>(() => ({
+  const value = useMemo<AppContext>(() => ({
     ...data,
     changeScreenMode,
     clear,

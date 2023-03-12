@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { IConfiguration } from '../../ioc';
-import { AppContextProvider, UserContextProvider } from '../../store';
+import { AppContextProvider, ApiContextProvider, UserContextProvider } from '../../store';
 import WApp from '../components/w-app';
 
 interface WFaceProps {
@@ -10,9 +10,11 @@ interface WFaceProps {
 
 const WFace: FC<WFaceProps> = ({ configuration }) => (
   <BrowserRouter>
-    <UserContextProvider>
+    <UserContextProvider configuration={configuration}>
       <AppContextProvider configuration={configuration}>
-        <WApp />
+        <ApiContextProvider>
+          <WApp />
+        </ApiContextProvider>
       </AppContextProvider>
     </UserContextProvider>
   </BrowserRouter>

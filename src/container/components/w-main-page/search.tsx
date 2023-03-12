@@ -1,17 +1,8 @@
-import { ISearchProvider, WIcon, WTheme, WCircularProgress } from '../../../';
+import { WIcon, WTheme, WCircularProgress } from '../../../';
 import Select from 'react-select';
 import React, { useRef, FC, useState, useCallback, useEffect } from 'react';
 import { useAppContext } from '../../../store';
 import { useTheme } from '@mui/material';
-
-
-interface SearchState {
-  focused: boolean;
-  value: string;
-  searchResults: any[];
-  isLoading: boolean;
-  anchorEl: any;
-}
 
 export interface SearchProps {
   classes?: any;
@@ -25,7 +16,7 @@ export const Search: FC = () => {
   const [results, setResults] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [focused, setFocused] = useState<boolean>(false);
-  const { configuration } = useAppContext();
+  const appContext = useAppContext();
 
   const searchResults = useCallback(async () => {
     if (value.length === 0) {
@@ -36,14 +27,15 @@ export const Search: FC = () => {
     setLoading(true);
 
     try {
-      const resp = await configuration.searchProvider?.search(value);
+      const resp = await appContext.configuration.searchProvider?.search(value, appContext);
       setResults(resp || []);
     } catch (e) {
+      console.log(e);
       setResults([]);
     }
 
     setLoading(false);
-  }, [value]);
+  }, [value, appContext]);
 
   const onChange = useCallback((val: any, action: any) => {
     if (action.action !== "input-blur" && action.action !== "menu-close") {
@@ -73,13 +65,17 @@ export const Search: FC = () => {
         ref={textFieldRef}
         isSearchable
         value={value}
-        onChange={(option, e) => configuration.searchProvider?.onItemSelected(option)}
+        onChange={(option, e) => appContext.configuration.searchProvider?.onItemSelected(option, appContext)}
         noOptionsMessage={() => "No result found"}
         blurInputOnSelect={true}
         inputValue={value}
         onInputChange={(value, action) => onChange(value, action)}
         options={results}
-        formatOptionLabel={(option, context) => configuration.searchProvider?.renderSearchItem && configuration.searchProvider?.renderSearchItem(option)}
+        formatOptionLabel={(option, context) => {
+          if (appContext.configuration.searchProvider?.renderSearchItem) {
+            return appContext.configuration.searchProvider?.renderSearchItem(option, appContext);
+          }
+        }}
         getOptionValue={(option) => value}
         menuIsOpen={value.length > 0 && focused}
         placeholder="Search..."
