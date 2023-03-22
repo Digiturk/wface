@@ -9,19 +9,17 @@ interface WFaceProps {
 }
 
 const WFace: FC<WFaceProps> = ({ configuration }) => {
-
-
   const children = useMemo(() => {
     let result = <WApp />;
 
-    if(configuration.wrapApp) {
+    if (configuration.wrapApp) {
       result = configuration.wrapApp(result);
     }
 
-    if(configuration.api) {
+    if (configuration.api) {
       result = <ApiContextProvider>{result}</ApiContextProvider>;
     }
-    
+
     return result;
   }, [configuration.api, configuration.wrapApp]);
 
@@ -29,7 +27,7 @@ const WFace: FC<WFaceProps> = ({ configuration }) => {
     <BrowserRouter>
       <UserContextProvider configuration={configuration}>
         <AppContextProvider configuration={configuration}>
-            <WApp />
+          {children}
         </AppContextProvider>
       </UserContextProvider>
     </BrowserRouter>
