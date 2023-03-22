@@ -1,6 +1,6 @@
 import { IMenuTreeItem } from 'wface';
 
-export default {
+export default () => ({
   login: (username: string, password: string, values?: any): Promise<{ displayName: string, token?: string }> => {
     return new Promise((resolve, reject) => {
       if (username === "connection-error") {
@@ -54,4 +54,4 @@ export default {
       setTimeout(() => resolve(result), 1000);
     });
   }
-}
+});

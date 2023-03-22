@@ -1,5 +1,5 @@
 import React, { FC, createContext, useMemo, useCallback, useContext, useEffect, useState, useRef } from "react";
-import Axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
+import Axios, { AxiosInstance, AxiosResponse } from 'axios';
 import { useAppContext } from "./app-context";
 
 interface Result<T> {
@@ -17,29 +17,48 @@ interface ApiContextValue {
   post: <T = any>(resource: string, data?: any) => Promise<Result<T>>;
   put: <T = any>(resource: string, data?: any) => Promise<Result<T>>;
   delete: <T = any>(resource: string) => Promise<Result<T>>;
-  fetch: <T = any>(resource: string) => Promise<T>;
 }
 
 const ApiContext = createContext<ApiContextValue>(null as any);
 
-function toResult<T>(axiosResponse: AxiosResponse<T> | AxiosError): Result<T> {
-  if (axiosResponse instanceof AxiosError) {
-    let message = (axiosResponse.response?.data as any)?.message || 'Bir sistem hatası gerçekleşti, lütfen daha sonra tekrar deneyiniz';
+function toResult<T>(axiosResponse: AxiosResponse<T>): Result<T> {
+  if (axiosResponse.status >= 200 && axiosResponse.status < 300) {
+    return {
+      data: axiosResponse.data,
+      hasError: false,
+      status: axiosResponse.status,
+      errorMessage: '',
+      error: ''
+    }
+  } else {
+    return {
+      data: undefined as any,
+      hasError: true,
+      errorMessage: axiosResponse.statusText,
+      status: axiosResponse.status,
+      error: axiosResponse.statusText
+    }
+  }
+}
+
+function toResultErr<T>(error: any): Result<T> {
+  if(error.response) {
+    let message = error.response?.statusText || 'Bir sistem hatası gerçekleşti, lütfen daha sonra tekrar deneyiniz';
 
     return {
       data: undefined as any,
-      error: axiosResponse.message,
+      error,
       errorMessage: message,
       hasError: true,
-      status: axiosResponse.response?.status
+      status: error.response?.status
     };
-  }
-
-  return {
-    data: axiosResponse.data,
-    hasError: ![200, 201].includes(axiosResponse.status),
-    errorMessage: '',
-    error: ''
+  } else {
+    return {
+      data: undefined as any,
+      error: error,
+      errorMessage: "Sistem hatası",
+      hasError: true
+    }
   }
 }
 
@@ -49,7 +68,8 @@ export interface ApiContextProviderProps {
 
 export const ApiContextProvider: FC<ApiContextProviderProps> = ({ children }) => {
   const { configuration } = useAppContext();
-  const { baseUrl, useToken } = configuration.api;
+  const baseUrl = configuration.api?.baseUrl || '';
+  const useToken = configuration.api?.useToken || (() => '');
   const token = useToken();
   const axios = useRef<AxiosInstance>(Axios.create({ baseURL: `${baseUrl}/` }));
   const [authenticated, setAuthenticated] = useState<boolean>(false);
@@ -60,12 +80,7 @@ export const ApiContextProvider: FC<ApiContextProviderProps> = ({ children }) =>
       return toResult<T>(result);
     }
     catch (err) {
-      return {
-        data: undefined as any,
-        error: err,
-        errorMessage: "Sistem hatası",
-        hasError: true
-      }
+      return toResultErr<T>(err);
     }
   }, []);
 
@@ -75,12 +90,7 @@ export const ApiContextProvider: FC<ApiContextProviderProps> = ({ children }) =>
       return toResult(result);
     }
     catch (err) {
-      return {
-        data: undefined as any,
-        error: err,
-        errorMessage: "Sistem hatası",
-        hasError: true
-      }
+      return toResultErr<T>(err);
     }
   }, []);
 
@@ -90,12 +100,7 @@ export const ApiContextProvider: FC<ApiContextProviderProps> = ({ children }) =>
       return toResult(result);
     }
     catch (err) {
-      return {
-        data: undefined as any,
-        error: err,
-        errorMessage: "Sistem hatası",
-        hasError: true
-      }
+      return toResultErr<T>(err);
     }
   }, []);
 
@@ -105,21 +110,8 @@ export const ApiContextProvider: FC<ApiContextProviderProps> = ({ children }) =>
       return toResult(result);
     }
     catch (err) {
-      return {
-        data: undefined as any,
-        error: err,
-        errorMessage: "Sistem hatası",
-        hasError: true
-      }
+      return toResultErr<T>(err);
     }
-  }, []);
-
-  const fetch = useCallback(async <T = any>(resource: string): Promise<T> => {
-
-
-
-    const result = await axios.current.get<T>(resource);
-    return result.data;
   }, []);
 
   const value = useMemo<ApiContextValue>(() => ({
@@ -127,9 +119,8 @@ export const ApiContextProvider: FC<ApiContextProviderProps> = ({ children }) =>
     get,
     post,
     put,
-    delete: deleteFunc,
-    fetch
-  }), [authenticated, get, post, put, deleteFunc, fetch]);
+    delete: deleteFunc
+  }), [authenticated, get, post, put, deleteFunc]);
 
   useEffect(() => {
     axios.current.defaults.headers['Authorization'] = token ? 'Bearer ' + token : '';

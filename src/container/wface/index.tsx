@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { IConfiguration } from '../../ioc';
 import { AppContextProvider, ApiContextProvider, UserContextProvider } from '../../store';
@@ -8,16 +8,32 @@ interface WFaceProps {
   configuration: IConfiguration;
 }
 
-const WFace: FC<WFaceProps> = ({ configuration }) => (
-  <BrowserRouter>
-    <UserContextProvider configuration={configuration}>
-      <AppContextProvider configuration={configuration}>
-        <ApiContextProvider>
-          <WApp />
-        </ApiContextProvider>
-      </AppContextProvider>
-    </UserContextProvider>
-  </BrowserRouter>
-);
+const WFace: FC<WFaceProps> = ({ configuration }) => {
+
+
+  const children = useMemo(() => {
+    let result = <WApp />;
+
+    if(configuration.wrapApp) {
+      result = configuration.wrapApp(result);
+    }
+
+    if(configuration.api) {
+      result = <ApiContextProvider>{result}</ApiContextProvider>;
+    }
+    
+    return result;
+  }, [configuration.api, configuration.wrapApp]);
+
+  return (
+    <BrowserRouter>
+      <UserContextProvider configuration={configuration}>
+        <AppContextProvider configuration={configuration}>
+            <WApp />
+        </AppContextProvider>
+      </UserContextProvider>
+    </BrowserRouter>
+  );
+}
 
 export default WFace;

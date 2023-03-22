@@ -14,7 +14,7 @@ const configuration: IConfiguration = {
     DemoScreen5: Screens.DemoScreen5,
     EmptyScreen: Screens.EmptyScreen
   },
-  authService: AuthService,
+  useAuthService: AuthService,
   singleScreen: true,
   useLocalStorage: true,
   theme: {

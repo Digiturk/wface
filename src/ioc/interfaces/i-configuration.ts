@@ -3,6 +3,7 @@ import { IMenuTreeItem } from './i-auth-service';
 import { WTheme } from '../../components';
 import { RecursivePartial } from '../..';
 import { AppContext } from '../../store';
+import React from 'react';
 
 export default interface IConfiguration {
   projectName: string,
@@ -19,11 +20,11 @@ export default interface IConfiguration {
   };
 
   authRequired?: any;
-  authService: {
+  useAuthService: () => {
     login(username: string, password: string, values?: any): Promise<{ displayName: string, token?: string }>;
     getMenuTree(): Promise<IMenuTreeItem[]>;
   }
-  api: {
+  api?: {
     baseUrl: string;
     useToken: () => string;
   }
@@ -42,4 +43,6 @@ export default interface IConfiguration {
     onItemSelected: (item: any, appContext: AppContext) => void;
   };
   singleScreen?: boolean;
+
+  wrapApp?: (children: JSX.Element) => JSX.Element;
 }

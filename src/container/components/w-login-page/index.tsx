@@ -25,6 +25,7 @@ const WLoginPage: React.FC = () => {
   const classes = useStyles();
   const userContext = useUserContext();
   const appContext = useAppContext();
+  const authService = appContext.configuration.useAuthService();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [showNotification, setShowNotification] = useState<boolean>(false);
   const [notificationText, setNotificationText] = useState<string>('');
@@ -36,7 +37,7 @@ const WLoginPage: React.FC = () => {
 
 
     try {
-      const response = await appContext.configuration.authService.login(username, password);
+      const response = await authService.login(username, password);
       userContext.login({ ...response, username });
     } catch (message) {
       setNotificationText(message as string);
@@ -44,7 +45,7 @@ const WLoginPage: React.FC = () => {
     }
 
     setIsLoading(false);
-  }, [username, password]);
+  }, [username, password, authService.login]);
 
   const keyPressed = useCallback((e: any) => {
     if (e.key == 'Enter') {

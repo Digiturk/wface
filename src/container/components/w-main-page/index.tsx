@@ -117,6 +117,7 @@ const WMainPage: FC = () => {
   const { pathname } = useLocation();
   const { enqueueSnackbar } = useSnackbar();
   const appContext = useAppContext();
+  const authService = appContext.configuration.useAuthService();
   const [drawerOpen, setDrawerOpen] = useState<boolean>(Horizontal.getType() == WindowWidthType.LG);
   const [showConfirmCloseScreenDialog, setShowConfirmCloseScreenDialog] = useState<boolean>(false);
   const [closingScreen, setClosingScreen] = useState<any>(null);
@@ -273,7 +274,7 @@ const WMainPage: FC = () => {
 
   useEffect(() => {
     
-    appContext.configuration.authService.getMenuTree()
+    authService.getMenuTree()
       .then(menuTree => {
         appContext.setMenuTree(menuTree);
 
@@ -290,7 +291,7 @@ const WMainPage: FC = () => {
           appContext.openScreen(currentScreen);
         }
       })
-  }, [appContext.setMenuTree, appContext.openScreen, getScreenUrl]);
+  }, [appContext.setMenuTree, appContext.openScreen, getScreenUrl, authService.getMenuTree]);
 
   useEffect(() => {
     let newUrl = '/main';

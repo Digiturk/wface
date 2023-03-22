@@ -47,23 +47,27 @@ const getDefaultData = (configuration: IConfiguration, userContextLogin: (values
       ...defaultData.configuration.components,
       ...configuration.components
     },
-    authService: {
-      ...configuration.authService,
-      login: async (username: string, password: string, values?: any) => {
-        try {
-          const response = configuration.authService.login(username, password, values);
-          userContextLogin({ ...values, username });
+    useAuthService: () => {
+      const authService = configuration.useAuthService();
 
-          if (configuration.hooks?.onLogin) {
-            configuration.hooks.onLogin();
+      return {
+        ...authService,
+        login: async (username: string, password: string, values?: any) => {
+          try {
+            const response = authService.login(username, password, values);
+            userContextLogin({ ...values, username });
+
+            if (configuration.hooks?.onLogin) {
+              configuration.hooks.onLogin();
+            }
+
+            return response;
           }
-
-          return response;
+          catch (e) {
+            throw e;
+          }
         }
-        catch (e) {
-          throw e;
-        }
-      },
+      }
     },
     searchProvider: {
       ...menuSearchProvider,
