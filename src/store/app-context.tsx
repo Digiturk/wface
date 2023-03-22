@@ -55,7 +55,7 @@ const getDefaultData = (configuration: IConfiguration): AppContextData => ({
         ...authService,
         login: async (username: string, password: string, values?: any) => {
           try {
-            const response = authService.login(username, password, values);
+            const response = await authService.login(username, password, values);
             userContext.login({ ...values, username });
 
             if (configuration.hooks?.onLogin) {

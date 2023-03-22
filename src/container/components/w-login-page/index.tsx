@@ -38,7 +38,6 @@ const WLoginPage: React.FC = () => {
 
     try {
       const response = await authService.login(username, password);
-      userContext.login({ ...response, username });
     } catch (message) {
       setNotificationText(message as string);
       setShowNotification(true);
