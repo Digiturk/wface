@@ -273,7 +273,6 @@ const WMainPage: FC = () => {
   }, [showConfirmCloseScreenDialog, closingScreen]);
 
   useEffect(() => {
-    
     authService.getMenuTree()
       .then(menuTree => {
         appContext.setMenuTree(menuTree);
@@ -291,7 +290,7 @@ const WMainPage: FC = () => {
           appContext.openScreen(currentScreen);
         }
       })
-  }, [appContext.setMenuTree, appContext.openScreen, getScreenUrl, authService.getMenuTree]);
+  }, [appContext.setMenuTree, appContext.openScreen, getScreenUrl]);
 
   useEffect(() => {
     let newUrl = '/main';

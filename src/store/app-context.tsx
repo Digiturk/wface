@@ -38,7 +38,7 @@ const defaultData: AppContextData = {
   rightDrawerOpen: false
 }
 
-const getDefaultData = (configuration: IConfiguration, userContextLogin: (values: UserContext) => void): AppContextData => ({
+const getDefaultData = (configuration: IConfiguration): AppContextData => ({
   ...defaultData,
   configuration: {
     ...defaultData.configuration,
@@ -49,13 +49,14 @@ const getDefaultData = (configuration: IConfiguration, userContextLogin: (values
     },
     useAuthService: () => {
       const authService = configuration.useAuthService();
+      const userContext = useUserContext();
 
-      return {
+      const result = useMemo(() => ({
         ...authService,
         login: async (username: string, password: string, values?: any) => {
           try {
             const response = authService.login(username, password, values);
-            userContextLogin({ ...values, username });
+            userContext.login({ ...values, username });
 
             if (configuration.hooks?.onLogin) {
               configuration.hooks.onLogin();
@@ -67,7 +68,9 @@ const getDefaultData = (configuration: IConfiguration, userContextLogin: (values
             throw e;
           }
         }
-      }
+      }), [authService, userContext.login]);
+
+      return result;
     },
     searchProvider: {
       ...menuSearchProvider,
@@ -92,7 +95,7 @@ const AppContextReact = createContext<AppContext>(defaultData as AppContext);
 
 export const AppContextProvider: FC<{ children: React.ReactNode, configuration: IConfiguration }> = ({ children, configuration }) => {
   const userContext = useUserContext();
-  const [data, setData] = useState<AppContextData>(getDefaultData(configuration, userContext.login));
+  const [data, setData] = useState<AppContextData>(getDefaultData(configuration));
 
   const changeScreenMode = useCallback((screenId: string, mode: ScreenData["mode"]) => {
     setData(prev => {
@@ -106,7 +109,7 @@ export const AppContextProvider: FC<{ children: React.ReactNode, configuration: 
     })
   }, []);
 
-  const clear = useCallback(() => setData(prev => getDefaultData(configuration, userContext.login)), [configuration, userContext.login]);
+  const clear = useCallback(() => setData(prev => getDefaultData(configuration)), [configuration, userContext.login]);
 
   const closeScreen = useCallback((id: string) => {
     setData(prev => {
