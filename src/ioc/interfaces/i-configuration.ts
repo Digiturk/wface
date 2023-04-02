@@ -10,7 +10,7 @@ export default interface IConfiguration {
   components?: IComponents;
 
   screenList: { [key: string]: any };
-  rightContextItems?: { id: string, icon?: string, text: string, onClick?: ((event: any) => void) | string }[];
+  useRightContextItems?: () => { id: string, icon?: string, text: string, onClick?: ((event: any) => void) | string }[];
   customToolbarComponent?: any;
   rightDrawer?: {
     buttonIcon?: string;
@@ -21,7 +21,7 @@ export default interface IConfiguration {
 
   authRequired?: any;
   useAuthService: () => {
-    login(username: string, password: string, values?: any): Promise<{ displayName: string, token?: string }>;
+    login(username: string, password: string, values?: any): Promise<{ displayName: string, token?: string, data?: any; }>;
     getMenuTree(): Promise<IMenuTreeItem[]>;
   }
   api?: {

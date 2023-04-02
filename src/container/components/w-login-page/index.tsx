@@ -11,7 +11,7 @@ import loginBg from '../../../assets/login-bg.jpg';
 import loginLogo from '../../../assets/login-logo.png';
 import { useCallback, useState } from 'react';
 import makeStyles from "@mui/styles/makeStyles";
-import { useAppContext, useUserContext } from "../../../store";
+import { useAppContext, useConfiguration, useUserContext } from "../../../store";
 
 //#endregion
 
@@ -23,9 +23,8 @@ const useStyles = makeStyles((theme: any) => ({
 
 const WLoginPage: React.FC = () => {
   const classes = useStyles();
-  const userContext = useUserContext();
-  const appContext = useAppContext();
-  const authService = appContext.configuration.useAuthService();
+  const configuration = useConfiguration();
+  const authService = configuration.useAuthService();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [showNotification, setShowNotification] = useState<boolean>(false);
   const [notificationText, setNotificationText] = useState<string>('');

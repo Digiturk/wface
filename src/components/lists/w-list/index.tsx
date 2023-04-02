@@ -12,8 +12,7 @@ export const WList: React.FC<WListProps> = React.forwardRef((props, ref) => {
   );
 });
 
-
-
+export * from './w-list-item-button';
 export * from './w-list-item-icon';
 export * from './w-list-item-secondary-action';
 export * from './w-list-item-text';

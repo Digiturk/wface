@@ -1,7 +1,7 @@
 import { WIcon, WTheme, WCircularProgress } from '../../../';
 import Select from 'react-select';
 import React, { useRef, FC, useState, useCallback, useEffect } from 'react';
-import { useAppContext } from '../../../store';
+import { useAppContext, useConfiguration } from '../../../store';
 import { useTheme } from '@mui/material';
 
 export interface SearchProps {
@@ -17,6 +17,7 @@ export const Search: FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [focused, setFocused] = useState<boolean>(false);
   const appContext = useAppContext();
+  const configuration = useConfiguration();
 
   const searchResults = useCallback(async () => {
     if (value.length === 0) {
@@ -27,7 +28,7 @@ export const Search: FC = () => {
     setLoading(true);
 
     try {
-      const resp = await appContext.configuration.searchProvider?.search(value, appContext);
+      const resp = await configuration.searchProvider?.search(value, appContext);
       setResults(resp || []);
     } catch (e) {
       console.log(e);
@@ -35,7 +36,7 @@ export const Search: FC = () => {
     }
 
     setLoading(false);
-  }, [value, appContext]);
+  }, [value, appContext, configuration]);
 
   const onChange = useCallback((val: any, action: any) => {
     if (action.action !== "input-blur" && action.action !== "menu-close") {
@@ -65,15 +66,15 @@ export const Search: FC = () => {
         ref={textFieldRef}
         isSearchable
         value={value}
-        onChange={(option, e) => appContext.configuration.searchProvider?.onItemSelected(option, appContext)}
+        onChange={(option, e) => configuration.searchProvider?.onItemSelected(option, appContext)}
         noOptionsMessage={() => "No result found"}
         blurInputOnSelect={true}
         inputValue={value}
         onInputChange={(value, action) => onChange(value, action)}
         options={results}
         formatOptionLabel={(option, context) => {
-          if (appContext.configuration.searchProvider?.renderSearchItem) {
-            return appContext.configuration.searchProvider?.renderSearchItem(option, appContext);
+          if (configuration.searchProvider?.renderSearchItem) {
+            return configuration.searchProvider?.renderSearchItem(option, appContext);
           }
         }}
         getOptionValue={(option) => value}

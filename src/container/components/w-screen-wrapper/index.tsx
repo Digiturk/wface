@@ -1,7 +1,7 @@
 import {
   MenuTreeUtil,
   WCircularProgress, WIcon, WIconButton, WTheme, BaseScreenProps, BaseScreenPropsContext,
-  ScreenData
+  ScreenData, useConfiguration
 } from '../../../';
 import React, { FC, useCallback, useRef, useState } from 'react';
 import { useAppContext } from '../../../store';
@@ -15,6 +15,7 @@ const WScreenWrapper: FC<{ screen?: ScreenData; }> = ({ screen }) => {
   const screenRef = useRef();
   const appContext = useAppContext();
   const { enqueueSnackbar } = useSnackbar();
+  const configuration = useConfiguration();
 
   try {
 
@@ -70,7 +71,7 @@ const WScreenWrapper: FC<{ screen?: ScreenData; }> = ({ screen }) => {
       return <appContext.configuration.components.ErrorPage {...pageError} />
     }
 
-    const Screen = appContext.configuration.screenList[screen?.menuTreeItem?.screen || ''] as any;
+    const Screen = configuration.screenList[screen?.menuTreeItem?.screen || ''] as any;
 
     if (!Screen) {
       // @ts-ignore

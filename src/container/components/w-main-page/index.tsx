@@ -18,6 +18,7 @@ import { Search } from './search';
 import NavList from './nav-list';
 import { FC, useState, useCallback, useEffect, useMemo } from 'react';
 import RightDrawer from './right-drawer';
+import { useConfiguration } from "../../../store";
 
 //#endregion 
 
@@ -117,11 +118,13 @@ const WMainPage: FC = () => {
   const { pathname } = useLocation();
   const { enqueueSnackbar } = useSnackbar();
   const appContext = useAppContext();
-  const authService = appContext.configuration.useAuthService();
+  const configuration = useConfiguration();
+  const rightContextItems = configuration.useRightContextItems ? configuration.useRightContextItems() : [];
+  const authService = configuration.useAuthService();
   const [drawerOpen, setDrawerOpen] = useState<boolean>(Horizontal.getType() == WindowWidthType.LG);
   const [showConfirmCloseScreenDialog, setShowConfirmCloseScreenDialog] = useState<boolean>(false);
   const [closingScreen, setClosingScreen] = useState<any>(null);
-  const topHeight = useMemo(() => appContext.configuration.singleScreen ? 48 : 96, [appContext.configuration.singleScreen]);
+  const topHeight = useMemo(() => configuration.singleScreen ? 48 : 96, [configuration.singleScreen]);
   const getScreenUrl = useCallback((screen: IMenuTreeItem) => "/" + screen.screen, []);
   const handleDrawerChange = useCallback(() => setDrawerOpen(!drawerOpen), [drawerOpen]);
   const closeScreen = useCallback((screen: IMenuTreeItem) => {
@@ -272,11 +275,16 @@ const WMainPage: FC = () => {
     )
   }, [showConfirmCloseScreenDialog, closingScreen]);
 
-  useEffect(() => {
-    authService.getMenuTree()
-      .then(menuTree => {
-        appContext.setMenuTree(menuTree);
+  const setUrlAndScreen = useCallback(async () => {
+    try {
+      let menuTree: IMenuTreeItem[] = [];
 
+      if (appContext.menuTree.length === 0) {
+        menuTree = await authService.getMenuTree();
+        appContext.setMenuTree(menuTree);
+      }
+
+      if (!appContext.currentScreen && pathname !== '/main') {
         let currentScreen!: IMenuTreeItem;
         MenuTreeUtil.menuTreeForEach(menuTree, item => {
           if ('/main' + getScreenUrl(item) === window.location.pathname) {
@@ -288,20 +296,25 @@ const WMainPage: FC = () => {
 
         if (currentScreen) {
           appContext.openScreen(currentScreen);
+        } else {
+          navigate('/main', { replace: true });
         }
-      })
-  }, [appContext.setMenuTree, appContext.openScreen, getScreenUrl]);
+      } else if (appContext.currentScreen) {
+        const newUrl = '/main' + getScreenUrl(appContext.currentScreen.menuTreeItem);
+        if (pathname !== newUrl) {
+          navigate(newUrl, { replace: true });
+        }
+      }
+    }
+    catch (e) {
+      // TODO show error 
+      console.log('hata', e);
+    };
+  }, [appContext.currentScreen?.menuTreeItem?.id, getScreenUrl, pathname, appContext.setMenuTree, appContext.openScreen]);
 
   useEffect(() => {
-    let newUrl = '/main';
-    if (appContext.currentScreen) {
-      newUrl += getScreenUrl(appContext.currentScreen.menuTreeItem);
-    }
-
-    if (newUrl != pathname) {
-      navigate(newUrl, { replace: true });
-    }
-  }, [appContext.currentScreen, getScreenUrl, pathname]);
+    setUrlAndScreen();
+  }, [setUrlAndScreen]);
 
   return (
     <div className={classes.root + " main-page"}>
@@ -318,18 +331,18 @@ const WMainPage: FC = () => {
           </WIconButton>
           <span>
             <WTypography variant="h6" color="inherit" noWrap className={classes.flex}>
-              {appContext.configuration.projectName}
+              {configuration.projectName}
             </WTypography>
           </span>
           <div style={{ flexGrow: 1 }} />
-          {appContext.configuration.customToolbarComponent && (
-            <appContext.configuration.customToolbarComponent />
+          {configuration.customToolbarComponent && (
+            <configuration.customToolbarComponent />
           )}
-          {appContext.configuration.search && <Search />}
-          <MyProfileMenu items={appContext.configuration.rightContextItems} />
-          {appContext.configuration.rightDrawer && <RightDrawer options={appContext.configuration.rightDrawer} />}
+          {configuration.search && <Search />}
+          <MyProfileMenu items={rightContextItems} />
+          {configuration.rightDrawer && <RightDrawer options={configuration.rightDrawer} />}
         </WToolBar>
-        {!appContext.configuration.singleScreen &&
+        {!configuration.singleScreen &&
           <div style={{ display: 'flex' }}>
             <div style={{ flex: 1, maxWidth: '100%' }}>
               {renderTabs()}
@@ -380,7 +393,7 @@ const WMainPage: FC = () => {
         <WScrollBar>
           {
             appContext.openedScreens.map((screen: any) => {
-              const Comp = appContext.configuration.components?.ScreenWrapper as any;
+              const Comp = configuration.components?.ScreenWrapper as any;
               if (appContext.currentScreen?.menuTreeItem.id === screen.menuTreeItem.id) {
                 const component = <div style={{ width: '100%', height: 'calc(100% - 8px)' }} key={"screen-" + screen.menuTreeItem.id}><Comp screen={screen} /></div>
                 return component;

@@ -1,7 +1,7 @@
 import { IMenuTreeItem } from 'wface';
 
 export default () => ({
-  login: (username: string, password: string, values?: any): Promise<{ displayName: string, token?: string }> => {
+  login: (username: string, password: string, values?: any): Promise<{ displayName: string, token?: string, data?: any }> => {
     return new Promise((resolve, reject) => {
       if (username === "connection-error") {
         setTimeout(() => reject("Connection error"), 1000);
@@ -11,7 +11,14 @@ export default () => ({
         setTimeout(() => reject("Wrong username or password"), 1000);
       }
 
-      setTimeout(() => resolve({ displayName: 'MockUser', token: 'MockToken' }), 1500);
+      setTimeout(() => resolve({
+        displayName: 'MockUser',
+        token: 'MockToken',
+        data: {
+          name: 'MockName',
+          surname: 'MockSurname'
+        }
+      }), 1500);
     });
   },
 

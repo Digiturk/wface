@@ -1,10 +1,10 @@
-import ListItem, { ListItemProps } from '@mui/material/ListItem';
+import ListItemButton, { ListItemButtonProps } from '@mui/material/ListItemButton';
 import { emphasize } from '@mui/material/styles';
 import React, { FC } from 'react';
 import { BaseComponentProps } from '../../base/base-component-props';
 import makeStyles from '@mui/styles/makeStyles';
 
-export type WListItemProps<D extends React.ElementType = "li"> = BaseComponentProps & ListItemProps<D> & {
+export type WListItemButtonProps = BaseComponentProps & ListItemButtonProps & {
 };
 
 const useStyles = makeStyles((theme: any) => ({
@@ -20,8 +20,8 @@ const useStyles = makeStyles((theme: any) => ({
   }
 }));
 
-export const WListItem: FC<WListItemProps> = ({ dense = true, ...rest }) => {
+export const WListItemButton: FC<WListItemButtonProps> = ({ dense = true, ...rest }) => {
   const classes = useStyles();
 
-  return <ListItem {...rest} dense={dense} classes={classes} />
+  return <ListItemButton {...rest} dense={dense} classes={classes} />
 }

@@ -4,11 +4,13 @@ import {
   IMenuTreeItem, MenuTreeUtil,
   WDivider, WList, WListItem,
   WListItemIcon, WListItemText,
-  WCircularProgress, WIcon, WTheme
+  WCircularProgress, WIcon, WTheme,
+  WListItemButton
 } from '../../../';
-import { SxProps, useTheme } from '@mui/material';
 import { useAppContext } from '../../../store';
+import { SxProps, useTheme } from '@mui/material';
 import makeStyles from "@mui/styles/makeStyles";
+import { useNavigate } from 'react-router';
 
 export interface NavListProps {
   onItemClicked?: (item: IMenuTreeItem) => void;
@@ -37,9 +39,10 @@ export interface DrawerMenuItemProps {
 
 const NavList: FC<NavListProps> = ({ onItemClicked }) => {
   const classes = useStyles();
-  const appContext = useAppContext(); 
+  const appContext = useAppContext();
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
   const theme = useTheme<WTheme>();
+  const navigate = useNavigate();
 
   const hasAnyIcon = useMemo(() => {
     let result = false;
@@ -125,13 +128,13 @@ const NavList: FC<NavListProps> = ({ onItemClicked }) => {
       }
 
       return (
-        <WListItem
+        <WListItemButton
           key={item.id}
           id={"menu-item-" + item.id}
           classes={{ root: classes.listItemRoot }}
           style={listItemStyle}
           sx={theme?.designDetails?.drawerDesign?.menuItem?.sx}
-          onClick={() => { handleLeafClick(item) }}
+          onClick={(e) => handleLeafClick(item)}
           divider
         >
           {hasAnyIcon &&
@@ -140,7 +143,7 @@ const NavList: FC<NavListProps> = ({ onItemClicked }) => {
             </WListItemIcon>
           }
           <WListItemText primary={<div style={listItemTextStyle as any}>{item.text}</div>} />
-        </WListItem>
+        </WListItemButton>
       );
     }
   }, [expandedItems, handleNodeClick, handleNodeClick, appContext.currentScreen]);
@@ -153,7 +156,7 @@ const NavList: FC<NavListProps> = ({ onItemClicked }) => {
           id="list-menu-tree"
           key="NavListKey"
         >
-            {appContext.menuTree.map((item: any) => renderNavItem(item, hasAnyIcon))}
+          {appContext.menuTree.map((item: any) => renderNavItem(item, hasAnyIcon))}
         </WList>
       </div>
     );

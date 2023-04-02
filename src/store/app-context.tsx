@@ -2,10 +2,10 @@ import React, { FC, createContext, useMemo, useContext, useCallback, useState } 
 import { IMenuTreeItem, IConfiguration, MenuTreeUtil } from '..';
 import Components from '../container/components';
 import menuSearchProvider from "../container/components/w-main-page/menu-search-provider";
+import { useConfiguration } from "./config-context";
 import { UserContext, useUserContext } from "./user-context";
 
 export interface AppContextData {
-  configuration: IConfiguration;
   menuTree: IMenuTreeItem[];
   openedScreens: ScreenData[];
   currentScreen: ScreenData | undefined;
@@ -25,11 +25,6 @@ export interface ScreenData {
 }
 
 const defaultData: AppContextData = {
-  configuration: {
-    authRequired: true,
-    projectName: 'WFace',
-    components: Components,
-  } as any,
   menuTree: [],
   openedScreens: [],
   currentScreen: undefined,
@@ -38,46 +33,6 @@ const defaultData: AppContextData = {
   rightDrawerOpen: false
 }
 
-const getDefaultData = (configuration: IConfiguration): AppContextData => ({
-  ...defaultData,
-  configuration: {
-    ...defaultData.configuration,
-    ...configuration,
-    components: {
-      ...defaultData.configuration.components,
-      ...configuration.components
-    },
-    useAuthService: () => {
-      const authService = configuration.useAuthService();
-      const userContext = useUserContext();
-
-      const result = useMemo(() => ({
-        ...authService,
-        login: async (username: string, password: string, values?: any) => {
-          try {
-            const response = await authService.login(username, password, values);
-            userContext.login({ ...values, username });
-
-            if (configuration.hooks?.onLogin) {
-              configuration.hooks.onLogin();
-            }
-
-            return response;
-          }
-          catch (e) {
-            throw e;
-          }
-        }
-      }), [authService, userContext.login]);
-
-      return result;
-    },
-    searchProvider: {
-      ...menuSearchProvider,
-      ...configuration.searchProvider
-    }
-  }
-});
 
 export interface AppContext extends AppContextData {
   setValue: (key: string, value: any) => void,
@@ -93,9 +48,8 @@ export interface AppContext extends AppContextData {
 
 const AppContextReact = createContext<AppContext>(defaultData as AppContext);
 
-export const AppContextProvider: FC<{ children: React.ReactNode, configuration: IConfiguration }> = ({ children, configuration }) => {
-  const userContext = useUserContext();
-  const [data, setData] = useState<AppContextData>(getDefaultData(configuration));
+export const AppContextProvider: FC<{ children: React.ReactNode, singleScreen: IConfiguration['singleScreen'] }> = ({ children, singleScreen }) => {
+  const [data, setData] = useState<AppContextData>((defaultData));
 
   const changeScreenMode = useCallback((screenId: string, mode: ScreenData["mode"]) => {
     setData(prev => {
@@ -109,7 +63,7 @@ export const AppContextProvider: FC<{ children: React.ReactNode, configuration: 
     })
   }, []);
 
-  const clear = useCallback(() => setData(prev => getDefaultData(configuration)), [configuration, userContext.login]);
+  const clear = useCallback(() => setData(defaultData), []);
 
   const closeScreen = useCallback((id: string) => {
     setData(prev => {
@@ -154,7 +108,7 @@ export const AppContextProvider: FC<{ children: React.ReactNode, configuration: 
           confirmOnCloseMessage: ''
         } as ScreenData;
 
-        if (prev.configuration.singleScreen) {
+        if (singleScreen) {
           openedScreens = [screenData];
         }
         else {
@@ -164,7 +118,7 @@ export const AppContextProvider: FC<{ children: React.ReactNode, configuration: 
 
       return { ...prev, openedScreens, currentScreen: screenData };
     });
-  }, []);
+  }, [singleScreen]);
 
   const setConfirmOnClose = useCallback((screenId: string, confirmOnClose: boolean, confirmOnCloseMessage: string) => {
     setData(prev => {
