@@ -55,27 +55,25 @@ const WScreenWrapper: FC<{ screen?: ScreenData; }> = ({ screen }) => {
       });
     }, []);
 
-    const getBaseScreenProps = useCallback((): BaseScreenProps => {
-      return {
-        changeScreenMode,
-        closeScreen,
-        openScreen,
-        screenData: appContext.currentScreen,
-        setConfirmOnClose,
-        showSnackbar: showSnackbar,
-      } as BaseScreenProps;
-    }, []);
+    const getBaseScreenProps = () => ({
+      changeScreenMode,
+      closeScreen,
+      openScreen,
+      screenData: appContext.currentScreen,
+      setConfirmOnClose,
+      showSnackbar: showSnackbar,
+    } as BaseScreenProps);
 
     if (pageError) {
       // @ts-ignore
-      return <appContext.configuration.components.ErrorPage {...pageError} />
+      return <configuration.components.ErrorPage {...pageError} />
     }
 
     const Screen = configuration.screenList[screen?.menuTreeItem?.screen || ''] as any;
 
     if (!Screen) {
       // @ts-ignore
-      return <appContext.configuration.components.NoPage />
+      return <configuration.components.NoPage />
     }
 
     return (

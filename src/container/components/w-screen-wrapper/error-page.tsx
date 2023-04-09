@@ -22,7 +22,7 @@ export default class ErrorPage extends React.Component<{ error: any, info: any }
 
   render() {
     return (
-      <WGrid container justifyContent="center">
+      <WGrid container justifyContent="center" mt={2}>
         <WGrid item md={12} xs={12}>
           <WCard>
             <WCardContent style={{ paddingBottom: 0 }}>
@@ -49,7 +49,7 @@ export default class ErrorPage extends React.Component<{ error: any, info: any }
                   {this.props.error.toString()}
                 </WTypography>
                 {this.renderStack("Stack", this.props.error.stack)}
-                {this.renderStack("Component Stack", this.props.info.componentStack)}
+                {this.props.info && this.renderStack("Component Stack", this.props.info.componentStack)}
               </WCardContent>
             </WCard>
           </WCollapse>

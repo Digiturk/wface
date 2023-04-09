@@ -38,6 +38,7 @@ export interface AppContext extends AppContextData {
   setValue: (key: string, value: any) => void,
   setMenuTree: (menuTree: IMenuTreeItem[]) => void,
   openScreen: (menuTreeItem: IMenuTreeItem, initialValues?: any) => void,
+  openScreenById: (id: string, initialValues?: any) => boolean,
   closeScreen: (id: string) => void,
   changeScreenMode: (screenId: string, mode: ScreenData["mode"]) => void,
   setConfirmOnClose: (screenId: string, confirmOnClose: boolean, confirmOnCloseMessage: string) => void,
@@ -120,6 +121,16 @@ export const AppContextProvider: FC<{ children: React.ReactNode, singleScreen: I
     });
   }, [singleScreen]);
 
+  const openScreenById = useCallback((id: string, initialValues?: any): boolean => {
+    const menuTreeItem = MenuTreeUtil.find(data.menuTree, id);
+    if (menuTreeItem) {
+      openScreen(menuTreeItem, initialValues);
+      return true;
+    }
+
+    return false;
+  }, [openScreen, data.menuTree]);
+
   const setConfirmOnClose = useCallback((screenId: string, confirmOnClose: boolean, confirmOnCloseMessage: string) => {
     setData(prev => {
       const openedScreens = [...prev.openedScreens];
@@ -185,12 +196,17 @@ export const AppContextProvider: FC<{ children: React.ReactNode, singleScreen: I
     clear,
     closeScreen,
     openScreen,
+    openScreenById,
     setConfirmOnClose,
     setMenuTree,
     setQueryParams,
     setValue,
     toggleRightDrawer
-  }), [data]);
+  }), [
+    data, changeScreenMode, clear, closeScreen, openScreen,
+    openScreenById, setConfirmOnClose, setMenuTree, setQueryParams,
+    setValue, toggleRightDrawer
+  ]);
 
   return (
     <AppContextReact.Provider value={value}>
