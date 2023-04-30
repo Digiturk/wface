@@ -5,7 +5,6 @@ import { useApi, useAppContext, useBaseScreenProps, useUserContext, WTheme } fro
 export const EmptyScreen: FC = () => {
   const { showSnackbar, changeScreenMode } = useBaseScreenProps();
   const [data, setData] = useState<any>(null);
-  const theme = useTheme<WTheme>();
   const api = useApi();
   const { queryParams } = useAppContext();
 

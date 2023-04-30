@@ -28,7 +28,7 @@ const WFace: FC<WFaceProps> = ({ configuration }) => {
   return (
     <BrowserRouter>
       <UserContextProvider useLocalStorage={configuration.useLocalStorage} projectName={configuration.projectName}>
-        <AppContextProvider singleScreen={configuration.singleScreen}>
+        <AppContextProvider>
           <ConfigContextProvider configuration={configuration}>
             {children}           
           </ConfigContextProvider>

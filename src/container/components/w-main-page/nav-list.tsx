@@ -5,12 +5,14 @@ import {
   WDivider, WList, WListItem,
   WListItemIcon, WListItemText,
   WCircularProgress, WIcon, WTheme,
-  WListItemButton
+  WListItemButton,
+  WIconButton
 } from '../../../';
 import { useAppContext } from '../../../store';
-import { SxProps, useTheme } from '@mui/material';
+import { Box, SxProps, useTheme } from '@mui/material';
 import makeStyles from "@mui/styles/makeStyles";
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
 
 export interface NavListProps {
   onItemClicked?: (item: IMenuTreeItem) => void;
@@ -40,9 +42,9 @@ export interface DrawerMenuItemProps {
 const NavList: FC<NavListProps> = ({ onItemClicked }) => {
   const classes = useStyles();
   const appContext = useAppContext();
-  const [expandedItems, setExpandedItems] = useState<string[]>([]);
+  const [expandedItems, setExpandedItems] = useState<{ [key: string]: boolean }>({});
   const theme = useTheme<WTheme>();
-  const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   const hasAnyIcon = useMemo(() => {
     let result = false;
@@ -57,25 +59,22 @@ const NavList: FC<NavListProps> = ({ onItemClicked }) => {
     return result;
   }, [appContext.menuTree]);
 
-  const handleNodeClick = useCallback((id: string) => {
-    setExpandedItems(prevExpandedItems => {
-      const index = prevExpandedItems.indexOf(id);
-      if (index > -1) {
-        prevExpandedItems.splice(index, 1);
+  const currentItem = useMemo<IMenuTreeItem | undefined>(() => {
+    let result: IMenuTreeItem | undefined = undefined;
+    MenuTreeUtil.menuTreeForEach(appContext.menuTree, item => {
+      if (pathname === '/main/' + item.id) {
+        result = item;
+        return true;
       }
-      else {
-        prevExpandedItems.push(id);
-      }
-
-      return prevExpandedItems;
+      return false;
     });
-  }, []);
 
-  const handleLeafClick = useCallback((item: IMenuTreeItem) => {
-    if (onItemClicked) {
-      onItemClicked(item);
-    }
-  }, [onItemClicked]);
+    return result;
+  }, [appContext.menuTree, pathname]);
+
+  const handleNodeClick = useCallback((id: string) => {
+    setExpandedItems(prevExpandedItems => ({ ...prevExpandedItems, [id]: prevExpandedItems[id] = !prevExpandedItems[id] }))
+  }, []);
 
   const renderNavItem = useCallback((item: IMenuTreeItem, hasAnyIcon: boolean, nestingLevel: number = 0): React.ReactNode => {
     if (item.hideOnNavigationList) {
@@ -86,67 +85,84 @@ const NavList: FC<NavListProps> = ({ onItemClicked }) => {
       paddingLeft: 10 + 20 * nestingLevel,
     }
 
-    if (item.subNodes && item.subNodes.length > 0) {
-      const open = expandedItems.indexOf(item.id) > -1;
-      return (
-        <div key={item.id}>
-          {item.divideBefore && <WDivider />}
-          <WListItem key={item.id} id={"menu-item-" + item.id} onClick={() => { handleNodeClick(item.id) }} style={itemStyle} classes={{ root: classes.listItemRoot }}>
-            {hasAnyIcon &&
-              <WListItemIcon className={classes.listItemIconRoot}>
-                <WIcon>{item.icon}</WIcon>
-              </WListItemIcon>
-            }
-            <WListItemText primary={item.text} />
-            <WIcon>{open ? "expand_less" : "expand_more"}</WIcon>
-          </WListItem>
-          <Collapse in={open} timeout="auto">
-            <WList id={"sub-menu-" + item.id} disablePadding>
-              {item.subNodes.map(subItem => { return renderNavItem(subItem, hasAnyIcon, nestingLevel + 1); })}
-            </WList>
-          </Collapse>
+    const open = expandedItems[item.id];
 
-        </div>
-      );
+
+    let listItemTextStyle = { ...theme?.designDetails?.drawerDesign?.menuItem?.style };
+    let listItemStyle = Object.assign({ cursor: 'pointer' }, itemStyle) as any;
+
+    if (currentItem?.id === item.id) {
+      listItemTextStyle = {
+        color: theme?.designDetails?.drawerDesign?.menuItem?.activeStyle?.color || theme?.palette.primary.main,
+        fontWeight: theme?.designDetails?.drawerDesign?.menuItem?.activeStyle?.fontWeight || 500,
+      };
+
+      listItemStyle = {
+        backgroundColor: theme?.palette.background.default,
+        ...listItemStyle,
+        ...theme?.designDetails?.drawerDesign?.menuItem?.activeStyle,
+      };
     }
-    else {
 
-      let listItemTextStyle = { ...theme?.designDetails?.drawerDesign?.menuItem?.style };
-      let listItemStyle = Object.assign({}, itemStyle) as any;
-
-      if (appContext.currentScreen && appContext.currentScreen.menuTreeItem.id === item.id) {
-        listItemTextStyle = {
-          color: theme?.designDetails?.drawerDesign?.menuItem?.activeStyle?.color || theme?.palette.primary.main,
-          fontWeight: theme?.designDetails?.drawerDesign?.menuItem?.activeStyle?.fontWeight || 500,
-        };
-
-        listItemStyle = {
-          backgroundColor: theme?.palette.background.default,
-          ...listItemStyle,
-          ...theme?.designDetails?.drawerDesign?.menuItem?.activeStyle,
-        };
-      }
-
-      return (
+    return (
+      <div key={item.id}>
         <WListItemButton
-          key={item.id}
           id={"menu-item-" + item.id}
           classes={{ root: classes.listItemRoot }}
           style={listItemStyle}
           sx={theme?.designDetails?.drawerDesign?.menuItem?.sx}
-          onClick={(e) => handleLeafClick(item)}
-          divider
+          onClick={() => {
+            if (!item.screen) {
+              handleNodeClick(item.id);
+            }
+          }}
+          // @ts-ignore
+          component={item.screen ? Link : undefined}
+          to={item.screen ? item.id : undefined}
         >
           {hasAnyIcon &&
             <WListItemIcon className={classes.listItemIconRoot}>
               <WIcon style={listItemTextStyle}>{item.icon}</WIcon>
             </WListItemIcon>
           }
-          <WListItemText primary={<div style={listItemTextStyle as any}>{item.text}</div>} />
+          <WListItemText
+            primary={(
+              <Box style={listItemTextStyle as any} display="flex" alignItems="center" justifyContent="space-between">
+                <span>{item.text}</span>
+                {item.screen && item.subNodes && item.subNodes.length > 0 && <Box sx={{ color: theme => theme.palette.text.disabled }}>|</Box>}
+              </Box>
+            )}
+          />
+          {item.subNodes && item.subNodes.length > 0 && (
+            item.screen
+              ? (<WIconButton
+                size="small"
+                sx={{ p: 0 }}
+                onClick={(e) => {
+                  // e.stopPropagation();
+                  e.preventDefault();
+                  handleNodeClick(item.id);
+                }}
+              >
+                <WIcon>{open ? "expand_less" : "expand_more"}</WIcon>
+              </WIconButton>
+              )
+              : (
+                <WIcon>{open ? "expand_less" : "expand_more"}</WIcon>
+              )
+          )}
         </WListItemButton>
-      );
-    }
-  }, [expandedItems, handleNodeClick, handleNodeClick, appContext.currentScreen]);
+        {item.subNodes && item.subNodes.length > 0 && (
+          <Collapse in={open} timeout="auto">
+            <WList id={"sub-menu-" + item.id} disablePadding>
+              {item.subNodes.map(subItem => { return renderNavItem(subItem, hasAnyIcon, nestingLevel + 1); })}
+            </WList>
+          </Collapse>
+        )}
+      </div>
+    );
+
+  }, [expandedItems, handleNodeClick, handleNodeClick, currentItem]);
 
 
   if (appContext.menuTree && appContext.menuTree.length > 0) {
@@ -168,7 +184,7 @@ const NavList: FC<NavListProps> = ({ onItemClicked }) => {
       paddingRight: 20,
       paddingTop: 50
     } as any;
-    return <div style={centerStyle}> <WCircularProgress size={50} /> </div>;
+    return <div style={centerStyle}><WCircularProgress size={50} /> </div>;
   }
 };
 

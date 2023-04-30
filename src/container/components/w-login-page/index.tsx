@@ -34,7 +34,6 @@ const WLoginPage: React.FC = () => {
   const btnLoginClick = useCallback(async () => {
     setIsLoading(true);
 
-
     try {
       const response = await authService.login(username, password);
     } catch (message) {

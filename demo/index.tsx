@@ -16,7 +16,6 @@ const configuration: IConfiguration = {
     SettingsScreen: Screens.SettingsScreen
   },
   useAuthService: AuthService,
-  singleScreen: true,
   useLocalStorage: true,
   theme: {
     designDetails: {

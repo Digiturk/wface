@@ -26,7 +26,7 @@ export class DemoScreen2 extends React.Component<BaseScreenProps, DemoScreen2Sta
   constructor(props: BaseScreenProps) {
     super(props);
 
-    this.state = this.props.screenData.state || {
+    this.state = {
       open: false,
       date: null,
       dateTime: null,

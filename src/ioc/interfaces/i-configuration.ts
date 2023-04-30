@@ -42,7 +42,6 @@ export default interface IConfiguration {
     renderSearchItem: (item: any, appContext: AppContext) => React.ReactNode;
     onItemSelected: (item: any, appContext: AppContext) => void;
   };
-  singleScreen?: boolean;
 
   wrapApp?: (children: JSX.Element) => JSX.Element;
 }
