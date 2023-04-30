@@ -230,22 +230,9 @@ const WMainPage: FC = () => {
                 }
               />
             ))}
+            {/* @ts-ignore */}
+            <Route path="*" element={<configuration.components.NoPage />}/>
           </Routes>
-          {/* {
-            appContext.openedScreens.map((screen: any) => {
-              const Comp = configuration.components?.ScreenWrapper as any;
-              if (appContext.currentScreen?.menuTreeItem.id === screen.menuTreeItem.id) {
-                const component = <div style={{ width: '100%', height: 'calc(100% - 8px)' }} key={"screen-" + screen.menuTreeItem.id}><Comp screen={screen} /></div>
-                return component;
-              }
-              else if (screen.mode === "loading") {
-                const component = <div style={{ display: 'none' }} key={"screen-" + screen.menuTreeItem.id}><Comp screen={screen} /></div>;
-                return component;
-              }
-
-              return null;
-            })
-          } */}
         </WScrollBar>
       </main>
     </div>

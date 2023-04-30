@@ -148,7 +148,7 @@ const NavList: FC<NavListProps> = ({ onItemClicked }) => {
               </WIconButton>
               )
               : (
-                <WIcon>{open ? "expand_less" : "expand_more"}</WIcon>
+                <WIcon sx={{ color: theme => theme.palette.text.secondary }}>{open ? "expand_less" : "expand_more"}</WIcon>
               )
           )}
         </WListItemButton>

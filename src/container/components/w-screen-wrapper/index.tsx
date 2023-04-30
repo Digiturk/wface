@@ -55,7 +55,6 @@ const WScreenWrapper: FC<{ menuTreeItem?: IMenuTreeItem; }> = ({ menuTreeItem })
     const Screen = configuration.screenList[menuTreeItem?.screen || ''] as any;
 
     if (!Screen) { 
-      console.log('asdklj', menuTreeItem?.screen)     
       // @ts-ignore
       return <configuration.components.NoPage />
     }
