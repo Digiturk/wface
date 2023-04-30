@@ -8,7 +8,7 @@ import {
   WDateTimePicker, WIconButton, WIcon,
   WSwitch, WTimePicker, WTooltip,
   WLoadingButton, WToggleButton, WDialog,
-  WDialogTitle, WDialogContent, WDialogActions   
+  WDialogTitle, WDialogContent, WDialogActions
 } from 'wface';
 
 interface DemoScreen2State {
@@ -88,7 +88,8 @@ export class DemoScreen2 extends React.Component<BaseScreenProps, DemoScreen2Sta
                     { label: 'Gaziantep', value: '27' },
                     { label: 'İstanbul', value: '34' },
                     { label: 'Şanlıurfa', value: '63' }
-                  ]} />
+                  ]}
+                  />
                   <div style={{ height: 20 }} />
                   <WFormField.Submit id="submit">Submit</WFormField.Submit>
                 </WForm>

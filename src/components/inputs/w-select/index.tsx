@@ -23,7 +23,6 @@ export interface WSelectOption {
 }
 
 export type WSelectProps = BaseComponentProps & DistributiveOmit<WithStyles<typeof styles>, "classes"> & { 
-  classes?: any;
   isClearable?: boolean;
   isDisabled?: boolean;
   isLoading?: boolean;
@@ -106,7 +105,6 @@ class WSelectInner extends React.Component<WSelectProps, { focused: boolean }> {
 
   render() {
     // @ts-ignore
-    const { classes } = this.props;
     const cleanValue = this.getCleanValue();
     let hasValue = (this.select.current && this.select.current.commonProps.getValue().length > 0);
     hasValue = hasValue || (this.props.isMulti ? cleanValue && cleanValue.length > 0 : cleanValue);
@@ -117,18 +115,18 @@ class WSelectInner extends React.Component<WSelectProps, { focused: boolean }> {
         // @ts-ignore */}        
         <Select
           ref={this.select}
-          components={selectComponents}
+          components={selectComponents}          
           {...this.props}
           styles={customStyles}
           onFocus={(event) => this.setFocus(event, true)}
           onBlur={(event) => this.setFocus(event, false)}          
           onChange={this.onChange}
+          classNamePrefix="w_select"
           placeholder=""
-          value={cleanValue}          
-          // @ts-ignore
-          classes={classes}
+          value={cleanValue}    
+          //@ts-ignore
           textFieldProps={{            
-            label: this.props.label,
+            label: this.props.label,        
             InputLabelProps: {
               shrink: this.state.focused || hasValue,
             },

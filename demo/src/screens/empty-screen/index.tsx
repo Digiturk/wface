@@ -1,12 +1,22 @@
 import { useTheme } from '@mui/material';
 import React, { FC, useCallback, useState } from 'react';
-import { useApi, useAppContext, useBaseScreenProps, useUserContext, WTheme } from 'wface';
+import { useApi, useAppContext, useBaseScreenProps, useUserContext, WSelect, WTheme } from 'wface';
+import makeStyles from "@mui/styles/makeStyles";
+
+const useStyles = makeStyles((theme: any) => ({
+  selectRoot: {
+    '& .w_select__input-container': {
+      background: 'white'
+    }
+  }
+}));
 
 export const EmptyScreen: FC = () => {
   const { showSnackbar, changeScreenMode } = useBaseScreenProps();
   const [data, setData] = useState<any>(null);
   const api = useApi();
   const { queryParams } = useAppContext();
+  const classes = useStyles();
 
   const onClick = useCallback(async () => {
     setData(null);
@@ -35,6 +45,16 @@ export const EmptyScreen: FC = () => {
             queryParams
           }, null, 2)}
         </pre>
+        <WSelect
+          label="city"
+          options={[
+            { label: 'Adana', value: '1' },
+            { label: 'Gaziantep', value: '27' },
+            { label: 'İstanbul', value: '34' },
+            { label: 'Şanlıurfa', value: '63' }
+          ]}
+          className={classes.selectRoot}
+        />
       </div>
     </div>
   );
