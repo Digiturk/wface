@@ -42,6 +42,7 @@ export type WSelectProps = BaseComponentProps & DistributiveOmit<WithStyles<type
   defaultValue?: any;
   theme?: any;
   style?: React.CSSProperties;
+  hideSelectedOptions?:boolean;
 }
 
 class WSelectInner extends React.Component<WSelectProps, { focused: boolean }> {
