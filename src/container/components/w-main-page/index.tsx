@@ -215,7 +215,6 @@ const WMainPage: FC = () => {
         [classes.contentShift]: drawerOpen,
         [classes[`contentShift-left`]]: drawerOpen,
       })}>
-        <div style={{ minHeight: topHeight }} />
         <WScrollBar>
           <Routes>
             {routes.map(item => (

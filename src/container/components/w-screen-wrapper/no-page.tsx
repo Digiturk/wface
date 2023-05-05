@@ -1,7 +1,11 @@
 import * as React from 'react';
-import { WGrid, WPaper, WTypography } from '../../../';
+import { WGrid, WPaper, WTheme, WTypography } from '../../../';
+import { useTheme } from '@mui/material';
 
-export default () => (
+export default () => {
+  const theme = useTheme<WTheme>();
+  return(
+  <div style={{ padding: theme?.designDetails?.pagePadding, paddingBottom: 10, marginTop:theme?.designDetails?.pageMargin }}>
   <WGrid container justifyContent="center" mt={2}>
     <WGrid item md={6}>
       <WPaper elevation={0} style={{ padding: 20 }}>
@@ -14,4 +18,5 @@ export default () => (
       </WPaper>
     </WGrid>
   </WGrid>
-)
+  </div>
+)}

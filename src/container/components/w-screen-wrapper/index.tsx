@@ -68,7 +68,7 @@ const WScreenWrapper: FC<{ menuTreeItem?: IMenuTreeItem; }> = ({ menuTreeItem })
             </div>
           </div>
         }
-        <div style={{ padding: theme?.designDetails?.pagePadding, paddingBottom: 10 }}>
+        <div style={{ padding: theme?.designDetails?.pagePadding, paddingBottom: 10, marginTop:theme?.designDetails?.pageMargin }}>
           <BaseScreenPropsContext.Provider value={getBaseScreenProps()}>
             <BaseScreenPropsContext.Consumer>
               {(value: BaseScreenProps) => <Screen ref={screenRef} {...value} />}

@@ -45,7 +45,8 @@ const defaultTheme = {
   },
   designDetails: {
     defaultElevation: 0,
-    pagePadding: 0
+    pagePadding: 0,
+    pageMargin:48
   } as WDesignDetails,
   components: {
     MuiButton: {

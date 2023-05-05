@@ -4,6 +4,7 @@ import { SxProps } from '@mui/material';
 export interface WDesignDetails {
   defaultElevation?: number;
   pagePadding?: number | string;
+  pageMargin?:number | string,
   drawerDesign?: {
     paper?: SxProps;
     menuItem?: DrawerMenuItemProps;

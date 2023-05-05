@@ -10,7 +10,7 @@ export default class ErrorPage extends React.Component<{ error: any, info: any }
   }
 
   renderStack = (name: string, stack: string) => (
-    <div style={{ display: 'flex', marginTop: 20 }}>
+    <div style={{ display: 'flex', marginTop: 68 }}>
       <WTypography variant="subtitle1" color="inherit" style={{ display: 'inline', fontWeight: 500, textDecoration: 'underline' }}>
         {name}:
       </WTypography>
