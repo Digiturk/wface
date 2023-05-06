@@ -42,6 +42,7 @@ export type WSelectProps = BaseComponentProps & DistributiveOmit<WithStyles<type
   defaultValue?: any;
   theme?: any;
   style?: React.CSSProperties;
+  components?: any;
   hideSelectedOptions?:boolean;
 }
 
@@ -116,8 +117,8 @@ class WSelectInner extends React.Component<WSelectProps, { focused: boolean }> {
         // @ts-ignore */}        
         <Select
           ref={this.select}
-          components={selectComponents}          
           {...this.props}
+          components={{...selectComponents,...this.props.components}}
           styles={customStyles}
           onFocus={(event) => this.setFocus(event, true)}
           onBlur={(event) => this.setFocus(event, false)}          
