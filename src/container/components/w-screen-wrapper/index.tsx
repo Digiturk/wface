@@ -54,7 +54,7 @@ const WScreenWrapper: FC<{ menuTreeItem?: IMenuTreeItem; }> = ({ menuTreeItem })
 
     const Screen = configuration.screenList[menuTreeItem?.screen || ''] as any;
 
-    if (!Screen) { 
+    if (!Screen) {
       // @ts-ignore
       return <configuration.components.NoPage />
     }
@@ -68,16 +68,14 @@ const WScreenWrapper: FC<{ menuTreeItem?: IMenuTreeItem; }> = ({ menuTreeItem })
             </div>
           </div>
         }
-        <div style={{ padding: theme?.designDetails?.pagePadding, paddingBottom: 10 }}>
-          <BaseScreenPropsContext.Provider value={getBaseScreenProps()}>
-            <BaseScreenPropsContext.Consumer>
-              {(value: BaseScreenProps) => <Screen ref={screenRef} {...value} />}
-            </BaseScreenPropsContext.Consumer>
-          </BaseScreenPropsContext.Provider>
-        </div>
+        <BaseScreenPropsContext.Provider value={getBaseScreenProps()}>
+          <BaseScreenPropsContext.Consumer>
+            {(value: BaseScreenProps) => <Screen ref={screenRef} {...value} />}
+          </BaseScreenPropsContext.Consumer>
+        </BaseScreenPropsContext.Provider>
       </div>
     );
-  } catch(error) {
+  } catch (error) {
     setPageError({ error });
     return null;
   }

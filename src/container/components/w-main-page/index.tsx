@@ -19,6 +19,7 @@ import NavList from './nav-list';
 import { FC, useState, useCallback, useEffect, useMemo } from 'react';
 import RightDrawer from './right-drawer';
 import { useConfiguration } from "../../../store";
+import { Box } from "@mui/material";
 
 //#endregion 
 
@@ -107,9 +108,7 @@ const useStyles = makeStyles((theme: any) => ({
 
 const WMainPage: FC = () => {
   const classes = useStyles();
-  const theme = useTheme<any>();
-  const navigate = useNavigate();
-  const { pathname } = useLocation();
+  const theme = useTheme<WTheme>();
   const appContext = useAppContext();
   const configuration = useConfiguration();
   const rightContextItems = configuration.useRightContextItems ? configuration.useRightContextItems() : [];
@@ -192,6 +191,7 @@ const WMainPage: FC = () => {
           paper: classes.drawerPaper,
         }}
         PaperProps={{
+          // @ts-ignore
           style: { border: "none", ...theme.designDetails?.drawerDesign?.paper },
           elevation: theme.designDetails?.defaultElevation || 0,
         }}
@@ -211,30 +211,37 @@ const WMainPage: FC = () => {
         </div>
       </WDrawer>
 
-      <main className={classNames(classes.content, classes[`content-left`], {
-        [classes.contentShift]: drawerOpen,
-        [classes[`contentShift-left`]]: drawerOpen,
-      })}>
+      <Box
+        className={classNames(classes.content, classes[`content-left`], {
+          [classes.contentShift]: drawerOpen,
+          [classes[`contentShift-left`]]: drawerOpen,
+        })}
+        component="main"
+        sx={theme.designDetails?.mainSx}
+      >
         <div style={{ minHeight: topHeight }} />
         <WScrollBar>
-          <Routes>
-            {routes.map(item => (
-              <Route
-                key={item.id}
-                path={item.id}
-                element={
-                  <div style={{ width: '100%', height: 'calc(100% - 8px)' }} key={"screen-" + item.id}>
-                    {/* @ts-ignore */}
-                    <configuration.components.ScreenWrapper menuTreeItem={item} />
-                  </div>
-                }
-              />
-            ))}
-            {/* @ts-ignore */}
-            <Route path="*" element={<configuration.components.NoPage />}/>
-          </Routes>
+          <Box
+            style={{
+              minHeight: `calc(100vh - ${topHeight}px - 16px)`
+            }}
+            sx={theme.designDetails?.pageSx}
+          >
+            <Routes>
+              {routes.map(item => (
+                <Route
+                  key={item.id}
+                  path={item.id}
+                  // @ts-ignore
+                  element={<configuration.components.ScreenWrapper key={"screen-" + item.id} menuTreeItem={item} />}
+                />
+              ))}
+              {/* @ts-ignore */}
+              <Route path="*" element={<configuration.components.NoPage />} />
+            </Routes>
+          </Box>
         </WScrollBar>
-      </main>
+      </Box>
     </div>
   );
 }

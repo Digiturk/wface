@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from "react-dom";
 import * as Screens from './src/screens';
-import { IConfiguration, useAppContext, useUserContext, WFace } from 'wface';
+import { IConfiguration, useAppContext, useUserContext, WFace, WTheme } from 'wface';
 import AuthService from '././src/services/auth-service';
 
 const configuration: IConfiguration = {
@@ -19,7 +19,14 @@ const configuration: IConfiguration = {
   useLocalStorage: true,
   theme: {
     designDetails: {
-      pagePadding: 16
+      mainSx: {
+        background: 'red',
+      },
+      pageSx: {
+        background: (theme: WTheme) => theme.palette.background.default,
+        padding: (theme: WTheme) => theme.spacing(1),
+        borderRadius: 4,
+      }
     }
   },
   api: {
