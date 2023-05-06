@@ -141,18 +141,18 @@ const WMainPage: FC = () => {
 
   const loadMenuTree = useCallback(async () => {
     try {
+      console.log("GET MENU TREEE")
       const menuTree = await authService.getMenuTree();
       appContext.setMenuTree(menuTree);
     }
-    catch (e) {
-      // TODO show error 
+    catch (e) {      
       console.log('hata', e);
     };
   }, [appContext.setMenuTree]);
 
   useEffect(() => {
     loadMenuTree();
-  }, [loadMenuTree]);
+  }, [loadMenuTree, authService.getMenuTree]);
 
   return (
     <div className={classes.root + " main-page"}>

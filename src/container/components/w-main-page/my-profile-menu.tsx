@@ -1,3 +1,4 @@
+import { Box } from '@mui/material';
 import React, { FC, useCallback, useState } from 'react';
 import {
   MenuTreeUtil,
@@ -31,7 +32,9 @@ export const MyProfileMenu: FC<MyProfileMenuProps> = ({ items }) => {
   }, [userContext.logout, appContext.clear]);
 
   return (
-    <div>
+    <Box display="flex" alignItems="center">
+      {/* @ts-ignore */}
+      {configuration.components?.TopbarRightItems && <configuration.components.TopbarRightItems />}
       <WIconButton
         id="btn-main-more"
         aria-owns={Boolean(userMenuAnchor) ? 'menu-appbar' : ''}
@@ -93,6 +96,6 @@ export const MyProfileMenu: FC<MyProfileMenuProps> = ({ items }) => {
           </WMenuItem>
         }
       </WMenu>
-    </div>
+    </Box>
   )
 }

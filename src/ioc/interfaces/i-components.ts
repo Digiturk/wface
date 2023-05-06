@@ -7,4 +7,5 @@ export default interface IComponents {
   ScreenWrapper?: React.FC | React.ReactNode;
   NoPage?: React.FC | React.ReactNode;  
   ErrorPage?: React.FC | React.ReactNode; 
+  TopbarRightItems?: React.FC | React.ReactNode;
 }
