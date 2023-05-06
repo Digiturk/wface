@@ -28,7 +28,7 @@ export const WTable: React.FC<WTableProps> = (props) => {
     ...theme.props?.WTable,
     ...tableProps,
     components: {
-      ...(theme.props?.WTable || {}).components,
+      ...(theme.props?.WTable || {}).components,      
       ...tableProps.components
     },
     icons: {
@@ -36,7 +36,7 @@ export const WTable: React.FC<WTableProps> = (props) => {
       Check: (props: any) => <WIcon {...props} icon="check"/>,
       Clear: (props: any) => <WIcon {...props} icon="clear"/>,
       Delete: (props: any) => <WIcon {...props} icon="delete"/>,
-      DetailPanel: (props: any) => <WIcon {...props} icon="detail_panel"/>,
+      DetailPanel: (props: any) => <WIcon {...props} icon="chevron_right"/>,
       Edit: (props: any) => <WIcon {...props} icon="edit"/>,
       Export: (props: any) => <WIcon {...props} icon="export"/>,
       Filter: (props: any) => <WIcon {...props} icon="filter"/>,
@@ -62,7 +62,7 @@ export const WTable: React.FC<WTableProps> = (props) => {
       <MaterialTable
         {...extendedProps}
         components={{
-          Container: (props: any) => <WPaper {...props} elevation={theme.designDetails?.defaultElevation} />,
+          Container: (props: any) => <WPaper {...props} elevation={theme.designDetails?.defaultElevation} />,        
           ...extendedProps.components
         }}
       />

@@ -5,7 +5,7 @@ import {
   WChart, WTable, WForm, 
   WFormField, WCardActions, WButton,
   WDialog, WDialogTitle, WDialogContent,
-  WDialogActions, WAvatar, WCircularProgress
+  WDialogActions, WAvatar, WCircularProgress, WIcon
 } from 'wface';
 
 interface DemoScreenState {
@@ -122,13 +122,21 @@ export class DemoScreen extends React.Component<BaseScreenProps, DemoScreenState
                 { title: 'Doğum Yeri', field: 'birthCity', lookup: { 63: 'Şanlıurfa' } },
               ]}
               data={[
-                // { name: 'mehmet', lastName: 'baran', birthCity: 63 },
-                // { name: 'mehmet', lastName: 'baran', birthCity: 63 },
-                // { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
+                { name: 'mehmet', lastName: 'baran', birthCity: 63 },
               ]}
               detailPanel={rowData => (
                 <div>{rowData.name}</div>
               )}
+              actions={[
+                {
+                  // icon: 'save',
+                  icon: () => <WIcon>save</WIcon>,
+                  tooltip: 'Save User',
+                  onClick: (event, rowData) => alert("You saved " + rowData.name)
+                }
+              ]}
             />
 
           </WGrid>
