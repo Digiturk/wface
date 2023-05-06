@@ -9,12 +9,15 @@ export interface UserContext {
   readonly isLoggedIn?: boolean;
   readonly token?: string;
   readonly username?: string;
+  readonly data?: any;
 }
 
 const defaultData: UserContext = {
   isLoggedIn: false,
   username: '',
-  displayName: ''
+  displayName: '',
+  token: '',
+  data: null
 }
 
 interface UserContextValue extends UserContext {
@@ -24,15 +27,22 @@ interface UserContextValue extends UserContext {
 
 const UserContextReact = createContext<UserContextValue>(defaultData as UserContextValue);
 
-export const UserContextProvider: FC<{ children: React.ReactNode, configuration: IConfiguration }> = ({ children, configuration }) => {
-  const storage = useStorage(configuration.useLocalStorage ? 'local' : 'session');
-  const storageData = storage.get<UserContext>(STORAGE_KEY);
+interface UserContextProviderProps {
+  children: React.ReactNode, 
+  useLocalStorage: IConfiguration["useLocalStorage"],
+  projectName: IConfiguration["projectName"];
+}
+
+export const UserContextProvider: FC<UserContextProviderProps> = ({ children, useLocalStorage, projectName }) => {
+  const storageKey = STORAGE_KEY + "_" + (projectName || 'wface');
+  const storage = useStorage(useLocalStorage ? 'local' : 'session');
+  const storageData = storage.get<UserContext>(storageKey);
   const [data, setData] = useState<UserContext>(storageData || defaultData);
 
   const handleChangeData = useCallback((newData: UserContext) => {
     setData(prev => {
       const value = { ...prev, ...newData };
-      storage.set(STORAGE_KEY, value);
+      storage.set(storageKey, value);
       return value;
     });
   }, []);

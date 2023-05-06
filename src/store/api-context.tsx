@@ -1,6 +1,7 @@
 import React, { FC, createContext, useMemo, useCallback, useContext, useEffect, useState, useRef } from "react";
 import Axios, { AxiosInstance, AxiosResponse } from 'axios';
 import { useAppContext } from "./app-context";
+import { useConfiguration } from "./config-context";
 
 interface Result<T> {
   data: T,
@@ -67,7 +68,7 @@ export interface ApiContextProviderProps {
 }
 
 export const ApiContextProvider: FC<ApiContextProviderProps> = ({ children }) => {
-  const { configuration } = useAppContext();
+  const configuration = useConfiguration();
   const baseUrl = configuration.api?.baseUrl || '';
   const useToken = configuration.api?.useToken || (() => '');
   const token = useToken();

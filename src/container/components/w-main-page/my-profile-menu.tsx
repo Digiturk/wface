@@ -3,7 +3,7 @@ import {
   MenuTreeUtil,
   WIcon, WIconButton, WListItemIcon, WListItemText, WMenu, WMenuItem
 } from '../../../';
-import { useAppContext, useUserContext } from '../../../store';
+import { useAppContext, useConfiguration, useUserContext } from '../../../store';
 
 export interface MyProfileMenuProps {
   items?: { id: string, icon?: string, text: string, onClick?: ((event: any) => void) | string }[];
@@ -13,13 +13,14 @@ export const MyProfileMenu: FC<MyProfileMenuProps> = ({ items }) => {
   const appContext = useAppContext();
   const userContext = useUserContext();
   const [userMenuAnchor, setUserMenuAnchor] = useState<any>(null);
+  const configuration = useConfiguration();
 
   const logoutClicked = useCallback(() => {
     userContext.logout();
 
     try {
-      if (appContext.configuration.hooks?.onLogout) {
-        appContext.configuration.hooks?.onLogout();
+      if (configuration.hooks?.onLogout) {
+        configuration.hooks?.onLogout();
       }
     }
     catch (e) {
@@ -83,7 +84,7 @@ export const MyProfileMenu: FC<MyProfileMenuProps> = ({ items }) => {
             </WMenuItem>
           ))
         }
-        {appContext.configuration.authRequired &&
+        {configuration.authRequired &&
           <WMenuItem id="menu-item-logout" key="menu-item-logout" onClick={logoutClicked}>
             <WListItemIcon style={{ minWidth: 'auto' }}>
               <WIcon>exit_to_app</WIcon>

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from "react-dom";
 import * as Screens from './src/screens';
-import { IConfiguration, useUserContext, WFace } from 'wface';
+import { IConfiguration, useAppContext, useUserContext, WFace } from 'wface';
 import AuthService from '././src/services/auth-service';
 
 const configuration: IConfiguration = {
@@ -12,10 +12,10 @@ const configuration: IConfiguration = {
     DemoScreen3: Screens.DemoScreen3,
     DemoScreen4: Screens.DemoScreen4,
     DemoScreen5: Screens.DemoScreen5,
-    EmptyScreen: Screens.EmptyScreen
+    EmptyScreen: Screens.EmptyScreen,
+    SettingsScreen: Screens.SettingsScreen
   },
   useAuthService: AuthService,
-  singleScreen: true,
   useLocalStorage: true,
   theme: {
     designDetails: {
@@ -29,11 +29,22 @@ const configuration: IConfiguration = {
       return userContext.token;
     }
   },
-  search: true
+  search: true,
+  useRightContextItems: () => {
+    const appContext = useAppContext();
+
+    return [
+      {
+        id: 'id1',
+        text: 'Ayarlar',
+        onClick: () => appContext.openScreenById('settings')
+      }
+    ];
+  }
 }
 
 const App = () => {
-  return <WFace configuration={configuration}/>;
+  return <WFace configuration={configuration} />;
 }
 
 ReactDOM.render(<App />, document.getElementById("root"));

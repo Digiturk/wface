@@ -1,91 +1,31 @@
 import React, { FC, createContext, useMemo, useContext, useCallback, useState } from "react";
-import { IMenuTreeItem, IConfiguration, MenuTreeUtil } from '..';
-import Components from '../container/components';
-import menuSearchProvider from "../container/components/w-main-page/menu-search-provider";
-import { UserContext, useUserContext } from "./user-context";
+import { useNavigate } from "react-router";
+import { IMenuTreeItem, MenuTreeUtil } from '..';
 
+export type ScreenMode = "loading" | "normal";
 export interface AppContextData {
-  configuration: IConfiguration;
   menuTree: IMenuTreeItem[];
-  openedScreens: ScreenData[];
-  currentScreen: ScreenData | undefined;
   cache: { [key: string]: any };
   queryParams: { [key: string]: any };
   rightDrawerOpen: boolean;
-}
-
-export interface ScreenData {
-  menuTreeItem: IMenuTreeItem;
-  state: any;
-  initialValues: any;
-  values: { [key: string]: any };
-  mode: 'normal' | 'loading';
-  confirmOnClose: boolean;
-  confirmOnCloseMessage: string;
+  screenMode: ScreenMode;
 }
 
 const defaultData: AppContextData = {
-  configuration: {
-    authRequired: true,
-    projectName: 'WFace',
-    components: Components,
-  } as any,
   menuTree: [],
-  openedScreens: [],
-  currentScreen: undefined,
   cache: {},
   queryParams: {},
-  rightDrawerOpen: false
+  rightDrawerOpen: false,
+  screenMode: 'normal'
 }
 
-const getDefaultData = (configuration: IConfiguration): AppContextData => ({
-  ...defaultData,
-  configuration: {
-    ...defaultData.configuration,
-    ...configuration,
-    components: {
-      ...defaultData.configuration.components,
-      ...configuration.components
-    },
-    useAuthService: () => {
-      const authService = configuration.useAuthService();
-      const userContext = useUserContext();
-
-      const result = useMemo(() => ({
-        ...authService,
-        login: async (username: string, password: string, values?: any) => {
-          try {
-            const response = await authService.login(username, password, values);
-            userContext.login({ ...values, username });
-
-            if (configuration.hooks?.onLogin) {
-              configuration.hooks.onLogin();
-            }
-
-            return response;
-          }
-          catch (e) {
-            throw e;
-          }
-        }
-      }), [authService, userContext.login]);
-
-      return result;
-    },
-    searchProvider: {
-      ...menuSearchProvider,
-      ...configuration.searchProvider
-    }
-  }
-});
 
 export interface AppContext extends AppContextData {
   setValue: (key: string, value: any) => void,
   setMenuTree: (menuTree: IMenuTreeItem[]) => void,
   openScreen: (menuTreeItem: IMenuTreeItem, initialValues?: any) => void,
-  closeScreen: (id: string) => void,
-  changeScreenMode: (screenId: string, mode: ScreenData["mode"]) => void,
-  setConfirmOnClose: (screenId: string, confirmOnClose: boolean, confirmOnCloseMessage: string) => void,
+  openScreenById: (id: string, initialValues?: any) => boolean,
+  changeScreenMode: (mode: ScreenMode) => void,
   setQueryParams: (queryParams: { [key: string]: any }) => void,
   toggleRightDrawer: (open?: boolean) => void,
   clear: () => void,
@@ -93,118 +33,29 @@ export interface AppContext extends AppContextData {
 
 const AppContextReact = createContext<AppContext>(defaultData as AppContext);
 
-export const AppContextProvider: FC<{ children: React.ReactNode, configuration: IConfiguration }> = ({ children, configuration }) => {
-  const userContext = useUserContext();
-  const [data, setData] = useState<AppContextData>(getDefaultData(configuration));
+export const AppContextProvider: FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [data, setData] = useState<AppContextData>((defaultData));
+  const navigate = useNavigate();
 
-  const changeScreenMode = useCallback((screenId: string, mode: ScreenData["mode"]) => {
-    setData(prev => {
-      const openedScreens = [...prev.openedScreens];
-      const screen = openedScreens.find(a => a.menuTreeItem.id === screenId);
-      if (screen) {
-        screen.mode = mode;
-      }
+  const changeScreenMode = useCallback((screenMode: ScreenMode) => setData(prev => ({ ...prev, screenMode })), []);
 
-      return { ...prev, openedScreens };
-    })
-  }, []);
-
-  const clear = useCallback(() => setData(prev => getDefaultData(configuration)), [configuration, userContext.login]);
-
-  const closeScreen = useCallback((id: string) => {
-    setData(prev => {
-      let openedScreens = [...prev.openedScreens];
-      const index = openedScreens.findIndex((item: any) => item.menuTreeItem.id == id);
-      if (index > -1) {
-        openedScreens.splice(index, 1);
-      }
-
-      let currentScreen = { ...prev.currentScreen } as AppContext['currentScreen'];
-      if (currentScreen?.menuTreeItem?.id == id) {
-        if (openedScreens.length == 0) {
-          currentScreen = undefined;
-        }
-        else if (openedScreens.length - 1 >= index) {
-          currentScreen = openedScreens[index];
-        }
-        else {
-          currentScreen = openedScreens[index - 1];
-        }
-      }
-
-      return { ...prev, openedScreens, currentScreen };
-    });
-  }, []);
+  const clear = useCallback(() => setData(defaultData), []);
 
   const openScreen = useCallback((menuTreeItem: IMenuTreeItem, initialValues?: any) => {
-    setData(prev => {
-      let openedScreens = [...prev.openedScreens];
-      let screenData = openedScreens.find(a => a.menuTreeItem.id == menuTreeItem.id);
-      if (screenData) {
-        screenData.initialValues = Object.assign({}, menuTreeItem.initialValues, initialValues);
-      }
-      else {
-        screenData = {
-          menuTreeItem: menuTreeItem,
-          values: {},
-          state: undefined,
-          initialValues: Object.assign({}, menuTreeItem.initialValues, initialValues),
-          mode: 'normal',
-          confirmOnClose: false,
-          confirmOnCloseMessage: ''
-        } as ScreenData;
-
-        if (prev.configuration.singleScreen) {
-          openedScreens = [screenData];
-        }
-        else {
-          openedScreens.push(screenData);
-        }
-      }
-
-      return { ...prev, openedScreens, currentScreen: screenData };
-    });
+    navigate('/main/' + menuTreeItem.screen);
   }, []);
 
-  const setConfirmOnClose = useCallback((screenId: string, confirmOnClose: boolean, confirmOnCloseMessage: string) => {
-    setData(prev => {
-      const openedScreens = [...prev.openedScreens];
-      const screen = openedScreens.find(a => a.menuTreeItem.id === screenId);
-      if (screen) {
-        screen.confirmOnClose = confirmOnClose;
-        screen.confirmOnCloseMessage = confirmOnCloseMessage;
-      }
+  const openScreenById = useCallback((id: string, initialValues?: any): boolean => {
+    const menuTreeItem = MenuTreeUtil.find(data.menuTree, id);
+    if (menuTreeItem) {
+      openScreen(menuTreeItem, initialValues);
+      return true;
+    }
 
-      return { ...prev, openedScreens };
-    });
-  }, []);
+    return false;
+  }, [openScreen, data.menuTree]);
 
-  const setMenuTree = useCallback((menuTree: IMenuTreeItem[]) => {
-    setData(prev => {
-      const openedScreens = [...prev.openedScreens];
-      let currentScreen = prev.currentScreen;
-      if (openedScreens.length == 0) {
-        MenuTreeUtil.menuTreeForEach(menuTree, item => {
-          if (item.isDefaultScreen) {
-            openedScreens.push({
-              menuTreeItem: item,
-              values: {},
-              state: undefined,
-              initialValues: item.initialValues,
-              mode: 'normal'
-            } as ScreenData);
-          }
-          return false;
-        });
-
-        if (openedScreens.length > 0) {
-          currentScreen = openedScreens[0];
-        }
-      }
-
-      return { ...prev, menuTree, openedScreens, currentScreen };
-    });
-  }, []);
+  const setMenuTree = useCallback((menuTree: IMenuTreeItem[]) => setData(prev => ({ ...prev, menuTree })), []);
 
   const setQueryParams = useCallback((queryParams: { [key: string]: any }) => {
     setData(prev => ({ ...prev, queryParams }));
@@ -229,14 +80,17 @@ export const AppContextProvider: FC<{ children: React.ReactNode, configuration: 
     ...data,
     changeScreenMode,
     clear,
-    closeScreen,
     openScreen,
-    setConfirmOnClose,
+    openScreenById,
     setMenuTree,
     setQueryParams,
     setValue,
     toggleRightDrawer
-  }), [data]);
+  }), [
+    data, changeScreenMode, clear, openScreen,
+    openScreenById, setMenuTree, setQueryParams,
+    setValue, toggleRightDrawer
+  ]);
 
   return (
     <AppContextReact.Provider value={value}>

@@ -2,9 +2,9 @@ import * as React from 'react';
 import { WGrid, WPaper, WTypography } from '../../../';
 
 export default () => (
-  <WGrid container justifyContent="center">
+  <WGrid container justifyContent="center" mt={2}>
     <WGrid item md={6}>
-      <WPaper elevation={4} style={{ padding: 20 }}>
+      <WPaper elevation={0} style={{ padding: 20 }}>
         <WTypography variant="h5" align="center">
           Sayfa bulunamadı
         </WTypography>

@@ -1,52 +1,61 @@
-import { IConfiguration } from '../../../';
-import React, { FC, useCallback } from 'react';
-import { useLocation, useParams } from 'react-router';
-// @ts-ignore
+import React, { FC, useCallback, useMemo } from 'react';
+import { useLocation } from 'react-router';
 import { Route, Routes, Navigate } from 'react-router-dom';
-import { useAppContext, useUserContext } from '../../../store';
+import { useAppContext, useConfiguration, useUserContext } from '../../../store';
+import { MenuTreeUtil } from '../../../ioc';
 
+const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
+  let location = useLocation();
+  const { isLoggedIn } = useUserContext();
+  const { authRequired } = useConfiguration();
 
+  if (authRequired && !isLoggedIn) {
+    return <Navigate to="/login" state={{ from: location }} replace />
+  }
+  return children;
+};
+
+const LoginRoute = ({ children }: { children: JSX.Element }) => {
+  let location = useLocation();
+  const { isLoggedIn } = useUserContext();
+  const { authRequired } = useConfiguration();
+
+  if ((!authRequired || isLoggedIn)) {
+    return <Navigate to="/main" state={{ from: location }} replace />
+  }
+
+  return children;
+};
 
 const WDefaultContainer: FC<any> = () => {
   const appContext = useAppContext();
   const userContext = useUserContext();
-  
-  const setValue = useCallback((key: string, value: any) => appContext.setValue(key, value ), []);
-  const { pathname } = useLocation();
-  const params = useParams();
+  const configuration = useConfiguration();
 
-  const { isLoggedIn } = userContext;
-  const { configuration }: { configuration: IConfiguration } = appContext;
+  const setValue = useCallback((key: string, value: any) => appContext.setValue(key, value), []);
 
   return (
     <Routes>
       <Route path="/" element={<Navigate to="/main" />} />
-      {(isLoggedIn && configuration.authRequired === true)
-        ? <Route path="/login" element={<Navigate to="/main" />} />
-        : (
-          // @ts-ignore
-          <Route path="/login" element={<configuration.components.LoginPage appContext={appContext} userContext={userContext} setValue={setValue} />} />
-        )
-      }
-      {(isLoggedIn && configuration.authRequired === true)
-        ? <Route path="/login/:screen" element={<Navigate to={`/main/${params.screen || ''}`} />} />
-        : (
-          // @ts-ignore
-          <Route path="/login/:screen" element={<configuration.components.LoginPage appContext={appContext} userContext={userContext} setValue={setValue} />} />
-        )
-      }
-      {(isLoggedIn || configuration.authRequired === false)
-        ? (
-          // @ts-ignore
-          <Route path="/main" element={<configuration.components.MainPage style={{ height: '100%' }} />} />
-        ) : <Route path="/main" element={<Navigate to="/login" />} />
-      }
-      {(isLoggedIn || configuration.authRequired === false)
-        ? (
-          // @ts-ignore
-          <Route path="/main/:screen" element={<configuration.components.MainPage style={{ height: '100%' }} />} />
-        ) : <Route path="/main/:screen" element={<Navigate to={pathname.replace('main', 'login')} />} />
-      }
+
+      <Route
+        path="/login"
+        element={
+          <LoginRoute>
+            {/* @ts-ignore */}
+            < configuration.components.LoginPage appContext={appContext} userContext={userContext} setValue={setValue} />
+          </LoginRoute>
+        }
+      />
+      <Route
+        path="/main/*"
+        element={
+          <ProtectedRoute>
+            {/* @ts-ignore */}
+            <configuration.components.MainPage style={{ height: '100%' }} />
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   );
 }

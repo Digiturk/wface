@@ -5,10 +5,11 @@ import React, { FC, useCallback, useEffect } from 'react';
 // @ts-ignore
 import * as queryString from 'query-string'
 import { WSnackbarProvider, WThemeProvider } from "../../../components";
-import { useAppContext } from "../../../store";
+import { useAppContext, useConfiguration, useUserContext } from "../../../store";
 
 const WApp: FC = () => {
-  const { configuration, setQueryParams } = useAppContext();
+  const { setQueryParams } = useAppContext();
+  const configuration = useConfiguration();
 
   const parseQueryParams = useCallback(() => {
     const values = queryString.parse(window.location.search);
@@ -18,12 +19,12 @@ const WApp: FC = () => {
   useEffect(() => {
     parseQueryParams();
 
-    if(configuration.hooks?.onAppDidMount) {
+    if (configuration.hooks?.onAppDidMount) {
       configuration.hooks.onAppDidMount();
     }
 
     return () => {
-      if(configuration.hooks?.onAppWillUnmount) {
+      if (configuration.hooks?.onAppWillUnmount) {
         configuration.hooks.onAppWillUnmount();
       }
     };

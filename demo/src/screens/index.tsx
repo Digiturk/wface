@@ -4,3 +4,4 @@ export * from './demo-screen-3';
 export * from './demo-screen-4';
 export * from './demo-screen-5';
 export * from './empty-screen';
+export * from './settings-screen';

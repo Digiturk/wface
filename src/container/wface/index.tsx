@@ -1,7 +1,7 @@
 import React, { FC, useMemo } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { IConfiguration } from '../../ioc';
-import { AppContextProvider, ApiContextProvider, UserContextProvider } from '../../store';
+import { AppContextProvider, ApiContextProvider, UserContextProvider, ConfigContextProvider, useUserContext } from '../../store';
 import WApp from '../components/w-app';
 
 interface WFaceProps {
@@ -23,11 +23,15 @@ const WFace: FC<WFaceProps> = ({ configuration }) => {
     return result;
   }, [configuration.api, configuration.wrapApp]);
 
+
+
   return (
     <BrowserRouter>
-      <UserContextProvider configuration={configuration}>
-        <AppContextProvider configuration={configuration}>
-          {children}
+      <UserContextProvider useLocalStorage={configuration.useLocalStorage} projectName={configuration.projectName}>
+        <AppContextProvider>
+          <ConfigContextProvider configuration={configuration}>
+            {children}           
+          </ConfigContextProvider>
         </AppContextProvider>
       </UserContextProvider>
     </BrowserRouter>

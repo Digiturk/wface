@@ -22,7 +22,7 @@ export class DemoScreen extends React.Component<BaseScreenProps, DemoScreenState
   constructor(props: BaseScreenProps) {
     super(props);
 
-    this.state = this.props.screenData.state || {
+    this.state = {
       formValue: { text: 'text val', check1: true, check2: false },
       isDialogOpen: false,
       isDialogOpen2: true,
