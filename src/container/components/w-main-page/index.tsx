@@ -8,11 +8,7 @@ import {
   AppContext,
   WAppBar,
   WDrawer,
-  WIcon,
-  WIconButton,
   WScrollBar,
-  WToolBar,
-  WTypography,
   WTheme,
   useAppContext,
 } from "../../../";
@@ -21,13 +17,11 @@ import classNames from "classnames";
 import { Horizontal, WindowWidthType } from "horizontal";
 
 import { useNavigate, useLocation, Routes, Route } from "react-router";
-import { MyProfileMenu } from "./my-profile-menu";
-import { Search } from "./search";
 import NavList from "./nav-list";
 import { FC, useState, useCallback, useEffect, useMemo } from "react";
-import RightDrawer from "./right-drawer";
 import { useConfiguration } from "../../../store";
 import { Box } from "@mui/material";
+import ToolBar from "./tool-bar";
 
 //#endregion
 
@@ -132,10 +126,7 @@ const WMainPage: FC = () => {
     (screen: IMenuTreeItem) => "/" + screen.screen,
     []
   );
-  const handleDrawerChange = useCallback(
-    () => setDrawerOpen(!drawerOpen),
-    [drawerOpen]
-  );
+
 
   const routes = useMemo(() => {
     const result: IMenuTreeItem[] = [];
@@ -182,51 +173,7 @@ const WMainPage: FC = () => {
         className={classes.appBar}
         elevation={theme.designDetails?.defaultElevation}
       >
-        <WToolBar
-          id="main-tool-bar"
-          variant="dense"
-          className={classes.toolbar}
-        >
-          <WIconButton
-            id="main-hamburger-button"
-            color="inherit"
-            aria-label="open drawer"
-            style={{
-              transition: "all ease 250ms",
-              transform: drawerOpen ? "rotate(180deg)" : "none",
-            }}
-            onClick={handleDrawerChange}
-          >
-            <WIcon>
-              {drawerOpen && Horizontal.getType() !== WindowWidthType.LG
-                ? drawerOpen && (configuration?.components?.ToolbarDrawerIcons?.Close || "close")
-                : configuration?.components?.ToolbarDrawerIcons?.Menu || "menu"}
-            </WIcon>
-          </WIconButton>
-          {configuration.components?.Toolbar ? (
-            <>{configuration.components.Toolbar}</>
-          ) : (
-            <>
-              <span>
-                <WTypography
-                  variant="h6"
-                  color="inherit"
-                  noWrap
-                  className={classes.flex}
-                >
-                  {configuration.projectName}
-                </WTypography>
-              </span>
-              <div style={{ flexGrow: 1 }} />
-
-              {configuration.search && <Search />}
-              <MyProfileMenu items={rightContextItems} />
-              {configuration.rightDrawer && (
-                <RightDrawer options={configuration.rightDrawer} />
-              )}
-            </>
-          )}
-        </WToolBar>
+        <ToolBar drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen}/>
       </WAppBar>
       <WDrawer
         variant="persistent"
