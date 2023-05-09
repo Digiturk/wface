@@ -33,6 +33,11 @@ export default class MenuTreeUtil {
     for (let i = 0; i < menuTree.length; i++) {
       const item = menuTree[i];
       if (item.subNodes && item.subNodes.length > 0) {
+        if(item.screen) {
+          if(callback(item)) {
+            break;
+          }
+        }
         MenuTreeUtil.menuTreeForEach(item.subNodes, callback)
       }
       else {

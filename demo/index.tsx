@@ -13,7 +13,8 @@ const configuration: IConfiguration = {
     DemoScreen4: Screens.DemoScreen4,
     DemoScreen5: Screens.DemoScreen5,
     EmptyScreen: Screens.EmptyScreen,
-    SettingsScreen: Screens.SettingsScreen
+    SettingsScreen: Screens.SettingsScreen,
+    ContentDefinitionScreen: () => <div>ContentDefinitionScreen</div>
   },
   useAuthService: AuthService,
   useLocalStorage: true,

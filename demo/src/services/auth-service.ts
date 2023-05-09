@@ -28,6 +28,139 @@ export default () => {
 
   const getMenuTree = useCallback((): Promise<IMenuTreeItem[]> => {
     return new Promise((resolve, reject) => {
+      const tempTree: IMenuTreeItem[] = [
+        {
+            "id": "ContentDefinitionScreen",
+            "text": "Content Definition Screen",
+            "screen": "ContentDefinitionScreen",
+            "subNodes": [
+                {
+                    "id": "NewContentDefinition",
+                    "text": "New Content Definition",
+                    "screen": "NewContentDefinition"
+                },
+                {
+                    "id": "DefineCatalog",
+                    "text": "Define Catalog",
+                    "screen": "DefineCatalog"
+                }
+            ]
+        },
+        {
+            "id": "CompetitionDefinitionScreen",
+            "text": "Sport Definition Screen",
+            "screen": "CompetitionDefinitionScreen",
+            "subNodes": [
+                {
+                    "id": "CompetitionDefinitionScreen",
+                    "text": "Sport Definition",
+                    "screen": "CompetitionDefinitionScreen"
+                },
+                {
+                    "id": "CategoryScreen",
+                    "text": "Sport Genre",
+                    "screen": "CategoryScreen"
+                },
+                {
+                    "id": "LeagueScreen",
+                    "text": "Competition",
+                    "screen": "LeagueScreen"
+                },
+                {
+                    "id": "TeamScreen",
+                    "text": "Team",
+                    "screen": "TeamScreen"
+                },
+                {
+                    "id": "ShowScreen",
+                    "text": "Show",
+                    "screen": "ShowScreen"
+                }
+            ]
+        },
+        {
+            "id": "ProgrammingGuidelineScreen",
+            "text": "Programming Guideline Screen",
+            "screen": "ProgrammingGuidelineScreen"
+        },
+        {
+            "id": "ShowcaseScreen",
+            "text": "Showcase Screen",
+            "screen": "ShowcaseScreen",
+            "subNodes": [
+                {
+                    "id": "ShowcaseScreen",
+                    "text": "Showcase Screen",
+                    "screen": "ShowcaseScreen"
+                },
+                {
+                    "id": "BannerScreen",
+                    "text": "Banner Screen",
+                    "screen": "BannerScreen"
+                }
+            ]
+        },
+        {
+            "id": "ConfigurationUpdateScreen",
+            "text": "Configuration Update Screen",
+            "screen": "ConfigurationUpdateScreen",
+            "subNodes": [
+                {
+                    "id": "ConfigurationUpdateScreen",
+                    "text": "Flag Update ",
+                    "screen": "ConfigurationUpdateScreen"
+                },
+                {
+                    "id": "FreeChannelsScreen",
+                    "text": "Free Channels Vod",
+                    "screen": "FreeChannelsScreen"
+                },
+                {
+                    "id": "FreePreviewsScreen",
+                    "text": "Free Preview",
+                    "screen": "FreePreviewsScreen"
+                },
+                {
+                    "id": "PartnerOperationsScreen",
+                    "text": "Partner Operation",
+                    "screen": "PartnerOperationsScreen"
+                },
+                {
+                    "id": "LiveToVodScreen",
+                    "text": "Live To VOD Operations",
+                    "screen": "LiveToVodScreen"
+                }
+            ]
+        },
+        {
+            "id": "MenuDefinitionScreen",
+            "text": "Menu Definition Screen",
+            "screen": "MenuDefinitionScreen"
+        },
+        {
+            "id": "VoucherScreen",
+            "text": "Voucher Screen",
+            "screen": "VoucherScreen"
+        },
+        {
+            "id": "CustomerOperationsScreen",
+            "text": "Customer Operations",
+            "screen": "CustomerOperationsScreen",
+            "subNodes": [
+                {
+                    "id": "CustomerOperationsScreen",
+                    "text": "Customer Search",
+                    "screen": "CustomerOperationsScreen"
+                },
+                {
+                    "id": "NewCustomerScreen",
+                    "text": "New Customer",
+                    "screen": "NewCustomerScreen"
+                }
+            ]
+        }
+    ] ;
+
       const result: IMenuTreeItem[] = [
         {
           id: 'DemoScreen',
@@ -101,7 +234,8 @@ export default () => {
           ]
         }
       ];
-      setTimeout(() => resolve(result), 1000);
+      // setTimeout(() => resolve(result), 1000);
+      setTimeout(() => resolve(tempTree), 1000);
     });
   }, []);
 
