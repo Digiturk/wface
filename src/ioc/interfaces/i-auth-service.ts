@@ -1,7 +1,7 @@
 export interface IMenuTreeItem {
-  id: string,
+  id: string;
   text: string;
-  icon?: string;
+  icon?: string | JSX.Element;
   divideBefore?: boolean;
   screen?: string;
   subNodes?: IMenuTreeItem[];

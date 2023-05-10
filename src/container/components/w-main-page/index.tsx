@@ -21,7 +21,7 @@ import NavList from "./nav-list";
 import { FC, useState, useCallback, useEffect, useMemo } from "react";
 import { useConfiguration } from "../../../store";
 import { Box } from "@mui/material";
-import ToolBar from "./tool-bar";
+import ToolBar from "./toolbar";
 
 //#endregion
 

@@ -44,7 +44,11 @@ export default {
     return (
       <WListItem id={"search-item-" + item.id} dense key={"key-search-item-" + item.id}>
         <WListItemIcon>
-          <WIcon iconSize="small">{item.icon}</WIcon>
+          {typeof item.icon == "string" ? (
+            <WIcon>{item.icon}</WIcon>
+          ) : (
+            <>{item.icon}</>
+          )}
         </WListItemIcon>
         <WListItemText>
           {item.text}
