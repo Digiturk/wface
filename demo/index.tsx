@@ -1,18 +1,7 @@
-import React, { useCallback, useEffect } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import * as Screens from "./src/screens";
-import {
-  IConfiguration,
-  useAppContext,
-  useUserContext,
-  WFace,
-  WButton,
-  WTheme,
-  WBox,
-  WGrid,
-  WIconButton,
-  WIcon,
-} from "wface";
+import { IConfiguration, useAppContext, useUserContext, WFace, WIcon, WTheme } from "wface";
 import AuthService from "././src/services/auth-service";
 
 const configuration: IConfiguration = {
@@ -25,7 +14,6 @@ const configuration: IConfiguration = {
     DemoScreen5: Screens.DemoScreen5,
     EmptyScreen: Screens.EmptyScreen,
     SettingsScreen: Screens.SettingsScreen,
-    ContentDefinitionScreen: () => <div>ContentDefinitionScreen</div>,
   },
   useAuthService: AuthService,
   useLocalStorage: true,
@@ -56,9 +44,11 @@ const configuration: IConfiguration = {
     ];
   },
   components: {
-    // Toolbar: Toolbar ,
-  },
-};
+    TopbarRightItems: () => (
+      <WIcon sx={{ ml: 1 }}>notifications</WIcon>
+    )
+  }
+}
 
 const App = () => {
   return <WFace configuration={configuration} />;
