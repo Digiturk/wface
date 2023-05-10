@@ -1,9 +1,8 @@
-import React, { useCallback, useState } from 'react'
+import React,{ useCallback } from 'react'
 import { WIcon, WIconButton, WTheme, WToolBar, WTypography } from '../../../components'
 import { Horizontal, WindowWidthType } from 'horizontal';
 import makeStyles from "@mui/styles/makeStyles";
-import { useTheme } from "@mui/material/styles";
-import { useAppContext, useConfiguration } from '../../../store';
+import { useConfiguration } from '../../../store';
 import { Search } from './search';
 import { MyProfileMenu } from './my-profile-menu';
 import RightDrawer from './right-drawer';
@@ -78,14 +77,10 @@ const useStyles = makeStyles((theme: any) => ({
 
 function ToolBar(props:any) {
   const classes = useStyles();
-  const theme = useTheme<WTheme>();
-  const appContext = useAppContext();
   const configuration = useConfiguration();
   const rightContextItems = configuration.useRightContextItems
     ? configuration.useRightContextItems()
     : [];
-  const authService = configuration.useAuthService();
-  const topHeight = 48;
   const handleDrawerChange = useCallback(
     () => props.setDrawerOpen(!props.drawerOpen),
     [props.drawerOpen]

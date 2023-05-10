@@ -57,10 +57,6 @@ const configuration: IConfiguration = {
   },
   components: {
     // Toolbar: Toolbar ,
-    ToolbarDrawerIcons: {
-      Menu: "format_align_right",
-      Close: "error",
-    },
   },
 };
 

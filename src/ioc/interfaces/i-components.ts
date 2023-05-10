@@ -9,8 +9,4 @@ export default interface IComponents {
   ErrorPage?: React.FC | React.ReactNode;
   TopbarRightItems?: React.FC | React.ReactNode;
   Toolbar?: React.FC<{menuOpen: boolean; onMenuToggle: (open: boolean) => void}> | React.JSXElementConstructor<{menuOpen: boolean; onMenuToggle: (open: boolean) => void}>;
-  ToolbarDrawerIcons?: {
-    Menu: string;
-    Close: string;
-  };
 }
