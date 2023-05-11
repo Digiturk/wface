@@ -77,25 +77,33 @@ export const MyProfileMenu: FC<MyProfileMenuProps> = ({ items }) => {
                   appContext.openScreen(screenItem);
                   setUserMenuAnchor(undefined);
                 }
-              }}>
-              {item.icon &&
-                <WListItemIcon style={{ minWidth: 'auto' }}>
-                  <WIcon>{item.icon}</WIcon>
+              }}
+            >
+              {item.icon && (
+                <WListItemIcon style={{ minWidth: "auto" }}>
+                  {typeof item.icon == "string" ? (
+                    <WIcon>{item.icon}</WIcon>
+                  ) : (
+                    <>{item.icon}</>
+                  )}
                 </WListItemIcon>
-              }
+              )}
               <WListItemText style={{ marginLeft: 12 }} primary={item.text} />
             </WMenuItem>
-          ))
-        }
-        {configuration.authRequired &&
-          <WMenuItem id="menu-item-logout" key="menu-item-logout" onClick={logoutClicked}>
-            <WListItemIcon style={{ minWidth: 'auto' }}>
+          ))}
+        {configuration.authRequired && (
+          <WMenuItem
+            id="menu-item-logout"
+            key="menu-item-logout"
+            onClick={logoutClicked}
+          >
+            <WListItemIcon style={{ minWidth: "auto" }}>
               <WIcon>exit_to_app</WIcon>
-            </WListItemIcon >
+            </WListItemIcon>
             <WListItemText style={{ marginLeft: 12 }} primary="Çıkış" />
           </WMenuItem>
-        }
+        )}
       </WMenu>
     </Box>
-  )
-}
+  );
+};

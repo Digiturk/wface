@@ -122,7 +122,11 @@ const NavList: FC<NavListProps> = ({ onItemClicked }) => {
         >
           {hasAnyIcon &&
             <WListItemIcon className={classes.listItemIconRoot}>
-              <WIcon style={listItemTextStyle}>{item.icon}</WIcon>
+              {typeof item.icon == "string" ? (
+                    <WIcon>{item.icon}</WIcon>
+                  ) : (
+                    <>{item.icon}</>
+                  )}
             </WListItemIcon>
           }
           <WListItemText
@@ -137,7 +141,7 @@ const NavList: FC<NavListProps> = ({ onItemClicked }) => {
             item.screen
               ? (<WIconButton
                 size="small"
-                sx={{ p: 0 }}
+                sx={{ p: 0,...theme?.designDetails?.drawerDesign?.menuItem?.sx }}
                 onClick={(e) => {
                   // e.stopPropagation();
                   e.preventDefault();

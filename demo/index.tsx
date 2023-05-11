@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 import ReactDOM from "react-dom";
-import * as Screens from './src/screens';
-import { IConfiguration, useAppContext, useUserContext, WFace, WIcon, WTheme } from 'wface';
-import AuthService from '././src/services/auth-service';
+import * as Screens from "./src/screens";
+import { IConfiguration, useAppContext, useUserContext, WFace, WIcon, WTheme } from "wface";
+import AuthService from "././src/services/auth-service";
 
 const configuration: IConfiguration = {
-  projectName: 'WFace Demo',
+  projectName: "WFace Demo",
   screenList: {
     DemoScreen: Screens.DemoScreen,
     DemoScreen2: Screens.DemoScreen2,
@@ -14,7 +14,6 @@ const configuration: IConfiguration = {
     DemoScreen5: Screens.DemoScreen5,
     EmptyScreen: Screens.EmptyScreen,
     SettingsScreen: Screens.SettingsScreen,
-    ContentDefinitionScreen: () => <div>ContentDefinitionScreen</div>
   },
   useAuthService: AuthService,
   useLocalStorage: true,
@@ -22,15 +21,15 @@ const configuration: IConfiguration = {
     designDetails: {
       pageSx: {
         padding: (theme: WTheme) => theme.spacing(1),
-      }
-    }
+      },
+    },
   },
   api: {
-    baseUrl: 'http://localhost:8080',
+    baseUrl: "http://localhost:8080",
     useToken: () => {
       const userContext = useUserContext();
       return userContext.token;
-    }
+    },
   },
   search: true,
   useRightContextItems: () => {
@@ -38,10 +37,10 @@ const configuration: IConfiguration = {
 
     return [
       {
-        id: 'id1',
-        text: 'Ayarlar',
-        onClick: () => appContext.openScreenById('settings')
-      }
+        id: "id1",
+        text: "Ayarlar",
+        onClick: () => appContext.openScreenById("settings"),
+      },
     ];
   },
   components: {
@@ -53,6 +52,6 @@ const configuration: IConfiguration = {
 
 const App = () => {
   return <WFace configuration={configuration} />;
-}
+};
 
 ReactDOM.render(<App />, document.getElementById("root"));
