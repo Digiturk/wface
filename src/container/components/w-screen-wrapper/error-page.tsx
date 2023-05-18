@@ -30,15 +30,15 @@ export default class ErrorPage extends React.Component<{ error: any, info: any }
                 <WIcon style={{ fontSize: 75, color: '#C62828' }}>error_outline</WIcon>
                 <div style={{ padding: '5px 10px 5px 20px' }}>
                   <WTypography variant="h6" style={{ display: 'inline' }}>
-                    Bu sayfada bir hata oluştu. Lütfen ekranı kapatıp yeniden açınız.
-                    Hatanın devam etmesi durumunda sistem yöneticinizle irtibata geçebilirsiniz.
+                    An error has occurred on this page. Please turn the screen off and on again.
+                    If the error persists, you can contact your system administrator.
                   </WTypography>
                 </div>
               </div>
             </WCardContent>
             <WCardActions>
               <WButton id="btn-show-error-detail" onClick={() => this.setState({ showDetail: !this.state.showDetail })}>
-                HATA DETAYI
+                ERROR DETAIL
               </WButton>
             </WCardActions>
           </WCard>
