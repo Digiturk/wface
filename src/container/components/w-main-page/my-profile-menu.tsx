@@ -100,7 +100,7 @@ export const MyProfileMenu: FC<MyProfileMenuProps> = ({ items }) => {
             <WListItemIcon style={{ minWidth: "auto" }}>
               <WIcon>exit_to_app</WIcon>
             </WListItemIcon>
-            <WListItemText style={{ marginLeft: 12 }} primary="Çıkış" />
+            <WListItemText style={{ marginLeft: 12 }} primary="Logout" />
           </WMenuItem>
         )}
       </WMenu>

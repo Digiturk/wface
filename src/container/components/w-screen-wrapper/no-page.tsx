@@ -6,10 +6,10 @@ export default () => (
     <WGrid item md={6}>
       <WPaper elevation={0} style={{ padding: 20 }}>
         <WTypography variant="h5" align="center">
-          Sayfa bulunamadı
+          Page not found
         </WTypography>
         <WTypography align="center">
-          Lütfen proje ve ekran alanlarını doğru tanımladığınızdan emin olunuz.
+          Please make sure that you have defined the project and screen areas correctly.
         </WTypography>
       </WPaper>
     </WGrid>
