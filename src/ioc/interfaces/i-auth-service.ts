@@ -5,7 +5,6 @@ export interface IMenuTreeItem {
   divideBefore?: boolean;
   screen?: string;
   subNodes?: IMenuTreeItem[];
-  isDefaultScreen?: boolean;
   notClosable?: boolean;
   hideOnNavigationList?: boolean;
   initialValues?: any;

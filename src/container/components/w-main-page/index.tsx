@@ -16,7 +16,7 @@ import {
 import classNames from "classnames";
 import { Horizontal, WindowWidthType } from "horizontal";
 
-import { useNavigate, useLocation, Routes, Route } from "react-router";
+import { Routes, Route } from "react-router";
 import NavList from "./nav-list";
 import { FC, useState, useCallback, useEffect, useMemo } from "react";
 import { useConfiguration } from "../../../store";
@@ -114,9 +114,7 @@ const WMainPage: FC = () => {
   const theme = useTheme<WTheme>();
   const appContext = useAppContext();
   const configuration = useConfiguration();
-  const rightContextItems = configuration.useRightContextItems
-    ? configuration.useRightContextItems()
-    : [];
+  const [isMenuTreeLoading, setIsMenuTreeLoading] = useState<boolean>(false);
   const authService = configuration.useAuthService();
   const [drawerOpen, setDrawerOpen] = useState<boolean>(
     Horizontal.getType() == WindowWidthType.LG
@@ -153,17 +151,21 @@ const WMainPage: FC = () => {
   );
 
   const loadMenuTree = useCallback(async () => {
+    setIsMenuTreeLoading(true);
+
     try {
       const menuTree = await authService.getMenuTree();
       appContext.setMenuTree(menuTree);
     } catch (e) {
       console.log("hata", e);
     }
-  }, [appContext.setMenuTree]);
+
+    setIsMenuTreeLoading(false);
+  }, [appContext.setMenuTree, authService.getMenuTree]);
 
   useEffect(() => {
     loadMenuTree();
-  }, [loadMenuTree, authService.getMenuTree]);
+  }, [loadMenuTree]);
 
   return (
     <div className={classes.root + " main-page"}>
@@ -265,8 +267,9 @@ const WMainPage: FC = () => {
                   }
                 />
               ))}
+              <Route path="/" element={null} />
               {/* @ts-ignore */}
-              <Route path="*" element={<configuration.components.NoPage />} />
+              <Route path="*" element={isMenuTreeLoading ? null : <configuration.components.NoPage />} />
             </Routes>
           </Box>
         </WScrollBar>

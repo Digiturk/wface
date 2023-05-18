@@ -2,6 +2,7 @@ import { useTheme } from '@mui/material';
 import React, { FC, useCallback, useState } from 'react';
 import { useApi, useAppContext, useBaseScreenProps, useUserContext, WSelect, WTheme } from 'wface';
 import makeStyles from "@mui/styles/makeStyles";
+import { useNavigate } from 'react-router';
 
 const useStyles = makeStyles((theme: any) => ({
   selectRoot: {
@@ -20,7 +21,6 @@ export const EmptyScreen: FC = () => {
 
   const onClick = useCallback(async () => {
     setData(null);
-
     changeScreenMode('loading');
     try {
       const t = await api.get('https://jsonplaceholder.typicode.com/todos/1');
