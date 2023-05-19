@@ -10,17 +10,19 @@ import { DistributiveOmit } from '@mui/types';
 export type WDateTimePickerProps = BaseComponentProps & DistributiveOmit<DateTimePickerProps, "renderInput"> & {
   fullWidth?: boolean,
   format?: string;
+  helperText?: string;
+  error?:string;
   renderInput?: DateTimePickerProps["renderInput"];
 }
 
 export const WDateTimePicker: React.FC<WDateTimePickerProps> =((fieldProps:WDateTimePickerProps) => {
-  const {id="",ampm= false,clearable=true, format= "dd.MM.yyyy HH:mm",fullWidth= true,  showTodayButton=true  } = fieldProps;
+  const { error, helperText, fullWidth = true } = fieldProps;
 
   return (
    <LocalizationProvider dateAdapter={AdapterDateFns as any}>
         <DateTimePicker
           {...fieldProps}
-          renderInput={(props: any) => <WTextField {...props} {...fieldProps} fullWidth={fullWidth}/>}
+          renderInput={(props: any) => <WTextField {...props} error={error} helperText={helperText} fullWidth={fullWidth}/>}
         />
       </LocalizationProvider>
   );
