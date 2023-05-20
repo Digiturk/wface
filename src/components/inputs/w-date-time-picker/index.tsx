@@ -7,12 +7,12 @@ import { DistributiveOmit } from '@mui/types';
 
 
 
-export type WDateTimePickerProps = BaseComponentProps & DistributiveOmit<DateTimePickerProps, "renderInput"> & {
+export type WDateTimePickerProps = BaseComponentProps & DistributiveOmit<DateTimePickerProps<any>, "renderInput"> & {
   fullWidth?: boolean,
   format?: string;
   helperText?: string;
   error?:string;
-  renderInput?: DateTimePickerProps["renderInput"];
+  renderInput?: DateTimePickerProps<any>["renderInput"];
 }
 
 export const WDateTimePicker: React.FC<WDateTimePickerProps> =((fieldProps:WDateTimePickerProps) => {

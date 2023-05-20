@@ -9,27 +9,27 @@ export type WDatePickerProps = BaseComponentProps & DistributiveOmit<DatePickerP
   fullWidth?: boolean;
   format?: string;
   helperText?: string;
-  error?:string;
+  error?: string;
   renderInput?: DatePickerProps["renderInput"];
 }
 
-export const WDatePicker: React.FC<WDatePickerProps> =((fieldProps:WDatePickerProps) => {
-  const { error, helperText, fullWidth = true } = fieldProps;
+export const WDatePicker: React.FC<WDatePickerProps> = ((fieldProps: WDatePickerProps) => {
+  const { error, helperText, fullWidth = true, format = "dd.MM.yyyy" } = fieldProps;
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns as any}>
-    <DatePicker
-      {...fieldProps}
-      renderInput={(props: any) => (
-        <WTextField
-          {...props}
-          error={error}
-          helperText={helperText}
-          fullWidth={fullWidth}
-        />
-      )}
-    />
-
-  </LocalizationProvider>
+      <DatePicker
+        {...fieldProps}
+        inputFormat={format}
+        renderInput={(props: any) => (
+          <WTextField
+            {...props}
+            error={error}
+            helperText={helperText}
+            fullWidth={fullWidth}
+          />
+        )}
+      />
+    </LocalizationProvider>
   );
 });

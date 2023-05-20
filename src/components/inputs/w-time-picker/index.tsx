@@ -6,10 +6,10 @@ import { WTextField } from '../w-text-field';
 import { DistributiveOmit } from '@mui/types';
 
 
-export type WTimePickerProps = BaseComponentProps & DistributiveOmit<TimePickerProps, "renderInput"> & {
+export type WTimePickerProps = BaseComponentProps & DistributiveOmit<TimePickerProps<any>, "renderInput"> & {
   fullWidth?: boolean,
   format?: string;
-  renderInput?: TimePickerProps["renderInput"];
+  renderInput?: TimePickerProps<any>["renderInput"];
 }
 
 

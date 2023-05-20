@@ -17,6 +17,7 @@ const WScreenWrapper: FC<{ menuTreeItem?: IMenuTreeItem; }> = ({ menuTreeItem })
   const appContext = useAppContext();
   const { enqueueSnackbar } = useSnackbar();
   const configuration = useConfiguration();
+  const { t } = configuration.useTranslation!();
 
   try {
     const changeScreenMode = useCallback((mode: 'normal' | 'loading' = 'normal') => {
@@ -49,14 +50,14 @@ const WScreenWrapper: FC<{ menuTreeItem?: IMenuTreeItem; }> = ({ menuTreeItem })
 
     if (pageError) {
       // @ts-ignore
-      return <configuration.components.ErrorPage {...pageError} />
+      return <configuration.components.ErrorPage {...pageError} t={t}/>
     }
 
     const Screen = configuration.screenList[menuTreeItem?.screen || ''] as any;
 
     if (!Screen) {
       // @ts-ignore
-      return <configuration.components.NoPage />
+      return <configuration.components.NoPage />      
     }
 
     return (

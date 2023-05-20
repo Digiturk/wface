@@ -45,6 +45,20 @@ const getDefaultData = (configuration: IConfiguration): IConfiguration => ({
   searchProvider: {
     ...menuSearchProvider,
     ...configuration.searchProvider
+  },
+  useTranslation: () => {
+    const defaultTranslation = {
+      t: (key: string) => "",          
+    }    
+
+    if(configuration.useTranslation) {
+      return {
+        ...defaultTranslation,
+        ...configuration.useTranslation()
+      }
+    } else {
+      return defaultTranslation;
+    }
   }
 });
 

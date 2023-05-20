@@ -44,4 +44,7 @@ export default interface IConfiguration {
   };
 
   wrapApp?: (children: JSX.Element) => JSX.Element;
+  useTranslation?: () => {
+    t: (key: string) => string;
+  }
 }

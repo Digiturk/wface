@@ -47,7 +47,12 @@ const configuration: IConfiguration = {
     TopbarRightItems: () => (
       <WIcon sx={{ ml: 1 }}>notifications</WIcon>
     )
-  }
+  },
+  // useTranslation: () => {
+  //   return {
+  //     t: (key: string) => key + "Tranlated"
+  //   }
+  // }
 }
 
 const App = () => {
