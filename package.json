@@ -1,6 +1,6 @@
 {
 	"name": "wface",
-	"version": "0.3.5",
+	"version": "0.3.6",
 	"description": "",
 	"main": "./dist/index.js",
 	"author": "Mehmet Baran",
@@ -21,9 +21,9 @@
 	"dependencies": {
 		"@emotion/styled": "11.10.5",
 		"@emotion/react": "11.10.5",
-		"@mui/icons-material": "5.11.0",
+		"@mui/icons-material": "5.11.0", 
 		"@mui/material": "5.8.6",
-		"@mui/lab": "5.0.0-alpha.88",
+		"@mui/lab": "5.0.0-alpha.67",
 		"@mui/styles": "5.5.0",
 		"@mui/types": "7.1.4",
 		"axios": "1.1.1",
@@ -45,7 +45,7 @@
 		"reflect-metadata": "0.1.13",
 		"typesafe-actions": "5.1.0",
 		"query-string": "7.1.1",
-		"yup": "0.32.11"
+		"yup": "0.32.11"    
 	},
 	"devDependencies": {
 		"@babel/core": "7.20.7",
