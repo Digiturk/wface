@@ -47,4 +47,18 @@ export default class MenuTreeUtil {
       }
     }
   }
+
+  public static findDefaultScreen(menuTree: IMenuTreeItem[]): IMenuTreeItem {
+    let result: IMenuTreeItem;;
+    this.menuTreeForEach(menuTree, item => {
+      if (item.isDefaultScreen) {
+        result = item;
+        return true;
+      }
+      return false;
+    });
+
+    // @ts-ignore
+    return result;
+  }
 }

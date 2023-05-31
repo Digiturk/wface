@@ -16,7 +16,7 @@ import {
 import classNames from "classnames";
 import { Horizontal, WindowWidthType } from "horizontal";
 
-import { Routes, Route } from "react-router";
+import { Routes, Route, useNavigate, useLocation } from "react-router";
 import NavList from "./nav-list";
 import { FC, useState, useCallback, useEffect, useMemo } from "react";
 import { useConfiguration } from "../../../store";
@@ -114,8 +114,10 @@ const WMainPage: FC = () => {
   const theme = useTheme<WTheme>();
   const appContext = useAppContext();
   const configuration = useConfiguration();
-  const [isMenuTreeLoading, setIsMenuTreeLoading] = useState<boolean>(false);
+  const [isMenuTreeLoading, setIsMenuTreeLoading] = useState<boolean>(true);
   const authService = configuration.useAuthService();
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
   const [drawerOpen, setDrawerOpen] = useState<boolean>(
     Horizontal.getType() == WindowWidthType.LG
   );
@@ -156,6 +158,11 @@ const WMainPage: FC = () => {
     try {
       const menuTree = await authService.getMenuTree();
       appContext.setMenuTree(menuTree);
+
+      const defaultScreen = MenuTreeUtil.findDefaultScreen(menuTree);
+      if (defaultScreen && window.location.pathname === '/main') {
+        navigate('/main/' + defaultScreen.id);
+      }
     } catch (e) {
       console.log("hata", e);
     }
@@ -175,7 +182,7 @@ const WMainPage: FC = () => {
         className={classes.appBar}
         elevation={theme.designDetails?.defaultElevation}
       >
-        <ToolBar drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen}/>
+        <ToolBar drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} />
       </WAppBar>
       <WDrawer
         variant="persistent"

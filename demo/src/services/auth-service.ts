@@ -53,6 +53,7 @@ export default () => {
           id: "DemoScreen3",
           text: "DemoScreen3",
           screen: "DemoScreen3",
+          isDefaultScreen: true
         },
         {
           id: "DemoScreen4",

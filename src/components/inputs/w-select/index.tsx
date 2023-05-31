@@ -9,6 +9,7 @@ import selectComponents from './components';
 import { DistributiveOmit } from '@mui/types';
 import { WTheme } from '../../others/w-theme-provider/w-theme';
 import { BaseComponentProps } from '../../base/base-component-props';
+import { WTextFieldProps } from '../w-text-field';
 
 export interface WSelectOptionGroup {
   label: string;
@@ -44,6 +45,7 @@ export type WSelectProps = BaseComponentProps & DistributiveOmit<WithStyles<type
   style?: React.CSSProperties;
   components?: any;
   hideSelectedOptions?:boolean;
+  size?: WTextFieldProps["size"]
 }
 
 class WSelectInner extends React.Component<WSelectProps, { focused: boolean }> {
@@ -134,7 +136,8 @@ class WSelectInner extends React.Component<WSelectProps, { focused: boolean }> {
             },
             error: this.props.error,
             helperText: this.props.helperText,
-            style: this.props.style
+            style: this.props.style,
+            size: this.props.size
           }}          
           // menuPortalTarget={document.body}
         />
@@ -161,7 +164,7 @@ const customStyles = {
 const styles = (theme: WTheme) => createStyles({
   input: {
     display: 'flex !important',
-    padding: '12px 14px !important',
+    padding: '9.5px 14px !important',
     height: 'auto !important'
   },
   valueContainer: {

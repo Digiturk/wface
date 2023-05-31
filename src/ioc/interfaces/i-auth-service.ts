@@ -8,4 +8,5 @@ export interface IMenuTreeItem {
   notClosable?: boolean;
   hideOnNavigationList?: boolean;
   initialValues?: any;
+  isDefaultScreen?: boolean;
 }
