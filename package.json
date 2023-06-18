@@ -1,6 +1,6 @@
 {
 	"name": "wface",
-	"version": "0.3.7",
+	"version": "0.3.8",
 	"description": "",
 	"main": "./dist/index.js",
 	"author": "Mehmet Baran",
@@ -32,7 +32,7 @@
 		"fuse.js": "6.6.2",
 		"horizontal": "0.2.2",
 		"lodash": "4.17.21",
-		"material-table": "2.0.3",
+		"material-table": "2.0.5",
 		"notistack": "2.0.3",
 		"react": "18.2.0",
 		"react-custom-scrollbars": "4.2.1",

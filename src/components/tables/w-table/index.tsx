@@ -10,10 +10,14 @@ import { WIcon } from '../../medias';
 
 const useStyles = makeStyles((theme: any) => ({
   root: {
-    margin: theme.spacing()
+    margin: theme.spacing(),
+
+    '& .MuiTablePagination-toolbar': {
+      paddingLeft: 0,
+      paddingRight: 0      
+    }
   }
 }));
-
 
 export type WTableProps = BaseComponentProps & MaterialTableProps<any> & {
   style?: React.CSSProperties;

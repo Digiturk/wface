@@ -1,37 +1,55 @@
-import { Alert } from '@mui/material';
-import React, { FC, useState } from 'react';
-import { WBox, WCard, WCardContent, WCardHeader, WDatePicker, WForm, WFormField, WFormValidation, WGrid, WSelect, WTextField, WTypography } from 'wface';
+import React, { FC, useCallback, useEffect, useMemo, useState } from 'react';
+import { useBaseScreenProps, WButton, WTable } from 'wface';
 
-const DateCard = (props: { title: string, children: React.ReactNode, value: Date }) => (
-  <WGrid item xs={12} sm={6} md={4} lg={3}>
-    <WCard>
-      <WCardHeader title={props.title} />
-      <WCardContent>
-        {props.children}
-        <WBox mt={1}>
-          Value: <WTypography fontWeight={600} variant="subtitle1" sx={{ display: 'inline' }}>
-            {props.value ? props.value.toLocaleDateString() : 'null'}
-          </WTypography>
-        </WBox>
-      </WCardContent>
-    </WCard>
-  </WGrid>
-)
+// memory leak
+// pagination horizontal scroll problem
 
 export const EmptyScreen: FC = () => {
-  const [dateNull, setDateNull] = useState<Date>();
+  const { showSnackbar } = useBaseScreenProps();
+  const [loading, setLoading] = useState<boolean>(false);
+  const [data, setData] = useState<any[]>([]);
+  const columns: any[] = useMemo(() => [
+    { field: 'id', title: 'Id' },
+    { field: 'userId', title: 'User Id' },
+    { field: 'title', title: 'Title' },
+    { field: 'completed', title: 'Completed', type: 'boolean' },
+
+  ], []);
+
+
+  const loadData = useCallback(async () => {
+    setLoading(true);
+
+    try {
+      const response = await fetch('https://jsonplaceholder.typicode.com/todos');
+      const jsonData = await response.json();
+      setData(jsonData);
+    } catch (err) {
+      showSnackbar('Bir hata alındı', 'error');
+      console.log("ERROR", err);
+    }
+
+    setLoading(false);
+  }, []);
+
+  useEffect(() => {
+    loadData();
+  }, [loadData]);
 
   return (
-    <WGrid container spacing={1}>
-      <DateCard title="Value state ile yönetiliyor. İlk değer boş" value={dateNull}>
-        <WSelect/>
-        <WSelect size="medium"/>
-        <WSelect size="small"/>
-        <WTextField />
-        <WTextField size="medium" placeholder="md"/>
-        <WTextField size="small" placeholder="sm"/>
-      </DateCard>
-
-    </WGrid>
+    <>
+      <WButton
+        sx={{ mb: 2 }}
+        onClick={loadData}
+        variant="contained"
+      >
+        Refresh
+      </WButton>
+      <WTable
+        columns={columns}
+        data={data}
+        isLoading={loading}        
+      />
+    </>
   );
 }
