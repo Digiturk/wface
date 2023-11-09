@@ -45,7 +45,7 @@
 		"reflect-metadata": "0.1.13",
 		"typesafe-actions": "5.1.0",
 		"query-string": "7.1.1",
-		"yup": "0.32.11"    
+		"yup": "0.32.11"
 	},
 	"devDependencies": {
 		"@babel/core": "7.20.7",
