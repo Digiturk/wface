@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import * as Screens from "./src/screens";
 import { IConfiguration, useAppContext, useUserContext, WFace, WIcon, WTheme } from "wface";
 import AuthService from "././src/services/auth-service";
+import { AppWrapper } from "././src/components/app-wrapper";
 
 const configuration: IConfiguration = {
   projectName: "WFace Demo",
@@ -48,6 +49,7 @@ const configuration: IConfiguration = {
       <WIcon sx={{ ml: 1 }}>notifications</WIcon>
     )
   },
+  wrapApp: AppWrapper
   // useTranslation: () => {
   //   return {
   //     t: (key: string) => key + "Tranlated"

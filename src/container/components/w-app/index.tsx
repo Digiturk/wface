@@ -7,7 +7,7 @@ import * as queryString from 'query-string'
 import { WSnackbarProvider, WThemeProvider } from "../../../components";
 import { useAppContext, useConfiguration, useUserContext } from "../../../store";
 
-const WApp: FC = () => {
+const WAppContent: FC = () => {
   const { setQueryParams } = useAppContext();
   const configuration = useConfiguration();
 
@@ -40,6 +40,11 @@ const WApp: FC = () => {
       </WSnackbarProvider>
     </WThemeProvider>
   );
+}
+
+const WApp: FC = () => {
+  const configuration = useConfiguration();
+  return configuration.wrapApp?.(<WAppContent/>) || <WAppContent/>;
 }
 
 export default WApp;

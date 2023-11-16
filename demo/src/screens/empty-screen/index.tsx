@@ -2,7 +2,7 @@ import { Download } from '@mui/icons-material';
 import React, { FC, useCallback, useEffect, useMemo, useState } from 'react';
 import { useLocation } from 'react-router';
 import { Base64PdfView } from '../../components/base64-pdf-view';
-import { useBaseScreenProps, WCard, WCardContent, WCardHeader, WForm, WFormField, WIcon, WTextField, WTable } from 'wface';
+import { useBaseScreenProps, WCard, WCardContent, WCardHeader, WForm, WFormField, WIcon, WTextField, WTable, useAppContext } from 'wface';
 
 export const EmptyScreen: FC = () => {
   // ilk initial values'te company bos doldurulmus, year ise null bırakılmış. Bu nedenle sorun cıkıyor. Tüm alanlar için ilk deger atanmalıdır. 
@@ -12,6 +12,9 @@ export const EmptyScreen: FC = () => {
   useEffect(() => {
     setTimeout(() => setInitialValues({ company: 'Digiturk', year: 5 }), 3000);
   }, [])
+
+
+ 
 
 
   return (
