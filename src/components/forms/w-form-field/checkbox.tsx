@@ -2,6 +2,7 @@ import * as React from 'react';
 import WField from './w-field';
 import { WCheckbox, WCheckboxProps } from '../../inputs/w-checkbox';
 import BaseFieldProps from './base-field-props';
+import { ReactNode } from 'react';
 
 export type CheckboxProps = BaseFieldProps & WCheckboxProps & {
 }
@@ -22,4 +23,4 @@ export const Checkbox = React.forwardRef((fieldProps: CheckboxProps, ref: any) =
       />
     )}
   />
-));
+)) as React.FC<CheckboxProps>;

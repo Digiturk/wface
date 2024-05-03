@@ -1,6 +1,6 @@
 {
 	"name": "wface",
-	"version": "0.3.9",
+	"version": "0.3.10",
 	"description": "",
 	"main": "./dist/index.js",
 	"author": "Mehmet Baran",
@@ -26,6 +26,7 @@
 		"@mui/lab": "5.0.0-alpha.67",
 		"@mui/styles": "5.5.0",
 		"@mui/types": "7.1.4",
+    "@mui/x-date-pickers": "6.18.4",
 		"axios": "1.1.1",
 		"classnames": "2.3.1",
 		"formik": "2.2.9",
