@@ -17,15 +17,13 @@ import classNames from "classnames";
 import { Horizontal, WindowWidthType } from "horizontal";
 
 import { Routes, Route, useNavigate, useLocation } from "react-router";
-import NavList from "./nav-list";
 import { FC, useState, useCallback, useEffect, useMemo } from "react";
 import { useConfiguration } from "../../../store";
 import { Box } from "@mui/material";
-import ToolBar from "./toolbar";
 
 //#endregion
 
-export interface WMainPageProps {
+export interface WPublicPageProps {
   classes: any;
   location: any;
   match: any;
@@ -109,46 +107,21 @@ const useStyles = makeStyles((theme: any) => ({
   },
 }));
 
-const WMainPage: FC = () => {
+const WPublicPage: FC = () => {
   const classes = useStyles();
   const theme = useTheme<WTheme>();
   const appContext = useAppContext();
   const configuration = useConfiguration();
-  const [isMenuTreeLoading, setIsMenuTreeLoading] = useState<boolean>(true);
+  const [isMenuTreeLoading, setIsMenuTreeLoading] = useState<boolean>(false);
   const authService = configuration.useAuthService();
   const navigate = useNavigate();
-  const { pathname } = useLocation();
   const [drawerOpen, setDrawerOpen] = useState<boolean>(
     Horizontal.getType() == WindowWidthType.LG
   );
-  const topHeight = 48;
+  const topHeight = 0;
   const getScreenUrl = useCallback(
     (screen: IMenuTreeItem) => "/" + screen.screen,
     []
-  );
-
-  const routes = useMemo(() => {
-    const result: IMenuTreeItem[] = [];
-    MenuTreeUtil.menuTreeForEach(appContext.menuTree, (item) => {
-      if (item.screen) {
-        result.push(item);
-      }
-
-      return false;
-    });
-
-    return result;
-  }, [appContext.menuTree]);
-
-  const onMenuItemClicked = useCallback(
-    (screen: IMenuTreeItem) => {
-      if (Horizontal.getType() !== WindowWidthType.LG) {
-        setDrawerOpen(false);
-      }
-
-      appContext.openScreen(screen);
-    },
-    [appContext.openScreen]
   );
 
   const loadMenuTree = useCallback(async () => {
@@ -181,72 +154,9 @@ const WMainPage: FC = () => {
         className={classes.appBar}
         elevation={theme.designDetails?.defaultElevation}
       >
-        <ToolBar drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} />
       </WAppBar>
-      <WDrawer
-        variant="persistent"
-        open={drawerOpen}
-        anchor="left"
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-        PaperProps={{
-          // @ts-ignore
-          style: {
-            // @ts-ignore
-            border: "none",
-            ...theme.designDetails?.drawerDesign?.paper,
-          },
-          elevation: theme.designDetails?.defaultElevation || 0,
-        }}
-      >
-        <div style={{ minHeight: topHeight }} />
-        <div
-          style={{ height: `calc(100% - ${topHeight}px)`, overflow: "none" }}
-        >
-          <WScrollBar>
-            <NavList onItemClicked={onMenuItemClicked} />
-          </WScrollBar>
-          <div
-            style={{
-              display: "table",
-              position: "absolute",
-              bottom: 0,
-              height: 25,
-              width: "100%",
-            }}
-          >
-            <div
-              style={{
-                display: "table-cell",
-                verticalAlign: "middle",
-                textAlign: "center",
-              }}
-            >
-              <span style={{ color: "#9c9999", fontSize: 10 }}>
-                Developed based on{" "}
-                <a
-                  style={{
-                    fontWeight: 600,
-                    textDecoration: "none",
-                    color: "#888",
-                  }}
-                  href="http://wface.digiturk.io"
-                  target="_blank"
-                >
-                  WFace
-                </a>
-              </span>
-            </div>
-          </div>
-        </div>
-      </WDrawer>
-
       <Box
-        className={classNames(classes.content, classes[`content-left`], {
-          [classes.contentShift]: drawerOpen,
-          [classes[`contentShift-left`]]: drawerOpen,
-        })}
+        className={classNames(classes.content, classes[`content-left`])}
         component="main"
         sx={theme.designDetails?.mainSx}
       >
@@ -259,7 +169,7 @@ const WMainPage: FC = () => {
             sx={theme.designDetails?.pageSx}
           >
             <Routes>
-              {routes.map((item) => (
+              {configuration.publicScreens && configuration.publicScreens.map((item) => (
                 <Route
                   key={item.id}
                   path={item.id}
@@ -284,4 +194,4 @@ const WMainPage: FC = () => {
   );
 };
 
-export default WMainPage;
+export default WPublicPage;

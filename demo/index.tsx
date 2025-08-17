@@ -16,6 +16,13 @@ const configuration: IConfiguration = {
     EmptyScreen: Screens.EmptyScreen,
     SettingsScreen: Screens.SettingsScreen,
   },
+  publicScreens: [
+    {
+      id: "DemoScreen",
+      screen: "DemoScreen",
+      text: "Public Page",
+    }
+  ],
   useAuthService: AuthService,
   useLocalStorage: true,
   theme: {

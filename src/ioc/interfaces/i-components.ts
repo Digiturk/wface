@@ -4,6 +4,7 @@ export default interface IComponents {
   Container?: React.FC | React.ReactNode;
   LoginPage?: React.FC | React.ReactNode;
   MainPage?: React.FC | React.ReactNode;
+  PublicPage?: React.FC | React.ReactNode;
   ScreenWrapper?: React.FC | React.ReactNode;
   NoPage?: React.FC | React.ReactNode;
   ErrorPage?: React.FC | React.ReactNode;

@@ -10,6 +10,7 @@ export default interface IConfiguration {
   components?: IComponents;
 
   screenList: { [key: string]: any };
+  publicScreens?: IMenuTreeItem[];
   useRightContextItems?: () => { id: string, icon?: string, text: string, onClick?: ((event: any) => void) | string }[];
   customToolbarComponent?: any;
   rightDrawer?: {
@@ -46,5 +47,5 @@ export default interface IConfiguration {
   wrapApp?: (children: JSX.Element) => JSX.Element;
   useTranslation?: () => {
     t: (key: string) => string;
-  }
+  };
 }

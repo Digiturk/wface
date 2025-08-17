@@ -2,7 +2,6 @@ import React, { FC, useCallback, useMemo } from 'react';
 import { useLocation } from 'react-router';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { useAppContext, useConfiguration, useUserContext } from '../../../store';
-import { MenuTreeUtil } from '../../../ioc';
 
 const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
   let location = useLocation();
@@ -54,6 +53,15 @@ const WDefaultContainer: FC<any> = () => {
             {/* @ts-ignore */}
             <configuration.components.MainPage style={{ height: '100%' }} />
           </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/public/*"
+        element={
+          <>
+            {/* @ts-ignore */}
+            <configuration.components.PublicPage style={{ height: '100%' }} />
+          </>
         }
       />
     </Routes>
