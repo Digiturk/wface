@@ -118,6 +118,7 @@ const NavList: FC<NavListProps> = ({ onItemClicked }) => {
           }}
           // @ts-ignore
           component={item.screen ? Link : undefined}
+          // @ts-ignore
           to={item.screen ? item.id : undefined}
         >
           {hasAnyIcon &&

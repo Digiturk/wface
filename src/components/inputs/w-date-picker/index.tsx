@@ -5,12 +5,12 @@ import { BaseComponentProps } from '../../base/base-component-props';
 import { DistributiveOmit } from '@mui/types';
 import { WTextField } from '../w-text-field';
 
-export type WDatePickerProps = BaseComponentProps & DistributiveOmit<DatePickerProps, "renderInput"> & {
+export type WDatePickerProps = BaseComponentProps & DistributiveOmit<DatePickerProps<Date>, "renderInput"> & {
   fullWidth?: boolean;
   format?: string;
   helperText?: string;
   error?: string;
-  renderInput?: DatePickerProps["renderInput"];
+  renderInput?: DatePickerProps<Date>["renderInput"];
 }
 
 export const WDatePicker: React.FC<WDatePickerProps> = ((fieldProps: WDatePickerProps) => {
