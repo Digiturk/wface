@@ -38,7 +38,10 @@ export class DemoScreen2 extends React.Component<BaseScreenProps, DemoScreen2Sta
       formData: {
         name: 'mehmet',
         surname: 'baran',
-        city: 63
+        city: 63,
+        birthDate: new Date(1987, 0, 1),
+        birthDate2: new Date(1987, 0, 1),
+        time: new Date(1987, 0, 1, 12, 30)
       }
     }
   }
@@ -90,6 +93,12 @@ export class DemoScreen2 extends React.Component<BaseScreenProps, DemoScreen2Sta
                     { label: 'Şanlıurfa', value: '63' }
                   ]}
                   />
+                  <div style={{ height: 20 }} />
+                  <WFormField.DatePicker fullWidth id="birthDate" label="Birth Date" name="birthDate" />
+                  <div style={{ height: 20 }} />
+                  <WFormField.DateTimePicker fullWidth id="birthDate2" label="Birth Date2" name="birthDate2" />
+                  <div style={{ height: 20 }} />
+                  <WFormField.TimePicker fullWidth id="time" label="Time" name="time" />
                   <div style={{ height: 20 }} />
                   <WFormField.Submit id="submit">Submit</WFormField.Submit>
                 </WForm>

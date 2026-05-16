@@ -1,6 +1,6 @@
 import * as React from 'react';
-import AdapterDateFns from '@date-io/date-fns';
-import { DatePicker, DatePickerProps, LocalizationProvider } from '@mui/lab';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { DatePicker, DatePickerProps, LocalizationProvider } from '@mui/x-date-pickers';
 import { BaseComponentProps } from '../../base/base-component-props';
 import { DistributiveOmit } from '@mui/types';
 import { WTextField } from '../w-text-field';
@@ -10,7 +10,6 @@ export type WDatePickerProps = BaseComponentProps & DistributiveOmit<DatePickerP
   format?: string;
   helperText?: string;
   error?: string;
-  renderInput?: DatePickerProps<Date>["renderInput"];
 }
 
 export const WDatePicker: React.FC<WDatePickerProps> = ((fieldProps: WDatePickerProps) => {
@@ -20,15 +19,17 @@ export const WDatePicker: React.FC<WDatePickerProps> = ((fieldProps: WDatePicker
     <LocalizationProvider dateAdapter={AdapterDateFns as any}>
       <DatePicker
         {...fieldProps}
-        inputFormat={format}
-        renderInput={(props: any) => (
-          <WTextField
-            {...props}
-            error={error}
-            helperText={helperText}
-            fullWidth={fullWidth}
-          />
-        )}
+        format={format} 
+        slots={{
+          textField: (props) => (
+            <WTextField
+              {...props}
+              error={error}
+              helperText={helperText}
+              fullWidth={fullWidth}
+            />
+          )
+        }}
       />
     </LocalizationProvider>
   );
