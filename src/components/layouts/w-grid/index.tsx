@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { Grid } from '@mui/material';
-import { GridProps } from '@mui/material/Grid';
+import GridLegacy from '@mui/material/GridLegacy';
+import { GridLegacyProps } from '@mui/material/GridLegacy';
 
-export interface WGridProps extends GridProps { }
+export interface WGridProps extends GridLegacyProps { }
 
 
 export const WGrid: React.FC<WGridProps> = React.forwardRef((props, ref) => {
   return (
-    <Grid {...props} ref={ref} />
+    <GridLegacy {...props} ref={ref} />
   );
 });
 

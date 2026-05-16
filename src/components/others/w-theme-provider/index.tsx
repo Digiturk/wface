@@ -2,6 +2,7 @@ import * as React from 'react';
 import { WTheme } from './w-theme';
 import { WPalette } from './w-palette';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider as LegacyThemeProvider } from "@mui/styles";
 
 import { blue, green, orange, red } from '@mui/material/colors';
 import { merge } from 'lodash';
@@ -68,7 +69,9 @@ export const WThemeProvider: React.FC<{ theme?: RecursivePartial<WTheme>, childr
 
   return (
     <ThemeProvider theme={mergedTheme}>
+      <LegacyThemeProvider theme={mergedTheme}>
       {children}
+      </LegacyThemeProvider>
     </ThemeProvider>
   )
 }
