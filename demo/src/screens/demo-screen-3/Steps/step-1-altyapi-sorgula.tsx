@@ -31,7 +31,7 @@ export default class Step1AltyapiSorgula extends React.Component<WWizardStepProp
             onChange={(city: any) => onDataChanged({ ...data, city })}
           />
         </WBox>
-        <WBox mt={1}>
+        <WBox sx={{ mt: 1}}>
           <WSelect
             id="town"
             label="İlçe"
@@ -46,7 +46,7 @@ export default class Step1AltyapiSorgula extends React.Component<WWizardStepProp
 
           />
         </WBox>
-        <WBox mt={1}>
+        <WBox sx={{ mt: 1}}>
           <WSelect
             id="village"
             label="Bucak/Köy"
@@ -60,7 +60,7 @@ export default class Step1AltyapiSorgula extends React.Component<WWizardStepProp
             onChange={(village: any) => onDataChanged({ ...data, village })}
           />
         </WBox>
-        <WBox mt={1}>
+        <WBox sx={{ mt: 1}}>
           <WSelect
             id="strict"
             label="Mahalle"
@@ -74,7 +74,7 @@ export default class Step1AltyapiSorgula extends React.Component<WWizardStepProp
             onChange={(strict: any) => onDataChanged({ ...data, strict })}
           />
         </WBox>
-        <WBox mt={1}>
+        <WBox sx={{ mt: 1}}>
           <WSelect
             id="street"
             label="Cadde/Sokak"
@@ -88,7 +88,7 @@ export default class Step1AltyapiSorgula extends React.Component<WWizardStepProp
             onChange={(street: any) => onDataChanged({ ...data, street })}
           />
         </WBox>
-        <WBox mt={1}>
+        <WBox sx={{ mt: 1 }}>
           <WSelect
             id="building"
             label="Bina Kapı No"
@@ -102,7 +102,7 @@ export default class Step1AltyapiSorgula extends React.Component<WWizardStepProp
             onChange={(building: any) => onDataChanged({ ...data, building })}
           />
         </WBox>
-        <WBox mt={1}>
+        <WBox sx={{ mt: 1}}>
           <WSelect
             id="gate"
             label="Daire No"
@@ -117,7 +117,7 @@ export default class Step1AltyapiSorgula extends React.Component<WWizardStepProp
           />
         </WBox>
 
-        <WBox display="flex" justifyContent="flex-end" mt={2}>
+        <WBox sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
           <WButton id="btnStep1" color="primary" variant="contained" onClick={onForward}>
             İleri
           </WButton>

@@ -38,7 +38,7 @@ export class DemoScreen2 extends React.Component<BaseScreenProps, DemoScreen2Sta
       formData: {
         name: 'mehmet',
         surname: 'baran',
-        city: 63,
+        city: '63',
         birthDate: new Date(1987, 0, 1),
         birthDate2: new Date(1987, 0, 1),
         time: new Date(1987, 0, 1, 12, 30)
@@ -77,7 +77,7 @@ export class DemoScreen2 extends React.Component<BaseScreenProps, DemoScreen2Sta
           />
         </WExpansionPanel>
         <WGrid container>
-          <WGrid item lg={6} md={6} sm={6}>
+          <WGrid size={{ lg: 6, md: 6, sm: 6 }}>
             <WCard>
               <WCardHeader title="Form" />
               <WCardContent>
@@ -107,7 +107,7 @@ export class DemoScreen2 extends React.Component<BaseScreenProps, DemoScreen2Sta
             <div><pre>{JSON.stringify(this.state.formData, null, 2)}</pre></div>
 
           </WGrid>
-          <WGrid item lg={6} md={6} sm={6}>
+          <WGrid size={{ lg: 6, md: 6, sm: 6 }}>
             <WCard>
               <WCardHeader title="Card" />
               <WCardContent>

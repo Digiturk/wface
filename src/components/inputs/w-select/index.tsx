@@ -122,24 +122,25 @@ class WSelectInner extends React.Component<WSelectProps, { focused: boolean }> {
           {...this.props}
           components={{...selectComponents,...this.props.components}}
           styles={customStyles}
-          onFocus={(event) => this.setFocus(event, true)}
-          onBlur={(event) => this.setFocus(event, false)}          
+          onFocus={(event: any) => this.setFocus(event, true)}
+          onBlur={(event: any) => this.setFocus(event, false)}          
           onChange={this.onChange}
           classNamePrefix="w_select"
           placeholder=""
           value={cleanValue}    
           //@ts-ignore
           textFieldProps={{            
-            label: this.props.label,        
-            InputLabelProps: {
-              shrink: this.state.focused || hasValue,
-            },
+            label: this.props.label,   
             error: this.props.error,
             helperText: this.props.helperText,
             style: this.props.style,
-            size: this.props.size
+            size: this.props.size,
+            slotProps: {
+              inputLabel: {
+                shrink: this.state.focused || hasValue,
+              }
+            }
           }}          
-          // menuPortalTarget={document.body}
         />
       </NoSsr>
     );

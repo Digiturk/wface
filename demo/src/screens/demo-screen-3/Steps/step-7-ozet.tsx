@@ -17,7 +17,7 @@ export default class StepX extends React.Component<WWizardStepProps, StepXState>
 
     return (
       <div>
-        <WBox mb={2}>
+        <WBox sx={{ mb: 2 }}>
           <WTypography variant="body2">
             <div>
               <pre>
@@ -26,8 +26,8 @@ export default class StepX extends React.Component<WWizardStepProps, StepXState>
             </div>
           </WTypography>
         </WBox>
-        <WBox display="flex" justifyContent="flex-end" mt={2}>
-          <WBox mr={1}>
+        <WBox sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
+          <WBox sx={{ mr: 1}}>
             <WButton id="btnStep1" color="primary" variant="contained" onClick={onBackward}>
               Geri
             </WButton>

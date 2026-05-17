@@ -14,8 +14,8 @@ export const Switch = React.forwardRef((fieldProps: SwitchProps, ref: any) => (
     useFastField={fieldProps.useFastField}
     component={(props: any) => (
       <WGrid container>
-        <WGrid item xs={7} style={{alignSelf: 'center'}}><WTypography>{fieldProps.label}</WTypography></WGrid>
-        <WGrid item xs={5} style={{textAlign: 'right'}}>
+        <WGrid size={{xs: 7}} style={{alignSelf: 'center'}}><WTypography>{fieldProps.label}</WTypography></WGrid>
+        <WGrid size={{xs: 5}} style={{textAlign: 'right'}}>
           <WSwitch
             ref={ref}
             {...fieldProps}

@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { WChip } from '../../others/w-chip';
 import { WIcon } from '../../medias/w-icon';
 import { WMenuItem } from '../../lists/w-menu/w-menu-item'
+import { MenuList } from '@mui/material';
 import { WPaper } from '../../layouts/w-paper';
 import { WTypography } from '../../others/w-typography';
 import { TextField } from '@mui/material';
@@ -11,25 +12,35 @@ import { components } from 'react-select';
 
 const inputComponent = ({ inputRef, ...props }: any) => <div ref={inputRef} {...props} />;
 
-const Control = (props: any) =>
-  <TextField
-    fullWidth
-    InputProps={{
-      inputComponent,
-      inputProps: {
-        className: props.selectProps.classes.input,
-        inputRef: props.innerRef,
-        children: props.children,
-        ...props.innerProps,
-      },
-    }}
-    {...props.selectProps.textFieldProps}
-  />
+const Control = (props: any) => {
+  const { slotProps: textFieldSlotProps, ...restTextFieldProps } = props.selectProps.textFieldProps || {};
+
+  return (
+    <TextField
+      fullWidth
+      slotProps={{
+        input: {
+          inputComponent,
+          inputProps: {
+            className: props.selectProps.classes?.input,
+            ref: props.innerRef,
+            children: props.children,
+            ...props.innerProps,
+          },
+        },
+        ...textFieldSlotProps,   // merges inputLabel: { shrink } from WSelect
+      }}
+      {...restTextFieldProps}
+    />
+  );
+};
 
 // Dialogun z-index'i 1300 olarak ayarlanmıs. Bunun da 1400 alarak üzerine cıkması lazım. 
 const Menu = (props: any) =>
   <WPaper square className={props.selectProps.classes.paper} {...props.innerProps} elevation={1}>
-    {props.children}
+    <MenuList>         
+      {props.children}
+    </MenuList>
   </WPaper>
 
 const MultiValue = (props: any) =>
@@ -96,7 +107,7 @@ const DropdownIndicator = (props: any) =>
 
 const selectComponents = {
   Control,
-  // DropdownIndicator,
+  DropdownIndicator,
   Menu,
   MultiValue,
   NoOptionsMessage,

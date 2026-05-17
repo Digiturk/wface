@@ -1,8 +1,11 @@
 import React, { FC, useMemo } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { IConfiguration } from '../../ioc';
-import { AppContextProvider, ApiContextProvider, UserContextProvider, ConfigContextProvider, useUserContext } from '../../store';
+import { AppContextProvider, ApiContextProvider, UserContextProvider, ConfigContextProvider } from '../../store';
 import WApp from '../components/w-app';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+
 
 interface WFaceProps {
   configuration: IConfiguration;
@@ -24,7 +27,9 @@ const WFace: FC<WFaceProps> = ({ configuration }) => {
       <UserContextProvider useLocalStorage={configuration.useLocalStorage} projectName={configuration.projectName}>
         <AppContextProvider>
           <ConfigContextProvider configuration={configuration}>
-            {children}           
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              {children}           
+            </LocalizationProvider>
           </ConfigContextProvider>
         </AppContextProvider>
       </UserContextProvider>

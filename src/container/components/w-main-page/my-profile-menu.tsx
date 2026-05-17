@@ -32,7 +32,7 @@ export const MyProfileMenu: FC<MyProfileMenuProps> = ({ items }) => {
   }, [userContext.logout, appContext.clear]);
 
   return (
-    <Box display="flex" alignItems="center">
+    <Box sx={{ display: 'flex', alignItems: 'center'}}>
       {/* @ts-ignore */}
       {configuration.components?.TopbarRightItems && <configuration.components.TopbarRightItems />}
       <WIconButton

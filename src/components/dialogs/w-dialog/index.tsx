@@ -14,12 +14,23 @@ const useStyles = makeStyles((theme: any) => ({
 }));
 
 export const WDialog: React.FC<WDialogProps> = (props: WDialogProps) => {
-  const { id = "", open = false, scroll = "paper" } = props;
+  const { id = "", open = false, scroll = "paper", ...rest } = props;
   const theme = useTheme<WTheme>();
   const classes = useStyles();
 
-  return <Dialog {...props} classes={{ paperScrollPaper: classes.root }} PaperProps={{ elevation: theme.designDetails?.defaultElevation, ...props.PaperProps }} />
-
+  return (
+    <Dialog
+      {...rest}
+      id={id}
+      open={open}
+      scroll={scroll}
+      slotProps={{
+        paper: {
+          elevation: theme.designDetails?.defaultElevation,
+        },
+      }}
+    />
+  );
 }
 
 export * from './w-dialog-actions';

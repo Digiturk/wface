@@ -11,14 +11,18 @@ export const WTabs: React.FC<WTabsProps> = (props) => {
   const { scrollButtonStyle, ...tabsProps } = props;
   return (
     <Tabs
-      ScrollButtonComponent={(props) => {
-        if (!props.visible) {
-          return null;
-        }
-        const icon = props.direction === 'left' ? 'chevron_left' : 'chevron_right';
-        return <WIconButton id={props.id + "scroll-component"} icon={icon} {...props} style={scrollButtonStyle} />
-      }}
       {...tabsProps}
+      slots={{
+        scrollButtons: (props) => {
+          if (!props.visible) {
+            return null;
+          }
+          const icon = props.direction === 'left' ? 'chevron_left' : 'chevron_right';
+          return <WIconButton id={props.id + "scroll-component"} icon={icon} {...props} style={scrollButtonStyle} />
+        },
+        ...tabsProps.slots
+      }}
+
     />
   )
 };

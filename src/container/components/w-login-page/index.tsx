@@ -53,8 +53,8 @@ const WLoginPage: React.FC = () => {
   return (
     <div style={{ height: '100vh', width: '100%', backgroundImage: `url(${loginBg})` }}>
       <div style={{ paddingTop: '5%' }}>
-        <WGrid container justifyContent="center" style={{ paddingLeft: 10, paddingRight: 10 }}>
-          <WGrid item xs={12} sm={6} md={4} lg={3}>
+        <WGrid container sx={{ paddingLeft: 10, paddingRight: 10, justifyContent: 'center' }}>
+          <WGrid sx={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
             <WCard>
               <WCardContent>
                 <WTypography
@@ -113,7 +113,7 @@ const WLoginPage: React.FC = () => {
               </WCardContent>
             </WCard>
           </WGrid>
-          <WGrid item xs={12} style={{ textAlign: 'center' }}>
+          <WGrid sx={{ xs: 12, textAlign: 'center'}}>
             <WTypography style={{ color: '#ddd' }}>
               @2018 DigiTurk
             </WTypography>

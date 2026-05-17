@@ -190,14 +190,15 @@ const WMainPage: FC = () => {
         classes={{
           paper: classes.drawerPaper,
         }}
-        PaperProps={{
-          // @ts-ignore
-          style: {
-            // @ts-ignore
-            border: "none",
-            ...theme.designDetails?.drawerDesign?.paper,
-          },
-          elevation: theme.designDetails?.defaultElevation || 0,
+        slotProps={{
+          paper: {
+            style: {
+              // @ts-ignore
+              border: "none",
+              ...theme.designDetails?.drawerDesign?.paper,
+            },
+            elevation: theme.designDetails?.defaultElevation || 0,
+          }
         }}
       >
         <div style={{ minHeight: topHeight }} />

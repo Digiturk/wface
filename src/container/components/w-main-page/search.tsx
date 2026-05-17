@@ -66,25 +66,25 @@ export const Search: FC = () => {
         ref={textFieldRef}
         isSearchable
         value={value}
-        onChange={(option, e) => configuration.searchProvider?.onItemSelected(option, appContext)}
+        onChange={(option: any, e: any) => configuration.searchProvider?.onItemSelected(option, appContext)}
         noOptionsMessage={() => "No result found"}
         blurInputOnSelect={true}
         inputValue={value}
-        onInputChange={(value, action) => onChange(value, action)}
+        onInputChange={(value: any, action: any) => onChange(value, action)}
         options={results}
-        formatOptionLabel={(option, context) => {
+        formatOptionLabel={(option: any, context: any) => {
           if (configuration.searchProvider?.renderSearchItem) {
             return configuration.searchProvider?.renderSearchItem(option, appContext);
           }
         }}
-        getOptionValue={(option) => value}
+        getOptionValue={(option: any) => value}
         menuIsOpen={value.length > 0 && focused}
         placeholder="Search..."
         isLoading={loading}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
         styles={{
-          control: (base) => ({
+          control: (base: any) => ({
             ...base,
             width: focused ? 400 : 200,
             backgroundColor: focused ? '#00000066' : '#00000033',
@@ -96,23 +96,23 @@ export const Search: FC = () => {
             boxShadow: 'none',
             fontSize: 14,
           }),
-          placeholder: (base) => ({
+          placeholder: (base: any) => ({
             ...base,
             color: '#FFFFFF66',
             lineHeight: '26px',
           }),
-          container: (base) => ({
+          container: (base: any) => ({
             ...base,
             border: 'none',
           }),
-          dropdownIndicator: (base) => ({
+          dropdownIndicator: (base: any) => ({
             height: 30
           }),
-          input: (base) => ({
+          input: (base: any) => ({
             ...base,
             color: '#FFF'
           }),
-          option: (base, state) => ({
+          option: (base: any, state: any) => ({
             ...base,
             color: 'initial',
             backgroundColor: state.isFocused ? theme?.palette.background.default : 'initial',
@@ -120,13 +120,13 @@ export const Search: FC = () => {
           }),
         }}
         components={{
-          DropdownIndicator: (props) => (
+          DropdownIndicator: () => (
             <div style={{ padding: '2px 5px 0px' }}>
               <WIcon icon="search" style={{ color: '#FFFFFF66' }} />
             </div>
           ),
-          IndicatorSeparator: () => null,
-          LoadingIndicator: (props) => (
+          IndicatorSeparator: (): React.ReactNode => null,
+          LoadingIndicator: () => (
             <div style={{ padding: '2px 5px 0px' }}>
               <WCircularProgress size={22} style={{ color: '#FFFFFFCC' }} />
             </div>

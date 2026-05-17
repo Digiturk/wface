@@ -26,7 +26,7 @@ export default class Step2KisiselBilgiler extends React.Component<WWizardStepPro
             onChange={e => onDataChanged({ ...data, name: e.target.value })}
           />
         </WBox>
-        <WBox mt={1}>
+        <WBox sx={{ mt: 1 }}>
           <WTextField
             id="lastname"
             label="Soyadı"
@@ -36,8 +36,8 @@ export default class Step2KisiselBilgiler extends React.Component<WWizardStepPro
           />
         </WBox>
 
-        <WBox display="flex" justifyContent="flex-end" mt={2}>
-          <WBox mr={1}>
+        <WBox sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
+          <WBox sx={{ mr: 1 }}>
             <WButton id="btnStep1" color="primary" variant="contained" onClick={onBackward}>
               Geri
             </WButton>

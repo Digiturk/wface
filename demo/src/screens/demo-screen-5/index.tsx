@@ -14,10 +14,10 @@ import {
 } from "wface";
 
 export const DemoScreen5 = () => {
-  const [dateTime, setDateTime] = useState<any>();
+  const [dateTime, setDateTime] = useState<Date>();
   return (
     <WGrid container>
-      <WGrid item xl={6} lg={6}>
+      <WGrid size={{ xl: 6, lg: 6 }}>
         <WCard>
           <WCardHeader title="FORM-VALİDASYON" />
           <WCardContent>
@@ -43,7 +43,7 @@ export const DemoScreen5 = () => {
           </WCardContent>
         </WCard>
       </WGrid>
-      <WGrid item xl={6} lg={6}>
+      <WGrid size={{ xl: 6, lg: 6 }}>
         <WCard>
           <WCardHeader title="ChechkBox" />
           <WCardContent>
@@ -54,21 +54,21 @@ export const DemoScreen5 = () => {
           </WCardContent>
         </WCard>
       </WGrid>
-      <WGrid item xl={6} lg={6}>
+      <WGrid size={{ xl: 6, lg: 6 }}>
         <WCard>
           <WCardHeader title="DatePicker" />
           <WCardContent>
             <>
               <WDateTimePicker
                 id="dtp"
-                value={{ dateTime }}
-                onChange={(dateTime: any) => setDateTime({ dateTime })}
+                value={dateTime}
+                onChange={(dateTime: Date) => setDateTime(dateTime)}
               />
             </>
           </WCardContent>
         </WCard>
       </WGrid>
-      <WGrid item xl={6} lg={6}>
+      <WGrid size={{ xl: 6, lg: 6 }}>
         <WCard>
           <WCardHeader title="WSELECT" />
           <WCardContent>
@@ -88,7 +88,7 @@ export const DemoScreen5 = () => {
         </WCard>
       </WGrid>
 
-      <WGrid item xl={6} lg={6}>
+      <WGrid size={{ xl: 6, lg: 6 }}>
         <WCard>
           <WCardHeader title="WTextField" />
           <WCardContent>
@@ -115,7 +115,7 @@ export const DemoScreen5 = () => {
           </WCardContent>
         </WCard>
       </WGrid>
-      <WGrid item xl={6} lg={6}>
+      <WGrid size={{ xl: 6, lg: 6 }}>
         <WCard>
           <WTabContainer defaultValue={1} centered>
             <WTabPage icon={<WIcon>face</WIcon>}>
@@ -127,7 +127,7 @@ export const DemoScreen5 = () => {
         </WCard>
         <WCardHeader />
       </WGrid>
-      <WGrid item xl={6} lg={6}>
+      <WGrid size={{ xl: 6, lg: 6 }}>
         <WCard>
           <WList style={{ backgroundColor: "#fff" }}>
             <WListItem key="0">
@@ -156,7 +156,7 @@ export const DemoScreen5 = () => {
 
 
       </WGrid>
-      <WGrid item xl={6} lg={6}>
+      <WGrid size={{ xl: 6, lg: 6 }}>
         <WCard>
           <WCardHeader title="Resim Avatarlar" />
           <WCardContent>
@@ -175,7 +175,7 @@ export const DemoScreen5 = () => {
           </WCardContent>
         </WCard>
       </WGrid>
-      <WGrid item xl={6} lg={6}>
+      <WGrid size={{ xl: 6, lg: 6 }}>
         <WCard>
           <WCardHeader title="Icon ve Harf Avatarlar" />
           <WCardContent>
@@ -213,7 +213,7 @@ export const DemoScreen5 = () => {
           </WCardContent>
         </WCard>
       </WGrid>
-      <WGrid item xl={6} lg={6}>
+      <WGrid size={{ xl: 6, lg: 6 }}>
         <WCard>
           <WCardHeader title="WBadge" />
           <WCardContent>
@@ -279,7 +279,7 @@ export const DemoScreen5 = () => {
           </WCardContent>
         </WCard>
       </WGrid>
-      <WGrid item xl={6} lg={6}>
+      <WGrid size={{ xl: 6, lg: 6 }}>
         <WCard>
           <WCardHeader title="WLink" />
           <WCardContent>
@@ -305,7 +305,7 @@ export const DemoScreen5 = () => {
           </WCardContent>
         </WCard>
       </WGrid>
-      <WGrid item xl={6} lg={6}>
+      <WGrid size={{ xl: 6, lg: 6 }}>
         <WCard>
           <WCardHeader title="WIcon" />
           <WCardContent>
@@ -323,7 +323,7 @@ export const DemoScreen5 = () => {
           </WCardContent>
         </WCard>
       </WGrid>
-      <WGrid item xl={6} lg={6}>
+      <WGrid size={{ xl: 6, lg: 6 }}>
         <WCard>
           <WCardHeader title="WRating" />
           <WCardContent>
@@ -338,7 +338,7 @@ export const DemoScreen5 = () => {
           </WCardContent>
         </WCard>
       </WGrid>
-      <WGrid item xl={6} lg={6}>
+      <WGrid size={{ xl: 6, lg: 6 }}>
         <WCard>
           <WCardHeader title="WLinearProgress" />
           <WCardContent>
@@ -353,7 +353,7 @@ export const DemoScreen5 = () => {
           </WCardContent>
         </WCard>
       </WGrid>
-      <WGrid item xl={6} lg={6}>
+      <WGrid size={{ xl: 6, lg: 6 }}>
         <WCard>
           <WCardHeader title="Determined" />
           <WCardContent>
@@ -382,7 +382,7 @@ export const DemoScreen5 = () => {
           </WCardContent>
         </WCard>
       </WGrid>
-      <WGrid item xl={6} lg={6}>
+      <WGrid size={{ xl: 6, lg: 6 }}>
         <WCard>
           <WCardHeader
             title="
@@ -419,7 +419,7 @@ export const DemoScreen5 = () => {
         </WCard>
       </WGrid>
 
-      <WGrid item xl={6} lg={6}>
+      <WGrid size={{ xl: 6, lg: 6 }}>
         <WCard>
           <WCardHeader title="WTable" />
           <WCardContent>
@@ -455,7 +455,7 @@ export const DemoScreen5 = () => {
         </WCard>
       </WGrid>
 
-      <WGrid item xl={6} lg={6}>
+      <WGrid size={{xl: 6, lg: 6}}>
         <WCard>
           <WCardHeader title="WChip" />
           <WCardContent>

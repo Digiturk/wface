@@ -46,7 +46,7 @@ export const DemoScreen4: React.FC<DemoScreen4Props> = (
   return (
     <>
       <WGrid container>
-        <WGrid item xl={6} lg={6}>
+        <WGrid size={{ xl: 6, lg: 6 }}>
           <WCard>
             <WCardHeader title="App BAR" />
             <WCardContent>
@@ -65,7 +65,7 @@ export const DemoScreen4: React.FC<DemoScreen4Props> = (
             </WCardContent>
           </WCard>
         </WGrid>
-        <WGrid item xl={6} lg={6}>
+        <WGrid size={{ xl: 6, lg: 6 }}>
           <WCard>
             <WCardHeader title="Notification" />
             <WCardContent>
@@ -94,7 +94,7 @@ export const DemoScreen4: React.FC<DemoScreen4Props> = (
           </WCard>
         </WGrid>
 
-        <WGrid item xl={6} lg={6}>
+        <WGrid size={{ xl: 6, lg: 6 }}>
           <WCard>
             <WCardHeader title="Buton-Temel Kullanım" />
             <WCardContent>
@@ -112,7 +112,7 @@ export const DemoScreen4: React.FC<DemoScreen4Props> = (
             </WCardContent>
           </WCard>
         </WGrid>
-        <WGrid item xl={6} lg={6}>
+        <WGrid size={{ xl: 6, lg: 6 }}>
           <WCard>
             <WCardHeader title="Farklı Görünümler -Buton" />
             <WCardContent>
@@ -131,7 +131,7 @@ export const DemoScreen4: React.FC<DemoScreen4Props> = (
             </WCardContent>
           </WCard>
         </WGrid>
-        <WGrid item xl={6} lg={6}>
+        <WGrid size={{ xl: 6, lg: 6 }}>
           <WCard>
             <WCardHeader title="Icon Kullanımı -Buton" />
             <WCardContent>
@@ -148,7 +148,7 @@ export const DemoScreen4: React.FC<DemoScreen4Props> = (
             </WCardContent>
           </WCard>
         </WGrid>
-        <WGrid item xl={6} lg={6}>
+        <WGrid size={{ xl: 6, lg: 6 }}>
           <WCard>
             <WCardHeader title="Farklı Görünümler -Buton and  Loading Buton" />
             <WCardContent>
@@ -176,7 +176,7 @@ export const DemoScreen4: React.FC<DemoScreen4Props> = (
           </WCard>
         </WGrid>
 
-        <WGrid item xl={6} lg={6}>
+        <WGrid size={{ xl: 6, lg: 6 }}>
           <WCard>
             <WCardHeader title="Togglw Buton" />
             <WCardContent>
@@ -203,7 +203,7 @@ export const DemoScreen4: React.FC<DemoScreen4Props> = (
             </WCardContent>
           </WCard>
         </WGrid>
-        <WGrid item xl={6} lg={6}>
+        <WGrid size={{ xl: 6, lg: 6 }}>
           <WCard>
             <WCardHeader />
             <WCardContent>
@@ -233,7 +233,7 @@ export const DemoScreen4: React.FC<DemoScreen4Props> = (
           </WCard>
         </WGrid>
 
-        <WGrid item xl={6} lg={6}>
+        <WGrid size={{ xl: 6, lg: 6 }}>
           <WCard>
             <WCardHeader title="WMessageDialog" />
             <WCardContent>
@@ -255,7 +255,7 @@ export const DemoScreen4: React.FC<DemoScreen4Props> = (
             </WCardContent>
           </WCard>
         </WGrid>
-        <WGrid item xl={6} lg={6}>
+        <WGrid size={{ xl: 6, lg: 6 }}>
           <WCard>
             <WCardHeader title="Farklı Görünümler -Buton" />
             <WCardContent>
@@ -290,20 +290,19 @@ export const DemoScreen4: React.FC<DemoScreen4Props> = (
           </WCard>
         </WGrid>
 
-        <WGrid item xl={6} lg={6}>
+        <WGrid size={{ xl: 6, lg: 6 }}>
           <WCard>
             <WCardHeader title="Farklı Görünümler -Buton" />
             <WCardContent>
               <>
                 <WGrid container spacing={3} style={{ padding: 30 }}>
-                  <WGrid item xs={12} md={6}>
+                  <WGrid size={{ xs: 12, md: 6 }}>
                     <WGrid
                       container
                       spacing={1}
-                      direction="column"
-                      alignItems="center"
+                      sx={{ direction: 'column', alignItems: 'center' }}
                     >
-                      <WGrid item>
+                      <WGrid>
                         <WButtonGroup
                           size="small"
                           aria-label="small outlined button group"
@@ -313,7 +312,7 @@ export const DemoScreen4: React.FC<DemoScreen4Props> = (
                           <WButton>Three</WButton>
                         </WButtonGroup>
                       </WGrid>
-                      <WGrid item>
+                      <WGrid>
                         <WButtonGroup
                           color="primary"
                           aria-label="outlined primary button group"
@@ -323,7 +322,7 @@ export const DemoScreen4: React.FC<DemoScreen4Props> = (
                           <WButton>Three</WButton>
                         </WButtonGroup>
                       </WGrid>
-                      <WGrid item>
+                      <WGrid>
                         <WButtonGroup
                           color="secondary"
                           size="large"
@@ -336,14 +335,13 @@ export const DemoScreen4: React.FC<DemoScreen4Props> = (
                       </WGrid>
                     </WGrid>
                   </WGrid>
-                  <WGrid item xs={12} md={6}>
+                  <WGrid size={{ xs: 12, md: 6 }}>
                     <WGrid
                       container
                       spacing={1}
-                      direction="column"
-                      alignItems="center"
+                      sx={{ direction: 'column', alignItems: 'center' }}
                     >
-                      <WGrid item>
+                      <WGrid>
                         <WButtonGroup
                           variant="contained"
                           size="small"
@@ -354,7 +352,7 @@ export const DemoScreen4: React.FC<DemoScreen4Props> = (
                           <WButton>Three</WButton>
                         </WButtonGroup>
                       </WGrid>
-                      <WGrid item>
+                      <WGrid>
                         <WButtonGroup
                           variant="contained"
                           color="primary"
@@ -365,7 +363,7 @@ export const DemoScreen4: React.FC<DemoScreen4Props> = (
                           <WButton>Three</WButton>
                         </WButtonGroup>
                       </WGrid>
-                      <WGrid item>
+                      <WGrid>
                         <WButtonGroup
                           variant="contained"
                           color="secondary"
@@ -379,7 +377,7 @@ export const DemoScreen4: React.FC<DemoScreen4Props> = (
                       </WGrid>
                     </WGrid>
                   </WGrid>
-                  <WGrid item xs={12}>
+                  <WGrid size={{ xs: 12 }}>
                     <WButtonGroup
                       fullWidth
                       aria-label="full width outlined button group"
@@ -396,7 +394,7 @@ export const DemoScreen4: React.FC<DemoScreen4Props> = (
         </WGrid>
       </WGrid>
 
-      <WBox display="flex" justifyContent="flex-end" mt={2}></WBox>
+      <WBox sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}></WBox>
     </>
   );
 };

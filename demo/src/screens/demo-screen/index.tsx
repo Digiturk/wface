@@ -92,7 +92,7 @@ export class DemoScreen extends React.Component<BaseScreenProps, DemoScreenState
     return (
       <>
         <WGrid container>
-          <WGrid item xl={6} lg={6}>
+          <WGrid size={{ xl: 6, lg: 6 }}>
             <WCard>
               <WCardHeader title="Area Chart" />
               <WCardContent>
@@ -112,7 +112,7 @@ export class DemoScreen extends React.Component<BaseScreenProps, DemoScreenState
               </WCardContent>
             </WCard>
           </WGrid>
-          <WGrid item xl={6} lg={6}>
+          <WGrid size={{ xl: 6, lg: 6 }}>
             <WTable
               id="table-2"
               title="df"

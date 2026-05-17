@@ -132,7 +132,7 @@ const NavList: FC<NavListProps> = ({ onItemClicked }) => {
           }
           <WListItemText
             primary={(
-              <Box style={listItemTextStyle as any} display="flex" alignItems="center" justifyContent="space-between">
+              <Box style={listItemTextStyle as any} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
                 <span>{item.text}</span>
                 {item.screen && item.subNodes && item.subNodes.length > 0 && <Box sx={{ color: theme => theme.palette.text.disabled }}>|</Box>}
               </Box>

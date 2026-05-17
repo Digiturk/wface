@@ -1,13 +1,12 @@
 import * as React from 'react';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { DateTimePicker, DateTimePickerProps, LocalizationProvider } from '@mui/x-date-pickers';
+import { DateTimePicker, DateTimePickerProps } from '@mui/x-date-pickers';
 import { BaseComponentProps } from '../../base/base-component-props';
 import { WTextField } from '../w-text-field';
 import { DistributiveOmit } from '@mui/types';
 
 
 
-export type WDateTimePickerProps = BaseComponentProps & DistributiveOmit<DateTimePickerProps<any>, "renderInput"> & {
+export type WDateTimePickerProps = BaseComponentProps & DistributiveOmit<DateTimePickerProps, "renderInput"> & {
   fullWidth?: boolean,
   format?: string;
   helperText?: string;
@@ -18,15 +17,20 @@ export const WDateTimePicker: React.FC<WDateTimePickerProps> =((fieldProps:WDate
   const { error, helperText, fullWidth = true, format = "dd.MM.yyyy HH:mm:ss" } = fieldProps;
 
   return (
-   <LocalizationProvider dateAdapter={AdapterDateFns as any}>
-        <DateTimePicker
-          {...fieldProps}
-          format={format}
-          slots={{
-            textField: (props: any) => <WTextField {...props} error={error} helperText={helperText} fullWidth={fullWidth}/>
-          }}
-        />
-      </LocalizationProvider>
+    <DateTimePicker
+      {...fieldProps}
+      format={format}
+      // slots={{
+      //   textField: (props: any) => <WTextField {...props} error={error} helperText={helperText} fullWidth={fullWidth}/>
+      // }}
+      slotProps={{
+        textField: {
+          error: !!error,
+          helperText: error ?? helperText,
+          fullWidth,
+        },
+      }}
+    />
   );
 });
 

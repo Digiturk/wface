@@ -28,7 +28,7 @@ export interface WTextFieldState {
 export const WTextField: FC<WTextFieldProps> = (props) => {
   const { 
     leftButtons = [], rightButtons = [], type, 
-    InputProps, inputProps, ...restProps 
+    slotProps, ...restProps 
   } = props;
   const textFieldRef = useRef();
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -82,16 +82,22 @@ export const WTextField: FC<WTextFieldProps> = (props) => {
     return result;
   }, [type, showPassword, leftButtons, rightButtons]);
 
-  let innerInputProps = useMemo(() => ({ ...InputProps, ...renderAdornments() }), [InputProps, renderAdornments]);
+  let innerInputProps = useMemo(() => ({ ...slotProps?.input, ...renderAdornments() }), [slotProps?.input, renderAdornments]);
 
   return (
     <TextField
       {...props}
       type={innerType}
-      InputProps={innerInputProps}
-      inputProps={{
-        ...inputProps,
-        ref: textFieldRef
+      slotProps={{
+        ...slotProps,
+        input: {
+          ...slotProps?.input,
+          ref: textFieldRef
+        },
+        htmlInput: {
+          ...slotProps?.htmlInput,
+          ...innerInputProps
+        }
       }}
     />
   );

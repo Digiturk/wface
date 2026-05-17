@@ -1,29 +1,35 @@
 import * as React from 'react';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { TimePicker, TimePickerProps, LocalizationProvider } from '@mui/x-date-pickers';
+import { TimePicker, TimePickerProps } from '@mui/x-date-pickers';
 import { BaseComponentProps } from '../../base/base-component-props';
 import { WTextField } from '../w-text-field';
 import { DistributiveOmit } from '@mui/types';
 
 
-export type WTimePickerProps = BaseComponentProps & DistributiveOmit<TimePickerProps<any>, "renderInput"> & {
+export type WTimePickerProps = BaseComponentProps & DistributiveOmit<TimePickerProps, "renderInput"> & {
   fullWidth?: boolean,
   format?: string;
+  helperText?: string;
+  error?:string;
 }
 
 
 export const WTimePicker: React.FC<WTimePickerProps> =((props:WTimePickerProps) => {
-  const {id="",ampm= false, format="HH:mm", fullWidth= true } = props;
+  const {error, helperText, id="",ampm= false, format="HH:mm", fullWidth= true } = props;
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns as any}>
     <TimePicker
       {...props}
-      slots={{
-        textField: (props: any) => <WTextField {...props} fullWidth={fullWidth} />
+      // slots={{
+      //   textField: (props: any) => <WTextField {...props} fullWidth={fullWidth} />
+      // }}
+      slotProps={{
+        textField: {
+          error: !!error,
+          helperText: error ?? helperText,
+          fullWidth,
+        },
       }}
     />
-  </LocalizationProvider>
   );
 });
 

@@ -39,9 +39,9 @@ export class DemoScreen3 extends React.Component<BaseScreenProps, DemoScreen3Sta
             ]}
           />
         </WPaper>
-        <WBox mt={1} p={1}>
+        <WBox sx={{ mt: 1, p: 1}}>
           <WPaper>
-            <WBox p={1}>
+            <WBox sx={{ p: 1}}>
               <div>
                 <pre>
                   {JSON.stringify(this.state.data, null, 2)}

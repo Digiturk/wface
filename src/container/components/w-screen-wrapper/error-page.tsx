@@ -28,8 +28,8 @@ export default class ErrorPage extends React.Component<ErrorPageProps, any> {
 
   render() {
     return (
-      <WGrid container justifyContent="center" mt={2}>
-        <WGrid item md={12} xs={12}>
+      <WGrid container  sx={{ justifyContent: 'center', mt: 2 }}>
+        <WGrid sx={{ md: 12, xs: 12 }}>
           <WCard>
             <WCardContent style={{ paddingBottom: 0 }}>
               <div style={{ display: 'flex' }}>
