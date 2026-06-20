@@ -8,6 +8,7 @@ import { useAppContext } from '../../../store';
 import { useTheme } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import { IMenuTreeItem } from '../../../ioc';
+import SessionTimeout from './session-timeout';
 
 
 const WScreenWrapper: FC<{ menuTreeItem?: IMenuTreeItem; }> = ({ menuTreeItem }) => {
@@ -61,6 +62,7 @@ const WScreenWrapper: FC<{ menuTreeItem?: IMenuTreeItem; }> = ({ menuTreeItem })
     }
 
     return (
+      <SessionTimeout>
       <div style={{ position: 'relative', width: '100%', height: '100%', }}>
         {appContext.screenMode === 'loading' &&
           <div style={{ display: 'table', position: 'absolute', width: '100%', height: 'calc(100% + 8px)', background: '#3f51b544', zIndex: (theme?.zIndex?.modal || 0) + 1 }}>
@@ -75,6 +77,7 @@ const WScreenWrapper: FC<{ menuTreeItem?: IMenuTreeItem; }> = ({ menuTreeItem })
           </BaseScreenPropsContext.Consumer>
         </BaseScreenPropsContext.Provider>
       </div>
+      </SessionTimeout>
     );
   } catch (error) {
     setPageError({ error });
